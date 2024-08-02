@@ -1,7 +1,7 @@
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const githubRepo = "my-static-site";
+const githubRepo = "poke-api-stadium";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

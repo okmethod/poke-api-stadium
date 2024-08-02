@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <title>OK SITE</title>
+  <title>PokeAPI Stadium</title>
 </svelte:head>
 
 <Modal />

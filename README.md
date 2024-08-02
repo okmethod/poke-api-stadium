@@ -1,4 +1,4 @@
-# my-static-site
+# poke-api-stadium
 
 `gh-pages` ブランチの静的アセットを Github Pages で公開する
 
@@ -21,4 +21,4 @@ http://localhost:5173/
 ```
 
 - ブラウザでアクセス
-https://okmethod.github.io/my-static-site/
+https://okmethod.github.io/poke-api-stadium/
