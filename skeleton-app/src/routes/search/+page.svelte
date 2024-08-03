@@ -44,10 +44,10 @@
             </ul>
 
             <h2 class="text-xl font-semibold text-gray-700 mt-4">たかさ</h2>
-            <p class="text-gray-600">{pokeData.height} m</p>
+            <p class="text-gray-600">{(pokeData.height * 0.1).toFixed(1)} m</p>
 
             <h2 class="text-xl font-semibold text-gray-700 mt-4">おもさ</h2>
-            <p class="text-gray-600">{pokeData.weight} kg</p>
+            <p class="text-gray-600">{(pokeData.weight * 0.1).toFixed(1)} kg</p>
           </div>
         </div>
       </div>
