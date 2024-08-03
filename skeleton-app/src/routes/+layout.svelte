@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { AppShell, AppBar } from "@skeletonlabs/skeleton";
+  import { AppBar } from "@skeletonlabs/skeleton";
   import { Toast, Modal, initializeStores } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
 
@@ -25,6 +25,32 @@
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { storePopup } from "@skeletonlabs/skeleton";
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+  import { onMount } from "svelte";
+  import { page } from "$app/stores";
+  import { get } from "svelte/store";
+  import { base } from "$app/paths";
+  import { goto } from "$app/navigation";
+  let breadcrumbs: { segment: string; href: string }[] = [];
+  onMount(() => {
+    function updateBreadcrumbs(url: URL) {
+      const path = url.pathname.replace(base, "");
+      breadcrumbs = path
+        .split("/")
+        .filter(Boolean)
+        .map((segment, index, array) => {
+          const href = `${base}/${array.slice(0, index + 1).join("/")}`;
+          return { segment, href };
+        });
+    }
+    const unsubscribe = page.subscribe(($page) => {
+      updateBreadcrumbs($page.url);
+    });
+    updateBreadcrumbs(get(page).url);
+    return () => {
+      unsubscribe();
+    };
+  });
 </script>
 
 <svelte:head>
@@ -39,9 +65,19 @@
     <AppBar class="!p-2">
       <div class="flex items-center">
         <a href="/" class="flex items-center">
-          <Icon icon="mdi-light:home" height="20" />
           <div class="text-lg">Top</div>
         </a>
+        {#if breadcrumbs.length > 0}
+          <div class="mx-2">/</div>
+          {#each breadcrumbs as { segment, href }, i}
+            <a {href} class="flex items-center" on:click|preventDefault={() => goto(href)}>
+              <div class="text-lg">{segment}</div>
+            </a>
+            {#if i < breadcrumbs.length - 1}
+              <div class="mx-2">/</div>
+            {/if}
+          {/each}
+        {/if}
       </div>
     </AppBar>
   </div>
