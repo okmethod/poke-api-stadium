@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PokeData } from "$lib/types/poke";
+  import Icon from "@iconify/svelte";
 
   export let pokeData: PokeData | null = null;
 
@@ -21,17 +22,18 @@
   </div>
   <div class="grid md:grid-cols-2 w-full">
     <!-- 画像 -->
-    <div class="p-2 flex justify-center">
-      <button
-        type="button"
-        on:click={toggleImage}
-        class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center"
-        aria-label="Toggle Image"
-      >
-        <img src={pokeData?.imageUrl[currentImageIndex]} alt={pokeData?.jaName} class="w-48 h-48" />
-      </button>
-    </div>
 
+    <div class="p-2 flex justify-center">
+      <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
+        {#if pokeData !== null}
+          <button type="button" on:click={toggleImage} aria-label="Toggle Image">
+            <img src={pokeData?.imageUrl[currentImageIndex]} alt={pokeData?.jaName} class="w-48 h-48" />
+          </button>
+        {:else}
+          <Icon icon="mdi:image-off-outline" height="40" />
+        {/if}
+      </div>
+    </div>
     <!-- その他情報 -->
     <div class="p-2">
       <div class="mb-2">
