@@ -34,30 +34,56 @@ export interface ResponseSpeciesJson {
   }>;
 }
 
+export interface ResponseTypeJson {
+  names: Array<{
+    language: {
+      name: string;
+    };
+    name: string;
+  }>;
+}
+
 export interface PokeData {
   id: number;
   enName: string;
   jaName: string;
   imageUrl: string[];
   jaGenus: string;
-  type1Name: string;
-  type2Name: string | null;
+  type1: {
+    enName: string;
+    jaName: string;
+  };
+  type2: {
+    enName: string;
+    jaName: string;
+  } | null;
   height: number;
   weight: number;
 }
 
-export function makePokeData(pokemonJson: ResponsePokemonJson, speciesJson: ResponseSpeciesJson): PokeData {
-  const jaName = speciesJson.names.find((name) => name.language.name === "ja")?.name ?? "";
-  const jaGenus = speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "";
-
+export function makePokeData(
+  pokemonJson: ResponsePokemonJson,
+  speciesJson: ResponseSpeciesJson,
+  type1Json: ResponseTypeJson,
+  type2Json: ResponseTypeJson | null,
+): PokeData {
   return {
     id: pokemonJson.id,
     enName: pokemonJson.species.name,
-    jaName: jaName,
+    jaName: speciesJson.names.find((name) => name.language.name === "ja")?.name ?? "???",
     imageUrl: [pokemonJson.sprites.front_default, pokemonJson.sprites.back_default],
-    jaGenus: jaGenus,
-    type1Name: pokemonJson.types[0].type.name,
-    type2Name: pokemonJson.types[1]?.type.name ?? null,
+    jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
+    type1: {
+      enName: pokemonJson.types[0].type.name,
+      jaName: type1Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
+    },
+    type2:
+      type2Json !== null
+        ? {
+            enName: pokemonJson.types[0].type.name,
+            jaName: type2Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
+          }
+        : null,
     height: pokemonJson.height,
     weight: pokemonJson.weight,
   };

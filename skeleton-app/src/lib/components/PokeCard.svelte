@@ -10,7 +10,7 @@
   }
 
   function formatValue(value: number | undefined): string {
-    return value !== undefined ? (value * 0.1).toFixed(1) : "??";
+    return value !== undefined ? (value * 0.1).toFixed(1) : "???";
   }
 </script>
 
@@ -41,8 +41,8 @@
       <div class="mb-2">
         <h2 class="text-xl font-semibold text-gray-700">タイプ</h2>
         <ul class="list-inside flex space-x-4">
-          <li class="text-gray-600">{pokeData?.type1Name}</li>
-          <li class="text-gray-600">{pokeData?.type2Name !== null ? pokeData?.type2Name : "なし"}</li>
+          <li class="text-gray-600">{pokeData?.type1.jaName}</li>
+          <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : "なし"}</li>
         </ul>
       </div>
       <div class="mb-2">
