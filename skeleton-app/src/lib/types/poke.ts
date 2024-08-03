@@ -6,6 +6,7 @@ export interface ResponsePokemonJson {
   };
   sprites: {
     front_default: string;
+    back_default: string;
   };
   types: Array<{
     slot: number;
@@ -31,7 +32,7 @@ export interface PokeData {
   id: number;
   enName: string;
   jaName: string;
-  imageUrl: string;
+  imageUrl: string[];
   type1Name: string;
   type2Name: string | null;
   height: number;
@@ -45,7 +46,7 @@ export function makePokeData(pokemonJson: ResponsePokemonJson, speciesJson: Resp
     id: pokemonJson.id,
     enName: pokemonJson.species.name,
     jaName: jaName,
-    imageUrl: pokemonJson.sprites.front_default,
+    imageUrl: [pokemonJson.sprites.front_default, pokemonJson.sprites.back_default],
     type1Name: pokemonJson.types[0].type.name,
     type2Name: pokemonJson.types[1]?.type.name ?? null,
     height: pokemonJson.height,

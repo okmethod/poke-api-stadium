@@ -3,12 +3,17 @@
 
   export let pokeData: PokeData | null = null;
 
+  let currentImageIndex = 0;
+  function toggleImage() {
+    currentImageIndex = (currentImageIndex + 1) % 2;
+  }
+
   function formatValue(value: number | undefined): string {
     return value !== undefined ? (value * 0.1).toFixed(1) : "??";
   }
 </script>
 
-<div class="grid border border-gray-300 rounded-lg shadow-lg max-w-[600px]">
+<div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[600px]">
   <header class="p-4 bg-red-100"></header>
   <!-- 名前 -->
   <div class="p-2">
@@ -17,7 +22,14 @@
   <div class="grid md:grid-cols-2 w-full">
     <!-- 画像 -->
     <div class="p-2 flex justify-center">
-      <img src={pokeData?.imageUrl} alt={pokeData?.jaName} class="w-48 h-48 rounded-lg border border-gray-200" />
+      <button
+        type="button"
+        on:click={toggleImage}
+        class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center"
+        aria-label="Toggle Image"
+      >
+        <img src={pokeData?.imageUrl[currentImageIndex]} alt={pokeData?.jaName} class="w-48 h-48" />
+      </button>
     </div>
 
     <!-- その他情報 -->
