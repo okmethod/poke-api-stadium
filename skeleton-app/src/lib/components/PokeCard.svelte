@@ -9,13 +9,9 @@
 
   let headerColor = nullColor;
   let footerColor = nullColor;
-  function getColorByTypeName(typeName: string): string {
-    const type = TYPES.find((t) => t.name === typeName);
-    return type ? type.color : nullColor;
-  }
   $: if (pokeData !== null) {
-    headerColor = getColorByTypeName(pokeData.type1.enName);
-    footerColor = pokeData.type2 !== null ? getColorByTypeName(pokeData.type2.enName) : headerColor;
+    headerColor = TYPES[pokeData.type1.enName]?.color ?? nullColor;
+    footerColor = pokeData.type2 !== null ? (TYPES[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
   }
 
   let currentImageIndex = 0;
