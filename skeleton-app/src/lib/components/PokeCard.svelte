@@ -16,13 +16,15 @@
 
 <div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[600px]">
   <header class="p-4 bg-red-100"></header>
-  <!-- 名前 -->
+  <!-- タイトル部分 -->
   <div class="p-2">
-    <h1 class="text-2xl font-bold text-gray-900">{pokeData?.jaName} : {pokeData?.enName}</h1>
+    <h1 class="text-2xl font-bold text-gray-900">
+      {pokeData?.jaName} : {pokeData?.enName}
+      <span class="text-lg font-normal text-gray-700 ml-4">{pokeData?.jaGenus}</span>
+    </h1>
   </div>
   <div class="grid md:grid-cols-2 w-full">
-    <!-- 画像 -->
-
+    <!-- 画像部分 -->
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
         {#if pokeData !== null}
@@ -34,7 +36,7 @@
         {/if}
       </div>
     </div>
-    <!-- その他情報 -->
+    <!-- 情報部分 -->
     <div class="p-2">
       <div class="mb-2">
         <h2 class="text-xl font-semibold text-gray-700">タイプ</h2>

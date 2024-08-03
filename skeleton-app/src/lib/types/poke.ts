@@ -26,6 +26,12 @@ export interface ResponseSpeciesJson {
     };
     name: string;
   }>;
+  genera: Array<{
+    language: {
+      name: string;
+    };
+    genus: string;
+  }>;
 }
 
 export interface PokeData {
@@ -33,6 +39,7 @@ export interface PokeData {
   enName: string;
   jaName: string;
   imageUrl: string[];
+  jaGenus: string;
   type1Name: string;
   type2Name: string | null;
   height: number;
@@ -41,12 +48,14 @@ export interface PokeData {
 
 export function makePokeData(pokemonJson: ResponsePokemonJson, speciesJson: ResponseSpeciesJson): PokeData {
   const jaName = speciesJson.names.find((name) => name.language.name === "ja")?.name ?? "";
+  const jaGenus = speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "";
 
   return {
     id: pokemonJson.id,
     enName: pokemonJson.species.name,
     jaName: jaName,
     imageUrl: [pokemonJson.sprites.front_default, pokemonJson.sprites.back_default],
+    jaGenus: jaGenus,
     type1Name: pokemonJson.types[0].type.name,
     type2Name: pokemonJson.types[1]?.type.name ?? null,
     height: pokemonJson.height,
