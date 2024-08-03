@@ -1,10 +1,7 @@
 <script lang="ts">
   //import { fetchImageUrlToBlob } from "$lib/utils/request.client";
-  import { onMount } from "svelte";
   import getPoke from "$lib/api/getPoke.client";
   import type { ResponsePokeJson } from "$lib/types/poke";
-  import { page } from "$app/stores";
-  import { get } from "svelte/store";
 
   let pokeId = "";
   let pokeData: ResponsePokeJson | null = null;
@@ -34,9 +31,25 @@
     {/if}
 
     {#if pokeData}
-      <div>
-        <h2 class="text-2xl font-semibold">{pokeData.name} (ID: {pokeData.id})</h2>
-        <!-- 他のポケモンデータを表示 -->
+      <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-4">
+            <h1 class="text-2xl font-bold text-gray-900">{pokeData.name}</h1>
+
+            <h2 class="text-xl font-semibold text-gray-700 mt-4">タイプ</h2>
+            <ul class="list-disc list-inside">
+              {#each pokeData.types as type}
+                <li class="text-gray-600">{type.type.name}</li>
+              {/each}
+            </ul>
+
+            <h2 class="text-xl font-semibold text-gray-700 mt-4">たかさ</h2>
+            <p class="text-gray-600">{pokeData.height} m</p>
+
+            <h2 class="text-xl font-semibold text-gray-700 mt-4">おもさ</h2>
+            <p class="text-gray-600">{pokeData.weight} kg</p>
+          </div>
+        </div>
       </div>
     {/if}
   </div>
