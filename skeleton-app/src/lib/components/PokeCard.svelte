@@ -2,6 +2,7 @@
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
   import { TYPES } from "$lib/types/type";
+  import { formatHW } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null = null;
 
@@ -17,10 +18,6 @@
   let currentImageIndex = 0;
   function toggleImage() {
     currentImageIndex = (currentImageIndex + 1) % 2;
-  }
-
-  function formatValue(value: number | undefined): string {
-    return value !== undefined ? (value * 0.1).toFixed(1) : "???";
   }
 </script>
 
@@ -72,11 +69,11 @@
       </div>
       <div class="mb-2 flex items-center space-x-4">
         <h2 class="text-l font-semibold text-gray-700">[たかさ]</h2>
-        <p class="text-gray-600">{formatValue(pokeData?.height)} m</p>
+        <p class="text-gray-600">{formatHW(pokeData?.height)} m</p>
       </div>
       <div class="mb-2 flex items-center space-x-4">
         <h2 class="text-l font-semibold text-gray-700">[おもさ]</h2>
-        <p class="text-gray-600">{formatValue(pokeData?.weight)} kg</p>
+        <p class="text-gray-600">{formatHW(pokeData?.weight)} kg</p>
       </div>
     </div>
   </div>
