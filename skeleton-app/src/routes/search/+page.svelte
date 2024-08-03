@@ -35,6 +35,7 @@
         <div class="md:flex">
           <div class="p-4">
             <h1 class="text-2xl font-bold text-gray-900">{pokeData.name}</h1>
+            <img src={pokeData.sprites.front_default} alt={pokeData.name} class="w-48 h-48 mx-auto my-4" />
 
             <h2 class="text-xl font-semibold text-gray-700 mt-4">タイプ</h2>
             <ul class="list-disc list-inside">

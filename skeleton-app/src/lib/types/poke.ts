@@ -1,6 +1,9 @@
 export interface ResponsePokeJson {
   name: string;
   id: number;
+  sprites: {
+    front_default: string;
+  };
   types: Array<{
     slot: number;
     type: {
