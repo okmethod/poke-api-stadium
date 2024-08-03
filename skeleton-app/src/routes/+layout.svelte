@@ -36,9 +36,9 @@
 <Toast position="tr" rounded="rounded-lg" />
 
 <div class="flex min-h-screen flex-col">
-  <div class="border-b border-gray-400">
+  <div class="border-b border-gray-400 mb-4">
     <AppBar class="!p-2">
-      <div class="flex items-center">
+      <div class="flex items-center h-full">
         <a href="/" class="flex items-center" on:click|preventDefault={() => navigateTo("/")}>
           <div class="text-lg">top</div>
         </a>
@@ -46,7 +46,7 @@
     </AppBar>
   </div>
 
-  <div class="container mx-auto flex-1 overflow-auto mt-4">
+  <div class="container mx-auto">
     <slot />
   </div>
 </div>

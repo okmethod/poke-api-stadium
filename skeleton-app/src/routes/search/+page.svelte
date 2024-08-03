@@ -16,11 +16,11 @@
   }
 </script>
 
-<div class="container h-full mx-auto flex justify-center items-center">
-  <div class="space-y-5">
-    <h1 class="text-3xl font-bold">ポケモン検索</h1>
+<div class="h-full w-full mx-auto container">
+  <h1 class="text-3xl font-bold">ポケモン検索</h1>
+  <div class="space-y-5 min-w-[300px] max-w-[1200px]">
     <form on:submit|preventDefault={fetchPokeData} class="flex items-center space-x-3">
-      <label for="pokeId" class="text-lg">全国図鑑番号:</label>
+      <label for="pokeId" class="text-lg">全国図鑑No:</label>
       <input type="text" id="pokeId" bind:value={pokeId} class="border border-gray-300 rounded px-2 py-1" />
       <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">検索</button>
     </form>
