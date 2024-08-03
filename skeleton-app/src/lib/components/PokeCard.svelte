@@ -16,33 +16,44 @@
 
 <div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[600px]">
   <header class="p-4 bg-red-100"></header>
+
   <!-- タイトル部分 -->
   <div class="p-2">
     <h1 class="text-2xl font-bold text-gray-900">
-      {pokeData?.jaName} : {pokeData?.enName}
-      <span class="text-lg font-normal text-gray-700 ml-4">{pokeData?.jaGenus}</span>
+      {#if pokeData !== null}
+        {pokeData.jaName} : {pokeData.enName}
+        <span class="text-lg font-normal text-gray-700 ml-4">{pokeData !== null ? pokeData.jaGenus : "???"}</span>
+      {:else}
+        ???
+      {/if}
     </h1>
   </div>
+
   <div class="grid md:grid-cols-2 w-full">
     <!-- 画像部分 -->
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
         {#if pokeData !== null}
           <button type="button" on:click={toggleImage} aria-label="Toggle Image">
-            <img src={pokeData?.imageUrl[currentImageIndex]} alt={pokeData?.jaName} class="w-48 h-48" />
+            <img src={pokeData.imageUrl[currentImageIndex]} alt={pokeData.jaName} class="w-48 h-48" />
           </button>
         {:else}
           <Icon icon="mdi:image-off-outline" height="40" />
         {/if}
       </div>
     </div>
+
     <!-- 情報部分 -->
     <div class="p-2">
       <div class="mb-2">
         <h2 class="text-xl font-semibold text-gray-700">タイプ</h2>
         <ul class="list-inside flex space-x-4">
-          <li class="text-gray-600">{pokeData?.type1.jaName}</li>
-          <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : "なし"}</li>
+          {#if pokeData !== null}
+            <li class="text-gray-600">{pokeData?.type1.jaName}</li>
+            <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : "なし"}</li>
+          {:else}
+            <li class="text-gray-600">???</li>
+          {/if}
         </ul>
       </div>
       <div class="mb-2">
@@ -55,5 +66,6 @@
       </div>
     </div>
   </div>
+
   <footer class="p-4 bg-red-100"></footer>
 </div>
