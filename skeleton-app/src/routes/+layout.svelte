@@ -2,7 +2,6 @@
   import "../app.postcss";
   import { AppBar } from "@skeletonlabs/skeleton";
   import { Toast, Modal, initializeStores } from "@skeletonlabs/skeleton";
-  import Icon from "@iconify/svelte";
 
   initializeStores();
 
@@ -65,7 +64,7 @@
     <AppBar class="!p-2">
       <div class="flex items-center">
         <a href="/" class="flex items-center" on:click|preventDefault={() => goto("/")}>
-          <div class="text-lg">Top</div>
+          <div class="text-lg">top</div>
         </a>
         {#if breadcrumbs.length > 0}
           <div class="mx-2">/</div>
