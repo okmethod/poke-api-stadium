@@ -29,6 +29,7 @@ export interface ResponseSpeciesJson {
 
 export interface PokeData {
   id: number;
+  enName: string;
   jaName: string;
   imageUrl: string;
   type1Name: string;
@@ -42,6 +43,7 @@ export function makePokeData(pokemonJson: ResponsePokemonJson, speciesJson: Resp
 
   return {
     id: pokemonJson.id,
+    enName: pokemonJson.species.name,
     jaName: jaName,
     imageUrl: pokemonJson.sprites.front_default,
     type1Name: pokemonJson.types[0].type.name,
