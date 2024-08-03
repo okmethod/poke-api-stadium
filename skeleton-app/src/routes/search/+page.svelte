@@ -2,6 +2,7 @@
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
+  import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCard from "$lib/components/PokeCard.svelte";
 
   let pokeId = "";
@@ -27,7 +28,14 @@
         No:
       </label>
       <div class="flex items-center space-x-2">
-        <input type="number" id="pokeId" bind:value={pokeId} class="border rounded px-2 py-1 h-full" />
+        <input
+          type="number"
+          min="1"
+          max={LATEST_POKEMON_ID}
+          id="pokeId"
+          bind:value={pokeId}
+          class="border rounded px-2 py-1 h-full"
+        />
         <button
           type="submit"
           class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
