@@ -2,14 +2,14 @@
   import { navigateTo } from "$lib/utils/navigation.client";
 </script>
 
-<div class="container h-full mx-auto flex justify-center items-center">
-  <div class="space-y-5">
+<div class="h-full w-full mx-auto container">
+  <div class="space-y-6">
     <h1 class="text-3xl font-bold">PokeAPI スタジアムへようこそ !</h1>
     <button
       on:click|preventDefault={() => navigateTo("/search")}
-      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+      class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4"
     >
-      [search] ポケモン検索
+      ポケモン検索
     </button>
   </div>
 </div>

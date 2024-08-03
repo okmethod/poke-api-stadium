@@ -1,7 +1,7 @@
 <script lang="ts">
+  import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
   import { TYPES } from "$lib/types/type";
-  import Icon from "@iconify/svelte";
 
   export let pokeData: PokeData | null = null;
 
@@ -28,11 +28,11 @@
   }
 </script>
 
-<div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[500px]">
-  <header class="p-4" style="background-color: {headerColor};"></header>
+<div class="grid border bg-gray-50 rounded-2xl shadow max-w-[500px] overflow-hidden">
+  <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部分 -->
-  <div class="p-2">
+  <div class="p-2 bg-transparent">
     <h1 class="text-2xl font-bold text-gray-900">
       {#if pokeData !== null}
         <div class="flex flex-col sm:flex-row items-start sm:items-center">
@@ -47,7 +47,7 @@
     </h1>
   </div>
 
-  <div class="grid md:grid-cols-2 w-full mb-2">
+  <div class="grid md:grid-cols-2 w-full mb-2 bg-transparent">
     <!-- 画像部分 -->
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
@@ -85,5 +85,5 @@
     </div>
   </div>
 
-  <footer class="p-4" style="background-color: {footerColor};"></footer>
+  <footer class="p-4 bg-transparent" style="background-color: {footerColor};"></footer>
 </div>

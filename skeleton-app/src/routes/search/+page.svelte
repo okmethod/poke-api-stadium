@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import PokeCard from "$lib/components/PokeCard.svelte";
@@ -16,15 +17,24 @@
 </script>
 
 <div class="h-full w-full mx-auto container">
-  <h1 class="text-3xl font-bold">ポケモン検索</h1>
+  <div class="mb-2">
+    <h1 class="text-2xl font-bold">ポケモン検索</h1>
+  </div>
   <div class="space-y-5 min-w-[300px] max-w-[1200px]">
     <form on:submit|preventDefault={fetchPokeData} class="flex items-center space-x-3">
       <label for="pokeId" class="text-lg">
         <span class="hidden sm:inline">全国図鑑</span>
         No:
       </label>
-      <input type="number" id="pokeId" bind:value={pokeId} class="border border-gray-300 rounded px-2 py-1" />
-      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">検索</button>
+      <div class="flex items-center space-x-2">
+        <input type="number" id="pokeId" bind:value={pokeId} class="border rounded px-2 py-1 h-full" />
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
+        >
+          <Icon icon="mdi:search" height="20" />
+        </button>
+      </div>
     </form>
 
     <PokeCard {pokeData} />
