@@ -22,18 +22,3 @@ export async function fetchApi(
     throw new Error(`Failed to fetch: ${requestConfig.method} ${url}`);
   }
 }
-
-export async function fetchImageUrlToBlob(fetchFunction: typeof fetch, imageUrl: string) {
-  try {
-    const response = await fetchFunction(imageUrl);
-    if (!response.ok) {
-      console.error("fetch image response:", response.status);
-      throw new Error("Failed to fetch image");
-    }
-    const blob = await response.blob();
-    return blob;
-  } catch (e) {
-    console.error("fetch image error:", e);
-    throw e;
-  }
-}

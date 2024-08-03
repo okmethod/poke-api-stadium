@@ -1,5 +1,4 @@
 <script lang="ts">
-  //import { fetchImageUrlToBlob } from "$lib/utils/request.client";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import PokeCard from "$lib/components/PokeCard.svelte";
