@@ -35,8 +35,12 @@
   <div class="p-2">
     <h1 class="text-2xl font-bold text-gray-900">
       {#if pokeData !== null}
-        {pokeData.jaName} : {pokeData.enName}
-        <span class="text-lg font-normal text-gray-700 ml-4">{pokeData !== null ? pokeData.jaGenus : "???"}</span>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+          <div>{pokeData.jaName} : {pokeData.enName}</div>
+          <span class="text-lg font-normal text-gray-700 ml-0 sm:ml-4">
+            {pokeData !== null ? pokeData.jaGenus : "???"}
+          </span>
+        </div>
       {:else}
         ???
       {/if}
@@ -59,8 +63,8 @@
 
     <!-- 情報部分 -->
     <div class="p-2">
-      <div class="mb-2">
-        <h2 class="text-xl font-semibold text-gray-700">タイプ</h2>
+      <div class="mb-2 flex items-center space-x-4">
+        <h2 class="text-l font-semibold text-gray-700">[タイプ]</h2>
         <ul class="list-inside flex space-x-4">
           {#if pokeData !== null}
             <li class="text-gray-600">{pokeData?.type1.jaName}</li>
@@ -70,12 +74,12 @@
           {/if}
         </ul>
       </div>
-      <div class="mb-2">
-        <h2 class="text-xl font-semibold text-gray-700">たかさ</h2>
+      <div class="mb-2 flex items-center space-x-4">
+        <h2 class="text-l font-semibold text-gray-700">[たかさ]</h2>
         <p class="text-gray-600">{formatValue(pokeData?.height)} m</p>
       </div>
-      <div class="mb-2">
-        <h2 class="text-xl font-semibold text-gray-700">おもさ</h2>
+      <div class="mb-2 flex items-center space-x-4">
+        <h2 class="text-l font-semibold text-gray-700">[おもさ]</h2>
         <p class="text-gray-600">{formatValue(pokeData?.weight)} kg</p>
       </div>
     </div>

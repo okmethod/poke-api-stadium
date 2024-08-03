@@ -35,7 +35,7 @@
 <Modal />
 <Toast position="tr" rounded="rounded-lg" />
 
-<div class="flex min-h-screen flex-col">
+<div class="flex h-screen flex-col">
   <div class="border-b border-gray-400 mb-4">
     <AppBar class="!p-2">
       <div class="flex items-center h-full">
@@ -46,7 +46,7 @@
     </AppBar>
   </div>
 
-  <div class="container mx-auto">
+  <div class="container overflow-y-auto mx-auto">
     <slot />
   </div>
 </div>
