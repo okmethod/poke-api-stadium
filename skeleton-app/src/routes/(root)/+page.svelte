@@ -16,7 +16,7 @@
       ポケモン検索
     </button>
     <button
-      on:click|preventDefault={() => navigateTo("/comapre")}
+      on:click|preventDefault={() => navigateTo("/compare")}
       class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
     >
       <img src={BALLS["great-ball"].imageUrl} alt="great-ball" class="w-6 h-6 mr-2" />
