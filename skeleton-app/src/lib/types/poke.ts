@@ -1,3 +1,6 @@
+import type { Sprites } from "$lib/types/sprites";
+import { makeSpritesArray } from "$lib/types/sprites";
+
 // https://pokeapi.co/api/v2/pokemon の count の値
 // と思いきや、図鑑番号がついていないポケモンがいるので count より小さい値になる
 export const LATEST_POKEMON_ID = 1025;
@@ -8,10 +11,7 @@ export interface ResponsePokemonJson {
     name: string;
     url: string;
   };
-  sprites: {
-    front_default: string;
-    back_default: string;
-  };
+  sprites: Sprites;
   types: Array<{
     slot: number;
     type: {
@@ -51,7 +51,7 @@ export interface PokeData {
   id: number;
   enName: string;
   jaName: string;
-  imageUrl: string[];
+  imageUrlArray: string[];
   jaGenus: string;
   type1: {
     enName: string;
@@ -75,7 +75,7 @@ export function makePokeData(
     id: pokemonJson.id,
     enName: pokemonJson.species.name,
     jaName: speciesJson.names.find((name) => name.language.name === "ja")?.name ?? "???",
-    imageUrl: [pokemonJson.sprites.front_default, pokemonJson.sprites.back_default],
+    imageUrlArray: makeSpritesArray(pokemonJson.sprites),
     jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
     type1: {
       enName: pokemonJson.types[0].type.name,

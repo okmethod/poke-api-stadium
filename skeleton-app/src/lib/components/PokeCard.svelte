@@ -8,16 +8,20 @@
 
   const nullColor = "#888888";
 
+  let spritesLength = 0;
   let headerColor = nullColor;
   let footerColor = nullColor;
   $: if (pokeData !== null) {
+    spritesLength = pokeData.imageUrlArray.length;
     headerColor = TYPES[pokeData.type1.enName]?.color ?? nullColor;
     footerColor = pokeData.type2 !== null ? (TYPES[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
   }
 
   let currentImageIndex = 0;
   function toggleImage() {
-    currentImageIndex = (currentImageIndex + 1) % 2;
+    if (spritesLength > 1) {
+      currentImageIndex = (currentImageIndex + 1) % spritesLength;
+    }
   }
 </script>
 
@@ -46,7 +50,7 @@
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
         {#if pokeData !== null}
           <button type="button" on:click={toggleImage} aria-label="Toggle Image">
-            <img src={pokeData.imageUrl[currentImageIndex]} alt={pokeData.jaName} class="w-48 h-48" />
+            <img src={pokeData.imageUrlArray[currentImageIndex]} alt={pokeData.jaName} class="w-48 h-48" />
           </button>
         {:else}
           <Icon icon="mdi:image-off-outline" height="40" />
