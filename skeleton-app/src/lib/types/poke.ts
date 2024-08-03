@@ -80,7 +80,7 @@ export function makePokeData(
     type2:
       type2Json !== null
         ? {
-            enName: pokemonJson.types[0].type.name,
+            enName: pokemonJson.types[1].type.name,
             jaName: type2Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
           }
         : null,

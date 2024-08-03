@@ -1,8 +1,22 @@
 <script lang="ts">
   import type { PokeData } from "$lib/types/poke";
+  import { TYPES } from "$lib/types/type";
   import Icon from "@iconify/svelte";
 
   export let pokeData: PokeData | null = null;
+
+  const nullColor = "#888888";
+
+  let headerColor = nullColor;
+  let footerColor = nullColor;
+  function getColorByTypeName(typeName: string): string {
+    const type = TYPES.find((t) => t.name === typeName);
+    return type ? type.color : nullColor;
+  }
+  $: if (pokeData !== null) {
+    headerColor = getColorByTypeName(pokeData.type1.enName);
+    footerColor = pokeData.type2 !== null ? getColorByTypeName(pokeData.type2.enName) : headerColor;
+  }
 
   let currentImageIndex = 0;
   function toggleImage() {
@@ -14,8 +28,8 @@
   }
 </script>
 
-<div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[600px]">
-  <header class="p-4 bg-red-100"></header>
+<div class="grid border bg-gray-50 border-gray-300 rounded-lg shadow-lg max-w-[500px]">
+  <header class="p-4" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部分 -->
   <div class="p-2">
@@ -29,7 +43,7 @@
     </h1>
   </div>
 
-  <div class="grid md:grid-cols-2 w-full">
+  <div class="grid md:grid-cols-2 w-full mb-2">
     <!-- 画像部分 -->
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
@@ -50,7 +64,7 @@
         <ul class="list-inside flex space-x-4">
           {#if pokeData !== null}
             <li class="text-gray-600">{pokeData?.type1.jaName}</li>
-            <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : "なし"}</li>
+            <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
           {:else}
             <li class="text-gray-600">???</li>
           {/if}
@@ -67,5 +81,5 @@
     </div>
   </div>
 
-  <footer class="p-4 bg-red-100"></footer>
+  <footer class="p-4" style="background-color: {footerColor};"></footer>
 </div>
