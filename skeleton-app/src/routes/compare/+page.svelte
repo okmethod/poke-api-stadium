@@ -49,6 +49,11 @@
       value: (value: PokeData) => value.stats.specialDefense,
       formatValue: (value: PokeData) => formatStat(value.stats.specialDefense),
     },
+    speed: {
+      name: "すばやさ",
+      value: (value: PokeData) => value.stats.speed,
+      formatValue: (value: PokeData) => formatStat(value.stats.speed),
+    },
   };
 
   interface PokeItem {
