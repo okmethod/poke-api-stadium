@@ -1,6 +1,8 @@
 import type { ResponseTypeJson } from "$lib/types/type";
 import type { Sprites } from "$lib/types/sprites";
 import { makeSpritesArray } from "$lib/types/sprites";
+import type { Stat, Stats } from "$lib/types/stats";
+import { transformStats } from "$lib/types/stats";
 
 // https://pokeapi.co/api/v2/pokemon の count の値
 // と思いきや、図鑑番号がついていないポケモンがいるので count より小さい値になる
@@ -22,6 +24,7 @@ export interface ResponsePokemonJson {
   }>;
   height: number;
   weight: number;
+  stats: Array<Stat>;
 }
 
 export interface ResponseSpeciesJson {
@@ -55,6 +58,7 @@ export interface PokeData {
   } | null;
   height: number;
   weight: number;
+  stats: Stats;
 }
 
 export function makePokeData(
@@ -82,5 +86,6 @@ export function makePokeData(
         : null,
     height: pokemonJson.height,
     weight: pokemonJson.weight,
+    stats: transformStats(pokemonJson.stats),
   };
 }
