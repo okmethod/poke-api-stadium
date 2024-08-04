@@ -84,30 +84,45 @@
   }
 
   async function judgeJankenResult(
-    attackPoke: PokeData,
-    attackType: Type,
-    defensePoke: PokeData,
-    defenseType: Type,
+    ownPokeData: PokeData,
+    opoPokeData: PokeData,
+    ownPokeType: Type,
+    opoPokeType: Type,
   ): Promise<{ result: string; resultMessage: string }> {
-    const damageRatio = await getDamageRatio(fetch, selectedOwnType, selectedOpoType);
+    let attackPoke, attackType, defenseType;
+    let isOwnAttack: boolean;
+
+    if (ownPokeData.stats.speed >= opoPokeData.stats.speed) {
+      isOwnAttack = true;
+      attackPoke = ownPokeData;
+      attackType = ownPokeType;
+      defenseType = opoPokeType;
+    } else {
+      isOwnAttack = false;
+      attackPoke = opoPokeData;
+      attackType = opoPokeType;
+      defenseType = ownPokeType;
+    }
+
+    const damageRatio = await getDamageRatio(fetch, attackType, defenseType);
     let result: string;
     let resultMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に`;
     switch (damageRatio) {
       case "double":
-        result = "あなた の かち！";
+        result = isOwnAttack ? "あなた の かち！" : "あなた の まけ...";
         resultMessage = `${resultMessage} ばつぐん だ！`;
         break;
       case "half":
-        result = "あなた の まけ...";
-        resultMessage = `${resultMessage} いまひとつ の ようだ`;
+        result = isOwnAttack ? "あなた の まけ..." : "あなた の かち！";
+        resultMessage = `${resultMessage} いまひとつ...`;
         break;
       case "no":
-        result = "あなた の まけ...";
-        resultMessage = `${resultMessage} こうかは ない ようだ...`;
+        result = isOwnAttack ? "あなた の まけ..." : "あなた の かち！";
+        resultMessage = `${resultMessage} こうかは なし...`;
         break;
       default:
         result = "あいこ";
-        resultMessage = `${resultMessage} あたった！`;
+        resultMessage = `${resultMessage} まずまず だ`;
         break;
     }
     return { result, resultMessage };
@@ -122,12 +137,12 @@
     const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
     selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
 
-    const attackPoke = ownPokeArray[selectedOwnPokeIndex]; // TODO: 素早さを参照して決める
-    const attackType = selectedOwnType;
-    const defensePoke = opoPokeArray[selectedOpoPokeIndex];
-    const defenseType = selectedOpoType;
-
-    ({ result, resultMessage } = await judgeJankenResult(attackPoke, attackType, defensePoke, defenseType));
+    ({ result, resultMessage } = await judgeJankenResult(
+      ownPokeArray[selectedOwnPokeIndex],
+      opoPokeArray[selectedOpoPokeIndex],
+      selectedOwnType,
+      selectedOpoType,
+    ));
     phase = "result";
   }
 
