@@ -1,3 +1,12 @@
+export interface ResponseTypeJson {
+  names: Array<{
+    language: {
+      name: string;
+    };
+    name: string;
+  }>;
+}
+
 export interface Type {
   color: string;
   url: string;

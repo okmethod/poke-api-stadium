@@ -1,3 +1,4 @@
+import type { ResponseTypeJson } from "$lib/types/type";
 import type { Sprites } from "$lib/types/sprites";
 import { makeSpritesArray } from "$lib/types/sprites";
 
@@ -35,15 +36,6 @@ export interface ResponseSpeciesJson {
       name: string;
     };
     genus: string;
-  }>;
-}
-
-export interface ResponseTypeJson {
-  names: Array<{
-    language: {
-      name: string;
-    };
-    name: string;
   }>;
 }
 
