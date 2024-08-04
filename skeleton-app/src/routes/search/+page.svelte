@@ -19,7 +19,7 @@
 
 <div class="h-full w-full mx-auto container">
   <div class="mb-2">
-    <h1 class="text-2xl font-bold">ポケモン検索</h1>
+    <h1 class="text-2xl font-bold">ポケモンずかん</h1>
   </div>
   <div class="space-y-5 min-w-[300px] max-w-[1200px]">
     <form on:submit|preventDefault={fetchPokeData} class="flex items-center space-x-3">

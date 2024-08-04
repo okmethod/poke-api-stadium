@@ -15,7 +15,7 @@
       class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
     >
       <img src={BALLS["poke-ball"].imageUrl} alt="poke-ball" class="w-6 h-6 mr-2" />
-      ポケモン検索
+      ポケモンずかん
     </button>
     <button
       on:click|preventDefault={() => navigateTo("/compare")}
