@@ -51,47 +51,57 @@
     },
   };
 
+  interface PokeItem {
+    id: number;
+    data: PokeData;
+  }
+
   let isOpen = false;
   let pokeIds: number[] = [];
-  let pokeDataArray: PokeData[] = [];
-  async function fetchPokeDataArray() {
+  let pokeArray: PokeItem[] = [];
+  async function fetchPokeDataArray(): Promise<void> {
     resetState();
     try {
       pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, 3);
-      pokeDataArray = await Promise.all(pokeIds.slice(0, 3).map((id) => getPokeData(fetch, id.toString())));
+      const pokeDataArray = await Promise.all(pokeIds.slice(0, 3).map((id) => getPokeData(fetch, id.toString())));
+      pokeArray = pokeDataArray.map((pokeData, index) => ({
+        id: index,
+        data: pokeData,
+      }));
     } catch {
       // do nothing
     }
   }
 
-  function handleDndConsider(event: CustomEvent<{ items: PokeData[] }>) {
+  function handleDndConsider(event: CustomEvent<{ items: PokeItem[] }>): void {
     const { items } = event.detail;
-    pokeDataArray = items;
+    pokeArray = items;
   }
 
-  function handleDndFinalize(event: CustomEvent<{ items: PokeData[] }>) {
+  function handleDndFinalize(event: CustomEvent<{ items: PokeItem[] }>): void {
     const { items } = event.detail;
-    pokeDataArray = items;
+    pokeArray = items;
   }
 
   const flipDurationMs = 300;
   const dropTargetStyle = { outline: "0px" };
 
   let comprareResult = "";
-  function compareValues() {
+  function compareValues(): void {
+    if (pokeArray.length == 0) return;
     isOpen = true;
-    const values = pokeDataArray.map((pokeData) => options[optionId].value(pokeData));
+    const values = pokeArray.map((pokeItem) => options[optionId].value(pokeItem.data));
     if (isSortedDesc(values)) {
       comprareResult = "せいかい！";
     } else {
       comprareResult = "ざんねん...";
     }
   }
-  function isSortedDesc(array: number[]) {
+  function isSortedDesc(array: number[]): boolean {
     return array.every((value, index) => index === 0 || array[index - 1] >= value);
   }
 
-  function resetState() {
+  function resetState(): void {
     isOpen = false;
     comprareResult = "";
   }
@@ -131,14 +141,15 @@
     <div class="space-y-5 border bg-white rounded-xl min-h-[300px] min-w-[300px]">
       <div
         class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent"
-        use:dndzone={{ items: pokeDataArray, flipDurationMs, dropTargetStyle }}
+        use:dndzone={{ items: pokeArray, flipDurationMs, dropTargetStyle }}
         on:consider={handleDndConsider}
         on:finalize={handleDndFinalize}
       >
-        {#each pokeDataArray as pokeData (pokeData.id)}
+        {#each pokeArray as pokeItem, index (pokeItem.id)}
           <div>
-            <PokeCardCompact {pokeData} />
-            <p class="text-center">{isOpen ? options[optionId].formatValue(pokeData) : "???"}</p>
+            <PokeCardCompact pokeData={pokeItem.data} />
+            <p class="text-center">{isOpen ? options[optionId].formatValue(pokeItem.data) : "???"}</p>
+            <p class="text-center">{index + 1} ばんめ</p>
           </div>
         {/each}
       </div>
