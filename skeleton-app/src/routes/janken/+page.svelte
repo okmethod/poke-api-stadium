@@ -9,7 +9,7 @@
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/HelpJankenModal.svelte";
-  import { getRandomNumbers } from "$lib/utils/numerics";
+  import { pickRandomNumbers } from "$lib/utils/numerics";
 
   const modalStore = getModalStore();
 
@@ -70,9 +70,11 @@
   const numPokeByPlayer = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
+    phase = "summonning_poke";
     resetState();
     try {
-      pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, numPokeByPlayer * 2);
+      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+      pokeIds = pickRandomNumbers(numbers, numPokeByPlayer * 2);
       const pokeDataArray = await Promise.all(
         pokeIds.slice(0, numPokeByPlayer * 2).map((id) => getPokeData(fetch, id.toString())),
       );
@@ -82,22 +84,53 @@
       // do nothing
     }
     isLoading = false;
+    phase = "select_poke";
   }
 
   let selectedOwnPokeIndex = -1;
   let selectedOpoPokeIndex = -1;
+  const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
 
-  let message = "ポケモン を よびだしてね";
+  type Phase = "init" | "summonning_poke" | "select_poke" | "select_type" | "result";
+  let phase: Phase = "init";
+
+  let message: string;
   function updateMessage(): void {
-    if (ownPokeArray.length == 0) {
-      message = "ポケモン を よびだしてね";
-      return;
+    switch (phase) {
+      case "init":
+        message = "ポケモン を よびだしてね";
+        break;
+      case "summonning_poke":
+        message = "ポケモン を よびだしちゅう...";
+        break;
+      case "select_poke":
+        if (!pokeIndexes.includes(selectedOwnPokeIndex)) {
+          message = "ポケモン をえらんでね";
+        } else {
+          message = `${ownPokeArray[selectedOwnPokeIndex].data.jaName} で しょうぶ？`;
+        }
+        break;
+      case "select_type":
+        message = "タイプ をえらんでね";
+        break;
+      case "result":
+        message = "じゃんけん しよう！";
+        break;
     }
-    message = `ポケモン をえらんでね`;
   }
 
-  $: if (ownPokeArray) {
+  $: if (phase || selectedOwnPokeIndex) {
     updateMessage();
+  }
+
+  function updatePhaseToSelectType(): void {
+    phase = "select_type";
+    selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
+  }
+
+  function resetState(): void {
+    selectedOwnPokeIndex = -1;
+    selectedOpoPokeIndex = -1;
   }
 
   function showHelpModal(): void {
@@ -125,10 +158,6 @@
     };
     modalStore.trigger(modal);
   }
-
-  function resetState(): void {
-    // todo later
-  }
 </script>
 
 <div class="container mx-auto h-full w-9/12 ml-4">
@@ -148,7 +177,7 @@
               : 'bg-blue-500 hover:bg-blue-600'}"
           >
             <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+              <Icon icon="mdi:pokeball" class="w-5 h-5" />
             </div>
           </button>
         </form>
@@ -182,7 +211,7 @@
       あいて
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
         {#each opoPokeArray as pokeItem, index (pokeItem.id)}
-          <div class="rounded-2xl border {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
+          <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <PokeCardCompact pokeData={pokeItem.data} />
           </div>
         {/each}
@@ -196,7 +225,7 @@
       あなた
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
         {#each ownPokeArray as pokeItem, index (pokeItem.id)}
-          <div class="rounded-2xl border {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
+          <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
               type="button"
               on:click={() => (selectedOwnPokeIndex = index)}
@@ -216,6 +245,18 @@
     <div class="ml-4 space-y-4">
       <div class="flex items-center space-x-3">
         <span class="text-lg">{message}</span>
+        <!-- ポケモン選択済みのとき-->
+        {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
+          <button
+            type="button"
+            class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
+            on:click={updatePhaseToSelectType}
+          >
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:pokeball" class="w-5 h-5" />
+            </div>
+          </button>
+        {/if}
       </div>
     </div>
   </div>
