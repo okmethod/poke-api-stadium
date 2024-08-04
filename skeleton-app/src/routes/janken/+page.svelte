@@ -5,7 +5,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import getDamageRatio from "$lib/api/getDamageRatio.client";
   import type { PokeData } from "$lib/types/poke";
-  import type { Type } from "$lib/types/type";
+  import type { Type, DamageRatio } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
@@ -89,42 +89,20 @@
     ownPokeType: Type,
     opoPokeType: Type,
   ): Promise<{ result: string; resultMessage: string }> {
-    let attackPoke, attackType, defenseType;
-    let isOwnAttack: boolean;
+    const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
+    const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;
+    const attackType = isOwnAttack ? ownPokeType : opoPokeType;
+    const defenseType = isOwnAttack ? opoPokeType : ownPokeType;
 
-    if (ownPokeData.stats.speed >= opoPokeData.stats.speed) {
-      isOwnAttack = true;
-      attackPoke = ownPokeData;
-      attackType = ownPokeType;
-      defenseType = opoPokeType;
-    } else {
-      isOwnAttack = false;
-      attackPoke = opoPokeData;
-      attackType = opoPokeType;
-      defenseType = ownPokeType;
-    }
-
+    const resultMap: Record<DamageRatio, { result: string; message: string }> = {
+      double: { result: isOwnAttack ? "あなた の かち！" : "あなた の まけ...", message: "ばつぐん だ！" },
+      half: { result: isOwnAttack ? "あなた の まけ..." : "あなた の かち！", message: "いまひとつ..." },
+      no: { result: isOwnAttack ? "あなた の まけ..." : "あなた の かち！", message: "こうかは なし..." },
+      default: { result: "あいこ", message: "まずまず だ" },
+    };
     const damageRatio = await getDamageRatio(fetch, attackType, defenseType);
-    let result: string;
-    let resultMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に`;
-    switch (damageRatio) {
-      case "double":
-        result = isOwnAttack ? "あなた の かち！" : "あなた の まけ...";
-        resultMessage = `${resultMessage} ばつぐん だ！`;
-        break;
-      case "half":
-        result = isOwnAttack ? "あなた の まけ..." : "あなた の かち！";
-        resultMessage = `${resultMessage} いまひとつ...`;
-        break;
-      case "no":
-        result = isOwnAttack ? "あなた の まけ..." : "あなた の かち！";
-        resultMessage = `${resultMessage} こうかは なし...`;
-        break;
-      default:
-        result = "あいこ";
-        resultMessage = `${resultMessage} まずまず だ`;
-        break;
-    }
+    const { result, message } = resultMap[damageRatio] || resultMap.default;
+    const resultMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に ${message}`;
     return { result, resultMessage };
   }
 
