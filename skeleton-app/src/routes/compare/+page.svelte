@@ -5,7 +5,7 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
-  import { getRandomNumbers, formatHW, formatStat } from "$lib/utils/numerics";
+  import { pickRandomNumbers, formatHW, formatStat } from "$lib/utils/numerics";
 
   let optionId = "height";
   interface Option {
@@ -70,7 +70,8 @@
     isLoading = true;
     resetState();
     try {
-      pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, numPoke);
+      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+      pokeIds = pickRandomNumbers(numbers, numPoke);
       const pokeDataArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
       pokeArray = pokeDataArray.map((pokeData, index) => ({
         id: index,
@@ -147,7 +148,7 @@
               ? 'bg-gray-500'
               : 'bg-blue-500 hover:bg-blue-600'}"
           >
-            <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+            <Icon icon="mdi:pokeball" class="w-5 h-5" />
           </button>
         </form>
       </div>
@@ -178,7 +179,7 @@
           on:click={compareValues}
         >
           <div class="w-5 h-5 flex-shrink-0">
-            <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+            <Icon icon="mdi:pokeball" class="w-5 h-5" />
           </div>
         </button>
         <span class="text-lg">{comprareResult}</span>

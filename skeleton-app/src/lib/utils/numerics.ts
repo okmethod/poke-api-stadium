@@ -8,15 +8,19 @@ export function formatStat(value: number | undefined): string {
   return value !== undefined ? value.toString() : "???";
 }
 
-export function getRandomNumbers(min: number, max: number, count: number): number[] {
-  if (max - min + 1 < count) {
-    throw new Error("shortage number of range");
+export function pickRandomNumbers(numbers: number[], count: number): number[] {
+  if (numbers.length < count) {
+    throw new Error("shortage elements in the array");
   }
 
-  const randomNumbers = new Set<number>();
-  while (randomNumbers.size < count) {
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    randomNumbers.add(randomNumber);
+  const result: number[] = [];
+  const usedIndices: Set<number> = new Set();
+  while (result.length < count) {
+    const randomIndex = Math.floor(Math.random() * numbers.length);
+    if (!usedIndices.has(randomIndex)) {
+      result.push(numbers[randomIndex]);
+      usedIndices.add(randomIndex);
+    }
   }
-  return Array.from(randomNumbers);
+  return result;
 }
