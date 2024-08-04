@@ -38,6 +38,10 @@
     isLoading = false;
   }
 
+  function showModal(): void {
+    // TODO: later
+  }
+
   function resetState(): void {
     // TODO: later
   }
@@ -59,9 +63,23 @@
               ? 'bg-gray-500'
               : 'bg-blue-500 hover:bg-blue-600'}"
           >
-            <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+            </div>
           </button>
         </form>
+        <div class="flex-grow"><!-- spacer --></div>
+        <form on:submit|preventDefault={showModal}>
+          <button
+            type="submit"
+            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
+          >
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:head-question-outline" class="w-5 h-5" />
+            </div>
+          </button>
+        </form>
+        <div class="mr-4"><!-- spacer --></div>
       </div>
     </div>
 

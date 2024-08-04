@@ -47,7 +47,9 @@
               ? 'bg-gray-500'
               : 'bg-blue-500 hover:bg-blue-600'}"
           >
-            <Icon icon="mdi:search" class="w-5 h-5" />
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:search" class="w-5 h-5" />
+            </div>
           </button>
         </div>
       </form>

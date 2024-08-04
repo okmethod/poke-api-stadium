@@ -172,7 +172,9 @@
           class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
           on:click={compareValues}
         >
-          <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+          <div class="w-5 h-5 flex-shrink-0">
+            <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
+          </div>
         </button>
         <span class="text-lg">{comprareResult}</span>
       </div>
