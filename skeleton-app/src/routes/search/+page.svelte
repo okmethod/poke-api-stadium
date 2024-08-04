@@ -8,7 +8,7 @@
   let pokeId = "";
   let pokeData: PokeData | null = null;
 
-  async function fetchPokeData() {
+  async function fetchPokeData(): Promise<void> {
     try {
       pokeData = await getPokeData(fetch, pokeId);
     } catch {

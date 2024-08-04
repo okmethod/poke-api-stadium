@@ -16,7 +16,7 @@
   }
 
   let currentImageIndex = 0;
-  function toggleImage() {
+  function toggleImage(): void {
     if (spritesLength > 1) {
       currentImageIndex = (currentImageIndex + 1) % spritesLength;
     }
