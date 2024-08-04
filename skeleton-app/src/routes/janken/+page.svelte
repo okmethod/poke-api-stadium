@@ -84,10 +84,8 @@
     isLoading = false;
   }
 
-  type RecordOption = "standby" | "win" | "lose" | "draw";
-  let ownRecords: RecordOption[];
-  // リアクティブな監視をしやすくするため、PokeItem と分離している
-  // index は ownPokeArray と連動している
+  let selectedOwnPokeIndex = -1;
+  let selectedOpoPokeIndex = -1;
 
   let message = "ポケモン を よびだしてね";
   function updateMessage(): void {
@@ -95,12 +93,10 @@
       message = "ポケモン を よびだしてね";
       return;
     }
-    const standbyCount = ownRecords.filter((record) => record === "standby").length;
-    const nextNumber = numPokeByPlayer - standbyCount + 1;
-    message = `${nextNumber} たいめ の ポケモン をえらんでね`;
+    message = `ポケモン をえらんでね`;
   }
 
-  $: if (ownRecords || ownPokeArray) {
+  $: if (ownPokeArray) {
     updateMessage();
   }
 
@@ -131,7 +127,7 @@
   }
 
   function resetState(): void {
-    ownRecords = Array(numPokeByPlayer).fill("standby");
+    // todo later
   }
 </script>
 
@@ -185,8 +181,10 @@
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
       あいて
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
-        {#each opoPokeArray as pokeItem (pokeItem.id)}
-          <PokeCardCompact pokeData={pokeItem.data} />
+        {#each opoPokeArray as pokeItem, index (pokeItem.id)}
+          <div class="rounded-2xl border {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
+            <PokeCardCompact pokeData={pokeItem.data} />
+          </div>
         {/each}
       </div>
     </div>
@@ -197,8 +195,20 @@
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
       あなた
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
-        {#each ownPokeArray as pokeItem (pokeItem.id)}
-          <PokeCardCompact pokeData={pokeItem.data} />
+        {#each ownPokeArray as pokeItem, index (pokeItem.id)}
+          <div class="rounded-2xl border {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
+            <button
+              type="button"
+              on:click={() => (selectedOwnPokeIndex = index)}
+              on:keydown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  selectedOwnPokeIndex = index;
+                }
+              }}
+            >
+              <PokeCardCompact pokeData={pokeItem.data} />
+            </button>
+          </div>
         {/each}
       </div>
     </div>

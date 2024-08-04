@@ -20,9 +20,9 @@
         <div class="p-4">
           <h2 class="text-2xl font-bold">ルール</h2>
           <p class="mt-4">
-            まず ポケモン をえらぶ。
+            まず ポケモン を 1たい えらぶ。
             <br />
-            つぎに タイプ を えらぶ。
+            つぎに タイプ を どちらか 1つ えらぶ。
             <br />
             すばやさ が たかい ほうが こうげきする。
           </p>
@@ -31,7 +31,6 @@
             <li>いまひとつ か こうかなし なら まけ。</li>
             <li>どちらでもない なら あいこ。</li>
           </ul>
-          <p class="mt-4">3 たい の かちまけ で しょうぶ が きまる。</p>
         </div>
       </div>
       <button on:click={closeModal} class="absolute top-1 right-6 z-10">
