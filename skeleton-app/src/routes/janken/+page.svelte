@@ -57,7 +57,7 @@
         if (!pokeIndexes.includes(selectedOwnPokeIndex)) {
           announceMessage = "ポケモン をえらんでね";
         } else {
-          announceMessage = `${ownPokeArray[selectedOwnPokeIndex].jaName} で しょうぶ？`;
+          announceMessage = `${ownPokeArray[selectedOwnPokeIndex].jaName} で しょうぶ する？`;
         }
         break;
       case "select_type":

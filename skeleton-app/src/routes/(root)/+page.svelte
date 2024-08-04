@@ -18,7 +18,7 @@
       onClick: () => navigateTo("/compare"),
     },
     {
-      text: "ポケモンタイプじゃんけん (制作中)",
+      text: "ポケモンタイプじゃんけん",
       imageUrl: BALL_DICT["ultra-ball"].imageUrl,
       alt: "great-ball",
       onClick: () => navigateTo("/janken"),
