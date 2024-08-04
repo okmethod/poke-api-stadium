@@ -22,7 +22,7 @@
       class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
     >
       <img src={BALLS["great-ball"].imageUrl} alt="great-ball" class="w-6 h-6 mr-2" />
-      ポケモンXXくらべ (制作中)
+      ポケモンXXくらべ
     </button>
     <button
       on:click|preventDefault={() => window.open(githubRepoUrl, "_blank")}
