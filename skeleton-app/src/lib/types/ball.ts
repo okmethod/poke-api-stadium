@@ -1,9 +1,9 @@
-export interface Ball {
+export interface BallInfo {
   id: number;
   imageUrl: string;
 }
 
-export const BALLS: { [name: string]: Ball } = {
+export const BALL_DICT: { [name: string]: BallInfo } = {
   "poke-ball": {
     id: 4,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",

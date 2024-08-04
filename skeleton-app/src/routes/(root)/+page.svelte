@@ -1,31 +1,31 @@
 <script>
   import { navigateTo } from "$lib/utils/navigation.client";
-  import { BALLS } from "$lib/types/ball";
+  import { BALL_DICT } from "$lib/types/ball";
 
   const githubRepoUrl = "https://github.com/okmethod/poke-api-stadium";
 
   const contents = [
     {
       text: "ポケモンずかん",
-      imageUrl: BALLS["poke-ball"].imageUrl,
+      imageUrl: BALL_DICT["poke-ball"].imageUrl,
       alt: "poke-ball",
       onClick: () => navigateTo("/search"),
     },
     {
       text: "ポケモンXXくらべ",
-      imageUrl: BALLS["great-ball"].imageUrl,
+      imageUrl: BALL_DICT["great-ball"].imageUrl,
       alt: "great-ball",
       onClick: () => navigateTo("/compare"),
     },
     {
       text: "ポケモンタイプじゃんけん (制作中)",
-      imageUrl: BALLS["ultra-ball"].imageUrl,
+      imageUrl: BALL_DICT["ultra-ball"].imageUrl,
       alt: "great-ball",
       onClick: () => navigateTo("/janken"),
     },
     {
       text: "ソースコード",
-      imageUrl: BALLS["premier-ball"].imageUrl,
+      imageUrl: BALL_DICT["premier-ball"].imageUrl,
       alt: "premier-ball",
       onClick: () => window.open(githubRepoUrl, "_blank"),
     },
