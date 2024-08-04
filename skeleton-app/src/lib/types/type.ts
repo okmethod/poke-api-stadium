@@ -23,3 +23,5 @@ export const TYPES: { [name: string]: Type } = {
   dark: { color: "#222222", url: "https://pokeapi.co/api/v2/type/17/" },
   fairy: { color: "#FCAFF9", url: "https://pokeapi.co/api/v2/type/18/" },
 };
+
+export const nullColor = "#888888";

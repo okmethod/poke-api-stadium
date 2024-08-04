@@ -1,12 +1,10 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
-  import { TYPES } from "$lib/types/type";
+  import { TYPES, nullColor } from "$lib/types/type";
   import { formatHW } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null = null;
-
-  const nullColor = "#888888";
 
   let spritesLength = 0;
   let headerColor = nullColor;
