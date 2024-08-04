@@ -8,12 +8,15 @@
   let pokeId = "";
   let pokeData: PokeData | null = null;
 
+  let isLoading = false;
   async function fetchPokeData(): Promise<void> {
+    isLoading = true;
     try {
       pokeData = await getPokeData(fetch, pokeId);
     } catch {
       pokeData = null;
     }
+    isLoading = false;
   }
 </script>
 
@@ -39,7 +42,10 @@
           />
           <button
             type="submit"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
+            disabled={isLoading}
+            class="text-white px-2 py-1 rounded h-full flex items-center {isLoading
+              ? 'bg-gray-500'
+              : 'bg-blue-500 hover:bg-blue-600'}"
           >
             <Icon icon="mdi:search" class="w-5 h-5" />
           </button>

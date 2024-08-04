@@ -57,9 +57,11 @@
   }
 
   let isOpen = false;
+  let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
   async function fetchPokeDataArray(): Promise<void> {
+    isLoading = true;
     resetState();
     try {
       pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, 3);
@@ -71,6 +73,7 @@
     } catch {
       // do nothing
     }
+    isLoading = false;
   }
 
   function handleDndConsider(event: CustomEvent<{ items: PokeItem[] }>): void {
@@ -88,7 +91,10 @@
 
   let comprareResult = "";
   function compareValues(): void {
-    if (pokeArray.length == 0) return;
+    if (pokeArray.length == 0) {
+      comprareResult = "さきに ポケモンを よんでね";
+      return;
+    }
     isOpen = true;
     const values = pokeArray.map((pokeItem) => options[optionId].value(pokeItem.data));
     if (isSortedDesc(values)) {
@@ -123,14 +129,17 @@
             <option value={key}>{value.name}</option>
           {/each}
         </select>
-        <span class="text-lg">でくらべる</span>
+        <span class="text-lg">で くらべる</span>
       </div>
       <div class="flex items-center space-x-3">
-        <span class="text-lg">ポケモンをよぶ</span>
+        <span class="text-lg">ポケモン をよぶ</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
           <button
             type="submit"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
+            disabled={isLoading}
+            class="px-2 py-1 text-white rounded h-full flex items-center {isLoading
+              ? 'bg-gray-500'
+              : 'bg-blue-500 hover:bg-blue-600'}"
           >
             <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
           </button>
@@ -159,7 +168,7 @@
         <span class="text-lg">こたえあわせ</span>
         <button
           type="button"
-          class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
+          class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
           on:click={compareValues}
         >
           <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
