@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
-  import { TYPES, nullColor } from "$lib/types/type";
+  import { TYPE_DICT, nullColor } from "$lib/types/type";
   import { formatHW, formatStat } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null = null;
@@ -11,8 +11,8 @@
   let footerColor = nullColor;
   $: if (pokeData !== null) {
     spritesLength = pokeData.imageUrlArray.length;
-    headerColor = TYPES[pokeData.type1.enName]?.color ?? nullColor;
-    footerColor = pokeData.type2 !== null ? (TYPES[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
+    headerColor = TYPE_DICT[pokeData.type1.enName]?.color ?? nullColor;
+    footerColor = pokeData.type2 !== null ? (TYPE_DICT[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
   }
 
   let currentImageIndex = 0;

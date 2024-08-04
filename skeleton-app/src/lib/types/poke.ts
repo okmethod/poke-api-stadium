@@ -1,4 +1,4 @@
-import type { ResponseTypeJson } from "$lib/types/type";
+import type { Type, ResponseTypeJson } from "$lib/types/type";
 import type { Sprites } from "$lib/types/sprites";
 import { makeSpritesArray } from "$lib/types/sprites";
 import type { Stat, Stats } from "$lib/types/stats";
@@ -48,16 +48,8 @@ export interface PokeData {
   jaName: string;
   imageUrlArray: string[];
   jaGenus: string;
-  type1: {
-    id: number;
-    enName: string;
-    jaName: string;
-  };
-  type2: {
-    id: number;
-    enName: string;
-    jaName: string;
-  } | null;
+  type1: Type;
+  type2: Type | null;
   height: number;
   weight: number;
   stats: Stats;

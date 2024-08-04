@@ -29,11 +29,17 @@ export interface ResponseTypeJson {
 }
 
 export interface Type {
+  id: number;
+  enName: string;
+  jaName: string;
+}
+
+export interface TypeData {
   color: string;
   url: string;
 }
 
-export const TYPES: { [name: string]: Type } = {
+export const TYPE_DICT: { [name: string]: TypeData } = {
   normal: { color: "#FDF6CB", url: "https://pokeapi.co/api/v2/type/1/" },
   fighting: { color: "#EE8130", url: "https://pokeapi.co/api/v2/type/2/" },
   flying: { color: "#A2C3E8", url: "https://pokeapi.co/api/v2/type/3/" },
