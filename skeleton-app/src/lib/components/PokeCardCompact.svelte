@@ -15,7 +15,7 @@
   const currentImageIndex = 0;
 </script>
 
-<div class="relative grid border bg-gray-50 rounded-2xl shadow h-[150px] w-[150px] overflow-hidden">
+<div class="select-none relative grid border bg-gray-50 rounded-2xl shadow h-[150px] w-[150px] overflow-hidden">
   <header class="absolute top-0 p-4 bg-transparent w-full z-10" style="background-color: {headerColor};"></header>
 
   <div class="relative p-2 bg-transparent z-20">

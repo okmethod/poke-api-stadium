@@ -27,7 +27,7 @@
   const indexAndTextDivStyle = "flex items-center space-x-1";
 </script>
 
-<div class="grid border bg-gray-50 rounded-2xl shadow max-w-[600px] overflow-hidden">
+<div class="select-none grid border bg-gray-50 rounded-2xl shadow max-w-[600px] overflow-hidden">
   <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部分 -->
