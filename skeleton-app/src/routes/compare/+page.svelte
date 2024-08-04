@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
@@ -21,6 +22,16 @@
     } catch {
       // do nothing
     }
+  }
+
+  function handleDndConsider(event: CustomEvent<{ items: PokeData[] }>) {
+    const { items } = event.detail;
+    pokeDataArray = items;
+  }
+
+  function handleDndFinalize(event: CustomEvent<{ items: PokeData[] }>) {
+    const { items } = event.detail;
+    pokeDataArray = items;
   }
 </script>
 
@@ -46,8 +57,13 @@
       </div>
     </form>
 
-    <div class="flex flex-wrap space-x-1">
-      {#each pokeDataArray as pokeData}
+    <div
+      class="flex flex-wrap space-x-1"
+      use:dndzone={{ items: pokeDataArray, flipDurationMs: 300 }}
+      on:consider={handleDndConsider}
+      on:finalize={handleDndFinalize}
+    >
+      {#each pokeDataArray as pokeData (pokeData.id)}
         <PokeCardCompact {pokeData} />
       {/each}
     </div>
