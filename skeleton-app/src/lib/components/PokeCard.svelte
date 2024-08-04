@@ -2,7 +2,7 @@
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
   import { TYPES, nullColor } from "$lib/types/type";
-  import { formatHW } from "$lib/utils/numerics";
+  import { formatHW, formatStat } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null = null;
 
@@ -21,9 +21,13 @@
       currentImageIndex = (currentImageIndex + 1) % spritesLength;
     }
   }
+
+  const indexStyle = "text-l font-semibold text-gray-700";
+  const textStyle = "text-s text-gray-600";
+  const indexAndTextDivStyle = "flex items-center space-x-1";
 </script>
 
-<div class="grid border bg-gray-50 rounded-2xl shadow max-w-[500px] overflow-hidden">
+<div class="grid border bg-gray-50 rounded-2xl shadow max-w-[600px] overflow-hidden">
   <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部分 -->
@@ -42,7 +46,7 @@
     </h1>
   </div>
 
-  <div class="grid md:grid-cols-2 w-full mb-2 bg-transparent">
+  <div class="grid md:grid-cols-2 md:grid-cols-[1fr_2fr] w-full mb-2 bg-transparent">
     <!-- 画像部分 -->
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
@@ -58,24 +62,57 @@
 
     <!-- 情報部分 -->
     <div class="p-2">
+      <!-- タイプ -->
       <div class="mb-2 flex items-center space-x-4">
-        <h2 class="text-l font-semibold text-gray-700">[タイプ]</h2>
+        <h2 class={indexStyle}>[タイプ]</h2>
         <ul class="list-inside flex space-x-4">
           {#if pokeData !== null}
-            <li class="text-gray-600">{pokeData?.type1.jaName}</li>
-            <li class="text-gray-600">{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
+            <li class={textStyle}>{pokeData?.type1.jaName}</li>
+            <li class={textStyle}>{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
           {:else}
-            <li class="text-gray-600">???</li>
+            <li class={textStyle}>???</li>
           {/if}
         </ul>
       </div>
-      <div class="mb-2 flex items-center space-x-4">
-        <h2 class="text-l font-semibold text-gray-700">[たかさ]</h2>
-        <p class="text-gray-600">{formatHW(pokeData?.height)} m</p>
+
+      <!-- たかさ / おもさ -->
+      <div class="mb-2 grid grid-cols-2 gap-1">
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[たかさ]</h2>
+          <p class={textStyle}>{formatHW(pokeData?.height)} m</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[おもさ]</h2>
+          <p class={textStyle}>{formatHW(pokeData?.weight)} kg</p>
+        </div>
       </div>
-      <div class="mb-2 flex items-center space-x-4">
-        <h2 class="text-l font-semibold text-gray-700">[おもさ]</h2>
-        <p class="text-gray-600">{formatHW(pokeData?.weight)} kg</p>
+
+      <!-- ステータス -->
+      <div class="mb-2 grid grid-cols-3 gap-1">
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[HP]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.hp)}</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[こうげき]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.attack)}</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[ぼうぎょ]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.defense)}</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[すばやさ]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.speed)}</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[とくこう]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.specialAttack)}</p>
+        </div>
+        <div class={indexAndTextDivStyle}>
+          <h2 class={indexStyle}>[とくぼう]</h2>
+          <p class={textStyle}>{formatStat(pokeData?.stats.specialDefense)}</p>
+        </div>
       </div>
     </div>
   </div>
