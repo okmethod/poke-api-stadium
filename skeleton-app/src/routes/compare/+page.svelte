@@ -93,7 +93,7 @@
   let comprareResult = "";
   function compareValues(): void {
     if (pokeArray.length == 0) {
-      comprareResult = "さきに ポケモンを よんでね";
+      comprareResult = "さきに ポケモンを よびだしてね";
       return;
     }
     isOpen = true;
@@ -133,7 +133,7 @@
         <span class="text-lg">で くらべる</span>
       </div>
       <div class="flex items-center space-x-3">
-        <span class="text-lg">ポケモン をよぶ</span>
+        <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
           <button
             type="submit"

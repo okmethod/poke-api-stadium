@@ -84,6 +84,26 @@
     isLoading = false;
   }
 
+  type RecordOption = "standby" | "win" | "lose" | "draw";
+  let ownRecords: RecordOption[];
+  // リアクティブな監視をしやすくするため、PokeItem と分離している
+  // index は ownPokeArray と連動している
+
+  let message = "ポケモン を よびだしてね";
+  function updateMessage(): void {
+    if (ownPokeArray.length == 0) {
+      message = "ポケモン を よびだしてね";
+      return;
+    }
+    const standbyCount = ownRecords.filter((record) => record === "standby").length;
+    const nextNumber = numPokeByPlayer - standbyCount + 1;
+    message = `${nextNumber} たいめ の ポケモン をえらんでね`;
+  }
+
+  $: if (ownRecords || ownPokeArray) {
+    updateMessage();
+  }
+
   function showHelpModal(): void {
     const modalComponent: ModalComponent = {
       ref: HelpJankenModal,
@@ -111,7 +131,7 @@
   }
 
   function resetState(): void {
-    // TODO: later
+    ownRecords = Array(numPokeByPlayer).fill("standby");
   }
 </script>
 
@@ -122,7 +142,7 @@
   <div class="space-y-5 min-w-[300px] max-w-[600px]">
     <div class="ml-4 space-y-4">
       <div class="flex items-center space-x-3">
-        <span class="text-lg">ポケモン をよぶ</span>
+        <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
           <button
             type="submit"
@@ -163,6 +183,7 @@
 
     <!-- 相手のポケモン -->
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
+      あいて
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
         {#each opoPokeArray as pokeItem (pokeItem.id)}
           <PokeCardCompact pokeData={pokeItem.data} />
@@ -174,10 +195,17 @@
 
     <!-- 自分のポケモン -->
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
+      あなた
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
         {#each ownPokeArray as pokeItem (pokeItem.id)}
           <PokeCardCompact pokeData={pokeItem.data} />
         {/each}
+      </div>
+    </div>
+
+    <div class="ml-4 space-y-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-lg">{message}</span>
       </div>
     </div>
   </div>
