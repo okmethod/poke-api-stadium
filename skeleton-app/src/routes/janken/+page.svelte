@@ -8,6 +8,7 @@
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
+  import HelpJankenModal from "$lib/components/HelpJankenModal.svelte";
   import { getRandomNumbers } from "$lib/utils/numerics";
 
   const modalStore = getModalStore();
@@ -83,7 +84,20 @@
     isLoading = false;
   }
 
-  function showModal(): void {
+  function showHelpModal(): void {
+    const modalComponent: ModalComponent = {
+      ref: HelpJankenModal,
+      props: {},
+    };
+    const modal: ModalSettings = {
+      type: "component",
+      component: modalComponent,
+      backdropClasses: "fixed inset-0 !bg-gray-300/90",
+    };
+    modalStore.trigger(modal);
+  }
+
+  function showTypeRelationsModal(): void {
     const modalComponent: ModalComponent = {
       ref: TypeRelationsModal,
       props: {},
@@ -123,13 +137,23 @@
           </button>
         </form>
         <div class="flex-grow"><!-- spacer --></div>
-        <form on:submit|preventDefault={showModal}>
+        <form on:submit|preventDefault={showHelpModal}>
           <button
             type="submit"
             class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
           >
             <div class="w-5 h-5 flex-shrink-0">
               <Icon icon="mdi:head-question-outline" class="w-5 h-5" />
+            </div>
+          </button>
+        </form>
+        <form on:submit|preventDefault={showTypeRelationsModal}>
+          <button
+            type="submit"
+            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
+          >
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:table-question" class="w-5 h-5" />
             </div>
           </button>
         </form>
