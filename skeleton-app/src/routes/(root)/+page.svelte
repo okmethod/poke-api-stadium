@@ -5,7 +5,7 @@
   const githubRepoUrl = "https://github.com/okmethod/poke-api-stadium";
 </script>
 
-<div class="h-full w-full mx-auto container">
+<div class="container mx-auto h-full w-9/12 ml-4">
   <div class="mb-6">
     <h1 class="text-3xl font-bold">PokeAPI スタジアムへようこそ !</h1>
   </div>
@@ -22,7 +22,7 @@
       class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
     >
       <img src={BALLS["great-ball"].imageUrl} alt="great-ball" class="w-6 h-6 mr-2" />
-      ポケモン XX くらべ
+      ポケモンXXくらべ (制作中)
     </button>
     <button
       on:click|preventDefault={() => window.open(githubRepoUrl, "_blank")}
