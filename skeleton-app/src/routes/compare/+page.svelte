@@ -60,12 +60,13 @@
   let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
+  const numPoke = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     resetState();
     try {
-      pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, 3);
-      const pokeDataArray = await Promise.all(pokeIds.slice(0, 3).map((id) => getPokeData(fetch, id.toString())));
+      pokeIds = getRandomNumbers(1, LATEST_POKEMON_ID, numPoke);
+      const pokeDataArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
       pokeArray = pokeDataArray.map((pokeData, index) => ({
         id: index,
         data: pokeData,
@@ -147,7 +148,7 @@
       </div>
     </div>
 
-    <div class="space-y-5 border bg-white rounded-xl min-h-[300px] min-w-[300px]">
+    <div class="space-y-5 border bg-white rounded-xl min-h-[250px] min-w-[300px]">
       <div
         class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent"
         use:dndzone={{ items: pokeArray, flipDurationMs, dropTargetStyle }}
