@@ -49,10 +49,12 @@ export interface PokeData {
   imageUrlArray: string[];
   jaGenus: string;
   type1: {
+    id: number;
     enName: string;
     jaName: string;
   };
   type2: {
+    id: number;
     enName: string;
     jaName: string;
   } | null;
@@ -74,12 +76,14 @@ export function makePokeData(
     imageUrlArray: makeSpritesArray(pokemonJson.sprites),
     jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
     type1: {
+      id: type1Json.id,
       enName: pokemonJson.types[0].type.name,
       jaName: type1Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
     },
     type2:
       type2Json !== null
         ? {
+            id: type2Json.id,
             enName: pokemonJson.types[1].type.name,
             jaName: type2Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
           }
