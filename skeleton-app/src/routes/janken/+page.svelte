@@ -1,10 +1,15 @@
 <script lang="ts">
+  import { getModalStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
+  import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
   import { getRandomNumbers } from "$lib/utils/numerics";
+
+  const modalStore = getModalStore();
 
   interface PokeItem {
     id: number;
@@ -39,7 +44,16 @@
   }
 
   function showModal(): void {
-    // TODO: later
+    const modalComponent: ModalComponent = {
+      ref: TypeRelationsModal,
+      props: {},
+    };
+    const modal: ModalSettings = {
+      type: "component",
+      component: modalComponent,
+      backdropClasses: "fixed inset-0 !bg-gray-300/90",
+    };
+    modalStore.trigger(modal);
   }
 
   function resetState(): void {
