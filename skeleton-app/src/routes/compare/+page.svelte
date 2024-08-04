@@ -33,9 +33,12 @@
     const { items } = event.detail;
     pokeDataArray = items;
   }
+
+  const flipDurationMs = 300;
+  const dropTargetStyle = { outline: "0px" };
 </script>
 
-<div class="h-full w-full mx-auto container">
+<div class="container mx-auto h-full w-full">
   <div class="mb-2">
     <h1 class="text-2xl font-bold">ポケモン XX くらべ</h1>
   </div>
@@ -57,15 +60,20 @@
       </div>
     </form>
 
-    <div
-      class="flex flex-wrap space-x-1"
-      use:dndzone={{ items: pokeDataArray, flipDurationMs: 300 }}
-      on:consider={handleDndConsider}
-      on:finalize={handleDndFinalize}
-    >
-      {#each pokeDataArray as pokeData (pokeData.id)}
-        <PokeCardCompact {pokeData} />
-      {/each}
+    <div class="space-y-5 border bg-white rounded-xl min-h-[300px] min-w-[300px]">
+      <div
+        class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent"
+        use:dndzone={{ items: pokeDataArray, flipDurationMs, dropTargetStyle }}
+        on:consider={handleDndConsider}
+        on:finalize={handleDndFinalize}
+      >
+        {#each pokeDataArray as pokeData (pokeData.id)}
+          <div>
+            <PokeCardCompact {pokeData} />
+            <p class="text-center">hoge</p>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </div>
