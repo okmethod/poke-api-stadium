@@ -82,11 +82,11 @@
       <div class="mb-2 grid grid-cols-2 gap-1">
         <div class={indexAndTextDivStyle}>
           <h2 class={indexStyle}>[たかさ]</h2>
-          <p class={textStyle}>{formatHW(pokeData?.height)} m</p>
+          <p class={textStyle}>{formatHW(pokeData?.height, "height")}</p>
         </div>
         <div class={indexAndTextDivStyle}>
           <h2 class={indexStyle}>[おもさ]</h2>
-          <p class={textStyle}>{formatHW(pokeData?.weight)} kg</p>
+          <p class={textStyle}>{formatHW(pokeData?.weight, "weight")}</p>
         </div>
       </div>
 
