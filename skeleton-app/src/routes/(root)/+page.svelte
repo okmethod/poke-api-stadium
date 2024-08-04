@@ -25,6 +25,13 @@
       ポケモンXXくらべ
     </button>
     <button
+      on:click|preventDefault={() => navigateTo("/janken")}
+      class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
+    >
+      <img src={BALLS["ultra-ball"].imageUrl} alt="great-ball" class="w-6 h-6 mr-2" />
+      ポケモンタイプじゃんけん (制作中)
+    </button>
+    <button
       on:click|preventDefault={() => window.open(githubRepoUrl, "_blank")}
       class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
     >
