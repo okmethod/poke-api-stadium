@@ -3,6 +3,7 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
+  import { getType } from "$lib/api/getType.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
@@ -11,9 +12,54 @@
 
   const modalStore = getModalStore();
 
+  interface TypeRelation {
+    winTo: string[];
+    loseTo: string[];
+  }
+
   interface PokeItem {
     id: number;
     data: PokeData;
+    type1Relation: TypeRelation;
+    type2Relation: TypeRelation | null;
+  }
+
+  async function getWinToTypes(typeId: number): Promise<string[]> {
+    const typeData = await getType(fetch, typeId.toString());
+    if (!typeData) {
+      return [];
+    }
+    const doubleDamageTo = typeData.damage_relations.double_damage_to.map((type) => type.name);
+    return doubleDamageTo;
+  }
+
+  async function getLoseToTypes(typeId: number): Promise<string[]> {
+    const typeData = await getType(fetch, typeId.toString());
+    if (!typeData) {
+      return [];
+    }
+    const halfDamageTo = typeData.damage_relations.half_damage_to.map((type) => type.name);
+    const noDamageTo = typeData.damage_relations.no_damage_to.map((type) => type.name);
+    return [...halfDamageTo, ...noDamageTo];
+  }
+
+  async function createPokePromises(pokeDataArray: PokeData[], from: number, to: number) {
+    const promises = pokeDataArray.slice(from, to).map(async (pokeData, index) => ({
+      id: index,
+      data: pokeData,
+      type1Relation: {
+        winTo: await getWinToTypes(pokeData.type1.id),
+        loseTo: await getLoseToTypes(pokeData.type1.id),
+      },
+      type2Relation:
+        pokeData.type2 !== null
+          ? {
+              winTo: await getWinToTypes(pokeData.type2.id),
+              loseTo: await getLoseToTypes(pokeData.type2.id),
+            }
+          : null,
+    }));
+    return Promise.all(promises);
   }
 
   let isLoading = false;
@@ -29,14 +75,8 @@
       const pokeDataArray = await Promise.all(
         pokeIds.slice(0, numPokeByPlayer * 2).map((id) => getPokeData(fetch, id.toString())),
       );
-      ownPokeArray = pokeDataArray.slice(0, numPokeByPlayer).map((pokeData, index) => ({
-        id: index,
-        data: pokeData,
-      }));
-      opoPokeArray = pokeDataArray.slice(numPokeByPlayer, numPokeByPlayer * 2).map((pokeData, index) => ({
-        id: index,
-        data: pokeData,
-      }));
+      ownPokeArray = await createPokePromises(pokeDataArray, 0, numPokeByPlayer);
+      opoPokeArray = await createPokePromises(pokeDataArray, numPokeByPlayer, numPokeByPlayer * 2);
     } catch {
       // do nothing
     }
@@ -100,7 +140,7 @@
     <!-- 相手のポケモン -->
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
-        {#each ownPokeArray as pokeItem (pokeItem.id)}
+        {#each opoPokeArray as pokeItem (pokeItem.id)}
           <PokeCardCompact pokeData={pokeItem.data} />
         {/each}
       </div>
@@ -111,7 +151,7 @@
     <!-- 自分のポケモン -->
     <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
       <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
-        {#each opoPokeArray as pokeItem (pokeItem.id)}
+        {#each ownPokeArray as pokeItem (pokeItem.id)}
           <PokeCardCompact pokeData={pokeItem.data} />
         {/each}
       </div>
