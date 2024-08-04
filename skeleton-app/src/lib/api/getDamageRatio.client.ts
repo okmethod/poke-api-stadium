@@ -8,7 +8,7 @@ export async function getDamageRatio(
 ): Promise<DamageRatio> {
   const typeData = await getType(fetchFunction, attackSideType.id.toString());
   if (!typeData) {
-    return "other";
+    return "default";
   }
   const { double_damage_to, half_damage_to, no_damage_to } = typeData.damage_relations;
   const damageRelations = {
@@ -21,7 +21,7 @@ export async function getDamageRatio(
       return ratio as DamageRatio;
     }
   }
-  return "other";
+  return "default";
 }
 
 export default getDamageRatio;

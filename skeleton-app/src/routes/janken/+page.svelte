@@ -14,18 +14,19 @@
 
   const modalStore = getModalStore();
 
+  const numPokeByPlayer = 3;
+  const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
+
   let isLoading = false;
-  let pokeIds: number[] = [];
   let ownPokeArray: PokeData[] = [];
   let opoPokeArray: PokeData[] = [];
-  const numPokeByPlayer = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     phase = "summonning_poke";
     resetState();
     try {
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-      pokeIds = pickRandomNumbers(numbers, numPokeByPlayer * 2);
+      const pokeIds = pickRandomNumbers(numbers, numPokeByPlayer * 2);
       const pokeDataArray = await Promise.all(
         pokeIds.slice(0, numPokeByPlayer * 2).map((id) => getPokeData(fetch, id.toString())),
       );
@@ -38,43 +39,48 @@
     phase = "select_poke";
   }
 
+  type Phase = "init" | "summonning_poke" | "select_poke" | "select_type" | "term";
+  let phase: Phase = "init";
   let selectedOwnPokeIndex = -1;
   let selectedOpoPokeIndex = -1;
-  const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
-
-  type Phase = "init" | "summonning_poke" | "select_poke" | "select_type" | "result";
-  let phase: Phase = "init";
-  let announceMessage: string;
-  function updateAnnounceMessage(): void {
-    switch (phase) {
-      case "init":
-        announceMessage = "ポケモン を よびだしてね";
-        break;
-      case "summonning_poke":
-        announceMessage = "ポケモン を よびだしちゅう...";
-        break;
-      case "select_poke":
-        if (!pokeIndexes.includes(selectedOwnPokeIndex)) {
-          announceMessage = "ポケモン をえらんでね";
-        } else {
-          announceMessage = `${ownPokeArray[selectedOwnPokeIndex].jaName} で しょうぶ する？`;
-        }
-        break;
-      case "select_type":
-        announceMessage = "タイプ をえらんでね";
-        break;
-      case "result":
-        announceMessage = result;
-        break;
-    }
+  let selectedOwnType: Type;
+  let selectedOpoType: Type;
+  let guideMessage: string;
+  let battleMessage: string;
+  let resultMessage: string;
+  function updateGuideMessage(): void {
+    const messages: Record<Phase, string> = {
+      init: "ポケモン を よびだしてね",
+      summonning_poke: "ポケモン を よびだしちゅう...",
+      select_poke: !pokeIndexes.includes(selectedOwnPokeIndex)
+        ? "ポケモン をえらんでね"
+        : `${ownPokeArray[selectedOwnPokeIndex].jaName} で しょうぶ する？`,
+      select_type: "タイプ をえらんでね",
+      term: resultMessage,
+    };
+    guideMessage = messages[phase];
   }
   $: if (phase || selectedOwnPokeIndex) {
-    updateAnnounceMessage();
+    updateGuideMessage();
   }
 
-  function updatePhaseToSelectType(): void {
+  function commitOwnPoke(): void {
     phase = "select_type";
     selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
+  }
+
+  async function commitOwnType(type: Type): Promise<void> {
+    selectedOwnType = type;
+    const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
+    selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
+
+    ({ battleMessage, resultMessage } = await judgeJankenResult(
+      ownPokeArray[selectedOwnPokeIndex],
+      opoPokeArray[selectedOpoPokeIndex],
+      selectedOwnType,
+      selectedOpoType,
+    ));
+    phase = "term";
   }
 
   function fetchPokeType(pokeData: PokeData): Type[] {
@@ -88,43 +94,33 @@
     opoPokeData: PokeData,
     ownPokeType: Type,
     opoPokeType: Type,
-  ): Promise<{ result: string; resultMessage: string }> {
+  ): Promise<{ resultMessage: string; battleMessage: string }> {
     const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
     const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;
     const attackType = isOwnAttack ? ownPokeType : opoPokeType;
     const defenseType = isOwnAttack ? opoPokeType : ownPokeType;
 
-    const resultMap: Record<DamageRatio, { result: string; message: string }> = {
-      double: { result: isOwnAttack ? "あなた の かち！" : "あなた の まけ...", message: "ばつぐん だ！" },
-      half: { result: isOwnAttack ? "あなた の まけ..." : "あなた の かち！", message: "いまひとつ..." },
-      no: { result: isOwnAttack ? "あなた の まけ..." : "あなた の かち！", message: "こうかは なし..." },
-      default: { result: "あいこ", message: "まずまず だ" },
+    const resultMap: Record<DamageRatio, { efficacyMessage: string; resultMessage: string }> = {
+      double: {
+        efficacyMessage: "ばつぐん だ！",
+        resultMessage: isOwnAttack ? "あなた の かち！" : "あなた の まけ...",
+      },
+      half: { efficacyMessage: "いまひとつ...", resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！" },
+      no: {
+        efficacyMessage: "こうかは なし...",
+        resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
+      },
+      default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
     };
     const damageRatio = await getDamageRatio(fetch, attackType, defenseType);
-    const { result, message } = resultMap[damageRatio] || resultMap.default;
-    const resultMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に ${message}`;
-    return { result, resultMessage };
-  }
-
-  let selectedOwnType: Type;
-  let selectedOpoType: Type;
-  let result: string;
-  let resultMessage: string;
-  async function selectType(type: Type): Promise<void> {
-    selectedOwnType = type;
-    const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
-    selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
-
-    ({ result, resultMessage } = await judgeJankenResult(
-      ownPokeArray[selectedOwnPokeIndex],
-      opoPokeArray[selectedOpoPokeIndex],
-      selectedOwnType,
-      selectedOpoType,
-    ));
-    phase = "result";
+    const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
+    const battleMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に ${efficacyMessage}`;
+    return { battleMessage, resultMessage };
   }
 
   function resetState(): void {
+    ownPokeArray = [];
+    opoPokeArray = [];
     selectedOwnPokeIndex = -1;
     selectedOpoPokeIndex = -1;
   }
@@ -216,11 +212,11 @@
 
     <!-- 中央分離帯 -->
     <div>
-      {#if phase !== "result"}
+      {#if phase !== "term"}
         <p class="text-center text-xl">vs</p>
       {:else}
         <p class="text-center text-xl">
-          {resultMessage}
+          {battleMessage}
         </p>
       {/if}
     </div>
@@ -249,13 +245,13 @@
 
     <div class="ml-4 space-y-4">
       <div class="flex items-center space-x-3">
-        <span class="text-lg">{announceMessage}</span>
+        <span class="text-lg">{guideMessage}</span>
         {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
           <!-- ポケモン選択済み、決定前のとき-->
           <button
             type="button"
             class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
-            on:click={updatePhaseToSelectType}
+            on:click={commitOwnPoke}
           >
             <div class="w-5 h-5 flex-shrink-0">
               <Icon icon="mdi:pokeball" class="w-5 h-5" />
@@ -266,7 +262,7 @@
           {#each fetchPokeType(ownPokeArray[selectedOwnPokeIndex]) as type}
             <button
               class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
-              on:click={() => selectType(type)}>{type.jaName}</button
+              on:click={() => commitOwnType(type)}>{type.jaName}</button
             >
           {/each}
         {/if}
