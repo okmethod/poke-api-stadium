@@ -5,6 +5,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import { getType } from "$lib/api/getType.client";
   import type { PokeData } from "$lib/types/poke";
+  import type { Type } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
@@ -21,8 +22,6 @@
   interface PokeItem {
     id: number;
     data: PokeData;
-    type1Relation: TypeRelation;
-    type2Relation: TypeRelation | null;
   }
 
   async function getWinToTypes(typeId: number): Promise<string[]> {
@@ -44,23 +43,11 @@
     return [...halfDamageTo, ...noDamageTo];
   }
 
-  async function createPokePromises(pokeDataArray: PokeData[], from: number, to: number) {
-    const promises = pokeDataArray.slice(from, to).map(async (pokeData, index) => ({
+  function getPokeArray(pokeDataArray: PokeData[], from: number, to: number): PokeItem[] {
+    return pokeDataArray.slice(from, to).map((pokeData, index) => ({
       id: index,
       data: pokeData,
-      type1Relation: {
-        winTo: await getWinToTypes(pokeData.type1.id),
-        loseTo: await getLoseToTypes(pokeData.type1.id),
-      },
-      type2Relation:
-        pokeData.type2 !== null
-          ? {
-              winTo: await getWinToTypes(pokeData.type2.id),
-              loseTo: await getLoseToTypes(pokeData.type2.id),
-            }
-          : null,
     }));
-    return Promise.all(promises);
   }
 
   let isLoading = false;
@@ -78,8 +65,8 @@
       const pokeDataArray = await Promise.all(
         pokeIds.slice(0, numPokeByPlayer * 2).map((id) => getPokeData(fetch, id.toString())),
       );
-      ownPokeArray = await createPokePromises(pokeDataArray, 0, numPokeByPlayer);
-      opoPokeArray = await createPokePromises(pokeDataArray, numPokeByPlayer, numPokeByPlayer * 2);
+      ownPokeArray = getPokeArray(pokeDataArray, 0, numPokeByPlayer);
+      opoPokeArray = getPokeArray(pokeDataArray, numPokeByPlayer, numPokeByPlayer * 2);
     } catch {
       // do nothing
     }
@@ -114,7 +101,7 @@
         message = "タイプ をえらんでね";
         break;
       case "result":
-        message = "じゃんけん しよう！";
+        message = result;
         break;
     }
   }
@@ -126,6 +113,39 @@
   function updatePhaseToSelectType(): void {
     phase = "select_type";
     selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
+  }
+
+  function fetchPokeType(pokeData: PokeData): Type[] {
+    const type1 = pokeData.type1;
+    const type2 = pokeData.type2;
+    return type2 ? [type1, type2] : [type1];
+  }
+
+  function judgeJankenResult(ownTypeRelation: TypeRelation, selectedOpoType: Type): string {
+    let result = "あいこ";
+    if (ownTypeRelation.winTo.includes(selectedOpoType.enName)) {
+      result = "かち";
+    } else if (ownTypeRelation.loseTo.includes(selectedOpoType.enName)) {
+      result = "まけ";
+    }
+    return result;
+  }
+
+  let selectedOwnType: Type | null = null;
+  let selectedOpoType: Type | null = null;
+  let result: string;
+  async function selectType(type: Type): Promise<void> {
+    selectedOwnType = type;
+    const ownTypeRelation = {
+      winTo: await getWinToTypes(type.id),
+      loseTo: await getLoseToTypes(type.id),
+    };
+
+    const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex].data);
+    selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
+
+    result = judgeJankenResult(ownTypeRelation, selectedOpoType);
+    phase = "result";
   }
 
   function resetState(): void {
@@ -245,8 +265,8 @@
     <div class="ml-4 space-y-4">
       <div class="flex items-center space-x-3">
         <span class="text-lg">{message}</span>
-        <!-- ポケモン選択済みのとき-->
         {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
+          <!-- ポケモン選択済み、決定前のとき-->
           <button
             type="button"
             class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
@@ -256,6 +276,14 @@
               <Icon icon="mdi:pokeball" class="w-5 h-5" />
             </div>
           </button>
+        {:else if phase == "select_type"}
+          <!-- ポケモン選択済み、タイプ選択中のとき-->
+          {#each fetchPokeType(ownPokeArray[selectedOwnPokeIndex].data) as type}
+            <button
+              class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
+              on:click={() => selectType(type)}>{type.jaName}</button
+            >
+          {/each}
         {/if}
       </div>
     </div>
