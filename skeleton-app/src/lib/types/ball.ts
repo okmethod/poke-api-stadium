@@ -12,4 +12,8 @@ export const BALLS: { [name: string]: Ball } = {
     id: 3,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png",
   },
+  "premier-ball": {
+    id: 12,
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
+  },
 };
