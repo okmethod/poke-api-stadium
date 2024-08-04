@@ -3,7 +3,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
-  import PokeCard from "$lib/components/PokeCard.svelte";
+  import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import { getRandomNumbers } from "$lib/utils/numerics";
 
   let paramId = "";
@@ -46,8 +46,10 @@
       </div>
     </form>
 
-    {#each pokeDataArray as pokeData}
-      <PokeCard {pokeData} />
-    {/each}
+    <div class="flex flex-wrap space-x-1">
+      {#each pokeDataArray as pokeData}
+        <PokeCardCompact {pokeData} />
+      {/each}
+    </div>
   </div>
 </div>
