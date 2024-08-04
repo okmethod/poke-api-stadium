@@ -34,6 +34,8 @@ export interface Type {
   jaName: string;
 }
 
+export type DamageRatio = "double" | "half" | "no" | "other";
+
 export interface TypeData {
   color: string;
   url: string;

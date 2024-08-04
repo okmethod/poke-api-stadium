@@ -3,9 +3,9 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
-  import { getType } from "$lib/api/getType.client";
+  import getDamageRatio from "$lib/api/getDamageRatio.client";
   import type { PokeData } from "$lib/types/poke";
-  import type { Type } from "$lib/types/type";
+  import type { Type, DamageRatio } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
@@ -14,33 +14,9 @@
 
   const modalStore = getModalStore();
 
-  interface TypeRelation {
-    winTo: string[];
-    loseTo: string[];
-  }
-
   interface PokeItem {
     id: number;
     data: PokeData;
-  }
-
-  async function getWinToTypes(typeId: number): Promise<string[]> {
-    const typeData = await getType(fetch, typeId.toString());
-    if (!typeData) {
-      return [];
-    }
-    const doubleDamageTo = typeData.damage_relations.double_damage_to.map((type) => type.name);
-    return doubleDamageTo;
-  }
-
-  async function getLoseToTypes(typeId: number): Promise<string[]> {
-    const typeData = await getType(fetch, typeId.toString());
-    if (!typeData) {
-      return [];
-    }
-    const halfDamageTo = typeData.damage_relations.half_damage_to.map((type) => type.name);
-    const noDamageTo = typeData.damage_relations.no_damage_to.map((type) => type.name);
-    return [...halfDamageTo, ...noDamageTo];
   }
 
   function getPokeArray(pokeDataArray: PokeData[], from: number, to: number): PokeItem[] {
@@ -121,30 +97,21 @@
     return type2 ? [type1, type2] : [type1];
   }
 
-  function judgeJankenResult(ownTypeRelation: TypeRelation, selectedOpoType: Type): string {
-    let result = "あいこ";
-    if (ownTypeRelation.winTo.includes(selectedOpoType.enName)) {
-      result = "かち";
-    } else if (ownTypeRelation.loseTo.includes(selectedOpoType.enName)) {
-      result = "まけ";
-    }
-    return result;
-  }
-
   let selectedOwnType: Type | null = null;
   let selectedOpoType: Type | null = null;
+  let attackSide: "own" | "opo";
+  let damageRatio: DamageRatio;
   let result: string;
   async function selectType(type: Type): Promise<void> {
     selectedOwnType = type;
-    const ownTypeRelation = {
-      winTo: await getWinToTypes(type.id),
-      loseTo: await getLoseToTypes(type.id),
-    };
-
     const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex].data);
     selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
 
-    result = judgeJankenResult(ownTypeRelation, selectedOpoType);
+    attackSide = "own";
+    damageRatio = await getDamageRatio(fetch, selectedOwnType, selectedOpoType);
+
+    //result = judgeJankenResult(attackSide, damageRatio);
+    result = "hoge";
     phase = "result";
   }
 
