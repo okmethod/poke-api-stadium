@@ -51,11 +51,14 @@
     <div class="p-2 flex justify-center">
       <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
         {#if pokeData !== null}
-          <button type="button" on:click={toggleImage} aria-label="Toggle Image">
+          <button type="button" on:click={toggleImage} aria-label="Toggle Image" class="relative">
             <img src={pokeData.imageUrlArray[currentImageIndex]} alt={pokeData.jaName} class="w-48 h-48" />
+            <div class="absolute bottom-0 right-0 m-2">
+              <Icon icon="mdi:image-refresh-outline" class="w-4 h-4" />
+            </div>
           </button>
         {:else}
-          <Icon icon="mdi:image-off-outline" height="40" />
+          <Icon icon="mdi:image-off-outline" class="w-8 h-8" />
         {/if}
       </div>
     </div>

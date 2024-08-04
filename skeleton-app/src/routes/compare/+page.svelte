@@ -41,7 +41,7 @@
           type="submit"
           class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded h-full flex items-center"
         >
-          <Icon icon="mdi:pokemon-go" height="20" />
+          <Icon icon="mdi:pokemon-go" class="w-5 h-5" />
         </button>
       </div>
     </form>
