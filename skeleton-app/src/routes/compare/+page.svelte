@@ -5,7 +5,7 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
-  import { getRandomNumbers, formatHW } from "$lib/utils/numerics";
+  import { getRandomNumbers, formatHW, formatStat } from "$lib/utils/numerics";
 
   let paramId = "height";
   interface Param {
@@ -15,6 +15,11 @@
   const params: { [key: string]: Param } = {
     height: { name: "たかさ", calcValue: (value: PokeData) => formatHW(value.height, "height") },
     weight: { name: "おもさ", calcValue: (value: PokeData) => formatHW(value.weight, "weight") },
+    hp: { name: "HP", calcValue: (value: PokeData) => formatStat(value.stats.hp) },
+    attack: { name: "こうげき", calcValue: (value: PokeData) => formatStat(value.stats.attack) },
+    defense: { name: "ぼうぎょ", calcValue: (value: PokeData) => formatStat(value.stats.defense) },
+    specialAttack: { name: "とくこう", calcValue: (value: PokeData) => formatStat(value.stats.specialAttack) },
+    specialDefense: { name: "とくぼう", calcValue: (value: PokeData) => formatStat(value.stats.specialDefense) },
   };
 
   let isOpen = false;
