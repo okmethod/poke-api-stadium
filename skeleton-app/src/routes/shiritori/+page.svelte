@@ -7,7 +7,7 @@
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { pickRandomNumbers } from "$lib/utils/numerics";
+  import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
 
   const modalStore = getModalStore();
 
@@ -61,7 +61,7 @@
       return;
     }
     const messages = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
-    message = messages[Math.floor(Math.random() * messages.length)];
+    message = messages[getRandomNumber(messages.length)];
   }
 
   $: if (pushedPokeArray) {
