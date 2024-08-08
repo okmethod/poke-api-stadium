@@ -9,13 +9,13 @@
       text: "ポケモンずかん",
       imageUrl: BALL_DICT["poke-ball"].imageUrl,
       alt: "poke-ball",
-      onClick: () => navigateTo("/search"),
+      onClick: () => navigateTo("/zukan"),
     },
     {
       text: "ポケモンXXくらべ",
       imageUrl: BALL_DICT["great-ball"].imageUrl,
       alt: "great-ball",
-      onClick: () => navigateTo("/compare"),
+      onClick: () => navigateTo("/kurabe"),
     },
     {
       text: "ポケモンタイプじゃんけん",
