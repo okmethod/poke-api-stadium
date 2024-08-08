@@ -37,6 +37,10 @@
     isLoading = false;
   }
 
+  function getHeadChar(name: string): string {
+    return name.slice(0, 1);
+  }
+
   function getTailChar(name: string): string {
     let tailChar = name.slice(-1);
     if (tailChar === "ー" && name.length > 1) {
@@ -45,20 +49,22 @@
     return tailChar;
   }
 
-  function judgeShiritoriRule(tailPokeData: PokeData | null, nextPokeData: PokeData): boolean {
-    if (tailPokeData === null) {
+  function judgeShiritoriRule(tailPokeName: string | null, nextPokeName: string): boolean {
+    if (tailPokeName === null) {
       return true; // 最初はなんでもOK
     }
-    const tailChar = getTailChar(tailPokeData.jaName);
-    const nextChar = nextPokeData.jaName.slice(0, 1);
+    const tailChar = getTailChar(tailPokeName);
+    const nextChar = getHeadChar(nextPokeName);
     return tailChar === nextChar;
   }
 
   let pushedPokeArray: Array<PokeItem | null> = [null, null];
   function clickPokeCard(index: number) {
     return () => {
-      if (!judgeShiritoriRule(pushedPokeArray.slice(-1)[0]?.data ?? null, pokeArray[index].data)) {
-        message = "しっぱい...";
+      const tailPokeName = pushedPokeArray.slice(-1)[0]?.data.jaName ?? null;
+      const nextPokeName = pokeArray[index].data.jaName;
+      if (!judgeShiritoriRule(tailPokeName, nextPokeName)) {
+        message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
         return;
       }
       pokeArray[index].isUsed = true;
