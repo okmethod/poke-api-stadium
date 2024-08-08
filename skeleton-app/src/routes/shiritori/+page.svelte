@@ -37,8 +37,22 @@
     isLoading = false;
   }
 
+  function normalizeChar(char: string): string {
+    // prettier-ignore
+    const normalizationMap: { [key: string]: string } = {
+      'ガ': 'カ', 'ギ': 'キ', 'グ': 'ク', 'ゲ': 'ケ', 'ゴ': 'コ',
+      'ザ': 'サ', 'ジ': 'シ', 'ズ': 'ス', 'ゼ': 'セ', 'ゾ': 'ソ',
+      'ダ': 'タ', 'ヂ': 'チ', 'ヅ': 'ツ', 'デ': 'テ', 'ド': 'ト',
+      'バ': 'ハ', 'ビ': 'ヒ', 'ブ': 'フ', 'ベ': 'ヘ', 'ボ': 'ホ', 
+      'パ': 'ハ', 'ピ': 'ヒ', 'プ': 'フ', 'ペ': 'ヘ', 'ポ': 'ホ',
+      'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
+      'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ', 'ッ': 'ツ'
+    };
+    return normalizationMap[char] || char;
+  }
+
   function getHeadChar(name: string): string {
-    return name.slice(0, 1);
+    return normalizeChar(name.slice(0, 1));
   }
 
   function getTailChar(name: string): string {
@@ -46,7 +60,7 @@
     if (tailChar === "ー" && name.length > 1) {
       tailChar = name.slice(-2, -1);
     }
-    return tailChar;
+    return normalizeChar(tailChar);
   }
 
   function judgeShiritoriRule(tailPokeName: string | null, nextPokeName: string): boolean {
