@@ -3,7 +3,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
-  import PokeCard from "$lib/components/PokeCard.svelte";
+  import PokeCard from "$lib/components/cards/PokeCard.svelte";
 
   let pokeId = "";
   let pokeData: PokeData | null = null;

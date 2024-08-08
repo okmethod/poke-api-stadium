@@ -8,9 +8,9 @@
   import type { Type, DamageRatio } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import { TYPE_DICT } from "$lib/types/type";
-  import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
-  import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
-  import HelpJankenModal from "$lib/components/HelpJankenModal.svelte";
+  import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
+  import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
+  import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
 
   const modalStore = getModalStore();

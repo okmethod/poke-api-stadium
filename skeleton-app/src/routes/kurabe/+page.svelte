@@ -4,7 +4,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
-  import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
+  import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
   import { pickRandomNumbers, formatHW, formatStat } from "$lib/utils/numerics";
 
   let optionId = "height";
