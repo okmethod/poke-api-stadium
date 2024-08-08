@@ -37,11 +37,19 @@
     isLoading = false;
   }
 
+  function getTailChar(name: string): string {
+    let tailChar = name.slice(-1);
+    if (tailChar === "ー" && name.length > 1) {
+      tailChar = name.slice(-2, -1);
+    }
+    return tailChar;
+  }
+
   function judgeShiritoriRule(tailPokeData: PokeData | null, nextPokeData: PokeData): boolean {
     if (tailPokeData === null) {
       return true; // 最初はなんでもOK
     }
-    const tailChar = tailPokeData.jaName.slice(-1);
+    const tailChar = getTailChar(tailPokeData.jaName);
     const nextChar = nextPokeData.jaName.slice(0, 1);
     return tailChar === nextChar;
   }
@@ -64,17 +72,14 @@
       message = "ポケモン を よびだしてね";
       return;
     }
-    if (
-      pushedPokeArray
-        .filter((pokeItem) => pokeItem !== null)
-        .slice(-1)[0]
-        .data.jaName.slice(-1) === "ン"
-    ) {
+    const tailPokeName = pushedPokeArray.slice(-1)[0]?.data.jaName ?? "";
+    const tailChar = getTailChar(tailPokeName);
+    if (tailChar === "ン") {
       message = "ン で おわっちゃった...";
       return;
     }
     const messages = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
-    message = messages[getRandomNumber(messages.length)];
+    message = `${messages[getRandomNumber(messages.length)]} つぎは 「${getTailChar(tailChar)}」`;
   }
 
   $: if (pushedPokeArray) {
