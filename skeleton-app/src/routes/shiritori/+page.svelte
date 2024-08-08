@@ -68,12 +68,11 @@
     updateMessage();
   }
 
-  /*
   function resetState(): void {
     pokeArray = [];
+    pushedPokeArray = [null, null];
     updateMessage();
   }
-  */
 
   function showPokeListModal(): void {
     const modalComponent: ModalComponent = {
@@ -98,6 +97,18 @@
   </div>
   <div class="space-y-5 min-w-[300px] max-w-[600px]">
     <div class="ml-4 space-y-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-lg">はじめから</span>
+        <form on:submit|preventDefault={resetState}>
+          <button
+            type="submit"
+            disabled={isLoading}
+            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
+          >
+            <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          </button>
+        </form>
+      </div>
       <div class="flex items-center space-x-3">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
