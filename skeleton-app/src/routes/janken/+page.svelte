@@ -7,6 +7,7 @@
   import type { PokeData } from "$lib/types/poke";
   import type { Type, DamageRatio } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
+  import { TYPE_DICT } from "$lib/types/type";
   import PokeCardCompact from "$lib/components/PokeCardCompact.svelte";
   import TypeRelationsModal from "$lib/components/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/HelpJankenModal.svelte";
@@ -261,7 +262,8 @@
           <!-- ポケモン選択済み、タイプ選択中のとき-->
           {#each fetchPokeType(ownPokeArray[selectedOwnPokeIndex]) as type}
             <button
-              class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
+              style="background-color: {TYPE_DICT[type.enName]?.color || 'blue'};"
+              class="px-2 py-1 hover:brightness-85 text-white rounded h-full flex items-center"
               on:click={() => commitOwnType(type)}>{type.jaName}</button
             >
           {/each}

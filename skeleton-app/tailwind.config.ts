@@ -11,7 +11,16 @@ export default {
     join(require.resolve("@skeletonlabs/skeleton"), "../**/*.{html,js,svelte,ts}"),
   ],
   theme: {
-    extend: {},
+    extend: {
+      brightness: {
+        85: "0.85",
+      },
+    },
+  },
+  variants: {
+    extend: {
+      brightness: ["hover"],
+    },
   },
   plugins: [
     forms,
