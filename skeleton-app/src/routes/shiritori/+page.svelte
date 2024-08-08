@@ -37,9 +37,22 @@
     isLoading = false;
   }
 
+  function judgeShiritoriRule(tailPokeData: PokeData | null, nextPokeData: PokeData): boolean {
+    if (tailPokeData === null) {
+      return true; // 最初はなんでもOK
+    }
+    const tailChar = tailPokeData.jaName.slice(-1);
+    const nextChar = nextPokeData.jaName.slice(0, 1);
+    return tailChar === nextChar;
+  }
+
   let pushedPokeArray: Array<PokeItem | null> = [null, null];
   function clickPokeCard(index: number) {
     return () => {
+      if (!judgeShiritoriRule(pushedPokeArray.slice(-1)[0]?.data ?? null, pokeArray[index].data)) {
+        message = "しっぱい...";
+        return;
+      }
       pokeArray[index].isUsed = true;
       pushedPokeArray = [...pushedPokeArray, pokeArray[index]];
     };
