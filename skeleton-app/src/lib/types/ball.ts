@@ -16,6 +16,14 @@ export const BALL_DICT: { [name: string]: BallInfo } = {
     id: 2,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png",
   },
+  "master-ball": {
+    id: 1,
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png",
+  },
+  "safari-ball": {
+    id: 5,
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safari-ball.png",
+  },
   "premier-ball": {
     id: 12,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
