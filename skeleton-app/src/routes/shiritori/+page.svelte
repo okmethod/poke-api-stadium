@@ -1,10 +1,15 @@
 <script lang="ts">
+  import { getModalStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
+  import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
+
+  const modalStore = getModalStore();
 
   interface PokeItem {
     data: PokeData;
@@ -44,6 +49,22 @@
   function resetState(): void {
     pokeArray = [];
   }
+
+  function showPokeListModal(): void {
+    const modalComponent: ModalComponent = {
+      ref: PokeListModal,
+      props: {
+        title: "しりとりリスト",
+        pokeDataArray: pushedPokeArray.filter((pokeItem) => pokeItem !== null).map((pokeItem) => pokeItem.data),
+      },
+    };
+    const modal: ModalSettings = {
+      type: "component",
+      component: modalComponent,
+      backdropClasses: "fixed inset-0 !bg-gray-300/90",
+    };
+    modalStore.trigger(modal);
+  }
 </script>
 
 <div class="container mx-auto h-full w-9/12 ml-4">
@@ -67,6 +88,16 @@
         </form>
         <div class="flex-grow"><!-- spacer --></div>
         <p class="text-lg">{pushedPokeArray.length - 2}</p>
+        <form on:submit|preventDefault={showPokeListModal}>
+          <button
+            type="submit"
+            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
+          >
+            <div class="w-5 h-5 flex-shrink-0">
+              <Icon icon="mdi:format-list-numbered" class="w-5 h-5" />
+            </div>
+          </button>
+        </form>
         <div class="mr-4"><!-- spacer --></div>
       </div>
     </div>
