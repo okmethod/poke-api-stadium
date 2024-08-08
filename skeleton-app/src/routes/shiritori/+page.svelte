@@ -22,7 +22,6 @@
   const numPoke = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
-    resetState();
     try {
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
       pokeIds = pickRandomNumbers(numbers, numPoke);
@@ -46,9 +45,35 @@
     };
   }
 
+  let message: string;
+  function updateMessage(): void {
+    if (pushedPokeArray.length < 3) {
+      message = "ポケモン を よびだしてね";
+      return;
+    }
+    if (
+      pushedPokeArray
+        .filter((pokeItem) => pokeItem !== null)
+        .slice(-1)[0]
+        .data.jaName.slice(-1) === "ン"
+    ) {
+      message = "ン で おわっちゃった...";
+      return;
+    }
+    const messages = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
+    message = messages[Math.floor(Math.random() * messages.length)];
+  }
+
+  $: if (pushedPokeArray) {
+    updateMessage();
+  }
+
+  /*
   function resetState(): void {
     pokeArray = [];
+    updateMessage();
   }
+  */
 
   function showPokeListModal(): void {
     const modalComponent: ModalComponent = {
@@ -132,6 +157,11 @@
           {/if}
         {/each}
         <div class="h-[150px] w-[150px] text-center text-xl rounded-2xl border-2">？</div>
+      </div>
+    </div>
+    <div class="ml-4 space-y-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-lg">{message}</span>
       </div>
     </div>
   </div>
