@@ -4,7 +4,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
-  import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
+  import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import {
     cRouteBodyStyle,
@@ -181,7 +181,7 @@
       >
         {#each pokeArray as pokeItem, index (pokeItem.id)}
           <div>
-            <PokeCardCompact pokeData={pokeItem.data} />
+            <PokeTile pokeData={pokeItem.data} />
             <p class="text-center">{isOpen ? options[optionId].formatValue(pokeItem.data) : "???"}</p>
             <p class="text-center">{index + 1} ばんめ</p>
           </div>

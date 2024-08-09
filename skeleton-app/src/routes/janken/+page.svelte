@@ -8,7 +8,7 @@
   import type { Type, DamageRatio } from "$lib/types/type";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import { TYPE_DICT } from "$lib/types/type";
-  import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
+  import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
@@ -211,7 +211,7 @@
       <div class={cPokeArrayStyle}>
         {#each opoPokeArray as pokeData, index (pokeData.id)}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
-            <PokeCardCompact {pokeData} />
+            <PokeTile {pokeData} />
           </div>
         {/each}
       </div>
@@ -244,7 +244,7 @@
                 }
               }}
             >
-              <PokeCardCompact pokeData={pokeItem} />
+              <PokeTile pokeData={pokeItem} />
             </button>
           </div>
         {/each}

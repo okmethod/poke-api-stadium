@@ -5,7 +5,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
-  import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
+  import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
   import {
@@ -190,7 +190,7 @@
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
               <button type="button" on:click={clickPokeCard(index)}>
-                <PokeCardCompact pokeData={pokeItem.data} />
+                <PokeTile pokeData={pokeItem.data} />
               </button>
             {:else}
               <p class="h-[150px] w-[150px]"></p>
@@ -206,7 +206,7 @@
         {#each pushedPokeArray.slice(-2) as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if pokeItem}
-              <PokeCardCompact pokeData={pokeItem.data} />
+              <PokeTile pokeData={pokeItem.data} />
             {:else}
               <p class={cBlankPokeBoxStyle}></p>
             {/if}
