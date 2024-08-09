@@ -38,11 +38,14 @@
   ];
 </script>
 
-<div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-3 md:mb-6">
+<div class="container flex flex-col md:w-11/12">
+  <!-- タイトル部 -->
+  <div class="container ml-4 mb-2 md:mb-4">
     <h1 class="text-lg md:text-3xl font-bold">PokeAPI スタジアムへようこそ !</h1>
   </div>
-  <div class="flex flex-col items-start space-y-2 md:space-y-3">
+
+  <!-- コンテンツ部 -->
+  <div class="container ml-4 space-y-2 md:space-y-3">
     {#each contents as item}
       <button
         on:click|preventDefault={item.onClick}

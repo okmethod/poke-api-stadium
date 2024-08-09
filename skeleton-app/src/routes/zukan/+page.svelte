@@ -4,6 +4,15 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCard from "$lib/components/cards/PokeCard.svelte";
+  import {
+    cRouteBodyStyle,
+    cTitlePartStyle,
+    cTitleStyle,
+    cContentPartStyle,
+    cIconButtonStyle,
+    cIconDivStyle,
+    cIconStyle,
+  } from "$lib/constants";
 
   let pokeId = "";
   let pokeData: PokeData | null = null;
@@ -20,41 +29,42 @@
   }
 </script>
 
-<div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-2">
-    <h1 class="text-2xl font-bold">ポケモンずかん</h1>
+<div class={cRouteBodyStyle}>
+  <!-- タイトル部 -->
+  <div class={cTitlePartStyle}>
+    <h1 class={cTitleStyle}>ポケモンXXずかん</h1>
   </div>
-  <div class="space-y-5 min-w-[300px] max-w-[1200px]">
+
+  <!-- コンテンツ部 -->
+  <div class={cContentPartStyle}>
+    <!-- 入力フォーム -->
     <div class="ml-4">
       <form on:submit|preventDefault={fetchPokeData} class="flex items-center space-x-3">
         <label for="pokeId" class="text-lg">
           <span class="hidden sm:inline">全国図鑑</span>
           No:
         </label>
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-4">
           <input
             type="number"
             min="1"
             max={LATEST_POKEMON_ID}
             id="pokeId"
             bind:value={pokeId}
-            class="border rounded px-2 py-1 h-full"
+            class="border rounded px-4 py-1 h-full"
           />
-          <button
-            type="submit"
-            disabled={isLoading}
-            class="text-white px-2 py-1 rounded h-full flex items-center {isLoading
-              ? 'bg-gray-500'
-              : 'bg-blue-500 hover:bg-blue-600'}"
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:search" class="w-5 h-5" />
+          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:search" class={cIconStyle} />
             </div>
           </button>
         </div>
       </form>
     </div>
 
-    <PokeCard {pokeData} />
+    <!-- ポケモン情報 -->
+    <div>
+      <PokeCard {pokeData} />
+    </div>
   </div>
 </div>

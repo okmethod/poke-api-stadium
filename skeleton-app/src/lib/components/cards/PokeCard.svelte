@@ -105,16 +105,16 @@
   <!-- タイトル部 -->
   <div class="m-2 bg-transparent">
     <h1 class="text-2xl font-bold text-gray-900">
-      {#if pokeData !== null}
-        <div class="flex flex-col md:flex-row justify-center items-center">
+      <div class="flex flex-col md:flex-row justify-center items-center">
+        {#if pokeData !== null}
           <div>{pokeData.jaName} : {pokeData.enName}</div>
           <span class="text-lg font-normal text-gray-700 md:ml-4">
             {pokeData !== null ? pokeData.jaGenus : "???"}
           </span>
-        </div>
-      {:else}
-        ???
-      {/if}
+        {:else}
+          ???
+        {/if}
+      </div>
     </h1>
   </div>
 

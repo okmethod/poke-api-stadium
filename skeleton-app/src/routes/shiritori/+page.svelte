@@ -8,6 +8,15 @@
   import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
+  import {
+    cRouteBodyStyle,
+    cTitlePartStyle,
+    cTitleStyle,
+    cContentPartStyle,
+    cIconButtonStyle,
+    cIconDivStyle,
+    cIconStyle,
+  } from "$lib/constants";
 
   interface PokeItem {
     data: PokeData;
@@ -126,48 +135,47 @@
     };
     modalStore.trigger(modal);
   }
+
+  const cPokeFieldStyle = "min-h-[200px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeArrayStyle = "flex flex-wrap justify-between p-4";
+  const cBlankPokeBoxStyle = "h-[150px] w-[150px]";
 </script>
 
-<div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-2">
-    <h1 class="text-2xl font-bold">ポケモンしりとり</h1>
+<div class={cRouteBodyStyle}>
+  <!-- タイトル部 -->
+  <div class={cTitlePartStyle}>
+    <h1 class={cTitleStyle}>ポケモンしりとり</h1>
   </div>
-  <div class="space-y-5 min-w-[300px] max-w-[600px]">
-    <div class="ml-4 space-y-4">
+
+  <!-- コンテンツ部 -->
+  <div class="{cContentPartStyle} min-w-[300px] max-w-[600px]">
+    <!-- 入力フォーム -->
+    <div class="ml-4 space-y-2">
       <div class="flex items-center space-x-3">
         <span class="text-lg">はじめから</span>
         <form on:submit|preventDefault={resetState}>
-          <button
-            type="submit"
-            disabled={isLoading}
-            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
-          >
-            <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          <button type="submit" disabled={isLoading} class={cIconButtonStyle}>
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
+            </div>
           </button>
         </form>
       </div>
       <div class="flex items-center space-x-3">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
-          <button
-            type="submit"
-            disabled={isLoading}
-            class="px-2 py-1 text-white rounded h-full flex items-center {isLoading
-              ? 'bg-gray-500'
-              : 'bg-blue-500 hover:bg-blue-600'}"
-          >
-            <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
+            </div>
           </button>
         </form>
         <div class="flex-grow"><!-- spacer --></div>
         <p class="text-lg">{pushedPokeArray.length - 2}</p>
         <form on:submit|preventDefault={showPokeListModal}>
-          <button
-            type="submit"
-            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:format-list-numbered" class="w-5 h-5" />
+          <button type="submit" class={cIconButtonStyle}>
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:format-list-numbered" class={cIconStyle} />
             </div>
           </button>
         </form>
@@ -175,8 +183,9 @@
       </div>
     </div>
 
-    <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
-      <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
+    <!-- 候補ポケモン -->
+    <div class={cPokeFieldStyle}>
+      <div class={cPokeArrayStyle}>
         {#each pokeArray as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
@@ -190,25 +199,29 @@
         {/each}
       </div>
     </div>
-    <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
-      <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
+
+    <!-- しりとりポケモン列 -->
+    <div class={cPokeFieldStyle}>
+      <div class={cPokeArrayStyle}>
         {#each pushedPokeArray.slice(-2) as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if pokeItem}
               <PokeCardCompact pokeData={pokeItem.data} />
             {:else}
-              <p class="h-[150px] w-[150px]"></p>
+              <p class={cBlankPokeBoxStyle}></p>
             {/if}
           </div>
           {#if index < 2}
             <span class="mx-2">→</span>
           {/if}
         {/each}
-        <div class="h-[150px] w-[150px] text-center text-xl rounded-2xl border-2">？</div>
+        <div class="{cBlankPokeBoxStyle} text-center text-xl rounded-2xl border-2">？</div>
       </div>
     </div>
-    <div class="ml-4 space-y-4">
-      <div class="flex items-center space-x-3">
+
+    <!-- メッセージ -->
+    <div class="ml-4">
+      <div class="flex items-center space-x-3 mb-2">
         <span class="text-lg">{message}</span>
       </div>
     </div>

@@ -12,6 +12,15 @@
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
+  import {
+    cRouteBodyStyle,
+    cTitlePartStyle,
+    cTitleStyle,
+    cContentPartStyle,
+    cIconButtonStyle,
+    cIconDivStyle,
+    cIconStyle,
+  } from "$lib/constants";
 
   const numPokeByPlayer = 3;
   const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
@@ -151,47 +160,42 @@
     };
     modalStore.trigger(modal);
   }
+
+  const cPokeFieldStyle = "min-h-[220px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeArrayStyle = "flex flex-wrap justify-between p-4";
 </script>
 
-<div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-2">
-    <h1 class="text-2xl font-bold">ポケモンタイプじゃんけん</h1>
+<div class={cRouteBodyStyle}>
+  <!-- タイトル部 -->
+  <div class={cTitlePartStyle}>
+    <h1 class={cTitleStyle}>ポケモンタイプじゃんけん</h1>
   </div>
-  <div class="space-y-5 min-w-[300px] max-w-[600px]">
-    <div class="ml-4 space-y-4">
-      <div class="flex items-center space-x-3">
+
+  <!-- コンテンツ部 -->
+  <div class="{cContentPartStyle} min-w-[300px] max-w-[600px]">
+    <!-- 入力フォーム -->
+    <div class="ml-4">
+      <div class="flex items-center space-x-3 mb-2">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
-          <button
-            type="submit"
-            disabled={isLoading}
-            class="px-2 py-1 text-white rounded h-full flex items-center {isLoading
-              ? 'bg-gray-500'
-              : 'bg-blue-500 hover:bg-blue-600'}"
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
             </div>
           </button>
         </form>
         <div class="flex-grow"><!-- spacer --></div>
         <form on:submit|preventDefault={showHelpModal}>
-          <button
-            type="submit"
-            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:head-question-outline" class="w-5 h-5" />
+          <button type="submit" class={cIconButtonStyle}>
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:head-question-outline" class={cIconStyle} />
             </div>
           </button>
         </form>
         <form on:submit|preventDefault={showTypeRelationsModal}>
-          <button
-            type="submit"
-            class="px-2 py-1 text-white rounded h-full flex items-center bg-blue-500 hover:bg-blue-600"
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:table-question" class="w-5 h-5" />
+          <button type="submit" class={cIconButtonStyle}>
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:table-question" class={cIconStyle} />
             </div>
           </button>
         </form>
@@ -200,9 +204,9 @@
     </div>
 
     <!-- 相手のポケモン -->
-    <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
+    <div class={cPokeFieldStyle}>
       あいて
-      <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
+      <div class={cPokeArrayStyle}>
         {#each opoPokeArray as pokeData, index (pokeData.id)}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <PokeCardCompact {pokeData} />
@@ -213,19 +217,19 @@
 
     <!-- 中央分離帯 -->
     <div>
-      {#if phase !== "term"}
-        <p class="text-center text-xl">vs</p>
-      {:else}
-        <p class="text-center text-xl">
+      <p class="text-center text-lg">
+        {#if phase !== "term"}
+          VS
+        {:else}
           {battleMessage}
-        </p>
-      {/if}
+        {/if}
+      </p>
     </div>
 
     <!-- 自分のポケモン -->
-    <div class="space-y-5 border bg-white rounded-xl min-h-[200px] min-w-[300px]">
+    <div class={cPokeFieldStyle}>
       あなた
-      <div class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent">
+      <div class={cPokeArrayStyle}>
         {#each ownPokeArray as pokeItem, index (pokeItem.id)}
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
@@ -244,18 +248,15 @@
       </div>
     </div>
 
-    <div class="ml-4 space-y-4">
-      <div class="flex items-center space-x-3">
+    <!-- メッセージ -->
+    <div class="ml-4">
+      <div class="flex items-center space-x-3 mb-2">
         <span class="text-lg">{guideMessage}</span>
         {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
           <!-- ポケモン選択済み、決定前のとき-->
-          <button
-            type="button"
-            class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
-            on:click={commitOwnPoke}
-          >
-            <div class="w-5 h-5 flex-shrink-0">
-              <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          <button type="button" class={cIconButtonStyle} on:click={commitOwnPoke}>
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
             </div>
           </button>
         {:else if phase == "select_type"}
@@ -264,8 +265,10 @@
             <button
               style="background-color: {TYPE_DICT[type.enName]?.color || 'blue'};"
               class="px-2 py-1 hover:brightness-85 text-white rounded h-full flex items-center"
-              on:click={() => commitOwnType(type)}>{type.jaName}</button
+              on:click={() => commitOwnType(type)}
             >
+              {type.jaName}
+            </button>
           {/each}
         {/if}
       </div>

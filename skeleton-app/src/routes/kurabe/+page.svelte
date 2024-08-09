@@ -6,6 +6,15 @@
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
+  import {
+    cRouteBodyStyle,
+    cTitlePartStyle,
+    cTitleStyle,
+    cContentPartStyle,
+    cIconButtonStyle,
+    cIconDivStyle,
+    cIconStyle,
+  } from "$lib/constants";
 
   let optionId = "height";
   interface Option {
@@ -65,7 +74,7 @@
   let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
-  const numPoke = 3;
+  const numPoke = 4;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     resetState();
@@ -124,12 +133,16 @@
   }
 </script>
 
-<div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-2">
-    <h1 class="text-2xl font-bold">ポケモンXXくらべ</h1>
+<div class={cRouteBodyStyle}>
+  <!-- タイトル部 -->
+  <div class={cTitlePartStyle}>
+    <h1 class={cTitleStyle}>ポケモンXXくらべ</h1>
   </div>
-  <div class="space-y-5 min-w-[300px] max-w-[600px]">
-    <div class="ml-4 space-y-4">
+
+  <!-- コンテンツ部 -->
+  <div class={cContentPartStyle}>
+    <!-- 入力フォーム -->
+    <div class="ml-4 space-y-2">
       <div class="flex items-center space-x-3">
         <select bind:value={optionId} class="border rounded px-10 py-1">
           {#each Object.entries(options) as [key, value]}
@@ -141,22 +154,19 @@
       <div class="flex items-center space-x-3">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
-          <button
-            type="submit"
-            disabled={isLoading}
-            class="px-2 py-1 text-white rounded h-full flex items-center {isLoading
-              ? 'bg-gray-500'
-              : 'bg-blue-500 hover:bg-blue-600'}"
-          >
-            <Icon icon="mdi:pokeball" class="w-5 h-5" />
+          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
+            </div>
           </button>
         </form>
       </div>
     </div>
 
-    <div class="space-y-5 border bg-white rounded-xl min-h-[250px] min-w-[300px]">
+    <!-- ポケモン並べ替え -->
+    <div class="min-h-[250px] min-w-[300px] border bg-white rounded-xl">
       <div
-        class="flex flex-wrap justify-between p-4 space-x-2 bg-transparent"
+        class="flex flex-wrap justify-between p-4"
         use:dndzone={{ items: pokeArray, flipDurationMs, dropTargetStyle }}
         on:consider={handleDndConsider}
         on:finalize={handleDndFinalize}
@@ -170,16 +180,14 @@
         {/each}
       </div>
     </div>
-    <div class="ml-4 space-y-4">
-      <div class="flex items-center space-x-3">
+
+    <!-- メッセージ -->
+    <div class="ml-4 mt-2">
+      <div class="flex items-center space-x-3 mb-2">
         <span class="text-lg">こたえあわせ</span>
-        <button
-          type="button"
-          class="bg-blue-500 hover:bg-blue-600 px-2 py-1 text-white rounded h-full flex items-center"
-          on:click={compareValues}
-        >
-          <div class="w-5 h-5 flex-shrink-0">
-            <Icon icon="mdi:pokeball" class="w-5 h-5" />
+        <button type="button" class={cIconButtonStyle} on:click={compareValues}>
+          <div class={cIconDivStyle}>
+            <Icon icon="mdi:pokeball" class={cIconStyle} />
           </div>
         </button>
         <span class="text-lg">{comprareResult}</span>
