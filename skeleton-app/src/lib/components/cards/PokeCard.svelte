@@ -4,7 +4,7 @@
   import { Chart, registerables } from "chart.js";
   import type { PokeData } from "$lib/types/poke";
   import { TYPE_DICT, nullColor } from "$lib/types/type";
-  import { formatHW } from "$lib/utils/numerics";
+  import { formatHeightWeight } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null;
 
@@ -161,13 +161,13 @@
         <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
           <h2 class={cIndexStyle}>[たかさ]</h2>
           <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
-            <li class={cTextStyle}>{formatHW(pokeData?.height, "height")}</li>
+            <li class={cTextStyle}>{formatHeightWeight(pokeData?.height, "height")}</li>
           </ul>
         </div>
         <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
           <h2 class={cIndexStyle}>[おもさ]</h2>
           <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
-            <li class={cTextStyle}>{formatHW(pokeData?.weight, "weight")}</li>
+            <li class={cTextStyle}>{formatHeightWeight(pokeData?.weight, "weight")}</li>
           </ul>
         </div>
       </div>

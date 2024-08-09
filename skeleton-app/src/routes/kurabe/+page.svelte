@@ -5,7 +5,7 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCardCompact from "$lib/components/cards/PokeCardCompact.svelte";
-  import { pickRandomNumbers, formatHW, formatStat } from "$lib/utils/numerics";
+  import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
 
   let optionId = "height";
   interface Option {
@@ -17,12 +17,12 @@
     height: {
       name: "たかさ",
       value: (value: PokeData) => value.height,
-      formatValue: (value: PokeData) => formatHW(value.height, "height"),
+      formatValue: (value: PokeData) => formatHeightWeight(value.height, "height"),
     },
     weight: {
       name: "おもさ",
       value: (value: PokeData) => value.weight,
-      formatValue: (value: PokeData) => formatHW(value.weight, "weight"),
+      formatValue: (value: PokeData) => formatHeightWeight(value.weight, "weight"),
     },
     hp: {
       name: "HP",
