@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
+  import { Chart, registerables } from "chart.js";
   import type { PokeData } from "$lib/types/poke";
   import { TYPE_DICT, nullColor } from "$lib/types/type";
-  import { formatHW, formatStat } from "$lib/utils/numerics";
+  import { formatHW } from "$lib/utils/numerics";
 
-  export let pokeData: PokeData | null = null;
+  export let pokeData: PokeData | null;
 
   let spritesLength = 0;
   let headerColor = nullColor;
@@ -13,6 +15,18 @@
     spritesLength = pokeData.imageUrlArray.length;
     headerColor = TYPE_DICT[pokeData.type1.enName]?.color ?? nullColor;
     footerColor = pokeData.type2 !== null ? (TYPE_DICT[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
+    statsData = [
+      pokeData?.stats.hp,
+      pokeData?.stats.attack,
+      pokeData?.stats.defense,
+      pokeData?.stats.speed,
+      pokeData?.stats.specialDefense,
+      pokeData?.stats.specialAttack,
+    ];
+    if (chartInstance) {
+      chartInstance.data.datasets[0].data = statsData;
+      chartInstance.update();
+    }
   }
 
   let currentImageIndex = 0;
@@ -22,21 +36,79 @@
     }
   }
 
-  const indexStyle = "text-l font-semibold text-gray-700";
-  const textStyle = "text-s text-gray-600";
-  const indexAndTextDivStyle = "flex items-center space-x-1";
+  Chart.register(...registerables);
+  let chartCanvas: HTMLCanvasElement;
+  let chartInstance: Chart | null = null;
+  let statsData: number[] = [];
+  onMount(() => {
+    const ctx = chartCanvas.getContext("2d");
+    if (!ctx) return;
+    chartInstance = new Chart(ctx, {
+      type: "radar",
+      data: {
+        labels: ["HP", "こうげき", "ぼうぎょ", "すばやさ", "とくぼう", "とくこう"],
+        datasets: [
+          {
+            label: "",
+            data: statsData,
+            fill: true,
+            backgroundColor: "#ff638420",
+            borderColor: "#ff6384",
+            pointBackgroundColor: "#ff6384",
+            pointBorderColor: "#ffffff",
+            pointHoverBackgroundColor: "#ffffff",
+            pointHoverBorderColor: "#ff6384",
+          },
+        ],
+      },
+      options: {
+        scales: {
+          r: {
+            min: 0,
+            max: 200,
+            ticks: {
+              stepSize: 50,
+              display: false,
+            },
+            pointLabels: {
+              font: {
+                size: 10,
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        elements: {
+          line: {
+            borderWidth: 1,
+          },
+          point: {
+            radius: 2,
+            hoverRadius: 3,
+          },
+        },
+      },
+    });
+  });
+
+  const cIndexStyle = "text-l font-semibold text-gray-700";
+  const cTextStyle = "text-s text-gray-600";
 </script>
 
-<div class="select-none grid border bg-gray-50 rounded-2xl shadow max-w-[600px] overflow-hidden">
+<div class="flex flex-col bg-gray-50 rounded-2xl shadow border min-w-[300px] max-w-[600px] overflow-hidden select-none">
   <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
-  <!-- タイトル部分 -->
-  <div class="p-2 bg-transparent">
+  <!-- タイトル部 -->
+  <div class="m-2 bg-transparent">
     <h1 class="text-2xl font-bold text-gray-900">
       {#if pokeData !== null}
-        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+        <div class="flex flex-col md:flex-row justify-center items-center">
           <div>{pokeData.jaName} : {pokeData.enName}</div>
-          <span class="text-lg font-normal text-gray-700 ml-0 sm:ml-4">
+          <span class="text-lg font-normal text-gray-700 md:ml-4">
             {pokeData !== null ? pokeData.jaGenus : "???"}
           </span>
         </div>
@@ -46,76 +118,66 @@
     </h1>
   </div>
 
-  <div class="grid md:grid-cols-2 md:grid-cols-[1fr_2fr] w-full mb-2 bg-transparent">
-    <!-- 画像部分 -->
-    <div class="p-2 flex justify-center">
-      <div class="w-48 h-48 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
+  <!-- データ部 -->
+  <div class="flex flex-wrap md:flex-nowrap w-full items-center justify-center">
+    <!-- 画像 -->
+    <div class="md:w-2/5 m-2 md:p-4">
+      <div class="relative w-48 h-48 bg-white rounded-lg border border-gray-200">
         {#if pokeData !== null}
-          <button type="button" on:click={toggleImage} aria-label="Toggle Image" class="relative">
-            <img src={pokeData.imageUrlArray[currentImageIndex]} alt={pokeData.jaName} class="w-48 h-48" />
+          <button type="button" on:click={toggleImage}>
+            <img
+              src={pokeData.imageUrlArray[currentImageIndex]}
+              alt={pokeData.jaName}
+              class="absolute top-0 left-0 w-full h-full object-contain"
+            />
             <div class="absolute bottom-0 right-0 m-2">
               <Icon icon="mdi:image-refresh-outline" class="w-4 h-4" />
             </div>
           </button>
         {:else}
-          <Icon icon="mdi:image-off-outline" class="w-8 h-8" />
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <Icon icon="mdi:image-off-outline" class="w-8 h-8" />
+          </div>
         {/if}
       </div>
     </div>
 
-    <!-- 情報部分 -->
-    <div class="p-2">
+    <!-- 数値 -->
+    <div class="md:w-1/5 m-2 md:m-0">
       <!-- タイプ -->
-      <div class="mb-2 flex items-center space-x-4">
-        <h2 class={indexStyle}>[タイプ]</h2>
-        <ul class="list-inside flex space-x-4">
+      <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
+        <h2 class={cIndexStyle}>[タイプ]</h2>
+        <ul class="flex flex-row md:flex-col space-x-2 md:space-x-0 list-inside ml-1">
           {#if pokeData !== null}
-            <li class={textStyle}>{pokeData?.type1.jaName}</li>
-            <li class={textStyle}>{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
+            <li class={cTextStyle}>{pokeData?.type1.jaName}</li>
+            <li class={cTextStyle}>{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
           {:else}
-            <li class={textStyle}>???</li>
+            <li class={cTextStyle}>???</li>
           {/if}
         </ul>
       </div>
-
       <!-- たかさ / おもさ -->
-      <div class="mb-2 grid grid-cols-2 gap-1">
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[たかさ]</h2>
-          <p class={textStyle}>{formatHW(pokeData?.height, "height")}</p>
+      <div class="grid grid-cols-2 md:grid-cols-1 gap-1">
+        <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
+          <h2 class={cIndexStyle}>[たかさ]</h2>
+          <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
+            <li class={cTextStyle}>{formatHW(pokeData?.height, "height")}</li>
+          </ul>
         </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[おもさ]</h2>
-          <p class={textStyle}>{formatHW(pokeData?.weight, "weight")}</p>
+        <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
+          <h2 class={cIndexStyle}>[おもさ]</h2>
+          <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
+            <li class={cTextStyle}>{formatHW(pokeData?.weight, "weight")}</li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <!-- ステータス -->
-      <div class="mb-2 grid grid-cols-3 gap-1">
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[HP]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.hp)}</p>
-        </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[こうげき]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.attack)}</p>
-        </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[ぼうぎょ]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.defense)}</p>
-        </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[すばやさ]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.speed)}</p>
-        </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[とくこう]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.specialAttack)}</p>
-        </div>
-        <div class={indexAndTextDivStyle}>
-          <h2 class={indexStyle}>[とくぼう]</h2>
-          <p class={textStyle}>{formatStat(pokeData?.stats.specialDefense)}</p>
-        </div>
+    <!-- レーダーチャート -->
+    <div class="md:w-2/5 m-2">
+      <div class="flex flex-col items-center justify-center">
+        <h2 class={cIndexStyle}>[ステータス]</h2>
+        <canvas bind:this={chartCanvas}></canvas>
       </div>
     </div>
   </div>
