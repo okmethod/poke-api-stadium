@@ -119,7 +119,7 @@
   </div>
 
   <!-- データ部 -->
-  <div class="flex flex-wrap md:flex-nowrap w-full items-center justify-center">
+  <div class="flex flex-wrap md:flex-nowrap w-full min-h-[280px] items-center justify-center">
     <!-- 画像 -->
     <div class="md:w-2/5 m-2 md:p-4">
       <div class="relative w-48 h-48 bg-white rounded-lg border border-gray-200">

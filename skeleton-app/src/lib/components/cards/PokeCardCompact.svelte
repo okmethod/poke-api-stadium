@@ -15,7 +15,9 @@
   const currentImageIndex = 0;
 </script>
 
-<div class="select-none relative grid border bg-gray-50 rounded-2xl shadow h-[150px] w-[150px] overflow-hidden">
+<div
+  class="relative flex flex-col bg-gray-50 rounded-2xl shadow border h-[150px] w-[150px] overflow-hidden select-none"
+>
   <header class="absolute top-0 p-4 bg-transparent w-full z-10" style="background-color: {headerColor};"></header>
 
   <div class="relative p-2 bg-transparent z-20">
@@ -27,7 +29,7 @@
     </div>
     <!-- 画像部分 -->
     <div class="flex justify-center">
-      <div class="bg-white rounded-full border border-gray-200 flex items-center justify-center">
+      <div class="flex items-center justify-center bg-white rounded-full border border-gray-200">
         {#if pokeData !== null}
           <img
             src={pokeData.imageUrlArray[currentImageIndex]}
