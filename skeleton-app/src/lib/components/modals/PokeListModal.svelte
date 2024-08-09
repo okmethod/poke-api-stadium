@@ -6,9 +6,7 @@
   export let title: string;
   export let pokeDataArray: PokeData[] = [];
 
-  export let parent; // eslint-disable-line svelte/valid-compile -- unused-export-let
-  // MEMO: parent は未使用だが、定義しないとブラウザに下記のワーニングが出る
-  // <FirebaseAuthModal> was created with unknown prop 'parent'
+  export let parent;
 
   const modalStore = getModalStore();
 
@@ -18,7 +16,7 @@
 </script>
 
 {#if $modalStore[0]}
-  <div class="min-w-[400px]">
+  <div class="min-w-[400px]" data-parent={parent}>
     <div class="relative">
       <div class="w-96 h-96 bg-white">
         <div class="p-4 flex flex-col h-full">
