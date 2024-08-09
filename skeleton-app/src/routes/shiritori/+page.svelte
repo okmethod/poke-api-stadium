@@ -5,6 +5,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
+  import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
@@ -26,7 +27,7 @@
   let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
-  const numPoke = 3;
+  const numPoke = 6;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     try {
@@ -137,7 +138,7 @@
   }
 
   const cPokeFieldStyle = "min-h-[200px] min-w-[300px] border bg-white rounded-xl";
-  const cPokeArrayStyle = "flex flex-wrap justify-between p-4";
+  const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
   const cBlankPokeBoxStyle = "h-[150px] w-[150px]";
 </script>
 
@@ -190,10 +191,10 @@
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
               <button type="button" on:click={clickPokeCard(index)}>
-                <PokeTile pokeData={pokeItem.data} />
+                <PokeChip pokeData={pokeItem.data} />
               </button>
             {:else}
-              <p class="h-[150px] w-[150px]"></p>
+              <p class="h-[100px] w-[100px]"></p>
             {/if}
           </div>
         {/each}

@@ -18,9 +18,9 @@
 <div
   class="relative flex flex-col bg-gray-50 rounded-2xl shadow border h-[150px] w-[150px] overflow-hidden select-none"
 >
-  <header class="absolute top-0 p-4 bg-transparent w-full z-10" style="background-color: {headerColor};"></header>
+  <header class="absolute top-0 w-full z-10 p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
-  <div class="relative p-2 bg-transparent z-20">
+  <div class="p-2 bg-transparent z-20">
     <!-- タイトル部分 -->
     <div class="flex justify-center">
       <h1 class="bg-white bg-opacity-50 text-xl font-bold text-gray-900">
@@ -43,5 +43,5 @@
     </div>
   </div>
 
-  <footer class="absolute bottom-0 p-4 bg-transparent w-full z-10" style="background-color: {footerColor};"></footer>
+  <footer class="absolute bottom-0 w-full z-10 p-4 bg-transparent" style="background-color: {footerColor};"></footer>
 </div>
