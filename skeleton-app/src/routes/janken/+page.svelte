@@ -54,7 +54,8 @@
   let selectedOwnType: Type;
   let selectedOpoType: Type;
   let guideMessage: string;
-  let battleMessage: string;
+  let attackMessage: string;
+  let compatibilityMessage: string;
   let resultMessage: string;
   function updateGuideMessage(): void {
     const messages: Record<Phase, string> = {
@@ -82,7 +83,7 @@
     const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
     selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
 
-    ({ battleMessage, resultMessage } = await judgeJankenResult(
+    ({ attackMessage, compatibilityMessage, resultMessage } = await judgeJankenResult(
       ownPokeArray[selectedOwnPokeIndex],
       opoPokeArray[selectedOpoPokeIndex],
       selectedOwnType,
@@ -102,7 +103,7 @@
     opoPokeData: PokeData,
     ownPokeType: Type,
     opoPokeType: Type,
-  ): Promise<{ resultMessage: string; battleMessage: string }> {
+  ): Promise<{ attackMessage: string; compatibilityMessage: string; resultMessage: string }> {
     const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
     const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;
     const attackType = isOwnAttack ? ownPokeType : opoPokeType;
@@ -122,8 +123,9 @@
     };
     const damageRatio = await getDamageRatio(fetch, attackType, defenseType);
     const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
-    const battleMessage = `${attackPoke.jaName} の こうげき！ ${attackType.jaName} は ${defenseType.jaName} に ${efficacyMessage}`;
-    return { battleMessage, resultMessage };
+    const attackMessage = `${attackPoke.jaName} の こうげき！`;
+    const compatibilityMessage = `${attackType.jaName} は ${defenseType.jaName} に ${efficacyMessage}`;
+    return { attackMessage, compatibilityMessage, resultMessage };
   }
 
   function resetState(): void {
@@ -221,7 +223,8 @@
         {#if phase !== "term"}
           VS
         {:else}
-          {battleMessage}
+          <span class="block sm:inline">{attackMessage}</span>
+          <span class="block sm:inline">{compatibilityMessage}</span>
         {/if}
       </p>
     </div>
