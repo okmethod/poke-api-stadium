@@ -137,6 +137,9 @@
   $: if (optionId || numPoke) {
     resetState();
   }
+
+  const cPokeFieldStyle = "min-h-[250px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
 
 <div class={cRouteBodyStyle}>
@@ -172,9 +175,9 @@
     </div>
 
     <!-- ポケモン並べ替え -->
-    <div class="min-h-[250px] min-w-[300px] border bg-white rounded-xl">
+    <div class={cPokeFieldStyle}>
       <div
-        class="flex flex-wrap justify-between p-4"
+        class={cPokeArrayStyle}
         use:dndzone={{ items: pokeArray, flipDurationMs, dropTargetStyle }}
         on:consider={handleDndConsider}
         on:finalize={handleDndFinalize}
@@ -191,7 +194,7 @@
 
     <!-- メッセージ -->
     <div class="ml-4 mt-2">
-      <div class="flex items-center space-x-3 mb-2">
+      <div class="flex items-center space-x-3">
         <span class="text-lg">こたえあわせ</span>
         <button type="button" class={cIconButtonStyle} on:click={compareValues}>
           <div class={cIconDivStyle}>

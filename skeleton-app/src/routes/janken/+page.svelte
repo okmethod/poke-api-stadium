@@ -164,7 +164,7 @@
   }
 
   const cPokeFieldStyle = "min-h-[220px] min-w-[300px] border bg-white rounded-xl";
-  const cPokeArrayStyle = "flex flex-wrap justify-between p-4";
+  const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
 
 <div class={cRouteBodyStyle}>
@@ -177,7 +177,7 @@
   <div class="{cContentPartStyle} min-w-[300px] max-w-[600px]">
     <!-- 入力フォーム -->
     <div class="ml-4">
-      <div class="flex items-center space-x-3 mb-2">
+      <div class="flex items-center space-x-3">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
           <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
@@ -207,7 +207,7 @@
 
     <!-- 相手のポケモン -->
     <div class={cPokeFieldStyle}>
-      あいて
+      <span class="block mt-1 ml-2">あいて</span>
       <div class={cPokeArrayStyle}>
         {#each opoPokeArray as pokeData, index (pokeData.id)}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
@@ -221,7 +221,7 @@
     <div>
       <p class="text-center text-lg">
         {#if phase !== "term"}
-          VS
+          <span class="block">VS</span>
         {:else}
           <span class="block sm:inline">{attackMessage}</span>
           <span class="block sm:inline">{compatibilityMessage}</span>
@@ -231,7 +231,7 @@
 
     <!-- 自分のポケモン -->
     <div class={cPokeFieldStyle}>
-      あなた
+      <span class="block mt-1 ml-2">あなた</span>
       <div class={cPokeArrayStyle}>
         {#each ownPokeArray as pokeItem, index (pokeItem.id)}
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
@@ -253,7 +253,7 @@
 
     <!-- メッセージ -->
     <div class="ml-4">
-      <div class="flex items-center space-x-3 mb-2">
+      <div class="flex items-center space-x-3">
         <span class="text-lg">{guideMessage}</span>
         {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
           <!-- ポケモン選択済み、決定前のとき-->
