@@ -2,7 +2,6 @@
   import "../app.postcss";
   import { AppBar } from "@skeletonlabs/skeleton";
   import { Toast, Modal, initializeStores } from "@skeletonlabs/skeleton";
-
   initializeStores();
 
   // Highlight JS
@@ -13,7 +12,6 @@
   import css from "highlight.js/lib/languages/css";
   import javascript from "highlight.js/lib/languages/javascript";
   import typescript from "highlight.js/lib/languages/typescript";
-
   hljs.registerLanguage("xml", xml); // for HTML
   hljs.registerLanguage("css", css);
   hljs.registerLanguage("javascript", javascript);
@@ -24,6 +22,23 @@
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { storePopup } from "@skeletonlabs/skeleton";
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+  // Dynamic Adjustment by ViewportHeight
+  import { onMount } from "svelte";
+  let containerStyle = "";
+  onMount(() => {
+    const setViewportHeight = () => {
+      const viewportHeight = window.innerHeight;
+      containerStyle = `height: ${viewportHeight}px;`;
+    };
+
+    setViewportHeight();
+    window.addEventListener("resize", setViewportHeight);
+
+    return () => {
+      window.removeEventListener("resize", setViewportHeight);
+    };
+  });
 
   import { navigateTo } from "$lib/utils/navigation.client";
 </script>
@@ -46,7 +61,7 @@
     </AppBar>
   </div>
 
-  <div class="container overflow-y-auto mx-auto">
+  <div class="container mx-auto overflow-y-auto" style={containerStyle}>
     <slot />
   </div>
 </div>
