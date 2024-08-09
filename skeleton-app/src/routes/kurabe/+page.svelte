@@ -74,7 +74,7 @@
   let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
-  const numPoke = 4;
+  let numPoke = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     resetState();
@@ -114,7 +114,13 @@
     isOpen = true;
     const values = pokeArray.map((pokeItem) => options[optionId].value(pokeItem.data));
     if (isSortedDesc(values)) {
-      comprareResult = "せいかい！";
+      const messages: { [key: string]: string } = {
+        3: "せいかい！",
+        4: "すごい！",
+        5: "すごすぎる！！",
+        6: "ポケモンマスター！！！！",
+      };
+      comprareResult = messages[numPoke] || "せいかい！";
     } else {
       comprareResult = "ざんねん...";
     }
@@ -128,7 +134,7 @@
     comprareResult = "";
   }
 
-  $: if (optionId) {
+  $: if (optionId || numPoke) {
     resetState();
   }
 </script>
@@ -152,7 +158,9 @@
         <span class="text-lg">で くらべる</span>
       </div>
       <div class="flex items-center space-x-3">
-        <span class="text-lg">ポケモン を よびだす</span>
+        <span class="text-lg">ポケモン を </span>
+        <input type="number" min="3" max="6" bind:value={numPoke} class="border rounded px-4 py-1 h-full" />
+        <span class="text-lg">たい よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
           <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
             <div class={cIconDivStyle}>
