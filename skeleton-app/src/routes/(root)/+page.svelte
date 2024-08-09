@@ -39,14 +39,14 @@
 </script>
 
 <div class="container mx-auto h-full w-9/12 ml-4">
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold">PokeAPI スタジアムへようこそ !</h1>
+  <div class="mb-3 md:mb-6">
+    <h1 class="text-lg md:text-3xl font-bold">PokeAPI スタジアムへようこそ !</h1>
   </div>
-  <div class="flex flex-col space-y-2 items-start">
+  <div class="flex flex-col items-start space-y-2 md:space-y-3">
     {#each contents as item}
       <button
         on:click|preventDefault={item.onClick}
-        class="text-2xl text-blue-500 hover:underline font-bold py-2 px-4 flex items-center"
+        class="flex items-center px-4 text-lg md:text-2xl text-blue-500 hover:underline font-bold"
       >
         <img src={item.imageUrl} alt={item.alt} class="w-6 h-6 mr-2" />
         {item.text}
