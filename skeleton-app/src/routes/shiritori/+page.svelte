@@ -9,8 +9,6 @@
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
 
-  const modalStore = getModalStore();
-
   interface PokeItem {
     data: PokeData;
     isUsed: boolean;
@@ -112,6 +110,7 @@
     updateMessage();
   }
 
+  const modalStore = getModalStore();
   function showPokeListModal(): void {
     const modalComponent: ModalComponent = {
       ref: PokeListModal,

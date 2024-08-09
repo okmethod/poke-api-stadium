@@ -13,8 +13,6 @@
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
 
-  const modalStore = getModalStore();
-
   const numPokeByPlayer = 3;
   const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
 
@@ -125,6 +123,8 @@
     selectedOwnPokeIndex = -1;
     selectedOpoPokeIndex = -1;
   }
+
+  const modalStore = getModalStore();
 
   function showHelpModal(): void {
     const modalComponent: ModalComponent = {
