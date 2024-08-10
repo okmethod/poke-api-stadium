@@ -4,15 +4,6 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeCard from "$lib/components/cards/PokeCard.svelte";
-  import {
-    cRouteBodyStyle,
-    cTitlePartStyle,
-    cTitleStyle,
-    cContentPartStyle,
-    cIconButtonStyle,
-    cIconDivStyle,
-    cIconStyle,
-  } from "$lib/constants";
 
   let pokeId = "";
   let pokeData: PokeData | null = null;
@@ -29,22 +20,22 @@
   }
 </script>
 
-<div class={cRouteBodyStyle}>
+<div class="cRouteBodyStyle">
   <!-- タイトル部 -->
-  <div class={cTitlePartStyle}>
-    <h1 class={cTitleStyle}>ポケモンXXずかん</h1>
+  <div class="cTitlePartStyle">
+    <h1 class="cTitleStyle">ポケモンずかん</h1>
   </div>
 
   <!-- コンテンツ部 -->
-  <div class={cContentPartStyle}>
+  <div class="cContentPartStyle">
     <!-- 入力フォーム -->
     <div class="ml-4">
-      <form on:submit|preventDefault={fetchPokeData} class="flex items-center space-x-3">
+      <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
         <label for="pokeId" class="text-lg">
           <span class="hidden sm:inline">全国図鑑</span>
           No:
         </label>
-        <div class="flex items-center space-x-4">
+        <div class="cInputFormAndMessagePartStyle">
           <input
             type="number"
             min="1"
@@ -53,9 +44,9 @@
             bind:value={pokeId}
             class="border rounded px-4 py-1 h-full"
           />
-          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
-            <div class={cIconDivStyle}>
-              <Icon icon="mdi:search" class={cIconStyle} />
+          <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
+            <div class="cIconDivStyle">
+              <Icon icon="mdi:search" class="cIconStyle" />
             </div>
           </button>
         </div>

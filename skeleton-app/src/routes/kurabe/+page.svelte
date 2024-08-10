@@ -6,15 +6,6 @@
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
-  import {
-    cRouteBodyStyle,
-    cTitlePartStyle,
-    cTitleStyle,
-    cContentPartStyle,
-    cIconButtonStyle,
-    cIconDivStyle,
-    cIconStyle,
-  } from "$lib/constants";
 
   let optionId = "height";
   interface Option {
@@ -142,17 +133,17 @@
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
 
-<div class={cRouteBodyStyle}>
+<div class="cRouteBodyStyle">
   <!-- タイトル部 -->
-  <div class={cTitlePartStyle}>
-    <h1 class={cTitleStyle}>ポケモンXXくらべ</h1>
+  <div class="cTitlePartStyle">
+    <h1 class="cTitleStyle">ポケモンXXくらべ</h1>
   </div>
 
   <!-- コンテンツ部 -->
-  <div class={cContentPartStyle}>
+  <div class="cContentPartStyle">
     <!-- 入力フォーム -->
     <div class="ml-4 space-y-2">
-      <div class="flex items-center space-x-3">
+      <div class="cInputFormAndMessagePartStyle">
         <select bind:value={optionId} class="border rounded px-10 py-1">
           {#each Object.entries(options) as [key, value]}
             <option value={key}>{value.name}</option>
@@ -160,14 +151,14 @@
         </select>
         <span class="text-lg">で くらべる</span>
       </div>
-      <div class="flex items-center space-x-3">
+      <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を </span>
         <input type="number" min="3" max="6" bind:value={numPoke} class="border rounded px-4 py-1 h-full" />
         <span class="text-lg">たい よびだす</span>
         <form on:submit|preventDefault={fetchPokeDataArray}>
-          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
-            <div class={cIconDivStyle}>
-              <Icon icon="mdi:pokeball" class={cIconStyle} />
+          <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
+            <div class="cIconDivStyle">
+              <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>
           </button>
         </form>
@@ -194,11 +185,11 @@
 
     <!-- メッセージ -->
     <div class="ml-4 mt-2">
-      <div class="flex items-center space-x-3">
+      <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">こたえあわせ</span>
-        <button type="button" class={cIconButtonStyle} on:click={compareValues}>
-          <div class={cIconDivStyle}>
-            <Icon icon="mdi:pokeball" class={cIconStyle} />
+        <button type="button" class="cIconButtonStyle" on:click={compareValues}>
+          <div class="cIconDivStyle">
+            <Icon icon="mdi:pokeball" class="cIconStyle" />
           </div>
         </button>
         <span class="text-lg">{comprareResult}</span>
