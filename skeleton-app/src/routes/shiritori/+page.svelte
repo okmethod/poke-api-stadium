@@ -33,11 +33,28 @@
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
       pokeIds = pickRandomNumbers(numbers, numPoke);
       const pokeDataArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
-      pokeArray = pokeDataArray.map((pokeData, index) => ({
-        id: index,
+      pokeArray = pokeDataArray.map((pokeData) => ({
         data: pokeData,
         isUsed: false,
       }));
+    } catch {
+      // do nothing
+    }
+    isLoading = false;
+  }
+
+  let pushedPokeArray: Array<PokeItem | null> = [null, null];
+  async function setFirstPokeData(): Promise<void> {
+    isLoading = true;
+    try {
+      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+      const pokeId = pickRandomNumbers(numbers, numPoke)[0];
+      const pokeData = await getPokeData(fetch, pokeId.toString());
+      const pokeItem: PokeItem = {
+        data: pokeData,
+        isUsed: false,
+      };
+      pushedPokeArray = [...pushedPokeArray, pokeItem];
     } catch {
       // do nothing
     }
@@ -79,8 +96,7 @@
     return tailChar === nextChar;
   }
 
-  let pushedPokeArray: Array<PokeItem | null> = [null, null];
-  function clickPokeCard(index: number) {
+  function pushPokeChip(index: number) {
     return () => {
       const tailPokeName = pushedPokeArray.slice(-1)[0]?.data.jaName ?? null;
       const nextPokeName = pokeArray[index].data.jaName;
@@ -105,8 +121,12 @@
       message = "ン で おわっちゃった...";
       return;
     }
-    const messages = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
-    message = `${messages[getRandomNumber(messages.length)]} つぎは 「${getTailChar(tailChar)}」`;
+    if (pushedPokeArray.length - 2 == 1) {
+      message = `はじめは 「${getTailChar(tailChar)}」`;
+    } else {
+      const messages = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
+      message = `${messages[getRandomNumber(messages.length)]} つぎは 「${getTailChar(tailChar)}」`;
+    }
   }
 
   $: if (pushedPokeArray) {
@@ -115,6 +135,7 @@
 
   function resetState(): void {
     pokeArray = [];
+    setFirstPokeData();
     fetchPokeDataArray();
     pushedPokeArray = [null, null];
     updateMessage();
@@ -186,7 +207,7 @@
         {#each pokeArray as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
-              <button type="button" on:click={clickPokeCard(index)}>
+              <button type="button" on:click={pushPokeChip(index)}>
                 <PokeChip pokeData={pokeItem.data} />
               </button>
             {:else}
