@@ -85,4 +85,10 @@ export function convertToTypeData(typeJson: ResponseTypeJson): TypeData {
   };
 }
 
+type ReplaceTypeNameWithString<T> = {
+  [K in keyof T]: T[K] extends TypeName ? string : T[K] extends TypeName[] ? string[] : ReplaceTypeNameWithString<T[K]>;
+};
+// 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
+export type StaticTypeData = ReplaceTypeNameWithString<TypeData>;
+
 export type DamageRatio = "double" | "half" | "no" | "default";
