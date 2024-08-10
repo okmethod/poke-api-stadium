@@ -29,7 +29,7 @@
 
   function getTailChar(name: string): string {
     let tailChar = name.slice(-1);
-    if (tailChar === "ー" && name.length > 1) {
+    if (["ー", "♀", "♂"].includes(tailChar) && name.length > 1) {
       tailChar = name.slice(-2, -1);
     }
     return normalizeChar(tailChar);
