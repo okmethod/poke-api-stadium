@@ -81,3 +81,15 @@ export function makePokeData(
     stats: transformStats(pokemonJson.stats),
   };
 }
+
+export interface StaticPokeData {
+  jaName: string;
+  imageUrl: string;
+}
+
+export function convertToStaticPokeData(pokeData: PokeData): StaticPokeData {
+  return {
+    jaName: pokeData.jaName,
+    imageUrl: pokeData.imageUrlArray[0],
+  };
+}

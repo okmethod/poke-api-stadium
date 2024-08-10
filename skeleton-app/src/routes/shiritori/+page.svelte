@@ -2,7 +2,7 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import type { StaticPokeData } from "$lib/types/staticPoke";
+  import type { StaticPokeData } from "$lib/types/poke";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers, shuffleArray } from "$lib/utils/numerics";

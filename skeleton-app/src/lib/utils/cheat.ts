@@ -1,6 +1,6 @@
 import getPokeData from "$lib/api/getPokeData.client";
-import type { StaticPokeData } from "$lib/types/staticPoke";
-import { convertToStaticPokeData } from "$lib/types/staticPoke";
+import type { StaticPokeData } from "$lib/types/poke";
+import { convertToStaticPokeData } from "$lib/types/poke";
 
 export async function generateStaticPokeDict(
   fetchFunction: typeof window.fetch,

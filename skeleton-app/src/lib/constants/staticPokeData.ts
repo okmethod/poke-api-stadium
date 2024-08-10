@@ -1,4 +1,4 @@
-import type { StaticPokeData } from "$lib/types/staticPoke";
+import type { StaticPokeData } from "$lib/types/poke";
 
 export const LATEST_POKEMON_ID = 1025;
 // https://pokeapi.co/api/v2/pokemon の count の値
