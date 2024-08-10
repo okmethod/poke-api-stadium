@@ -12,9 +12,9 @@
 </script>
 
 {#if $modalStore[0]}
-  <div class="min-w-[400px]" data-parent={parent}>
+  <div class="" data-parent={parent}>
     <div class="relative">
-      <div class="w-96 h-96 bg-white">
+      <div class="w-full h-full bg-white">
         <div class="p-4">
           <h2 class="text-2xl font-bold">ルール</h2>
           <p class="mt-4">

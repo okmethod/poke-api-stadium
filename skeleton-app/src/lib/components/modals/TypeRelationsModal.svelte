@@ -14,9 +14,9 @@
 </script>
 
 {#if $modalStore[0]}
-  <div class="min-w-[400px]" data-parent={parent}>
+  <div class="" data-parent={parent}>
     <div class="relative">
-      <img src={imageUrl} alt="type_relations" class="w-96 h-96" />
+      <img src={imageUrl} alt="type_relations" class="w-96 h-96 object-contain" />
       <button on:click={closeModal} class="absolute top-1 right-6 z-10">
         <Icon icon="mdi:close" class="w-5 h-5" />
       </button>
