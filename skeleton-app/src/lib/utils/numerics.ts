@@ -16,15 +16,22 @@ export function pickRandomNumbers(numbers: number[], count: number): number[] {
   if (numbers.length < count) {
     throw new Error("shortage elements in the array");
   }
-
-  const result: number[] = [];
+  const pickedNumbers: number[] = [];
   const usedIndices: Set<number> = new Set();
-  while (result.length < count) {
+  while (pickedNumbers.length < count) {
     const randomIndex = getRandomNumber(numbers.length);
     if (!usedIndices.has(randomIndex)) {
-      result.push(numbers[randomIndex]);
+      pickedNumbers.push(numbers[randomIndex]);
       usedIndices.add(randomIndex);
     }
   }
-  return result;
+  return pickedNumbers;
+}
+
+export function shuffleArray(array: number[]): number[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }

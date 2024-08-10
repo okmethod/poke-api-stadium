@@ -24,7 +24,7 @@
       onClick: () => navigateTo("/janken"),
     },
     {
-      text: "ポケモンしりとり (制作中)",
+      text: "ポケモンしりとり",
       imageUrl: BALL_DICT["safari-ball"].imageUrl,
       alt: "safari-ball",
       onClick: () => navigateTo("/shiritori"),

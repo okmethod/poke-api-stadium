@@ -5,22 +5,39 @@
   import type { StaticPokeData } from "$lib/types/staticPoke";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
+  import { getRandomNumber, pickRandomNumbers, shuffleArray } from "$lib/utils/numerics";
   import { STATIC_POKE_DICT } from "$lib/constants/staticPoke";
 
   interface PokeItem {
-    id: number;
     jaName: string;
     imageUrl: string;
     isUsed: boolean;
   }
 
-  let pokeArray: PokeItem[] = Object.entries(STATIC_POKE_DICT).map(([pokeId, staticPokeData]) => ({
-    id: Number(pokeId),
-    jaName: staticPokeData.jaName,
-    imageUrl: staticPokeData.imageUrl,
-    isUsed: false,
-  }));
+  const dummyPokeItem: PokeItem = {
+    jaName: "dummy",
+    imageUrl: "",
+    isUsed: true,
+  };
+
+  // staticデータから全ポケモンリストを作成し、利用状況を管理する
+  // index と pokeId を一致させるために、先頭にダミーデータを追加している
+  let pokeArray: PokeItem[] = [
+    dummyPokeItem,
+    ...Object.entries(STATIC_POKE_DICT).map(([pokeId, staticPokeData]) => ({
+      jaName: staticPokeData.jaName,
+      imageUrl: staticPokeData.imageUrl,
+      isUsed: false,
+    })),
+  ];
+
+  let pushedPokeIds: number[] = [];
+  function setFirstPokeData(): void {
+    const unusedIds = getUnusedIds(pokeArray);
+    const candidatedPokeId = pickRandomNumbers(unusedIds, numPoke)[0];
+    pokeArray[candidatedPokeId].isUsed = true;
+    pushedPokeIds = [...pushedPokeIds, candidatedPokeId];
+  }
 
   function normalizeChar(char: string): string {
     // prettier-ignore
@@ -49,68 +66,71 @@
     return normalizeChar(tailChar);
   }
 
+  function getTailPokeName(): string {
+    const tailPokeId = pushedPokeIds.slice(-1)[0] ?? null;
+    if (tailPokeId === null) {
+      // 発生しないはずだが、念のため
+      setFirstPokeData();
+      candidatePokeIds();
+      return "";
+    }
+    return pokeArray[tailPokeId].jaName;
+  }
+
   interface GroupedByHeadCharPokeData {
-    [headChar: string]: {
-      [pokeId: number]: {
-        pokeName: string;
-        imageUrl: string;
-      };
-    };
+    [headChar: string]: number[];
   }
 
   function groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): GroupedByHeadCharPokeData {
     return Object.entries(staticPokeDict).reduce((acc, [pokeId, staticPokeData]) => {
       const firstChar = getHeadChar(staticPokeData.jaName);
       if (!acc[firstChar]) {
-        acc[firstChar] = {};
+        acc[firstChar] = [];
       }
-      acc[firstChar][Number(pokeId)] = { pokeName: staticPokeData.jaName, imageUrl: staticPokeData.imageUrl };
+      acc[firstChar].push(Number(pokeId));
       return acc;
     }, {} as GroupedByHeadCharPokeData);
   }
-  const groupedByHeadCharPokeData = groupByHeadChar(STATIC_POKE_DICT);
-  console.log(groupedByHeadCharPokeData);
+  const groupedByHeadCharPokeIds = groupByHeadChar(STATIC_POKE_DICT);
 
   function getUnusedIds(array: PokeItem[]): number[] {
-    return array.filter((item) => !item.isUsed).map((item) => Number(item.id));
+    return array.filter((item) => !item.isUsed).map((_, index) => Number(index));
   }
 
-  let candidatedPokeIds: number[] = [];
   const numPoke = 12;
-  function pickUnusedPokeIds(): void {
+  const numPossiblePoke = 4;
+  let candidatedPokeIds: number[] = [];
+  function candidatePokeIds(): void {
+    const tailChar = getTailChar(getTailPokeName());
+    const possiblePokeIds = groupedByHeadCharPokeIds[tailChar] ?? [];
+
     const unusedIds = getUnusedIds(pokeArray);
-    candidatedPokeIds = pickRandomNumbers(unusedIds, numPoke);
+    const possibleUnusedIds = possiblePokeIds.filter((pokeId) => unusedIds.includes(pokeId));
+    const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, numPossiblePoke);
+    const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
+    const additionalPokeIds = pickRandomNumbers(
+      unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
+      numPoke - slicedPossiblePokeIds.length,
+    );
+
+    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]);
   }
 
-  let pushedPokeIds: number[] = [];
-  function setFirstPokeData(): void {
-    const unusedIds = getUnusedIds(pokeArray);
-    const candidatedPokeId = pickRandomNumbers(unusedIds, numPoke)[0];
-    pokeArray[candidatedPokeId].isUsed = true;
-    pushedPokeIds = [...pushedPokeIds, candidatedPokeId];
-  }
-
-  function judgeShiritoriRule(tailPokeName: string | null, nextPokeName: string): boolean {
-    if (tailPokeName === null) {
-      return true; // 最初はなんでもOK
-    }
+  function judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
     const tailChar = getTailChar(tailPokeName);
     const nextChar = getHeadChar(nextPokeName);
     return tailChar === nextChar;
   }
 
   function pushPokeId(nextPokeId: number) {
-    return () => {
-      const tailPokeId = pushedPokeIds.slice(-1)[0] ?? null;
-      const tailPokeName = !tailPokeId ? pokeArray[tailPokeId].jaName : null;
-      const nextPokeName = pokeArray[nextPokeId].jaName;
-      if (!judgeShiritoriRule(tailPokeName, nextPokeName)) {
-        message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
-        return;
-      }
-      pokeArray[nextPokeId].isUsed = true;
-      pushedPokeIds = [...pushedPokeIds, nextPokeId];
-    };
+    const tailPokeName = getTailPokeName();
+    const nextPokeName = pokeArray[nextPokeId].jaName;
+    if (!judgeShiritoriRule(tailPokeName, nextPokeName)) {
+      message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
+      return;
+    }
+    pokeArray[nextPokeId].isUsed = true;
+    pushedPokeIds = [...pushedPokeIds, nextPokeId];
   }
 
   let message: string;
@@ -142,7 +162,7 @@
     pokeArray = pokeArray.map((item) => ({ ...item, isUsed: false }));
     pushedPokeIds = [];
     setFirstPokeData();
-    pickUnusedPokeIds();
+    candidatePokeIds();
     updateMessage();
   }
 
@@ -152,7 +172,7 @@
       ref: PokeListModal,
       props: {
         title: "しりとりリスト",
-        pokeDataArray: pushedPokeIds.map((pokeId) => pokeArray[pokeId].jaName),
+        stringArray: pushedPokeIds.map((pokeId) => pokeArray[pokeId].jaName),
       },
     };
     const modal: ModalSettings = {
@@ -212,7 +232,7 @@
         {#each candidatedPokeIds as pokeId}
           <div class="rounded-2xl border-2">
             {#if !pokeArray[pokeId].isUsed}
-              <button type="button" on:click={pushPokeId(pokeId)}>
+              <button type="button" on:click={() => pushPokeId(pokeId)}>
                 <PokeChip name={pokeArray[pokeId].jaName} imageUrl={pokeArray[pokeId].imageUrl} />
               </button>
             {:else}
@@ -227,8 +247,12 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を いれかえる</span>
-        <form on:submit|preventDefault={pickUnusedPokeIds}>
-          <button type="submit" class="cIconButtonStyle">
+        <form on:submit|preventDefault={candidatePokeIds}>
+          <button
+            type="submit"
+            disabled={pushedPokeIds.length == 0}
+            class="cIconButtonStyle {pushedPokeIds.length == 0 ? '!bg-gray-500' : ''}"
+          >
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>
@@ -241,7 +265,7 @@
     <div class={cPokeFieldStyle}>
       <div class="{cPokeArrayStyle} md:ml-16 md:mr-16">
         <!-- 要素が足りない場合は null埋めする -->
-        {#each [...Array(2 - pushedPokeIds.length).fill(null), ...pushedPokeIds].slice(-2) as pokeId, index}
+        {#each pushedPokeIds.length >= 2 ? pushedPokeIds.slice(-2) : [...Array(2 - pushedPokeIds.length).fill(null), ...pushedPokeIds] as pokeId, index}
           <div class="rounded-2xl border-2">
             {#if pokeId}
               <PokeChip name={pokeArray[pokeId].jaName} imageUrl={pokeArray[pokeId].imageUrl} />
