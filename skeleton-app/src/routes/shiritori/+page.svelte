@@ -2,55 +2,12 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import getPokeData from "$lib/api/getPokeData.client";
-  import type { PokeData } from "$lib/types/poke";
+  import type { StaticPokeData } from "$lib/types/staticPoke";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
   import { LATEST_POKEMON_ID } from "$lib/constants/poke";
-
-  interface PokeItem {
-    data: PokeData;
-    isUsed: boolean;
-  }
-
-  let isLoading = false;
-  let pokeIds: number[] = [];
-  let pokeArray: PokeItem[] = [];
-  const numPoke = 12;
-  async function fetchPokeDataArray(): Promise<void> {
-    isLoading = true;
-    try {
-      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-      pokeIds = pickRandomNumbers(numbers, numPoke);
-      const pokeDataArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
-      pokeArray = pokeDataArray.map((pokeData) => ({
-        data: pokeData,
-        isUsed: false,
-      }));
-    } catch {
-      // do nothing
-    }
-    isLoading = false;
-  }
-
-  let pushedPokeArray: Array<PokeItem | null> = [null, null];
-  async function setFirstPokeData(): Promise<void> {
-    isLoading = true;
-    try {
-      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-      const pokeId = pickRandomNumbers(numbers, numPoke)[0];
-      const pokeData = await getPokeData(fetch, pokeId.toString());
-      const pokeItem: PokeItem = {
-        data: pokeData,
-        isUsed: false,
-      };
-      pushedPokeArray = [...pushedPokeArray, pokeItem];
-    } catch {
-      // do nothing
-    }
-    isLoading = false;
-  }
+  import { STATIC_POKE_DICT } from "$lib/constants/staticPoke";
 
   function normalizeChar(char: string): string {
     // prettier-ignore
@@ -78,6 +35,85 @@
     return normalizeChar(tailChar);
   }
 
+  interface GroupedByHeadCharPokeData {
+    [headChar: string]: {
+      [pokeId: number]: {
+        pokeName: string;
+        imageUrl: string;
+      };
+    };
+  }
+
+  function groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): GroupedByHeadCharPokeData {
+    return Object.entries(staticPokeDict).reduce((acc, [pokeId, staticPokeData]) => {
+      const firstChar = getHeadChar(staticPokeData.jaName);
+      if (!acc[firstChar]) {
+        acc[firstChar] = {};
+      }
+      acc[firstChar][Number(pokeId)] = { pokeName: staticPokeData.jaName, imageUrl: staticPokeData.imageUrl };
+      return acc;
+    }, {} as GroupedByHeadCharPokeData);
+  }
+  const groupedByHeadCharPokeData = groupByHeadChar(STATIC_POKE_DICT);
+  console.log(groupedByHeadCharPokeData);
+
+  interface PokeItem {
+    id: number;
+    jaName: string;
+    imageUrl: string;
+    isUsed: boolean;
+  }
+
+  let isLoading = false;
+  let pokeIds: number[] = [];
+  let pokeArray: PokeItem[] = [];
+  const numPoke = 12;
+  function fetchPokeDataArray(): void {
+    isLoading = true;
+    try {
+      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+      pokeIds = pickRandomNumbers(numbers, numPoke);
+      const fetchedStaticPokeDict = pokeIds.slice(0, numPoke).reduce(
+        (acc, pokeId) => {
+          acc[pokeId] = STATIC_POKE_DICT[pokeId.toString()];
+          return acc;
+        },
+        {} as { [pokeId: number]: StaticPokeData },
+      );
+      pokeArray = Object.entries(fetchedStaticPokeDict).map(([id, pokeData]) => ({
+        id: Number(id),
+        jaName: pokeData.jaName,
+        imageUrl: pokeData.imageUrl,
+        isUsed: false,
+      }));
+    } catch {
+      // do nothing
+    }
+    isLoading = false;
+  }
+
+  let pushedPokeArray: Array<PokeItem | null> = [null, null];
+  function setFirstPokeData(): void {
+    isLoading = true;
+    try {
+      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+      const pokeId = pickRandomNumbers(numbers, numPoke)[0];
+      const staticPokeData = STATIC_POKE_DICT[pokeId.toString()];
+      const pokeItem: PokeItem = {
+        id: pokeId,
+        jaName: staticPokeData.jaName,
+        imageUrl: staticPokeData.imageUrl,
+        isUsed: false,
+      };
+      console.log(pokeId, staticPokeData, pokeItem);
+      pushedPokeArray = [...pushedPokeArray, pokeItem];
+      console.log(pushedPokeArray);
+    } catch {
+      // do nothing
+    }
+    isLoading = false;
+  }
+
   function judgeShiritoriRule(tailPokeName: string | null, nextPokeName: string): boolean {
     if (tailPokeName === null) {
       return true; // 最初はなんでもOK
@@ -89,8 +125,8 @@
 
   function pushPokeChip(index: number) {
     return () => {
-      const tailPokeName = pushedPokeArray.slice(-1)[0]?.data.jaName ?? null;
-      const nextPokeName = pokeArray[index].data.jaName;
+      const tailPokeName = pushedPokeArray.slice(-1)[0]?.jaName ?? null;
+      const nextPokeName = pokeArray[index].jaName;
       if (!judgeShiritoriRule(tailPokeName, nextPokeName)) {
         message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
         return;
@@ -106,7 +142,7 @@
       message = "ポケモン を よびだしてね";
       return;
     }
-    const tailPokeName = pushedPokeArray.slice(-1)[0]?.data.jaName ?? "";
+    const tailPokeName = pushedPokeArray.slice(-1)[0]?.jaName ?? "";
     const tailChar = getTailChar(tailPokeName);
     if (tailChar === "ン") {
       message = "ン で おわっちゃった...";
@@ -128,7 +164,6 @@
     pokeArray = [];
     setFirstPokeData();
     fetchPokeDataArray();
-    pushedPokeArray = [null, null];
     updateMessage();
   }
 
@@ -138,7 +173,7 @@
       ref: PokeListModal,
       props: {
         title: "しりとりリスト",
-        pokeDataArray: pushedPokeArray.filter((pokeItem) => pokeItem !== null).map((pokeItem) => pokeItem.data),
+        pokeDataArray: pushedPokeArray.filter((pokeItem) => pokeItem !== null).map((pokeItem) => pokeItem),
       },
     };
     const modal: ModalSettings = {
@@ -199,7 +234,7 @@
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
               <button type="button" on:click={pushPokeChip(index)}>
-                <PokeChip pokeData={pokeItem.data} />
+                <PokeChip name={pokeItem.jaName} imageUrl={pokeItem.imageUrl} />
               </button>
             {:else}
               <div class={cBlankPokeBoxStyle}></div>
@@ -229,7 +264,7 @@
         {#each pushedPokeArray.slice(-2) as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if pokeItem}
-              <PokeChip pokeData={pokeItem.data} />
+              <PokeChip name={pokeItem.jaName} imageUrl={pokeItem.imageUrl} />
             {:else}
               <div class={cBlankPokeBoxStyle}></div>
             {/if}
