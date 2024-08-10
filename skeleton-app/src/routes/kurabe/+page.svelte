@@ -56,15 +56,10 @@
     },
   };
 
-  interface PokeItem {
-    id: number;
-    data: PokeData;
-  }
-
   let isOpen = false;
   let isLoading = false;
   let pokeIds: number[] = [];
-  let pokeArray: PokeItem[] = [];
+  let pokeArray: PokeData[] = [];
   let numPoke = 3;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
@@ -72,23 +67,19 @@
     try {
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
       pokeIds = pickRandomNumbers(numbers, numPoke);
-      const pokeDataArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
-      pokeArray = pokeDataArray.map((pokeData, index) => ({
-        id: index,
-        data: pokeData,
-      }));
+      pokeArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
     } catch {
       // do nothing
     }
     isLoading = false;
   }
 
-  function handleDndConsider(event: CustomEvent<{ items: PokeItem[] }>): void {
+  function handleDndConsider(event: CustomEvent<{ items: PokeData[] }>): void {
     const { items } = event.detail;
     pokeArray = items;
   }
 
-  function handleDndFinalize(event: CustomEvent<{ items: PokeItem[] }>): void {
+  function handleDndFinalize(event: CustomEvent<{ items: PokeData[] }>): void {
     const { items } = event.detail;
     pokeArray = items;
   }
@@ -103,7 +94,7 @@
       return;
     }
     isOpen = true;
-    const values = pokeArray.map((pokeItem) => options[optionId].value(pokeItem.data));
+    const values = pokeArray.map((pokeData) => options[optionId].value(pokeData));
     if (isSortedDesc(values)) {
       const messages: { [key: string]: string } = {
         3: "せいかい！",
@@ -173,15 +164,15 @@
         on:consider={handleDndConsider}
         on:finalize={handleDndFinalize}
       >
-        {#each pokeArray as pokeItem, index (pokeItem.id)}
+        {#each pokeArray as pokeData, index (pokeData.id)}
           <div>
             <PokeTile
-              name={pokeItem.data.jaName}
-              type1EnName={pokeItem.data.type1.enName}
-              type2EnName={pokeItem.data.type2?.enName}
-              imageUrl={pokeItem.data.imageUrlArray[0]}
+              name={pokeData.jaName}
+              type1EnName={pokeData.type1.enName}
+              type2EnName={pokeData.type2?.enName}
+              imageUrl={pokeData.imageUrlArray[0]}
             />
-            <p class="text-center">{isOpen ? options[optionId].formatValue(pokeItem.data) : "???"}</p>
+            <p class="text-center">{isOpen ? options[optionId].formatValue(pokeData) : "???"}</p>
             <p class="text-center">{index + 1} ばんめ</p>
           </div>
         {/each}
