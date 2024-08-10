@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { generateStaticPokeDict } from "$lib/utils/cheat";
-  import { LATEST_POKEMON_ID } from "$lib/constants/poke";
+  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
 
   let isProcessing = false;
 

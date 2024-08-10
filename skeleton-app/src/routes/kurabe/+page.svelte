@@ -5,7 +5,7 @@
   import type { PokeData } from "$lib/types/poke";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
-  import { LATEST_POKEMON_ID } from "$lib/constants/poke";
+  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
 
   let optionId = "height";
   interface Option {

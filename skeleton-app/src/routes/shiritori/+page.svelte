@@ -6,7 +6,7 @@
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers, shuffleArray } from "$lib/utils/numerics";
-  import { STATIC_POKE_DICT } from "$lib/constants/staticPoke";
+  import { STATIC_POKE_DICT } from "$lib/constants/staticPokeData";
 
   interface PokeItem {
     jaName: string;

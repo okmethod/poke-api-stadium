@@ -1,6 +1,10 @@
 import type { StaticPokeData } from "$lib/types/staticPoke";
 
-export const STATIC_POKE_DICT: { [pokeId: string]: StaticPokeData } = {
+export const LATEST_POKEMON_ID = 1025;
+// https://pokeapi.co/api/v2/pokemon の count の値
+// と思いきや、図鑑番号がついていないポケモンがいるため count より小さい値になるので注意
+
+export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1": {
     jaName: "フシギダネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",

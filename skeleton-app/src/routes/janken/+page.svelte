@@ -10,7 +10,7 @@
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
-  import { LATEST_POKEMON_ID } from "$lib/constants/poke";
+  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
   import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
 
   const numPokeByPlayer = 3;
