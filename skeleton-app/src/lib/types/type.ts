@@ -47,7 +47,7 @@ export type TypeName =
   | "dragon"
   | "dark"
   | "fairy"
-  | "null";
+  | "unknown";
 
 export interface TypeData {
   id: number;
@@ -56,8 +56,8 @@ export interface TypeData {
 }
 
 export interface StaticTypeData {
+  id: number;
   color: string;
-  url: string;
 }
 
 export type DamageRatio = "double" | "half" | "no" | "default";

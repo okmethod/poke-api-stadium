@@ -8,10 +8,10 @@
   export let type2Name: TypeName | null = null;
   export let imageUrl: string | null = null;
 
-  let headerColor = STATIC_TYPE_DICT["null"].color;
-  let footerColor = STATIC_TYPE_DICT["null"].color;
+  let headerColor = STATIC_TYPE_DICT["unknown"].color;
+  let footerColor = STATIC_TYPE_DICT["unknown"].color;
   $: if (name) {
-    headerColor = type1Name ? STATIC_TYPE_DICT[type1Name].color : STATIC_TYPE_DICT["null"].color;
+    headerColor = type1Name ? STATIC_TYPE_DICT[type1Name].color : STATIC_TYPE_DICT["unknown"].color;
     footerColor = type2Name ? STATIC_TYPE_DICT[type2Name]?.color : headerColor;
   }
 
