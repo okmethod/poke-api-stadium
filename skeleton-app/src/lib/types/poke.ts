@@ -75,11 +75,21 @@ export function convertToPokeData(
 export interface StaticPokeData {
   jaName: string;
   imageUrl: string;
+  typeName1: string; // 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
+  typeName2: string | null;
+  height: number;
+  weight: number;
+  stats: Stats;
 }
 
 export function convertToStaticPokeData(pokeData: PokeData): StaticPokeData {
   return {
     jaName: pokeData.jaName,
     imageUrl: pokeData.imageUrlArray[0],
+    typeName1: pokeData.type1.enName,
+    typeName2: pokeData.type2?.enName ?? null,
+    height: pokeData.height,
+    weight: pokeData.weight,
+    stats: pokeData.stats,
   };
 }
