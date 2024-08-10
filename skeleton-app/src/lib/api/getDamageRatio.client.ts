@@ -1,10 +1,10 @@
 import { getType } from "$lib/api/getType.client";
-import type { Type, DamageRatio } from "$lib/types/type";
+import type { TypeData, DamageRatio } from "$lib/types/type";
 
 export async function getDamageRatio(
   fetchFunction: typeof window.fetch,
-  attackSideType: Type,
-  diffenceSideType: Type,
+  attackSideType: TypeData,
+  diffenceSideType: TypeData,
 ): Promise<DamageRatio> {
   const typeData = await getType(fetchFunction, attackSideType.id.toString());
   if (!typeData) {

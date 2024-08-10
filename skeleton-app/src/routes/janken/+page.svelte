@@ -5,7 +5,7 @@
   import getPokeData from "$lib/api/getPokeData.client";
   import getDamageRatio from "$lib/api/getDamageRatio.client";
   import type { PokeData } from "$lib/types/poke";
-  import type { Type, DamageRatio } from "$lib/types/type";
+  import type { TypeData, DamageRatio } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
@@ -42,8 +42,8 @@
   let phase: Phase = "init";
   let selectedOwnPokeIndex = -1;
   let selectedOpoPokeIndex = -1;
-  let selectedOwnType: Type;
-  let selectedOpoType: Type;
+  let selectedOwnType: TypeData;
+  let selectedOpoType: TypeData;
   let guideMessage: string;
   let attackMessage: string;
   let compatibilityMessage: string;
@@ -69,7 +69,7 @@
     selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
   }
 
-  async function commitOwnType(type: Type): Promise<void> {
+  async function commitOwnType(type: TypeData): Promise<void> {
     selectedOwnType = type;
     const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
     selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
@@ -83,7 +83,7 @@
     phase = "term";
   }
 
-  function fetchPokeType(pokeData: PokeData): Type[] {
+  function fetchPokeType(pokeData: PokeData): TypeData[] {
     const type1 = pokeData.type1;
     const type2 = pokeData.type2;
     return type2 ? [type1, type2] : [type1];
@@ -92,8 +92,8 @@
   async function judgeJankenResult(
     ownPokeData: PokeData,
     opoPokeData: PokeData,
-    ownPokeType: Type,
-    opoPokeType: Type,
+    ownPokeType: TypeData,
+    opoPokeType: TypeData,
   ): Promise<{ attackMessage: string; compatibilityMessage: string; resultMessage: string }> {
     const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
     const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;

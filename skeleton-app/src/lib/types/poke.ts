@@ -1,4 +1,4 @@
-import type { Type, ResponseTypeJson } from "$lib/types/type";
+import type { TypeName, TypeData, ResponseTypeJson } from "$lib/types/type";
 import type { Sprites } from "$lib/types/sprites";
 import { makeSpritesArray } from "$lib/types/sprites";
 import type { Stat, Stats } from "$lib/types/stats";
@@ -44,8 +44,8 @@ export interface PokeData {
   jaName: string;
   imageUrlArray: string[];
   jaGenus: string;
-  type1: Type;
-  type2: Type | null;
+  type1: TypeData;
+  type2: TypeData | null;
   height: number;
   weight: number;
   stats: Stats;
@@ -65,14 +65,14 @@ export function makePokeData(
     jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
     type1: {
       id: type1Json.id,
-      enName: pokemonJson.types[0].type.name,
+      enName: pokemonJson.types[0].type.name as TypeName,
       jaName: type1Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
     },
     type2:
       type2Json !== null
         ? {
             id: type2Json.id,
-            enName: pokemonJson.types[1].type.name,
+            enName: pokemonJson.types[1].type.name as TypeName,
             jaName: type2Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
           }
         : null,

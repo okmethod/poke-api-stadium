@@ -49,7 +49,7 @@ export type TypeName =
   | "fairy"
   | "null";
 
-export interface Type {
+export interface TypeData {
   id: number;
   enName: TypeName;
   jaName: string;
