@@ -202,7 +202,12 @@
       <div class={cPokeArrayStyle}>
         {#each opoPokeArray as pokeData, index (pokeData.id)}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
-            <PokeTile {pokeData} />
+            <PokeTile
+              name={pokeData.jaName}
+              type1EnName={pokeData.type1.enName}
+              type2EnName={pokeData.type2?.enName}
+              imageUrl={pokeData.imageUrlArray[0]}
+            />
           </div>
         {/each}
       </div>
@@ -224,7 +229,7 @@
     <div class={cPokeFieldStyle}>
       <span class="block mt-1 ml-2">あなた</span>
       <div class={cPokeArrayStyle}>
-        {#each ownPokeArray as pokeItem, index (pokeItem.id)}
+        {#each ownPokeArray as pokeData, index (pokeData.id)}
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
               type="button"
@@ -235,7 +240,12 @@
                 }
               }}
             >
-              <PokeTile pokeData={pokeItem} />
+              <PokeTile
+                name={pokeData.jaName}
+                type1EnName={pokeData.type1.enName}
+                type2EnName={pokeData.type2?.enName}
+                imageUrl={pokeData.imageUrlArray[0]}
+              />
             </button>
           </div>
         {/each}

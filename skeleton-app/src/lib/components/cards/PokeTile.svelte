@@ -1,19 +1,26 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { PokeData } from "$lib/types/poke";
   import { TYPE_DICT } from "$lib/constants/type";
 
-  export let pokeData: PokeData | null = null;
+  export let name: string | null = null;
+  export let type1EnName: string | null = null;
+  export let type2EnName: string | null = null;
+  export let imageUrl: string | null = null;
 
   let headerColor = TYPE_DICT["null"].color;
   let footerColor = TYPE_DICT["null"].color;
-  $: if (pokeData !== null) {
-    headerColor = TYPE_DICT[pokeData.type1.enName]?.color ?? TYPE_DICT["null"].color;
-    footerColor =
-      pokeData.type2 !== null ? (TYPE_DICT[pokeData.type2.enName]?.color ?? TYPE_DICT["null"].color) : headerColor;
+  $: if (name) {
+    headerColor = type1EnName ? TYPE_DICT[type1EnName].color : TYPE_DICT["null"].color;
+    footerColor = type2EnName ? TYPE_DICT[type2EnName]?.color : headerColor;
   }
 
-  const currentImageIndex = 0;
+  let isImageLoaded = false;
+  function handleImageLoad() {
+    isImageLoaded = true;
+  }
+  $: if (imageUrl) {
+    isImageLoaded = false;
+  }
 </script>
 
 <div
@@ -25,20 +32,30 @@
     <!-- タイトル部分 -->
     <div class="flex justify-center">
       <h1 class="bg-white bg-opacity-50 text-xl font-bold text-gray-900">
-        <div>{pokeData !== null ? pokeData.jaName : "???"}</div>
+        <div>{name ?? "???"}</div>
       </h1>
     </div>
     <!-- 画像部分 -->
     <div class="flex justify-center">
       <div class="flex items-center justify-center bg-white rounded-full border border-gray-200">
-        {#if pokeData !== null}
+        {#if imageUrl !== null}
           <img
-            src={pokeData.imageUrlArray[currentImageIndex]}
-            alt={pokeData.jaName}
+            src={imageUrl}
+            alt={name ?? "???"}
             class="w-full h-full object-cover"
+            class:image={!isImageLoaded}
+            class:loaded={isImageLoaded}
+            on:load={handleImageLoad}
           />
+          {#if !isImageLoaded}
+            <div class="absolute inset-0 flex items-center justify-center h-full">
+              <Icon icon="mdi:progress-download" class="w-full h-full text-white bg-gray-100 object-cover" />
+            </div>
+          {/if}
         {:else}
-          <Icon icon="mdi:image-off-outline" class="w-8 h-8" />
+          <div class="absolute inset-0 flex items-center justify-center h-full">
+            <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white" />
+          </div>
         {/if}
       </div>
     </div>

@@ -8,7 +8,6 @@
   function handleImageLoad() {
     isImageLoaded = true;
   }
-
   $: if (imageUrl) {
     isImageLoaded = false;
   }
@@ -35,10 +34,14 @@
             on:load={handleImageLoad}
           />
           {#if !isImageLoaded}
-            <Icon icon="mdi:image-off-outline" class="absolute w-full h-full text-white bg-gray-100 object-cover" />
+            <div class="absolute inset-0 flex items-center justify-center h-full">
+              <Icon icon="mdi:progress-download" class="w-full h-full text-white bg-gray-100 object-cover" />
+            </div>
           {/if}
         {:else}
-          <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white" />
+          <div class="absolute inset-0 flex items-center justify-center h-full">
+            <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white" />
+          </div>
         {/if}
       </div>
     </div>

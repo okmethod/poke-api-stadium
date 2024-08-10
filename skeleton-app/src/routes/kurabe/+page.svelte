@@ -175,7 +175,12 @@
       >
         {#each pokeArray as pokeItem, index (pokeItem.id)}
           <div>
-            <PokeTile pokeData={pokeItem.data} />
+            <PokeTile
+              name={pokeItem.data.jaName}
+              type1EnName={pokeItem.data.type1.enName}
+              type2EnName={pokeItem.data.type2?.enName}
+              imageUrl={pokeItem.data.imageUrlArray[0]}
+            />
             <p class="text-center">{isOpen ? options[optionId].formatValue(pokeItem.data) : "???"}</p>
             <p class="text-center">{index + 1} ばんめ</p>
           </div>
