@@ -24,7 +24,7 @@
   // index と pokeId を一致させるために、先頭にダミーデータを追加している
   let pokeArray: PokeItem[] = [
     dummyPokeItem,
-    ...Object.entries(STATIC_POKE_DICT).map(([pokeId, staticPokeData]) => ({
+    ...Object.entries(STATIC_POKE_DICT).map(([, staticPokeData]) => ({
       jaName: staticPokeData.jaName,
       imageUrl: staticPokeData.imageUrl,
       isUsed: false,
