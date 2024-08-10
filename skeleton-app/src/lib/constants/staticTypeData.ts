@@ -1,6 +1,6 @@
 import type { TypeName, StaticTypeData } from "$lib/types/type";
 
-export const TYPE_DICT: Record<TypeName, StaticTypeData> = {
+export const STATIC_TYPE_DICT: Record<TypeName, StaticTypeData> = {
   normal: { color: "#FDF6CB", url: "https://pokeapi.co/api/v2/type/1/" },
   fighting: { color: "#EE8130", url: "https://pokeapi.co/api/v2/type/2/" },
   flying: { color: "#A2C3E8", url: "https://pokeapi.co/api/v2/type/3/" },

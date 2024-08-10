@@ -11,7 +11,7 @@
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
   import { LATEST_POKEMON_ID } from "$lib/constants/poke";
-  import { TYPE_DICT } from "$lib/constants/type";
+  import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
 
   const numPokeByPlayer = 3;
   const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
@@ -267,7 +267,7 @@
           <!-- ポケモン選択済み、タイプ選択中のとき-->
           {#each fetchPokeType(ownPokeArray[selectedOwnPokeIndex]) as type}
             <button
-              style="background-color: {TYPE_DICT[type.enName]?.color || 'blue'};"
+              style="background-color: {STATIC_TYPE_DICT[type.enName]?.color || 'blue'};"
               class="px-2 py-1 hover:brightness-85 text-white rounded h-full flex items-center"
               on:click={() => commitOwnType(type)}
             >
