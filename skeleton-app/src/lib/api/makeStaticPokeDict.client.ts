@@ -1,4 +1,4 @@
-import getPokeData from "$lib/api/getPokeData.client";
+import makePokeData from "$lib/api/makePokeData.client";
 import type { StaticPokeData } from "$lib/types/poke";
 import { convertToStaticPokeData } from "$lib/types/poke";
 
@@ -9,7 +9,7 @@ async function makeStaticPokeDict(
   const staticPokeDict: { [pokeId: string]: StaticPokeData } = {};
 
   const promises = pokeIds.map(async (pokeId) => {
-    const pokeData = await getPokeData(fetchFunction, pokeId.toString());
+    const pokeData = await makePokeData(fetchFunction, pokeId.toString());
     const staticPokeData = convertToStaticPokeData(pokeData);
     staticPokeDict[pokeId.toString()] = staticPokeData;
   });

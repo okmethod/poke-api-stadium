@@ -2,7 +2,7 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import getPokeData from "$lib/api/getPokeData.client";
+  import makePokeData from "$lib/api/makePokeData.client";
   import getDamageRatio from "$lib/utils/getDamageRatio";
   import type { PokeData } from "$lib/types/poke";
   import type { TypeData, DamageRatio } from "$lib/types/type";
@@ -27,7 +27,7 @@
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
       const pokeIds = pickRandomNumbers(numbers, numPokeByPlayer * 2);
       const pokeDataArray = await Promise.all(
-        pokeIds.slice(0, numPokeByPlayer * 2).map((id) => getPokeData(fetch, id.toString())),
+        pokeIds.slice(0, numPokeByPlayer * 2).map((id) => makePokeData(fetch, id.toString())),
       );
       ownPokeArray = pokeDataArray.slice(0, numPokeByPlayer);
       opoPokeArray = pokeDataArray.slice(numPokeByPlayer, numPokeByPlayer * 2);

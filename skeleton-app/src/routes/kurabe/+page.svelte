@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
-  import getPokeData from "$lib/api/getPokeData.client";
+  import makePokeData from "$lib/api/makePokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
@@ -67,7 +67,7 @@
     try {
       const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
       pokeIds = pickRandomNumbers(numbers, numPoke);
-      pokeArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => getPokeData(fetch, id.toString())));
+      pokeArray = await Promise.all(pokeIds.slice(0, numPoke).map((id) => makePokeData(fetch, id.toString())));
     } catch {
       // do nothing
     }

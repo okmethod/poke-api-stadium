@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import getPokeData from "$lib/api/getPokeData.client";
+  import makePokeData from "$lib/api/makePokeData.client";
   import type { PokeData } from "$lib/types/poke";
   import PokeCard from "$lib/components/cards/PokeCard.svelte";
   import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
@@ -12,7 +12,7 @@
   async function fetchPokeData(): Promise<void> {
     isLoading = true;
     try {
-      pokeData = await getPokeData(fetch, pokeId);
+      pokeData = await makePokeData(fetch, pokeId);
     } catch {
       pokeData = null;
     }
