@@ -6,7 +6,6 @@
   import type { PokeData } from "$lib/types/poke";
   import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
-  import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
   import {
@@ -137,9 +136,9 @@
     modalStore.trigger(modal);
   }
 
-  const cPokeFieldStyle = "min-h-[200px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeFieldStyle = "min-h-[150px] md:min-w-[750px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
-  const cBlankPokeBoxStyle = "h-[150px] w-[150px]";
+  const cBlankPokeBoxStyle = "h-[100px] w-[100px] bg-gray-100 rounded-2xl";
 </script>
 
 <div class={cRouteBodyStyle}>
@@ -194,7 +193,7 @@
                 <PokeChip pokeData={pokeItem.data} />
               </button>
             {:else}
-              <p class="h-[100px] w-[100px]"></p>
+              <div class={cBlankPokeBoxStyle}></div>
             {/if}
           </div>
         {/each}
@@ -203,20 +202,24 @@
 
     <!-- しりとりポケモン列 -->
     <div class={cPokeFieldStyle}>
-      <div class={cPokeArrayStyle}>
+      <div class="{cPokeArrayStyle} md:ml-16 md:mr-16">
         {#each pushedPokeArray.slice(-2) as pokeItem, index}
           <div class="rounded-2xl border-2">
             {#if pokeItem}
-              <PokeTile pokeData={pokeItem.data} />
+              <PokeChip pokeData={pokeItem.data} />
             {:else}
-              <p class={cBlankPokeBoxStyle}></p>
+              <div class={cBlankPokeBoxStyle}></div>
             {/if}
           </div>
           {#if index < 2}
-            <span class="mx-2">→</span>
+            <span>→</span>
           {/if}
         {/each}
-        <div class="{cBlankPokeBoxStyle} text-center text-xl rounded-2xl border-2">？</div>
+        <div class="rounded-2xl border-2">
+          <div class={cBlankPokeBoxStyle}>
+            <span class="block text-center text-xl">？</span>
+          </div>
+        </div>
       </div>
     </div>
 

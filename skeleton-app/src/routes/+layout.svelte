@@ -61,7 +61,7 @@
     </AppBar>
   </div>
 
-  <div class="container mx-auto overflow-y-auto pb-10" style={containerStyle}>
+  <div class="container mx-auto overflow-y-auto pb-16" style={containerStyle}>
     <slot />
   </div>
 </div>
