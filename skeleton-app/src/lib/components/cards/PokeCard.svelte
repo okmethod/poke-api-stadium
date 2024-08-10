@@ -4,20 +4,17 @@
   import { Chart, registerables } from "chart.js";
   import type { PokeData } from "$lib/types/poke";
   import { formatHeightWeight } from "$lib/utils/numerics";
-  import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
+  import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
   export let pokeData: PokeData | null;
 
   let spritesLength = 0;
-  let headerColor = STATIC_TYPE_DICT["unknown"].color;
-  let footerColor = STATIC_TYPE_DICT["unknown"].color;
+  let headerColor = TYPE_COLOR_DICT["unknown"];
+  let footerColor = TYPE_COLOR_DICT["unknown"];
   $: if (pokeData !== null) {
     spritesLength = pokeData.imageUrlArray.length;
-    headerColor = STATIC_TYPE_DICT[pokeData.type1.enName]?.color ?? STATIC_TYPE_DICT["unknown"].color;
-    footerColor =
-      pokeData.type2 !== null
-        ? (STATIC_TYPE_DICT[pokeData.type2.enName]?.color ?? STATIC_TYPE_DICT["unknown"].color)
-        : headerColor;
+    headerColor = TYPE_COLOR_DICT[pokeData.type1.enName];
+    footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName] : headerColor;
     statsData = [
       pokeData?.stats.hp,
       pokeData?.stats.attack,

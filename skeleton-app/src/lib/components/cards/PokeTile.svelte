@@ -1,18 +1,18 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { TypeName } from "$lib/types/type";
-  import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
+  import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
   export let name: string | null = null;
   export let type1Name: TypeName | null = null;
   export let type2Name: TypeName | null = null;
   export let imageUrl: string | null = null;
 
-  let headerColor = STATIC_TYPE_DICT["unknown"].color;
-  let footerColor = STATIC_TYPE_DICT["unknown"].color;
+  let headerColor = TYPE_COLOR_DICT["unknown"];
+  let footerColor = TYPE_COLOR_DICT["unknown"];
   $: if (name) {
-    headerColor = type1Name ? STATIC_TYPE_DICT[type1Name].color : STATIC_TYPE_DICT["unknown"].color;
-    footerColor = type2Name ? STATIC_TYPE_DICT[type2Name]?.color : headerColor;
+    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name] : TYPE_COLOR_DICT["unknown"];
+    footerColor = type2Name ? TYPE_COLOR_DICT[type2Name] : headerColor;
   }
 
   let isImageLoaded = false;
