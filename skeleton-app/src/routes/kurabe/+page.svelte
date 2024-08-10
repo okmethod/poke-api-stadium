@@ -168,8 +168,8 @@
           <div>
             <PokeTile
               name={pokeData.jaName}
-              type1EnName={pokeData.type1.enName}
-              type2EnName={pokeData.type2?.enName}
+              type1Name={pokeData.type1.enName}
+              type2Name={pokeData.type2?.enName}
               imageUrl={pokeData.imageUrlArray[0]}
             />
             <p class="text-center">{isOpen ? options[optionId].formatValue(pokeData) : "???"}</p>

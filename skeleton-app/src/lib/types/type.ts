@@ -28,15 +28,36 @@ export interface ResponseTypeJson {
   };
 }
 
+export type TypeName =
+  | "normal"
+  | "fighting"
+  | "flying"
+  | "poison"
+  | "ground"
+  | "rock"
+  | "bug"
+  | "ghost"
+  | "steel"
+  | "fire"
+  | "water"
+  | "grass"
+  | "electric"
+  | "psychic"
+  | "ice"
+  | "dragon"
+  | "dark"
+  | "fairy"
+  | "null";
+
 export interface Type {
   id: number;
-  enName: string;
+  enName: TypeName;
   jaName: string;
 }
 
-export type DamageRatio = "double" | "half" | "no" | "default";
-
-export interface TypeData {
+export interface StaticTypeData {
   color: string;
   url: string;
 }
+
+export type DamageRatio = "double" | "half" | "no" | "default";

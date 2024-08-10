@@ -204,8 +204,8 @@
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <PokeTile
               name={pokeData.jaName}
-              type1EnName={pokeData.type1.enName}
-              type2EnName={pokeData.type2?.enName}
+              type1Name={pokeData.type1.enName}
+              type2Name={pokeData.type2?.enName}
               imageUrl={pokeData.imageUrlArray[0]}
             />
           </div>
@@ -242,8 +242,8 @@
             >
               <PokeTile
                 name={pokeData.jaName}
-                type1EnName={pokeData.type1.enName}
-                type2EnName={pokeData.type2?.enName}
+                type1Name={pokeData.type1.enName}
+                type2Name={pokeData.type2?.enName}
                 imageUrl={pokeData.imageUrlArray[0]}
               />
             </button>
