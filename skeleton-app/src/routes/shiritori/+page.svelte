@@ -29,7 +29,8 @@
 
   function getTailChar(name: string): string {
     let tailChar = name.slice(-1);
-    if (["ー", "♀", "♂"].includes(tailChar) && name.length > 1) {
+    const ignoreChars = ["ー", "♀", "♂", "２", "Ｚ"];
+    if (ignoreChars.includes(tailChar) && name.length > 1) {
       tailChar = name.slice(-2, -1);
     }
     return normalizeChar(tailChar);
