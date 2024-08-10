@@ -6,12 +6,12 @@
   import getDamageRatio from "$lib/api/getDamageRatio.client";
   import type { PokeData } from "$lib/types/poke";
   import type { Type, DamageRatio } from "$lib/types/type";
-  import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import { TYPE_DICT } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { pickRandomNumbers } from "$lib/utils/numerics";
+  import { LATEST_POKEMON_ID } from "$lib/constants/poke";
 
   const numPokeByPlayer = 3;
   const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);

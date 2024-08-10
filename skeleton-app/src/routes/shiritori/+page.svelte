@@ -4,10 +4,10 @@
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
   import type { PokeData } from "$lib/types/poke";
-  import { LATEST_POKEMON_ID } from "$lib/types/poke";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
+  import { LATEST_POKEMON_ID } from "$lib/constants/poke";
 
   interface PokeItem {
     data: PokeData;
