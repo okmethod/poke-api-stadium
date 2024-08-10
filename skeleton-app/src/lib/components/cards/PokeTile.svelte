@@ -1,15 +1,16 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/types/poke";
-  import { TYPE_DICT, nullColor } from "$lib/types/type";
+  import { TYPE_DICT } from "$lib/constants/type";
 
   export let pokeData: PokeData | null = null;
 
-  let headerColor = nullColor;
-  let footerColor = nullColor;
+  let headerColor = TYPE_DICT["null"].color;
+  let footerColor = TYPE_DICT["null"].color;
   $: if (pokeData !== null) {
-    headerColor = TYPE_DICT[pokeData.type1.enName]?.color ?? nullColor;
-    footerColor = pokeData.type2 !== null ? (TYPE_DICT[pokeData.type2.enName]?.color ?? nullColor) : headerColor;
+    headerColor = TYPE_DICT[pokeData.type1.enName]?.color ?? TYPE_DICT["null"].color;
+    footerColor =
+      pokeData.type2 !== null ? (TYPE_DICT[pokeData.type2.enName]?.color ?? TYPE_DICT["null"].color) : headerColor;
   }
 
   const currentImageIndex = 0;
