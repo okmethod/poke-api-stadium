@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { generateStaticPokeDict } from "$lib/utils/cheat";
+  import makeStaticPokeDict from "$lib/api/makeStaticPokeDict.client";
   import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
 
   let isProcessing = false;
@@ -17,13 +17,13 @@
     URL.revokeObjectURL(url);
   }
 
-  let staticPokeJsonFileName = "staticPokeArray.json";
+  let staticPokeJsonFileName = "staticPokeDict.json";
   async function DownloadStaticPokeJson() {
     isProcessing = true;
 
     const pokeIds = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-    const staticPokeArray = await generateStaticPokeDict(fetch, pokeIds);
-    const jsonData = JSON.stringify(staticPokeArray, null, 2);
+    const staticPokeDict = await makeStaticPokeDict(fetch, pokeIds);
+    const jsonData = JSON.stringify(staticPokeDict, null, 2);
 
     try {
       downloadJsonFile(jsonData, staticPokeJsonFileName);

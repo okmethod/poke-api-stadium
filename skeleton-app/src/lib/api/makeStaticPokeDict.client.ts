@@ -2,7 +2,7 @@ import getPokeData from "$lib/api/getPokeData.client";
 import type { StaticPokeData } from "$lib/types/poke";
 import { convertToStaticPokeData } from "$lib/types/poke";
 
-export async function generateStaticPokeDict(
+async function makeStaticPokeDict(
   fetchFunction: typeof window.fetch,
   pokeIds: number[],
 ): Promise<{ [pokeId: string]: StaticPokeData }> {
@@ -17,3 +17,5 @@ export async function generateStaticPokeDict(
   await Promise.all(promises);
   return staticPokeDict;
 }
+
+export default makeStaticPokeDict;
