@@ -3,7 +3,7 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import getPokeData from "$lib/api/getPokeData.client";
-  import getDamageRatio from "$lib/api/getDamageRatio.client";
+  import getDamageRatio from "$lib/utils/getDamageRatio";
   import type { PokeData } from "$lib/types/poke";
   import type { TypeData, DamageRatio } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
@@ -69,12 +69,12 @@
     selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
   }
 
-  async function commitOwnType(type: TypeData): Promise<void> {
+  function commitOwnType(type: TypeData): void {
     selectedOwnType = type;
     const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
     selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
 
-    ({ attackMessage, compatibilityMessage, resultMessage } = await judgeJankenResult(
+    ({ attackMessage, compatibilityMessage, resultMessage } = judgeJankenResult(
       ownPokeArray[selectedOwnPokeIndex],
       opoPokeArray[selectedOpoPokeIndex],
       selectedOwnType,
@@ -89,12 +89,12 @@
     return type2 ? [type1, type2] : [type1];
   }
 
-  async function judgeJankenResult(
+  function judgeJankenResult(
     ownPokeData: PokeData,
     opoPokeData: PokeData,
     ownPokeType: TypeData,
     opoPokeType: TypeData,
-  ): Promise<{ attackMessage: string; compatibilityMessage: string; resultMessage: string }> {
+  ): { attackMessage: string; compatibilityMessage: string; resultMessage: string } {
     const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
     const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;
     const attackType = isOwnAttack ? ownPokeType : opoPokeType;
@@ -112,7 +112,7 @@
       },
       default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
     };
-    const damageRatio = await getDamageRatio(fetch, attackType, defenseType);
+    const damageRatio = getDamageRatio(attackType, defenseType);
     const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
     const attackMessage = `${attackPoke.jaName} の こうげき！`;
     const compatibilityMessage = `${attackType.jaName} は ${defenseType.jaName} に ${efficacyMessage}`;
