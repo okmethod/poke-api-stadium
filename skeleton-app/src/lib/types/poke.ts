@@ -1,4 +1,5 @@
-import type { TypeName, TypeData, ResponseTypeJson } from "$lib/types/type";
+import type { TypeData, ResponseTypeJson } from "$lib/types/type";
+import { convertToTypeData } from "$lib/types/type";
 import type { Sprites } from "$lib/types/sprites";
 import { makeSpritesArray } from "$lib/types/sprites";
 import type { Stat, Stats } from "$lib/types/stats";
@@ -63,19 +64,8 @@ export function makePokeData(
     jaName: speciesJson.names.find((name) => name.language.name === "ja")?.name ?? "???",
     imageUrlArray: makeSpritesArray(pokemonJson.sprites),
     jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
-    type1: {
-      id: type1Json.id,
-      enName: pokemonJson.types[0].type.name as TypeName,
-      jaName: type1Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
-    },
-    type2:
-      type2Json !== null
-        ? {
-            id: type2Json.id,
-            enName: pokemonJson.types[1].type.name as TypeName,
-            jaName: type2Json.names.find((type) => type.language.name === "ja")?.name ?? "???",
-          }
-        : null,
+    type1: convertToTypeData(type1Json),
+    type2: type2Json ? convertToTypeData(type2Json) : null,
     height: pokemonJson.height,
     weight: pokemonJson.weight,
     stats: transformStats(pokemonJson.stats),
