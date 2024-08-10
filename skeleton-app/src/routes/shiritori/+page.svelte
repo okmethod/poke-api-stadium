@@ -110,10 +110,9 @@
     const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
     const additionalPokeIds = pickRandomNumbers(
       unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
-      numPoke - slicedPossiblePokeIds.length,
+      numPoke,
     );
-
-    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]);
+    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, numPoke);
   }
 
   function judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
