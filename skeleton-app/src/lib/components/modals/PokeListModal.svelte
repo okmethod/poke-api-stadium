@@ -1,10 +1,9 @@
 <script lang="ts">
   import { getModalStore } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import type { PokeData } from "$lib/types/poke";
 
   export let title: string;
-  export let pokeDataArray: PokeData[] = [];
+  export let stringArray: string[] = [];
 
   export let parent;
 
@@ -23,8 +22,8 @@
           <h2 class="text-2xl font-bold">{title}</h2>
           <div class="overflow-y-auto flex-grow">
             <ul class="mt-4 list-decimal list-inside">
-              {#each pokeDataArray as pokeData}
-                <li>{pokeData.jaName}</li>
+              {#each stringArray as str}
+                <li>{str}</li>
               {/each}
             </ul>
           </div>
