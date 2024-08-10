@@ -52,7 +52,7 @@ export interface PokeData {
   stats: Stats;
 }
 
-export function makePokeData(
+export function convertToPokeData(
   pokemonJson: ResponsePokemonJson,
   speciesJson: ResponseSpeciesJson,
   type1Json: ResponseTypeJson,
