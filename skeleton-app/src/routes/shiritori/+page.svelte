@@ -103,15 +103,20 @@
   function candidatePokeIds(): void {
     const tailChar = getTailChar(getTailPokeName());
     const possiblePokeIds = groupedByHeadCharPokeIds[tailChar] ?? [];
-
     const unusedIds = getUnusedIds(pokeArray);
+
+    // 次に選択可能なポケモンから numPossiblePoke の数だけ抽出する（不足する場合がある＆数が少ないのでシャッフル方式）
     const possibleUnusedIds = possiblePokeIds.filter((pokeId) => unusedIds.includes(pokeId));
     const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, numPossiblePoke);
+
+    // 次に選択可能でないポケモンから numPoke の数だけ抽出する
     const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
     const additionalPokeIds = pickRandomNumbers(
       unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
       numPoke,
     );
+
+    // 候補ポケモンから numPoke の数だけ抽出する（数が少ないのでシャッフル方式）
     candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, numPoke);
   }
 
