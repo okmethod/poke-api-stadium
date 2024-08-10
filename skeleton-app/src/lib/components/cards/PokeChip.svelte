@@ -3,6 +3,15 @@
 
   export let name: string | null = null;
   export let imageUrl: string | null = null;
+
+  let isImageLoaded = false;
+  function handleImageLoad() {
+    isImageLoaded = true;
+  }
+
+  $: if (imageUrl) {
+    isImageLoaded = false;
+  }
 </script>
 
 <div class="flex flex-col bg-gray-50 rounded-2xl shadow border h-[100px] w-[100px] overflow-hidden select-none">
@@ -17,9 +26,19 @@
     <div class="flex justify-center">
       <div class="flex items-center justify-center bg-white rounded-full border border-gray-200 h-[80px] w-[80px]">
         {#if imageUrl !== null}
-          <img src={imageUrl} alt={name ?? "???"} class="w-full h-full object-cover" />
+          <img
+            src={imageUrl}
+            alt={name ?? "???"}
+            class="w-full h-full object-cover"
+            class:image={!isImageLoaded}
+            class:loaded={isImageLoaded}
+            on:load={handleImageLoad}
+          />
+          {#if !isImageLoaded}
+            <Icon icon="mdi:image-off-outline" class="absolute w-full h-full text-white bg-gray-100 object-cover" />
+          {/if}
         {:else}
-          <Icon icon="mdi:image-off-outline" class="w-8 h-8" />
+          <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white" />
         {/if}
       </div>
     </div>
