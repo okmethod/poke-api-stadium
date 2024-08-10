@@ -1,6 +1,6 @@
 <script>
   import { navigateTo } from "$lib/utils/navigation.client";
-  import { BALL_DICT } from "$lib/types/ball";
+  import { BALL_DICT } from "$lib/constants/ball";
 
   const githubRepoUrl = "https://github.com/okmethod/poke-api-stadium";
 
