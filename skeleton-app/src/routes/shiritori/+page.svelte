@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
@@ -6,7 +7,6 @@
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomNumbers, shuffleArray } from "$lib/utils/numerics";
-  import { STATIC_POKE_DICT } from "$lib/constants/staticPokeData";
 
   interface PokeItem {
     jaName: string;
@@ -14,22 +14,30 @@
     isUsed: boolean;
   }
 
-  const dummyPokeItem: PokeItem = {
-    jaName: "dummy",
-    imageUrl: "",
-    isUsed: true,
-  };
+  let pokeArray: PokeItem[];
+  let groupedByHeadCharPokeIds: Record<string, number[]>; // key: headChar, value: pokeIds
+  onMount(async () => {
+    // staticデータの容量が大きいので、利用スコープを局所化してガベージコレクションされるようにする
+    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
+    pokeArray = initPokeArray(STATIC_POKE_DICT);
+    groupedByHeadCharPokeIds = groupByHeadChar(STATIC_POKE_DICT);
+  });
 
-  // staticデータから全ポケモンリストを作成し、利用状況を管理する
-  // index と pokeId を一致させるために、先頭にダミーデータを追加している
-  let pokeArray: PokeItem[] = [
-    dummyPokeItem,
-    ...Object.entries(STATIC_POKE_DICT).map(([, staticPokeData]) => ({
-      jaName: staticPokeData.jaName,
-      imageUrl: staticPokeData.imageUrl,
-      isUsed: false,
-    })),
-  ];
+  function initPokeArray(staticPokeDict: { [pokeId: number]: StaticPokeData }): PokeItem[] {
+    const dummyPokeItem: PokeItem = {
+      jaName: "dummy",
+      imageUrl: "",
+      isUsed: true,
+    };
+    return [
+      dummyPokeItem, // index と pokeId を一致させるために、先頭にダミーデータを追加している
+      ...Object.entries(staticPokeDict).map(([, staticPokeData]) => ({
+        jaName: staticPokeData.jaName,
+        imageUrl: staticPokeData.imageUrl,
+        isUsed: false,
+      })),
+    ];
+  }
 
   let pushedPokeIds: number[] = [];
   function setFirstPokeData(): void {
@@ -77,21 +85,19 @@
     return pokeArray[tailPokeId].jaName;
   }
 
-  interface GroupedByHeadCharPokeData {
-    [headChar: string]: number[];
+  function groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): Record<string, number[]> {
+    return Object.entries(staticPokeDict).reduce(
+      (acc, [pokeId, staticPokeData]) => {
+        const firstChar = getHeadChar(staticPokeData.jaName);
+        if (!acc[firstChar]) {
+          acc[firstChar] = [];
+        }
+        acc[firstChar].push(Number(pokeId));
+        return acc;
+      },
+      {} as Record<string, number[]>,
+    );
   }
-
-  function groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): GroupedByHeadCharPokeData {
-    return Object.entries(staticPokeDict).reduce((acc, [pokeId, staticPokeData]) => {
-      const firstChar = getHeadChar(staticPokeData.jaName);
-      if (!acc[firstChar]) {
-        acc[firstChar] = [];
-      }
-      acc[firstChar].push(Number(pokeId));
-      return acc;
-    }, {} as GroupedByHeadCharPokeData);
-  }
-  const groupedByHeadCharPokeIds = groupByHeadChar(STATIC_POKE_DICT);
 
   function getUnusedIds(array: PokeItem[]): number[] {
     return array.filter((item) => !item.isUsed).map((_, index) => Number(index));
