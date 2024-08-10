@@ -26,7 +26,7 @@
   let isLoading = false;
   let pokeIds: number[] = [];
   let pokeArray: PokeItem[] = [];
-  const numPoke = 6;
+  const numPoke = 12;
   async function fetchPokeDataArray(): Promise<void> {
     isLoading = true;
     try {
@@ -115,6 +115,7 @@
 
   function resetState(): void {
     pokeArray = [];
+    fetchPokeDataArray();
     pushedPokeArray = [null, null];
     updateMessage();
   }
@@ -152,18 +153,14 @@
     <!-- 入力フォーム -->
     <div class="ml-4 space-y-2">
       <div class="flex items-center space-x-3">
-        <span class="text-lg">はじめから</span>
+        <span class="text-lg">
+          {#if pokeArray.length === 0}
+            しりとり スタート
+          {:else}
+            しりとり リセット
+          {/if}
+        </span>
         <form on:submit|preventDefault={resetState}>
-          <button type="submit" disabled={isLoading} class={cIconButtonStyle}>
-            <div class={cIconDivStyle}>
-              <Icon icon="mdi:pokeball" class={cIconStyle} />
-            </div>
-          </button>
-        </form>
-      </div>
-      <div class="flex items-center space-x-3">
-        <span class="text-lg">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={fetchPokeDataArray}>
           <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
             <div class={cIconDivStyle}>
               <Icon icon="mdi:pokeball" class={cIconStyle} />
@@ -197,6 +194,20 @@
             {/if}
           </div>
         {/each}
+      </div>
+    </div>
+
+    <!-- いれかえボタン -->
+    <div class="ml-4 space-y-2">
+      <div class="flex items-center space-x-3">
+        <span class="text-lg">ポケモン を いれかえる</span>
+        <form on:submit|preventDefault={fetchPokeDataArray}>
+          <button type="submit" disabled={isLoading} class="{cIconButtonStyle} {isLoading ? 'bg-gray-500' : ''}">
+            <div class={cIconDivStyle}>
+              <Icon icon="mdi:pokeball" class={cIconStyle} />
+            </div>
+          </button>
+        </form>
       </div>
     </div>
 
