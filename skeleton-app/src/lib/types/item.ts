@@ -1,4 +1,4 @@
-export interface BallInfo {
+export interface StaticItemData {
   id: number;
   imageUrl: string;
 }

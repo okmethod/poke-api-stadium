@@ -1,6 +1,6 @@
-import type { BallInfo } from "$lib/types/ball";
+import type { StaticItemData } from "$lib/types/item";
 
-export const BALL_DICT: { [name: string]: BallInfo } = {
+export const STATIC_BALL_DICT: Record<string, StaticItemData> = {
   "poke-ball": {
     id: 4,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
