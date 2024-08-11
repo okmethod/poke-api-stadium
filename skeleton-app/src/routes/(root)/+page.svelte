@@ -12,12 +12,6 @@
       onClick: () => navigateTo("/zukan"),
     },
     {
-      text: "ポケモンだ〜れだ？",
-      imageUrl: STATIC_BALL_DICT["dusk-ball"].imageUrl,
-      alt: "dusk-ball",
-      onClick: () => navigateTo("/dareda"),
-    },
-    {
       text: "ポケモンXXくらべ",
       imageUrl: STATIC_BALL_DICT["great-ball"].imageUrl,
       alt: "great-ball",
@@ -34,6 +28,12 @@
       imageUrl: STATIC_BALL_DICT["safari-ball"].imageUrl,
       alt: "safari-ball",
       onClick: () => navigateTo("/shiritori"),
+    },
+    {
+      text: "ポケモンだ〜れだ？",
+      imageUrl: STATIC_BALL_DICT["dusk-ball"].imageUrl,
+      alt: "dusk-ball",
+      onClick: () => navigateTo("/dareda"),
     },
     {
       text: "ソースコード",

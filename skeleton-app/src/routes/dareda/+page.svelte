@@ -1,23 +1,47 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
-  import makePokeData from "$lib/api/makePokeData.client";
-  import type { PokeData } from "$lib/types/poke";
-  import PokeCard from "$lib/components/cards/PokeCard.svelte";
-  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
+  import type { StaticPokeData } from "$lib/types/poke";
+  //import type { TypeName, TypeData } from "$lib/types/type";
+  import { pickRandomKey } from "$lib/utils/numerics";
 
-  let pokeId = "";
-  let pokeData: PokeData | null = null;
-
-  let isLoading = false;
-  async function fetchPokeData(): Promise<void> {
-    isLoading = true;
-    try {
-      pokeData = await makePokeData(fetch, pokeId);
-    } catch {
-      pokeData = null;
-    }
-    isLoading = false;
+  interface PokeItem {
+    jaName: string;
+    gifUrl: string;
   }
+
+  // staticデータロード
+  let POKE_DICT: Record<number, PokeItem>;
+  //let TYPE_DICT: Record<TypeName, TypeData>;
+  onMount(async () => {
+    // 利用スコープを局所化してガベージコレクションされるようにする
+    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
+    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
+    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
+      const pokeDict: Record<number, PokeItem> = {};
+      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
+        if (staticPokeData.gifUrl !== null) {
+          pokeDict[Number(pokeId)] = {
+            jaName: staticPokeData.jaName,
+            gifUrl: staticPokeData.gifUrl,
+          };
+        }
+      });
+      return pokeDict;
+    }
+
+    //const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
+    //TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
+  });
+
+  let pickedPokeId = 0;
+  function pickPokeId(): void {
+    resetState();
+    pickedPokeId = pickRandomKey(POKE_DICT);
+  }
+
+  // 状態リセット
+  function resetState(): void {}
 </script>
 
 <div class="cRouteBodyStyle">
@@ -30,45 +54,28 @@
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
     <div class="ml-4">
-      <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
-        <label for="pokeId" class="text-lg">
-          <span class="hidden sm:inline">全国図鑑</span>
-          No:
-        </label>
-        <div class="cInputFormAndMessagePartStyle">
-          <input
-            type="number"
-            min="1"
-            max={LATEST_POKEMON_ID}
-            id="pokeId"
-            bind:value={pokeId}
-            class="border rounded px-4 py-1 h-full"
-          />
-          <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
+      <div class="cInputFormAndMessagePartStyle">
+        <span class="text-lg">ポケモン を よびだす</span>
+        <form on:submit|preventDefault={pickPokeId}>
+          <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
-              <Icon icon="mdi:search" class="cIconStyle" />
+              <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
     <!-- ポケモン情報 -->
     <div>
-      <PokeCard
-        {pokeId}
-        jaName={pokeData?.jaName ?? null}
-        enName={pokeData?.enName ?? null}
-        jaGenus={pokeData?.jaGenus ?? null}
-        imageUrlArray={pokeData?.imageUrlArray ?? []}
-        type1JaName={pokeData?.type1.jaName ?? null}
-        type1EnName={pokeData?.type1.enName ?? null}
-        type2JaName={pokeData?.type2?.jaName ?? null}
-        type2EnName={pokeData?.type2?.enName ?? null}
-        height={pokeData?.height ?? null}
-        weight={pokeData?.weight ?? null}
-        stats={pokeData?.stats ?? null}
-      />
+      {#if pickedPokeId !== 0}
+        <img
+          src={POKE_DICT[pickedPokeId].gifUrl}
+          alt="???"
+          class="w-60 h-60 object-contain"
+          style="filter: brightness(0);"
+        />
+      {/if}
     </div>
   </div>
 </div>

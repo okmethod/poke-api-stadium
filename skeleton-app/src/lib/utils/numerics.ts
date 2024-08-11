@@ -12,6 +12,12 @@ export function getRandomNumber(length: number): number {
   return Math.floor(Math.random() * length);
 }
 
+export function pickRandomKey<T extends Record<string, unknown>>(obj: T): keyof T {
+  const keys = Object.keys(obj) as Array<keyof T>;
+  const randomIndex = getRandomNumber(keys.length);
+  return keys[randomIndex];
+}
+
 export function pickRandomNumbers(numbers: number[], count: number): number[] {
   if (numbers.length < count) {
     throw new Error("shortage elements in the array");
