@@ -92,7 +92,7 @@
         return "よびだすボタン を おしてね";
       }
       const pokeItem = TOTAL_POKE_DICT[pickedPokeId];
-      const sortedStats = _sortDescStats(pokeItem.stats);
+      const { pros, cons } = _getProsCons(_sortDescStats(pokeItem.stats));
       const hints = [
         pokeItem.jaName[0] + "○".repeat(pokeItem.jaName.length - 1),
         pokeItem.jaGenus,
@@ -100,8 +100,8 @@
         pokeItem.type2Name ? `${TYPE_DICT[pokeItem.type2Name].jaName}タイプ` : "タイプは1つだけ",
         `たかさ${formatHeightWeight(pokeItem.height, "height")}`,
         `おもさ${formatHeightWeight(pokeItem.weight, "weight")}`,
-        `${Object.keys(sortedStats[0])[0]}が たかい`,
-        `${Object.keys(sortedStats[5])[0]}は ひくい`,
+        pros ? `${pros}が たかい` : null,
+        cons ? `${cons}は ひくい` : null,
       ];
       const hint = hints[getRandomNumber(hints.length)];
       return hint ?? "がんばれ！";
@@ -117,6 +117,19 @@
         { すばやさ: stats.speed },
       ];
       return statsArray.sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
+    }
+
+    function _getProsCons(sortedDescStats: Record<string, number>[]): { pros: string | null; cons: string | null } {
+      const pros =
+        Object.values(sortedDescStats[0])[0] > Object.values(sortedDescStats[1])[0]
+          ? Object.keys(sortedDescStats[0])[0]
+          : null;
+      const tailIndex = sortedDescStats.length - 1;
+      const cons =
+        Object.values(sortedDescStats[tailIndex])[0] < Object.values(sortedDescStats[tailIndex - 1])[0]
+          ? Object.keys(sortedDescStats[tailIndex])[0]
+          : null;
+      return { pros, cons };
     }
   }
 </script>
