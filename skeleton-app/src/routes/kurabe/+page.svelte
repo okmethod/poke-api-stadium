@@ -182,7 +182,7 @@
     <!-- 入力フォーム -->
     <div class="ml-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
-        <select bind:value={modeId} class="border rounded px-10 py-1">
+        <select bind:value={modeId} id="modeId" class="border rounded px-10 py-1">
           {#each Object.entries(modes) as [key, value]}
             <option value={key}>{value.name}</option>
           {/each}
@@ -191,7 +191,14 @@
       </div>
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を </span>
-        <input type="number" min="3" max="6" bind:value={pokeCount} class="border rounded px-4 py-1 h-full" />
+        <input
+          type="number"
+          id="pokeCount"
+          min="3"
+          max="6"
+          bind:value={pokeCount}
+          class="border rounded px-4 py-1 h-full"
+        />
         <span class="text-lg">たい よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" class="cIconButtonStyle">
