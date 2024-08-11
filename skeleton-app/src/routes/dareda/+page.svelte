@@ -90,6 +90,7 @@
       }
       const pokeItem = TOTAL_POKE_DICT[pickedPokeId];
       const hints = [
+        pokeItem.jaName[0] + "○".repeat(pokeItem.jaName.length - 1),
         pokeItem.jaGenus,
         `${TYPE_DICT[pokeItem.type1Name].jaName}タイプ`,
         pokeItem.type2Name ? `${TYPE_DICT[pokeItem.type2Name].jaName}タイプ` : "タイプは1つだけ",
