@@ -11,40 +11,100 @@
   interface PokeItem {
     jaName: string;
     imageUrl: string;
-    isUsed: boolean;
+    isUsed: boolean; // しりとり進行中に更新されるフラグ
   }
 
-  let pokeArray: PokeItem[];
-  let groupedByHeadCharPokeIds: Record<string, number[]>; // key: headChar, value: pokeIds
+  // staticデータロード
+  let pokeDict: Record<number, PokeItem>; // 進行中にデータ更新される
+  let GROUPBY_HEADCHAR_POKEID_DICT: Record<string, number[]>; // key: headChar, value: pokeIds
   onMount(async () => {
-    // staticデータの容量が大きいので、利用スコープを局所化してガベージコレクションされるようにする
+    // 利用スコープを局所化してガベージコレクションされるようにする
     const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-    pokeArray = initPokeArray(STATIC_POKE_DICT);
-    groupedByHeadCharPokeIds = groupByHeadChar(STATIC_POKE_DICT);
+
+    pokeDict = _initPokeDict(STATIC_POKE_DICT);
+    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
+      const pokeDict: Record<number, PokeItem> = {};
+      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
+        pokeDict[Number(pokeId)] = {
+          jaName: staticPokeData.jaName,
+          imageUrl: staticPokeData.imageUrl,
+          isUsed: false,
+        };
+      });
+      return pokeDict;
+    }
+
+    GROUPBY_HEADCHAR_POKEID_DICT = _groupByHeadChar(STATIC_POKE_DICT);
+    function _groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): Record<string, number[]> {
+      return Object.entries(staticPokeDict).reduce(
+        (acc, [pokeId, staticPokeData]) => {
+          const firstChar = getHeadChar(staticPokeData.jaName);
+          if (!acc[firstChar]) {
+            acc[firstChar] = [];
+          }
+          acc[firstChar].push(Number(pokeId));
+          return acc;
+        },
+        {} as Record<string, number[]>,
+      );
+    }
   });
 
-  function initPokeArray(staticPokeDict: { [pokeId: number]: StaticPokeData }): PokeItem[] {
-    const dummyPokeItem: PokeItem = {
-      jaName: "dummy",
-      imageUrl: "",
-      isUsed: true,
-    };
-    return [
-      dummyPokeItem, // index と pokeId を一致させるために、先頭にダミーデータを追加している
-      ...Object.entries(staticPokeDict).map(([, staticPokeData]) => ({
-        jaName: staticPokeData.jaName,
-        imageUrl: staticPokeData.imageUrl,
-        isUsed: false,
-      })),
-    ];
-  }
-
+  // ゲームデータ管理（しりとりに並んだポケモン）
   let pushedPokeIds: number[] = [];
   function setFirstPokeData(): void {
-    const unusedIds = getUnusedIds(pokeArray);
+    const unusedIds = getUnusedIds(pokeDict);
     const candidatedPokeId = pickRandomNumbers(unusedIds, numPoke)[0];
-    pokeArray[candidatedPokeId].isUsed = true;
+    pokeDict[candidatedPokeId].isUsed = true;
     pushedPokeIds = [...pushedPokeIds, candidatedPokeId];
+  }
+
+  function getUnusedIds(pokeDict: Record<number, PokeItem>): number[] {
+    return Object.entries(pokeDict)
+      .filter(([, item]) => !item.isUsed)
+      .map(([key]) => Number(key));
+  }
+
+  // ゲームデータ管理（候補ポケモン）
+  const numPoke = 12;
+  const numPossiblePoke = 4;
+  let candidatedPokeIds: number[] = [];
+  function candidatePokeIds(): void {
+    const tailChar = getTailChar(getTailPokeName());
+    const possiblePokeIds = GROUPBY_HEADCHAR_POKEID_DICT[tailChar] ?? [];
+    const unusedIds = getUnusedIds(pokeDict);
+
+    // 次に選択可能なポケモンから numPossiblePoke の数だけ抽出する（不足する場合がある＆数が少ないのでシャッフル方式）
+    const possibleUnusedIds = possiblePokeIds.filter((pokeId) => unusedIds.includes(pokeId));
+    const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, numPossiblePoke);
+
+    // 次に選択可能でないポケモンから numPoke の数だけ抽出する
+    const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
+    const additionalPokeIds = pickRandomNumbers(
+      unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
+      numPoke,
+    );
+
+    // 候補ポケモンから numPoke の数だけ抽出する（数が少ないのでシャッフル方式）
+    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, numPoke);
+  }
+
+  // しりとりルール管理
+  function challengeShiritori(nextPokeId: number) {
+    const tailPokeName = getTailPokeName();
+    const nextPokeName = pokeDict[nextPokeId].jaName;
+    if (!_judgeShiritoriRule(tailPokeName, nextPokeName)) {
+      message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
+      return;
+    }
+    pokeDict[nextPokeId].isUsed = true;
+    pushedPokeIds = [...pushedPokeIds, nextPokeId];
+
+    function _judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
+      const tailChar = getTailChar(tailPokeName);
+      const nextChar = getHeadChar(nextPokeName);
+      return tailChar === nextChar;
+    }
   }
 
   function normalizeChar(char: string): string {
@@ -82,67 +142,10 @@
       candidatePokeIds();
       return "";
     }
-    return pokeArray[tailPokeId].jaName;
+    return pokeDict[tailPokeId].jaName;
   }
 
-  function groupByHeadChar(staticPokeDict: { [pokeId: number]: StaticPokeData }): Record<string, number[]> {
-    return Object.entries(staticPokeDict).reduce(
-      (acc, [pokeId, staticPokeData]) => {
-        const firstChar = getHeadChar(staticPokeData.jaName);
-        if (!acc[firstChar]) {
-          acc[firstChar] = [];
-        }
-        acc[firstChar].push(Number(pokeId));
-        return acc;
-      },
-      {} as Record<string, number[]>,
-    );
-  }
-
-  function getUnusedIds(array: PokeItem[]): number[] {
-    return array.filter((item) => !item.isUsed).map((_, index) => Number(index));
-  }
-
-  const numPoke = 12;
-  const numPossiblePoke = 4;
-  let candidatedPokeIds: number[] = [];
-  function candidatePokeIds(): void {
-    const tailChar = getTailChar(getTailPokeName());
-    const possiblePokeIds = groupedByHeadCharPokeIds[tailChar] ?? [];
-    const unusedIds = getUnusedIds(pokeArray);
-
-    // 次に選択可能なポケモンから numPossiblePoke の数だけ抽出する（不足する場合がある＆数が少ないのでシャッフル方式）
-    const possibleUnusedIds = possiblePokeIds.filter((pokeId) => unusedIds.includes(pokeId));
-    const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, numPossiblePoke);
-
-    // 次に選択可能でないポケモンから numPoke の数だけ抽出する
-    const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
-    const additionalPokeIds = pickRandomNumbers(
-      unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
-      numPoke,
-    );
-
-    // 候補ポケモンから numPoke の数だけ抽出する（数が少ないのでシャッフル方式）
-    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, numPoke);
-  }
-
-  function judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
-    const tailChar = getTailChar(tailPokeName);
-    const nextChar = getHeadChar(nextPokeName);
-    return tailChar === nextChar;
-  }
-
-  function pushPokeId(nextPokeId: number) {
-    const tailPokeName = getTailPokeName();
-    const nextPokeName = pokeArray[nextPokeId].jaName;
-    if (!judgeShiritoriRule(tailPokeName, nextPokeName)) {
-      message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
-      return;
-    }
-    pokeArray[nextPokeId].isUsed = true;
-    pushedPokeIds = [...pushedPokeIds, nextPokeId];
-  }
-
+  // メッセージ更新
   let message: string;
   function updateMessage(): void {
     const tailPokeId = pushedPokeIds.slice(-1)[0] ?? null;
@@ -150,7 +153,7 @@
       message = "ポケモン を よびだしてね";
       return;
     }
-    const tailPokeName = pokeArray[tailPokeId].jaName;
+    const tailPokeName = pokeDict[tailPokeId].jaName;
     const tailChar = getTailChar(tailPokeName);
     if (tailChar === "ン") {
       message = "ン で おわっちゃった...";
@@ -163,26 +166,31 @@
       message = `${messages[getRandomNumber(messages.length)]} つぎは 「${getTailChar(tailChar)}」`;
     }
   }
-
   $: if (pushedPokeIds) {
     updateMessage();
   }
 
+  // 状態リセット
   function resetState(): void {
-    pokeArray = pokeArray.map((item) => ({ ...item, isUsed: false }));
+    pokeDict = _resetPokeDictUsedFlag(pokeDict);
     pushedPokeIds = [];
     setFirstPokeData();
     candidatePokeIds();
     updateMessage();
+
+    function _resetPokeDictUsedFlag(pokeDict: Record<number, PokeItem>): Record<number, PokeItem> {
+      return Object.fromEntries(Object.entries(pokeDict).map(([key, item]) => [key, { ...item, isUsed: false }]));
+    }
   }
 
+  // モーダル表示
   const modalStore = getModalStore();
   function showPokeListModal(): void {
     const modalComponent: ModalComponent = {
       ref: PokeListModal,
       props: {
         title: "しりとりリスト",
-        stringArray: pushedPokeIds.map((pokeId) => pokeArray[pokeId].jaName),
+        stringArray: pushedPokeIds.map((pokeId) => pokeDict[pokeId].jaName),
       },
     };
     const modal: ModalSettings = {
@@ -193,6 +201,7 @@
     modalStore.trigger(modal);
   }
 
+  // スタイル
   const cPokeFieldStyle = "min-h-[150px] md:min-w-[750px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
   const cBlankPokeBoxStyle = "h-[100px] w-[100px] bg-gray-100 rounded-2xl";
@@ -241,9 +250,9 @@
       <div class={cPokeArrayStyle}>
         {#each candidatedPokeIds as pokeId}
           <div class="rounded-2xl border-2">
-            {#if !pokeArray[pokeId].isUsed}
-              <button type="button" on:click={() => pushPokeId(pokeId)}>
-                <PokeChip name={pokeArray[pokeId].jaName} imageUrl={pokeArray[pokeId].imageUrl} />
+            {#if !pokeDict[pokeId].isUsed}
+              <button type="button" on:click={() => challengeShiritori(pokeId)}>
+                <PokeChip name={pokeDict[pokeId].jaName} imageUrl={pokeDict[pokeId].imageUrl} />
               </button>
             {:else}
               <div class={cBlankPokeBoxStyle}></div>
@@ -278,7 +287,7 @@
         {#each pushedPokeIds.length >= 2 ? pushedPokeIds.slice(-2) : [...Array(2 - pushedPokeIds.length).fill(null), ...pushedPokeIds] as pokeId, index}
           <div class="rounded-2xl border-2">
             {#if pokeId}
-              <PokeChip name={pokeArray[pokeId].jaName} imageUrl={pokeArray[pokeId].imageUrl} />
+              <PokeChip name={pokeDict[pokeId].jaName} imageUrl={pokeDict[pokeId].imageUrl} />
             {:else}
               <div class={cBlankPokeBoxStyle}></div>
             {/if}
