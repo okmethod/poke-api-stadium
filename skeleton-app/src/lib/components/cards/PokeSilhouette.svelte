@@ -2,7 +2,9 @@
   import Icon from "@iconify/svelte";
   import type { TypeName } from "$lib/types/type";
   import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
+  import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
 
+  export let pokeId: number | null = null;
   export let name: string | null = null;
   export let type1Name: TypeName | null = null;
   export let type2Name: TypeName | null = null;
@@ -12,7 +14,15 @@
   const unknownColor = TYPE_COLOR_DICT["unknown"].themeColor;
   let headerColor = unknownColor;
   let footerColor = unknownColor;
-  $: if (name) {
+  let viewName = "???";
+  $: if (pokeId) {
+    if (name !== null) {
+      if (pokeId < FIRST_ADDITIONAL_POKE_ID) {
+        viewName = name;
+      } else {
+        viewName = `とくべつな ${name}`;
+      }
+    }
     headerColor = type1Name ? TYPE_COLOR_DICT[type1Name].themeColor : unknownColor;
     footerColor = type2Name ? TYPE_COLOR_DICT[type2Name].themeColor : headerColor;
   }
@@ -38,7 +48,7 @@
     <!-- タイトル部分 -->
     <div class="flex justify-center">
       <h1 class="mt-6 bg-white bg-opacity-50 text-xl font-bold text-gray-900">
-        <div>{isOpen ? (name ?? "???") : "???"}</div>
+        <div>{isOpen ? viewName : "???"}</div>
       </h1>
     </div>
     <!-- 画像部分 -->
@@ -47,7 +57,7 @@
         {#if imageUrl !== null}
           <img
             src={imageUrl}
-            alt={name ?? "???"}
+            alt={viewName}
             class="w-full h-full object-contain"
             style={isOpen ? "" : "filter: brightness(0);"}
             class:image={!isImageLoaded}

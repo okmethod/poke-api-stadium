@@ -91,6 +91,7 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <PokeSilhouette
+          pokeId={pickedPokeId}
           name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.jaName : null}
           type1Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type1Name : null}
           type2Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type2Name : null}
