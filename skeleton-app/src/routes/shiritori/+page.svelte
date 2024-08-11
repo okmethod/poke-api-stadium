@@ -27,7 +27,7 @@
       Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
         pokeDict[Number(pokeId)] = {
           jaName: staticPokeData.jaName,
-          imageUrl: staticPokeData.imageUrl,
+          imageUrl: staticPokeData.imageUrl ?? "not_found",
           isUsed: false,
         };
       });

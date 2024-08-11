@@ -33,7 +33,7 @@
       Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
         pokeDict[Number(pokeId)] = {
           jaName: staticPokeData.jaName,
-          imageUrl: staticPokeData.imageUrl,
+          imageUrl: staticPokeData.imageUrl ?? "not_found",
           type1Name: staticPokeData.type1Name as TypeName,
           type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
           speed: staticPokeData.stats.speed,
