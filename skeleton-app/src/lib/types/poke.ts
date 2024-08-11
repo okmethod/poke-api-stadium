@@ -60,7 +60,7 @@ export interface PokeData {
   imageUrl: string;
   gifUrl: string | null;
   imageUrlArray: string[];
-  jaGenus: string;
+  jaGenus: string | null;
   type1: TypeData;
   type2: TypeData | null;
   height: number;
@@ -84,7 +84,7 @@ export function convertToPokeData(
     imageUrl: pokemonJson.sprites.front_default,
     gifUrl: pokemonJson.sprites.other.showdown.front_default,
     imageUrlArray: makeSpritesArray(pokemonJson.sprites),
-    jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? "???",
+    jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? null,
     type1: convertToTypeData(type1Json),
     type2: type2Json ? convertToTypeData(type2Json) : null,
     height: pokemonJson.height,
@@ -100,6 +100,7 @@ export function convertToPokeData(
 
 export interface StaticPokeData {
   jaName: string;
+  jaGenus: string | null;
   imageUrl: string;
   gifUrl: string | null;
   type1Name: string; // 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
@@ -112,6 +113,7 @@ export interface StaticPokeData {
 export function convertToStaticPokeData(pokeData: PokeData): StaticPokeData {
   return {
     jaName: pokeData.jaName,
+    jaGenus: pokeData.jaGenus,
     imageUrl: pokeData.imageUrl,
     gifUrl: pokeData.gifUrl,
     type1Name: pokeData.type1.enName,

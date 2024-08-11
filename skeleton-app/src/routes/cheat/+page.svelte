@@ -3,7 +3,7 @@
   import makeStaticPokeDict from "$lib/api/makeStaticPokeDict.client";
   import makeStaticTypeDict from "$lib/api/makeStaticTypeDict.client";
   import { TypeName } from "$lib/types/type";
-  import { LATEST_POKE_ID } from "$lib/constants/common";
+  import { FIRST_POKE_ID, LATEST_POKE_ID } from "$lib/constants/common";
 
   let isProcessing = false;
 
@@ -20,14 +20,16 @@
   }
 
   let staticPokeJsonFileName = "staticPokeDict.json";
-  async function downloadStaticPokeJson() {
+  let staticAdditionalPokeJsonFileName = "staticAdditionalPokeDict.json";
+  async function downloadStaticPokeJson(fileName: string, firstPokeId: number, latestPokeId: number) {
     isProcessing = true;
-    const pokeIds: number[] = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
+    const idsLength = latestPokeId - firstPokeId + 1;
+    const pokeIds: number[] = Array.from({ length: idsLength }, (_, i) => firstPokeId + i);
     const staticPokeDict = await makeStaticPokeDict(fetch, pokeIds);
     const jsonData = JSON.stringify(staticPokeDict, null, 2);
     try {
-      downloadJsonFile(jsonData, staticPokeJsonFileName);
-      console.log(`File Write Done: ${staticPokeJsonFileName}`);
+      downloadJsonFile(jsonData, fileName);
+      console.log(`File Write Done: ${fileName}`);
     } catch (error) {
       console.error("File Write Failed:", error);
     }
@@ -35,14 +37,14 @@
   }
 
   let staticTypeJsonFileName = "staticTypeDict.json";
-  async function downloadStaticTypeJson() {
+  async function downloadStaticTypeJson(fileName: string) {
     isProcessing = true;
     const typeNames: string[] = Object.values(TypeName) as string[];
     const staticTypeArray = await makeStaticTypeDict(fetch, typeNames);
     const jsonData = JSON.stringify(staticTypeArray, null, 2);
     try {
-      downloadJsonFile(jsonData, staticTypeJsonFileName);
-      console.log(`File Write Done: ${staticTypeJsonFileName}`);
+      downloadJsonFile(jsonData, fileName);
+      console.log(`File Write Done: ${fileName}`);
     } catch (error) {
       console.error("File Write Failed:", error);
     }
@@ -64,7 +66,10 @@
         <span class="text-lg">全ポケモンリストJson ダウンロード</span>
         <div class="cInputFormAndMessagePartStyle">
           <input type="text" bind:value={staticPokeJsonFileName} class="border rounded px-4 py-1 h-full" />
-          <form on:submit|preventDefault={downloadStaticPokeJson}>
+          <form
+            on:submit|preventDefault={() =>
+              downloadStaticPokeJson(staticPokeJsonFileName, FIRST_POKE_ID, LATEST_POKE_ID)}
+          >
             <button type="submit" disabled={isProcessing} class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}">
               <div class="cIconDivStyle">
                 <Icon icon="mdi:pokeball" class="cIconStyle" />
@@ -81,7 +86,7 @@
         <span class="text-lg">全タイプJson ダウンロード</span>
         <div class="cInputFormAndMessagePartStyle">
           <input type="text" bind:value={staticTypeJsonFileName} class="border rounded px-4 py-1 h-full" />
-          <form on:submit|preventDefault={downloadStaticTypeJson}>
+          <form on:submit|preventDefault={() => downloadStaticTypeJson(staticTypeJsonFileName)}>
             <button type="submit" disabled={isProcessing} class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}">
               <div class="cIconDivStyle">
                 <Icon icon="mdi:pokeball" class="cIconStyle" />
