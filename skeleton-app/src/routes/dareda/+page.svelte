@@ -5,6 +5,7 @@
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
   import type { TypeName, TypeData } from "$lib/types/type";
+  import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
   import { pickRandomKey, getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
 
@@ -16,6 +17,7 @@
     type2Name: TypeName | null;
     height: number;
     weight: number;
+    stats: Stats;
   }
 
   // staticデータロード
@@ -43,6 +45,7 @@
             type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
             height: staticPokeData.height,
             weight: staticPokeData.weight,
+            stats: staticPokeData.stats,
           };
         }
       });
@@ -89,6 +92,7 @@
         return "よびだすボタン を おしてね";
       }
       const pokeItem = TOTAL_POKE_DICT[pickedPokeId];
+      const sortedStats = _sortDescStats(pokeItem.stats);
       const hints = [
         pokeItem.jaName[0] + "○".repeat(pokeItem.jaName.length - 1),
         pokeItem.jaGenus,
@@ -96,9 +100,23 @@
         pokeItem.type2Name ? `${TYPE_DICT[pokeItem.type2Name].jaName}タイプ` : "タイプは1つだけ",
         `たかさ${formatHeightWeight(pokeItem.height, "height")}`,
         `おもさ${formatHeightWeight(pokeItem.weight, "weight")}`,
+        `${Object.keys(sortedStats[0])[0]}が たかい`,
+        `${Object.keys(sortedStats[5])[0]}は ひくい`,
       ];
       const hint = hints[getRandomNumber(hints.length)];
       return hint ?? "がんばれ！";
+    }
+
+    function _sortDescStats(stats: Stats): Record<string, number>[] {
+      const statsArray: Record<string, number>[] = [
+        { HP: stats.hp },
+        { こうげき: stats.attack },
+        { ぼうぎょ: stats.defense },
+        { とくこう: stats.specialAttack },
+        { とくぼう: stats.specialDefense },
+        { すばやさ: stats.speed },
+      ];
+      return statsArray.sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
     }
   }
 </script>
