@@ -10,6 +10,7 @@
   import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
 
   interface PokeItem {
+    id: number; // dndzone で使用するため id という命名にしている
     jaName: string;
     imageUrl: string;
     type1Name: TypeName;
@@ -19,44 +20,40 @@
     stats: Stats;
   }
 
-  let pokeArray: PokeItem[];
+  // staticデータロード
+  let POKE_DICT: Record<number, PokeItem>;
   onMount(async () => {
-    // staticデータの容量が大きいので、利用スコープを局所化してガベージコレクションされるようにする
+    // 利用スコープを局所化してガベージコレクションされるようにする
     const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-    pokeArray = initPokeArray(STATIC_POKE_DICT);
+
+    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
+    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
+      const pokeDict: Record<number, PokeItem> = {};
+      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
+        pokeDict[Number(pokeId)] = {
+          id: Number(pokeId),
+          jaName: staticPokeData.jaName,
+          imageUrl: staticPokeData.imageUrl,
+          type1Name: staticPokeData.type1Name as TypeName,
+          type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+          height: staticPokeData.height,
+          weight: staticPokeData.weight,
+          stats: staticPokeData.stats,
+        };
+      });
+      return pokeDict;
+    }
   });
 
-  function initPokeArray(staticPokeDict: { [pokeId: number]: StaticPokeData }): PokeItem[] {
-    const dummyPokeItem: PokeItem = {
-      jaName: "dummy",
-      imageUrl: "",
-      type1Name: "unknown" as TypeName,
-      type2Name: null,
-      height: 0,
-      weight: 0,
-      stats: { hp: 0, attack: 0, defense: 0, specialAttack: 0, specialDefense: 0, speed: 0 },
-    };
-    return [
-      dummyPokeItem, // index と pokeId を一致させるために、先頭にダミーデータを追加している
-      ...Object.entries(staticPokeDict).map(([, staticPokeData]) => ({
-        jaName: staticPokeData.jaName,
-        imageUrl: staticPokeData.imageUrl,
-        type1Name: staticPokeData.type1Name as TypeName,
-        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
-        height: staticPokeData.height,
-        weight: staticPokeData.weight,
-        stats: staticPokeData.stats,
-      })),
-    ];
-  }
-
-  let optionId = "height";
-  interface Option {
+  // 選択可能な比較対象
+  interface Mode {
     name: string;
     value: (value: PokeItem) => number;
     formatValue: (value: PokeItem) => string;
   }
-  const options: Record<string, Option> = {
+
+  let modeId = "height";
+  const modes: Record<string, Mode> = {
     height: {
       name: "たかさ",
       value: (value: PokeItem) => value.height,
@@ -99,42 +96,39 @@
     },
   };
 
-  // dndzone 用の表示用データ
-  interface DndItem {
-    id: number; // pokeId が入る
-    jaName: string;
-    type1Name: TypeName;
-    type2Name: TypeName | null;
-    imageUrl: string;
-  }
-  function convertIdsToDndItems(pokeIds: number[]): DndItem[] {
-    return pokeIds.map((pokeId) => ({
-      id: pokeId,
-      jaName: pokeArray[pokeId].jaName,
-      type1Name: pokeArray[pokeId].type1Name,
-      type2Name: pokeArray[pokeId].type2Name,
-      imageUrl: pokeArray[pokeId].imageUrl,
-    }));
-  }
-
+  // ゲームデータ管理
   let isOpen = false;
-  let pickedPokeIdDndItems: DndItem[] = [];
+  let pickedPokeItems: PokeItem[] = [];
   let numPoke = 3;
-  function pickPokeIds(): void {
+  function pickPokeItems(): void {
     resetState();
-    const pokeIndexes = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-    pickedPokeIdDndItems = convertIdsToDndItems(pickRandomNumbers(pokeIndexes, numPoke));
+    const allPokeIds = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+    pickedPokeItems = _convertIdsToItems(pickRandomNumbers(allPokeIds, numPoke));
+
+    function _convertIdsToItems(pokeIds: number[]): PokeItem[] {
+      return pokeIds.map((pokeId) => ({
+        id: pokeId,
+        jaName: POKE_DICT[pokeId].jaName,
+        imageUrl: POKE_DICT[pokeId].imageUrl,
+        type1Name: POKE_DICT[pokeId].type1Name,
+        type2Name: POKE_DICT[pokeId].type2Name,
+        height: POKE_DICT[pokeId].height,
+        weight: POKE_DICT[pokeId].weight,
+        stats: POKE_DICT[pokeId].stats,
+      }));
+    }
   }
 
+  // 比較実行とメッセージ更新
   let comprareResult = "";
   function compareValues(): void {
-    if (pickedPokeIdDndItems.length == 0) {
+    if (pickedPokeItems.length == 0) {
       comprareResult = "さきに ポケモンを よびだしてね";
       return;
     }
     isOpen = true;
-    const values = pickedPokeIdDndItems.map((dndItem) => options[optionId].value(pokeArray[dndItem.id]));
-    if (isSortedDesc(values)) {
+    const values = pickedPokeItems.map((pokeItem) => modes[modeId].value(POKE_DICT[pokeItem.id]));
+    if (_isSortedDesc(values)) {
       const messages: { [key: string]: string } = {
         3: "せいかい！",
         4: "すごい！",
@@ -145,31 +139,34 @@
     } else {
       comprareResult = "ざんねん...";
     }
-  }
-  function isSortedDesc(array: number[]): boolean {
-    return array.every((value, index) => index === 0 || array[index - 1] >= value);
+
+    function _isSortedDesc(array: number[]): boolean {
+      return array.every((value, index) => index === 0 || array[index - 1] >= value);
+    }
   }
 
+  // 状態リセット
   function resetState(): void {
     isOpen = false;
     comprareResult = "";
   }
-
-  $: if (optionId || numPoke) {
+  $: if (modeId || numPoke) {
     resetState();
   }
 
-  function handleDndConsider(event: CustomEvent<{ items: DndItem[] }>): void {
+  // ドラッグアンドドロップ
+  function handleDndConsider(event: CustomEvent<{ items: PokeItem[] }>): void {
     const { items } = event.detail;
-    pickedPokeIdDndItems = items;
+    pickedPokeItems = items;
   }
-  function handleDndFinalize(event: CustomEvent<{ items: DndItem[] }>): void {
+  function handleDndFinalize(event: CustomEvent<{ items: PokeItem[] }>): void {
     const { items } = event.detail;
-    pickedPokeIdDndItems = items;
+    pickedPokeItems = items;
   }
   const flipDurationMs = 300;
   const dropTargetStyle = { outline: "0px" };
 
+  // スタイル
   const cPokeFieldStyle = "min-h-[250px] min-w-[300px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
@@ -185,8 +182,8 @@
     <!-- 入力フォーム -->
     <div class="ml-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
-        <select bind:value={optionId} class="border rounded px-10 py-1">
-          {#each Object.entries(options) as [key, value]}
+        <select bind:value={modeId} class="border rounded px-10 py-1">
+          {#each Object.entries(modes) as [key, value]}
             <option value={key}>{value.name}</option>
           {/each}
         </select>
@@ -196,7 +193,7 @@
         <span class="text-lg">ポケモン を </span>
         <input type="number" min="3" max="6" bind:value={numPoke} class="border rounded px-4 py-1 h-full" />
         <span class="text-lg">たい よびだす</span>
-        <form on:submit|preventDefault={pickPokeIds}>
+        <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
@@ -210,19 +207,19 @@
     <div class={cPokeFieldStyle}>
       <div
         class={cPokeArrayStyle}
-        use:dndzone={{ items: pickedPokeIdDndItems, flipDurationMs, dropTargetStyle }}
+        use:dndzone={{ items: pickedPokeItems, flipDurationMs, dropTargetStyle }}
         on:consider={handleDndConsider}
         on:finalize={handleDndFinalize}
       >
-        {#each pickedPokeIdDndItems as dndItem, index (dndItem.id)}
+        {#each pickedPokeItems as pokeItem, index (pokeItem.id)}
           <div>
             <PokeTile
-              name={dndItem.jaName}
-              type1Name={dndItem.type1Name}
-              type2Name={dndItem.type2Name}
-              imageUrl={dndItem.imageUrl}
+              name={pokeItem.jaName}
+              type1Name={pokeItem.type1Name}
+              type2Name={pokeItem.type2Name}
+              imageUrl={pokeItem.imageUrl}
             />
-            <p class="text-center">{isOpen ? options[optionId].formatValue(pokeArray[dndItem.id]) : "???"}</p>
+            <p class="text-center">{isOpen ? modes[modeId].formatValue(pokeItem) : "???"}</p>
             <p class="text-center">{index + 1} ばんめ</p>
           </div>
         {/each}
