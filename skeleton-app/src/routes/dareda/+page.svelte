@@ -2,12 +2,15 @@
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
-  //import type { TypeName, TypeData } from "$lib/types/type";
+  import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
+  import type { TypeName } from "$lib/types/type";
   import { pickRandomKey } from "$lib/utils/numerics";
 
   interface PokeItem {
     jaName: string;
     gifUrl: string;
+    type1Name: TypeName;
+    type2Name: TypeName | null;
   }
 
   // staticデータロード
@@ -24,6 +27,8 @@
           pokeDict[Number(pokeId)] = {
             jaName: staticPokeData.jaName,
             gifUrl: staticPokeData.gifUrl,
+            type1Name: staticPokeData.type1Name as TypeName,
+            type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
           };
         }
       });
@@ -40,8 +45,18 @@
     pickedPokeId = pickRandomKey(POKE_DICT);
   }
 
+  let guideMessage = "こたえをみる";
+  let isOpen = false;
+  function openSilhouette(): void {
+    isOpen = true;
+    // guideMessage = POKE_DICT[pickedPokeId].jaName;
+  }
+
   // 状態リセット
-  function resetState(): void {}
+  function resetState(): void {
+    isOpen = false;
+    guideMessage = "こたえをみる";
+  }
 </script>
 
 <div class="cRouteBodyStyle">
@@ -67,15 +82,28 @@
     </div>
 
     <!-- ポケモン情報 -->
-    <div>
-      {#if pickedPokeId !== 0}
-        <img
-          src={POKE_DICT[pickedPokeId].gifUrl}
-          alt="???"
-          class="w-60 h-60 object-contain"
-          style="filter: brightness(0);"
+    <div class="ml-4">
+      <div class="cInputFormAndMessagePartStyle">
+        <PokeSilhouette
+          name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.jaName : null}
+          type1Name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.type1Name : null}
+          type2Name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.type2Name : null}
+          imageUrl={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.gifUrl : null}
+          {isOpen}
         />
-      {/if}
+      </div>
+    </div>
+
+    <!-- メッセージ -->
+    <div class="ml-4">
+      <div class="cInputFormAndMessagePartStyle">
+        <span class="text-lg">{guideMessage}</span>
+        <button type="button" class="cIconButtonStyle" on:click={openSilhouette}>
+          <div class="cIconDivStyle">
+            <Icon icon="mdi:pokeball" class="cIconStyle" />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </div>
