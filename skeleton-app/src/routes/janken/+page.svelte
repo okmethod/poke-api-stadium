@@ -194,6 +194,7 @@
   // スタイル
   const cPokeFieldStyle = "min-h-[220px] min-w-[300px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
+  const cTypeChipStyle = "px-2 py-1 rounded h-full";
 </script>
 
 <div class="cRouteBodyStyle">
@@ -260,11 +261,23 @@
           <span class="block sm:inline">{attackPokeName} の こうげき！</span>
           <span class="block sm:inline">
             <span class="inline">
-              <span style="background-color: {TYPE_COLOR_DICT[attackTypeName]};" class="px-2 py-1 text-white rounded">
+              <span
+                style="
+                  background-color: {TYPE_COLOR_DICT[attackTypeName].themeColor};
+                  color: {TYPE_COLOR_DICT[attackTypeName].textColor};
+                "
+                class={cTypeChipStyle}
+              >
                 {TYPE_DICT[attackTypeName].jaName}
               </span>
               は
-              <span style="background-color: {TYPE_COLOR_DICT[defenseTypeName]};" class="px-2 py-1 text-white rounded">
+              <span
+                style="
+                  background-color: {TYPE_COLOR_DICT[defenseTypeName].themeColor};
+                  color: {TYPE_COLOR_DICT[defenseTypeName].textColor};
+                "
+                class={cTypeChipStyle}
+              >
                 {TYPE_DICT[defenseTypeName].jaName}
               </span>
               に {efficacyMessage}
@@ -317,8 +330,11 @@
           <!-- ポケモン選択済み、タイプ選択中のとき-->
           {#each fetchPokeTypeNameArray(ownPokeIds[selectedOwnPokeIndex]) as typeName}
             <button
-              style="background-color: {TYPE_COLOR_DICT[typeName]};"
-              class="px-2 py-1 hover:brightness-85 text-white rounded h-full flex items-center"
+              style="
+                background-color: {TYPE_COLOR_DICT[typeName].themeColor};
+                color: {TYPE_COLOR_DICT[typeName].textColor};
+              "
+              class="{cTypeChipStyle} flex items-center hover:brightness-85"
               on:click={() => commitOwnType(typeName)}
             >
               {TYPE_DICT[typeName].jaName}

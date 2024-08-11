@@ -8,11 +8,11 @@
   export let type2Name: TypeName | null = null;
   export let imageUrl: string | null = null;
 
-  let headerColor = TYPE_COLOR_DICT["unknown"];
-  let footerColor = TYPE_COLOR_DICT["unknown"];
+  let headerColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  let footerColor = TYPE_COLOR_DICT["unknown"].themeColor;
   $: if (name) {
-    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name] : TYPE_COLOR_DICT["unknown"];
-    footerColor = type2Name ? TYPE_COLOR_DICT[type2Name] : headerColor;
+    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name].themeColor : TYPE_COLOR_DICT["unknown"].themeColor;
+    footerColor = type2Name ? TYPE_COLOR_DICT[type2Name].themeColor : headerColor;
   }
 
   let isImageLoaded = false;

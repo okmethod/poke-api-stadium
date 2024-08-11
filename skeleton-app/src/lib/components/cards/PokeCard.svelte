@@ -9,12 +9,12 @@
   export let pokeData: PokeData | null;
 
   let spritesLength = 0;
-  let headerColor = TYPE_COLOR_DICT["unknown"];
-  let footerColor = TYPE_COLOR_DICT["unknown"];
+  let headerColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  let footerColor = TYPE_COLOR_DICT["unknown"].themeColor;
   $: if (pokeData !== null) {
     spritesLength = pokeData.imageUrlArray.length;
-    headerColor = TYPE_COLOR_DICT[pokeData.type1.enName];
-    footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName] : headerColor;
+    headerColor = TYPE_COLOR_DICT[pokeData.type1.enName].themeColor;
+    footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName].themeColor : headerColor;
     statsData = [
       pokeData?.stats.hp,
       pokeData?.stats.attack,

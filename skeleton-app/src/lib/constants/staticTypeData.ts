@@ -1,28 +1,33 @@
 import { TypeName } from "$lib/types/type";
 import type { StaticTypeData } from "$lib/types/type";
 
-export const TYPE_COLOR_DICT: Record<TypeName, string> = {
-  normal: "#FDF6CB",
-  fighting: "#EE8130",
-  flying: "#A2C3E8",
-  poison: "#A33EA1",
-  ground: "#9C7743",
-  rock: "#C0B88A",
-  bug: "#A6B91A",
-  ghost: "#735797",
-  steel: "#B7B7CE",
-  fire: "#D22E28",
-  water: "#5285C6",
-  grass: "#7AC74C",
-  electric: "#F7D02C",
-  psychic: "#F95587",
-  ice: "#6DC8EB",
-  dragon: "#545BA8",
-  dark: "#222222",
-  fairy: "#FCAFF9",
-  unknown: "#888888",
+export const TYPE_COLOR_DICT: Record<
+  string,
+  {
+    themeColor: string;
+    textColor: string;
+  }
+> = {
+  normal: { themeColor: "#FDF6CB", textColor: "#000000" },
+  fighting: { themeColor: "#EE8130", textColor: "#000000" },
+  flying: { themeColor: "#A2C3E8", textColor: "#000000" },
+  poison: { themeColor: "#A33EA1", textColor: "#FFFFFF" },
+  ground: { themeColor: "#9C7743", textColor: "#FFFFFF" },
+  rock: { themeColor: "#C0B88A", textColor: "#000000" },
+  bug: { themeColor: "#A6B91A", textColor: "#FFFFFF" },
+  ghost: { themeColor: "#735797", textColor: "#FFFFFF" },
+  steel: { themeColor: "#B7B7CE", textColor: "#000000" },
+  fire: { themeColor: "#D22E28", textColor: "#FFFFFF" },
+  water: { themeColor: "#5285C6", textColor: "#FFFFFF" },
+  grass: { themeColor: "#7AC74C", textColor: "#FFFFFF" },
+  electric: { themeColor: "#F7D02C", textColor: "#000000" },
+  psychic: { themeColor: "#F95587", textColor: "#FFFFFF" },
+  ice: { themeColor: "#6DC8EB", textColor: "#000000" },
+  dragon: { themeColor: "#545BA8", textColor: "#FFFFFF" },
+  dark: { themeColor: "#222222", textColor: "#FFFFFF" },
+  fairy: { themeColor: "#FCAFF9", textColor: "#000000" },
+  unknown: { themeColor: "#888888", textColor: "#FFFFFF" },
 };
-
 // cheat画面から取得したstaticデータ
 export const STATIC_TYPE_DICT: Record<TypeName, StaticTypeData> = {
   normal: {
