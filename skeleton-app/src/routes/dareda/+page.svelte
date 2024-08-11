@@ -51,17 +51,14 @@
     pickedPokeId = pickRandomKey(TOTAL_POKE_DICT);
   }
 
-  let guideMessage = "こたえをみる";
   let isOpen = false;
-  function openSilhouette(): void {
-    isOpen = true;
-    // guideMessage = POKE_DICT[pickedPokeId].jaName;
+  function toggleSilhouette(): void {
+    isOpen = !isOpen; // 隠しコマンドで、もう一度押せば閉じる
   }
 
   // 状態リセット
   function resetState(): void {
     isOpen = false;
-    guideMessage = "こたえをみる";
   }
 </script>
 
@@ -104,8 +101,8 @@
     <!-- メッセージ -->
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">{guideMessage}</span>
-        <button type="button" class="cIconButtonStyle" on:click={openSilhouette}>
+        <span class="text-lg">こたえをみる</span>
+        <button type="button" class="cIconButtonStyle" on:click={toggleSilhouette}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />
           </div>
