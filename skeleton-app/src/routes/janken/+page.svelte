@@ -21,17 +21,13 @@
     speed: number;
   }
 
-  // staticデータ準備
-  // 利用スコープを局所化してガベージコレクションされるようにする
+  // staticデータロード
   let POKE_DICT: Record<number, PokeItem>;
   let TYPE_DICT: Record<TypeName, TypeData>;
   onMount(async () => {
+    // 利用スコープを局所化してガベージコレクションされるようにする
     const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
     POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
-
-    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
-    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
-
     function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
       const pokeDict: Record<number, PokeItem> = {};
       Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
@@ -45,18 +41,21 @@
       });
       return pokeDict;
     }
+
+    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
+    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
   });
 
   // ゲームデータ管理
   let ownPokeIds: number[] = [];
   let opoPokeIds: number[] = [];
-  const numPokeByPlayer = 3;
+  const pokeCountByPlayer = 3;
   function pickPokeIds(): void {
     resetState();
     const pokeIndexes = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-    const pickedPokeIds = pickRandomNumbers(pokeIndexes, numPokeByPlayer * 2);
-    ownPokeIds = pickedPokeIds.slice(0, numPokeByPlayer);
-    opoPokeIds = pickedPokeIds.slice(numPokeByPlayer, numPokeByPlayer * 2);
+    const pickedPokeIds = pickRandomNumbers(pokeIndexes, pokeCountByPlayer * 2);
+    ownPokeIds = pickedPokeIds.slice(0, pokeCountByPlayer);
+    opoPokeIds = pickedPokeIds.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
     phase = "select_poke";
   }
 
@@ -64,7 +63,7 @@
   let selectedOpoPokeIndex = -1;
   function commitOwnPoke(): void {
     phase = "select_type";
-    selectedOpoPokeIndex = getRandomNumber(numPokeByPlayer);
+    selectedOpoPokeIndex = getRandomNumber(pokeCountByPlayer);
   }
 
   function fetchPokeTypeNameArray(pokeId: number): TypeName[] {
@@ -153,6 +152,7 @@
     updateGuideMessage();
   }
 
+  // 状態リセット
   function resetState(): void {
     ownPokeIds = [];
     opoPokeIds = [];

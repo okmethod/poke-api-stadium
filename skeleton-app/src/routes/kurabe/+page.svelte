@@ -99,11 +99,11 @@
   // ゲームデータ管理
   let isOpen = false;
   let pickedPokeItems: PokeItem[] = [];
-  let numPoke = 3;
+  let pokeCount = 3;
   function pickPokeItems(): void {
     resetState();
     const allPokeIds = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-    pickedPokeItems = _convertIdsToItems(pickRandomNumbers(allPokeIds, numPoke));
+    pickedPokeItems = _convertIdsToItems(pickRandomNumbers(allPokeIds, pokeCount));
 
     function _convertIdsToItems(pokeIds: number[]): PokeItem[] {
       return pokeIds.map((pokeId) => ({
@@ -135,7 +135,7 @@
         5: "すごすぎる！！",
         6: "ポケモンマスター！！！！",
       };
-      comprareResult = messages[numPoke] || "せいかい！";
+      comprareResult = messages[pokeCount] || "せいかい！";
     } else {
       comprareResult = "ざんねん...";
     }
@@ -150,7 +150,7 @@
     isOpen = false;
     comprareResult = "";
   }
-  $: if (modeId || numPoke) {
+  $: if (modeId || pokeCount) {
     resetState();
   }
 
@@ -191,7 +191,7 @@
       </div>
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を </span>
-        <input type="number" min="3" max="6" bind:value={numPoke} class="border rounded px-4 py-1 h-full" />
+        <input type="number" min="3" max="6" bind:value={pokeCount} class="border rounded px-4 py-1 h-full" />
         <span class="text-lg">たい よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" class="cIconButtonStyle">

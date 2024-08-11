@@ -54,7 +54,7 @@
   let pushedPokeIds: number[] = [];
   function setFirstPokeData(): void {
     const unusedIds = getUnusedIds(pokeDict);
-    const candidatedPokeId = pickRandomNumbers(unusedIds, numPoke)[0];
+    const candidatedPokeId = pickRandomNumbers(unusedIds, pokeCount)[0];
     pokeDict[candidatedPokeId].isUsed = true;
     pushedPokeIds = [...pushedPokeIds, candidatedPokeId];
   }
@@ -66,27 +66,27 @@
   }
 
   // ゲームデータ管理（候補ポケモン）
-  const numPoke = 12;
-  const numPossiblePoke = 4;
+  const pokeCount = 12;
+  const possiblePokeCount = 4;
   let candidatedPokeIds: number[] = [];
   function candidatePokeIds(): void {
     const tailChar = getTailChar(getTailPokeName());
     const possiblePokeIds = GROUPBY_HEADCHAR_POKEID_DICT[tailChar] ?? [];
     const unusedIds = getUnusedIds(pokeDict);
 
-    // 次に選択可能なポケモンから numPossiblePoke の数だけ抽出する（不足する場合がある＆数が少ないのでシャッフル方式）
+    // 次に選択可能なポケモンから possiblePokeCount の数だけ抽出する（不足する場合がある＆数が少ないのでシャッフル方式）
     const possibleUnusedIds = possiblePokeIds.filter((pokeId) => unusedIds.includes(pokeId));
-    const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, numPossiblePoke);
+    const slicedPossiblePokeIds = shuffleArray(possibleUnusedIds).slice(0, possiblePokeCount);
 
-    // 次に選択可能でないポケモンから numPoke の数だけ抽出する
+    // 次に選択可能でないポケモンから pokeCount の数だけ抽出する
     const slicedPossiblePokeIdsSet = new Set(slicedPossiblePokeIds);
     const additionalPokeIds = pickRandomNumbers(
       unusedIds.filter((pokeId) => !slicedPossiblePokeIdsSet.has(pokeId)),
-      numPoke,
+      pokeCount,
     );
 
-    // 候補ポケモンから numPoke の数だけ抽出する（数が少ないのでシャッフル方式）
-    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, numPoke);
+    // 候補ポケモンから pokeCount の数だけ抽出する（数が少ないのでシャッフル方式）
+    candidatedPokeIds = shuffleArray([...slicedPossiblePokeIds, ...additionalPokeIds]).slice(0, pokeCount);
   }
 
   // しりとりルール管理
