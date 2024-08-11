@@ -71,40 +71,49 @@
     return pokeItem.type2Name ? [pokeItem.type1Name, pokeItem.type2Name] : [pokeItem.type1Name];
   }
 
+  // じゃんけんルール管理とメッセージ更新
+  let attackPokeName: string;
+  let attackTypeName: TypeName;
+  let defenseTypeName: TypeName;
+  let efficacyMessage: string;
+  let resultMessage: string;
   function commitOwnType(selectedOwnPokeTypeName: TypeName): void {
     const selectedOpoPokeId = opoPokeIds[selectedOpoPokeIndex];
     const opoTypeNameArray = fetchPokeTypeNameArray(selectedOpoPokeId);
     const selectedOpoPokeTypeName =
       opoTypeNameArray.length === 1 ? opoTypeNameArray[0] : opoTypeNameArray[getRandomNumber(2)];
 
-    ({ attackMessage, compatibilityMessage, resultMessage } = _judgeJankenResult(
+    let isOwnAttack: boolean;
+    ({ isOwnAttack, attackPokeName, attackTypeName, defenseTypeName } = _judgeAttackSide(
       ownPokeIds[selectedOwnPokeIndex],
-      opoPokeIds[selectedOpoPokeIndex],
+      selectedOpoPokeId,
       selectedOwnPokeTypeName,
       selectedOpoPokeTypeName,
     ));
+    ({ efficacyMessage, resultMessage } = _judgeJankenResult(isOwnAttack, attackTypeName, defenseTypeName));
     phase = "term";
 
-    function _judgeJankenResult(
+    function _judgeAttackSide(
       ownPokeId: number,
       opoPokeId: number,
       ownPokeTypeName: TypeName,
       opoPokeTypeName: TypeName,
-    ): { attackMessage: string; compatibilityMessage: string; resultMessage: string } {
+    ): {
+      isOwnAttack: boolean;
+      attackPokeName: string;
+      attackTypeName: TypeName;
+      defenseTypeName: TypeName;
+    } {
       const isOwnAttack = POKE_DICT[ownPokeId].speed >= POKE_DICT[opoPokeId].speed;
-      const attackPokeName = isOwnAttack ? POKE_DICT[ownPokeId].jaName : POKE_DICT[opoPokeId].jaName;
-      const attackTypeName = isOwnAttack ? ownPokeTypeName : opoPokeTypeName;
-      const defenseTypeName = isOwnAttack ? opoPokeTypeName : ownPokeTypeName;
-
-      return _generateResultMessages(isOwnAttack, attackPokeName, attackTypeName, defenseTypeName);
+      return {
+        isOwnAttack,
+        attackPokeName: isOwnAttack ? POKE_DICT[ownPokeId].jaName : POKE_DICT[opoPokeId].jaName,
+        attackTypeName: isOwnAttack ? ownPokeTypeName : opoPokeTypeName,
+        defenseTypeName: isOwnAttack ? opoPokeTypeName : ownPokeTypeName,
+      };
     }
 
-    function _generateResultMessages(
-      isOwnAttack: boolean,
-      attackPokeName: string,
-      attackTypeName: TypeName,
-      defenseTypeName: TypeName,
-    ) {
+    function _judgeJankenResult(isOwnAttack: boolean, attackTypeName: TypeName, defenseTypeName: TypeName) {
       const resultMap: Record<DamageRatio, { efficacyMessage: string; resultMessage: string }> = {
         double: {
           efficacyMessage: "ばつぐん だ！",
@@ -121,11 +130,7 @@
         default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
       };
       const damageRatio = getDamageRatio(attackTypeName, defenseTypeName);
-      const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
-      const attackMessage = `${attackPokeName} の こうげき！`;
-      const compatibilityMessage = `${TYPE_DICT[attackTypeName].jaName} は ${TYPE_DICT[defenseTypeName].jaName} に ${efficacyMessage}`;
-
-      return { attackMessage, compatibilityMessage, resultMessage };
+      return resultMap[damageRatio] || resultMap.default;
     }
   }
 
@@ -133,9 +138,6 @@
   type Phase = "init" | "select_poke" | "select_type" | "term";
   let phase: Phase = "init";
   let guideMessage: string;
-  let attackMessage: string;
-  let compatibilityMessage: string;
-  let resultMessage: string;
   function updateGuideMessage(): void {
     const messages: Record<Phase, string> = {
       init: "ポケモン を よびだしてね",
@@ -255,8 +257,19 @@
         {#if phase !== "term"}
           <span class="block">VS</span>
         {:else}
-          <span class="block sm:inline">{attackMessage}</span>
-          <span class="block sm:inline">{compatibilityMessage}</span>
+          <span class="block sm:inline">{attackPokeName} の こうげき！</span>
+          <span class="block sm:inline">
+            <span class="inline">
+              <span style="background-color: {TYPE_COLOR_DICT[attackTypeName]};" class="px-2 py-1 text-white rounded">
+                {TYPE_DICT[attackTypeName].jaName}
+              </span>
+              は
+              <span style="background-color: {TYPE_COLOR_DICT[defenseTypeName]};" class="px-2 py-1 text-white rounded">
+                {TYPE_DICT[defenseTypeName].jaName}
+              </span>
+              に {efficacyMessage}
+            </span></span
+          >
         {/if}
       </p>
     </div>
@@ -269,6 +282,7 @@
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
               type="button"
+              disabled={phase !== "select_poke"}
               on:click={() => (selectedOwnPokeIndex = index)}
               on:keydown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
