@@ -164,18 +164,21 @@
 
   // モーダル表示
   const modalStore = getModalStore();
+  function modalSettings(modalComponent: ModalComponent): ModalSettings {
+    return {
+      type: "component",
+      component: modalComponent,
+      backdropClasses: "fixed inset-0 !bg-gray-300/90",
+    };
+  }
 
   function showHelpModal(): void {
     const modalComponent: ModalComponent = {
       ref: HelpJankenModal,
       props: {},
     };
-    const modal: ModalSettings = {
-      type: "component",
-      component: modalComponent,
-      backdropClasses: "fixed inset-0 !bg-gray-300/90",
-    };
-    modalStore.trigger(modal);
+    const m = modalSettings(modalComponent);
+    modalStore.trigger(m);
   }
 
   function showTypeRelationsModal(): void {
@@ -183,12 +186,8 @@
       ref: TypeRelationsModal,
       props: {},
     };
-    const modal: ModalSettings = {
-      type: "component",
-      component: modalComponent,
-      backdropClasses: "fixed inset-0 !bg-gray-300/90",
-    };
-    modalStore.trigger(modal);
+    const m = modalSettings(modalComponent);
+    modalStore.trigger(m);
   }
 
   // スタイル

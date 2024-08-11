@@ -185,6 +185,14 @@
 
   // モーダル表示
   const modalStore = getModalStore();
+  function modalSettings(modalComponent: ModalComponent): ModalSettings {
+    return {
+      type: "component",
+      component: modalComponent,
+      backdropClasses: "fixed inset-0 !bg-gray-300/90",
+    };
+  }
+
   function showPokeListModal(): void {
     const modalComponent: ModalComponent = {
       ref: PokeListModal,
@@ -193,12 +201,8 @@
         stringArray: pushedPokeIds.map((pokeId) => pokeDict[pokeId].jaName),
       },
     };
-    const modal: ModalSettings = {
-      type: "component",
-      component: modalComponent,
-      backdropClasses: "fixed inset-0 !bg-gray-300/90",
-    };
-    modalStore.trigger(modal);
+    const m = modalSettings(modalComponent);
+    modalStore.trigger(m);
   }
 
   // スタイル
