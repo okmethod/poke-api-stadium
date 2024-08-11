@@ -28,8 +28,27 @@
   }
 
   let isImageLoaded = false;
+  let imageElement: HTMLImageElement;
+  let cPadding = "";
   function handleImageLoad() {
     isImageLoaded = true;
+    cPadding = _adjustImagePadding(imageElement.naturalWidth, imageElement.naturalHeight);
+
+    function _adjustImagePadding(imageWidth: number, imageHeight: number): string {
+      const aspectRatio = imageWidth / imageHeight;
+
+      function _isAspectRatioInRange(aspectRatio: number): boolean {
+        const threshold = 0.3;
+        return aspectRatio >= 1 - threshold && aspectRatio <= 1 + threshold;
+      }
+
+      if (_isAspectRatioInRange(aspectRatio)) {
+        // 縦横比が小さい場合は余白を追加
+        return "p-4";
+      }
+      // 縦横比が大きい場合はそのまま
+      return "p-0";
+    }
   }
   $: if (imageUrl) {
     isImageLoaded = false;
@@ -58,10 +77,11 @@
           <img
             src={imageUrl}
             alt={viewName}
-            class="w-full h-full object-contain"
+            class="w-full h-full object-contain {cPadding}"
             style={isOpen ? "" : "filter: brightness(0);"}
             class:image={!isImageLoaded}
             class:loaded={isImageLoaded}
+            bind:this={imageElement}
             on:load={handleImageLoad}
           />
           {#if !isImageLoaded}
