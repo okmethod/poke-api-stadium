@@ -1,49 +1,138 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import makePokeData from "$lib/api/makePokeData.client";
-  import getDamageRatio from "$lib/utils/getDamageRatio";
-  import type { PokeData } from "$lib/types/poke";
-  import type { TypeData, DamageRatio } from "$lib/types/type";
+  import type { StaticPokeData } from "$lib/types/poke";
+  import type { TypeName, TypeData, DamageRatio } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
-  import { pickRandomNumbers } from "$lib/utils/numerics";
+  import getDamageRatio from "$lib/utils/getDamageRatio";
+  import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
   import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
   import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
-  const numPokeByPlayer = 3;
-  const pokeIndexes = Array.from({ length: numPokeByPlayer }, (_, i) => i);
+  interface PokeItem {
+    jaName: string;
+    imageUrl: string;
+    type1Name: TypeName;
+    type2Name: TypeName | null;
+    speed: number;
+  }
 
-  let isLoading = false;
-  let ownPokeArray: PokeData[] = [];
-  let opoPokeArray: PokeData[] = [];
-  async function fetchPokeDataArray(): Promise<void> {
-    isLoading = true;
-    phase = "summonning_poke";
-    resetState();
-    try {
-      const numbers = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
-      const pokeIds = pickRandomNumbers(numbers, numPokeByPlayer * 2);
-      const pokeDataArray = await Promise.all(
-        pokeIds.slice(0, numPokeByPlayer * 2).map((id) => makePokeData(fetch, id.toString())),
-      );
-      ownPokeArray = pokeDataArray.slice(0, numPokeByPlayer);
-      opoPokeArray = pokeDataArray.slice(numPokeByPlayer, numPokeByPlayer * 2);
-    } catch {
-      // do nothing
+  // staticデータ準備
+  // 利用スコープを局所化してガベージコレクションされるようにする
+  let POKE_DICT: Record<number, PokeItem>;
+  let TYPE_DICT: Record<TypeName, TypeData>;
+  onMount(async () => {
+    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
+    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
+
+    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
+    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
+
+    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
+      const pokeDict: Record<number, PokeItem> = {};
+      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
+        pokeDict[Number(pokeId)] = {
+          jaName: staticPokeData.jaName,
+          imageUrl: staticPokeData.imageUrl,
+          type1Name: staticPokeData.type1Name as TypeName,
+          type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+          speed: staticPokeData.stats.speed,
+        };
+      });
+      return pokeDict;
     }
-    isLoading = false;
+  });
+
+  // ゲームデータ管理
+  let ownPokeIds: number[] = [];
+  let opoPokeIds: number[] = [];
+  const numPokeByPlayer = 3;
+  function pickPokeIds(): void {
+    resetState();
+    const pokeIndexes = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+    const pickedPokeIds = pickRandomNumbers(pokeIndexes, numPokeByPlayer * 2);
+    ownPokeIds = pickedPokeIds.slice(0, numPokeByPlayer);
+    opoPokeIds = pickedPokeIds.slice(numPokeByPlayer, numPokeByPlayer * 2);
     phase = "select_poke";
   }
 
-  type Phase = "init" | "summonning_poke" | "select_poke" | "select_type" | "term";
-  let phase: Phase = "init";
   let selectedOwnPokeIndex = -1;
   let selectedOpoPokeIndex = -1;
-  let selectedOwnType: TypeData;
-  let selectedOpoType: TypeData;
+  function commitOwnPoke(): void {
+    phase = "select_type";
+    selectedOpoPokeIndex = getRandomNumber(numPokeByPlayer);
+  }
+
+  function fetchPokeTypeNameArray(pokeId: number): TypeName[] {
+    const pokeItem = POKE_DICT[pokeId];
+    return pokeItem.type2Name ? [pokeItem.type1Name, pokeItem.type2Name] : [pokeItem.type1Name];
+  }
+
+  function commitOwnType(selectedOwnPokeTypeName: TypeName): void {
+    const selectedOpoPokeId = opoPokeIds[selectedOpoPokeIndex];
+    const opoTypeNameArray = fetchPokeTypeNameArray(selectedOpoPokeId);
+    const selectedOpoPokeTypeName =
+      opoTypeNameArray.length === 1 ? opoTypeNameArray[0] : opoTypeNameArray[getRandomNumber(2)];
+
+    ({ attackMessage, compatibilityMessage, resultMessage } = _judgeJankenResult(
+      ownPokeIds[selectedOwnPokeIndex],
+      opoPokeIds[selectedOpoPokeIndex],
+      selectedOwnPokeTypeName,
+      selectedOpoPokeTypeName,
+    ));
+    phase = "term";
+
+    function _judgeJankenResult(
+      ownPokeId: number,
+      opoPokeId: number,
+      ownPokeTypeName: TypeName,
+      opoPokeTypeName: TypeName,
+    ): { attackMessage: string; compatibilityMessage: string; resultMessage: string } {
+      const isOwnAttack = POKE_DICT[ownPokeId].speed >= POKE_DICT[opoPokeId].speed;
+      const attackPokeName = isOwnAttack ? POKE_DICT[ownPokeId].jaName : POKE_DICT[opoPokeId].jaName;
+      const attackTypeName = isOwnAttack ? ownPokeTypeName : opoPokeTypeName;
+      const defenseTypeName = isOwnAttack ? opoPokeTypeName : ownPokeTypeName;
+
+      return _generateResultMessages(isOwnAttack, attackPokeName, attackTypeName, defenseTypeName);
+    }
+
+    function _generateResultMessages(
+      isOwnAttack: boolean,
+      attackPokeName: string,
+      attackTypeName: TypeName,
+      defenseTypeName: TypeName,
+    ) {
+      const resultMap: Record<DamageRatio, { efficacyMessage: string; resultMessage: string }> = {
+        double: {
+          efficacyMessage: "ばつぐん だ！",
+          resultMessage: isOwnAttack ? "あなた の かち！" : "あなた の まけ...",
+        },
+        half: {
+          efficacyMessage: "いまひとつ...",
+          resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
+        },
+        no: {
+          efficacyMessage: "こうかは なし...",
+          resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
+        },
+        default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
+      };
+      const damageRatio = getDamageRatio(attackTypeName, defenseTypeName);
+      const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
+      const attackMessage = `${attackPokeName} の こうげき！`;
+      const compatibilityMessage = `${TYPE_DICT[attackTypeName].jaName} は ${TYPE_DICT[defenseTypeName].jaName} に ${efficacyMessage}`;
+
+      return { attackMessage, compatibilityMessage, resultMessage };
+    }
+  }
+
+  // フェーズ進行とメッセージ更新
+  type Phase = "init" | "select_poke" | "select_type" | "term";
+  let phase: Phase = "init";
   let guideMessage: string;
   let attackMessage: string;
   let compatibilityMessage: string;
@@ -51,10 +140,10 @@
   function updateGuideMessage(): void {
     const messages: Record<Phase, string> = {
       init: "ポケモン を よびだしてね",
-      summonning_poke: "ポケモン を よびだしちゅう...",
-      select_poke: !pokeIndexes.includes(selectedOwnPokeIndex)
-        ? "ポケモン をえらんでね"
-        : `${ownPokeArray[selectedOwnPokeIndex].jaName} で しょうぶ する？`,
+      select_poke:
+        selectedOwnPokeIndex == -1
+          ? "ポケモン をえらんでね"
+          : `${POKE_DICT[ownPokeIds[selectedOwnPokeIndex]].jaName} で しょうぶ する？`,
       select_type: "タイプ をえらんでね",
       term: resultMessage,
     };
@@ -64,68 +153,14 @@
     updateGuideMessage();
   }
 
-  function commitOwnPoke(): void {
-    phase = "select_type";
-    selectedOpoPokeIndex = pickRandomNumbers(pokeIndexes, 1)[0];
-  }
-
-  function commitOwnType(type: TypeData): void {
-    selectedOwnType = type;
-    const opoTypes = fetchPokeType(opoPokeArray[selectedOpoPokeIndex]);
-    selectedOpoType = opoTypes.length === 1 ? opoTypes[0] : opoTypes[pickRandomNumbers([0, 1], 1)[0]];
-
-    ({ attackMessage, compatibilityMessage, resultMessage } = judgeJankenResult(
-      ownPokeArray[selectedOwnPokeIndex],
-      opoPokeArray[selectedOpoPokeIndex],
-      selectedOwnType,
-      selectedOpoType,
-    ));
-    phase = "term";
-  }
-
-  function fetchPokeType(pokeData: PokeData): TypeData[] {
-    const type1 = pokeData.type1;
-    const type2 = pokeData.type2;
-    return type2 ? [type1, type2] : [type1];
-  }
-
-  function judgeJankenResult(
-    ownPokeData: PokeData,
-    opoPokeData: PokeData,
-    ownPokeType: TypeData,
-    opoPokeType: TypeData,
-  ): { attackMessage: string; compatibilityMessage: string; resultMessage: string } {
-    const isOwnAttack = ownPokeData.stats.speed >= opoPokeData.stats.speed;
-    const attackPoke = isOwnAttack ? ownPokeData : opoPokeData;
-    const attackType = isOwnAttack ? ownPokeType : opoPokeType;
-    const defenseType = isOwnAttack ? opoPokeType : ownPokeType;
-
-    const resultMap: Record<DamageRatio, { efficacyMessage: string; resultMessage: string }> = {
-      double: {
-        efficacyMessage: "ばつぐん だ！",
-        resultMessage: isOwnAttack ? "あなた の かち！" : "あなた の まけ...",
-      },
-      half: { efficacyMessage: "いまひとつ...", resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！" },
-      no: {
-        efficacyMessage: "こうかは なし...",
-        resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
-      },
-      default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
-    };
-    const damageRatio = getDamageRatio(attackType, defenseType);
-    const { efficacyMessage, resultMessage } = resultMap[damageRatio] || resultMap.default;
-    const attackMessage = `${attackPoke.jaName} の こうげき！`;
-    const compatibilityMessage = `${attackType.jaName} は ${defenseType.jaName} に ${efficacyMessage}`;
-    return { attackMessage, compatibilityMessage, resultMessage };
-  }
-
   function resetState(): void {
-    ownPokeArray = [];
-    opoPokeArray = [];
+    ownPokeIds = [];
+    opoPokeIds = [];
     selectedOwnPokeIndex = -1;
     selectedOpoPokeIndex = -1;
   }
 
+  // モーダル表示
   const modalStore = getModalStore();
 
   function showHelpModal(): void {
@@ -154,6 +189,7 @@
     modalStore.trigger(modal);
   }
 
+  // スタイル
   const cPokeFieldStyle = "min-h-[220px] min-w-[300px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
@@ -170,8 +206,8 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={fetchPokeDataArray}>
-          <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
+        <form on:submit|preventDefault={pickPokeIds}>
+          <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>
@@ -200,13 +236,13 @@
     <div class={cPokeFieldStyle}>
       <span class="block mt-1 ml-2">あいて</span>
       <div class={cPokeArrayStyle}>
-        {#each opoPokeArray as pokeData, index (pokeData.id)}
+        {#each opoPokeIds as pokeId, index}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <PokeTile
-              name={pokeData.jaName}
-              type1Name={pokeData.type1.enName}
-              type2Name={pokeData.type2?.enName}
-              imageUrl={pokeData.imageUrlArray[0]}
+              name={POKE_DICT[pokeId].jaName}
+              type1Name={POKE_DICT[pokeId].type1Name}
+              type2Name={POKE_DICT[pokeId].type2Name}
+              imageUrl={POKE_DICT[pokeId].imageUrl}
             />
           </div>
         {/each}
@@ -229,7 +265,7 @@
     <div class={cPokeFieldStyle}>
       <span class="block mt-1 ml-2">あなた</span>
       <div class={cPokeArrayStyle}>
-        {#each ownPokeArray as pokeData, index (pokeData.id)}
+        {#each ownPokeIds as pokeId, index}
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
               type="button"
@@ -241,10 +277,10 @@
               }}
             >
               <PokeTile
-                name={pokeData.jaName}
-                type1Name={pokeData.type1.enName}
-                type2Name={pokeData.type2?.enName}
-                imageUrl={pokeData.imageUrlArray[0]}
+                name={POKE_DICT[pokeId].jaName}
+                type1Name={POKE_DICT[pokeId].type1Name}
+                type2Name={POKE_DICT[pokeId].type2Name}
+                imageUrl={POKE_DICT[pokeId].imageUrl}
               />
             </button>
           </div>
@@ -256,7 +292,7 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">{guideMessage}</span>
-        {#if phase == "select_poke" && pokeIndexes.includes(selectedOwnPokeIndex)}
+        {#if phase == "select_poke" && selectedOwnPokeIndex !== -1}
           <!-- ポケモン選択済み、決定前のとき-->
           <button type="button" class="cIconButtonStyle" on:click={commitOwnPoke}>
             <div class="cIconDivStyle">
@@ -265,13 +301,13 @@
           </button>
         {:else if phase == "select_type"}
           <!-- ポケモン選択済み、タイプ選択中のとき-->
-          {#each fetchPokeType(ownPokeArray[selectedOwnPokeIndex]) as type}
+          {#each fetchPokeTypeNameArray(ownPokeIds[selectedOwnPokeIndex]) as typeName}
             <button
-              style="background-color: {TYPE_COLOR_DICT[type.enName]};"
+              style="background-color: {TYPE_COLOR_DICT[typeName]};"
               class="px-2 py-1 hover:brightness-85 text-white rounded h-full flex items-center"
-              on:click={() => commitOwnType(type)}
+              on:click={() => commitOwnType(typeName)}
             >
-              {type.jaName}
+              {TYPE_DICT[typeName].jaName}
             </button>
           {/each}
         {/if}

@@ -1,8 +1,8 @@
-import type { TypeData, DamageRatio } from "$lib/types/type";
+import type { TypeName, TypeData, DamageRatio } from "$lib/types/type";
 import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
 
-export function getDamageRatio(attackSideType: TypeData, diffenceSideType: TypeData): DamageRatio {
-  const typeData = STATIC_TYPE_DICT[attackSideType.enName] as TypeData;
+export function getDamageRatio(attackTypeName: TypeName, diffenceTypeName: TypeName): DamageRatio {
+  const typeData = STATIC_TYPE_DICT[attackTypeName] as TypeData;
   if (!typeData) {
     return "default";
   }
@@ -13,7 +13,7 @@ export function getDamageRatio(attackSideType: TypeData, diffenceSideType: TypeD
     no: noDamageTo,
   };
   for (const [ratio, types] of Object.entries(damageRelations)) {
-    if (types.includes(diffenceSideType.enName)) {
+    if (types.includes(diffenceTypeName)) {
       return ratio as DamageRatio;
     }
   }
