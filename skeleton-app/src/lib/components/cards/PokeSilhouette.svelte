@@ -9,11 +9,11 @@
   export let imageUrl: string | null = null;
   export let isOpen: boolean = false;
 
-  let headerColor = TYPE_COLOR_DICT["unknown"].themeColor;
-  let footerColor = TYPE_COLOR_DICT["unknown"].themeColor;
   const unknownColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  let headerColor = unknownColor;
+  let footerColor = unknownColor;
   $: if (name) {
-    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name].themeColor : TYPE_COLOR_DICT["unknown"].themeColor;
+    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name].themeColor : unknownColor;
     footerColor = type2Name ? TYPE_COLOR_DICT[type2Name].themeColor : headerColor;
   }
 

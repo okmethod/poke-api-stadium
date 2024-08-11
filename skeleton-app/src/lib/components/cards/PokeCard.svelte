@@ -9,20 +9,28 @@
   export let pokeData: PokeData | null;
 
   let imageUrlCount = 0;
-  let headerColor = TYPE_COLOR_DICT["unknown"].themeColor;
-  let footerColor = TYPE_COLOR_DICT["unknown"].themeColor;
-  $: if (pokeData !== null) {
-    imageUrlCount = pokeData.imageUrlArray.length;
-    headerColor = TYPE_COLOR_DICT[pokeData.type1.enName].themeColor;
-    footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName].themeColor : headerColor;
-    statsData = [
-      pokeData?.stats.hp,
-      pokeData?.stats.attack,
-      pokeData?.stats.defense,
-      pokeData?.stats.speed,
-      pokeData?.stats.specialDefense,
-      pokeData?.stats.specialAttack,
-    ];
+  const unknownColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  let headerColor = unknownColor;
+  let footerColor = unknownColor;
+  $: {
+    if (pokeData) {
+      imageUrlCount = pokeData.imageUrlArray.length;
+      headerColor = TYPE_COLOR_DICT[pokeData.type1.enName].themeColor;
+      footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName].themeColor : headerColor;
+      statsData = [
+        pokeData?.stats.hp,
+        pokeData?.stats.attack,
+        pokeData?.stats.defense,
+        pokeData?.stats.speed,
+        pokeData?.stats.specialDefense,
+        pokeData?.stats.specialAttack,
+      ];
+    } else {
+      imageUrlCount = 0;
+      headerColor = unknownColor;
+      footerColor = unknownColor;
+      statsData = [0, 0, 0, 0, 0, 0];
+    }
     if (chartInstance) {
       chartInstance.data.datasets[0].data = statsData;
       chartInstance.update();
