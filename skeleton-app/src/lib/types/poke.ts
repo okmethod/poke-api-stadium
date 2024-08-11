@@ -22,6 +22,7 @@ export interface ResponsePokemonJson {
   height: number;
   weight: number;
   stats: Array<Stat>;
+  is_default: boolean; // true:通常フォルム、false:別フォルム
 }
 
 export interface ResponseSpeciesJson {
@@ -37,6 +38,19 @@ export interface ResponseSpeciesJson {
     };
     genus: string;
   }>;
+  varieties: Array<{
+    is_default: boolean;
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }>;
+  generation: {
+    name: string;
+    url: string;
+  };
+  is_legendary: boolean;
+  is_mythical: boolean;
 }
 
 export interface PokeData {
@@ -52,6 +66,9 @@ export interface PokeData {
   height: number;
   weight: number;
   stats: Stats;
+  isDefault: boolean;
+  varieties: string[];
+  generation: string;
 }
 
 export function convertToPokeData(
@@ -73,6 +90,11 @@ export function convertToPokeData(
     height: pokemonJson.height,
     weight: pokemonJson.weight,
     stats: transformStats(pokemonJson.stats),
+    isDefault: pokemonJson.is_default,
+    varieties: speciesJson.varieties
+      .filter((variety) => variety.pokemon.name !== pokemonJson.species.name)
+      .map((variety) => variety.pokemon.name),
+    generation: speciesJson.generation.name,
   };
 }
 
