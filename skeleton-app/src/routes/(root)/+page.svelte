@@ -12,6 +12,12 @@
       onClick: () => navigateTo("/zukan"),
     },
     {
+      text: "ポケモンだ〜れだ？",
+      imageUrl: STATIC_BALL_DICT["dusk-ball"].imageUrl,
+      alt: "dusk-ball",
+      onClick: () => navigateTo("/dareda"),
+    },
+    {
       text: "ポケモンXXくらべ",
       imageUrl: STATIC_BALL_DICT["great-ball"].imageUrl,
       alt: "great-ball",
@@ -52,13 +58,5 @@
         {item.text}
       </button>
     {/each}
-  </div>
-
-  <div>
-    <img
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
-      alt="hoge"
-      style="filter: brightness(0);"
-    />
   </div>
 </div>
