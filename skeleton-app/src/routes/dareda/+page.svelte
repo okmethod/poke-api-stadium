@@ -14,12 +14,18 @@
   }
 
   // staticデータロード
-  let POKE_DICT: Record<number, PokeItem>;
+  let TOTAL_POKE_DICT: Record<number, PokeItem>;
   //let TYPE_DICT: Record<TypeName, TypeData>;
   onMount(async () => {
     // 利用スコープを局所化してガベージコレクションされるようにする
     const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
+    const POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
+
+    const { STATIC_ADDITIONAL_POKE_DICT } = await import("$lib/constants/staticAddPokeData");
+    const ADDITIONAL_POKE_DICT = _initPokeDict(STATIC_ADDITIONAL_POKE_DICT);
+
+    TOTAL_POKE_DICT = { ...POKE_DICT, ...ADDITIONAL_POKE_DICT };
+
     function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
       const pokeDict: Record<number, PokeItem> = {};
       Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
@@ -42,7 +48,7 @@
   let pickedPokeId = 0;
   function pickPokeId(): void {
     resetState();
-    pickedPokeId = pickRandomKey(POKE_DICT);
+    pickedPokeId = pickRandomKey(TOTAL_POKE_DICT);
   }
 
   let guideMessage = "こたえをみる";
@@ -85,10 +91,10 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <PokeSilhouette
-          name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.jaName : null}
-          type1Name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.type1Name : null}
-          type2Name={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.type2Name : null}
-          imageUrl={pickedPokeId > 0 ? POKE_DICT[pickedPokeId]?.gifUrl : null}
+          name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.jaName : null}
+          type1Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type1Name : null}
+          type2Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type2Name : null}
+          imageUrl={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.gifUrl : null}
           {isOpen}
         />
       </div>
