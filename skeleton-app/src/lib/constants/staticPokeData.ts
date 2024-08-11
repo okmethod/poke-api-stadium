@@ -9,8 +9,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1": {
     jaName: "フシギダネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 7,
     weight: 69,
     stats: {
@@ -25,8 +25,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "2": {
     jaName: "フシギソウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 10,
     weight: 130,
     stats: {
@@ -41,8 +41,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "3": {
     jaName: "フシギバナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 20,
     weight: 1000,
     stats: {
@@ -57,8 +57,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "4": {
     jaName: "ヒトカゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 85,
     stats: {
@@ -73,8 +73,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "5": {
     jaName: "リザード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 11,
     weight: 190,
     stats: {
@@ -89,8 +89,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "6": {
     jaName: "リザードン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 17,
     weight: 905,
     stats: {
@@ -105,8 +105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "7": {
     jaName: "ゼニガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 90,
     stats: {
@@ -121,8 +121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "8": {
     jaName: "カメール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 10,
     weight: 225,
     stats: {
@@ -137,8 +137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "9": {
     jaName: "カメックス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 16,
     weight: 855,
     stats: {
@@ -153,8 +153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "10": {
     jaName: "キャタピー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 29,
     stats: {
@@ -169,8 +169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "11": {
     jaName: "トランセル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 7,
     weight: 99,
     stats: {
@@ -185,8 +185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "12": {
     jaName: "バタフリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 11,
     weight: 320,
     stats: {
@@ -201,8 +201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "13": {
     jaName: "ビードル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 3,
     weight: 32,
     stats: {
@@ -217,8 +217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "14": {
     jaName: "コクーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 6,
     weight: 100,
     stats: {
@@ -233,8 +233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "15": {
     jaName: "スピアー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 10,
     weight: 295,
     stats: {
@@ -249,8 +249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "16": {
     jaName: "ポッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 18,
     stats: {
@@ -265,8 +265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "17": {
     jaName: "ピジョン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 11,
     weight: 300,
     stats: {
@@ -281,8 +281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "18": {
     jaName: "ピジョット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 15,
     weight: 395,
     stats: {
@@ -297,8 +297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "19": {
     jaName: "コラッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 35,
     stats: {
@@ -313,8 +313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "20": {
     jaName: "ラッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 7,
     weight: 185,
     stats: {
@@ -329,8 +329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "21": {
     jaName: "オニスズメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 20,
     stats: {
@@ -345,8 +345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "22": {
     jaName: "オニドリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 12,
     weight: 380,
     stats: {
@@ -361,8 +361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "23": {
     jaName: "アーボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 20,
     weight: 69,
     stats: {
@@ -377,8 +377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "24": {
     jaName: "アーボック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 35,
     weight: 650,
     stats: {
@@ -393,8 +393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "25": {
     jaName: "ピカチュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 4,
     weight: 60,
     stats: {
@@ -409,8 +409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "26": {
     jaName: "ライチュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 8,
     weight: 300,
     stats: {
@@ -425,8 +425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "27": {
     jaName: "サンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 6,
     weight: 120,
     stats: {
@@ -441,8 +441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "28": {
     jaName: "サンドパン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 10,
     weight: 295,
     stats: {
@@ -457,8 +457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "29": {
     jaName: "ニドラン♀",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 4,
     weight: 70,
     stats: {
@@ -473,8 +473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "30": {
     jaName: "ニドリーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 8,
     weight: 200,
     stats: {
@@ -489,8 +489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "31": {
     jaName: "ニドクイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png",
-    typeName1: "poison",
-    typeName2: "ground",
+    type1Name: "poison",
+    type2Name: "ground",
     height: 13,
     weight: 600,
     stats: {
@@ -505,8 +505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "32": {
     jaName: "ニドラン♂",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 5,
     weight: 90,
     stats: {
@@ -521,8 +521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "33": {
     jaName: "ニドリーノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 9,
     weight: 195,
     stats: {
@@ -537,8 +537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "34": {
     jaName: "ニドキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png",
-    typeName1: "poison",
-    typeName2: "ground",
+    type1Name: "poison",
+    type2Name: "ground",
     height: 14,
     weight: 620,
     stats: {
@@ -553,8 +553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "35": {
     jaName: "ピッピ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 6,
     weight: 75,
     stats: {
@@ -569,8 +569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "36": {
     jaName: "ピクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 13,
     weight: 400,
     stats: {
@@ -585,8 +585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "37": {
     jaName: "ロコン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 99,
     stats: {
@@ -601,8 +601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "38": {
     jaName: "キュウコン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 11,
     weight: 199,
     stats: {
@@ -617,8 +617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "39": {
     jaName: "プリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
-    typeName1: "normal",
-    typeName2: "fairy",
+    type1Name: "normal",
+    type2Name: "fairy",
     height: 5,
     weight: 55,
     stats: {
@@ -633,8 +633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "40": {
     jaName: "プクリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
-    typeName1: "normal",
-    typeName2: "fairy",
+    type1Name: "normal",
+    type2Name: "fairy",
     height: 10,
     weight: 120,
     stats: {
@@ -649,8 +649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "41": {
     jaName: "ズバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
-    typeName1: "poison",
-    typeName2: "flying",
+    type1Name: "poison",
+    type2Name: "flying",
     height: 8,
     weight: 75,
     stats: {
@@ -665,8 +665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "42": {
     jaName: "ゴルバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png",
-    typeName1: "poison",
-    typeName2: "flying",
+    type1Name: "poison",
+    type2Name: "flying",
     height: 16,
     weight: 550,
     stats: {
@@ -681,8 +681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "43": {
     jaName: "ナゾノクサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 5,
     weight: 54,
     stats: {
@@ -697,8 +697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "44": {
     jaName: "クサイハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 8,
     weight: 86,
     stats: {
@@ -713,8 +713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "45": {
     jaName: "ラフレシア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 12,
     weight: 186,
     stats: {
@@ -729,8 +729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "46": {
     jaName: "パラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 3,
     weight: 54,
     stats: {
@@ -745,8 +745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "47": {
     jaName: "パラセクト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 10,
     weight: 295,
     stats: {
@@ -761,8 +761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "48": {
     jaName: "コンパン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 10,
     weight: 300,
     stats: {
@@ -777,8 +777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "49": {
     jaName: "モルフォン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 15,
     weight: 125,
     stats: {
@@ -793,8 +793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "50": {
     jaName: "ディグダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 2,
     weight: 8,
     stats: {
@@ -809,8 +809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "51": {
     jaName: "ダグトリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 7,
     weight: 333,
     stats: {
@@ -825,8 +825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "52": {
     jaName: "ニャース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 42,
     stats: {
@@ -841,8 +841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "53": {
     jaName: "ペルシアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 10,
     weight: 320,
     stats: {
@@ -857,8 +857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "54": {
     jaName: "コダック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 8,
     weight: 196,
     stats: {
@@ -873,8 +873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "55": {
     jaName: "ゴルダック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 17,
     weight: 766,
     stats: {
@@ -889,8 +889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "56": {
     jaName: "マンキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 5,
     weight: 280,
     stats: {
@@ -905,8 +905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "57": {
     jaName: "オコリザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 10,
     weight: 320,
     stats: {
@@ -921,8 +921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "58": {
     jaName: "ガーディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 7,
     weight: 190,
     stats: {
@@ -937,8 +937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "59": {
     jaName: "ウインディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 19,
     weight: 1550,
     stats: {
@@ -953,8 +953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "60": {
     jaName: "ニョロモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 124,
     stats: {
@@ -969,8 +969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "61": {
     jaName: "ニョロゾ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 10,
     weight: 200,
     stats: {
@@ -985,8 +985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "62": {
     jaName: "ニョロボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png",
-    typeName1: "water",
-    typeName2: "fighting",
+    type1Name: "water",
+    type2Name: "fighting",
     height: 13,
     weight: 540,
     stats: {
@@ -1001,8 +1001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "63": {
     jaName: "ケーシィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 9,
     weight: 195,
     stats: {
@@ -1017,8 +1017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "64": {
     jaName: "ユンゲラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 13,
     weight: 565,
     stats: {
@@ -1033,8 +1033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "65": {
     jaName: "フーディン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 15,
     weight: 480,
     stats: {
@@ -1049,8 +1049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "66": {
     jaName: "ワンリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 8,
     weight: 195,
     stats: {
@@ -1065,8 +1065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "67": {
     jaName: "ゴーリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 15,
     weight: 705,
     stats: {
@@ -1081,8 +1081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "68": {
     jaName: "カイリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 16,
     weight: 1300,
     stats: {
@@ -1097,8 +1097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "69": {
     jaName: "マダツボミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 7,
     weight: 40,
     stats: {
@@ -1113,8 +1113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "70": {
     jaName: "ウツドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 10,
     weight: 64,
     stats: {
@@ -1129,8 +1129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "71": {
     jaName: "ウツボット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 17,
     weight: 155,
     stats: {
@@ -1145,8 +1145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "72": {
     jaName: "メノクラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
-    typeName1: "water",
-    typeName2: "poison",
+    type1Name: "water",
+    type2Name: "poison",
     height: 9,
     weight: 455,
     stats: {
@@ -1161,8 +1161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "73": {
     jaName: "ドククラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png",
-    typeName1: "water",
-    typeName2: "poison",
+    type1Name: "water",
+    type2Name: "poison",
     height: 16,
     weight: 550,
     stats: {
@@ -1177,8 +1177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "74": {
     jaName: "イシツブテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 4,
     weight: 200,
     stats: {
@@ -1193,8 +1193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "75": {
     jaName: "ゴローン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 10,
     weight: 1050,
     stats: {
@@ -1209,8 +1209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "76": {
     jaName: "ゴローニャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 14,
     weight: 3000,
     stats: {
@@ -1225,8 +1225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "77": {
     jaName: "ポニータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 10,
     weight: 300,
     stats: {
@@ -1241,8 +1241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "78": {
     jaName: "ギャロップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 17,
     weight: 950,
     stats: {
@@ -1257,8 +1257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "79": {
     jaName: "ヤドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 12,
     weight: 360,
     stats: {
@@ -1273,8 +1273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "80": {
     jaName: "ヤドラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 16,
     weight: 785,
     stats: {
@@ -1289,8 +1289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "81": {
     jaName: "コイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
-    typeName1: "electric",
-    typeName2: "steel",
+    type1Name: "electric",
+    type2Name: "steel",
     height: 3,
     weight: 60,
     stats: {
@@ -1305,8 +1305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "82": {
     jaName: "レアコイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
-    typeName1: "electric",
-    typeName2: "steel",
+    type1Name: "electric",
+    type2Name: "steel",
     height: 10,
     weight: 600,
     stats: {
@@ -1321,8 +1321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "83": {
     jaName: "カモネギ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 8,
     weight: 150,
     stats: {
@@ -1337,8 +1337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "84": {
     jaName: "ドードー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 14,
     weight: 392,
     stats: {
@@ -1353,8 +1353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "85": {
     jaName: "ドードリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 18,
     weight: 852,
     stats: {
@@ -1369,8 +1369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "86": {
     jaName: "パウワウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 11,
     weight: 900,
     stats: {
@@ -1385,8 +1385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "87": {
     jaName: "ジュゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png",
-    typeName1: "water",
-    typeName2: "ice",
+    type1Name: "water",
+    type2Name: "ice",
     height: 17,
     weight: 1200,
     stats: {
@@ -1401,8 +1401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "88": {
     jaName: "ベトベター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 9,
     weight: 300,
     stats: {
@@ -1417,8 +1417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "89": {
     jaName: "ベトベトン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 12,
     weight: 300,
     stats: {
@@ -1433,8 +1433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "90": {
     jaName: "シェルダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 40,
     stats: {
@@ -1449,8 +1449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "91": {
     jaName: "パルシェン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
-    typeName1: "water",
-    typeName2: "ice",
+    type1Name: "water",
+    type2Name: "ice",
     height: 15,
     weight: 1325,
     stats: {
@@ -1465,8 +1465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "92": {
     jaName: "ゴース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
-    typeName1: "ghost",
-    typeName2: "poison",
+    type1Name: "ghost",
+    type2Name: "poison",
     height: 13,
     weight: 1,
     stats: {
@@ -1481,8 +1481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "93": {
     jaName: "ゴースト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png",
-    typeName1: "ghost",
-    typeName2: "poison",
+    type1Name: "ghost",
+    type2Name: "poison",
     height: 16,
     weight: 1,
     stats: {
@@ -1497,8 +1497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "94": {
     jaName: "ゲンガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png",
-    typeName1: "ghost",
-    typeName2: "poison",
+    type1Name: "ghost",
+    type2Name: "poison",
     height: 15,
     weight: 405,
     stats: {
@@ -1513,8 +1513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "95": {
     jaName: "イワーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 88,
     weight: 2100,
     stats: {
@@ -1529,8 +1529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "96": {
     jaName: "スリープ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 10,
     weight: 324,
     stats: {
@@ -1545,8 +1545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "97": {
     jaName: "スリーパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 16,
     weight: 756,
     stats: {
@@ -1561,8 +1561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "98": {
     jaName: "クラブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 65,
     stats: {
@@ -1577,8 +1577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "99": {
     jaName: "キングラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 600,
     stats: {
@@ -1593,8 +1593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "100": {
     jaName: "ビリリダマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 5,
     weight: 104,
     stats: {
@@ -1609,8 +1609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "101": {
     jaName: "マルマイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 12,
     weight: 666,
     stats: {
@@ -1625,8 +1625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "102": {
     jaName: "タマタマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png",
-    typeName1: "grass",
-    typeName2: "psychic",
+    type1Name: "grass",
+    type2Name: "psychic",
     height: 4,
     weight: 25,
     stats: {
@@ -1641,8 +1641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "103": {
     jaName: "ナッシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
-    typeName1: "grass",
-    typeName2: "psychic",
+    type1Name: "grass",
+    type2Name: "psychic",
     height: 20,
     weight: 1200,
     stats: {
@@ -1657,8 +1657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "104": {
     jaName: "カラカラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 4,
     weight: 65,
     stats: {
@@ -1673,8 +1673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "105": {
     jaName: "ガラガラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 10,
     weight: 450,
     stats: {
@@ -1689,8 +1689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "106": {
     jaName: "サワムラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 15,
     weight: 498,
     stats: {
@@ -1705,8 +1705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "107": {
     jaName: "エビワラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 14,
     weight: 502,
     stats: {
@@ -1721,8 +1721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "108": {
     jaName: "ベロリンガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 655,
     stats: {
@@ -1737,8 +1737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "109": {
     jaName: "ドガース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 6,
     weight: 10,
     stats: {
@@ -1753,8 +1753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "110": {
     jaName: "マタドガス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 12,
     weight: 95,
     stats: {
@@ -1769,8 +1769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "111": {
     jaName: "サイホーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
-    typeName1: "ground",
-    typeName2: "rock",
+    type1Name: "ground",
+    type2Name: "rock",
     height: 10,
     weight: 1150,
     stats: {
@@ -1785,8 +1785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "112": {
     jaName: "サイドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png",
-    typeName1: "ground",
-    typeName2: "rock",
+    type1Name: "ground",
+    type2Name: "rock",
     height: 19,
     weight: 1200,
     stats: {
@@ -1801,8 +1801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "113": {
     jaName: "ラッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 11,
     weight: 346,
     stats: {
@@ -1817,8 +1817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "114": {
     jaName: "モンジャラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 10,
     weight: 350,
     stats: {
@@ -1833,8 +1833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "115": {
     jaName: "ガルーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 22,
     weight: 800,
     stats: {
@@ -1849,8 +1849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "116": {
     jaName: "タッツー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 80,
     stats: {
@@ -1865,8 +1865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "117": {
     jaName: "シードラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 250,
     stats: {
@@ -1881,8 +1881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "118": {
     jaName: "トサキント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 150,
     stats: {
@@ -1897,8 +1897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "119": {
     jaName: "アズマオウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 390,
     stats: {
@@ -1913,8 +1913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "120": {
     jaName: "ヒトデマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 8,
     weight: 345,
     stats: {
@@ -1929,8 +1929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "121": {
     jaName: "スターミー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 11,
     weight: 800,
     stats: {
@@ -1945,8 +1945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "122": {
     jaName: "バリヤード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 13,
     weight: 545,
     stats: {
@@ -1961,8 +1961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "123": {
     jaName: "ストライク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 15,
     weight: 560,
     stats: {
@@ -1977,8 +1977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "124": {
     jaName: "ルージュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png",
-    typeName1: "ice",
-    typeName2: "psychic",
+    type1Name: "ice",
+    type2Name: "psychic",
     height: 14,
     weight: 406,
     stats: {
@@ -1993,8 +1993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "125": {
     jaName: "エレブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 11,
     weight: 300,
     stats: {
@@ -2009,8 +2009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "126": {
     jaName: "ブーバー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 13,
     weight: 445,
     stats: {
@@ -2025,8 +2025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "127": {
     jaName: "カイロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 15,
     weight: 550,
     stats: {
@@ -2041,8 +2041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "128": {
     jaName: "ケンタロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 14,
     weight: 884,
     stats: {
@@ -2057,8 +2057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "129": {
     jaName: "コイキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 9,
     weight: 100,
     stats: {
@@ -2073,8 +2073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "130": {
     jaName: "ギャラドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 65,
     weight: 2350,
     stats: {
@@ -2089,8 +2089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "131": {
     jaName: "ラプラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png",
-    typeName1: "water",
-    typeName2: "ice",
+    type1Name: "water",
+    type2Name: "ice",
     height: 25,
     weight: 2200,
     stats: {
@@ -2105,8 +2105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "132": {
     jaName: "メタモン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 40,
     stats: {
@@ -2121,8 +2121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "133": {
     jaName: "イーブイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 65,
     stats: {
@@ -2137,8 +2137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "134": {
     jaName: "シャワーズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 10,
     weight: 290,
     stats: {
@@ -2153,8 +2153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "135": {
     jaName: "サンダース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 8,
     weight: 245,
     stats: {
@@ -2169,8 +2169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "136": {
     jaName: "ブースター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 9,
     weight: 250,
     stats: {
@@ -2185,8 +2185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "137": {
     jaName: "ポリゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 8,
     weight: 365,
     stats: {
@@ -2201,8 +2201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "138": {
     jaName: "オムナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 4,
     weight: 75,
     stats: {
@@ -2217,8 +2217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "139": {
     jaName: "オムスター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 10,
     weight: 350,
     stats: {
@@ -2233,8 +2233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "140": {
     jaName: "カブト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 5,
     weight: 115,
     stats: {
@@ -2249,8 +2249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "141": {
     jaName: "カブトプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 13,
     weight: 405,
     stats: {
@@ -2265,8 +2265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "142": {
     jaName: "プテラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
-    typeName1: "rock",
-    typeName2: "flying",
+    type1Name: "rock",
+    type2Name: "flying",
     height: 18,
     weight: 590,
     stats: {
@@ -2281,8 +2281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "143": {
     jaName: "カビゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 21,
     weight: 4600,
     stats: {
@@ -2297,8 +2297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "144": {
     jaName: "フリーザー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
-    typeName1: "ice",
-    typeName2: "flying",
+    type1Name: "ice",
+    type2Name: "flying",
     height: 17,
     weight: 554,
     stats: {
@@ -2313,8 +2313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "145": {
     jaName: "サンダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
-    typeName1: "electric",
-    typeName2: "flying",
+    type1Name: "electric",
+    type2Name: "flying",
     height: 16,
     weight: 526,
     stats: {
@@ -2329,8 +2329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "146": {
     jaName: "ファイヤー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 20,
     weight: 600,
     stats: {
@@ -2345,8 +2345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "147": {
     jaName: "ミニリュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 18,
     weight: 33,
     stats: {
@@ -2361,8 +2361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "148": {
     jaName: "ハクリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 40,
     weight: 165,
     stats: {
@@ -2377,8 +2377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "149": {
     jaName: "カイリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
-    typeName1: "dragon",
-    typeName2: "flying",
+    type1Name: "dragon",
+    type2Name: "flying",
     height: 22,
     weight: 2100,
     stats: {
@@ -2393,8 +2393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "150": {
     jaName: "ミュウツー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 20,
     weight: 1220,
     stats: {
@@ -2409,8 +2409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "151": {
     jaName: "ミュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 4,
     weight: 40,
     stats: {
@@ -2425,8 +2425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "152": {
     jaName: "チコリータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 9,
     weight: 64,
     stats: {
@@ -2441,8 +2441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "153": {
     jaName: "ベイリーフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 12,
     weight: 158,
     stats: {
@@ -2457,8 +2457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "154": {
     jaName: "メガニウム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 18,
     weight: 1005,
     stats: {
@@ -2473,8 +2473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "155": {
     jaName: "ヒノアラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 5,
     weight: 79,
     stats: {
@@ -2489,8 +2489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "156": {
     jaName: "マグマラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 9,
     weight: 190,
     stats: {
@@ -2505,8 +2505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "157": {
     jaName: "バクフーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 17,
     weight: 795,
     stats: {
@@ -2521,8 +2521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "158": {
     jaName: "ワニノコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 95,
     stats: {
@@ -2537,8 +2537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "159": {
     jaName: "アリゲイツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 11,
     weight: 250,
     stats: {
@@ -2553,8 +2553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "160": {
     jaName: "オーダイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 23,
     weight: 888,
     stats: {
@@ -2569,8 +2569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "161": {
     jaName: "オタチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/161.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 8,
     weight: 60,
     stats: {
@@ -2585,8 +2585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "162": {
     jaName: "オオタチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/162.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 18,
     weight: 325,
     stats: {
@@ -2601,8 +2601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "163": {
     jaName: "ホーホー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/163.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 7,
     weight: 212,
     stats: {
@@ -2617,8 +2617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "164": {
     jaName: "ヨルノズク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/164.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 16,
     weight: 408,
     stats: {
@@ -2633,8 +2633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "165": {
     jaName: "レディバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/165.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 10,
     weight: 108,
     stats: {
@@ -2649,8 +2649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "166": {
     jaName: "レディアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/166.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 14,
     weight: 356,
     stats: {
@@ -2665,8 +2665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "167": {
     jaName: "イトマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/167.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 5,
     weight: 85,
     stats: {
@@ -2681,8 +2681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "168": {
     jaName: "アリアドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 11,
     weight: 335,
     stats: {
@@ -2697,8 +2697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "169": {
     jaName: "クロバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png",
-    typeName1: "poison",
-    typeName2: "flying",
+    type1Name: "poison",
+    type2Name: "flying",
     height: 18,
     weight: 750,
     stats: {
@@ -2713,8 +2713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "170": {
     jaName: "チョンチー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/170.png",
-    typeName1: "water",
-    typeName2: "electric",
+    type1Name: "water",
+    type2Name: "electric",
     height: 5,
     weight: 120,
     stats: {
@@ -2729,8 +2729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "171": {
     jaName: "ランターン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/171.png",
-    typeName1: "water",
-    typeName2: "electric",
+    type1Name: "water",
+    type2Name: "electric",
     height: 12,
     weight: 225,
     stats: {
@@ -2745,8 +2745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "172": {
     jaName: "ピチュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 3,
     weight: 20,
     stats: {
@@ -2761,8 +2761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "173": {
     jaName: "ピィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 3,
     weight: 30,
     stats: {
@@ -2777,8 +2777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "174": {
     jaName: "ププリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png",
-    typeName1: "normal",
-    typeName2: "fairy",
+    type1Name: "normal",
+    type2Name: "fairy",
     height: 3,
     weight: 10,
     stats: {
@@ -2793,8 +2793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "175": {
     jaName: "トゲピー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 3,
     weight: 15,
     stats: {
@@ -2809,8 +2809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "176": {
     jaName: "トゲチック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/176.png",
-    typeName1: "fairy",
-    typeName2: "flying",
+    type1Name: "fairy",
+    type2Name: "flying",
     height: 6,
     weight: 32,
     stats: {
@@ -2825,8 +2825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "177": {
     jaName: "ネイティ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 2,
     weight: 20,
     stats: {
@@ -2841,8 +2841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "178": {
     jaName: "ネイティオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 15,
     weight: 150,
     stats: {
@@ -2857,8 +2857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "179": {
     jaName: "メリープ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/179.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 6,
     weight: 78,
     stats: {
@@ -2873,8 +2873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "180": {
     jaName: "モココ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 8,
     weight: 133,
     stats: {
@@ -2889,8 +2889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "181": {
     jaName: "デンリュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 14,
     weight: 615,
     stats: {
@@ -2905,8 +2905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "182": {
     jaName: "キレイハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/182.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 58,
     stats: {
@@ -2921,8 +2921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "183": {
     jaName: "マリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/183.png",
-    typeName1: "water",
-    typeName2: "fairy",
+    type1Name: "water",
+    type2Name: "fairy",
     height: 4,
     weight: 85,
     stats: {
@@ -2937,8 +2937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "184": {
     jaName: "マリルリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png",
-    typeName1: "water",
-    typeName2: "fairy",
+    type1Name: "water",
+    type2Name: "fairy",
     height: 8,
     weight: 285,
     stats: {
@@ -2953,8 +2953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "185": {
     jaName: "ウソッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/185.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 12,
     weight: 380,
     stats: {
@@ -2969,8 +2969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "186": {
     jaName: "ニョロトノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 11,
     weight: 339,
     stats: {
@@ -2985,8 +2985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "187": {
     jaName: "ハネッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/187.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 4,
     weight: 5,
     stats: {
@@ -3001,8 +3001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "188": {
     jaName: "ポポッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/188.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 6,
     weight: 10,
     stats: {
@@ -3017,8 +3017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "189": {
     jaName: "ワタッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/189.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 8,
     weight: 30,
     stats: {
@@ -3033,8 +3033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "190": {
     jaName: "エイパム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/190.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 8,
     weight: 115,
     stats: {
@@ -3049,8 +3049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "191": {
     jaName: "ヒマナッツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/191.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 3,
     weight: 18,
     stats: {
@@ -3065,8 +3065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "192": {
     jaName: "キマワリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/192.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 8,
     weight: 85,
     stats: {
@@ -3081,8 +3081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "193": {
     jaName: "ヤンヤンマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/193.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 12,
     weight: 380,
     stats: {
@@ -3097,8 +3097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "194": {
     jaName: "ウパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/194.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 4,
     weight: 85,
     stats: {
@@ -3113,8 +3113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "195": {
     jaName: "ヌオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 14,
     weight: 750,
     stats: {
@@ -3129,8 +3129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "196": {
     jaName: "エーフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 9,
     weight: 265,
     stats: {
@@ -3145,8 +3145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "197": {
     jaName: "ブラッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 10,
     weight: 270,
     stats: {
@@ -3161,8 +3161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "198": {
     jaName: "ヤミカラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/198.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 5,
     weight: 21,
     stats: {
@@ -3177,8 +3177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "199": {
     jaName: "ヤドキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 20,
     weight: 795,
     stats: {
@@ -3193,8 +3193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "200": {
     jaName: "ムウマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/200.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 7,
     weight: 10,
     stats: {
@@ -3209,8 +3209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "201": {
     jaName: "アンノーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 5,
     weight: 50,
     stats: {
@@ -3225,8 +3225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "202": {
     jaName: "ソーナンス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/202.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 13,
     weight: 285,
     stats: {
@@ -3241,8 +3241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "203": {
     jaName: "キリンリキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/203.png",
-    typeName1: "normal",
-    typeName2: "psychic",
+    type1Name: "normal",
+    type2Name: "psychic",
     height: 15,
     weight: 415,
     stats: {
@@ -3257,8 +3257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "204": {
     jaName: "クヌギダマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/204.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 6,
     weight: 72,
     stats: {
@@ -3273,8 +3273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "205": {
     jaName: "フォレトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png",
-    typeName1: "bug",
-    typeName2: "steel",
+    type1Name: "bug",
+    type2Name: "steel",
     height: 12,
     weight: 1258,
     stats: {
@@ -3289,8 +3289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "206": {
     jaName: "ノコッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 15,
     weight: 140,
     stats: {
@@ -3305,8 +3305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "207": {
     jaName: "グライガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/207.png",
-    typeName1: "ground",
-    typeName2: "flying",
+    type1Name: "ground",
+    type2Name: "flying",
     height: 11,
     weight: 648,
     stats: {
@@ -3321,8 +3321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "208": {
     jaName: "ハガネール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png",
-    typeName1: "steel",
-    typeName2: "ground",
+    type1Name: "steel",
+    type2Name: "ground",
     height: 92,
     weight: 4000,
     stats: {
@@ -3337,8 +3337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "209": {
     jaName: "ブルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 6,
     weight: 78,
     stats: {
@@ -3353,8 +3353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "210": {
     jaName: "グランブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 14,
     weight: 487,
     stats: {
@@ -3369,8 +3369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "211": {
     jaName: "ハリーセン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png",
-    typeName1: "water",
-    typeName2: "poison",
+    type1Name: "water",
+    type2Name: "poison",
     height: 5,
     weight: 39,
     stats: {
@@ -3385,8 +3385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "212": {
     jaName: "ハッサム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png",
-    typeName1: "bug",
-    typeName2: "steel",
+    type1Name: "bug",
+    type2Name: "steel",
     height: 18,
     weight: 1180,
     stats: {
@@ -3401,8 +3401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "213": {
     jaName: "ツボツボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png",
-    typeName1: "bug",
-    typeName2: "rock",
+    type1Name: "bug",
+    type2Name: "rock",
     height: 6,
     weight: 205,
     stats: {
@@ -3417,8 +3417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "214": {
     jaName: "ヘラクロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png",
-    typeName1: "bug",
-    typeName2: "fighting",
+    type1Name: "bug",
+    type2Name: "fighting",
     height: 15,
     weight: 540,
     stats: {
@@ -3433,8 +3433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "215": {
     jaName: "ニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png",
-    typeName1: "dark",
-    typeName2: "ice",
+    type1Name: "dark",
+    type2Name: "ice",
     height: 9,
     weight: 280,
     stats: {
@@ -3449,8 +3449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "216": {
     jaName: "ヒメグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/216.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 88,
     stats: {
@@ -3465,8 +3465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "217": {
     jaName: "リングマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 18,
     weight: 1258,
     stats: {
@@ -3481,8 +3481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "218": {
     jaName: "マグマッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 7,
     weight: 350,
     stats: {
@@ -3497,8 +3497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "219": {
     jaName: "マグカルゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/219.png",
-    typeName1: "fire",
-    typeName2: "rock",
+    type1Name: "fire",
+    type2Name: "rock",
     height: 8,
     weight: 550,
     stats: {
@@ -3513,8 +3513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "220": {
     jaName: "ウリムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png",
-    typeName1: "ice",
-    typeName2: "ground",
+    type1Name: "ice",
+    type2Name: "ground",
     height: 4,
     weight: 65,
     stats: {
@@ -3529,8 +3529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "221": {
     jaName: "イノムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/221.png",
-    typeName1: "ice",
-    typeName2: "ground",
+    type1Name: "ice",
+    type2Name: "ground",
     height: 11,
     weight: 558,
     stats: {
@@ -3545,8 +3545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "222": {
     jaName: "サニーゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/222.png",
-    typeName1: "water",
-    typeName2: "rock",
+    type1Name: "water",
+    type2Name: "rock",
     height: 6,
     weight: 50,
     stats: {
@@ -3561,8 +3561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "223": {
     jaName: "テッポウオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 120,
     stats: {
@@ -3577,8 +3577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "224": {
     jaName: "オクタン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 9,
     weight: 285,
     stats: {
@@ -3593,8 +3593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "225": {
     jaName: "デリバード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png",
-    typeName1: "ice",
-    typeName2: "flying",
+    type1Name: "ice",
+    type2Name: "flying",
     height: 9,
     weight: 160,
     stats: {
@@ -3609,8 +3609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "226": {
     jaName: "マンタイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 21,
     weight: 2200,
     stats: {
@@ -3625,8 +3625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "227": {
     jaName: "エアームド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png",
-    typeName1: "steel",
-    typeName2: "flying",
+    type1Name: "steel",
+    type2Name: "flying",
     height: 17,
     weight: 505,
     stats: {
@@ -3641,8 +3641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "228": {
     jaName: "デルビル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/228.png",
-    typeName1: "dark",
-    typeName2: "fire",
+    type1Name: "dark",
+    type2Name: "fire",
     height: 6,
     weight: 108,
     stats: {
@@ -3657,8 +3657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "229": {
     jaName: "ヘルガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png",
-    typeName1: "dark",
-    typeName2: "fire",
+    type1Name: "dark",
+    type2Name: "fire",
     height: 14,
     weight: 350,
     stats: {
@@ -3673,8 +3673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "230": {
     jaName: "キングドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png",
-    typeName1: "water",
-    typeName2: "dragon",
+    type1Name: "water",
+    type2Name: "dragon",
     height: 18,
     weight: 1520,
     stats: {
@@ -3689,8 +3689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "231": {
     jaName: "ゴマゾウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/231.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 5,
     weight: 335,
     stats: {
@@ -3705,8 +3705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "232": {
     jaName: "ドンファン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 11,
     weight: 1200,
     stats: {
@@ -3721,8 +3721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "233": {
     jaName: "ポリゴン２",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 325,
     stats: {
@@ -3737,8 +3737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "234": {
     jaName: "オドシシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 14,
     weight: 712,
     stats: {
@@ -3753,8 +3753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "235": {
     jaName: "ドーブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/235.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 580,
     stats: {
@@ -3769,8 +3769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "236": {
     jaName: "バルキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 7,
     weight: 210,
     stats: {
@@ -3785,8 +3785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "237": {
     jaName: "カポエラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 14,
     weight: 480,
     stats: {
@@ -3801,8 +3801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "238": {
     jaName: "ムチュール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/238.png",
-    typeName1: "ice",
-    typeName2: "psychic",
+    type1Name: "ice",
+    type2Name: "psychic",
     height: 4,
     weight: 60,
     stats: {
@@ -3817,8 +3817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "239": {
     jaName: "エレキッド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/239.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 6,
     weight: 235,
     stats: {
@@ -3833,8 +3833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "240": {
     jaName: "ブビィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/240.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 7,
     weight: 214,
     stats: {
@@ -3849,8 +3849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "241": {
     jaName: "ミルタンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/241.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 755,
     stats: {
@@ -3865,8 +3865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "242": {
     jaName: "ハピナス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/242.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 15,
     weight: 468,
     stats: {
@@ -3881,8 +3881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "243": {
     jaName: "ライコウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/243.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 19,
     weight: 1780,
     stats: {
@@ -3897,8 +3897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "244": {
     jaName: "エンテイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 21,
     weight: 1980,
     stats: {
@@ -3913,8 +3913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "245": {
     jaName: "スイクン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 20,
     weight: 1870,
     stats: {
@@ -3929,8 +3929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "246": {
     jaName: "ヨーギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 6,
     weight: 720,
     stats: {
@@ -3945,8 +3945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "247": {
     jaName: "サナギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/247.png",
-    typeName1: "rock",
-    typeName2: "ground",
+    type1Name: "rock",
+    type2Name: "ground",
     height: 12,
     weight: 1520,
     stats: {
@@ -3961,8 +3961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "248": {
     jaName: "バンギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png",
-    typeName1: "rock",
-    typeName2: "dark",
+    type1Name: "rock",
+    type2Name: "dark",
     height: 20,
     weight: 2020,
     stats: {
@@ -3977,8 +3977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "249": {
     jaName: "ルギア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 52,
     weight: 2160,
     stats: {
@@ -3993,8 +3993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "250": {
     jaName: "ホウオウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 38,
     weight: 1990,
     stats: {
@@ -4009,8 +4009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "251": {
     jaName: "セレビィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
-    typeName1: "psychic",
-    typeName2: "grass",
+    type1Name: "psychic",
+    type2Name: "grass",
     height: 6,
     weight: 50,
     stats: {
@@ -4025,8 +4025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "252": {
     jaName: "キモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 5,
     weight: 50,
     stats: {
@@ -4041,8 +4041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "253": {
     jaName: "ジュプトル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/253.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 9,
     weight: 216,
     stats: {
@@ -4057,8 +4057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "254": {
     jaName: "ジュカイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/254.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 17,
     weight: 522,
     stats: {
@@ -4073,8 +4073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "255": {
     jaName: "アチャモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 4,
     weight: 25,
     stats: {
@@ -4089,8 +4089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "256": {
     jaName: "ワカシャモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/256.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 9,
     weight: 195,
     stats: {
@@ -4105,8 +4105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "257": {
     jaName: "バシャーモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/257.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 19,
     weight: 520,
     stats: {
@@ -4121,8 +4121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "258": {
     jaName: "ミズゴロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 76,
     stats: {
@@ -4137,8 +4137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "259": {
     jaName: "ヌマクロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/259.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 7,
     weight: 280,
     stats: {
@@ -4153,8 +4153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "260": {
     jaName: "ラグラージ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/260.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 15,
     weight: 819,
     stats: {
@@ -4169,8 +4169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "261": {
     jaName: "ポチエナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/261.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 5,
     weight: 136,
     stats: {
@@ -4185,8 +4185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "262": {
     jaName: "グラエナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/262.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 10,
     weight: 370,
     stats: {
@@ -4201,8 +4201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "263": {
     jaName: "ジグザグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/263.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 175,
     stats: {
@@ -4217,8 +4217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "264": {
     jaName: "マッスグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/264.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 325,
     stats: {
@@ -4233,8 +4233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "265": {
     jaName: "ケムッソ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/265.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 36,
     stats: {
@@ -4249,8 +4249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "266": {
     jaName: "カラサリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/266.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 6,
     weight: 100,
     stats: {
@@ -4265,8 +4265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "267": {
     jaName: "アゲハント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/267.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 10,
     weight: 284,
     stats: {
@@ -4281,8 +4281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "268": {
     jaName: "マユルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/268.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 7,
     weight: 115,
     stats: {
@@ -4297,8 +4297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "269": {
     jaName: "ドクケイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/269.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 12,
     weight: 316,
     stats: {
@@ -4313,8 +4313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "270": {
     jaName: "ハスボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/270.png",
-    typeName1: "water",
-    typeName2: "grass",
+    type1Name: "water",
+    type2Name: "grass",
     height: 5,
     weight: 26,
     stats: {
@@ -4329,8 +4329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "271": {
     jaName: "ハスブレロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png",
-    typeName1: "water",
-    typeName2: "grass",
+    type1Name: "water",
+    type2Name: "grass",
     height: 12,
     weight: 325,
     stats: {
@@ -4345,8 +4345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "272": {
     jaName: "ルンパッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png",
-    typeName1: "water",
-    typeName2: "grass",
+    type1Name: "water",
+    type2Name: "grass",
     height: 15,
     weight: 550,
     stats: {
@@ -4361,8 +4361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "273": {
     jaName: "タネボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/273.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 5,
     weight: 40,
     stats: {
@@ -4377,8 +4377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "274": {
     jaName: "コノハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/274.png",
-    typeName1: "grass",
-    typeName2: "dark",
+    type1Name: "grass",
+    type2Name: "dark",
     height: 10,
     weight: 280,
     stats: {
@@ -4393,8 +4393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "275": {
     jaName: "ダーテング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/275.png",
-    typeName1: "grass",
-    typeName2: "dark",
+    type1Name: "grass",
+    type2Name: "dark",
     height: 13,
     weight: 596,
     stats: {
@@ -4409,8 +4409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "276": {
     jaName: "スバメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/276.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 23,
     stats: {
@@ -4425,8 +4425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "277": {
     jaName: "オオスバメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/277.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 7,
     weight: 198,
     stats: {
@@ -4441,8 +4441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "278": {
     jaName: "キャモメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/278.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 6,
     weight: 95,
     stats: {
@@ -4457,8 +4457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "279": {
     jaName: "ペリッパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 12,
     weight: 280,
     stats: {
@@ -4473,8 +4473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "280": {
     jaName: "ラルトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/280.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 4,
     weight: 66,
     stats: {
@@ -4489,8 +4489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "281": {
     jaName: "キルリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/281.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 8,
     weight: 202,
     stats: {
@@ -4505,8 +4505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "282": {
     jaName: "サーナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 16,
     weight: 484,
     stats: {
@@ -4521,8 +4521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "283": {
     jaName: "アメタマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png",
-    typeName1: "bug",
-    typeName2: "water",
+    type1Name: "bug",
+    type2Name: "water",
     height: 5,
     weight: 17,
     stats: {
@@ -4537,8 +4537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "284": {
     jaName: "アメモース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 8,
     weight: 36,
     stats: {
@@ -4553,8 +4553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "285": {
     jaName: "キノココ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/285.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 45,
     stats: {
@@ -4569,8 +4569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "286": {
     jaName: "キノガッサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png",
-    typeName1: "grass",
-    typeName2: "fighting",
+    type1Name: "grass",
+    type2Name: "fighting",
     height: 12,
     weight: 392,
     stats: {
@@ -4585,8 +4585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "287": {
     jaName: "ナマケロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/287.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 8,
     weight: 240,
     stats: {
@@ -4601,8 +4601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "288": {
     jaName: "ヤルキモノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/288.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 14,
     weight: 465,
     stats: {
@@ -4617,8 +4617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "289": {
     jaName: "ケッキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 20,
     weight: 1305,
     stats: {
@@ -4633,8 +4633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "290": {
     jaName: "ツチニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png",
-    typeName1: "bug",
-    typeName2: "ground",
+    type1Name: "bug",
+    type2Name: "ground",
     height: 5,
     weight: 55,
     stats: {
@@ -4649,8 +4649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "291": {
     jaName: "テッカニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/291.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 8,
     weight: 120,
     stats: {
@@ -4665,8 +4665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "292": {
     jaName: "ヌケニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/292.png",
-    typeName1: "bug",
-    typeName2: "ghost",
+    type1Name: "bug",
+    type2Name: "ghost",
     height: 8,
     weight: 12,
     stats: {
@@ -4681,8 +4681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "293": {
     jaName: "ゴニョニョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/293.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 163,
     stats: {
@@ -4697,8 +4697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "294": {
     jaName: "ドゴーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/294.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 10,
     weight: 405,
     stats: {
@@ -4713,8 +4713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "295": {
     jaName: "バクオング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/295.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 15,
     weight: 840,
     stats: {
@@ -4729,8 +4729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "296": {
     jaName: "マクノシタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 10,
     weight: 864,
     stats: {
@@ -4745,8 +4745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "297": {
     jaName: "ハリテヤマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 23,
     weight: 2538,
     stats: {
@@ -4761,8 +4761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "298": {
     jaName: "ルリリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/298.png",
-    typeName1: "normal",
-    typeName2: "fairy",
+    type1Name: "normal",
+    type2Name: "fairy",
     height: 2,
     weight: 20,
     stats: {
@@ -4777,8 +4777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "299": {
     jaName: "ノズパス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/299.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 10,
     weight: 970,
     stats: {
@@ -4793,8 +4793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "300": {
     jaName: "エネコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/300.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 110,
     stats: {
@@ -4809,8 +4809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "301": {
     jaName: "エネコロロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 11,
     weight: 326,
     stats: {
@@ -4825,8 +4825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "302": {
     jaName: "ヤミラミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png",
-    typeName1: "dark",
-    typeName2: "ghost",
+    type1Name: "dark",
+    type2Name: "ghost",
     height: 5,
     weight: 110,
     stats: {
@@ -4841,8 +4841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "303": {
     jaName: "クチート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/303.png",
-    typeName1: "steel",
-    typeName2: "fairy",
+    type1Name: "steel",
+    type2Name: "fairy",
     height: 6,
     weight: 115,
     stats: {
@@ -4857,8 +4857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "304": {
     jaName: "ココドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/304.png",
-    typeName1: "steel",
-    typeName2: "rock",
+    type1Name: "steel",
+    type2Name: "rock",
     height: 4,
     weight: 600,
     stats: {
@@ -4873,8 +4873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "305": {
     jaName: "コドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/305.png",
-    typeName1: "steel",
-    typeName2: "rock",
+    type1Name: "steel",
+    type2Name: "rock",
     height: 9,
     weight: 1200,
     stats: {
@@ -4889,8 +4889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "306": {
     jaName: "ボスゴドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/306.png",
-    typeName1: "steel",
-    typeName2: "rock",
+    type1Name: "steel",
+    type2Name: "rock",
     height: 21,
     weight: 3600,
     stats: {
@@ -4905,8 +4905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "307": {
     jaName: "アサナン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/307.png",
-    typeName1: "fighting",
-    typeName2: "psychic",
+    type1Name: "fighting",
+    type2Name: "psychic",
     height: 6,
     weight: 112,
     stats: {
@@ -4921,8 +4921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "308": {
     jaName: "チャーレム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png",
-    typeName1: "fighting",
-    typeName2: "psychic",
+    type1Name: "fighting",
+    type2Name: "psychic",
     height: 13,
     weight: 315,
     stats: {
@@ -4937,8 +4937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "309": {
     jaName: "ラクライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 6,
     weight: 152,
     stats: {
@@ -4953,8 +4953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "310": {
     jaName: "ライボルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 15,
     weight: 402,
     stats: {
@@ -4969,8 +4969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "311": {
     jaName: "プラスル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/311.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 4,
     weight: 42,
     stats: {
@@ -4985,8 +4985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "312": {
     jaName: "マイナン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/312.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 4,
     weight: 42,
     stats: {
@@ -5001,8 +5001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "313": {
     jaName: "バルビート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/313.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 7,
     weight: 177,
     stats: {
@@ -5017,8 +5017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "314": {
     jaName: "イルミーゼ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/314.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 6,
     weight: 177,
     stats: {
@@ -5033,8 +5033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "315": {
     jaName: "ロゼリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 3,
     weight: 20,
     stats: {
@@ -5049,8 +5049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "316": {
     jaName: "ゴクリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/316.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 4,
     weight: 103,
     stats: {
@@ -5065,8 +5065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "317": {
     jaName: "マルノーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/317.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 17,
     weight: 800,
     stats: {
@@ -5081,8 +5081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "318": {
     jaName: "キバニア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png",
-    typeName1: "water",
-    typeName2: "dark",
+    type1Name: "water",
+    type2Name: "dark",
     height: 8,
     weight: 208,
     stats: {
@@ -5097,8 +5097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "319": {
     jaName: "サメハダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png",
-    typeName1: "water",
-    typeName2: "dark",
+    type1Name: "water",
+    type2Name: "dark",
     height: 18,
     weight: 888,
     stats: {
@@ -5113,8 +5113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "320": {
     jaName: "ホエルコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/320.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 20,
     weight: 1300,
     stats: {
@@ -5129,8 +5129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "321": {
     jaName: "ホエルオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/321.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 145,
     weight: 3980,
     stats: {
@@ -5145,8 +5145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "322": {
     jaName: "ドンメル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/322.png",
-    typeName1: "fire",
-    typeName2: "ground",
+    type1Name: "fire",
+    type2Name: "ground",
     height: 7,
     weight: 240,
     stats: {
@@ -5161,8 +5161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "323": {
     jaName: "バクーダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png",
-    typeName1: "fire",
-    typeName2: "ground",
+    type1Name: "fire",
+    type2Name: "ground",
     height: 19,
     weight: 2200,
     stats: {
@@ -5177,8 +5177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "324": {
     jaName: "コータス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 5,
     weight: 804,
     stats: {
@@ -5193,8 +5193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "325": {
     jaName: "バネブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/325.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 7,
     weight: 306,
     stats: {
@@ -5209,8 +5209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "326": {
     jaName: "ブーピッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/326.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 9,
     weight: 715,
     stats: {
@@ -5225,8 +5225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "327": {
     jaName: "パッチール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 11,
     weight: 50,
     stats: {
@@ -5241,8 +5241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "328": {
     jaName: "ナックラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/328.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 7,
     weight: 150,
     stats: {
@@ -5257,8 +5257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "329": {
     jaName: "ビブラーバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/329.png",
-    typeName1: "ground",
-    typeName2: "dragon",
+    type1Name: "ground",
+    type2Name: "dragon",
     height: 11,
     weight: 153,
     stats: {
@@ -5273,8 +5273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "330": {
     jaName: "フライゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/330.png",
-    typeName1: "ground",
-    typeName2: "dragon",
+    type1Name: "ground",
+    type2Name: "dragon",
     height: 20,
     weight: 820,
     stats: {
@@ -5289,8 +5289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "331": {
     jaName: "サボネア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/331.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 513,
     stats: {
@@ -5305,8 +5305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "332": {
     jaName: "ノクタス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/332.png",
-    typeName1: "grass",
-    typeName2: "dark",
+    type1Name: "grass",
+    type2Name: "dark",
     height: 13,
     weight: 774,
     stats: {
@@ -5321,8 +5321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "333": {
     jaName: "チルット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 4,
     weight: 12,
     stats: {
@@ -5337,8 +5337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "334": {
     jaName: "チルタリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png",
-    typeName1: "dragon",
-    typeName2: "flying",
+    type1Name: "dragon",
+    type2Name: "flying",
     height: 11,
     weight: 206,
     stats: {
@@ -5353,8 +5353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "335": {
     jaName: "ザングース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/335.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 13,
     weight: 403,
     stats: {
@@ -5369,8 +5369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "336": {
     jaName: "ハブネーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/336.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 27,
     weight: 525,
     stats: {
@@ -5385,8 +5385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "337": {
     jaName: "ルナトーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/337.png",
-    typeName1: "rock",
-    typeName2: "psychic",
+    type1Name: "rock",
+    type2Name: "psychic",
     height: 10,
     weight: 1680,
     stats: {
@@ -5401,8 +5401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "338": {
     jaName: "ソルロック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/338.png",
-    typeName1: "rock",
-    typeName2: "psychic",
+    type1Name: "rock",
+    type2Name: "psychic",
     height: 12,
     weight: 1540,
     stats: {
@@ -5417,8 +5417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "339": {
     jaName: "ドジョッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/339.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 4,
     weight: 19,
     stats: {
@@ -5433,8 +5433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "340": {
     jaName: "ナマズン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 9,
     weight: 236,
     stats: {
@@ -5449,8 +5449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "341": {
     jaName: "ヘイガニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/341.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 115,
     stats: {
@@ -5465,8 +5465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "342": {
     jaName: "シザリガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png",
-    typeName1: "water",
-    typeName2: "dark",
+    type1Name: "water",
+    type2Name: "dark",
     height: 11,
     weight: 328,
     stats: {
@@ -5481,8 +5481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "343": {
     jaName: "ヤジロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/343.png",
-    typeName1: "ground",
-    typeName2: "psychic",
+    type1Name: "ground",
+    type2Name: "psychic",
     height: 5,
     weight: 215,
     stats: {
@@ -5497,8 +5497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "344": {
     jaName: "ネンドール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/344.png",
-    typeName1: "ground",
-    typeName2: "psychic",
+    type1Name: "ground",
+    type2Name: "psychic",
     height: 15,
     weight: 1080,
     stats: {
@@ -5513,8 +5513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "345": {
     jaName: "リリーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/345.png",
-    typeName1: "rock",
-    typeName2: "grass",
+    type1Name: "rock",
+    type2Name: "grass",
     height: 10,
     weight: 238,
     stats: {
@@ -5529,8 +5529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "346": {
     jaName: "ユレイドル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/346.png",
-    typeName1: "rock",
-    typeName2: "grass",
+    type1Name: "rock",
+    type2Name: "grass",
     height: 15,
     weight: 604,
     stats: {
@@ -5545,8 +5545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "347": {
     jaName: "アノプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/347.png",
-    typeName1: "rock",
-    typeName2: "bug",
+    type1Name: "rock",
+    type2Name: "bug",
     height: 7,
     weight: 125,
     stats: {
@@ -5561,8 +5561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "348": {
     jaName: "アーマルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/348.png",
-    typeName1: "rock",
-    typeName2: "bug",
+    type1Name: "rock",
+    type2Name: "bug",
     height: 15,
     weight: 682,
     stats: {
@@ -5577,8 +5577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "349": {
     jaName: "ヒンバス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/349.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 74,
     stats: {
@@ -5593,8 +5593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "350": {
     jaName: "ミロカロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 62,
     weight: 1620,
     stats: {
@@ -5609,8 +5609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "351": {
     jaName: "ポワルン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 8,
     stats: {
@@ -5625,8 +5625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "352": {
     jaName: "カクレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/352.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 10,
     weight: 220,
     stats: {
@@ -5641,8 +5641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "353": {
     jaName: "カゲボウズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/353.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 6,
     weight: 23,
     stats: {
@@ -5657,8 +5657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "354": {
     jaName: "ジュペッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/354.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 11,
     weight: 125,
     stats: {
@@ -5673,8 +5673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "355": {
     jaName: "ヨマワル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/355.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 8,
     weight: 150,
     stats: {
@@ -5689,8 +5689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "356": {
     jaName: "サマヨール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/356.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 16,
     weight: 306,
     stats: {
@@ -5705,8 +5705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "357": {
     jaName: "トロピウス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/357.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 20,
     weight: 1000,
     stats: {
@@ -5721,8 +5721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "358": {
     jaName: "チリーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/358.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 10,
     stats: {
@@ -5737,8 +5737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "359": {
     jaName: "アブソル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/359.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 12,
     weight: 470,
     stats: {
@@ -5753,8 +5753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "360": {
     jaName: "ソーナノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/360.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 140,
     stats: {
@@ -5769,8 +5769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "361": {
     jaName: "ユキワラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/361.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 7,
     weight: 168,
     stats: {
@@ -5785,8 +5785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "362": {
     jaName: "オニゴーリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/362.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 15,
     weight: 2565,
     stats: {
@@ -5801,8 +5801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "363": {
     jaName: "タマザラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png",
-    typeName1: "ice",
-    typeName2: "water",
+    type1Name: "ice",
+    type2Name: "water",
     height: 8,
     weight: 395,
     stats: {
@@ -5817,8 +5817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "364": {
     jaName: "トドグラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png",
-    typeName1: "ice",
-    typeName2: "water",
+    type1Name: "ice",
+    type2Name: "water",
     height: 11,
     weight: 876,
     stats: {
@@ -5833,8 +5833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "365": {
     jaName: "トドゼルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/365.png",
-    typeName1: "ice",
-    typeName2: "water",
+    type1Name: "ice",
+    type2Name: "water",
     height: 14,
     weight: 1506,
     stats: {
@@ -5849,8 +5849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "366": {
     jaName: "パールル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/366.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 525,
     stats: {
@@ -5865,8 +5865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "367": {
     jaName: "ハンテール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 17,
     weight: 270,
     stats: {
@@ -5881,8 +5881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "368": {
     jaName: "サクラビス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/368.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 18,
     weight: 226,
     stats: {
@@ -5897,8 +5897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "369": {
     jaName: "ジーランス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/369.png",
-    typeName1: "water",
-    typeName2: "rock",
+    type1Name: "water",
+    type2Name: "rock",
     height: 10,
     weight: 234,
     stats: {
@@ -5913,8 +5913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "370": {
     jaName: "ラブカス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 87,
     stats: {
@@ -5929,8 +5929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "371": {
     jaName: "タツベイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/371.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 6,
     weight: 421,
     stats: {
@@ -5945,8 +5945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "372": {
     jaName: "コモルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/372.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 11,
     weight: 1105,
     stats: {
@@ -5961,8 +5961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "373": {
     jaName: "ボーマンダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
-    typeName1: "dragon",
-    typeName2: "flying",
+    type1Name: "dragon",
+    type2Name: "flying",
     height: 15,
     weight: 1026,
     stats: {
@@ -5977,8 +5977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "374": {
     jaName: "ダンバル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 6,
     weight: 952,
     stats: {
@@ -5993,8 +5993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "375": {
     jaName: "メタング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/375.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 12,
     weight: 2025,
     stats: {
@@ -6009,8 +6009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "376": {
     jaName: "メタグロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/376.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 16,
     weight: 5500,
     stats: {
@@ -6025,8 +6025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "377": {
     jaName: "レジロック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/377.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 17,
     weight: 2300,
     stats: {
@@ -6041,8 +6041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "378": {
     jaName: "レジアイス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/378.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 18,
     weight: 1750,
     stats: {
@@ -6057,8 +6057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "379": {
     jaName: "レジスチル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/379.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 19,
     weight: 2050,
     stats: {
@@ -6073,8 +6073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "380": {
     jaName: "ラティアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/380.png",
-    typeName1: "dragon",
-    typeName2: "psychic",
+    type1Name: "dragon",
+    type2Name: "psychic",
     height: 14,
     weight: 400,
     stats: {
@@ -6089,8 +6089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "381": {
     jaName: "ラティオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/381.png",
-    typeName1: "dragon",
-    typeName2: "psychic",
+    type1Name: "dragon",
+    type2Name: "psychic",
     height: 20,
     weight: 600,
     stats: {
@@ -6105,8 +6105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "382": {
     jaName: "カイオーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 45,
     weight: 3520,
     stats: {
@@ -6121,8 +6121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "383": {
     jaName: "グラードン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/383.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 35,
     weight: 9500,
     stats: {
@@ -6137,8 +6137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "384": {
     jaName: "レックウザ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png",
-    typeName1: "dragon",
-    typeName2: "flying",
+    type1Name: "dragon",
+    type2Name: "flying",
     height: 70,
     weight: 2065,
     stats: {
@@ -6153,8 +6153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "385": {
     jaName: "ジラーチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 3,
     weight: 11,
     stats: {
@@ -6169,8 +6169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "386": {
     jaName: "デオキシス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 17,
     weight: 608,
     stats: {
@@ -6185,8 +6185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "387": {
     jaName: "ナエトル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 102,
     stats: {
@@ -6201,8 +6201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "388": {
     jaName: "ハヤシガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 11,
     weight: 970,
     stats: {
@@ -6217,8 +6217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "389": {
     jaName: "ドダイトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png",
-    typeName1: "grass",
-    typeName2: "ground",
+    type1Name: "grass",
+    type2Name: "ground",
     height: 22,
     weight: 3100,
     stats: {
@@ -6233,8 +6233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "390": {
     jaName: "ヒコザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 5,
     weight: 62,
     stats: {
@@ -6249,8 +6249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "391": {
     jaName: "モウカザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 9,
     weight: 220,
     stats: {
@@ -6265,8 +6265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "392": {
     jaName: "ゴウカザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 12,
     weight: 550,
     stats: {
@@ -6281,8 +6281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "393": {
     jaName: "ポッチャマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 52,
     stats: {
@@ -6297,8 +6297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "394": {
     jaName: "ポッタイシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/394.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 8,
     weight: 230,
     stats: {
@@ -6313,8 +6313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "395": {
     jaName: "エンペルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png",
-    typeName1: "water",
-    typeName2: "steel",
+    type1Name: "water",
+    type2Name: "steel",
     height: 17,
     weight: 845,
     stats: {
@@ -6329,8 +6329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "396": {
     jaName: "ムックル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/396.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 20,
     stats: {
@@ -6345,8 +6345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "397": {
     jaName: "ムクバード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 6,
     weight: 155,
     stats: {
@@ -6361,8 +6361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "398": {
     jaName: "ムクホーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 12,
     weight: 249,
     stats: {
@@ -6377,8 +6377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "399": {
     jaName: "ビッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/399.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 200,
     stats: {
@@ -6393,8 +6393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "400": {
     jaName: "ビーダル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/400.png",
-    typeName1: "normal",
-    typeName2: "water",
+    type1Name: "normal",
+    type2Name: "water",
     height: 10,
     weight: 315,
     stats: {
@@ -6409,8 +6409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "401": {
     jaName: "コロボーシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/401.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 22,
     stats: {
@@ -6425,8 +6425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "402": {
     jaName: "コロトック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/402.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 10,
     weight: 255,
     stats: {
@@ -6441,8 +6441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "403": {
     jaName: "コリンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/403.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 5,
     weight: 95,
     stats: {
@@ -6457,8 +6457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "404": {
     jaName: "ルクシオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 9,
     weight: 305,
     stats: {
@@ -6473,8 +6473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "405": {
     jaName: "レントラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 14,
     weight: 420,
     stats: {
@@ -6489,8 +6489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "406": {
     jaName: "スボミー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/406.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 2,
     weight: 12,
     stats: {
@@ -6505,8 +6505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "407": {
     jaName: "ロズレイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 9,
     weight: 145,
     stats: {
@@ -6521,8 +6521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "408": {
     jaName: "ズガイドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/408.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 9,
     weight: 315,
     stats: {
@@ -6537,8 +6537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "409": {
     jaName: "ラムパルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/409.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 16,
     weight: 1025,
     stats: {
@@ -6553,8 +6553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "410": {
     jaName: "タテトプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/410.png",
-    typeName1: "rock",
-    typeName2: "steel",
+    type1Name: "rock",
+    type2Name: "steel",
     height: 5,
     weight: 570,
     stats: {
@@ -6569,8 +6569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "411": {
     jaName: "トリデプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/411.png",
-    typeName1: "rock",
-    typeName2: "steel",
+    type1Name: "rock",
+    type2Name: "steel",
     height: 13,
     weight: 1495,
     stats: {
@@ -6585,8 +6585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "412": {
     jaName: "ミノムッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 2,
     weight: 34,
     stats: {
@@ -6601,8 +6601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "413": {
     jaName: "ミノマダム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/413.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 5,
     weight: 65,
     stats: {
@@ -6617,8 +6617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "414": {
     jaName: "ガーメイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/414.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 9,
     weight: 233,
     stats: {
@@ -6633,8 +6633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "415": {
     jaName: "ミツハニー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/415.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 3,
     weight: 55,
     stats: {
@@ -6649,8 +6649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "416": {
     jaName: "ビークイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/416.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 12,
     weight: 385,
     stats: {
@@ -6665,8 +6665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "417": {
     jaName: "パチリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/417.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 4,
     weight: 39,
     stats: {
@@ -6681,8 +6681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "418": {
     jaName: "ブイゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 7,
     weight: 295,
     stats: {
@@ -6697,8 +6697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "419": {
     jaName: "フローゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 11,
     weight: 335,
     stats: {
@@ -6713,8 +6713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "420": {
     jaName: "チェリンボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/420.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 33,
     stats: {
@@ -6729,8 +6729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "421": {
     jaName: "チェリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/421.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 5,
     weight: 93,
     stats: {
@@ -6745,8 +6745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "422": {
     jaName: "カラナクシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/422.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 63,
     stats: {
@@ -6761,8 +6761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "423": {
     jaName: "トリトドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/423.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 9,
     weight: 299,
     stats: {
@@ -6777,8 +6777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "424": {
     jaName: "エテボース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/424.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 203,
     stats: {
@@ -6793,8 +6793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "425": {
     jaName: "フワンテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/425.png",
-    typeName1: "ghost",
-    typeName2: "flying",
+    type1Name: "ghost",
+    type2Name: "flying",
     height: 4,
     weight: 12,
     stats: {
@@ -6809,8 +6809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "426": {
     jaName: "フワライド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/426.png",
-    typeName1: "ghost",
-    typeName2: "flying",
+    type1Name: "ghost",
+    type2Name: "flying",
     height: 12,
     weight: 150,
     stats: {
@@ -6825,8 +6825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "427": {
     jaName: "ミミロル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 55,
     stats: {
@@ -6841,8 +6841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "428": {
     jaName: "ミミロップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 333,
     stats: {
@@ -6857,8 +6857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "429": {
     jaName: "ムウマージ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/429.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 9,
     weight: 44,
     stats: {
@@ -6873,8 +6873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "430": {
     jaName: "ドンカラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/430.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 9,
     weight: 273,
     stats: {
@@ -6889,8 +6889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "431": {
     jaName: "ニャルマー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/431.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 39,
     stats: {
@@ -6905,8 +6905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "432": {
     jaName: "ブニャット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/432.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 10,
     weight: 438,
     stats: {
@@ -6921,8 +6921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "433": {
     jaName: "リーシャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/433.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 2,
     weight: 6,
     stats: {
@@ -6937,8 +6937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "434": {
     jaName: "スカンプー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/434.png",
-    typeName1: "poison",
-    typeName2: "dark",
+    type1Name: "poison",
+    type2Name: "dark",
     height: 4,
     weight: 192,
     stats: {
@@ -6953,8 +6953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "435": {
     jaName: "スカタンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/435.png",
-    typeName1: "poison",
-    typeName2: "dark",
+    type1Name: "poison",
+    type2Name: "dark",
     height: 10,
     weight: 380,
     stats: {
@@ -6969,8 +6969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "436": {
     jaName: "ドーミラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/436.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 5,
     weight: 605,
     stats: {
@@ -6985,8 +6985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "437": {
     jaName: "ドータクン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/437.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 13,
     weight: 1870,
     stats: {
@@ -7001,8 +7001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "438": {
     jaName: "ウソハチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/438.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 5,
     weight: 150,
     stats: {
@@ -7017,8 +7017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "439": {
     jaName: "マネネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/439.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 6,
     weight: 130,
     stats: {
@@ -7033,8 +7033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "440": {
     jaName: "ピンプク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/440.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 244,
     stats: {
@@ -7049,8 +7049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "441": {
     jaName: "ペラップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/441.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 5,
     weight: 19,
     stats: {
@@ -7065,8 +7065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "442": {
     jaName: "ミカルゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png",
-    typeName1: "ghost",
-    typeName2: "dark",
+    type1Name: "ghost",
+    type2Name: "dark",
     height: 10,
     weight: 1080,
     stats: {
@@ -7081,8 +7081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "443": {
     jaName: "フカマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/443.png",
-    typeName1: "dragon",
-    typeName2: "ground",
+    type1Name: "dragon",
+    type2Name: "ground",
     height: 7,
     weight: 205,
     stats: {
@@ -7097,8 +7097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "444": {
     jaName: "ガバイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/444.png",
-    typeName1: "dragon",
-    typeName2: "ground",
+    type1Name: "dragon",
+    type2Name: "ground",
     height: 14,
     weight: 560,
     stats: {
@@ -7113,8 +7113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "445": {
     jaName: "ガブリアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
-    typeName1: "dragon",
-    typeName2: "ground",
+    type1Name: "dragon",
+    type2Name: "ground",
     height: 19,
     weight: 950,
     stats: {
@@ -7129,8 +7129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "446": {
     jaName: "ゴンベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 1050,
     stats: {
@@ -7145,8 +7145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "447": {
     jaName: "リオル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/447.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 7,
     weight: 202,
     stats: {
@@ -7161,8 +7161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "448": {
     jaName: "ルカリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png",
-    typeName1: "fighting",
-    typeName2: "steel",
+    type1Name: "fighting",
+    type2Name: "steel",
     height: 12,
     weight: 540,
     stats: {
@@ -7177,8 +7177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "449": {
     jaName: "ヒポポタス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 8,
     weight: 495,
     stats: {
@@ -7193,8 +7193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "450": {
     jaName: "カバルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 20,
     weight: 3000,
     stats: {
@@ -7209,8 +7209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "451": {
     jaName: "スコルピ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/451.png",
-    typeName1: "poison",
-    typeName2: "bug",
+    type1Name: "poison",
+    type2Name: "bug",
     height: 8,
     weight: 120,
     stats: {
@@ -7225,8 +7225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "452": {
     jaName: "ドラピオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/452.png",
-    typeName1: "poison",
-    typeName2: "dark",
+    type1Name: "poison",
+    type2Name: "dark",
     height: 13,
     weight: 615,
     stats: {
@@ -7241,8 +7241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "453": {
     jaName: "グレッグル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/453.png",
-    typeName1: "poison",
-    typeName2: "fighting",
+    type1Name: "poison",
+    type2Name: "fighting",
     height: 7,
     weight: 230,
     stats: {
@@ -7257,8 +7257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "454": {
     jaName: "ドクロッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png",
-    typeName1: "poison",
-    typeName2: "fighting",
+    type1Name: "poison",
+    type2Name: "fighting",
     height: 13,
     weight: 444,
     stats: {
@@ -7273,8 +7273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "455": {
     jaName: "マスキッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/455.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 14,
     weight: 270,
     stats: {
@@ -7289,8 +7289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "456": {
     jaName: "ケイコウオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/456.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 70,
     stats: {
@@ -7305,8 +7305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "457": {
     jaName: "ネオラント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/457.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 240,
     stats: {
@@ -7321,8 +7321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "458": {
     jaName: "タマンタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/458.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 10,
     weight: 650,
     stats: {
@@ -7337,8 +7337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "459": {
     jaName: "ユキカブリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/459.png",
-    typeName1: "grass",
-    typeName2: "ice",
+    type1Name: "grass",
+    type2Name: "ice",
     height: 10,
     weight: 505,
     stats: {
@@ -7353,8 +7353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "460": {
     jaName: "ユキノオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png",
-    typeName1: "grass",
-    typeName2: "ice",
+    type1Name: "grass",
+    type2Name: "ice",
     height: 22,
     weight: 1355,
     stats: {
@@ -7369,8 +7369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "461": {
     jaName: "マニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/461.png",
-    typeName1: "dark",
-    typeName2: "ice",
+    type1Name: "dark",
+    type2Name: "ice",
     height: 11,
     weight: 340,
     stats: {
@@ -7385,8 +7385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "462": {
     jaName: "ジバコイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png",
-    typeName1: "electric",
-    typeName2: "steel",
+    type1Name: "electric",
+    type2Name: "steel",
     height: 12,
     weight: 1800,
     stats: {
@@ -7401,8 +7401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "463": {
     jaName: "ベロベルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/463.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 17,
     weight: 1400,
     stats: {
@@ -7417,8 +7417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "464": {
     jaName: "ドサイドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png",
-    typeName1: "ground",
-    typeName2: "rock",
+    type1Name: "ground",
+    type2Name: "rock",
     height: 24,
     weight: 2828,
     stats: {
@@ -7433,8 +7433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "465": {
     jaName: "モジャンボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/465.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 20,
     weight: 1286,
     stats: {
@@ -7449,8 +7449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "466": {
     jaName: "エレキブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/466.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 18,
     weight: 1386,
     stats: {
@@ -7465,8 +7465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "467": {
     jaName: "ブーバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 16,
     weight: 680,
     stats: {
@@ -7481,8 +7481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "468": {
     jaName: "トゲキッス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/468.png",
-    typeName1: "fairy",
-    typeName2: "flying",
+    type1Name: "fairy",
+    type2Name: "flying",
     height: 15,
     weight: 380,
     stats: {
@@ -7497,8 +7497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "469": {
     jaName: "メガヤンマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 19,
     weight: 515,
     stats: {
@@ -7513,8 +7513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "470": {
     jaName: "リーフィア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 10,
     weight: 255,
     stats: {
@@ -7529,8 +7529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "471": {
     jaName: "グレイシア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/471.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 8,
     weight: 259,
     stats: {
@@ -7545,8 +7545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "472": {
     jaName: "グライオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/472.png",
-    typeName1: "ground",
-    typeName2: "flying",
+    type1Name: "ground",
+    type2Name: "flying",
     height: 20,
     weight: 425,
     stats: {
@@ -7561,8 +7561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "473": {
     jaName: "マンムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/473.png",
-    typeName1: "ice",
-    typeName2: "ground",
+    type1Name: "ice",
+    type2Name: "ground",
     height: 25,
     weight: 2910,
     stats: {
@@ -7577,8 +7577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "474": {
     jaName: "ポリゴンＺ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/474.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 9,
     weight: 340,
     stats: {
@@ -7593,8 +7593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "475": {
     jaName: "エルレイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png",
-    typeName1: "psychic",
-    typeName2: "fighting",
+    type1Name: "psychic",
+    type2Name: "fighting",
     height: 16,
     weight: 520,
     stats: {
@@ -7609,8 +7609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "476": {
     jaName: "ダイノーズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/476.png",
-    typeName1: "rock",
-    typeName2: "steel",
+    type1Name: "rock",
+    type2Name: "steel",
     height: 14,
     weight: 3400,
     stats: {
@@ -7625,8 +7625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "477": {
     jaName: "ヨノワール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/477.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 22,
     weight: 1066,
     stats: {
@@ -7641,8 +7641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "478": {
     jaName: "ユキメノコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/478.png",
-    typeName1: "ice",
-    typeName2: "ghost",
+    type1Name: "ice",
+    type2Name: "ghost",
     height: 13,
     weight: 266,
     stats: {
@@ -7657,8 +7657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "479": {
     jaName: "ロトム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/479.png",
-    typeName1: "electric",
-    typeName2: "ghost",
+    type1Name: "electric",
+    type2Name: "ghost",
     height: 3,
     weight: 3,
     stats: {
@@ -7673,8 +7673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "480": {
     jaName: "ユクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/480.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 3,
     weight: 3,
     stats: {
@@ -7689,8 +7689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "481": {
     jaName: "エムリット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/481.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 3,
     weight: 3,
     stats: {
@@ -7705,8 +7705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "482": {
     jaName: "アグノム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/482.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 3,
     weight: 3,
     stats: {
@@ -7721,8 +7721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "483": {
     jaName: "ディアルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
-    typeName1: "steel",
-    typeName2: "dragon",
+    type1Name: "steel",
+    type2Name: "dragon",
     height: 54,
     weight: 6830,
     stats: {
@@ -7737,8 +7737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "484": {
     jaName: "パルキア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/484.png",
-    typeName1: "water",
-    typeName2: "dragon",
+    type1Name: "water",
+    type2Name: "dragon",
     height: 42,
     weight: 3360,
     stats: {
@@ -7753,8 +7753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "485": {
     jaName: "ヒードラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png",
-    typeName1: "fire",
-    typeName2: "steel",
+    type1Name: "fire",
+    type2Name: "steel",
     height: 17,
     weight: 4300,
     stats: {
@@ -7769,8 +7769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "486": {
     jaName: "レジギガス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/486.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 37,
     weight: 4200,
     stats: {
@@ -7785,8 +7785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "487": {
     jaName: "ギラティナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png",
-    typeName1: "ghost",
-    typeName2: "dragon",
+    type1Name: "ghost",
+    type2Name: "dragon",
     height: 45,
     weight: 7500,
     stats: {
@@ -7801,8 +7801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "488": {
     jaName: "クレセリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 15,
     weight: 856,
     stats: {
@@ -7817,8 +7817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "489": {
     jaName: "フィオネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 31,
     stats: {
@@ -7833,8 +7833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "490": {
     jaName: "マナフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/490.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 14,
     stats: {
@@ -7849,8 +7849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "491": {
     jaName: "ダークライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 15,
     weight: 505,
     stats: {
@@ -7865,8 +7865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "492": {
     jaName: "シェイミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/492.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 2,
     weight: 21,
     stats: {
@@ -7881,8 +7881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "493": {
     jaName: "アルセウス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 32,
     weight: 3200,
     stats: {
@@ -7897,8 +7897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "494": {
     jaName: "ビクティニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
-    typeName1: "psychic",
-    typeName2: "fire",
+    type1Name: "psychic",
+    type2Name: "fire",
     height: 4,
     weight: 40,
     stats: {
@@ -7913,8 +7913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "495": {
     jaName: "ツタージャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 6,
     weight: 81,
     stats: {
@@ -7929,8 +7929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "496": {
     jaName: "ジャノビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/496.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 8,
     weight: 160,
     stats: {
@@ -7945,8 +7945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "497": {
     jaName: "ジャローダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/497.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 33,
     weight: 630,
     stats: {
@@ -7961,8 +7961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "498": {
     jaName: "ポカブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/498.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 5,
     weight: 99,
     stats: {
@@ -7977,8 +7977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "499": {
     jaName: "チャオブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/499.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 10,
     weight: 555,
     stats: {
@@ -7993,8 +7993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "500": {
     jaName: "エンブオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/500.png",
-    typeName1: "fire",
-    typeName2: "fighting",
+    type1Name: "fire",
+    type2Name: "fighting",
     height: 16,
     weight: 1500,
     stats: {
@@ -8009,8 +8009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "501": {
     jaName: "ミジュマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 59,
     stats: {
@@ -8025,8 +8025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "502": {
     jaName: "フタチマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/502.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 8,
     weight: 245,
     stats: {
@@ -8041,8 +8041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "503": {
     jaName: "ダイケンキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/503.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 15,
     weight: 946,
     stats: {
@@ -8057,8 +8057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "504": {
     jaName: "ミネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/504.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 116,
     stats: {
@@ -8073,8 +8073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "505": {
     jaName: "ミルホッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 11,
     weight: 270,
     stats: {
@@ -8089,8 +8089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "506": {
     jaName: "ヨーテリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/506.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 41,
     stats: {
@@ -8105,8 +8105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "507": {
     jaName: "ハーデリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 9,
     weight: 147,
     stats: {
@@ -8121,8 +8121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "508": {
     jaName: "ムーランド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/508.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 610,
     stats: {
@@ -8137,8 +8137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "509": {
     jaName: "チョロネコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/509.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 4,
     weight: 101,
     stats: {
@@ -8153,8 +8153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "510": {
     jaName: "レパルダス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/510.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 11,
     weight: 375,
     stats: {
@@ -8169,8 +8169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "511": {
     jaName: "ヤナップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/511.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 6,
     weight: 105,
     stats: {
@@ -8185,8 +8185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "512": {
     jaName: "ヤナッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 11,
     weight: 305,
     stats: {
@@ -8201,8 +8201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "513": {
     jaName: "バオップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/513.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 110,
     stats: {
@@ -8217,8 +8217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "514": {
     jaName: "バオッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 10,
     weight: 280,
     stats: {
@@ -8233,8 +8233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "515": {
     jaName: "ヒヤップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/515.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 135,
     stats: {
@@ -8249,8 +8249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "516": {
     jaName: "ヒヤッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 10,
     weight: 290,
     stats: {
@@ -8265,8 +8265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "517": {
     jaName: "ムンナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/517.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 233,
     stats: {
@@ -8281,8 +8281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "518": {
     jaName: "ムシャーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 11,
     weight: 605,
     stats: {
@@ -8297,8 +8297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "519": {
     jaName: "マメパト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/519.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 21,
     stats: {
@@ -8313,8 +8313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "520": {
     jaName: "ハトーボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/520.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 6,
     weight: 150,
     stats: {
@@ -8329,8 +8329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "521": {
     jaName: "ケンホロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/521.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 12,
     weight: 290,
     stats: {
@@ -8345,8 +8345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "522": {
     jaName: "シママ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/522.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 8,
     weight: 298,
     stats: {
@@ -8361,8 +8361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "523": {
     jaName: "ゼブライカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/523.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 16,
     weight: 795,
     stats: {
@@ -8377,8 +8377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "524": {
     jaName: "ダンゴロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/524.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 4,
     weight: 180,
     stats: {
@@ -8393,8 +8393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "525": {
     jaName: "ガントル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/525.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 9,
     weight: 1020,
     stats: {
@@ -8409,8 +8409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "526": {
     jaName: "ギガイアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/526.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 17,
     weight: 2600,
     stats: {
@@ -8425,8 +8425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "527": {
     jaName: "コロモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/527.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 4,
     weight: 21,
     stats: {
@@ -8441,8 +8441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "528": {
     jaName: "ココロモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/528.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 9,
     weight: 105,
     stats: {
@@ -8457,8 +8457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "529": {
     jaName: "モグリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/529.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 3,
     weight: 85,
     stats: {
@@ -8473,8 +8473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "530": {
     jaName: "ドリュウズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png",
-    typeName1: "ground",
-    typeName2: "steel",
+    type1Name: "ground",
+    type2Name: "steel",
     height: 7,
     weight: 404,
     stats: {
@@ -8489,8 +8489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "531": {
     jaName: "タブンネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/531.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 11,
     weight: 310,
     stats: {
@@ -8505,8 +8505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "532": {
     jaName: "ドッコラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 6,
     weight: 125,
     stats: {
@@ -8521,8 +8521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "533": {
     jaName: "ドテッコツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/533.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 12,
     weight: 400,
     stats: {
@@ -8537,8 +8537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "534": {
     jaName: "ローブシン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 14,
     weight: 870,
     stats: {
@@ -8553,8 +8553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "535": {
     jaName: "オタマロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/535.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 45,
     stats: {
@@ -8569,8 +8569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "536": {
     jaName: "ガマガル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 8,
     weight: 170,
     stats: {
@@ -8585,8 +8585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "537": {
     jaName: "ガマゲロゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/537.png",
-    typeName1: "water",
-    typeName2: "ground",
+    type1Name: "water",
+    type2Name: "ground",
     height: 15,
     weight: 620,
     stats: {
@@ -8601,8 +8601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "538": {
     jaName: "ナゲキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/538.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 13,
     weight: 555,
     stats: {
@@ -8617,8 +8617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "539": {
     jaName: "ダゲキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 14,
     weight: 510,
     stats: {
@@ -8633,8 +8633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "540": {
     jaName: "クルミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/540.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 3,
     weight: 25,
     stats: {
@@ -8649,8 +8649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "541": {
     jaName: "クルマユ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/541.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 5,
     weight: 73,
     stats: {
@@ -8665,8 +8665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "542": {
     jaName: "ハハコモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/542.png",
-    typeName1: "bug",
-    typeName2: "grass",
+    type1Name: "bug",
+    type2Name: "grass",
     height: 12,
     weight: 205,
     stats: {
@@ -8681,8 +8681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "543": {
     jaName: "フシデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/543.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 4,
     weight: 53,
     stats: {
@@ -8697,8 +8697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "544": {
     jaName: "ホイーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/544.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 12,
     weight: 585,
     stats: {
@@ -8713,8 +8713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "545": {
     jaName: "ペンドラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/545.png",
-    typeName1: "bug",
-    typeName2: "poison",
+    type1Name: "bug",
+    type2Name: "poison",
     height: 25,
     weight: 2005,
     stats: {
@@ -8729,8 +8729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "546": {
     jaName: "モンメン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/546.png",
-    typeName1: "grass",
-    typeName2: "fairy",
+    type1Name: "grass",
+    type2Name: "fairy",
     height: 3,
     weight: 6,
     stats: {
@@ -8745,8 +8745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "547": {
     jaName: "エルフーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/547.png",
-    typeName1: "grass",
-    typeName2: "fairy",
+    type1Name: "grass",
+    type2Name: "fairy",
     height: 7,
     weight: 66,
     stats: {
@@ -8761,8 +8761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "548": {
     jaName: "チュリネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/548.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 5,
     weight: 66,
     stats: {
@@ -8777,8 +8777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "549": {
     jaName: "ドレディア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/549.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 11,
     weight: 163,
     stats: {
@@ -8793,8 +8793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "550": {
     jaName: "バスラオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/550.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 10,
     weight: 180,
     stats: {
@@ -8809,8 +8809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "551": {
     jaName: "メグロコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/551.png",
-    typeName1: "ground",
-    typeName2: "dark",
+    type1Name: "ground",
+    type2Name: "dark",
     height: 7,
     weight: 152,
     stats: {
@@ -8825,8 +8825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "552": {
     jaName: "ワルビル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/552.png",
-    typeName1: "ground",
-    typeName2: "dark",
+    type1Name: "ground",
+    type2Name: "dark",
     height: 10,
     weight: 334,
     stats: {
@@ -8841,8 +8841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "553": {
     jaName: "ワルビアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png",
-    typeName1: "ground",
-    typeName2: "dark",
+    type1Name: "ground",
+    type2Name: "dark",
     height: 15,
     weight: 963,
     stats: {
@@ -8857,8 +8857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "554": {
     jaName: "ダルマッカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/554.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 375,
     stats: {
@@ -8873,8 +8873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "555": {
     jaName: "ヒヒダルマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/555.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 13,
     weight: 929,
     stats: {
@@ -8889,8 +8889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "556": {
     jaName: "マラカッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/556.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 10,
     weight: 280,
     stats: {
@@ -8905,8 +8905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "557": {
     jaName: "イシズマイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/557.png",
-    typeName1: "bug",
-    typeName2: "rock",
+    type1Name: "bug",
+    type2Name: "rock",
     height: 3,
     weight: 145,
     stats: {
@@ -8921,8 +8921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "558": {
     jaName: "イワパレス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/558.png",
-    typeName1: "bug",
-    typeName2: "rock",
+    type1Name: "bug",
+    type2Name: "rock",
     height: 14,
     weight: 2000,
     stats: {
@@ -8937,8 +8937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "559": {
     jaName: "ズルッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/559.png",
-    typeName1: "dark",
-    typeName2: "fighting",
+    type1Name: "dark",
+    type2Name: "fighting",
     height: 6,
     weight: 118,
     stats: {
@@ -8953,8 +8953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "560": {
     jaName: "ズルズキン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/560.png",
-    typeName1: "dark",
-    typeName2: "fighting",
+    type1Name: "dark",
+    type2Name: "fighting",
     height: 11,
     weight: 300,
     stats: {
@@ -8969,8 +8969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "561": {
     jaName: "シンボラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/561.png",
-    typeName1: "psychic",
-    typeName2: "flying",
+    type1Name: "psychic",
+    type2Name: "flying",
     height: 14,
     weight: 140,
     stats: {
@@ -8985,8 +8985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "562": {
     jaName: "デスマス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/562.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 5,
     weight: 15,
     stats: {
@@ -9001,8 +9001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "563": {
     jaName: "デスカーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/563.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 17,
     weight: 765,
     stats: {
@@ -9017,8 +9017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "564": {
     jaName: "プロトーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png",
-    typeName1: "water",
-    typeName2: "rock",
+    type1Name: "water",
+    type2Name: "rock",
     height: 7,
     weight: 165,
     stats: {
@@ -9033,8 +9033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "565": {
     jaName: "アバゴーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png",
-    typeName1: "water",
-    typeName2: "rock",
+    type1Name: "water",
+    type2Name: "rock",
     height: 12,
     weight: 810,
     stats: {
@@ -9049,8 +9049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "566": {
     jaName: "アーケン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/566.png",
-    typeName1: "rock",
-    typeName2: "flying",
+    type1Name: "rock",
+    type2Name: "flying",
     height: 5,
     weight: 95,
     stats: {
@@ -9065,8 +9065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "567": {
     jaName: "アーケオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/567.png",
-    typeName1: "rock",
-    typeName2: "flying",
+    type1Name: "rock",
+    type2Name: "flying",
     height: 14,
     weight: 320,
     stats: {
@@ -9081,8 +9081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "568": {
     jaName: "ヤブクロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/568.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 6,
     weight: 310,
     stats: {
@@ -9097,8 +9097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "569": {
     jaName: "ダストダス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 19,
     weight: 1073,
     stats: {
@@ -9113,8 +9113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "570": {
     jaName: "ゾロア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/570.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 7,
     weight: 125,
     stats: {
@@ -9129,8 +9129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "571": {
     jaName: "ゾロアーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 16,
     weight: 811,
     stats: {
@@ -9145,8 +9145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "572": {
     jaName: "チラーミィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/572.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 58,
     stats: {
@@ -9161,8 +9161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "573": {
     jaName: "チラチーノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/573.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 75,
     stats: {
@@ -9177,8 +9177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "574": {
     jaName: "ゴチム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/574.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 4,
     weight: 58,
     stats: {
@@ -9193,8 +9193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "575": {
     jaName: "ゴチミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/575.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 7,
     weight: 180,
     stats: {
@@ -9209,8 +9209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "576": {
     jaName: "ゴチルゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/576.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 15,
     weight: 440,
     stats: {
@@ -9225,8 +9225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "577": {
     jaName: "ユニラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/577.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 3,
     weight: 10,
     stats: {
@@ -9241,8 +9241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "578": {
     jaName: "ダブラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/578.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 80,
     stats: {
@@ -9257,8 +9257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "579": {
     jaName: "ランクルス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/579.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 10,
     weight: 201,
     stats: {
@@ -9273,8 +9273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "580": {
     jaName: "コアルヒー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/580.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 5,
     weight: 55,
     stats: {
@@ -9289,8 +9289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "581": {
     jaName: "スワンナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/581.png",
-    typeName1: "water",
-    typeName2: "flying",
+    type1Name: "water",
+    type2Name: "flying",
     height: 13,
     weight: 242,
     stats: {
@@ -9305,8 +9305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "582": {
     jaName: "バニプッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 4,
     weight: 57,
     stats: {
@@ -9321,8 +9321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "583": {
     jaName: "バニリッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/583.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 11,
     weight: 410,
     stats: {
@@ -9337,8 +9337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "584": {
     jaName: "バイバニラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/584.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 13,
     weight: 575,
     stats: {
@@ -9353,8 +9353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "585": {
     jaName: "シキジカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/585.png",
-    typeName1: "normal",
-    typeName2: "grass",
+    type1Name: "normal",
+    type2Name: "grass",
     height: 6,
     weight: 195,
     stats: {
@@ -9369,8 +9369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "586": {
     jaName: "メブキジカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/586.png",
-    typeName1: "normal",
-    typeName2: "grass",
+    type1Name: "normal",
+    type2Name: "grass",
     height: 19,
     weight: 925,
     stats: {
@@ -9385,8 +9385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "587": {
     jaName: "エモンガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/587.png",
-    typeName1: "electric",
-    typeName2: "flying",
+    type1Name: "electric",
+    type2Name: "flying",
     height: 4,
     weight: 50,
     stats: {
@@ -9401,8 +9401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "588": {
     jaName: "カブルモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/588.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 5,
     weight: 59,
     stats: {
@@ -9417,8 +9417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "589": {
     jaName: "シュバルゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/589.png",
-    typeName1: "bug",
-    typeName2: "steel",
+    type1Name: "bug",
+    type2Name: "steel",
     height: 10,
     weight: 330,
     stats: {
@@ -9433,8 +9433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "590": {
     jaName: "タマゲタケ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/590.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 2,
     weight: 10,
     stats: {
@@ -9449,8 +9449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "591": {
     jaName: "モロバレル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/591.png",
-    typeName1: "grass",
-    typeName2: "poison",
+    type1Name: "grass",
+    type2Name: "poison",
     height: 6,
     weight: 105,
     stats: {
@@ -9465,8 +9465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "592": {
     jaName: "プルリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/592.png",
-    typeName1: "water",
-    typeName2: "ghost",
+    type1Name: "water",
+    type2Name: "ghost",
     height: 12,
     weight: 330,
     stats: {
@@ -9481,8 +9481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "593": {
     jaName: "ブルンゲル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/593.png",
-    typeName1: "water",
-    typeName2: "ghost",
+    type1Name: "water",
+    type2Name: "ghost",
     height: 22,
     weight: 1350,
     stats: {
@@ -9497,8 +9497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "594": {
     jaName: "ママンボウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/594.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 316,
     stats: {
@@ -9513,8 +9513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "595": {
     jaName: "バチュル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/595.png",
-    typeName1: "bug",
-    typeName2: "electric",
+    type1Name: "bug",
+    type2Name: "electric",
     height: 1,
     weight: 6,
     stats: {
@@ -9529,8 +9529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "596": {
     jaName: "デンチュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/596.png",
-    typeName1: "bug",
-    typeName2: "electric",
+    type1Name: "bug",
+    type2Name: "electric",
     height: 8,
     weight: 143,
     stats: {
@@ -9545,8 +9545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "597": {
     jaName: "テッシード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/597.png",
-    typeName1: "grass",
-    typeName2: "steel",
+    type1Name: "grass",
+    type2Name: "steel",
     height: 6,
     weight: 188,
     stats: {
@@ -9561,8 +9561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "598": {
     jaName: "ナットレイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/598.png",
-    typeName1: "grass",
-    typeName2: "steel",
+    type1Name: "grass",
+    type2Name: "steel",
     height: 10,
     weight: 1100,
     stats: {
@@ -9577,8 +9577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "599": {
     jaName: "ギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/599.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 3,
     weight: 210,
     stats: {
@@ -9593,8 +9593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "600": {
     jaName: "ギギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/600.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 6,
     weight: 510,
     stats: {
@@ -9609,8 +9609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "601": {
     jaName: "ギギギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/601.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 6,
     weight: 810,
     stats: {
@@ -9625,8 +9625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "602": {
     jaName: "シビシラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 2,
     weight: 3,
     stats: {
@@ -9641,8 +9641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "603": {
     jaName: "シビビール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/603.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 12,
     weight: 220,
     stats: {
@@ -9657,8 +9657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "604": {
     jaName: "シビルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/604.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 21,
     weight: 805,
     stats: {
@@ -9673,8 +9673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "605": {
     jaName: "リグレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/605.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 5,
     weight: 90,
     stats: {
@@ -9689,8 +9689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "606": {
     jaName: "オーベム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/606.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 10,
     weight: 345,
     stats: {
@@ -9705,8 +9705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "607": {
     jaName: "ヒトモシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/607.png",
-    typeName1: "ghost",
-    typeName2: "fire",
+    type1Name: "ghost",
+    type2Name: "fire",
     height: 3,
     weight: 31,
     stats: {
@@ -9721,8 +9721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "608": {
     jaName: "ランプラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/608.png",
-    typeName1: "ghost",
-    typeName2: "fire",
+    type1Name: "ghost",
+    type2Name: "fire",
     height: 6,
     weight: 130,
     stats: {
@@ -9737,8 +9737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "609": {
     jaName: "シャンデラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/609.png",
-    typeName1: "ghost",
-    typeName2: "fire",
+    type1Name: "ghost",
+    type2Name: "fire",
     height: 10,
     weight: 343,
     stats: {
@@ -9753,8 +9753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "610": {
     jaName: "キバゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/610.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 6,
     weight: 180,
     stats: {
@@ -9769,8 +9769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "611": {
     jaName: "オノンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/611.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 10,
     weight: 360,
     stats: {
@@ -9785,8 +9785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "612": {
     jaName: "オノノクス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/612.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 18,
     weight: 1055,
     stats: {
@@ -9801,8 +9801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "613": {
     jaName: "クマシュン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/613.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 5,
     weight: 85,
     stats: {
@@ -9817,8 +9817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "614": {
     jaName: "ツンベアー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/614.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 26,
     weight: 2600,
     stats: {
@@ -9833,8 +9833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "615": {
     jaName: "フリージオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 11,
     weight: 1480,
     stats: {
@@ -9849,8 +9849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "616": {
     jaName: "チョボマキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/616.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 4,
     weight: 77,
     stats: {
@@ -9865,8 +9865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "617": {
     jaName: "アギルダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/617.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 8,
     weight: 253,
     stats: {
@@ -9881,8 +9881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "618": {
     jaName: "マッギョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png",
-    typeName1: "ground",
-    typeName2: "electric",
+    type1Name: "ground",
+    type2Name: "electric",
     height: 7,
     weight: 110,
     stats: {
@@ -9897,8 +9897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "619": {
     jaName: "コジョフー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/619.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 9,
     weight: 200,
     stats: {
@@ -9913,8 +9913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "620": {
     jaName: "コジョンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/620.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 14,
     weight: 355,
     stats: {
@@ -9929,8 +9929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "621": {
     jaName: "クリムガン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/621.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 16,
     weight: 1390,
     stats: {
@@ -9945,8 +9945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "622": {
     jaName: "ゴビット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/622.png",
-    typeName1: "ground",
-    typeName2: "ghost",
+    type1Name: "ground",
+    type2Name: "ghost",
     height: 10,
     weight: 920,
     stats: {
@@ -9961,8 +9961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "623": {
     jaName: "ゴルーグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png",
-    typeName1: "ground",
-    typeName2: "ghost",
+    type1Name: "ground",
+    type2Name: "ghost",
     height: 28,
     weight: 3300,
     stats: {
@@ -9977,8 +9977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "624": {
     jaName: "コマタナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/624.png",
-    typeName1: "dark",
-    typeName2: "steel",
+    type1Name: "dark",
+    type2Name: "steel",
     height: 5,
     weight: 102,
     stats: {
@@ -9993,8 +9993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "625": {
     jaName: "キリキザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/625.png",
-    typeName1: "dark",
-    typeName2: "steel",
+    type1Name: "dark",
+    type2Name: "steel",
     height: 16,
     weight: 700,
     stats: {
@@ -10009,8 +10009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "626": {
     jaName: "バッフロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/626.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 16,
     weight: 946,
     stats: {
@@ -10025,8 +10025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "627": {
     jaName: "ワシボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/627.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 5,
     weight: 105,
     stats: {
@@ -10041,8 +10041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "628": {
     jaName: "ウォーグル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/628.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 15,
     weight: 410,
     stats: {
@@ -10057,8 +10057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "629": {
     jaName: "バルチャイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/629.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 5,
     weight: 90,
     stats: {
@@ -10073,8 +10073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "630": {
     jaName: "バルジーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/630.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 12,
     weight: 395,
     stats: {
@@ -10089,8 +10089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "631": {
     jaName: "クイタラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/631.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 14,
     weight: 580,
     stats: {
@@ -10105,8 +10105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "632": {
     jaName: "アイアント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/632.png",
-    typeName1: "bug",
-    typeName2: "steel",
+    type1Name: "bug",
+    type2Name: "steel",
     height: 3,
     weight: 330,
     stats: {
@@ -10121,8 +10121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "633": {
     jaName: "モノズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/633.png",
-    typeName1: "dark",
-    typeName2: "dragon",
+    type1Name: "dark",
+    type2Name: "dragon",
     height: 8,
     weight: 173,
     stats: {
@@ -10137,8 +10137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "634": {
     jaName: "ジヘッド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/634.png",
-    typeName1: "dark",
-    typeName2: "dragon",
+    type1Name: "dark",
+    type2Name: "dragon",
     height: 14,
     weight: 500,
     stats: {
@@ -10153,8 +10153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "635": {
     jaName: "サザンドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png",
-    typeName1: "dark",
-    typeName2: "dragon",
+    type1Name: "dark",
+    type2Name: "dragon",
     height: 18,
     weight: 1600,
     stats: {
@@ -10169,8 +10169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "636": {
     jaName: "メラルバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png",
-    typeName1: "bug",
-    typeName2: "fire",
+    type1Name: "bug",
+    type2Name: "fire",
     height: 11,
     weight: 288,
     stats: {
@@ -10185,8 +10185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "637": {
     jaName: "ウルガモス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png",
-    typeName1: "bug",
-    typeName2: "fire",
+    type1Name: "bug",
+    type2Name: "fire",
     height: 16,
     weight: 460,
     stats: {
@@ -10201,8 +10201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "638": {
     jaName: "コバルオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png",
-    typeName1: "steel",
-    typeName2: "fighting",
+    type1Name: "steel",
+    type2Name: "fighting",
     height: 21,
     weight: 2500,
     stats: {
@@ -10217,8 +10217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "639": {
     jaName: "テラキオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/639.png",
-    typeName1: "rock",
-    typeName2: "fighting",
+    type1Name: "rock",
+    type2Name: "fighting",
     height: 19,
     weight: 2600,
     stats: {
@@ -10233,8 +10233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "640": {
     jaName: "ビリジオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/640.png",
-    typeName1: "grass",
-    typeName2: "fighting",
+    type1Name: "grass",
+    type2Name: "fighting",
     height: 20,
     weight: 2000,
     stats: {
@@ -10249,8 +10249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "641": {
     jaName: "トルネロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png",
-    typeName1: "flying",
-    typeName2: null,
+    type1Name: "flying",
+    type2Name: null,
     height: 15,
     weight: 630,
     stats: {
@@ -10265,8 +10265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "642": {
     jaName: "ボルトロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png",
-    typeName1: "electric",
-    typeName2: "flying",
+    type1Name: "electric",
+    type2Name: "flying",
     height: 15,
     weight: 610,
     stats: {
@@ -10281,8 +10281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "643": {
     jaName: "レシラム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/643.png",
-    typeName1: "dragon",
-    typeName2: "fire",
+    type1Name: "dragon",
+    type2Name: "fire",
     height: 32,
     weight: 3300,
     stats: {
@@ -10297,8 +10297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "644": {
     jaName: "ゼクロム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/644.png",
-    typeName1: "dragon",
-    typeName2: "electric",
+    type1Name: "dragon",
+    type2Name: "electric",
     height: 29,
     weight: 3450,
     stats: {
@@ -10313,8 +10313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "645": {
     jaName: "ランドロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png",
-    typeName1: "ground",
-    typeName2: "flying",
+    type1Name: "ground",
+    type2Name: "flying",
     height: 15,
     weight: 680,
     stats: {
@@ -10329,8 +10329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "646": {
     jaName: "キュレム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/646.png",
-    typeName1: "dragon",
-    typeName2: "ice",
+    type1Name: "dragon",
+    type2Name: "ice",
     height: 30,
     weight: 3250,
     stats: {
@@ -10345,8 +10345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "647": {
     jaName: "ケルディオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/647.png",
-    typeName1: "water",
-    typeName2: "fighting",
+    type1Name: "water",
+    type2Name: "fighting",
     height: 14,
     weight: 485,
     stats: {
@@ -10361,8 +10361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "648": {
     jaName: "メロエッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/648.png",
-    typeName1: "normal",
-    typeName2: "psychic",
+    type1Name: "normal",
+    type2Name: "psychic",
     height: 6,
     weight: 65,
     stats: {
@@ -10377,8 +10377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "649": {
     jaName: "ゲノセクト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
-    typeName1: "bug",
-    typeName2: "steel",
+    type1Name: "bug",
+    type2Name: "steel",
     height: 15,
     weight: 825,
     stats: {
@@ -10393,8 +10393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "650": {
     jaName: "ハリマロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 90,
     stats: {
@@ -10409,8 +10409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "651": {
     jaName: "ハリボーグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/651.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 7,
     weight: 290,
     stats: {
@@ -10425,8 +10425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "652": {
     jaName: "ブリガロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png",
-    typeName1: "grass",
-    typeName2: "fighting",
+    type1Name: "grass",
+    type2Name: "fighting",
     height: 16,
     weight: 900,
     stats: {
@@ -10441,8 +10441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "653": {
     jaName: "フォッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 4,
     weight: 94,
     stats: {
@@ -10457,8 +10457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "654": {
     jaName: "テールナー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/654.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 10,
     weight: 145,
     stats: {
@@ -10473,8 +10473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "655": {
     jaName: "マフォクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png",
-    typeName1: "fire",
-    typeName2: "psychic",
+    type1Name: "fire",
+    type2Name: "psychic",
     height: 15,
     weight: 390,
     stats: {
@@ -10489,8 +10489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "656": {
     jaName: "ケロマツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 70,
     stats: {
@@ -10505,8 +10505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "657": {
     jaName: "ゲコガシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/657.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 109,
     stats: {
@@ -10521,8 +10521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "658": {
     jaName: "ゲッコウガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png",
-    typeName1: "water",
-    typeName2: "dark",
+    type1Name: "water",
+    type2Name: "dark",
     height: 15,
     weight: 400,
     stats: {
@@ -10537,8 +10537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "659": {
     jaName: "ホルビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 50,
     stats: {
@@ -10553,8 +10553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "660": {
     jaName: "ホルード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png",
-    typeName1: "normal",
-    typeName2: "ground",
+    type1Name: "normal",
+    type2Name: "ground",
     height: 10,
     weight: 424,
     stats: {
@@ -10569,8 +10569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "661": {
     jaName: "ヤヤコマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/661.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 17,
     stats: {
@@ -10585,8 +10585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "662": {
     jaName: "ヒノヤコマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 7,
     weight: 160,
     stats: {
@@ -10601,8 +10601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "663": {
     jaName: "ファイアロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 12,
     weight: 245,
     stats: {
@@ -10617,8 +10617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "664": {
     jaName: "コフキムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/664.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 25,
     stats: {
@@ -10633,8 +10633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "665": {
     jaName: "コフーライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/665.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 84,
     stats: {
@@ -10649,8 +10649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "666": {
     jaName: "ビビヨン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png",
-    typeName1: "bug",
-    typeName2: "flying",
+    type1Name: "bug",
+    type2Name: "flying",
     height: 12,
     weight: 170,
     stats: {
@@ -10665,8 +10665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "667": {
     jaName: "シシコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/667.png",
-    typeName1: "fire",
-    typeName2: "normal",
+    type1Name: "fire",
+    type2Name: "normal",
     height: 6,
     weight: 135,
     stats: {
@@ -10681,8 +10681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "668": {
     jaName: "カエンジシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png",
-    typeName1: "fire",
-    typeName2: "normal",
+    type1Name: "fire",
+    type2Name: "normal",
     height: 15,
     weight: 815,
     stats: {
@@ -10697,8 +10697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "669": {
     jaName: "フラベベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/669.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 1,
     weight: 1,
     stats: {
@@ -10713,8 +10713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "670": {
     jaName: "フラエッテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/670.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 2,
     weight: 9,
     stats: {
@@ -10729,8 +10729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "671": {
     jaName: "フラージェス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/671.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 11,
     weight: 100,
     stats: {
@@ -10745,8 +10745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "672": {
     jaName: "メェークル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/672.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 9,
     weight: 310,
     stats: {
@@ -10761,8 +10761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "673": {
     jaName: "ゴーゴート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/673.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 17,
     weight: 910,
     stats: {
@@ -10777,8 +10777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "674": {
     jaName: "ヤンチャム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/674.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 6,
     weight: 80,
     stats: {
@@ -10793,8 +10793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "675": {
     jaName: "ゴロンダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png",
-    typeName1: "fighting",
-    typeName2: "dark",
+    type1Name: "fighting",
+    type2Name: "dark",
     height: 21,
     weight: 1360,
     stats: {
@@ -10809,8 +10809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "676": {
     jaName: "トリミアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 12,
     weight: 280,
     stats: {
@@ -10825,8 +10825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "677": {
     jaName: "ニャスパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/677.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 3,
     weight: 35,
     stats: {
@@ -10841,8 +10841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "678": {
     jaName: "ニャオニクス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/678.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 85,
     stats: {
@@ -10857,8 +10857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "679": {
     jaName: "ヒトツキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/679.png",
-    typeName1: "steel",
-    typeName2: "ghost",
+    type1Name: "steel",
+    type2Name: "ghost",
     height: 8,
     weight: 20,
     stats: {
@@ -10873,8 +10873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "680": {
     jaName: "ニダンギル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/680.png",
-    typeName1: "steel",
-    typeName2: "ghost",
+    type1Name: "steel",
+    type2Name: "ghost",
     height: 8,
     weight: 45,
     stats: {
@@ -10889,8 +10889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "681": {
     jaName: "ギルガルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/681.png",
-    typeName1: "steel",
-    typeName2: "ghost",
+    type1Name: "steel",
+    type2Name: "ghost",
     height: 17,
     weight: 530,
     stats: {
@@ -10905,8 +10905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "682": {
     jaName: "シュシュプ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/682.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 2,
     weight: 5,
     stats: {
@@ -10921,8 +10921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "683": {
     jaName: "フレフワン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 8,
     weight: 155,
     stats: {
@@ -10937,8 +10937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "684": {
     jaName: "ペロッパフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/684.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 4,
     weight: 35,
     stats: {
@@ -10953,8 +10953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "685": {
     jaName: "ペロリーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/685.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 8,
     weight: 50,
     stats: {
@@ -10969,8 +10969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "686": {
     jaName: "マーイーカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/686.png",
-    typeName1: "dark",
-    typeName2: "psychic",
+    type1Name: "dark",
+    type2Name: "psychic",
     height: 4,
     weight: 35,
     stats: {
@@ -10985,8 +10985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "687": {
     jaName: "カラマネロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/687.png",
-    typeName1: "dark",
-    typeName2: "psychic",
+    type1Name: "dark",
+    type2Name: "psychic",
     height: 15,
     weight: 470,
     stats: {
@@ -11001,8 +11001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "688": {
     jaName: "カメテテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/688.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 5,
     weight: 310,
     stats: {
@@ -11017,8 +11017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "689": {
     jaName: "ガメノデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/689.png",
-    typeName1: "rock",
-    typeName2: "water",
+    type1Name: "rock",
+    type2Name: "water",
     height: 13,
     weight: 960,
     stats: {
@@ -11033,8 +11033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "690": {
     jaName: "クズモー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/690.png",
-    typeName1: "poison",
-    typeName2: "water",
+    type1Name: "poison",
+    type2Name: "water",
     height: 5,
     weight: 73,
     stats: {
@@ -11049,8 +11049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "691": {
     jaName: "ドラミドロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/691.png",
-    typeName1: "poison",
-    typeName2: "dragon",
+    type1Name: "poison",
+    type2Name: "dragon",
     height: 18,
     weight: 815,
     stats: {
@@ -11065,8 +11065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "692": {
     jaName: "ウデッポウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/692.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 83,
     stats: {
@@ -11081,8 +11081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "693": {
     jaName: "ブロスター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/693.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 353,
     stats: {
@@ -11097,8 +11097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "694": {
     jaName: "エリキテル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/694.png",
-    typeName1: "electric",
-    typeName2: "normal",
+    type1Name: "electric",
+    type2Name: "normal",
     height: 5,
     weight: 60,
     stats: {
@@ -11113,8 +11113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "695": {
     jaName: "エレザード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/695.png",
-    typeName1: "electric",
-    typeName2: "normal",
+    type1Name: "electric",
+    type2Name: "normal",
     height: 10,
     weight: 210,
     stats: {
@@ -11129,8 +11129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "696": {
     jaName: "チゴラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/696.png",
-    typeName1: "rock",
-    typeName2: "dragon",
+    type1Name: "rock",
+    type2Name: "dragon",
     height: 8,
     weight: 260,
     stats: {
@@ -11145,8 +11145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "697": {
     jaName: "ガチゴラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png",
-    typeName1: "rock",
-    typeName2: "dragon",
+    type1Name: "rock",
+    type2Name: "dragon",
     height: 25,
     weight: 2700,
     stats: {
@@ -11161,8 +11161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "698": {
     jaName: "アマルス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/698.png",
-    typeName1: "rock",
-    typeName2: "ice",
+    type1Name: "rock",
+    type2Name: "ice",
     height: 13,
     weight: 252,
     stats: {
@@ -11177,8 +11177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "699": {
     jaName: "アマルルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/699.png",
-    typeName1: "rock",
-    typeName2: "ice",
+    type1Name: "rock",
+    type2Name: "ice",
     height: 27,
     weight: 2250,
     stats: {
@@ -11193,8 +11193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "700": {
     jaName: "ニンフィア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 10,
     weight: 235,
     stats: {
@@ -11209,8 +11209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "701": {
     jaName: "ルチャブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/701.png",
-    typeName1: "fighting",
-    typeName2: "flying",
+    type1Name: "fighting",
+    type2Name: "flying",
     height: 8,
     weight: 215,
     stats: {
@@ -11225,8 +11225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "702": {
     jaName: "デデンネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/702.png",
-    typeName1: "electric",
-    typeName2: "fairy",
+    type1Name: "electric",
+    type2Name: "fairy",
     height: 2,
     weight: 22,
     stats: {
@@ -11241,8 +11241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "703": {
     jaName: "メレシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/703.png",
-    typeName1: "rock",
-    typeName2: "fairy",
+    type1Name: "rock",
+    type2Name: "fairy",
     height: 3,
     weight: 57,
     stats: {
@@ -11257,8 +11257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "704": {
     jaName: "ヌメラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/704.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 3,
     weight: 28,
     stats: {
@@ -11273,8 +11273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "705": {
     jaName: "ヌメイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/705.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 8,
     weight: 175,
     stats: {
@@ -11289,8 +11289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "706": {
     jaName: "ヌメルゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 20,
     weight: 1505,
     stats: {
@@ -11305,8 +11305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "707": {
     jaName: "クレッフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png",
-    typeName1: "steel",
-    typeName2: "fairy",
+    type1Name: "steel",
+    type2Name: "fairy",
     height: 2,
     weight: 30,
     stats: {
@@ -11321,8 +11321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "708": {
     jaName: "ボクレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/708.png",
-    typeName1: "ghost",
-    typeName2: "grass",
+    type1Name: "ghost",
+    type2Name: "grass",
     height: 4,
     weight: 70,
     stats: {
@@ -11337,8 +11337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "709": {
     jaName: "オーロット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/709.png",
-    typeName1: "ghost",
-    typeName2: "grass",
+    type1Name: "ghost",
+    type2Name: "grass",
     height: 15,
     weight: 710,
     stats: {
@@ -11353,8 +11353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "710": {
     jaName: "バケッチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/710.png",
-    typeName1: "ghost",
-    typeName2: "grass",
+    type1Name: "ghost",
+    type2Name: "grass",
     height: 4,
     weight: 50,
     stats: {
@@ -11369,8 +11369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "711": {
     jaName: "パンプジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/711.png",
-    typeName1: "ghost",
-    typeName2: "grass",
+    type1Name: "ghost",
+    type2Name: "grass",
     height: 9,
     weight: 125,
     stats: {
@@ -11385,8 +11385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "712": {
     jaName: "カチコール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/712.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 10,
     weight: 995,
     stats: {
@@ -11401,8 +11401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "713": {
     jaName: "クレベース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 20,
     weight: 5050,
     stats: {
@@ -11417,8 +11417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "714": {
     jaName: "オンバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/714.png",
-    typeName1: "flying",
-    typeName2: "dragon",
+    type1Name: "flying",
+    type2Name: "dragon",
     height: 5,
     weight: 80,
     stats: {
@@ -11433,8 +11433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "715": {
     jaName: "オンバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png",
-    typeName1: "flying",
-    typeName2: "dragon",
+    type1Name: "flying",
+    type2Name: "dragon",
     height: 15,
     weight: 850,
     stats: {
@@ -11449,8 +11449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "716": {
     jaName: "ゼルネアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/716.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 30,
     weight: 2150,
     stats: {
@@ -11465,8 +11465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "717": {
     jaName: "イベルタル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/717.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 58,
     weight: 2030,
     stats: {
@@ -11481,8 +11481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "718": {
     jaName: "ジガルデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/718.png",
-    typeName1: "dragon",
-    typeName2: "ground",
+    type1Name: "dragon",
+    type2Name: "ground",
     height: 50,
     weight: 3050,
     stats: {
@@ -11497,8 +11497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "719": {
     jaName: "ディアンシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/719.png",
-    typeName1: "rock",
-    typeName2: "fairy",
+    type1Name: "rock",
+    type2Name: "fairy",
     height: 7,
     weight: 88,
     stats: {
@@ -11513,8 +11513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "720": {
     jaName: "フーパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/720.png",
-    typeName1: "psychic",
-    typeName2: "ghost",
+    type1Name: "psychic",
+    type2Name: "ghost",
     height: 5,
     weight: 90,
     stats: {
@@ -11529,8 +11529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "721": {
     jaName: "ボルケニオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
-    typeName1: "fire",
-    typeName2: "water",
+    type1Name: "fire",
+    type2Name: "water",
     height: 17,
     weight: 1950,
     stats: {
@@ -11545,8 +11545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "722": {
     jaName: "モクロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/722.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 3,
     weight: 15,
     stats: {
@@ -11561,8 +11561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "723": {
     jaName: "フクスロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/723.png",
-    typeName1: "grass",
-    typeName2: "flying",
+    type1Name: "grass",
+    type2Name: "flying",
     height: 7,
     weight: 160,
     stats: {
@@ -11577,8 +11577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "724": {
     jaName: "ジュナイパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png",
-    typeName1: "grass",
-    typeName2: "ghost",
+    type1Name: "grass",
+    type2Name: "ghost",
     height: 16,
     weight: 366,
     stats: {
@@ -11593,8 +11593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "725": {
     jaName: "ニャビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/725.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 4,
     weight: 43,
     stats: {
@@ -11609,8 +11609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "726": {
     jaName: "ニャヒート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/726.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 7,
     weight: 250,
     stats: {
@@ -11625,8 +11625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "727": {
     jaName: "ガオガエン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/727.png",
-    typeName1: "fire",
-    typeName2: "dark",
+    type1Name: "fire",
+    type2Name: "dark",
     height: 18,
     weight: 830,
     stats: {
@@ -11641,8 +11641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "728": {
     jaName: "アシマリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/728.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 4,
     weight: 75,
     stats: {
@@ -11657,8 +11657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "729": {
     jaName: "オシャマリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/729.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 6,
     weight: 175,
     stats: {
@@ -11673,8 +11673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "730": {
     jaName: "アシレーヌ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png",
-    typeName1: "water",
-    typeName2: "fairy",
+    type1Name: "water",
+    type2Name: "fairy",
     height: 18,
     weight: 440,
     stats: {
@@ -11689,8 +11689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "731": {
     jaName: "ツツケラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/731.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 3,
     weight: 12,
     stats: {
@@ -11705,8 +11705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "732": {
     jaName: "ケララッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/732.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 6,
     weight: 148,
     stats: {
@@ -11721,8 +11721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "733": {
     jaName: "ドデカバシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/733.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 11,
     weight: 260,
     stats: {
@@ -11737,8 +11737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "734": {
     jaName: "ヤングース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/734.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 60,
     stats: {
@@ -11753,8 +11753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "735": {
     jaName: "デカグース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/735.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 7,
     weight: 142,
     stats: {
@@ -11769,8 +11769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "736": {
     jaName: "アゴジムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/736.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 4,
     weight: 44,
     stats: {
@@ -11785,8 +11785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "737": {
     jaName: "デンヂムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/737.png",
-    typeName1: "bug",
-    typeName2: "electric",
+    type1Name: "bug",
+    type2Name: "electric",
     height: 5,
     weight: 105,
     stats: {
@@ -11801,8 +11801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "738": {
     jaName: "クワガノン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/738.png",
-    typeName1: "bug",
-    typeName2: "electric",
+    type1Name: "bug",
+    type2Name: "electric",
     height: 15,
     weight: 450,
     stats: {
@@ -11817,8 +11817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "739": {
     jaName: "マケンカニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/739.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 6,
     weight: 70,
     stats: {
@@ -11833,8 +11833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "740": {
     jaName: "ケケンカニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png",
-    typeName1: "fighting",
-    typeName2: "ice",
+    type1Name: "fighting",
+    type2Name: "ice",
     height: 17,
     weight: 1800,
     stats: {
@@ -11849,8 +11849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "741": {
     jaName: "オドリドリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/741.png",
-    typeName1: "fire",
-    typeName2: "flying",
+    type1Name: "fire",
+    type2Name: "flying",
     height: 6,
     weight: 34,
     stats: {
@@ -11865,8 +11865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "742": {
     jaName: "アブリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/742.png",
-    typeName1: "bug",
-    typeName2: "fairy",
+    type1Name: "bug",
+    type2Name: "fairy",
     height: 1,
     weight: 2,
     stats: {
@@ -11881,8 +11881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "743": {
     jaName: "アブリボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/743.png",
-    typeName1: "bug",
-    typeName2: "fairy",
+    type1Name: "bug",
+    type2Name: "fairy",
     height: 2,
     weight: 5,
     stats: {
@@ -11897,8 +11897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "744": {
     jaName: "イワンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/744.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 5,
     weight: 92,
     stats: {
@@ -11913,8 +11913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "745": {
     jaName: "ルガルガン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 8,
     weight: 250,
     stats: {
@@ -11929,8 +11929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "746": {
     jaName: "ヨワシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/746.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 2,
     weight: 3,
     stats: {
@@ -11945,8 +11945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "747": {
     jaName: "ヒドイデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/747.png",
-    typeName1: "poison",
-    typeName2: "water",
+    type1Name: "poison",
+    type2Name: "water",
     height: 4,
     weight: 80,
     stats: {
@@ -11961,8 +11961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "748": {
     jaName: "ドヒドイデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/748.png",
-    typeName1: "poison",
-    typeName2: "water",
+    type1Name: "poison",
+    type2Name: "water",
     height: 7,
     weight: 145,
     stats: {
@@ -11977,8 +11977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "749": {
     jaName: "ドロバンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/749.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 10,
     weight: 1100,
     stats: {
@@ -11993,8 +11993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "750": {
     jaName: "バンバドロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/750.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 25,
     weight: 9200,
     stats: {
@@ -12009,8 +12009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "751": {
     jaName: "シズクモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/751.png",
-    typeName1: "water",
-    typeName2: "bug",
+    type1Name: "water",
+    type2Name: "bug",
     height: 3,
     weight: 40,
     stats: {
@@ -12025,8 +12025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "752": {
     jaName: "オニシズクモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/752.png",
-    typeName1: "water",
-    typeName2: "bug",
+    type1Name: "water",
+    type2Name: "bug",
     height: 18,
     weight: 820,
     stats: {
@@ -12041,8 +12041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "753": {
     jaName: "カリキリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/753.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 3,
     weight: 15,
     stats: {
@@ -12057,8 +12057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "754": {
     jaName: "ラランテス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/754.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 9,
     weight: 185,
     stats: {
@@ -12073,8 +12073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "755": {
     jaName: "ネマシュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/755.png",
-    typeName1: "grass",
-    typeName2: "fairy",
+    type1Name: "grass",
+    type2Name: "fairy",
     height: 2,
     weight: 15,
     stats: {
@@ -12089,8 +12089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "756": {
     jaName: "マシェード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/756.png",
-    typeName1: "grass",
-    typeName2: "fairy",
+    type1Name: "grass",
+    type2Name: "fairy",
     height: 10,
     weight: 115,
     stats: {
@@ -12105,8 +12105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "757": {
     jaName: "ヤトウモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png",
-    typeName1: "poison",
-    typeName2: "fire",
+    type1Name: "poison",
+    type2Name: "fire",
     height: 6,
     weight: 48,
     stats: {
@@ -12121,8 +12121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "758": {
     jaName: "エンニュート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png",
-    typeName1: "poison",
-    typeName2: "fire",
+    type1Name: "poison",
+    type2Name: "fire",
     height: 12,
     weight: 222,
     stats: {
@@ -12137,8 +12137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "759": {
     jaName: "ヌイコグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/759.png",
-    typeName1: "normal",
-    typeName2: "fighting",
+    type1Name: "normal",
+    type2Name: "fighting",
     height: 5,
     weight: 68,
     stats: {
@@ -12153,8 +12153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "760": {
     jaName: "キテルグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png",
-    typeName1: "normal",
-    typeName2: "fighting",
+    type1Name: "normal",
+    type2Name: "fighting",
     height: 21,
     weight: 1350,
     stats: {
@@ -12169,8 +12169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "761": {
     jaName: "アマカジ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/761.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 3,
     weight: 32,
     stats: {
@@ -12185,8 +12185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "762": {
     jaName: "アママイコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/762.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 7,
     weight: 82,
     stats: {
@@ -12201,8 +12201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "763": {
     jaName: "アマージョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/763.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 12,
     weight: 214,
     stats: {
@@ -12217,8 +12217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "764": {
     jaName: "キュワワー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/764.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 1,
     weight: 3,
     stats: {
@@ -12233,8 +12233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "765": {
     jaName: "ヤレユータン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/765.png",
-    typeName1: "normal",
-    typeName2: "psychic",
+    type1Name: "normal",
+    type2Name: "psychic",
     height: 15,
     weight: 760,
     stats: {
@@ -12249,8 +12249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "766": {
     jaName: "ナゲツケサル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/766.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 20,
     weight: 828,
     stats: {
@@ -12265,8 +12265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "767": {
     jaName: "コソクムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/767.png",
-    typeName1: "bug",
-    typeName2: "water",
+    type1Name: "bug",
+    type2Name: "water",
     height: 5,
     weight: 120,
     stats: {
@@ -12281,8 +12281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "768": {
     jaName: "グソクムシャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/768.png",
-    typeName1: "bug",
-    typeName2: "water",
+    type1Name: "bug",
+    type2Name: "water",
     height: 20,
     weight: 1080,
     stats: {
@@ -12297,8 +12297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "769": {
     jaName: "スナバァ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/769.png",
-    typeName1: "ghost",
-    typeName2: "ground",
+    type1Name: "ghost",
+    type2Name: "ground",
     height: 5,
     weight: 700,
     stats: {
@@ -12313,8 +12313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "770": {
     jaName: "シロデスナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/770.png",
-    typeName1: "ghost",
-    typeName2: "ground",
+    type1Name: "ghost",
+    type2Name: "ground",
     height: 13,
     weight: 2500,
     stats: {
@@ -12329,8 +12329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "771": {
     jaName: "ナマコブシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/771.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 12,
     stats: {
@@ -12345,8 +12345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "772": {
     jaName: "タイプ：ヌル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/772.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 19,
     weight: 1205,
     stats: {
@@ -12361,8 +12361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "773": {
     jaName: "シルヴァディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/773.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 23,
     weight: 1005,
     stats: {
@@ -12377,8 +12377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "774": {
     jaName: "メテノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/774.png",
-    typeName1: "rock",
-    typeName2: "flying",
+    type1Name: "rock",
+    type2Name: "flying",
     height: 3,
     weight: 400,
     stats: {
@@ -12393,8 +12393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "775": {
     jaName: "ネッコアラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/775.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 4,
     weight: 199,
     stats: {
@@ -12409,8 +12409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "776": {
     jaName: "バクガメス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/776.png",
-    typeName1: "fire",
-    typeName2: "dragon",
+    type1Name: "fire",
+    type2Name: "dragon",
     height: 20,
     weight: 2120,
     stats: {
@@ -12425,8 +12425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "777": {
     jaName: "トゲデマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png",
-    typeName1: "electric",
-    typeName2: "steel",
+    type1Name: "electric",
+    type2Name: "steel",
     height: 3,
     weight: 33,
     stats: {
@@ -12441,8 +12441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "778": {
     jaName: "ミミッキュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/778.png",
-    typeName1: "ghost",
-    typeName2: "fairy",
+    type1Name: "ghost",
+    type2Name: "fairy",
     height: 2,
     weight: 7,
     stats: {
@@ -12457,8 +12457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "779": {
     jaName: "ハギギシリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 9,
     weight: 190,
     stats: {
@@ -12473,8 +12473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "780": {
     jaName: "ジジーロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png",
-    typeName1: "normal",
-    typeName2: "dragon",
+    type1Name: "normal",
+    type2Name: "dragon",
     height: 30,
     weight: 1850,
     stats: {
@@ -12489,8 +12489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "781": {
     jaName: "ダダリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/781.png",
-    typeName1: "ghost",
-    typeName2: "grass",
+    type1Name: "ghost",
+    type2Name: "grass",
     height: 39,
     weight: 2100,
     stats: {
@@ -12505,8 +12505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "782": {
     jaName: "ジャラコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/782.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 6,
     weight: 297,
     stats: {
@@ -12521,8 +12521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "783": {
     jaName: "ジャランゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/783.png",
-    typeName1: "dragon",
-    typeName2: "fighting",
+    type1Name: "dragon",
+    type2Name: "fighting",
     height: 12,
     weight: 470,
     stats: {
@@ -12537,8 +12537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "784": {
     jaName: "ジャラランガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/784.png",
-    typeName1: "dragon",
-    typeName2: "fighting",
+    type1Name: "dragon",
+    type2Name: "fighting",
     height: 16,
     weight: 782,
     stats: {
@@ -12553,8 +12553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "785": {
     jaName: "カプ・コケコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/785.png",
-    typeName1: "electric",
-    typeName2: "fairy",
+    type1Name: "electric",
+    type2Name: "fairy",
     height: 18,
     weight: 205,
     stats: {
@@ -12569,8 +12569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "786": {
     jaName: "カプ・テテフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/786.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 12,
     weight: 186,
     stats: {
@@ -12585,8 +12585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "787": {
     jaName: "カプ・ブルル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/787.png",
-    typeName1: "grass",
-    typeName2: "fairy",
+    type1Name: "grass",
+    type2Name: "fairy",
     height: 19,
     weight: 455,
     stats: {
@@ -12601,8 +12601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "788": {
     jaName: "カプ・レヒレ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/788.png",
-    typeName1: "water",
-    typeName2: "fairy",
+    type1Name: "water",
+    type2Name: "fairy",
     height: 13,
     weight: 212,
     stats: {
@@ -12617,8 +12617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "789": {
     jaName: "コスモッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/789.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 2,
     weight: 1,
     stats: {
@@ -12633,8 +12633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "790": {
     jaName: "コスモウム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/790.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 1,
     weight: 9999,
     stats: {
@@ -12649,8 +12649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "791": {
     jaName: "ソルガレオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/791.png",
-    typeName1: "psychic",
-    typeName2: "steel",
+    type1Name: "psychic",
+    type2Name: "steel",
     height: 34,
     weight: 2300,
     stats: {
@@ -12665,8 +12665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "792": {
     jaName: "ルナアーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/792.png",
-    typeName1: "psychic",
-    typeName2: "ghost",
+    type1Name: "psychic",
+    type2Name: "ghost",
     height: 40,
     weight: 1200,
     stats: {
@@ -12681,8 +12681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "793": {
     jaName: "ウツロイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/793.png",
-    typeName1: "rock",
-    typeName2: "poison",
+    type1Name: "rock",
+    type2Name: "poison",
     height: 12,
     weight: 555,
     stats: {
@@ -12697,8 +12697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "794": {
     jaName: "マッシブーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/794.png",
-    typeName1: "bug",
-    typeName2: "fighting",
+    type1Name: "bug",
+    type2Name: "fighting",
     height: 24,
     weight: 3336,
     stats: {
@@ -12713,8 +12713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "795": {
     jaName: "フェローチェ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/795.png",
-    typeName1: "bug",
-    typeName2: "fighting",
+    type1Name: "bug",
+    type2Name: "fighting",
     height: 18,
     weight: 250,
     stats: {
@@ -12729,8 +12729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "796": {
     jaName: "デンジュモク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/796.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 38,
     weight: 1000,
     stats: {
@@ -12745,8 +12745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "797": {
     jaName: "テッカグヤ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/797.png",
-    typeName1: "steel",
-    typeName2: "flying",
+    type1Name: "steel",
+    type2Name: "flying",
     height: 92,
     weight: 9999,
     stats: {
@@ -12761,8 +12761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "798": {
     jaName: "カミツルギ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/798.png",
-    typeName1: "grass",
-    typeName2: "steel",
+    type1Name: "grass",
+    type2Name: "steel",
     height: 3,
     weight: 1,
     stats: {
@@ -12777,8 +12777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "799": {
     jaName: "アクジキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/799.png",
-    typeName1: "dark",
-    typeName2: "dragon",
+    type1Name: "dark",
+    type2Name: "dragon",
     height: 55,
     weight: 8880,
     stats: {
@@ -12793,8 +12793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "800": {
     jaName: "ネクロズマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/800.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 24,
     weight: 2300,
     stats: {
@@ -12809,8 +12809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "801": {
     jaName: "マギアナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/801.png",
-    typeName1: "steel",
-    typeName2: "fairy",
+    type1Name: "steel",
+    type2Name: "fairy",
     height: 10,
     weight: 805,
     stats: {
@@ -12825,8 +12825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "802": {
     jaName: "マーシャドー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/802.png",
-    typeName1: "fighting",
-    typeName2: "ghost",
+    type1Name: "fighting",
+    type2Name: "ghost",
     height: 7,
     weight: 222,
     stats: {
@@ -12841,8 +12841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "803": {
     jaName: "ベベノム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/803.png",
-    typeName1: "poison",
-    typeName2: null,
+    type1Name: "poison",
+    type2Name: null,
     height: 6,
     weight: 18,
     stats: {
@@ -12857,8 +12857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "804": {
     jaName: "アーゴヨン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/804.png",
-    typeName1: "poison",
-    typeName2: "dragon",
+    type1Name: "poison",
+    type2Name: "dragon",
     height: 36,
     weight: 1500,
     stats: {
@@ -12873,8 +12873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "805": {
     jaName: "ツンデツンデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/805.png",
-    typeName1: "rock",
-    typeName2: "steel",
+    type1Name: "rock",
+    type2Name: "steel",
     height: 55,
     weight: 8200,
     stats: {
@@ -12889,8 +12889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "806": {
     jaName: "ズガドーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/806.png",
-    typeName1: "fire",
-    typeName2: "ghost",
+    type1Name: "fire",
+    type2Name: "ghost",
     height: 18,
     weight: 130,
     stats: {
@@ -12905,8 +12905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "807": {
     jaName: "ゼラオラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/807.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 15,
     weight: 445,
     stats: {
@@ -12921,8 +12921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "808": {
     jaName: "メルタン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/808.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 2,
     weight: 80,
     stats: {
@@ -12937,8 +12937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "809": {
     jaName: "メルメタル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/809.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 25,
     weight: 8000,
     stats: {
@@ -12953,8 +12953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "810": {
     jaName: "サルノリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 3,
     weight: 50,
     stats: {
@@ -12969,8 +12969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "811": {
     jaName: "バチンキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/811.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 7,
     weight: 140,
     stats: {
@@ -12985,8 +12985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "812": {
     jaName: "ゴリランダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/812.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 21,
     weight: 900,
     stats: {
@@ -13001,8 +13001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "813": {
     jaName: "ヒバニー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/813.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 3,
     weight: 45,
     stats: {
@@ -13017,8 +13017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "814": {
     jaName: "ラビフット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/814.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 90,
     stats: {
@@ -13033,8 +13033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "815": {
     jaName: "エースバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/815.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 14,
     weight: 330,
     stats: {
@@ -13049,8 +13049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "816": {
     jaName: "メッソン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/816.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 40,
     stats: {
@@ -13065,8 +13065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "817": {
     jaName: "ジメレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/817.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 7,
     weight: 115,
     stats: {
@@ -13081,8 +13081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "818": {
     jaName: "インテレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/818.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 19,
     weight: 452,
     stats: {
@@ -13097,8 +13097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "819": {
     jaName: "ホシガリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/819.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 25,
     stats: {
@@ -13113,8 +13113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "820": {
     jaName: "ヨクバリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/820.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 60,
     stats: {
@@ -13129,8 +13129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "821": {
     jaName: "ココガラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/821.png",
-    typeName1: "flying",
-    typeName2: null,
+    type1Name: "flying",
+    type2Name: null,
     height: 2,
     weight: 18,
     stats: {
@@ -13145,8 +13145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "822": {
     jaName: "アオガラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/822.png",
-    typeName1: "flying",
-    typeName2: null,
+    type1Name: "flying",
+    type2Name: null,
     height: 8,
     weight: 160,
     stats: {
@@ -13161,8 +13161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "823": {
     jaName: "アーマーガア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png",
-    typeName1: "flying",
-    typeName2: "steel",
+    type1Name: "flying",
+    type2Name: "steel",
     height: 22,
     weight: 750,
     stats: {
@@ -13177,8 +13177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "824": {
     jaName: "サッチムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/824.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 4,
     weight: 80,
     stats: {
@@ -13193,8 +13193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "825": {
     jaName: "レドームシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/825.png",
-    typeName1: "bug",
-    typeName2: "psychic",
+    type1Name: "bug",
+    type2Name: "psychic",
     height: 4,
     weight: 195,
     stats: {
@@ -13209,8 +13209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "826": {
     jaName: "イオルブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/826.png",
-    typeName1: "bug",
-    typeName2: "psychic",
+    type1Name: "bug",
+    type2Name: "psychic",
     height: 4,
     weight: 408,
     stats: {
@@ -13225,8 +13225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "827": {
     jaName: "クスネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/827.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 6,
     weight: 89,
     stats: {
@@ -13241,8 +13241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "828": {
     jaName: "フォクスライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/828.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 12,
     weight: 199,
     stats: {
@@ -13257,8 +13257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "829": {
     jaName: "ヒメンカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/829.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 22,
     stats: {
@@ -13273,8 +13273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "830": {
     jaName: "ワタシラガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 5,
     weight: 25,
     stats: {
@@ -13289,8 +13289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "831": {
     jaName: "ウールー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/831.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 6,
     weight: 60,
     stats: {
@@ -13305,8 +13305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "832": {
     jaName: "バイウールー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/832.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 13,
     weight: 430,
     stats: {
@@ -13321,8 +13321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "833": {
     jaName: "カムカメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 3,
     weight: 85,
     stats: {
@@ -13337,8 +13337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "834": {
     jaName: "カジリガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png",
-    typeName1: "water",
-    typeName2: "rock",
+    type1Name: "water",
+    type2Name: "rock",
     height: 10,
     weight: 1155,
     stats: {
@@ -13353,8 +13353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "835": {
     jaName: "ワンパチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/835.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 3,
     weight: 135,
     stats: {
@@ -13369,8 +13369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "836": {
     jaName: "パルスワン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 10,
     weight: 340,
     stats: {
@@ -13385,8 +13385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "837": {
     jaName: "タンドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/837.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 3,
     weight: 120,
     stats: {
@@ -13401,8 +13401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "838": {
     jaName: "トロッゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/838.png",
-    typeName1: "rock",
-    typeName2: "fire",
+    type1Name: "rock",
+    type2Name: "fire",
     height: 11,
     weight: 780,
     stats: {
@@ -13417,8 +13417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "839": {
     jaName: "セキタンザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/839.png",
-    typeName1: "rock",
-    typeName2: "fire",
+    type1Name: "rock",
+    type2Name: "fire",
     height: 28,
     weight: 3105,
     stats: {
@@ -13433,8 +13433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "840": {
     jaName: "カジッチュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/840.png",
-    typeName1: "grass",
-    typeName2: "dragon",
+    type1Name: "grass",
+    type2Name: "dragon",
     height: 2,
     weight: 5,
     stats: {
@@ -13449,8 +13449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "841": {
     jaName: "アップリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/841.png",
-    typeName1: "grass",
-    typeName2: "dragon",
+    type1Name: "grass",
+    type2Name: "dragon",
     height: 3,
     weight: 10,
     stats: {
@@ -13465,8 +13465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "842": {
     jaName: "タルップル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/842.png",
-    typeName1: "grass",
-    typeName2: "dragon",
+    type1Name: "grass",
+    type2Name: "dragon",
     height: 4,
     weight: 130,
     stats: {
@@ -13481,8 +13481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "843": {
     jaName: "スナヘビ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/843.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 22,
     weight: 76,
     stats: {
@@ -13497,8 +13497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "844": {
     jaName: "サダイジャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/844.png",
-    typeName1: "ground",
-    typeName2: null,
+    type1Name: "ground",
+    type2Name: null,
     height: 38,
     weight: 655,
     stats: {
@@ -13513,8 +13513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "845": {
     jaName: "ウッウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/845.png",
-    typeName1: "flying",
-    typeName2: "water",
+    type1Name: "flying",
+    type2Name: "water",
     height: 8,
     weight: 180,
     stats: {
@@ -13529,8 +13529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "846": {
     jaName: "サシカマス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/846.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 10,
     stats: {
@@ -13545,8 +13545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "847": {
     jaName: "カマスジョー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/847.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 300,
     stats: {
@@ -13561,8 +13561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "848": {
     jaName: "エレズン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/848.png",
-    typeName1: "electric",
-    typeName2: "poison",
+    type1Name: "electric",
+    type2Name: "poison",
     height: 4,
     weight: 110,
     stats: {
@@ -13577,8 +13577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "849": {
     jaName: "ストリンダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/849.png",
-    typeName1: "electric",
-    typeName2: "poison",
+    type1Name: "electric",
+    type2Name: "poison",
     height: 16,
     weight: 400,
     stats: {
@@ -13593,8 +13593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "850": {
     jaName: "ヤクデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/850.png",
-    typeName1: "fire",
-    typeName2: "bug",
+    type1Name: "fire",
+    type2Name: "bug",
     height: 7,
     weight: 10,
     stats: {
@@ -13609,8 +13609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "851": {
     jaName: "マルヤクデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/851.png",
-    typeName1: "fire",
-    typeName2: "bug",
+    type1Name: "fire",
+    type2Name: "bug",
     height: 30,
     weight: 1200,
     stats: {
@@ -13625,8 +13625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "852": {
     jaName: "タタッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/852.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 6,
     weight: 40,
     stats: {
@@ -13641,8 +13641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "853": {
     jaName: "オトスパス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/853.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 16,
     weight: 390,
     stats: {
@@ -13657,8 +13657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "854": {
     jaName: "ヤバチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/854.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 1,
     weight: 2,
     stats: {
@@ -13673,8 +13673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "855": {
     jaName: "ポットデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 2,
     weight: 4,
     stats: {
@@ -13689,8 +13689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "856": {
     jaName: "ミブリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/856.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 4,
     weight: 34,
     stats: {
@@ -13705,8 +13705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "857": {
     jaName: "テブリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/857.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 6,
     weight: 48,
     stats: {
@@ -13721,8 +13721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "858": {
     jaName: "ブリムオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/858.png",
-    typeName1: "psychic",
-    typeName2: "fairy",
+    type1Name: "psychic",
+    type2Name: "fairy",
     height: 21,
     weight: 51,
     stats: {
@@ -13737,8 +13737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "859": {
     jaName: "ベロバー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/859.png",
-    typeName1: "dark",
-    typeName2: "fairy",
+    type1Name: "dark",
+    type2Name: "fairy",
     height: 4,
     weight: 55,
     stats: {
@@ -13753,8 +13753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "860": {
     jaName: "ギモー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/860.png",
-    typeName1: "dark",
-    typeName2: "fairy",
+    type1Name: "dark",
+    type2Name: "fairy",
     height: 8,
     weight: 125,
     stats: {
@@ -13769,8 +13769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "861": {
     jaName: "オーロンゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/861.png",
-    typeName1: "dark",
-    typeName2: "fairy",
+    type1Name: "dark",
+    type2Name: "fairy",
     height: 15,
     weight: 610,
     stats: {
@@ -13785,8 +13785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "862": {
     jaName: "タチフサグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/862.png",
-    typeName1: "dark",
-    typeName2: "normal",
+    type1Name: "dark",
+    type2Name: "normal",
     height: 16,
     weight: 460,
     stats: {
@@ -13801,8 +13801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "863": {
     jaName: "ニャイキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/863.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 8,
     weight: 280,
     stats: {
@@ -13817,8 +13817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "864": {
     jaName: "サニゴーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/864.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 10,
     weight: 4,
     stats: {
@@ -13833,8 +13833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "865": {
     jaName: "ネギガナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/865.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 8,
     weight: 1170,
     stats: {
@@ -13849,8 +13849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "866": {
     jaName: "バリコオル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/866.png",
-    typeName1: "ice",
-    typeName2: "psychic",
+    type1Name: "ice",
+    type2Name: "psychic",
     height: 15,
     weight: 582,
     stats: {
@@ -13865,8 +13865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "867": {
     jaName: "デスバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/867.png",
-    typeName1: "ground",
-    typeName2: "ghost",
+    type1Name: "ground",
+    type2Name: "ghost",
     height: 16,
     weight: 666,
     stats: {
@@ -13881,8 +13881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "868": {
     jaName: "マホミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/868.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 2,
     weight: 3,
     stats: {
@@ -13897,8 +13897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "869": {
     jaName: "マホイップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/869.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 3,
     weight: 5,
     stats: {
@@ -13913,8 +13913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "870": {
     jaName: "タイレーツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/870.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 30,
     weight: 620,
     stats: {
@@ -13929,8 +13929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "871": {
     jaName: "バチンウニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/871.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 3,
     weight: 10,
     stats: {
@@ -13945,8 +13945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "872": {
     jaName: "ユキハミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/872.png",
-    typeName1: "ice",
-    typeName2: "bug",
+    type1Name: "ice",
+    type2Name: "bug",
     height: 3,
     weight: 38,
     stats: {
@@ -13961,8 +13961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "873": {
     jaName: "モスノウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/873.png",
-    typeName1: "ice",
-    typeName2: "bug",
+    type1Name: "ice",
+    type2Name: "bug",
     height: 13,
     weight: 420,
     stats: {
@@ -13977,8 +13977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "874": {
     jaName: "イシヘンジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/874.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 25,
     weight: 5200,
     stats: {
@@ -13993,8 +13993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "875": {
     jaName: "コオリッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/875.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 14,
     weight: 890,
     stats: {
@@ -14009,8 +14009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "876": {
     jaName: "イエッサン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/876.png",
-    typeName1: "psychic",
-    typeName2: "normal",
+    type1Name: "psychic",
+    type2Name: "normal",
     height: 9,
     weight: 280,
     stats: {
@@ -14025,8 +14025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "877": {
     jaName: "モルペコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/877.png",
-    typeName1: "electric",
-    typeName2: "dark",
+    type1Name: "electric",
+    type2Name: "dark",
     height: 3,
     weight: 30,
     stats: {
@@ -14041,8 +14041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "878": {
     jaName: "ゾウドウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/878.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 12,
     weight: 1000,
     stats: {
@@ -14057,8 +14057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "879": {
     jaName: "ダイオウドウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/879.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 30,
     weight: 6500,
     stats: {
@@ -14073,8 +14073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "880": {
     jaName: "パッチラゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/880.png",
-    typeName1: "electric",
-    typeName2: "dragon",
+    type1Name: "electric",
+    type2Name: "dragon",
     height: 18,
     weight: 1900,
     stats: {
@@ -14089,8 +14089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "881": {
     jaName: "パッチルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/881.png",
-    typeName1: "electric",
-    typeName2: "ice",
+    type1Name: "electric",
+    type2Name: "ice",
     height: 23,
     weight: 1500,
     stats: {
@@ -14105,8 +14105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "882": {
     jaName: "ウオノラゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/882.png",
-    typeName1: "water",
-    typeName2: "dragon",
+    type1Name: "water",
+    type2Name: "dragon",
     height: 23,
     weight: 2150,
     stats: {
@@ -14121,8 +14121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "883": {
     jaName: "ウオチルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/883.png",
-    typeName1: "water",
-    typeName2: "ice",
+    type1Name: "water",
+    type2Name: "ice",
     height: 20,
     weight: 1750,
     stats: {
@@ -14137,8 +14137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "884": {
     jaName: "ジュラルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/884.png",
-    typeName1: "steel",
-    typeName2: "dragon",
+    type1Name: "steel",
+    type2Name: "dragon",
     height: 18,
     weight: 400,
     stats: {
@@ -14153,8 +14153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "885": {
     jaName: "ドラメシヤ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/885.png",
-    typeName1: "dragon",
-    typeName2: "ghost",
+    type1Name: "dragon",
+    type2Name: "ghost",
     height: 5,
     weight: 20,
     stats: {
@@ -14169,8 +14169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "886": {
     jaName: "ドロンチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/886.png",
-    typeName1: "dragon",
-    typeName2: "ghost",
+    type1Name: "dragon",
+    type2Name: "ghost",
     height: 14,
     weight: 110,
     stats: {
@@ -14185,8 +14185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "887": {
     jaName: "ドラパルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/887.png",
-    typeName1: "dragon",
-    typeName2: "ghost",
+    type1Name: "dragon",
+    type2Name: "ghost",
     height: 30,
     weight: 500,
     stats: {
@@ -14201,8 +14201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "888": {
     jaName: "ザシアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/888.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 28,
     weight: 1100,
     stats: {
@@ -14217,8 +14217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "889": {
     jaName: "ザマゼンタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/889.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 29,
     weight: 2100,
     stats: {
@@ -14233,8 +14233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "890": {
     jaName: "ムゲンダイナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/890.png",
-    typeName1: "poison",
-    typeName2: "dragon",
+    type1Name: "poison",
+    type2Name: "dragon",
     height: 200,
     weight: 9500,
     stats: {
@@ -14249,8 +14249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "891": {
     jaName: "ダクマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/891.png",
-    typeName1: "fighting",
-    typeName2: null,
+    type1Name: "fighting",
+    type2Name: null,
     height: 6,
     weight: 120,
     stats: {
@@ -14265,8 +14265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "892": {
     jaName: "ウーラオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/892.png",
-    typeName1: "fighting",
-    typeName2: "dark",
+    type1Name: "fighting",
+    type2Name: "dark",
     height: 19,
     weight: 1050,
     stats: {
@@ -14281,8 +14281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "893": {
     jaName: "ザルード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/893.png",
-    typeName1: "dark",
-    typeName2: "grass",
+    type1Name: "dark",
+    type2Name: "grass",
     height: 18,
     weight: 700,
     stats: {
@@ -14297,8 +14297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "894": {
     jaName: "レジエレキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/894.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 12,
     weight: 1450,
     stats: {
@@ -14313,8 +14313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "895": {
     jaName: "レジドラゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/895.png",
-    typeName1: "dragon",
-    typeName2: null,
+    type1Name: "dragon",
+    type2Name: null,
     height: 21,
     weight: 2000,
     stats: {
@@ -14329,8 +14329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "896": {
     jaName: "ブリザポス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/896.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 22,
     weight: 8000,
     stats: {
@@ -14345,8 +14345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "897": {
     jaName: "レイスポス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/897.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 20,
     weight: 445,
     stats: {
@@ -14361,8 +14361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "898": {
     jaName: "バドレックス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/898.png",
-    typeName1: "psychic",
-    typeName2: "grass",
+    type1Name: "psychic",
+    type2Name: "grass",
     height: 11,
     weight: 77,
     stats: {
@@ -14377,8 +14377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "899": {
     jaName: "アヤシシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/899.png",
-    typeName1: "normal",
-    typeName2: "psychic",
+    type1Name: "normal",
+    type2Name: "psychic",
     height: 18,
     weight: 951,
     stats: {
@@ -14393,8 +14393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "900": {
     jaName: "バサギリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/900.png",
-    typeName1: "bug",
-    typeName2: "rock",
+    type1Name: "bug",
+    type2Name: "rock",
     height: 18,
     weight: 890,
     stats: {
@@ -14409,8 +14409,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "901": {
     jaName: "ガチグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png",
-    typeName1: "ground",
-    typeName2: "normal",
+    type1Name: "ground",
+    type2Name: "normal",
     height: 24,
     weight: 2900,
     stats: {
@@ -14425,8 +14425,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "902": {
     jaName: "イダイトウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/902.png",
-    typeName1: "water",
-    typeName2: "ghost",
+    type1Name: "water",
+    type2Name: "ghost",
     height: 30,
     weight: 1100,
     stats: {
@@ -14441,8 +14441,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "903": {
     jaName: "オオニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/903.png",
-    typeName1: "fighting",
-    typeName2: "poison",
+    type1Name: "fighting",
+    type2Name: "poison",
     height: 13,
     weight: 430,
     stats: {
@@ -14457,8 +14457,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "904": {
     jaName: "ハリーマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/904.png",
-    typeName1: "dark",
-    typeName2: "poison",
+    type1Name: "dark",
+    type2Name: "poison",
     height: 25,
     weight: 605,
     stats: {
@@ -14473,8 +14473,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "905": {
     jaName: "ラブトロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/905.png",
-    typeName1: "fairy",
-    typeName2: "flying",
+    type1Name: "fairy",
+    type2Name: "flying",
     height: 16,
     weight: 480,
     stats: {
@@ -14489,8 +14489,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "906": {
     jaName: "ニャオハ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/906.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 4,
     weight: 41,
     stats: {
@@ -14505,8 +14505,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "907": {
     jaName: "ニャローテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/907.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 9,
     weight: 122,
     stats: {
@@ -14521,8 +14521,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "908": {
     jaName: "マスカーニャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png",
-    typeName1: "grass",
-    typeName2: "dark",
+    type1Name: "grass",
+    type2Name: "dark",
     height: 15,
     weight: 312,
     stats: {
@@ -14537,8 +14537,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "909": {
     jaName: "ホゲータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 4,
     weight: 98,
     stats: {
@@ -14553,8 +14553,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "910": {
     jaName: "アチゲータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/910.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 10,
     weight: 307,
     stats: {
@@ -14569,8 +14569,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "911": {
     jaName: "ラウドボーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/911.png",
-    typeName1: "fire",
-    typeName2: "ghost",
+    type1Name: "fire",
+    type2Name: "ghost",
     height: 16,
     weight: 3265,
     stats: {
@@ -14585,8 +14585,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "912": {
     jaName: "クワッス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/912.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 5,
     weight: 61,
     stats: {
@@ -14601,8 +14601,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "913": {
     jaName: "ウェルカモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/913.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 215,
     stats: {
@@ -14617,8 +14617,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "914": {
     jaName: "ウェーニバル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/914.png",
-    typeName1: "water",
-    typeName2: "fighting",
+    type1Name: "water",
+    type2Name: "fighting",
     height: 18,
     weight: 619,
     stats: {
@@ -14633,8 +14633,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "915": {
     jaName: "グルトン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/915.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 5,
     weight: 102,
     stats: {
@@ -14649,8 +14649,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "916": {
     jaName: "パフュートン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/916.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 10,
     weight: 1200,
     stats: {
@@ -14665,8 +14665,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "917": {
     jaName: "タマンチュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/917.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 3,
     weight: 40,
     stats: {
@@ -14681,8 +14681,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "918": {
     jaName: "ワナイダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/918.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 10,
     weight: 165,
     stats: {
@@ -14697,8 +14697,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "919": {
     jaName: "マメバッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/919.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 2,
     weight: 10,
     stats: {
@@ -14713,8 +14713,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "920": {
     jaName: "エクスレッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/920.png",
-    typeName1: "bug",
-    typeName2: "dark",
+    type1Name: "bug",
+    type2Name: "dark",
     height: 10,
     weight: 175,
     stats: {
@@ -14729,8 +14729,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "921": {
     jaName: "パモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/921.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 3,
     weight: 25,
     stats: {
@@ -14745,8 +14745,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "922": {
     jaName: "パモット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/922.png",
-    typeName1: "electric",
-    typeName2: "fighting",
+    type1Name: "electric",
+    type2Name: "fighting",
     height: 4,
     weight: 65,
     stats: {
@@ -14761,8 +14761,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "923": {
     jaName: "パーモット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/923.png",
-    typeName1: "electric",
-    typeName2: "fighting",
+    type1Name: "electric",
+    type2Name: "fighting",
     height: 9,
     weight: 410,
     stats: {
@@ -14777,8 +14777,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "924": {
     jaName: "ワッカネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/924.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 18,
     stats: {
@@ -14793,8 +14793,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "925": {
     jaName: "イッカネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/925.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 3,
     weight: 23,
     stats: {
@@ -14809,8 +14809,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "926": {
     jaName: "パピモッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/926.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 3,
     weight: 109,
     stats: {
@@ -14825,8 +14825,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "927": {
     jaName: "バウッツェル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/927.png",
-    typeName1: "fairy",
-    typeName2: null,
+    type1Name: "fairy",
+    type2Name: null,
     height: 5,
     weight: 149,
     stats: {
@@ -14841,8 +14841,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "928": {
     jaName: "ミニーブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/928.png",
-    typeName1: "grass",
-    typeName2: "normal",
+    type1Name: "grass",
+    type2Name: "normal",
     height: 3,
     weight: 65,
     stats: {
@@ -14857,8 +14857,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "929": {
     jaName: "オリーニョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/929.png",
-    typeName1: "grass",
-    typeName2: "normal",
+    type1Name: "grass",
+    type2Name: "normal",
     height: 6,
     weight: 119,
     stats: {
@@ -14873,8 +14873,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "930": {
     jaName: "オリーヴァ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/930.png",
-    typeName1: "grass",
-    typeName2: "normal",
+    type1Name: "grass",
+    type2Name: "normal",
     height: 14,
     weight: 482,
     stats: {
@@ -14889,8 +14889,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "931": {
     jaName: "イキリンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/931.png",
-    typeName1: "normal",
-    typeName2: "flying",
+    type1Name: "normal",
+    type2Name: "flying",
     height: 6,
     weight: 24,
     stats: {
@@ -14905,8 +14905,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "932": {
     jaName: "コジオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/932.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 4,
     weight: 160,
     stats: {
@@ -14921,8 +14921,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "933": {
     jaName: "ジオヅム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/933.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 6,
     weight: 1050,
     stats: {
@@ -14937,8 +14937,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "934": {
     jaName: "キョジオーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/934.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 23,
     weight: 2400,
     stats: {
@@ -14953,8 +14953,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "935": {
     jaName: "カルボウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/935.png",
-    typeName1: "fire",
-    typeName2: null,
+    type1Name: "fire",
+    type2Name: null,
     height: 6,
     weight: 105,
     stats: {
@@ -14969,8 +14969,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "936": {
     jaName: "グレンアルマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png",
-    typeName1: "fire",
-    typeName2: "psychic",
+    type1Name: "fire",
+    type2Name: "psychic",
     height: 15,
     weight: 850,
     stats: {
@@ -14985,8 +14985,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "937": {
     jaName: "ソウブレイズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png",
-    typeName1: "fire",
-    typeName2: "ghost",
+    type1Name: "fire",
+    type2Name: "ghost",
     height: 16,
     weight: 620,
     stats: {
@@ -15001,8 +15001,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "938": {
     jaName: "ズピカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/938.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 3,
     weight: 4,
     stats: {
@@ -15017,8 +15017,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "939": {
     jaName: "ハラバリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/939.png",
-    typeName1: "electric",
-    typeName2: null,
+    type1Name: "electric",
+    type2Name: null,
     height: 12,
     weight: 1130,
     stats: {
@@ -15033,8 +15033,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "940": {
     jaName: "カイデン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/940.png",
-    typeName1: "electric",
-    typeName2: "flying",
+    type1Name: "electric",
+    type2Name: "flying",
     height: 4,
     weight: 36,
     stats: {
@@ -15049,8 +15049,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "941": {
     jaName: "タイカイデン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/941.png",
-    typeName1: "electric",
-    typeName2: "flying",
+    type1Name: "electric",
+    type2Name: "flying",
     height: 14,
     weight: 386,
     stats: {
@@ -15065,8 +15065,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "942": {
     jaName: "オラチフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/942.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 5,
     weight: 160,
     stats: {
@@ -15081,8 +15081,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "943": {
     jaName: "マフィティフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/943.png",
-    typeName1: "dark",
-    typeName2: null,
+    type1Name: "dark",
+    type2Name: null,
     height: 11,
     weight: 610,
     stats: {
@@ -15097,8 +15097,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "944": {
     jaName: "シルシュルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/944.png",
-    typeName1: "poison",
-    typeName2: "normal",
+    type1Name: "poison",
+    type2Name: "normal",
     height: 2,
     weight: 7,
     stats: {
@@ -15113,8 +15113,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "945": {
     jaName: "タギングル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/945.png",
-    typeName1: "poison",
-    typeName2: "normal",
+    type1Name: "poison",
+    type2Name: "normal",
     height: 7,
     weight: 272,
     stats: {
@@ -15129,8 +15129,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "946": {
     jaName: "アノクサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/946.png",
-    typeName1: "grass",
-    typeName2: "ghost",
+    type1Name: "grass",
+    type2Name: "ghost",
     height: 6,
     weight: 6,
     stats: {
@@ -15145,8 +15145,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "947": {
     jaName: "アノホラグサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/947.png",
-    typeName1: "grass",
-    typeName2: "ghost",
+    type1Name: "grass",
+    type2Name: "ghost",
     height: 12,
     weight: 60,
     stats: {
@@ -15161,8 +15161,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "948": {
     jaName: "ノノクラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/948.png",
-    typeName1: "ground",
-    typeName2: "grass",
+    type1Name: "ground",
+    type2Name: "grass",
     height: 9,
     weight: 330,
     stats: {
@@ -15177,8 +15177,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "949": {
     jaName: "リククラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/949.png",
-    typeName1: "ground",
-    typeName2: "grass",
+    type1Name: "ground",
+    type2Name: "grass",
     height: 19,
     weight: 580,
     stats: {
@@ -15193,8 +15193,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "950": {
     jaName: "ガケガニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/950.png",
-    typeName1: "rock",
-    typeName2: null,
+    type1Name: "rock",
+    type2Name: null,
     height: 13,
     weight: 790,
     stats: {
@@ -15209,8 +15209,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "951": {
     jaName: "カプサイジ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/951.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 3,
     weight: 30,
     stats: {
@@ -15225,8 +15225,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "952": {
     jaName: "スコヴィラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/952.png",
-    typeName1: "grass",
-    typeName2: "fire",
+    type1Name: "grass",
+    type2Name: "fire",
     height: 9,
     weight: 150,
     stats: {
@@ -15241,8 +15241,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "953": {
     jaName: "シガロコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/953.png",
-    typeName1: "bug",
-    typeName2: null,
+    type1Name: "bug",
+    type2Name: null,
     height: 2,
     weight: 10,
     stats: {
@@ -15257,8 +15257,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "954": {
     jaName: "ベラカス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/954.png",
-    typeName1: "bug",
-    typeName2: "psychic",
+    type1Name: "bug",
+    type2Name: "psychic",
     height: 3,
     weight: 35,
     stats: {
@@ -15273,8 +15273,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "955": {
     jaName: "ヒラヒナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/955.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 2,
     weight: 15,
     stats: {
@@ -15289,8 +15289,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "956": {
     jaName: "クエスパトラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/956.png",
-    typeName1: "psychic",
-    typeName2: null,
+    type1Name: "psychic",
+    type2Name: null,
     height: 19,
     weight: 900,
     stats: {
@@ -15305,8 +15305,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "957": {
     jaName: "カヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/957.png",
-    typeName1: "fairy",
-    typeName2: "steel",
+    type1Name: "fairy",
+    type2Name: "steel",
     height: 4,
     weight: 89,
     stats: {
@@ -15321,8 +15321,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "958": {
     jaName: "ナカヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/958.png",
-    typeName1: "fairy",
-    typeName2: "steel",
+    type1Name: "fairy",
+    type2Name: "steel",
     height: 7,
     weight: 591,
     stats: {
@@ -15337,8 +15337,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "959": {
     jaName: "デカヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/959.png",
-    typeName1: "fairy",
-    typeName2: "steel",
+    type1Name: "fairy",
+    type2Name: "steel",
     height: 7,
     weight: 1128,
     stats: {
@@ -15353,8 +15353,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "960": {
     jaName: "ウミディグダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/960.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 18,
     stats: {
@@ -15369,8 +15369,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "961": {
     jaName: "ウミトリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/961.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 12,
     weight: 54,
     stats: {
@@ -15385,8 +15385,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "962": {
     jaName: "オトシドリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/962.png",
-    typeName1: "flying",
-    typeName2: "dark",
+    type1Name: "flying",
+    type2Name: "dark",
     height: 15,
     weight: 429,
     stats: {
@@ -15401,8 +15401,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "963": {
     jaName: "ナミイルカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/963.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 602,
     stats: {
@@ -15417,8 +15417,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "964": {
     jaName: "イルカマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/964.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 13,
     weight: 602,
     stats: {
@@ -15433,8 +15433,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "965": {
     jaName: "ブロロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/965.png",
-    typeName1: "steel",
-    typeName2: "poison",
+    type1Name: "steel",
+    type2Name: "poison",
     height: 10,
     weight: 350,
     stats: {
@@ -15449,8 +15449,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "966": {
     jaName: "ブロロローム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/966.png",
-    typeName1: "steel",
-    typeName2: "poison",
+    type1Name: "steel",
+    type2Name: "poison",
     height: 18,
     weight: 1200,
     stats: {
@@ -15465,8 +15465,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "967": {
     jaName: "モトトカゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/967.png",
-    typeName1: "dragon",
-    typeName2: "normal",
+    type1Name: "dragon",
+    type2Name: "normal",
     height: 16,
     weight: 630,
     stats: {
@@ -15481,8 +15481,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "968": {
     jaName: "ミミズズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/968.png",
-    typeName1: "steel",
-    typeName2: null,
+    type1Name: "steel",
+    type2Name: null,
     height: 25,
     weight: 3100,
     stats: {
@@ -15497,8 +15497,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "969": {
     jaName: "キラーメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/969.png",
-    typeName1: "rock",
-    typeName2: "poison",
+    type1Name: "rock",
+    type2Name: "poison",
     height: 7,
     weight: 80,
     stats: {
@@ -15513,8 +15513,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "970": {
     jaName: "キラフロル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/970.png",
-    typeName1: "rock",
-    typeName2: "poison",
+    type1Name: "rock",
+    type2Name: "poison",
     height: 15,
     weight: 450,
     stats: {
@@ -15529,8 +15529,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "971": {
     jaName: "ボチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/971.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 6,
     weight: 350,
     stats: {
@@ -15545,8 +15545,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "972": {
     jaName: "ハカドッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/972.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 20,
     weight: 150,
     stats: {
@@ -15561,8 +15561,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "973": {
     jaName: "カラミンゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/973.png",
-    typeName1: "flying",
-    typeName2: "fighting",
+    type1Name: "flying",
+    type2Name: "fighting",
     height: 16,
     weight: 370,
     stats: {
@@ -15577,8 +15577,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "974": {
     jaName: "アルクジラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/974.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 12,
     weight: 450,
     stats: {
@@ -15593,8 +15593,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "975": {
     jaName: "ハルクジラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/975.png",
-    typeName1: "ice",
-    typeName2: null,
+    type1Name: "ice",
+    type2Name: null,
     height: 45,
     weight: 7000,
     stats: {
@@ -15609,8 +15609,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "976": {
     jaName: "ミガルーサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/976.png",
-    typeName1: "water",
-    typeName2: "psychic",
+    type1Name: "water",
+    type2Name: "psychic",
     height: 25,
     weight: 900,
     stats: {
@@ -15625,8 +15625,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "977": {
     jaName: "ヘイラッシャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/977.png",
-    typeName1: "water",
-    typeName2: null,
+    type1Name: "water",
+    type2Name: null,
     height: 120,
     weight: 2200,
     stats: {
@@ -15641,8 +15641,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "978": {
     jaName: "シャリタツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/978.png",
-    typeName1: "dragon",
-    typeName2: "water",
+    type1Name: "dragon",
+    type2Name: "water",
     height: 3,
     weight: 80,
     stats: {
@@ -15657,8 +15657,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "979": {
     jaName: "コノヨザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/979.png",
-    typeName1: "fighting",
-    typeName2: "ghost",
+    type1Name: "fighting",
+    type2Name: "ghost",
     height: 12,
     weight: 560,
     stats: {
@@ -15673,8 +15673,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "980": {
     jaName: "ドオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/980.png",
-    typeName1: "poison",
-    typeName2: "ground",
+    type1Name: "poison",
+    type2Name: "ground",
     height: 18,
     weight: 2230,
     stats: {
@@ -15689,8 +15689,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "981": {
     jaName: "リキキリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/981.png",
-    typeName1: "normal",
-    typeName2: "psychic",
+    type1Name: "normal",
+    type2Name: "psychic",
     height: 32,
     weight: 1600,
     stats: {
@@ -15705,8 +15705,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "982": {
     jaName: "ノココッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/982.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 36,
     weight: 392,
     stats: {
@@ -15721,8 +15721,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "983": {
     jaName: "ドドゲザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/983.png",
-    typeName1: "dark",
-    typeName2: "steel",
+    type1Name: "dark",
+    type2Name: "steel",
     height: 20,
     weight: 1200,
     stats: {
@@ -15737,8 +15737,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "984": {
     jaName: "イダイナキバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/984.png",
-    typeName1: "ground",
-    typeName2: "fighting",
+    type1Name: "ground",
+    type2Name: "fighting",
     height: 22,
     weight: 3200,
     stats: {
@@ -15753,8 +15753,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "985": {
     jaName: "サケブシッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/985.png",
-    typeName1: "fairy",
-    typeName2: "psychic",
+    type1Name: "fairy",
+    type2Name: "psychic",
     height: 12,
     weight: 80,
     stats: {
@@ -15769,8 +15769,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "986": {
     jaName: "アラブルタケ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/986.png",
-    typeName1: "grass",
-    typeName2: "dark",
+    type1Name: "grass",
+    type2Name: "dark",
     height: 12,
     weight: 210,
     stats: {
@@ -15785,8 +15785,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "987": {
     jaName: "ハバタクカミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/987.png",
-    typeName1: "ghost",
-    typeName2: "fairy",
+    type1Name: "ghost",
+    type2Name: "fairy",
     height: 14,
     weight: 40,
     stats: {
@@ -15801,8 +15801,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "988": {
     jaName: "チヲハウハネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/988.png",
-    typeName1: "bug",
-    typeName2: "fighting",
+    type1Name: "bug",
+    type2Name: "fighting",
     height: 32,
     weight: 920,
     stats: {
@@ -15817,8 +15817,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "989": {
     jaName: "スナノケガワ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/989.png",
-    typeName1: "electric",
-    typeName2: "ground",
+    type1Name: "electric",
+    type2Name: "ground",
     height: 23,
     weight: 600,
     stats: {
@@ -15833,8 +15833,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "990": {
     jaName: "テツノワダチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/990.png",
-    typeName1: "ground",
-    typeName2: "steel",
+    type1Name: "ground",
+    type2Name: "steel",
     height: 9,
     weight: 2400,
     stats: {
@@ -15849,8 +15849,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "991": {
     jaName: "テツノツツミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/991.png",
-    typeName1: "ice",
-    typeName2: "water",
+    type1Name: "ice",
+    type2Name: "water",
     height: 6,
     weight: 110,
     stats: {
@@ -15865,8 +15865,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "992": {
     jaName: "テツノカイナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/992.png",
-    typeName1: "fighting",
-    typeName2: "electric",
+    type1Name: "fighting",
+    type2Name: "electric",
     height: 18,
     weight: 3807,
     stats: {
@@ -15881,8 +15881,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "993": {
     jaName: "テツノコウベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/993.png",
-    typeName1: "dark",
-    typeName2: "flying",
+    type1Name: "dark",
+    type2Name: "flying",
     height: 13,
     weight: 1110,
     stats: {
@@ -15897,8 +15897,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "994": {
     jaName: "テツノドクガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/994.png",
-    typeName1: "fire",
-    typeName2: "poison",
+    type1Name: "fire",
+    type2Name: "poison",
     height: 12,
     weight: 360,
     stats: {
@@ -15913,8 +15913,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "995": {
     jaName: "テツノイバラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/995.png",
-    typeName1: "rock",
-    typeName2: "electric",
+    type1Name: "rock",
+    type2Name: "electric",
     height: 16,
     weight: 3030,
     stats: {
@@ -15929,8 +15929,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "996": {
     jaName: "セビエ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/996.png",
-    typeName1: "dragon",
-    typeName2: "ice",
+    type1Name: "dragon",
+    type2Name: "ice",
     height: 5,
     weight: 170,
     stats: {
@@ -15945,8 +15945,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "997": {
     jaName: "セゴール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/997.png",
-    typeName1: "dragon",
-    typeName2: "ice",
+    type1Name: "dragon",
+    type2Name: "ice",
     height: 8,
     weight: 300,
     stats: {
@@ -15961,8 +15961,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "998": {
     jaName: "セグレイブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/998.png",
-    typeName1: "dragon",
-    typeName2: "ice",
+    type1Name: "dragon",
+    type2Name: "ice",
     height: 21,
     weight: 2100,
     stats: {
@@ -15977,8 +15977,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "999": {
     jaName: "コレクレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/999.png",
-    typeName1: "ghost",
-    typeName2: null,
+    type1Name: "ghost",
+    type2Name: null,
     height: 3,
     weight: 50,
     stats: {
@@ -15993,8 +15993,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1000": {
     jaName: "サーフゴー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1000.png",
-    typeName1: "steel",
-    typeName2: "ghost",
+    type1Name: "steel",
+    type2Name: "ghost",
     height: 12,
     weight: 300,
     stats: {
@@ -16009,8 +16009,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1001": {
     jaName: "チオンジェン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1001.png",
-    typeName1: "dark",
-    typeName2: "grass",
+    type1Name: "dark",
+    type2Name: "grass",
     height: 15,
     weight: 742,
     stats: {
@@ -16025,8 +16025,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1002": {
     jaName: "パオジアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1002.png",
-    typeName1: "dark",
-    typeName2: "ice",
+    type1Name: "dark",
+    type2Name: "ice",
     height: 19,
     weight: 1522,
     stats: {
@@ -16041,8 +16041,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1003": {
     jaName: "ディンルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1003.png",
-    typeName1: "dark",
-    typeName2: "ground",
+    type1Name: "dark",
+    type2Name: "ground",
     height: 27,
     weight: 6997,
     stats: {
@@ -16057,8 +16057,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1004": {
     jaName: "イーユイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1004.png",
-    typeName1: "dark",
-    typeName2: "fire",
+    type1Name: "dark",
+    type2Name: "fire",
     height: 4,
     weight: 49,
     stats: {
@@ -16073,8 +16073,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1005": {
     jaName: "トドロクツキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1005.png",
-    typeName1: "dragon",
-    typeName2: "dark",
+    type1Name: "dragon",
+    type2Name: "dark",
     height: 20,
     weight: 3800,
     stats: {
@@ -16089,8 +16089,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1006": {
     jaName: "テツノブジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1006.png",
-    typeName1: "fairy",
-    typeName2: "fighting",
+    type1Name: "fairy",
+    type2Name: "fighting",
     height: 14,
     weight: 350,
     stats: {
@@ -16105,8 +16105,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1007": {
     jaName: "コライドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1007.png",
-    typeName1: "fighting",
-    typeName2: "dragon",
+    type1Name: "fighting",
+    type2Name: "dragon",
     height: 25,
     weight: 3030,
     stats: {
@@ -16121,8 +16121,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1008": {
     jaName: "ミライドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1008.png",
-    typeName1: "electric",
-    typeName2: "dragon",
+    type1Name: "electric",
+    type2Name: "dragon",
     height: 35,
     weight: 2400,
     stats: {
@@ -16137,8 +16137,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1009": {
     jaName: "ウネルミナモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1009.png",
-    typeName1: "water",
-    typeName2: "dragon",
+    type1Name: "water",
+    type2Name: "dragon",
     height: 35,
     weight: 2800,
     stats: {
@@ -16153,8 +16153,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1010": {
     jaName: "テツノイサハ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1010.png",
-    typeName1: "grass",
-    typeName2: "psychic",
+    type1Name: "grass",
+    type2Name: "psychic",
     height: 15,
     weight: 1250,
     stats: {
@@ -16169,8 +16169,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1011": {
     jaName: "カミッチュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1011.png",
-    typeName1: "grass",
-    typeName2: "dragon",
+    type1Name: "grass",
+    type2Name: "dragon",
     height: 4,
     weight: 97,
     stats: {
@@ -16185,8 +16185,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1012": {
     jaName: "チャデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1012.png",
-    typeName1: "grass",
-    typeName2: "ghost",
+    type1Name: "grass",
+    type2Name: "ghost",
     height: 1,
     weight: 11,
     stats: {
@@ -16201,8 +16201,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1013": {
     jaName: "ヤバソチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1013.png",
-    typeName1: "grass",
-    typeName2: "ghost",
+    type1Name: "grass",
+    type2Name: "ghost",
     height: 2,
     weight: 22,
     stats: {
@@ -16217,8 +16217,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1014": {
     jaName: "イイネイヌ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1014.png",
-    typeName1: "poison",
-    typeName2: "fighting",
+    type1Name: "poison",
+    type2Name: "fighting",
     height: 18,
     weight: 922,
     stats: {
@@ -16233,8 +16233,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1015": {
     jaName: "マシマシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1015.png",
-    typeName1: "poison",
-    typeName2: "psychic",
+    type1Name: "poison",
+    type2Name: "psychic",
     height: 10,
     weight: 122,
     stats: {
@@ -16249,8 +16249,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1016": {
     jaName: "キチキギス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1016.png",
-    typeName1: "poison",
-    typeName2: "fairy",
+    type1Name: "poison",
+    type2Name: "fairy",
     height: 14,
     weight: 301,
     stats: {
@@ -16265,8 +16265,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1017": {
     jaName: "オーガポン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1017.png",
-    typeName1: "grass",
-    typeName2: null,
+    type1Name: "grass",
+    type2Name: null,
     height: 12,
     weight: 398,
     stats: {
@@ -16281,8 +16281,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1018": {
     jaName: "ブリジュラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1018.png",
-    typeName1: "steel",
-    typeName2: "dragon",
+    type1Name: "steel",
+    type2Name: "dragon",
     height: 20,
     weight: 600,
     stats: {
@@ -16297,8 +16297,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1019": {
     jaName: "カミツオロチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1019.png",
-    typeName1: "grass",
-    typeName2: "dragon",
+    type1Name: "grass",
+    type2Name: "dragon",
     height: 18,
     weight: 930,
     stats: {
@@ -16313,8 +16313,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1020": {
     jaName: "ウガツホムラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1020.png",
-    typeName1: "fire",
-    typeName2: "dragon",
+    type1Name: "fire",
+    type2Name: "dragon",
     height: 35,
     weight: 5900,
     stats: {
@@ -16329,8 +16329,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1021": {
     jaName: "タケルライコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1021.png",
-    typeName1: "electric",
-    typeName2: "dragon",
+    type1Name: "electric",
+    type2Name: "dragon",
     height: 52,
     weight: 4800,
     stats: {
@@ -16345,8 +16345,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1022": {
     jaName: "テツノイワオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1022.png",
-    typeName1: "rock",
-    typeName2: "psychic",
+    type1Name: "rock",
+    type2Name: "psychic",
     height: 15,
     weight: 1625,
     stats: {
@@ -16361,8 +16361,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1023": {
     jaName: "テツノカシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1023.png",
-    typeName1: "steel",
-    typeName2: "psychic",
+    type1Name: "steel",
+    type2Name: "psychic",
     height: 16,
     weight: 1560,
     stats: {
@@ -16377,8 +16377,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1024": {
     jaName: "テラパゴス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1024.png",
-    typeName1: "normal",
-    typeName2: null,
+    type1Name: "normal",
+    type2Name: null,
     height: 2,
     weight: 65,
     stats: {
@@ -16393,8 +16393,8 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1025": {
     jaName: "モモワロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1025.png",
-    typeName1: "poison",
-    typeName2: "ghost",
+    type1Name: "poison",
+    type2Name: "ghost",
     height: 3,
     weight: 3,
     stats: {
