@@ -42,7 +42,7 @@
             max={LATEST_POKEMON_ID}
             id="pokeId"
             bind:value={pokeId}
-            class="border rounded px-4 py-1 h-full"
+            class="border rounded px-5 py-1 h-full"
           />
           <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
             <div class="cIconDivStyle">
@@ -55,20 +55,7 @@
 
     <!-- ポケモン情報 -->
     <div>
-      <PokeCard
-        {pokeId}
-        jaName={pokeData?.jaName ?? null}
-        enName={pokeData?.enName ?? null}
-        jaGenus={pokeData?.jaGenus ?? null}
-        imageUrlArray={pokeData?.imageUrlArray ?? []}
-        type1JaName={pokeData?.type1.jaName ?? null}
-        type1EnName={pokeData?.type1.enName ?? null}
-        type2JaName={pokeData?.type2?.jaName ?? null}
-        type2EnName={pokeData?.type2?.enName ?? null}
-        height={pokeData?.height ?? null}
-        weight={pokeData?.weight ?? null}
-        stats={pokeData?.stats ?? null}
-      />
+      <PokeCard {pokeData} />
     </div>
   </div>
 </div>

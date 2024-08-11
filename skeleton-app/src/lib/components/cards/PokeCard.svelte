@@ -2,40 +2,34 @@
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   import { Chart, registerables } from "chart.js";
-  import { TypeName } from "$lib/types/type";
-  import type { Stats } from "$lib/types/stats";
+  import type { PokeData } from "$lib/types/poke";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
-  export let pokeId = "";
-  export let jaName: string | null = null;
-  export let enName: string | null = null;
-  export let jaGenus: string | null = null;
-  export let imageUrlArray: string[] = [];
-  export let type1JaName: string | null = null;
-  export let type1EnName: TypeName | null = null;
-  export let type2JaName: string | null = null;
-  export let type2EnName: TypeName | null = null;
-  export let height: number | null = null;
-  export let weight: number | null = null;
-  export let stats: Stats | null = null;
+  export let pokeData: PokeData | null;
 
+  let imageUrlCount = 0;
   let headerColor = TYPE_COLOR_DICT["unknown"].themeColor;
   let footerColor = TYPE_COLOR_DICT["unknown"].themeColor;
-  $: if (pokeId) {
-    imageUrlCount = imageUrlArray.length;
-    headerColor = type1EnName ? TYPE_COLOR_DICT[type1EnName].themeColor : TYPE_COLOR_DICT["unknown"].themeColor;
-    footerColor = type2EnName ? TYPE_COLOR_DICT[type2EnName].themeColor : headerColor;
-    statsData = stats
-      ? [stats.hp, stats.attack, stats.defense, stats.speed, stats.specialDefense, stats.specialAttack]
-      : [0, 0, 0, 0, 0, 0];
+  $: if (pokeData !== null) {
+    imageUrlCount = pokeData.imageUrlArray.length;
+    headerColor = TYPE_COLOR_DICT[pokeData.type1.enName].themeColor;
+    footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName].themeColor : headerColor;
+    statsData = [
+      pokeData?.stats.hp,
+      pokeData?.stats.attack,
+      pokeData?.stats.defense,
+      pokeData?.stats.speed,
+      pokeData?.stats.specialDefense,
+      pokeData?.stats.specialAttack,
+    ];
     if (chartInstance) {
       chartInstance.data.datasets[0].data = statsData;
       chartInstance.update();
     }
+    isImageLoaded = false;
   }
 
-  let imageUrlCount = 0;
   let currentImageIndex = 0;
   function toggleImage(): void {
     if (imageUrlCount > 1) {
@@ -46,9 +40,6 @@
   let isImageLoaded = false;
   function handleImageLoad() {
     isImageLoaded = true;
-  }
-  $: if (imageUrlArray.length > 0) {
-    isImageLoaded = false;
   }
 
   Chart.register(...registerables);
@@ -121,10 +112,10 @@
   <div class="m-2 bg-transparent">
     <h1 class="text-2xl font-bold text-gray-900">
       <div class="flex flex-col md:flex-row justify-center items-center">
-        {#if jaName !== null}
-          <span>{jaName} : {enName ?? "???"}</span>
+        {#if pokeData !== null}
+          <span>{pokeData.jaName} : {pokeData.enName}</span>
           <span class="text-lg font-normal text-gray-700 md:ml-4">
-            {jaGenus ?? "???"}
+            {pokeData.jaGenus}
           </span>
         {:else}
           <span>???</span>
@@ -138,11 +129,11 @@
     <!-- 画像 -->
     <div class="md:w-2/5 m-2 md:p-4">
       <div class="relative w-48 h-48 bg-white rounded-lg border border-gray-200">
-        {#if imageUrlCount > 0}
+        {#if pokeData !== null}
           <button type="button" on:click={toggleImage}>
             <img
-              src={imageUrlArray[currentImageIndex]}
-              alt={jaName ?? "???"}
+              src={pokeData.imageUrlArray[currentImageIndex]}
+              alt={pokeData.jaName}
               class="absolute top-0 left-0 w-full h-full object-contain"
               class:image={!isImageLoaded}
               class:loaded={isImageLoaded}
@@ -172,9 +163,9 @@
       <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
         <h2 class={cIndexStyle}>[タイプ]</h2>
         <ul class="flex flex-row md:flex-col space-x-2 md:space-x-0 list-inside ml-1">
-          {#if type1JaName !== null}
-            <li class={cTextStyle}>{type1JaName}</li>
-            <li class={cTextStyle}>{type2JaName !== null ? type2JaName : ""}</li>
+          {#if pokeData !== null}
+            <li class={cTextStyle}>{pokeData?.type1.jaName}</li>
+            <li class={cTextStyle}>{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
           {:else}
             <li class={cTextStyle}>???</li>
           {/if}
@@ -185,13 +176,13 @@
         <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
           <h2 class={cIndexStyle}>[たかさ]</h2>
           <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
-            <li class={cTextStyle}>{formatHeightWeight(height, "height")}</li>
+            <li class={cTextStyle}>{formatHeightWeight(pokeData?.height ?? null, "height")}</li>
           </ul>
         </div>
         <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
           <h2 class={cIndexStyle}>[おもさ]</h2>
           <ul class="flex space-x-2 md:space-x-4 list-inside ml-2">
-            <li class={cTextStyle}>{formatHeightWeight(weight, "weight")}</li>
+            <li class={cTextStyle}>{formatHeightWeight(pokeData?.weight ?? null, "weight")}</li>
           </ul>
         </div>
       </div>
