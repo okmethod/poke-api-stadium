@@ -10,7 +10,7 @@
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import getDamageRatio from "$lib/utils/getDamageRatio";
   import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
-  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
+  import { LATEST_POKE_ID } from "$lib/constants/common";
   import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
   interface PokeItem {
@@ -52,7 +52,7 @@
   const pokeCountByPlayer = 3;
   function pickPokeIds(): void {
     resetState();
-    const pokeIndexes = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+    const pokeIndexes = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
     const pickedPokeIds = pickRandomNumbers(pokeIndexes, pokeCountByPlayer * 2);
     ownPokeIds = pickedPokeIds.slice(0, pokeCountByPlayer);
     opoPokeIds = pickedPokeIds.slice(pokeCountByPlayer, pokeCountByPlayer * 2);

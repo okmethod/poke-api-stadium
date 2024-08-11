@@ -7,7 +7,7 @@
   import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
-  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
+  import { LATEST_POKE_ID } from "$lib/constants/common";
 
   interface PokeItem {
     id: number; // dndzone で使用するため id という命名にしている
@@ -102,7 +102,7 @@
   let pokeCount = 3;
   function pickPokeItems(): void {
     resetState();
-    const allPokeIds = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+    const allPokeIds = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
     pickedPokeItems = _convertIdsToItems(pickRandomNumbers(allPokeIds, pokeCount));
 
     function _convertIdsToItems(pokeIds: number[]): PokeItem[] {

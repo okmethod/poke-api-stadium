@@ -1,9 +1,5 @@
 import type { StaticPokeData } from "$lib/types/poke";
 
-export const LATEST_POKEMON_ID = 1025;
-// https://pokeapi.co/api/v2/pokemon の count の値
-// と思いきや、図鑑番号がついていないポケモンがいるため count より小さい値になるので注意
-
 // cheat画面から取得したstaticデータ
 export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1": {

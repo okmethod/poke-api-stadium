@@ -3,7 +3,7 @@
   import makeStaticPokeDict from "$lib/api/makeStaticPokeDict.client";
   import makeStaticTypeDict from "$lib/api/makeStaticTypeDict.client";
   import { TypeName } from "$lib/types/type";
-  import { LATEST_POKEMON_ID } from "$lib/constants/staticPokeData";
+  import { LATEST_POKE_ID } from "$lib/constants/common";
 
   let isProcessing = false;
 
@@ -22,7 +22,7 @@
   let staticPokeJsonFileName = "staticPokeDict.json";
   async function downloadStaticPokeJson() {
     isProcessing = true;
-    const pokeIds: number[] = Array.from({ length: LATEST_POKEMON_ID }, (_, i) => i + 1);
+    const pokeIds: number[] = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
     const staticPokeDict = await makeStaticPokeDict(fetch, pokeIds);
     const jsonData = JSON.stringify(staticPokeDict, null, 2);
     try {
