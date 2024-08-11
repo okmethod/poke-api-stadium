@@ -2,7 +2,7 @@ import { getType } from "$lib/api/getType.client";
 import type { TypeData } from "$lib/types/type";
 import { convertToTypeData } from "$lib/types/type";
 
-async function makeStaticPokeDict(
+async function makeStaticTypeDict(
   fetchFunction: typeof window.fetch,
   typeNames: string[],
 ): Promise<{ [name: string]: TypeData }> {
@@ -18,4 +18,4 @@ async function makeStaticPokeDict(
   return staticTypeDict;
 }
 
-export default makeStaticPokeDict;
+export default makeStaticTypeDict;

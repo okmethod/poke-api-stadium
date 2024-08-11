@@ -57,7 +57,7 @@ export interface PokeData {
   id: number;
   enName: string;
   jaName: string;
-  imageUrl: string;
+  imageUrl: string | null;
   gifUrl: string | null;
   imageUrlArray: string[];
   jaGenus: string | null;
@@ -101,7 +101,7 @@ export function convertToPokeData(
 export interface StaticPokeData {
   jaName: string;
   jaGenus: string | null;
-  imageUrl: string;
+  imageUrl: string | null;
   gifUrl: string | null;
   type1Name: string; // 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
   type2Name: string | null;

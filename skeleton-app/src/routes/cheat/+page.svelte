@@ -3,7 +3,12 @@
   import makeStaticPokeDict from "$lib/api/makeStaticPokeDict.client";
   import makeStaticTypeDict from "$lib/api/makeStaticTypeDict.client";
   import { TypeName } from "$lib/types/type";
-  import { FIRST_POKE_ID, LATEST_POKE_ID } from "$lib/constants/common";
+  import {
+    FIRST_POKE_ID,
+    LATEST_POKE_ID,
+    FIRST_ADDITIONAL_POKE_ID,
+    LATEST_ADDITIONAL_POKE_ID,
+  } from "$lib/constants/common";
 
   let isProcessing = false;
 
@@ -60,12 +65,17 @@
 
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[600px]">
-    <!-- 全ポケモン -->
+    <!-- 全ポケモン (通常フォルム) -->
     <div class="ml-4">
       <div class="flex flex-col md:flex-row space-x-3">
-        <span class="text-lg">全ポケモンリストJson ダウンロード</span>
+        <span class="text-lg">全ポケモン(通常フォルム) Json DL</span>
         <div class="cInputFormAndMessagePartStyle">
-          <input type="text" bind:value={staticPokeJsonFileName} class="border rounded px-4 py-1 h-full" />
+          <input
+            type="text"
+            id="dlPokeJson"
+            bind:value={staticPokeJsonFileName}
+            class="border rounded px-4 py-1 h-full"
+          />
           <form
             on:submit|preventDefault={() =>
               downloadStaticPokeJson(staticPokeJsonFileName, FIRST_POKE_ID, LATEST_POKE_ID)}
@@ -80,12 +90,46 @@
       </div>
     </div>
 
+    <!-- 全ポケモン (別フォルム) -->
+    <div class="ml-4">
+      <div class="flex flex-col md:flex-row space-x-3">
+        <span class="text-lg">全ポケモン(別フォルム) Json DL</span>
+        <div class="cInputFormAndMessagePartStyle">
+          <input
+            type="text"
+            id="dlAddPokeJson"
+            bind:value={staticPokeJsonFileName}
+            class="border rounded px-4 py-1 h-full"
+          />
+          <form
+            on:submit|preventDefault={() =>
+              downloadStaticPokeJson(
+                staticAdditionalPokeJsonFileName,
+                FIRST_ADDITIONAL_POKE_ID,
+                LATEST_ADDITIONAL_POKE_ID,
+              )}
+          >
+            <button type="submit" disabled={isProcessing} class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}">
+              <div class="cIconDivStyle">
+                <Icon icon="mdi:pokeball" class="cIconStyle" />
+              </div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- 全タイプ -->
     <div class="ml-4">
       <div class="flex flex-col md:flex-row space-x-3">
-        <span class="text-lg">全タイプJson ダウンロード</span>
+        <span class="text-lg">全タイプJson DL</span>
         <div class="cInputFormAndMessagePartStyle">
-          <input type="text" bind:value={staticTypeJsonFileName} class="border rounded px-4 py-1 h-full" />
+          <input
+            type="text"
+            id="dlTypeJson"
+            bind:value={staticTypeJsonFileName}
+            class="border rounded px-4 py-1 h-full"
+          />
           <form on:submit|preventDefault={() => downloadStaticTypeJson(staticTypeJsonFileName)}>
             <button type="submit" disabled={isProcessing} class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}">
               <div class="cIconDivStyle">
