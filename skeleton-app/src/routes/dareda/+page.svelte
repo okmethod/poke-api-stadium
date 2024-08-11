@@ -1,21 +1,26 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { getToastStore } from "@skeletonlabs/skeleton";
+  import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
+  import type { TypeName, TypeData } from "$lib/types/type";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import type { TypeName } from "$lib/types/type";
-  import { pickRandomKey } from "$lib/utils/numerics";
+  import { pickRandomKey, getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
 
   interface PokeItem {
     jaName: string;
     gifUrl: string;
+    jaGenus: string | null;
     type1Name: TypeName;
     type2Name: TypeName | null;
+    height: number;
+    weight: number;
   }
 
   // staticデータロード
   let TOTAL_POKE_DICT: Record<number, PokeItem>;
-  //let TYPE_DICT: Record<TypeName, TypeData>;
+  let TYPE_DICT: Record<TypeName, TypeData>;
   onMount(async () => {
     // 利用スコープを局所化してガベージコレクションされるようにする
     const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
@@ -33,18 +38,22 @@
           pokeDict[Number(pokeId)] = {
             jaName: staticPokeData.jaName,
             gifUrl: staticPokeData.gifUrl,
+            jaGenus: staticPokeData.jaGenus,
             type1Name: staticPokeData.type1Name as TypeName,
             type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+            height: staticPokeData.height,
+            weight: staticPokeData.weight,
           };
         }
       });
       return pokeDict;
     }
 
-    //const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
-    //TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
+    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
+    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
   });
 
+  // データ管理
   let pickedPokeId = 0;
   function pickPokeId(): void {
     resetState();
@@ -59,6 +68,37 @@
   // 状態リセット
   function resetState(): void {
     isOpen = false;
+  }
+
+  // トースト表示
+  const toastStore = getToastStore();
+  function toastSettings(message: string): ToastSettings {
+    return {
+      message: message,
+      background: "bg-green-100 select-none",
+      timeout: 2000,
+    };
+  }
+
+  function showHintToast(): void {
+    const t = toastSettings(`ヒント: ${_getRandomHint()}`);
+    toastStore.trigger(t);
+
+    function _getRandomHint(): string {
+      if (pickedPokeId <= 0) {
+        return "よびだすボタン を おしてね";
+      }
+      const pokeItem = TOTAL_POKE_DICT[pickedPokeId];
+      const hints = [
+        pokeItem.jaGenus,
+        `${TYPE_DICT[pokeItem.type1Name].jaName}タイプ`,
+        pokeItem.type2Name ? `${TYPE_DICT[pokeItem.type2Name].jaName}タイプ` : "タイプは1つだけ",
+        `たかさ${formatHeightWeight(pokeItem.height, "height")}`,
+        `おもさ${formatHeightWeight(pokeItem.weight, "weight")}`,
+      ];
+      const hint = hints[getRandomNumber(hints.length)];
+      return hint ?? "がんばれ！";
+    }
   }
 </script>
 
@@ -78,6 +118,14 @@
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
+            </div>
+          </button>
+        </form>
+        <div class="w-4"><!-- spacer --></div>
+        <form on:submit|preventDefault={showHintToast}>
+          <button type="submit" class="cIconButtonStyle">
+            <div class="cIconDivStyle">
+              <Icon icon="mdi:lightbulb-on-outline" class="cIconStyle" />
             </div>
           </button>
         </form>
