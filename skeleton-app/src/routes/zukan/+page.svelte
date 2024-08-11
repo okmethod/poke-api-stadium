@@ -55,7 +55,20 @@
 
     <!-- ポケモン情報 -->
     <div>
-      <PokeCard {pokeData} />
+      <PokeCard
+        {pokeId}
+        jaName={pokeData?.jaName ?? null}
+        enName={pokeData?.enName ?? null}
+        jaGenus={pokeData?.jaGenus ?? null}
+        imageUrlArray={pokeData?.imageUrlArray ?? []}
+        type1JaName={pokeData?.type1.jaName ?? null}
+        type1EnName={pokeData?.type1.enName ?? null}
+        type2JaName={pokeData?.type2?.jaName ?? null}
+        type2EnName={pokeData?.type2?.enName ?? null}
+        height={pokeData?.height ?? null}
+        weight={pokeData?.weight ?? null}
+        stats={pokeData?.stats ?? null}
+      />
     </div>
   </div>
 </div>
