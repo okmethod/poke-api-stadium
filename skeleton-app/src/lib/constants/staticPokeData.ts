@@ -9,6 +9,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1": {
     jaName: "フシギダネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 7,
@@ -25,6 +26,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "2": {
     jaName: "フシギソウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/2.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 10,
@@ -41,6 +43,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "3": {
     jaName: "フシギバナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/3.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 20,
@@ -57,6 +60,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "4": {
     jaName: "ヒトカゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/4.gif",
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -73,6 +77,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "5": {
     jaName: "リザード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/5.gif",
     type1Name: "fire",
     type2Name: null,
     height: 11,
@@ -89,6 +94,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "6": {
     jaName: "リザードン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/6.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 17,
@@ -105,6 +111,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "7": {
     jaName: "ゼニガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/7.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -121,6 +128,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "8": {
     jaName: "カメール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/8.gif",
     type1Name: "water",
     type2Name: null,
     height: 10,
@@ -137,6 +145,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "9": {
     jaName: "カメックス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/9.gif",
     type1Name: "water",
     type2Name: null,
     height: 16,
@@ -153,6 +162,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "10": {
     jaName: "キャタピー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -169,6 +179,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "11": {
     jaName: "トランセル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/11.gif",
     type1Name: "bug",
     type2Name: null,
     height: 7,
@@ -185,6 +196,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "12": {
     jaName: "バタフリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/12.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 11,
@@ -201,6 +213,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "13": {
     jaName: "ビードル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/13.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 3,
@@ -217,6 +230,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "14": {
     jaName: "コクーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/14.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 6,
@@ -233,6 +247,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "15": {
     jaName: "スピアー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/15.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 10,
@@ -249,6 +264,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "16": {
     jaName: "ポッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/16.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -265,6 +281,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "17": {
     jaName: "ピジョン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/17.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 11,
@@ -281,6 +298,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "18": {
     jaName: "ピジョット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/18.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 15,
@@ -297,6 +315,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "19": {
     jaName: "コラッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/19.gif",
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -313,6 +332,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "20": {
     jaName: "ラッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/20.gif",
     type1Name: "normal",
     type2Name: null,
     height: 7,
@@ -329,6 +349,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "21": {
     jaName: "オニスズメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/21.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -345,6 +366,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "22": {
     jaName: "オニドリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/22.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 12,
@@ -361,6 +383,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "23": {
     jaName: "アーボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/23.gif",
     type1Name: "poison",
     type2Name: null,
     height: 20,
@@ -377,6 +400,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "24": {
     jaName: "アーボック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/24.gif",
     type1Name: "poison",
     type2Name: null,
     height: 35,
@@ -393,6 +417,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "25": {
     jaName: "ピカチュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif",
     type1Name: "electric",
     type2Name: null,
     height: 4,
@@ -409,6 +434,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "26": {
     jaName: "ライチュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/26.gif",
     type1Name: "electric",
     type2Name: null,
     height: 8,
@@ -425,6 +451,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "27": {
     jaName: "サンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/27.gif",
     type1Name: "ground",
     type2Name: null,
     height: 6,
@@ -441,6 +468,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "28": {
     jaName: "サンドパン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/28.gif",
     type1Name: "ground",
     type2Name: null,
     height: 10,
@@ -457,6 +485,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "29": {
     jaName: "ニドラン♀",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/29.gif",
     type1Name: "poison",
     type2Name: null,
     height: 4,
@@ -473,6 +502,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "30": {
     jaName: "ニドリーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/30.gif",
     type1Name: "poison",
     type2Name: null,
     height: 8,
@@ -489,6 +519,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "31": {
     jaName: "ニドクイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/31.gif",
     type1Name: "poison",
     type2Name: "ground",
     height: 13,
@@ -505,6 +536,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "32": {
     jaName: "ニドラン♂",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/32.gif",
     type1Name: "poison",
     type2Name: null,
     height: 5,
@@ -521,6 +553,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "33": {
     jaName: "ニドリーノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/33.gif",
     type1Name: "poison",
     type2Name: null,
     height: 9,
@@ -537,6 +570,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "34": {
     jaName: "ニドキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/34.gif",
     type1Name: "poison",
     type2Name: "ground",
     height: 14,
@@ -553,6 +587,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "35": {
     jaName: "ピッピ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/35.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 6,
@@ -569,6 +604,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "36": {
     jaName: "ピクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/36.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 13,
@@ -585,6 +621,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "37": {
     jaName: "ロコン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/37.gif",
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -601,6 +638,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "38": {
     jaName: "キュウコン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/38.gif",
     type1Name: "fire",
     type2Name: null,
     height: 11,
@@ -617,6 +655,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "39": {
     jaName: "プリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/39.gif",
     type1Name: "normal",
     type2Name: "fairy",
     height: 5,
@@ -633,6 +672,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "40": {
     jaName: "プクリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/40.gif",
     type1Name: "normal",
     type2Name: "fairy",
     height: 10,
@@ -649,6 +689,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "41": {
     jaName: "ズバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/41.gif",
     type1Name: "poison",
     type2Name: "flying",
     height: 8,
@@ -665,6 +706,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "42": {
     jaName: "ゴルバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/42.gif",
     type1Name: "poison",
     type2Name: "flying",
     height: 16,
@@ -681,6 +723,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "43": {
     jaName: "ナゾノクサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/43.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 5,
@@ -697,6 +740,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "44": {
     jaName: "クサイハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/44.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 8,
@@ -713,6 +757,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "45": {
     jaName: "ラフレシア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/45.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 12,
@@ -729,6 +774,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "46": {
     jaName: "パラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/46.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 3,
@@ -745,6 +791,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "47": {
     jaName: "パラセクト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/47.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 10,
@@ -761,6 +808,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "48": {
     jaName: "コンパン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/48.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 10,
@@ -777,6 +825,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "49": {
     jaName: "モルフォン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/49.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 15,
@@ -793,6 +842,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "50": {
     jaName: "ディグダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/50.gif",
     type1Name: "ground",
     type2Name: null,
     height: 2,
@@ -809,6 +859,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "51": {
     jaName: "ダグトリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/51.gif",
     type1Name: "ground",
     type2Name: null,
     height: 7,
@@ -825,6 +876,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "52": {
     jaName: "ニャース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/52.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -841,6 +893,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "53": {
     jaName: "ペルシアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/53.gif",
     type1Name: "normal",
     type2Name: null,
     height: 10,
@@ -857,6 +910,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "54": {
     jaName: "コダック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/54.gif",
     type1Name: "water",
     type2Name: null,
     height: 8,
@@ -873,6 +927,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "55": {
     jaName: "ゴルダック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/55.gif",
     type1Name: "water",
     type2Name: null,
     height: 17,
@@ -889,6 +944,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "56": {
     jaName: "マンキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/56.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 5,
@@ -905,6 +961,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "57": {
     jaName: "オコリザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/57.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 10,
@@ -921,6 +978,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "58": {
     jaName: "ガーディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/58.gif",
     type1Name: "fire",
     type2Name: null,
     height: 7,
@@ -937,6 +995,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "59": {
     jaName: "ウインディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/59.gif",
     type1Name: "fire",
     type2Name: null,
     height: 19,
@@ -953,6 +1012,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "60": {
     jaName: "ニョロモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/60.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -969,6 +1029,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "61": {
     jaName: "ニョロゾ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/61.gif",
     type1Name: "water",
     type2Name: null,
     height: 10,
@@ -985,6 +1046,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "62": {
     jaName: "ニョロボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/62.gif",
     type1Name: "water",
     type2Name: "fighting",
     height: 13,
@@ -1001,6 +1063,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "63": {
     jaName: "ケーシィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/63.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 9,
@@ -1017,6 +1080,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "64": {
     jaName: "ユンゲラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/64.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 13,
@@ -1033,6 +1097,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "65": {
     jaName: "フーディン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/65.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 15,
@@ -1049,6 +1114,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "66": {
     jaName: "ワンリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/66.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 8,
@@ -1065,6 +1131,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "67": {
     jaName: "ゴーリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/67.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 15,
@@ -1081,6 +1148,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "68": {
     jaName: "カイリキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/68.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 16,
@@ -1097,6 +1165,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "69": {
     jaName: "マダツボミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/69.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 7,
@@ -1113,6 +1182,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "70": {
     jaName: "ウツドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/70.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 10,
@@ -1129,6 +1199,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "71": {
     jaName: "ウツボット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/71.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 17,
@@ -1145,6 +1216,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "72": {
     jaName: "メノクラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/72.gif",
     type1Name: "water",
     type2Name: "poison",
     height: 9,
@@ -1161,6 +1233,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "73": {
     jaName: "ドククラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/73.gif",
     type1Name: "water",
     type2Name: "poison",
     height: 16,
@@ -1177,6 +1250,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "74": {
     jaName: "イシツブテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/74.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 4,
@@ -1193,6 +1267,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "75": {
     jaName: "ゴローン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/75.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 10,
@@ -1209,6 +1284,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "76": {
     jaName: "ゴローニャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/76.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 14,
@@ -1225,6 +1301,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "77": {
     jaName: "ポニータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/77.gif",
     type1Name: "fire",
     type2Name: null,
     height: 10,
@@ -1241,6 +1318,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "78": {
     jaName: "ギャロップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/78.gif",
     type1Name: "fire",
     type2Name: null,
     height: 17,
@@ -1257,6 +1335,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "79": {
     jaName: "ヤドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/79.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 12,
@@ -1273,6 +1352,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "80": {
     jaName: "ヤドラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/80.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 16,
@@ -1289,6 +1369,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "81": {
     jaName: "コイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/81.gif",
     type1Name: "electric",
     type2Name: "steel",
     height: 3,
@@ -1305,6 +1386,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "82": {
     jaName: "レアコイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/82.gif",
     type1Name: "electric",
     type2Name: "steel",
     height: 10,
@@ -1321,6 +1403,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "83": {
     jaName: "カモネギ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/83.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 8,
@@ -1337,6 +1420,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "84": {
     jaName: "ドードー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/84.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 14,
@@ -1353,6 +1437,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "85": {
     jaName: "ドードリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/85.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 18,
@@ -1369,6 +1454,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "86": {
     jaName: "パウワウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/86.gif",
     type1Name: "water",
     type2Name: null,
     height: 11,
@@ -1385,6 +1471,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "87": {
     jaName: "ジュゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/87.gif",
     type1Name: "water",
     type2Name: "ice",
     height: 17,
@@ -1401,6 +1488,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "88": {
     jaName: "ベトベター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/88.gif",
     type1Name: "poison",
     type2Name: null,
     height: 9,
@@ -1417,6 +1505,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "89": {
     jaName: "ベトベトン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/89.gif",
     type1Name: "poison",
     type2Name: null,
     height: 12,
@@ -1433,6 +1522,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "90": {
     jaName: "シェルダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/90.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -1449,6 +1539,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "91": {
     jaName: "パルシェン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/91.gif",
     type1Name: "water",
     type2Name: "ice",
     height: 15,
@@ -1465,6 +1556,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "92": {
     jaName: "ゴース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/92.gif",
     type1Name: "ghost",
     type2Name: "poison",
     height: 13,
@@ -1481,6 +1573,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "93": {
     jaName: "ゴースト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/93.gif",
     type1Name: "ghost",
     type2Name: "poison",
     height: 16,
@@ -1497,6 +1590,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "94": {
     jaName: "ゲンガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/94.gif",
     type1Name: "ghost",
     type2Name: "poison",
     height: 15,
@@ -1513,6 +1607,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "95": {
     jaName: "イワーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/95.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 88,
@@ -1529,6 +1624,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "96": {
     jaName: "スリープ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/96.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 10,
@@ -1545,6 +1641,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "97": {
     jaName: "スリーパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/97.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 16,
@@ -1561,6 +1658,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "98": {
     jaName: "クラブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/98.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -1577,6 +1675,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "99": {
     jaName: "キングラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/99.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -1593,6 +1692,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "100": {
     jaName: "ビリリダマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/100.gif",
     type1Name: "electric",
     type2Name: null,
     height: 5,
@@ -1609,6 +1709,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "101": {
     jaName: "マルマイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/101.gif",
     type1Name: "electric",
     type2Name: null,
     height: 12,
@@ -1625,6 +1726,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "102": {
     jaName: "タマタマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/102.gif",
     type1Name: "grass",
     type2Name: "psychic",
     height: 4,
@@ -1641,6 +1743,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "103": {
     jaName: "ナッシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/103.gif",
     type1Name: "grass",
     type2Name: "psychic",
     height: 20,
@@ -1657,6 +1760,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "104": {
     jaName: "カラカラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/104.gif",
     type1Name: "ground",
     type2Name: null,
     height: 4,
@@ -1673,6 +1777,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "105": {
     jaName: "ガラガラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/105.gif",
     type1Name: "ground",
     type2Name: null,
     height: 10,
@@ -1689,6 +1794,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "106": {
     jaName: "サワムラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/106.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 15,
@@ -1705,6 +1811,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "107": {
     jaName: "エビワラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/107.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 14,
@@ -1721,6 +1828,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "108": {
     jaName: "ベロリンガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/108.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -1737,6 +1845,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "109": {
     jaName: "ドガース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/109.gif",
     type1Name: "poison",
     type2Name: null,
     height: 6,
@@ -1753,6 +1862,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "110": {
     jaName: "マタドガス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/110.gif",
     type1Name: "poison",
     type2Name: null,
     height: 12,
@@ -1769,6 +1879,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "111": {
     jaName: "サイホーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/111.gif",
     type1Name: "ground",
     type2Name: "rock",
     height: 10,
@@ -1785,6 +1896,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "112": {
     jaName: "サイドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/112.gif",
     type1Name: "ground",
     type2Name: "rock",
     height: 19,
@@ -1801,6 +1913,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "113": {
     jaName: "ラッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/113.gif",
     type1Name: "normal",
     type2Name: null,
     height: 11,
@@ -1817,6 +1930,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "114": {
     jaName: "モンジャラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/114.gif",
     type1Name: "grass",
     type2Name: null,
     height: 10,
@@ -1833,6 +1947,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "115": {
     jaName: "ガルーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/115.gif",
     type1Name: "normal",
     type2Name: null,
     height: 22,
@@ -1849,6 +1964,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "116": {
     jaName: "タッツー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/116.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -1865,6 +1981,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "117": {
     jaName: "シードラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/117.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -1881,6 +1998,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "118": {
     jaName: "トサキント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/118.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -1897,6 +2015,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "119": {
     jaName: "アズマオウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/119.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -1913,6 +2032,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "120": {
     jaName: "ヒトデマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/120.gif",
     type1Name: "water",
     type2Name: null,
     height: 8,
@@ -1929,6 +2049,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "121": {
     jaName: "スターミー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/121.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 11,
@@ -1945,6 +2066,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "122": {
     jaName: "バリヤード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/122.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 13,
@@ -1961,6 +2083,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "123": {
     jaName: "ストライク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/123.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 15,
@@ -1977,6 +2100,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "124": {
     jaName: "ルージュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/124.gif",
     type1Name: "ice",
     type2Name: "psychic",
     height: 14,
@@ -1993,6 +2117,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "125": {
     jaName: "エレブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/125.gif",
     type1Name: "electric",
     type2Name: null,
     height: 11,
@@ -2009,6 +2134,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "126": {
     jaName: "ブーバー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/126.gif",
     type1Name: "fire",
     type2Name: null,
     height: 13,
@@ -2025,6 +2151,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "127": {
     jaName: "カイロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/127.gif",
     type1Name: "bug",
     type2Name: null,
     height: 15,
@@ -2041,6 +2168,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "128": {
     jaName: "ケンタロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/128.gif",
     type1Name: "normal",
     type2Name: null,
     height: 14,
@@ -2057,6 +2185,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "129": {
     jaName: "コイキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/129.gif",
     type1Name: "water",
     type2Name: null,
     height: 9,
@@ -2073,6 +2202,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "130": {
     jaName: "ギャラドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/130.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 65,
@@ -2089,6 +2219,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "131": {
     jaName: "ラプラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/131.gif",
     type1Name: "water",
     type2Name: "ice",
     height: 25,
@@ -2105,6 +2236,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "132": {
     jaName: "メタモン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/132.gif",
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -2121,6 +2253,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "133": {
     jaName: "イーブイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/133.gif",
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -2137,6 +2270,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "134": {
     jaName: "シャワーズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/134.gif",
     type1Name: "water",
     type2Name: null,
     height: 10,
@@ -2153,6 +2287,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "135": {
     jaName: "サンダース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/135.gif",
     type1Name: "electric",
     type2Name: null,
     height: 8,
@@ -2169,6 +2304,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "136": {
     jaName: "ブースター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/136.gif",
     type1Name: "fire",
     type2Name: null,
     height: 9,
@@ -2185,6 +2321,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "137": {
     jaName: "ポリゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/137.gif",
     type1Name: "normal",
     type2Name: null,
     height: 8,
@@ -2201,6 +2338,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "138": {
     jaName: "オムナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/138.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 4,
@@ -2217,6 +2355,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "139": {
     jaName: "オムスター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/139.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 10,
@@ -2233,6 +2372,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "140": {
     jaName: "カブト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/140.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 5,
@@ -2249,6 +2389,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "141": {
     jaName: "カブトプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/141.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 13,
@@ -2265,6 +2406,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "142": {
     jaName: "プテラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/142.gif",
     type1Name: "rock",
     type2Name: "flying",
     height: 18,
@@ -2281,6 +2423,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "143": {
     jaName: "カビゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/143.gif",
     type1Name: "normal",
     type2Name: null,
     height: 21,
@@ -2297,6 +2440,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "144": {
     jaName: "フリーザー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/144.gif",
     type1Name: "ice",
     type2Name: "flying",
     height: 17,
@@ -2313,6 +2457,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "145": {
     jaName: "サンダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/145.gif",
     type1Name: "electric",
     type2Name: "flying",
     height: 16,
@@ -2329,6 +2474,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "146": {
     jaName: "ファイヤー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/146.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 20,
@@ -2345,6 +2491,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "147": {
     jaName: "ミニリュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/147.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 18,
@@ -2361,6 +2508,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "148": {
     jaName: "ハクリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/148.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 40,
@@ -2377,6 +2525,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "149": {
     jaName: "カイリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/149.gif",
     type1Name: "dragon",
     type2Name: "flying",
     height: 22,
@@ -2393,6 +2542,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "150": {
     jaName: "ミュウツー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/150.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 20,
@@ -2409,6 +2559,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "151": {
     jaName: "ミュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/151.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 4,
@@ -2425,6 +2576,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "152": {
     jaName: "チコリータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/152.gif",
     type1Name: "grass",
     type2Name: null,
     height: 9,
@@ -2441,6 +2593,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "153": {
     jaName: "ベイリーフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/153.gif",
     type1Name: "grass",
     type2Name: null,
     height: 12,
@@ -2457,6 +2610,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "154": {
     jaName: "メガニウム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/154.gif",
     type1Name: "grass",
     type2Name: null,
     height: 18,
@@ -2473,6 +2627,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "155": {
     jaName: "ヒノアラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/155.gif",
     type1Name: "fire",
     type2Name: null,
     height: 5,
@@ -2489,6 +2644,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "156": {
     jaName: "マグマラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/156.gif",
     type1Name: "fire",
     type2Name: null,
     height: 9,
@@ -2505,6 +2661,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "157": {
     jaName: "バクフーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/157.gif",
     type1Name: "fire",
     type2Name: null,
     height: 17,
@@ -2521,6 +2678,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "158": {
     jaName: "ワニノコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/158.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -2537,6 +2695,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "159": {
     jaName: "アリゲイツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/159.gif",
     type1Name: "water",
     type2Name: null,
     height: 11,
@@ -2553,6 +2712,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "160": {
     jaName: "オーダイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/160.gif",
     type1Name: "water",
     type2Name: null,
     height: 23,
@@ -2569,6 +2729,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "161": {
     jaName: "オタチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/161.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/161.gif",
     type1Name: "normal",
     type2Name: null,
     height: 8,
@@ -2585,6 +2746,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "162": {
     jaName: "オオタチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/162.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/162.gif",
     type1Name: "normal",
     type2Name: null,
     height: 18,
@@ -2601,6 +2763,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "163": {
     jaName: "ホーホー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/163.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/163.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 7,
@@ -2617,6 +2780,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "164": {
     jaName: "ヨルノズク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/164.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/164.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 16,
@@ -2633,6 +2797,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "165": {
     jaName: "レディバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/165.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/165.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 10,
@@ -2649,6 +2814,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "166": {
     jaName: "レディアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/166.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/166.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 14,
@@ -2665,6 +2831,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "167": {
     jaName: "イトマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/167.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/167.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 5,
@@ -2681,6 +2848,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "168": {
     jaName: "アリアドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/168.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 11,
@@ -2697,6 +2865,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "169": {
     jaName: "クロバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/169.gif",
     type1Name: "poison",
     type2Name: "flying",
     height: 18,
@@ -2713,6 +2882,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "170": {
     jaName: "チョンチー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/170.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/170.gif",
     type1Name: "water",
     type2Name: "electric",
     height: 5,
@@ -2729,6 +2899,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "171": {
     jaName: "ランターン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/171.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/171.gif",
     type1Name: "water",
     type2Name: "electric",
     height: 12,
@@ -2745,6 +2916,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "172": {
     jaName: "ピチュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/172.gif",
     type1Name: "electric",
     type2Name: null,
     height: 3,
@@ -2761,6 +2933,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "173": {
     jaName: "ピィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/173.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 3,
@@ -2777,6 +2950,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "174": {
     jaName: "ププリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/174.gif",
     type1Name: "normal",
     type2Name: "fairy",
     height: 3,
@@ -2793,6 +2967,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "175": {
     jaName: "トゲピー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/175.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 3,
@@ -2809,6 +2984,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "176": {
     jaName: "トゲチック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/176.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/176.gif",
     type1Name: "fairy",
     type2Name: "flying",
     height: 6,
@@ -2825,6 +3001,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "177": {
     jaName: "ネイティ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/177.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 2,
@@ -2841,6 +3018,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "178": {
     jaName: "ネイティオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/178.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 15,
@@ -2857,6 +3035,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "179": {
     jaName: "メリープ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/179.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/179.gif",
     type1Name: "electric",
     type2Name: null,
     height: 6,
@@ -2873,6 +3052,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "180": {
     jaName: "モココ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/180.gif",
     type1Name: "electric",
     type2Name: null,
     height: 8,
@@ -2889,6 +3069,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "181": {
     jaName: "デンリュウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/181.gif",
     type1Name: "electric",
     type2Name: null,
     height: 14,
@@ -2905,6 +3086,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "182": {
     jaName: "キレイハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/182.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/182.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -2921,6 +3103,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "183": {
     jaName: "マリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/183.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/183.gif",
     type1Name: "water",
     type2Name: "fairy",
     height: 4,
@@ -2937,6 +3120,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "184": {
     jaName: "マリルリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/184.gif",
     type1Name: "water",
     type2Name: "fairy",
     height: 8,
@@ -2953,6 +3137,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "185": {
     jaName: "ウソッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/185.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/185.gif",
     type1Name: "rock",
     type2Name: null,
     height: 12,
@@ -2969,6 +3154,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "186": {
     jaName: "ニョロトノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/186.gif",
     type1Name: "water",
     type2Name: null,
     height: 11,
@@ -2985,6 +3171,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "187": {
     jaName: "ハネッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/187.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/187.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 4,
@@ -3001,6 +3188,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "188": {
     jaName: "ポポッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/188.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/188.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 6,
@@ -3017,6 +3205,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "189": {
     jaName: "ワタッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/189.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/189.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 8,
@@ -3033,6 +3222,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "190": {
     jaName: "エイパム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/190.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/190.gif",
     type1Name: "normal",
     type2Name: null,
     height: 8,
@@ -3049,6 +3239,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "191": {
     jaName: "ヒマナッツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/191.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/191.gif",
     type1Name: "grass",
     type2Name: null,
     height: 3,
@@ -3065,6 +3256,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "192": {
     jaName: "キマワリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/192.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/192.gif",
     type1Name: "grass",
     type2Name: null,
     height: 8,
@@ -3081,6 +3273,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "193": {
     jaName: "ヤンヤンマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/193.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/193.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 12,
@@ -3097,6 +3290,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "194": {
     jaName: "ウパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/194.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/194.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 4,
@@ -3113,6 +3307,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "195": {
     jaName: "ヌオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/195.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 14,
@@ -3129,6 +3324,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "196": {
     jaName: "エーフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/196.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 9,
@@ -3145,6 +3341,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "197": {
     jaName: "ブラッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/197.gif",
     type1Name: "dark",
     type2Name: null,
     height: 10,
@@ -3161,6 +3358,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "198": {
     jaName: "ヤミカラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/198.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/198.gif",
     type1Name: "dark",
     type2Name: "flying",
     height: 5,
@@ -3177,6 +3375,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "199": {
     jaName: "ヤドキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/199.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 20,
@@ -3193,6 +3392,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "200": {
     jaName: "ムウマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/200.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/200.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 7,
@@ -3209,6 +3409,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "201": {
     jaName: "アンノーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/201.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 5,
@@ -3225,6 +3426,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "202": {
     jaName: "ソーナンス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/202.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/202.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 13,
@@ -3241,6 +3443,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "203": {
     jaName: "キリンリキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/203.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/203.gif",
     type1Name: "normal",
     type2Name: "psychic",
     height: 15,
@@ -3257,6 +3460,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "204": {
     jaName: "クヌギダマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/204.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/204.gif",
     type1Name: "bug",
     type2Name: null,
     height: 6,
@@ -3273,6 +3477,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "205": {
     jaName: "フォレトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/205.gif",
     type1Name: "bug",
     type2Name: "steel",
     height: 12,
@@ -3289,6 +3494,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "206": {
     jaName: "ノコッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/206.gif",
     type1Name: "normal",
     type2Name: null,
     height: 15,
@@ -3305,6 +3511,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "207": {
     jaName: "グライガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/207.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/207.gif",
     type1Name: "ground",
     type2Name: "flying",
     height: 11,
@@ -3321,6 +3528,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "208": {
     jaName: "ハガネール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/208.gif",
     type1Name: "steel",
     type2Name: "ground",
     height: 92,
@@ -3337,6 +3545,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "209": {
     jaName: "ブルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/209.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 6,
@@ -3353,6 +3562,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "210": {
     jaName: "グランブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/210.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 14,
@@ -3369,6 +3579,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "211": {
     jaName: "ハリーセン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/211.gif",
     type1Name: "water",
     type2Name: "poison",
     height: 5,
@@ -3385,6 +3596,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "212": {
     jaName: "ハッサム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/212.gif",
     type1Name: "bug",
     type2Name: "steel",
     height: 18,
@@ -3401,6 +3613,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "213": {
     jaName: "ツボツボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/213.gif",
     type1Name: "bug",
     type2Name: "rock",
     height: 6,
@@ -3417,6 +3630,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "214": {
     jaName: "ヘラクロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/214.gif",
     type1Name: "bug",
     type2Name: "fighting",
     height: 15,
@@ -3433,6 +3647,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "215": {
     jaName: "ニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/215.gif",
     type1Name: "dark",
     type2Name: "ice",
     height: 9,
@@ -3449,6 +3664,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "216": {
     jaName: "ヒメグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/216.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/216.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -3465,6 +3681,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "217": {
     jaName: "リングマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/217.gif",
     type1Name: "normal",
     type2Name: null,
     height: 18,
@@ -3481,6 +3698,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "218": {
     jaName: "マグマッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/218.gif",
     type1Name: "fire",
     type2Name: null,
     height: 7,
@@ -3497,6 +3715,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "219": {
     jaName: "マグカルゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/219.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/219.gif",
     type1Name: "fire",
     type2Name: "rock",
     height: 8,
@@ -3513,6 +3732,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "220": {
     jaName: "ウリムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/220.gif",
     type1Name: "ice",
     type2Name: "ground",
     height: 4,
@@ -3529,6 +3749,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "221": {
     jaName: "イノムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/221.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/221.gif",
     type1Name: "ice",
     type2Name: "ground",
     height: 11,
@@ -3545,6 +3766,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "222": {
     jaName: "サニーゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/222.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/222.gif",
     type1Name: "water",
     type2Name: "rock",
     height: 6,
@@ -3561,6 +3783,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "223": {
     jaName: "テッポウオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/223.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -3577,6 +3800,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "224": {
     jaName: "オクタン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/224.gif",
     type1Name: "water",
     type2Name: null,
     height: 9,
@@ -3593,6 +3817,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "225": {
     jaName: "デリバード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/225.gif",
     type1Name: "ice",
     type2Name: "flying",
     height: 9,
@@ -3609,6 +3834,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "226": {
     jaName: "マンタイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/226.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 21,
@@ -3625,6 +3851,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "227": {
     jaName: "エアームド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/227.gif",
     type1Name: "steel",
     type2Name: "flying",
     height: 17,
@@ -3641,6 +3868,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "228": {
     jaName: "デルビル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/228.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/228.gif",
     type1Name: "dark",
     type2Name: "fire",
     height: 6,
@@ -3657,6 +3885,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "229": {
     jaName: "ヘルガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/229.gif",
     type1Name: "dark",
     type2Name: "fire",
     height: 14,
@@ -3673,6 +3902,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "230": {
     jaName: "キングドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/230.gif",
     type1Name: "water",
     type2Name: "dragon",
     height: 18,
@@ -3689,6 +3919,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "231": {
     jaName: "ゴマゾウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/231.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/231.gif",
     type1Name: "ground",
     type2Name: null,
     height: 5,
@@ -3705,6 +3936,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "232": {
     jaName: "ドンファン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/232.gif",
     type1Name: "ground",
     type2Name: null,
     height: 11,
@@ -3721,6 +3953,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "233": {
     jaName: "ポリゴン２",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/233.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -3737,6 +3970,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "234": {
     jaName: "オドシシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/234.gif",
     type1Name: "normal",
     type2Name: null,
     height: 14,
@@ -3753,6 +3987,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "235": {
     jaName: "ドーブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/235.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/235.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -3769,6 +4004,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "236": {
     jaName: "バルキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/236.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 7,
@@ -3785,6 +4021,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "237": {
     jaName: "カポエラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/237.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 14,
@@ -3801,6 +4038,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "238": {
     jaName: "ムチュール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/238.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/238.gif",
     type1Name: "ice",
     type2Name: "psychic",
     height: 4,
@@ -3817,6 +4055,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "239": {
     jaName: "エレキッド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/239.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/239.gif",
     type1Name: "electric",
     type2Name: null,
     height: 6,
@@ -3833,6 +4072,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "240": {
     jaName: "ブビィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/240.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/240.gif",
     type1Name: "fire",
     type2Name: null,
     height: 7,
@@ -3849,6 +4089,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "241": {
     jaName: "ミルタンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/241.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/241.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -3865,6 +4106,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "242": {
     jaName: "ハピナス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/242.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/242.gif",
     type1Name: "normal",
     type2Name: null,
     height: 15,
@@ -3881,6 +4123,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "243": {
     jaName: "ライコウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/243.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/243.gif",
     type1Name: "electric",
     type2Name: null,
     height: 19,
@@ -3897,6 +4140,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "244": {
     jaName: "エンテイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/244.gif",
     type1Name: "fire",
     type2Name: null,
     height: 21,
@@ -3913,6 +4157,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "245": {
     jaName: "スイクン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/245.gif",
     type1Name: "water",
     type2Name: null,
     height: 20,
@@ -3929,6 +4174,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "246": {
     jaName: "ヨーギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/246.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 6,
@@ -3945,6 +4191,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "247": {
     jaName: "サナギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/247.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/247.gif",
     type1Name: "rock",
     type2Name: "ground",
     height: 12,
@@ -3961,6 +4208,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "248": {
     jaName: "バンギラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/248.gif",
     type1Name: "rock",
     type2Name: "dark",
     height: 20,
@@ -3977,6 +4225,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "249": {
     jaName: "ルギア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/249.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 52,
@@ -3993,6 +4242,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "250": {
     jaName: "ホウオウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/250.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 38,
@@ -4009,6 +4259,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "251": {
     jaName: "セレビィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/251.gif",
     type1Name: "psychic",
     type2Name: "grass",
     height: 6,
@@ -4025,6 +4276,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "252": {
     jaName: "キモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/252.gif",
     type1Name: "grass",
     type2Name: null,
     height: 5,
@@ -4041,6 +4293,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "253": {
     jaName: "ジュプトル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/253.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/253.gif",
     type1Name: "grass",
     type2Name: null,
     height: 9,
@@ -4057,6 +4310,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "254": {
     jaName: "ジュカイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/254.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/254.gif",
     type1Name: "grass",
     type2Name: null,
     height: 17,
@@ -4073,6 +4327,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "255": {
     jaName: "アチャモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/255.gif",
     type1Name: "fire",
     type2Name: null,
     height: 4,
@@ -4089,6 +4344,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "256": {
     jaName: "ワカシャモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/256.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/256.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 9,
@@ -4105,6 +4361,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "257": {
     jaName: "バシャーモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/257.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/257.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 19,
@@ -4121,6 +4378,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "258": {
     jaName: "ミズゴロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/258.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -4137,6 +4395,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "259": {
     jaName: "ヌマクロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/259.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/259.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 7,
@@ -4153,6 +4412,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "260": {
     jaName: "ラグラージ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/260.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/260.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 15,
@@ -4169,6 +4429,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "261": {
     jaName: "ポチエナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/261.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/261.gif",
     type1Name: "dark",
     type2Name: null,
     height: 5,
@@ -4185,6 +4446,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "262": {
     jaName: "グラエナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/262.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/262.gif",
     type1Name: "dark",
     type2Name: null,
     height: 10,
@@ -4201,6 +4463,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "263": {
     jaName: "ジグザグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/263.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/263.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -4217,6 +4480,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "264": {
     jaName: "マッスグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/264.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/264.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -4233,6 +4497,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "265": {
     jaName: "ケムッソ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/265.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/265.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -4249,6 +4514,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "266": {
     jaName: "カラサリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/266.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/266.gif",
     type1Name: "bug",
     type2Name: null,
     height: 6,
@@ -4265,6 +4531,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "267": {
     jaName: "アゲハント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/267.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/267.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 10,
@@ -4281,6 +4548,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "268": {
     jaName: "マユルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/268.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/268.gif",
     type1Name: "bug",
     type2Name: null,
     height: 7,
@@ -4297,6 +4565,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "269": {
     jaName: "ドクケイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/269.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/269.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 12,
@@ -4313,6 +4582,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "270": {
     jaName: "ハスボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/270.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/270.gif",
     type1Name: "water",
     type2Name: "grass",
     height: 5,
@@ -4329,6 +4599,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "271": {
     jaName: "ハスブレロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/271.gif",
     type1Name: "water",
     type2Name: "grass",
     height: 12,
@@ -4345,6 +4616,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "272": {
     jaName: "ルンパッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/272.gif",
     type1Name: "water",
     type2Name: "grass",
     height: 15,
@@ -4361,6 +4633,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "273": {
     jaName: "タネボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/273.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/273.gif",
     type1Name: "grass",
     type2Name: null,
     height: 5,
@@ -4377,6 +4650,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "274": {
     jaName: "コノハナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/274.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/274.gif",
     type1Name: "grass",
     type2Name: "dark",
     height: 10,
@@ -4393,6 +4667,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "275": {
     jaName: "ダーテング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/275.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/275.gif",
     type1Name: "grass",
     type2Name: "dark",
     height: 13,
@@ -4409,6 +4684,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "276": {
     jaName: "スバメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/276.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/276.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -4425,6 +4701,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "277": {
     jaName: "オオスバメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/277.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/277.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 7,
@@ -4441,6 +4718,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "278": {
     jaName: "キャモメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/278.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/278.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 6,
@@ -4457,6 +4735,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "279": {
     jaName: "ペリッパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/279.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 12,
@@ -4473,6 +4752,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "280": {
     jaName: "ラルトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/280.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/280.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 4,
@@ -4489,6 +4769,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "281": {
     jaName: "キルリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/281.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/281.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 8,
@@ -4505,6 +4786,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "282": {
     jaName: "サーナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/282.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 16,
@@ -4521,6 +4803,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "283": {
     jaName: "アメタマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/283.gif",
     type1Name: "bug",
     type2Name: "water",
     height: 5,
@@ -4537,6 +4820,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "284": {
     jaName: "アメモース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/284.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 8,
@@ -4553,6 +4837,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "285": {
     jaName: "キノココ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/285.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/285.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -4569,6 +4854,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "286": {
     jaName: "キノガッサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/286.gif",
     type1Name: "grass",
     type2Name: "fighting",
     height: 12,
@@ -4585,6 +4871,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "287": {
     jaName: "ナマケロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/287.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/287.gif",
     type1Name: "normal",
     type2Name: null,
     height: 8,
@@ -4601,6 +4888,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "288": {
     jaName: "ヤルキモノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/288.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/288.gif",
     type1Name: "normal",
     type2Name: null,
     height: 14,
@@ -4617,6 +4905,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "289": {
     jaName: "ケッキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/289.gif",
     type1Name: "normal",
     type2Name: null,
     height: 20,
@@ -4633,6 +4922,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "290": {
     jaName: "ツチニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/290.gif",
     type1Name: "bug",
     type2Name: "ground",
     height: 5,
@@ -4649,6 +4939,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "291": {
     jaName: "テッカニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/291.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/291.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 8,
@@ -4665,6 +4956,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "292": {
     jaName: "ヌケニン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/292.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/292.gif",
     type1Name: "bug",
     type2Name: "ghost",
     height: 8,
@@ -4681,6 +4973,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "293": {
     jaName: "ゴニョニョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/293.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/293.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -4697,6 +4990,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "294": {
     jaName: "ドゴーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/294.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/294.gif",
     type1Name: "normal",
     type2Name: null,
     height: 10,
@@ -4713,6 +5007,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "295": {
     jaName: "バクオング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/295.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/295.gif",
     type1Name: "normal",
     type2Name: null,
     height: 15,
@@ -4729,6 +5024,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "296": {
     jaName: "マクノシタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/296.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 10,
@@ -4745,6 +5041,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "297": {
     jaName: "ハリテヤマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/297.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 23,
@@ -4761,6 +5058,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "298": {
     jaName: "ルリリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/298.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/298.gif",
     type1Name: "normal",
     type2Name: "fairy",
     height: 2,
@@ -4777,6 +5075,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "299": {
     jaName: "ノズパス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/299.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/299.gif",
     type1Name: "rock",
     type2Name: null,
     height: 10,
@@ -4793,6 +5092,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "300": {
     jaName: "エネコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/300.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/300.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -4809,6 +5109,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "301": {
     jaName: "エネコロロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/301.gif",
     type1Name: "normal",
     type2Name: null,
     height: 11,
@@ -4825,6 +5126,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "302": {
     jaName: "ヤミラミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/302.gif",
     type1Name: "dark",
     type2Name: "ghost",
     height: 5,
@@ -4841,6 +5143,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "303": {
     jaName: "クチート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/303.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/303.gif",
     type1Name: "steel",
     type2Name: "fairy",
     height: 6,
@@ -4857,6 +5160,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "304": {
     jaName: "ココドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/304.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/304.gif",
     type1Name: "steel",
     type2Name: "rock",
     height: 4,
@@ -4873,6 +5177,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "305": {
     jaName: "コドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/305.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/305.gif",
     type1Name: "steel",
     type2Name: "rock",
     height: 9,
@@ -4889,6 +5194,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "306": {
     jaName: "ボスゴドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/306.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/306.gif",
     type1Name: "steel",
     type2Name: "rock",
     height: 21,
@@ -4905,6 +5211,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "307": {
     jaName: "アサナン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/307.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/307.gif",
     type1Name: "fighting",
     type2Name: "psychic",
     height: 6,
@@ -4921,6 +5228,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "308": {
     jaName: "チャーレム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/308.gif",
     type1Name: "fighting",
     type2Name: "psychic",
     height: 13,
@@ -4937,6 +5245,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "309": {
     jaName: "ラクライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/309.gif",
     type1Name: "electric",
     type2Name: null,
     height: 6,
@@ -4953,6 +5262,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "310": {
     jaName: "ライボルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/310.gif",
     type1Name: "electric",
     type2Name: null,
     height: 15,
@@ -4969,6 +5279,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "311": {
     jaName: "プラスル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/311.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/311.gif",
     type1Name: "electric",
     type2Name: null,
     height: 4,
@@ -4985,6 +5296,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "312": {
     jaName: "マイナン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/312.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/312.gif",
     type1Name: "electric",
     type2Name: null,
     height: 4,
@@ -5001,6 +5313,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "313": {
     jaName: "バルビート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/313.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/313.gif",
     type1Name: "bug",
     type2Name: null,
     height: 7,
@@ -5017,6 +5330,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "314": {
     jaName: "イルミーゼ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/314.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/314.gif",
     type1Name: "bug",
     type2Name: null,
     height: 6,
@@ -5033,6 +5347,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "315": {
     jaName: "ロゼリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/315.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 3,
@@ -5049,6 +5364,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "316": {
     jaName: "ゴクリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/316.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/316.gif",
     type1Name: "poison",
     type2Name: null,
     height: 4,
@@ -5065,6 +5381,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "317": {
     jaName: "マルノーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/317.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/317.gif",
     type1Name: "poison",
     type2Name: null,
     height: 17,
@@ -5081,6 +5398,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "318": {
     jaName: "キバニア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/318.gif",
     type1Name: "water",
     type2Name: "dark",
     height: 8,
@@ -5097,6 +5415,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "319": {
     jaName: "サメハダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/319.gif",
     type1Name: "water",
     type2Name: "dark",
     height: 18,
@@ -5113,6 +5432,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "320": {
     jaName: "ホエルコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/320.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/320.gif",
     type1Name: "water",
     type2Name: null,
     height: 20,
@@ -5129,6 +5449,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "321": {
     jaName: "ホエルオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/321.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/321.gif",
     type1Name: "water",
     type2Name: null,
     height: 145,
@@ -5145,6 +5466,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "322": {
     jaName: "ドンメル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/322.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/322.gif",
     type1Name: "fire",
     type2Name: "ground",
     height: 7,
@@ -5161,6 +5483,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "323": {
     jaName: "バクーダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/323.gif",
     type1Name: "fire",
     type2Name: "ground",
     height: 19,
@@ -5177,6 +5500,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "324": {
     jaName: "コータス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/324.gif",
     type1Name: "fire",
     type2Name: null,
     height: 5,
@@ -5193,6 +5517,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "325": {
     jaName: "バネブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/325.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/325.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 7,
@@ -5209,6 +5534,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "326": {
     jaName: "ブーピッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/326.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/326.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 9,
@@ -5225,6 +5551,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "327": {
     jaName: "パッチール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/327.gif",
     type1Name: "normal",
     type2Name: null,
     height: 11,
@@ -5241,6 +5568,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "328": {
     jaName: "ナックラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/328.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/328.gif",
     type1Name: "ground",
     type2Name: null,
     height: 7,
@@ -5257,6 +5585,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "329": {
     jaName: "ビブラーバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/329.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/329.gif",
     type1Name: "ground",
     type2Name: "dragon",
     height: 11,
@@ -5273,6 +5602,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "330": {
     jaName: "フライゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/330.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/330.gif",
     type1Name: "ground",
     type2Name: "dragon",
     height: 20,
@@ -5289,6 +5619,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "331": {
     jaName: "サボネア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/331.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/331.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -5305,6 +5636,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "332": {
     jaName: "ノクタス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/332.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/332.gif",
     type1Name: "grass",
     type2Name: "dark",
     height: 13,
@@ -5321,6 +5653,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "333": {
     jaName: "チルット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/333.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 4,
@@ -5337,6 +5670,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "334": {
     jaName: "チルタリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/334.gif",
     type1Name: "dragon",
     type2Name: "flying",
     height: 11,
@@ -5353,6 +5687,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "335": {
     jaName: "ザングース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/335.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/335.gif",
     type1Name: "normal",
     type2Name: null,
     height: 13,
@@ -5369,6 +5704,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "336": {
     jaName: "ハブネーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/336.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/336.gif",
     type1Name: "poison",
     type2Name: null,
     height: 27,
@@ -5385,6 +5721,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "337": {
     jaName: "ルナトーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/337.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/337.gif",
     type1Name: "rock",
     type2Name: "psychic",
     height: 10,
@@ -5401,6 +5738,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "338": {
     jaName: "ソルロック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/338.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/338.gif",
     type1Name: "rock",
     type2Name: "psychic",
     height: 12,
@@ -5417,6 +5755,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "339": {
     jaName: "ドジョッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/339.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/339.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 4,
@@ -5433,6 +5772,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "340": {
     jaName: "ナマズン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/340.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 9,
@@ -5449,6 +5789,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "341": {
     jaName: "ヘイガニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/341.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/341.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -5465,6 +5806,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "342": {
     jaName: "シザリガー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/342.gif",
     type1Name: "water",
     type2Name: "dark",
     height: 11,
@@ -5481,6 +5823,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "343": {
     jaName: "ヤジロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/343.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/343.gif",
     type1Name: "ground",
     type2Name: "psychic",
     height: 5,
@@ -5497,6 +5840,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "344": {
     jaName: "ネンドール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/344.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/344.gif",
     type1Name: "ground",
     type2Name: "psychic",
     height: 15,
@@ -5513,6 +5857,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "345": {
     jaName: "リリーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/345.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/345.gif",
     type1Name: "rock",
     type2Name: "grass",
     height: 10,
@@ -5529,6 +5874,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "346": {
     jaName: "ユレイドル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/346.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/346.gif",
     type1Name: "rock",
     type2Name: "grass",
     height: 15,
@@ -5545,6 +5891,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "347": {
     jaName: "アノプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/347.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/347.gif",
     type1Name: "rock",
     type2Name: "bug",
     height: 7,
@@ -5561,6 +5908,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "348": {
     jaName: "アーマルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/348.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/348.gif",
     type1Name: "rock",
     type2Name: "bug",
     height: 15,
@@ -5577,6 +5925,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "349": {
     jaName: "ヒンバス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/349.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/349.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -5593,6 +5942,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "350": {
     jaName: "ミロカロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/350.gif",
     type1Name: "water",
     type2Name: null,
     height: 62,
@@ -5609,6 +5959,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "351": {
     jaName: "ポワルン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/351.gif",
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -5625,6 +5976,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "352": {
     jaName: "カクレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/352.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/352.gif",
     type1Name: "normal",
     type2Name: null,
     height: 10,
@@ -5641,6 +5993,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "353": {
     jaName: "カゲボウズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/353.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/353.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 6,
@@ -5657,6 +6010,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "354": {
     jaName: "ジュペッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/354.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/354.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 11,
@@ -5673,6 +6027,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "355": {
     jaName: "ヨマワル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/355.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/355.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 8,
@@ -5689,6 +6044,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "356": {
     jaName: "サマヨール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/356.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/356.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 16,
@@ -5705,6 +6061,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "357": {
     jaName: "トロピウス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/357.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/357.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 20,
@@ -5721,6 +6078,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "358": {
     jaName: "チリーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/358.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/358.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -5737,6 +6095,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "359": {
     jaName: "アブソル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/359.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/359.gif",
     type1Name: "dark",
     type2Name: null,
     height: 12,
@@ -5753,6 +6112,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "360": {
     jaName: "ソーナノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/360.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/360.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -5769,6 +6129,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "361": {
     jaName: "ユキワラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/361.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/361.gif",
     type1Name: "ice",
     type2Name: null,
     height: 7,
@@ -5785,6 +6146,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "362": {
     jaName: "オニゴーリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/362.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/362.gif",
     type1Name: "ice",
     type2Name: null,
     height: 15,
@@ -5801,6 +6163,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "363": {
     jaName: "タマザラシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/363.gif",
     type1Name: "ice",
     type2Name: "water",
     height: 8,
@@ -5817,6 +6180,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "364": {
     jaName: "トドグラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/364.gif",
     type1Name: "ice",
     type2Name: "water",
     height: 11,
@@ -5833,6 +6197,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "365": {
     jaName: "トドゼルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/365.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/365.gif",
     type1Name: "ice",
     type2Name: "water",
     height: 14,
@@ -5849,6 +6214,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "366": {
     jaName: "パールル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/366.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/366.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -5865,6 +6231,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "367": {
     jaName: "ハンテール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/367.gif",
     type1Name: "water",
     type2Name: null,
     height: 17,
@@ -5881,6 +6248,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "368": {
     jaName: "サクラビス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/368.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/368.gif",
     type1Name: "water",
     type2Name: null,
     height: 18,
@@ -5897,6 +6265,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "369": {
     jaName: "ジーランス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/369.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/369.gif",
     type1Name: "water",
     type2Name: "rock",
     height: 10,
@@ -5913,6 +6282,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "370": {
     jaName: "ラブカス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/370.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -5929,6 +6299,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "371": {
     jaName: "タツベイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/371.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/371.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 6,
@@ -5945,6 +6316,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "372": {
     jaName: "コモルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/372.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/372.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 11,
@@ -5961,6 +6333,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "373": {
     jaName: "ボーマンダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/373.gif",
     type1Name: "dragon",
     type2Name: "flying",
     height: 15,
@@ -5977,6 +6350,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "374": {
     jaName: "ダンバル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/374.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 6,
@@ -5993,6 +6367,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "375": {
     jaName: "メタング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/375.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/375.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 12,
@@ -6009,6 +6384,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "376": {
     jaName: "メタグロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/376.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/376.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 16,
@@ -6025,6 +6401,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "377": {
     jaName: "レジロック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/377.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/377.gif",
     type1Name: "rock",
     type2Name: null,
     height: 17,
@@ -6041,6 +6418,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "378": {
     jaName: "レジアイス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/378.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/378.gif",
     type1Name: "ice",
     type2Name: null,
     height: 18,
@@ -6057,6 +6435,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "379": {
     jaName: "レジスチル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/379.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/379.gif",
     type1Name: "steel",
     type2Name: null,
     height: 19,
@@ -6073,6 +6452,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "380": {
     jaName: "ラティアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/380.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/380.gif",
     type1Name: "dragon",
     type2Name: "psychic",
     height: 14,
@@ -6089,6 +6469,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "381": {
     jaName: "ラティオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/381.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/381.gif",
     type1Name: "dragon",
     type2Name: "psychic",
     height: 20,
@@ -6105,6 +6486,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "382": {
     jaName: "カイオーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/382.gif",
     type1Name: "water",
     type2Name: null,
     height: 45,
@@ -6121,6 +6503,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "383": {
     jaName: "グラードン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/383.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/383.gif",
     type1Name: "ground",
     type2Name: null,
     height: 35,
@@ -6137,6 +6520,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "384": {
     jaName: "レックウザ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/384.gif",
     type1Name: "dragon",
     type2Name: "flying",
     height: 70,
@@ -6153,6 +6537,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "385": {
     jaName: "ジラーチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/385.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 3,
@@ -6169,6 +6554,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "386": {
     jaName: "デオキシス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/386.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 17,
@@ -6185,6 +6571,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "387": {
     jaName: "ナエトル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/387.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -6201,6 +6588,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "388": {
     jaName: "ハヤシガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/388.gif",
     type1Name: "grass",
     type2Name: null,
     height: 11,
@@ -6217,6 +6605,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "389": {
     jaName: "ドダイトス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/389.gif",
     type1Name: "grass",
     type2Name: "ground",
     height: 22,
@@ -6233,6 +6622,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "390": {
     jaName: "ヒコザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/390.gif",
     type1Name: "fire",
     type2Name: null,
     height: 5,
@@ -6249,6 +6639,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "391": {
     jaName: "モウカザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/391.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 9,
@@ -6265,6 +6656,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "392": {
     jaName: "ゴウカザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/392.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 12,
@@ -6281,6 +6673,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "393": {
     jaName: "ポッチャマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/393.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -6297,6 +6690,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "394": {
     jaName: "ポッタイシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/394.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/394.gif",
     type1Name: "water",
     type2Name: null,
     height: 8,
@@ -6313,6 +6707,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "395": {
     jaName: "エンペルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/395.gif",
     type1Name: "water",
     type2Name: "steel",
     height: 17,
@@ -6329,6 +6724,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "396": {
     jaName: "ムックル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/396.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/396.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -6345,6 +6741,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "397": {
     jaName: "ムクバード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/397.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 6,
@@ -6361,6 +6758,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "398": {
     jaName: "ムクホーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/398.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 12,
@@ -6377,6 +6775,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "399": {
     jaName: "ビッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/399.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/399.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -6393,6 +6792,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "400": {
     jaName: "ビーダル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/400.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/400.gif",
     type1Name: "normal",
     type2Name: "water",
     height: 10,
@@ -6409,6 +6809,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "401": {
     jaName: "コロボーシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/401.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/401.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -6425,6 +6826,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "402": {
     jaName: "コロトック",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/402.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/402.gif",
     type1Name: "bug",
     type2Name: null,
     height: 10,
@@ -6441,6 +6843,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "403": {
     jaName: "コリンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/403.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/403.gif",
     type1Name: "electric",
     type2Name: null,
     height: 5,
@@ -6457,6 +6860,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "404": {
     jaName: "ルクシオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/404.gif",
     type1Name: "electric",
     type2Name: null,
     height: 9,
@@ -6473,6 +6877,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "405": {
     jaName: "レントラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/405.gif",
     type1Name: "electric",
     type2Name: null,
     height: 14,
@@ -6489,6 +6894,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "406": {
     jaName: "スボミー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/406.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/406.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 2,
@@ -6505,6 +6911,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "407": {
     jaName: "ロズレイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/407.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 9,
@@ -6521,6 +6928,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "408": {
     jaName: "ズガイドス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/408.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/408.gif",
     type1Name: "rock",
     type2Name: null,
     height: 9,
@@ -6537,6 +6945,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "409": {
     jaName: "ラムパルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/409.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/409.gif",
     type1Name: "rock",
     type2Name: null,
     height: 16,
@@ -6553,6 +6962,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "410": {
     jaName: "タテトプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/410.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/410.gif",
     type1Name: "rock",
     type2Name: "steel",
     height: 5,
@@ -6569,6 +6979,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "411": {
     jaName: "トリデプス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/411.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/411.gif",
     type1Name: "rock",
     type2Name: "steel",
     height: 13,
@@ -6585,6 +6996,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "412": {
     jaName: "ミノムッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/412.gif",
     type1Name: "bug",
     type2Name: null,
     height: 2,
@@ -6601,6 +7013,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "413": {
     jaName: "ミノマダム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/413.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/413.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 5,
@@ -6617,6 +7030,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "414": {
     jaName: "ガーメイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/414.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/414.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 9,
@@ -6633,6 +7047,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "415": {
     jaName: "ミツハニー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/415.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/415.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 3,
@@ -6649,6 +7064,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "416": {
     jaName: "ビークイン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/416.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/416.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 12,
@@ -6665,6 +7081,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "417": {
     jaName: "パチリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/417.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/417.gif",
     type1Name: "electric",
     type2Name: null,
     height: 4,
@@ -6681,6 +7098,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "418": {
     jaName: "ブイゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/418.gif",
     type1Name: "water",
     type2Name: null,
     height: 7,
@@ -6697,6 +7115,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "419": {
     jaName: "フローゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/419.gif",
     type1Name: "water",
     type2Name: null,
     height: 11,
@@ -6713,6 +7132,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "420": {
     jaName: "チェリンボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/420.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/420.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -6729,6 +7149,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "421": {
     jaName: "チェリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/421.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/421.gif",
     type1Name: "grass",
     type2Name: null,
     height: 5,
@@ -6745,6 +7166,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "422": {
     jaName: "カラナクシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/422.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/422.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -6761,6 +7183,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "423": {
     jaName: "トリトドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/423.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/423.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 9,
@@ -6777,6 +7200,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "424": {
     jaName: "エテボース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/424.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/424.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -6793,6 +7217,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "425": {
     jaName: "フワンテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/425.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/425.gif",
     type1Name: "ghost",
     type2Name: "flying",
     height: 4,
@@ -6809,6 +7234,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "426": {
     jaName: "フワライド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/426.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/426.gif",
     type1Name: "ghost",
     type2Name: "flying",
     height: 12,
@@ -6825,6 +7251,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "427": {
     jaName: "ミミロル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/427.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -6841,6 +7268,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "428": {
     jaName: "ミミロップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/428.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -6857,6 +7285,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "429": {
     jaName: "ムウマージ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/429.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/429.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 9,
@@ -6873,6 +7302,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "430": {
     jaName: "ドンカラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/430.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/430.gif",
     type1Name: "dark",
     type2Name: "flying",
     height: 9,
@@ -6889,6 +7319,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "431": {
     jaName: "ニャルマー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/431.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/431.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -6905,6 +7336,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "432": {
     jaName: "ブニャット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/432.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/432.gif",
     type1Name: "normal",
     type2Name: null,
     height: 10,
@@ -6921,6 +7353,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "433": {
     jaName: "リーシャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/433.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/433.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 2,
@@ -6937,6 +7370,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "434": {
     jaName: "スカンプー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/434.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/434.gif",
     type1Name: "poison",
     type2Name: "dark",
     height: 4,
@@ -6953,6 +7387,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "435": {
     jaName: "スカタンク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/435.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/435.gif",
     type1Name: "poison",
     type2Name: "dark",
     height: 10,
@@ -6969,6 +7404,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "436": {
     jaName: "ドーミラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/436.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/436.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 5,
@@ -6985,6 +7421,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "437": {
     jaName: "ドータクン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/437.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/437.gif",
     type1Name: "steel",
     type2Name: "psychic",
     height: 13,
@@ -7001,6 +7438,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "438": {
     jaName: "ウソハチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/438.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/438.gif",
     type1Name: "rock",
     type2Name: null,
     height: 5,
@@ -7017,6 +7455,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "439": {
     jaName: "マネネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/439.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/439.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 6,
@@ -7033,6 +7472,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "440": {
     jaName: "ピンプク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/440.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/440.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -7049,6 +7489,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "441": {
     jaName: "ペラップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/441.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/441.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 5,
@@ -7065,6 +7506,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "442": {
     jaName: "ミカルゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/442.gif",
     type1Name: "ghost",
     type2Name: "dark",
     height: 10,
@@ -7081,6 +7523,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "443": {
     jaName: "フカマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/443.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/443.gif",
     type1Name: "dragon",
     type2Name: "ground",
     height: 7,
@@ -7097,6 +7540,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "444": {
     jaName: "ガバイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/444.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/444.gif",
     type1Name: "dragon",
     type2Name: "ground",
     height: 14,
@@ -7113,6 +7557,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "445": {
     jaName: "ガブリアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/445.gif",
     type1Name: "dragon",
     type2Name: "ground",
     height: 19,
@@ -7129,6 +7574,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "446": {
     jaName: "ゴンベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/446.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -7145,6 +7591,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "447": {
     jaName: "リオル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/447.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/447.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 7,
@@ -7161,6 +7608,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "448": {
     jaName: "ルカリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/448.gif",
     type1Name: "fighting",
     type2Name: "steel",
     height: 12,
@@ -7177,6 +7625,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "449": {
     jaName: "ヒポポタス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/449.gif",
     type1Name: "ground",
     type2Name: null,
     height: 8,
@@ -7193,6 +7642,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "450": {
     jaName: "カバルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/450.gif",
     type1Name: "ground",
     type2Name: null,
     height: 20,
@@ -7209,6 +7659,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "451": {
     jaName: "スコルピ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/451.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/451.gif",
     type1Name: "poison",
     type2Name: "bug",
     height: 8,
@@ -7225,6 +7676,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "452": {
     jaName: "ドラピオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/452.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/452.gif",
     type1Name: "poison",
     type2Name: "dark",
     height: 13,
@@ -7241,6 +7693,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "453": {
     jaName: "グレッグル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/453.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/453.gif",
     type1Name: "poison",
     type2Name: "fighting",
     height: 7,
@@ -7257,6 +7710,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "454": {
     jaName: "ドクロッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/454.gif",
     type1Name: "poison",
     type2Name: "fighting",
     height: 13,
@@ -7273,6 +7727,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "455": {
     jaName: "マスキッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/455.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/455.gif",
     type1Name: "grass",
     type2Name: null,
     height: 14,
@@ -7289,6 +7744,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "456": {
     jaName: "ケイコウオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/456.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/456.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -7305,6 +7761,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "457": {
     jaName: "ネオラント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/457.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/457.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -7321,6 +7778,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "458": {
     jaName: "タマンタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/458.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/458.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 10,
@@ -7337,6 +7795,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "459": {
     jaName: "ユキカブリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/459.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/459.gif",
     type1Name: "grass",
     type2Name: "ice",
     height: 10,
@@ -7353,6 +7812,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "460": {
     jaName: "ユキノオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/460.gif",
     type1Name: "grass",
     type2Name: "ice",
     height: 22,
@@ -7369,6 +7829,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "461": {
     jaName: "マニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/461.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/461.gif",
     type1Name: "dark",
     type2Name: "ice",
     height: 11,
@@ -7385,6 +7846,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "462": {
     jaName: "ジバコイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/462.gif",
     type1Name: "electric",
     type2Name: "steel",
     height: 12,
@@ -7401,6 +7863,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "463": {
     jaName: "ベロベルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/463.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/463.gif",
     type1Name: "normal",
     type2Name: null,
     height: 17,
@@ -7417,6 +7880,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "464": {
     jaName: "ドサイドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/464.gif",
     type1Name: "ground",
     type2Name: "rock",
     height: 24,
@@ -7433,6 +7897,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "465": {
     jaName: "モジャンボ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/465.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/465.gif",
     type1Name: "grass",
     type2Name: null,
     height: 20,
@@ -7449,6 +7914,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "466": {
     jaName: "エレキブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/466.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/466.gif",
     type1Name: "electric",
     type2Name: null,
     height: 18,
@@ -7465,6 +7931,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "467": {
     jaName: "ブーバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/467.gif",
     type1Name: "fire",
     type2Name: null,
     height: 16,
@@ -7481,6 +7948,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "468": {
     jaName: "トゲキッス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/468.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/468.gif",
     type1Name: "fairy",
     type2Name: "flying",
     height: 15,
@@ -7497,6 +7965,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "469": {
     jaName: "メガヤンマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/469.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 19,
@@ -7513,6 +7982,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "470": {
     jaName: "リーフィア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/470.gif",
     type1Name: "grass",
     type2Name: null,
     height: 10,
@@ -7529,6 +7999,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "471": {
     jaName: "グレイシア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/471.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/471.gif",
     type1Name: "ice",
     type2Name: null,
     height: 8,
@@ -7545,6 +8016,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "472": {
     jaName: "グライオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/472.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/472.gif",
     type1Name: "ground",
     type2Name: "flying",
     height: 20,
@@ -7561,6 +8033,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "473": {
     jaName: "マンムー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/473.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/473.gif",
     type1Name: "ice",
     type2Name: "ground",
     height: 25,
@@ -7577,6 +8050,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "474": {
     jaName: "ポリゴンＺ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/474.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/474.gif",
     type1Name: "normal",
     type2Name: null,
     height: 9,
@@ -7593,6 +8067,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "475": {
     jaName: "エルレイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/475.gif",
     type1Name: "psychic",
     type2Name: "fighting",
     height: 16,
@@ -7609,6 +8084,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "476": {
     jaName: "ダイノーズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/476.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/476.gif",
     type1Name: "rock",
     type2Name: "steel",
     height: 14,
@@ -7625,6 +8101,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "477": {
     jaName: "ヨノワール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/477.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/477.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 22,
@@ -7641,6 +8118,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "478": {
     jaName: "ユキメノコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/478.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/478.gif",
     type1Name: "ice",
     type2Name: "ghost",
     height: 13,
@@ -7657,6 +8135,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "479": {
     jaName: "ロトム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/479.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/479.gif",
     type1Name: "electric",
     type2Name: "ghost",
     height: 3,
@@ -7673,6 +8152,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "480": {
     jaName: "ユクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/480.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/480.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 3,
@@ -7689,6 +8169,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "481": {
     jaName: "エムリット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/481.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/481.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 3,
@@ -7705,6 +8186,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "482": {
     jaName: "アグノム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/482.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/482.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 3,
@@ -7721,6 +8203,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "483": {
     jaName: "ディアルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/483.gif",
     type1Name: "steel",
     type2Name: "dragon",
     height: 54,
@@ -7737,6 +8220,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "484": {
     jaName: "パルキア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/484.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/484.gif",
     type1Name: "water",
     type2Name: "dragon",
     height: 42,
@@ -7753,6 +8237,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "485": {
     jaName: "ヒードラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/485.gif",
     type1Name: "fire",
     type2Name: "steel",
     height: 17,
@@ -7769,6 +8254,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "486": {
     jaName: "レジギガス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/486.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/486.gif",
     type1Name: "normal",
     type2Name: null,
     height: 37,
@@ -7785,6 +8271,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "487": {
     jaName: "ギラティナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/487.gif",
     type1Name: "ghost",
     type2Name: "dragon",
     height: 45,
@@ -7801,6 +8288,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "488": {
     jaName: "クレセリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/488.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 15,
@@ -7817,6 +8305,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "489": {
     jaName: "フィオネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/489.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -7833,6 +8322,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "490": {
     jaName: "マナフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/490.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/490.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -7849,6 +8339,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "491": {
     jaName: "ダークライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/491.gif",
     type1Name: "dark",
     type2Name: null,
     height: 15,
@@ -7865,6 +8356,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "492": {
     jaName: "シェイミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/492.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/492.gif",
     type1Name: "grass",
     type2Name: null,
     height: 2,
@@ -7881,6 +8373,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "493": {
     jaName: "アルセウス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/493.gif",
     type1Name: "normal",
     type2Name: null,
     height: 32,
@@ -7897,6 +8390,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "494": {
     jaName: "ビクティニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/494.gif",
     type1Name: "psychic",
     type2Name: "fire",
     height: 4,
@@ -7913,6 +8407,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "495": {
     jaName: "ツタージャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/495.gif",
     type1Name: "grass",
     type2Name: null,
     height: 6,
@@ -7929,6 +8424,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "496": {
     jaName: "ジャノビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/496.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/496.gif",
     type1Name: "grass",
     type2Name: null,
     height: 8,
@@ -7945,6 +8441,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "497": {
     jaName: "ジャローダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/497.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/497.gif",
     type1Name: "grass",
     type2Name: null,
     height: 33,
@@ -7961,6 +8458,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "498": {
     jaName: "ポカブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/498.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/498.gif",
     type1Name: "fire",
     type2Name: null,
     height: 5,
@@ -7977,6 +8475,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "499": {
     jaName: "チャオブー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/499.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/499.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 10,
@@ -7993,6 +8492,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "500": {
     jaName: "エンブオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/500.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/500.gif",
     type1Name: "fire",
     type2Name: "fighting",
     height: 16,
@@ -8009,6 +8509,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "501": {
     jaName: "ミジュマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/501.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -8025,6 +8526,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "502": {
     jaName: "フタチマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/502.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/502.gif",
     type1Name: "water",
     type2Name: null,
     height: 8,
@@ -8041,6 +8543,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "503": {
     jaName: "ダイケンキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/503.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/503.gif",
     type1Name: "water",
     type2Name: null,
     height: 15,
@@ -8057,6 +8560,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "504": {
     jaName: "ミネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/504.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/504.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -8073,6 +8577,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "505": {
     jaName: "ミルホッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/505.gif",
     type1Name: "normal",
     type2Name: null,
     height: 11,
@@ -8089,6 +8594,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "506": {
     jaName: "ヨーテリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/506.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/506.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -8105,6 +8611,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "507": {
     jaName: "ハーデリア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/507.gif",
     type1Name: "normal",
     type2Name: null,
     height: 9,
@@ -8121,6 +8628,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "508": {
     jaName: "ムーランド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/508.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/508.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -8137,6 +8645,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "509": {
     jaName: "チョロネコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/509.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/509.gif",
     type1Name: "dark",
     type2Name: null,
     height: 4,
@@ -8153,6 +8662,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "510": {
     jaName: "レパルダス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/510.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/510.gif",
     type1Name: "dark",
     type2Name: null,
     height: 11,
@@ -8169,6 +8679,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "511": {
     jaName: "ヤナップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/511.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/511.gif",
     type1Name: "grass",
     type2Name: null,
     height: 6,
@@ -8185,6 +8696,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "512": {
     jaName: "ヤナッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/512.gif",
     type1Name: "grass",
     type2Name: null,
     height: 11,
@@ -8201,6 +8713,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "513": {
     jaName: "バオップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/513.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/513.gif",
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -8217,6 +8730,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "514": {
     jaName: "バオッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/514.gif",
     type1Name: "fire",
     type2Name: null,
     height: 10,
@@ -8233,6 +8747,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "515": {
     jaName: "ヒヤップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/515.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/515.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -8249,6 +8764,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "516": {
     jaName: "ヒヤッキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/516.gif",
     type1Name: "water",
     type2Name: null,
     height: 10,
@@ -8265,6 +8781,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "517": {
     jaName: "ムンナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/517.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/517.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -8281,6 +8798,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "518": {
     jaName: "ムシャーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/518.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 11,
@@ -8297,6 +8815,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "519": {
     jaName: "マメパト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/519.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/519.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -8313,6 +8832,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "520": {
     jaName: "ハトーボー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/520.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/520.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 6,
@@ -8329,6 +8849,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "521": {
     jaName: "ケンホロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/521.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/521.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 12,
@@ -8345,6 +8866,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "522": {
     jaName: "シママ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/522.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/522.gif",
     type1Name: "electric",
     type2Name: null,
     height: 8,
@@ -8361,6 +8883,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "523": {
     jaName: "ゼブライカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/523.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/523.gif",
     type1Name: "electric",
     type2Name: null,
     height: 16,
@@ -8377,6 +8900,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "524": {
     jaName: "ダンゴロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/524.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/524.gif",
     type1Name: "rock",
     type2Name: null,
     height: 4,
@@ -8393,6 +8917,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "525": {
     jaName: "ガントル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/525.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/525.gif",
     type1Name: "rock",
     type2Name: null,
     height: 9,
@@ -8409,6 +8934,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "526": {
     jaName: "ギガイアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/526.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/526.gif",
     type1Name: "rock",
     type2Name: null,
     height: 17,
@@ -8425,6 +8951,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "527": {
     jaName: "コロモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/527.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/527.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 4,
@@ -8441,6 +8968,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "528": {
     jaName: "ココロモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/528.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/528.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 9,
@@ -8457,6 +8985,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "529": {
     jaName: "モグリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/529.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/529.gif",
     type1Name: "ground",
     type2Name: null,
     height: 3,
@@ -8473,6 +9002,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "530": {
     jaName: "ドリュウズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/530.gif",
     type1Name: "ground",
     type2Name: "steel",
     height: 7,
@@ -8489,6 +9019,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "531": {
     jaName: "タブンネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/531.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/531.gif",
     type1Name: "normal",
     type2Name: null,
     height: 11,
@@ -8505,6 +9036,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "532": {
     jaName: "ドッコラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/532.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 6,
@@ -8521,6 +9053,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "533": {
     jaName: "ドテッコツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/533.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/533.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 12,
@@ -8537,6 +9070,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "534": {
     jaName: "ローブシン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/534.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 14,
@@ -8553,6 +9087,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "535": {
     jaName: "オタマロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/535.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/535.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -8569,6 +9104,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "536": {
     jaName: "ガマガル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/536.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 8,
@@ -8585,6 +9121,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "537": {
     jaName: "ガマゲロゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/537.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/537.gif",
     type1Name: "water",
     type2Name: "ground",
     height: 15,
@@ -8601,6 +9138,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "538": {
     jaName: "ナゲキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/538.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/538.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 13,
@@ -8617,6 +9155,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "539": {
     jaName: "ダゲキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/539.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 14,
@@ -8633,6 +9172,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "540": {
     jaName: "クルミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/540.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/540.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 3,
@@ -8649,6 +9189,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "541": {
     jaName: "クルマユ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/541.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/541.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 5,
@@ -8665,6 +9206,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "542": {
     jaName: "ハハコモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/542.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/542.gif",
     type1Name: "bug",
     type2Name: "grass",
     height: 12,
@@ -8681,6 +9223,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "543": {
     jaName: "フシデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/543.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/543.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 4,
@@ -8697,6 +9240,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "544": {
     jaName: "ホイーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/544.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/544.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 12,
@@ -8713,6 +9257,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "545": {
     jaName: "ペンドラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/545.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/545.gif",
     type1Name: "bug",
     type2Name: "poison",
     height: 25,
@@ -8729,6 +9274,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "546": {
     jaName: "モンメン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/546.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/546.gif",
     type1Name: "grass",
     type2Name: "fairy",
     height: 3,
@@ -8745,6 +9291,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "547": {
     jaName: "エルフーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/547.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/547.gif",
     type1Name: "grass",
     type2Name: "fairy",
     height: 7,
@@ -8761,6 +9308,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "548": {
     jaName: "チュリネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/548.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/548.gif",
     type1Name: "grass",
     type2Name: null,
     height: 5,
@@ -8777,6 +9325,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "549": {
     jaName: "ドレディア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/549.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/549.gif",
     type1Name: "grass",
     type2Name: null,
     height: 11,
@@ -8793,6 +9342,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "550": {
     jaName: "バスラオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/550.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/550.gif",
     type1Name: "water",
     type2Name: null,
     height: 10,
@@ -8809,6 +9359,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "551": {
     jaName: "メグロコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/551.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/551.gif",
     type1Name: "ground",
     type2Name: "dark",
     height: 7,
@@ -8825,6 +9376,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "552": {
     jaName: "ワルビル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/552.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/552.gif",
     type1Name: "ground",
     type2Name: "dark",
     height: 10,
@@ -8841,6 +9393,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "553": {
     jaName: "ワルビアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/553.gif",
     type1Name: "ground",
     type2Name: "dark",
     height: 15,
@@ -8857,6 +9410,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "554": {
     jaName: "ダルマッカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/554.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/554.gif",
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -8873,6 +9427,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "555": {
     jaName: "ヒヒダルマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/555.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/555.gif",
     type1Name: "fire",
     type2Name: null,
     height: 13,
@@ -8889,6 +9444,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "556": {
     jaName: "マラカッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/556.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/556.gif",
     type1Name: "grass",
     type2Name: null,
     height: 10,
@@ -8905,6 +9461,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "557": {
     jaName: "イシズマイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/557.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/557.gif",
     type1Name: "bug",
     type2Name: "rock",
     height: 3,
@@ -8921,6 +9478,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "558": {
     jaName: "イワパレス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/558.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/558.gif",
     type1Name: "bug",
     type2Name: "rock",
     height: 14,
@@ -8937,6 +9495,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "559": {
     jaName: "ズルッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/559.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/559.gif",
     type1Name: "dark",
     type2Name: "fighting",
     height: 6,
@@ -8953,6 +9512,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "560": {
     jaName: "ズルズキン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/560.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/560.gif",
     type1Name: "dark",
     type2Name: "fighting",
     height: 11,
@@ -8969,6 +9529,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "561": {
     jaName: "シンボラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/561.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/561.gif",
     type1Name: "psychic",
     type2Name: "flying",
     height: 14,
@@ -8985,6 +9546,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "562": {
     jaName: "デスマス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/562.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/562.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 5,
@@ -9001,6 +9563,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "563": {
     jaName: "デスカーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/563.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/563.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 17,
@@ -9017,6 +9580,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "564": {
     jaName: "プロトーガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/564.gif",
     type1Name: "water",
     type2Name: "rock",
     height: 7,
@@ -9033,6 +9597,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "565": {
     jaName: "アバゴーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/565.gif",
     type1Name: "water",
     type2Name: "rock",
     height: 12,
@@ -9049,6 +9614,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "566": {
     jaName: "アーケン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/566.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/566.gif",
     type1Name: "rock",
     type2Name: "flying",
     height: 5,
@@ -9065,6 +9631,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "567": {
     jaName: "アーケオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/567.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/567.gif",
     type1Name: "rock",
     type2Name: "flying",
     height: 14,
@@ -9081,6 +9648,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "568": {
     jaName: "ヤブクロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/568.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/568.gif",
     type1Name: "poison",
     type2Name: null,
     height: 6,
@@ -9097,6 +9665,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "569": {
     jaName: "ダストダス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/569.gif",
     type1Name: "poison",
     type2Name: null,
     height: 19,
@@ -9113,6 +9682,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "570": {
     jaName: "ゾロア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/570.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/570.gif",
     type1Name: "dark",
     type2Name: null,
     height: 7,
@@ -9129,6 +9699,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "571": {
     jaName: "ゾロアーク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/571.gif",
     type1Name: "dark",
     type2Name: null,
     height: 16,
@@ -9145,6 +9716,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "572": {
     jaName: "チラーミィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/572.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/572.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -9161,6 +9733,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "573": {
     jaName: "チラチーノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/573.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/573.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -9177,6 +9750,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "574": {
     jaName: "ゴチム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/574.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/574.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 4,
@@ -9193,6 +9767,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "575": {
     jaName: "ゴチミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/575.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/575.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 7,
@@ -9209,6 +9784,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "576": {
     jaName: "ゴチルゼル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/576.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/576.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 15,
@@ -9225,6 +9801,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "577": {
     jaName: "ユニラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/577.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/577.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 3,
@@ -9241,6 +9818,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "578": {
     jaName: "ダブラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/578.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/578.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -9257,6 +9835,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "579": {
     jaName: "ランクルス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/579.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/579.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 10,
@@ -9273,6 +9852,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "580": {
     jaName: "コアルヒー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/580.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/580.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 5,
@@ -9289,6 +9869,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "581": {
     jaName: "スワンナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/581.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/581.gif",
     type1Name: "water",
     type2Name: "flying",
     height: 13,
@@ -9305,6 +9886,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "582": {
     jaName: "バニプッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/582.gif",
     type1Name: "ice",
     type2Name: null,
     height: 4,
@@ -9321,6 +9903,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "583": {
     jaName: "バニリッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/583.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/583.gif",
     type1Name: "ice",
     type2Name: null,
     height: 11,
@@ -9337,6 +9920,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "584": {
     jaName: "バイバニラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/584.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/584.gif",
     type1Name: "ice",
     type2Name: null,
     height: 13,
@@ -9353,6 +9937,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "585": {
     jaName: "シキジカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/585.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/585.gif",
     type1Name: "normal",
     type2Name: "grass",
     height: 6,
@@ -9369,6 +9954,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "586": {
     jaName: "メブキジカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/586.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/586.gif",
     type1Name: "normal",
     type2Name: "grass",
     height: 19,
@@ -9385,6 +9971,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "587": {
     jaName: "エモンガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/587.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/587.gif",
     type1Name: "electric",
     type2Name: "flying",
     height: 4,
@@ -9401,6 +9988,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "588": {
     jaName: "カブルモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/588.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/588.gif",
     type1Name: "bug",
     type2Name: null,
     height: 5,
@@ -9417,6 +10005,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "589": {
     jaName: "シュバルゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/589.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/589.gif",
     type1Name: "bug",
     type2Name: "steel",
     height: 10,
@@ -9433,6 +10022,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "590": {
     jaName: "タマゲタケ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/590.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/590.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 2,
@@ -9449,6 +10039,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "591": {
     jaName: "モロバレル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/591.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/591.gif",
     type1Name: "grass",
     type2Name: "poison",
     height: 6,
@@ -9465,6 +10056,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "592": {
     jaName: "プルリル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/592.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/592.gif",
     type1Name: "water",
     type2Name: "ghost",
     height: 12,
@@ -9481,6 +10073,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "593": {
     jaName: "ブルンゲル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/593.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/593.gif",
     type1Name: "water",
     type2Name: "ghost",
     height: 22,
@@ -9497,6 +10090,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "594": {
     jaName: "ママンボウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/594.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/594.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -9513,6 +10107,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "595": {
     jaName: "バチュル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/595.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/595.gif",
     type1Name: "bug",
     type2Name: "electric",
     height: 1,
@@ -9529,6 +10124,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "596": {
     jaName: "デンチュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/596.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/596.gif",
     type1Name: "bug",
     type2Name: "electric",
     height: 8,
@@ -9545,6 +10141,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "597": {
     jaName: "テッシード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/597.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/597.gif",
     type1Name: "grass",
     type2Name: "steel",
     height: 6,
@@ -9561,6 +10158,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "598": {
     jaName: "ナットレイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/598.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/598.gif",
     type1Name: "grass",
     type2Name: "steel",
     height: 10,
@@ -9577,6 +10175,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "599": {
     jaName: "ギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/599.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/599.gif",
     type1Name: "steel",
     type2Name: null,
     height: 3,
@@ -9593,6 +10192,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "600": {
     jaName: "ギギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/600.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/600.gif",
     type1Name: "steel",
     type2Name: null,
     height: 6,
@@ -9609,6 +10209,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "601": {
     jaName: "ギギギアル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/601.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/601.gif",
     type1Name: "steel",
     type2Name: null,
     height: 6,
@@ -9625,6 +10226,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "602": {
     jaName: "シビシラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/602.gif",
     type1Name: "electric",
     type2Name: null,
     height: 2,
@@ -9641,6 +10243,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "603": {
     jaName: "シビビール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/603.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/603.gif",
     type1Name: "electric",
     type2Name: null,
     height: 12,
@@ -9657,6 +10260,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "604": {
     jaName: "シビルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/604.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/604.gif",
     type1Name: "electric",
     type2Name: null,
     height: 21,
@@ -9673,6 +10277,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "605": {
     jaName: "リグレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/605.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/605.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 5,
@@ -9689,6 +10294,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "606": {
     jaName: "オーベム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/606.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/606.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 10,
@@ -9705,6 +10311,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "607": {
     jaName: "ヒトモシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/607.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/607.gif",
     type1Name: "ghost",
     type2Name: "fire",
     height: 3,
@@ -9721,6 +10328,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "608": {
     jaName: "ランプラー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/608.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/608.gif",
     type1Name: "ghost",
     type2Name: "fire",
     height: 6,
@@ -9737,6 +10345,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "609": {
     jaName: "シャンデラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/609.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/609.gif",
     type1Name: "ghost",
     type2Name: "fire",
     height: 10,
@@ -9753,6 +10362,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "610": {
     jaName: "キバゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/610.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/610.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 6,
@@ -9769,6 +10379,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "611": {
     jaName: "オノンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/611.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/611.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 10,
@@ -9785,6 +10396,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "612": {
     jaName: "オノノクス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/612.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/612.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 18,
@@ -9801,6 +10413,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "613": {
     jaName: "クマシュン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/613.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/613.gif",
     type1Name: "ice",
     type2Name: null,
     height: 5,
@@ -9817,6 +10430,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "614": {
     jaName: "ツンベアー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/614.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/614.gif",
     type1Name: "ice",
     type2Name: null,
     height: 26,
@@ -9833,6 +10447,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "615": {
     jaName: "フリージオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/615.gif",
     type1Name: "ice",
     type2Name: null,
     height: 11,
@@ -9849,6 +10464,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "616": {
     jaName: "チョボマキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/616.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/616.gif",
     type1Name: "bug",
     type2Name: null,
     height: 4,
@@ -9865,6 +10481,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "617": {
     jaName: "アギルダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/617.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/617.gif",
     type1Name: "bug",
     type2Name: null,
     height: 8,
@@ -9881,6 +10498,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "618": {
     jaName: "マッギョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/618.gif",
     type1Name: "ground",
     type2Name: "electric",
     height: 7,
@@ -9897,6 +10515,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "619": {
     jaName: "コジョフー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/619.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/619.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 9,
@@ -9913,6 +10532,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "620": {
     jaName: "コジョンド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/620.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/620.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 14,
@@ -9929,6 +10549,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "621": {
     jaName: "クリムガン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/621.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/621.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 16,
@@ -9945,6 +10566,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "622": {
     jaName: "ゴビット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/622.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/622.gif",
     type1Name: "ground",
     type2Name: "ghost",
     height: 10,
@@ -9961,6 +10583,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "623": {
     jaName: "ゴルーグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/623.gif",
     type1Name: "ground",
     type2Name: "ghost",
     height: 28,
@@ -9977,6 +10600,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "624": {
     jaName: "コマタナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/624.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/624.gif",
     type1Name: "dark",
     type2Name: "steel",
     height: 5,
@@ -9993,6 +10617,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "625": {
     jaName: "キリキザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/625.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/625.gif",
     type1Name: "dark",
     type2Name: "steel",
     height: 16,
@@ -10009,6 +10634,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "626": {
     jaName: "バッフロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/626.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/626.gif",
     type1Name: "normal",
     type2Name: null,
     height: 16,
@@ -10025,6 +10651,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "627": {
     jaName: "ワシボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/627.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/627.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 5,
@@ -10041,6 +10668,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "628": {
     jaName: "ウォーグル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/628.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/628.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 15,
@@ -10057,6 +10685,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "629": {
     jaName: "バルチャイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/629.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/629.gif",
     type1Name: "dark",
     type2Name: "flying",
     height: 5,
@@ -10073,6 +10702,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "630": {
     jaName: "バルジーナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/630.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/630.gif",
     type1Name: "dark",
     type2Name: "flying",
     height: 12,
@@ -10089,6 +10719,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "631": {
     jaName: "クイタラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/631.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/631.gif",
     type1Name: "fire",
     type2Name: null,
     height: 14,
@@ -10105,6 +10736,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "632": {
     jaName: "アイアント",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/632.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/632.gif",
     type1Name: "bug",
     type2Name: "steel",
     height: 3,
@@ -10121,6 +10753,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "633": {
     jaName: "モノズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/633.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/633.gif",
     type1Name: "dark",
     type2Name: "dragon",
     height: 8,
@@ -10137,6 +10770,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "634": {
     jaName: "ジヘッド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/634.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/634.gif",
     type1Name: "dark",
     type2Name: "dragon",
     height: 14,
@@ -10153,6 +10787,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "635": {
     jaName: "サザンドラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/635.gif",
     type1Name: "dark",
     type2Name: "dragon",
     height: 18,
@@ -10169,6 +10804,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "636": {
     jaName: "メラルバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/636.gif",
     type1Name: "bug",
     type2Name: "fire",
     height: 11,
@@ -10185,6 +10821,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "637": {
     jaName: "ウルガモス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/637.gif",
     type1Name: "bug",
     type2Name: "fire",
     height: 16,
@@ -10201,6 +10838,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "638": {
     jaName: "コバルオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/638.gif",
     type1Name: "steel",
     type2Name: "fighting",
     height: 21,
@@ -10217,6 +10855,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "639": {
     jaName: "テラキオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/639.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/639.gif",
     type1Name: "rock",
     type2Name: "fighting",
     height: 19,
@@ -10233,6 +10872,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "640": {
     jaName: "ビリジオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/640.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/640.gif",
     type1Name: "grass",
     type2Name: "fighting",
     height: 20,
@@ -10249,6 +10889,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "641": {
     jaName: "トルネロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/641.gif",
     type1Name: "flying",
     type2Name: null,
     height: 15,
@@ -10265,6 +10906,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "642": {
     jaName: "ボルトロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/642.gif",
     type1Name: "electric",
     type2Name: "flying",
     height: 15,
@@ -10281,6 +10923,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "643": {
     jaName: "レシラム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/643.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/643.gif",
     type1Name: "dragon",
     type2Name: "fire",
     height: 32,
@@ -10297,6 +10940,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "644": {
     jaName: "ゼクロム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/644.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/644.gif",
     type1Name: "dragon",
     type2Name: "electric",
     height: 29,
@@ -10313,6 +10957,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "645": {
     jaName: "ランドロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/645.gif",
     type1Name: "ground",
     type2Name: "flying",
     height: 15,
@@ -10329,6 +10974,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "646": {
     jaName: "キュレム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/646.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/646.gif",
     type1Name: "dragon",
     type2Name: "ice",
     height: 30,
@@ -10345,6 +10991,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "647": {
     jaName: "ケルディオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/647.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/647.gif",
     type1Name: "water",
     type2Name: "fighting",
     height: 14,
@@ -10361,6 +11008,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "648": {
     jaName: "メロエッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/648.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/648.gif",
     type1Name: "normal",
     type2Name: "psychic",
     height: 6,
@@ -10377,6 +11025,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "649": {
     jaName: "ゲノセクト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/649.gif",
     type1Name: "bug",
     type2Name: "steel",
     height: 15,
@@ -10393,6 +11042,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "650": {
     jaName: "ハリマロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/650.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -10409,6 +11059,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "651": {
     jaName: "ハリボーグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/651.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/651.gif",
     type1Name: "grass",
     type2Name: null,
     height: 7,
@@ -10425,6 +11076,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "652": {
     jaName: "ブリガロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/652.gif",
     type1Name: "grass",
     type2Name: "fighting",
     height: 16,
@@ -10441,6 +11093,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "653": {
     jaName: "フォッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/653.gif",
     type1Name: "fire",
     type2Name: null,
     height: 4,
@@ -10457,6 +11110,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "654": {
     jaName: "テールナー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/654.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/654.gif",
     type1Name: "fire",
     type2Name: null,
     height: 10,
@@ -10473,6 +11127,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "655": {
     jaName: "マフォクシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/655.gif",
     type1Name: "fire",
     type2Name: "psychic",
     height: 15,
@@ -10489,6 +11144,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "656": {
     jaName: "ケロマツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/656.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -10505,6 +11161,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "657": {
     jaName: "ゲコガシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/657.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/657.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -10521,6 +11178,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "658": {
     jaName: "ゲッコウガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/658.gif",
     type1Name: "water",
     type2Name: "dark",
     height: 15,
@@ -10537,6 +11195,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "659": {
     jaName: "ホルビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/659.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -10553,6 +11212,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "660": {
     jaName: "ホルード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/660.gif",
     type1Name: "normal",
     type2Name: "ground",
     height: 10,
@@ -10569,6 +11229,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "661": {
     jaName: "ヤヤコマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/661.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/661.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -10585,6 +11246,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "662": {
     jaName: "ヒノヤコマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/662.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 7,
@@ -10601,6 +11263,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "663": {
     jaName: "ファイアロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/663.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 12,
@@ -10617,6 +11280,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "664": {
     jaName: "コフキムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/664.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/664.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -10633,6 +11297,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "665": {
     jaName: "コフーライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/665.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/665.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -10649,6 +11314,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "666": {
     jaName: "ビビヨン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/666.gif",
     type1Name: "bug",
     type2Name: "flying",
     height: 12,
@@ -10665,6 +11331,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "667": {
     jaName: "シシコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/667.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/667.gif",
     type1Name: "fire",
     type2Name: "normal",
     height: 6,
@@ -10681,6 +11348,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "668": {
     jaName: "カエンジシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/668.gif",
     type1Name: "fire",
     type2Name: "normal",
     height: 15,
@@ -10697,6 +11365,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "669": {
     jaName: "フラベベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/669.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/669.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 1,
@@ -10713,6 +11382,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "670": {
     jaName: "フラエッテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/670.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/670.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 2,
@@ -10729,6 +11399,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "671": {
     jaName: "フラージェス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/671.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/671.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 11,
@@ -10745,6 +11416,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "672": {
     jaName: "メェークル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/672.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/672.gif",
     type1Name: "grass",
     type2Name: null,
     height: 9,
@@ -10761,6 +11433,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "673": {
     jaName: "ゴーゴート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/673.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/673.gif",
     type1Name: "grass",
     type2Name: null,
     height: 17,
@@ -10777,6 +11450,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "674": {
     jaName: "ヤンチャム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/674.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/674.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 6,
@@ -10793,6 +11467,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "675": {
     jaName: "ゴロンダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/675.gif",
     type1Name: "fighting",
     type2Name: "dark",
     height: 21,
@@ -10809,6 +11484,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "676": {
     jaName: "トリミアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/676.gif",
     type1Name: "normal",
     type2Name: null,
     height: 12,
@@ -10825,6 +11501,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "677": {
     jaName: "ニャスパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/677.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/677.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 3,
@@ -10841,6 +11518,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "678": {
     jaName: "ニャオニクス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/678.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/678.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -10857,6 +11535,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "679": {
     jaName: "ヒトツキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/679.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/679.gif",
     type1Name: "steel",
     type2Name: "ghost",
     height: 8,
@@ -10873,6 +11552,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "680": {
     jaName: "ニダンギル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/680.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/680.gif",
     type1Name: "steel",
     type2Name: "ghost",
     height: 8,
@@ -10889,6 +11569,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "681": {
     jaName: "ギルガルド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/681.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/681.gif",
     type1Name: "steel",
     type2Name: "ghost",
     height: 17,
@@ -10905,6 +11586,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "682": {
     jaName: "シュシュプ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/682.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/682.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 2,
@@ -10921,6 +11603,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "683": {
     jaName: "フレフワン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/683.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 8,
@@ -10937,6 +11620,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "684": {
     jaName: "ペロッパフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/684.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/684.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 4,
@@ -10953,6 +11637,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "685": {
     jaName: "ペロリーム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/685.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/685.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 8,
@@ -10969,6 +11654,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "686": {
     jaName: "マーイーカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/686.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/686.gif",
     type1Name: "dark",
     type2Name: "psychic",
     height: 4,
@@ -10985,6 +11671,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "687": {
     jaName: "カラマネロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/687.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/687.gif",
     type1Name: "dark",
     type2Name: "psychic",
     height: 15,
@@ -11001,6 +11688,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "688": {
     jaName: "カメテテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/688.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/688.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 5,
@@ -11017,6 +11705,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "689": {
     jaName: "ガメノデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/689.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/689.gif",
     type1Name: "rock",
     type2Name: "water",
     height: 13,
@@ -11033,6 +11722,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "690": {
     jaName: "クズモー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/690.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/690.gif",
     type1Name: "poison",
     type2Name: "water",
     height: 5,
@@ -11049,6 +11739,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "691": {
     jaName: "ドラミドロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/691.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/691.gif",
     type1Name: "poison",
     type2Name: "dragon",
     height: 18,
@@ -11065,6 +11756,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "692": {
     jaName: "ウデッポウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/692.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/692.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -11081,6 +11773,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "693": {
     jaName: "ブロスター",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/693.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/693.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -11097,6 +11790,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "694": {
     jaName: "エリキテル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/694.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/694.gif",
     type1Name: "electric",
     type2Name: "normal",
     height: 5,
@@ -11113,6 +11807,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "695": {
     jaName: "エレザード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/695.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/695.gif",
     type1Name: "electric",
     type2Name: "normal",
     height: 10,
@@ -11129,6 +11824,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "696": {
     jaName: "チゴラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/696.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/696.gif",
     type1Name: "rock",
     type2Name: "dragon",
     height: 8,
@@ -11145,6 +11841,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "697": {
     jaName: "ガチゴラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/697.gif",
     type1Name: "rock",
     type2Name: "dragon",
     height: 25,
@@ -11161,6 +11858,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "698": {
     jaName: "アマルス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/698.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/698.gif",
     type1Name: "rock",
     type2Name: "ice",
     height: 13,
@@ -11177,6 +11875,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "699": {
     jaName: "アマルルガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/699.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/699.gif",
     type1Name: "rock",
     type2Name: "ice",
     height: 27,
@@ -11193,6 +11892,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "700": {
     jaName: "ニンフィア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/700.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 10,
@@ -11209,6 +11909,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "701": {
     jaName: "ルチャブル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/701.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/701.gif",
     type1Name: "fighting",
     type2Name: "flying",
     height: 8,
@@ -11225,6 +11926,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "702": {
     jaName: "デデンネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/702.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/702.gif",
     type1Name: "electric",
     type2Name: "fairy",
     height: 2,
@@ -11241,6 +11943,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "703": {
     jaName: "メレシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/703.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/703.gif",
     type1Name: "rock",
     type2Name: "fairy",
     height: 3,
@@ -11257,6 +11960,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "704": {
     jaName: "ヌメラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/704.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/704.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 3,
@@ -11273,6 +11977,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "705": {
     jaName: "ヌメイル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/705.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/705.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 8,
@@ -11289,6 +11994,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "706": {
     jaName: "ヌメルゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/706.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 20,
@@ -11305,6 +12011,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "707": {
     jaName: "クレッフィ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/707.gif",
     type1Name: "steel",
     type2Name: "fairy",
     height: 2,
@@ -11321,6 +12028,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "708": {
     jaName: "ボクレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/708.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/708.gif",
     type1Name: "ghost",
     type2Name: "grass",
     height: 4,
@@ -11337,6 +12045,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "709": {
     jaName: "オーロット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/709.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/709.gif",
     type1Name: "ghost",
     type2Name: "grass",
     height: 15,
@@ -11353,6 +12062,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "710": {
     jaName: "バケッチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/710.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/710.gif",
     type1Name: "ghost",
     type2Name: "grass",
     height: 4,
@@ -11369,6 +12079,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "711": {
     jaName: "パンプジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/711.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/711.gif",
     type1Name: "ghost",
     type2Name: "grass",
     height: 9,
@@ -11385,6 +12096,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "712": {
     jaName: "カチコール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/712.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/712.gif",
     type1Name: "ice",
     type2Name: null,
     height: 10,
@@ -11401,6 +12113,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "713": {
     jaName: "クレベース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/713.gif",
     type1Name: "ice",
     type2Name: null,
     height: 20,
@@ -11417,6 +12130,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "714": {
     jaName: "オンバット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/714.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/714.gif",
     type1Name: "flying",
     type2Name: "dragon",
     height: 5,
@@ -11433,6 +12147,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "715": {
     jaName: "オンバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/715.gif",
     type1Name: "flying",
     type2Name: "dragon",
     height: 15,
@@ -11449,6 +12164,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "716": {
     jaName: "ゼルネアス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/716.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/716.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 30,
@@ -11465,6 +12181,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "717": {
     jaName: "イベルタル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/717.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/717.gif",
     type1Name: "dark",
     type2Name: "flying",
     height: 58,
@@ -11481,6 +12198,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "718": {
     jaName: "ジガルデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/718.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/718.gif",
     type1Name: "dragon",
     type2Name: "ground",
     height: 50,
@@ -11497,6 +12215,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "719": {
     jaName: "ディアンシー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/719.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/719.gif",
     type1Name: "rock",
     type2Name: "fairy",
     height: 7,
@@ -11513,6 +12232,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "720": {
     jaName: "フーパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/720.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/720.gif",
     type1Name: "psychic",
     type2Name: "ghost",
     height: 5,
@@ -11529,6 +12249,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "721": {
     jaName: "ボルケニオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/721.gif",
     type1Name: "fire",
     type2Name: "water",
     height: 17,
@@ -11545,6 +12266,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "722": {
     jaName: "モクロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/722.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/722.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 3,
@@ -11561,6 +12283,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "723": {
     jaName: "フクスロー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/723.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/723.gif",
     type1Name: "grass",
     type2Name: "flying",
     height: 7,
@@ -11577,6 +12300,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "724": {
     jaName: "ジュナイパー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/724.gif",
     type1Name: "grass",
     type2Name: "ghost",
     height: 16,
@@ -11593,6 +12317,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "725": {
     jaName: "ニャビー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/725.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/725.gif",
     type1Name: "fire",
     type2Name: null,
     height: 4,
@@ -11609,6 +12334,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "726": {
     jaName: "ニャヒート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/726.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/726.gif",
     type1Name: "fire",
     type2Name: null,
     height: 7,
@@ -11625,6 +12351,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "727": {
     jaName: "ガオガエン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/727.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/727.gif",
     type1Name: "fire",
     type2Name: "dark",
     height: 18,
@@ -11641,6 +12368,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "728": {
     jaName: "アシマリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/728.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/728.gif",
     type1Name: "water",
     type2Name: null,
     height: 4,
@@ -11657,6 +12385,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "729": {
     jaName: "オシャマリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/729.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/729.gif",
     type1Name: "water",
     type2Name: null,
     height: 6,
@@ -11673,6 +12402,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "730": {
     jaName: "アシレーヌ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/730.gif",
     type1Name: "water",
     type2Name: "fairy",
     height: 18,
@@ -11689,6 +12419,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "731": {
     jaName: "ツツケラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/731.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/731.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 3,
@@ -11705,6 +12436,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "732": {
     jaName: "ケララッパ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/732.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/732.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 6,
@@ -11721,6 +12453,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "733": {
     jaName: "ドデカバシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/733.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/733.gif",
     type1Name: "normal",
     type2Name: "flying",
     height: 11,
@@ -11737,6 +12470,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "734": {
     jaName: "ヤングース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/734.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/734.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -11753,6 +12487,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "735": {
     jaName: "デカグース",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/735.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/735.gif",
     type1Name: "normal",
     type2Name: null,
     height: 7,
@@ -11769,6 +12504,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "736": {
     jaName: "アゴジムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/736.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/736.gif",
     type1Name: "bug",
     type2Name: null,
     height: 4,
@@ -11785,6 +12521,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "737": {
     jaName: "デンヂムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/737.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/737.gif",
     type1Name: "bug",
     type2Name: "electric",
     height: 5,
@@ -11801,6 +12538,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "738": {
     jaName: "クワガノン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/738.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/738.gif",
     type1Name: "bug",
     type2Name: "electric",
     height: 15,
@@ -11817,6 +12555,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "739": {
     jaName: "マケンカニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/739.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/739.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 6,
@@ -11833,6 +12572,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "740": {
     jaName: "ケケンカニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/740.gif",
     type1Name: "fighting",
     type2Name: "ice",
     height: 17,
@@ -11849,6 +12589,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "741": {
     jaName: "オドリドリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/741.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/741.gif",
     type1Name: "fire",
     type2Name: "flying",
     height: 6,
@@ -11865,6 +12606,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "742": {
     jaName: "アブリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/742.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/742.gif",
     type1Name: "bug",
     type2Name: "fairy",
     height: 1,
@@ -11881,6 +12623,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "743": {
     jaName: "アブリボン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/743.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/743.gif",
     type1Name: "bug",
     type2Name: "fairy",
     height: 2,
@@ -11897,6 +12640,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "744": {
     jaName: "イワンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/744.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/744.gif",
     type1Name: "rock",
     type2Name: null,
     height: 5,
@@ -11913,6 +12657,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "745": {
     jaName: "ルガルガン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/745.gif",
     type1Name: "rock",
     type2Name: null,
     height: 8,
@@ -11929,6 +12674,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "746": {
     jaName: "ヨワシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/746.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/746.gif",
     type1Name: "water",
     type2Name: null,
     height: 2,
@@ -11945,6 +12691,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "747": {
     jaName: "ヒドイデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/747.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/747.gif",
     type1Name: "poison",
     type2Name: "water",
     height: 4,
@@ -11961,6 +12708,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "748": {
     jaName: "ドヒドイデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/748.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/748.gif",
     type1Name: "poison",
     type2Name: "water",
     height: 7,
@@ -11977,6 +12725,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "749": {
     jaName: "ドロバンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/749.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/749.gif",
     type1Name: "ground",
     type2Name: null,
     height: 10,
@@ -11993,6 +12742,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "750": {
     jaName: "バンバドロ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/750.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/750.gif",
     type1Name: "ground",
     type2Name: null,
     height: 25,
@@ -12009,6 +12759,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "751": {
     jaName: "シズクモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/751.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/751.gif",
     type1Name: "water",
     type2Name: "bug",
     height: 3,
@@ -12025,6 +12776,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "752": {
     jaName: "オニシズクモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/752.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/752.gif",
     type1Name: "water",
     type2Name: "bug",
     height: 18,
@@ -12041,6 +12793,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "753": {
     jaName: "カリキリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/753.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/753.gif",
     type1Name: "grass",
     type2Name: null,
     height: 3,
@@ -12057,6 +12810,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "754": {
     jaName: "ラランテス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/754.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/754.gif",
     type1Name: "grass",
     type2Name: null,
     height: 9,
@@ -12073,6 +12827,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "755": {
     jaName: "ネマシュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/755.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/755.gif",
     type1Name: "grass",
     type2Name: "fairy",
     height: 2,
@@ -12089,6 +12844,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "756": {
     jaName: "マシェード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/756.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/756.gif",
     type1Name: "grass",
     type2Name: "fairy",
     height: 10,
@@ -12105,6 +12861,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "757": {
     jaName: "ヤトウモリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/757.gif",
     type1Name: "poison",
     type2Name: "fire",
     height: 6,
@@ -12121,6 +12878,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "758": {
     jaName: "エンニュート",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/758.gif",
     type1Name: "poison",
     type2Name: "fire",
     height: 12,
@@ -12137,6 +12895,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "759": {
     jaName: "ヌイコグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/759.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/759.gif",
     type1Name: "normal",
     type2Name: "fighting",
     height: 5,
@@ -12153,6 +12912,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "760": {
     jaName: "キテルグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/760.gif",
     type1Name: "normal",
     type2Name: "fighting",
     height: 21,
@@ -12169,6 +12929,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "761": {
     jaName: "アマカジ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/761.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/761.gif",
     type1Name: "grass",
     type2Name: null,
     height: 3,
@@ -12185,6 +12946,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "762": {
     jaName: "アママイコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/762.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/762.gif",
     type1Name: "grass",
     type2Name: null,
     height: 7,
@@ -12201,6 +12963,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "763": {
     jaName: "アマージョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/763.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/763.gif",
     type1Name: "grass",
     type2Name: null,
     height: 12,
@@ -12217,6 +12980,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "764": {
     jaName: "キュワワー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/764.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/764.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 1,
@@ -12233,6 +12997,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "765": {
     jaName: "ヤレユータン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/765.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/765.gif",
     type1Name: "normal",
     type2Name: "psychic",
     height: 15,
@@ -12249,6 +13014,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "766": {
     jaName: "ナゲツケサル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/766.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/766.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 20,
@@ -12265,6 +13031,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "767": {
     jaName: "コソクムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/767.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/767.gif",
     type1Name: "bug",
     type2Name: "water",
     height: 5,
@@ -12281,6 +13048,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "768": {
     jaName: "グソクムシャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/768.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/768.gif",
     type1Name: "bug",
     type2Name: "water",
     height: 20,
@@ -12297,6 +13065,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "769": {
     jaName: "スナバァ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/769.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/769.gif",
     type1Name: "ghost",
     type2Name: "ground",
     height: 5,
@@ -12313,6 +13082,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "770": {
     jaName: "シロデスナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/770.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/770.gif",
     type1Name: "ghost",
     type2Name: "ground",
     height: 13,
@@ -12329,6 +13099,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "771": {
     jaName: "ナマコブシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/771.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/771.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -12345,6 +13116,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "772": {
     jaName: "タイプ：ヌル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/772.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/772.gif",
     type1Name: "normal",
     type2Name: null,
     height: 19,
@@ -12361,6 +13133,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "773": {
     jaName: "シルヴァディ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/773.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/773.gif",
     type1Name: "normal",
     type2Name: null,
     height: 23,
@@ -12377,6 +13150,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "774": {
     jaName: "メテノ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/774.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/774.gif",
     type1Name: "rock",
     type2Name: "flying",
     height: 3,
@@ -12393,6 +13167,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "775": {
     jaName: "ネッコアラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/775.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/775.gif",
     type1Name: "normal",
     type2Name: null,
     height: 4,
@@ -12409,6 +13184,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "776": {
     jaName: "バクガメス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/776.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/776.gif",
     type1Name: "fire",
     type2Name: "dragon",
     height: 20,
@@ -12425,6 +13201,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "777": {
     jaName: "トゲデマル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/777.gif",
     type1Name: "electric",
     type2Name: "steel",
     height: 3,
@@ -12441,6 +13218,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "778": {
     jaName: "ミミッキュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/778.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/778.gif",
     type1Name: "ghost",
     type2Name: "fairy",
     height: 2,
@@ -12457,6 +13235,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "779": {
     jaName: "ハギギシリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/779.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 9,
@@ -12473,6 +13252,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "780": {
     jaName: "ジジーロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/780.gif",
     type1Name: "normal",
     type2Name: "dragon",
     height: 30,
@@ -12489,6 +13269,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "781": {
     jaName: "ダダリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/781.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/781.gif",
     type1Name: "ghost",
     type2Name: "grass",
     height: 39,
@@ -12505,6 +13286,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "782": {
     jaName: "ジャラコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/782.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/782.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 6,
@@ -12521,6 +13303,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "783": {
     jaName: "ジャランゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/783.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/783.gif",
     type1Name: "dragon",
     type2Name: "fighting",
     height: 12,
@@ -12537,6 +13320,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "784": {
     jaName: "ジャラランガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/784.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/784.gif",
     type1Name: "dragon",
     type2Name: "fighting",
     height: 16,
@@ -12553,6 +13337,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "785": {
     jaName: "カプ・コケコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/785.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/785.gif",
     type1Name: "electric",
     type2Name: "fairy",
     height: 18,
@@ -12569,6 +13354,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "786": {
     jaName: "カプ・テテフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/786.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/786.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 12,
@@ -12585,6 +13371,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "787": {
     jaName: "カプ・ブルル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/787.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/787.gif",
     type1Name: "grass",
     type2Name: "fairy",
     height: 19,
@@ -12601,6 +13388,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "788": {
     jaName: "カプ・レヒレ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/788.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/788.gif",
     type1Name: "water",
     type2Name: "fairy",
     height: 13,
@@ -12617,6 +13405,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "789": {
     jaName: "コスモッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/789.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/789.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 2,
@@ -12633,6 +13422,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "790": {
     jaName: "コスモウム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/790.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/790.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 1,
@@ -12649,6 +13439,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "791": {
     jaName: "ソルガレオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/791.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/791.gif",
     type1Name: "psychic",
     type2Name: "steel",
     height: 34,
@@ -12665,6 +13456,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "792": {
     jaName: "ルナアーラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/792.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/792.gif",
     type1Name: "psychic",
     type2Name: "ghost",
     height: 40,
@@ -12681,6 +13473,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "793": {
     jaName: "ウツロイド",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/793.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/793.gif",
     type1Name: "rock",
     type2Name: "poison",
     height: 12,
@@ -12697,6 +13490,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "794": {
     jaName: "マッシブーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/794.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/794.gif",
     type1Name: "bug",
     type2Name: "fighting",
     height: 24,
@@ -12713,6 +13507,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "795": {
     jaName: "フェローチェ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/795.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/795.gif",
     type1Name: "bug",
     type2Name: "fighting",
     height: 18,
@@ -12729,6 +13524,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "796": {
     jaName: "デンジュモク",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/796.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/796.gif",
     type1Name: "electric",
     type2Name: null,
     height: 38,
@@ -12745,6 +13541,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "797": {
     jaName: "テッカグヤ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/797.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/797.gif",
     type1Name: "steel",
     type2Name: "flying",
     height: 92,
@@ -12761,6 +13558,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "798": {
     jaName: "カミツルギ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/798.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/798.gif",
     type1Name: "grass",
     type2Name: "steel",
     height: 3,
@@ -12777,6 +13575,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "799": {
     jaName: "アクジキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/799.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/799.gif",
     type1Name: "dark",
     type2Name: "dragon",
     height: 55,
@@ -12793,6 +13592,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "800": {
     jaName: "ネクロズマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/800.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/800.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 24,
@@ -12809,6 +13609,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "801": {
     jaName: "マギアナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/801.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/801.gif",
     type1Name: "steel",
     type2Name: "fairy",
     height: 10,
@@ -12825,6 +13626,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "802": {
     jaName: "マーシャドー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/802.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/802.gif",
     type1Name: "fighting",
     type2Name: "ghost",
     height: 7,
@@ -12841,6 +13643,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "803": {
     jaName: "ベベノム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/803.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/803.gif",
     type1Name: "poison",
     type2Name: null,
     height: 6,
@@ -12857,6 +13660,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "804": {
     jaName: "アーゴヨン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/804.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/804.gif",
     type1Name: "poison",
     type2Name: "dragon",
     height: 36,
@@ -12873,6 +13677,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "805": {
     jaName: "ツンデツンデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/805.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/805.gif",
     type1Name: "rock",
     type2Name: "steel",
     height: 55,
@@ -12889,6 +13694,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "806": {
     jaName: "ズガドーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/806.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/806.gif",
     type1Name: "fire",
     type2Name: "ghost",
     height: 18,
@@ -12905,6 +13711,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "807": {
     jaName: "ゼラオラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/807.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/807.gif",
     type1Name: "electric",
     type2Name: null,
     height: 15,
@@ -12921,6 +13728,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "808": {
     jaName: "メルタン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/808.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/808.gif",
     type1Name: "steel",
     type2Name: null,
     height: 2,
@@ -12937,6 +13745,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "809": {
     jaName: "メルメタル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/809.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/809.gif",
     type1Name: "steel",
     type2Name: null,
     height: 25,
@@ -12953,6 +13762,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "810": {
     jaName: "サルノリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/810.gif",
     type1Name: "grass",
     type2Name: null,
     height: 3,
@@ -12969,6 +13779,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "811": {
     jaName: "バチンキー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/811.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/811.gif",
     type1Name: "grass",
     type2Name: null,
     height: 7,
@@ -12985,6 +13796,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "812": {
     jaName: "ゴリランダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/812.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/812.gif",
     type1Name: "grass",
     type2Name: null,
     height: 21,
@@ -13001,6 +13813,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "813": {
     jaName: "ヒバニー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/813.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/813.gif",
     type1Name: "fire",
     type2Name: null,
     height: 3,
@@ -13017,6 +13830,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "814": {
     jaName: "ラビフット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/814.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/814.gif",
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -13033,6 +13847,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "815": {
     jaName: "エースバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/815.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/815.gif",
     type1Name: "fire",
     type2Name: null,
     height: 14,
@@ -13049,6 +13864,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "816": {
     jaName: "メッソン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/816.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/816.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -13065,6 +13881,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "817": {
     jaName: "ジメレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/817.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/817.gif",
     type1Name: "water",
     type2Name: null,
     height: 7,
@@ -13081,6 +13898,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "818": {
     jaName: "インテレオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/818.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/818.gif",
     type1Name: "water",
     type2Name: null,
     height: 19,
@@ -13097,6 +13915,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "819": {
     jaName: "ホシガリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/819.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/819.gif",
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -13113,6 +13932,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "820": {
     jaName: "ヨクバリス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/820.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/820.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -13129,6 +13949,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "821": {
     jaName: "ココガラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/821.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/821.gif",
     type1Name: "flying",
     type2Name: null,
     height: 2,
@@ -13145,6 +13966,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "822": {
     jaName: "アオガラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/822.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/822.gif",
     type1Name: "flying",
     type2Name: null,
     height: 8,
@@ -13161,6 +13983,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "823": {
     jaName: "アーマーガア",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/823.gif",
     type1Name: "flying",
     type2Name: "steel",
     height: 22,
@@ -13177,6 +14000,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "824": {
     jaName: "サッチムシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/824.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/824.gif",
     type1Name: "bug",
     type2Name: null,
     height: 4,
@@ -13193,6 +14017,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "825": {
     jaName: "レドームシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/825.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/825.gif",
     type1Name: "bug",
     type2Name: "psychic",
     height: 4,
@@ -13209,6 +14034,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "826": {
     jaName: "イオルブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/826.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/826.gif",
     type1Name: "bug",
     type2Name: "psychic",
     height: 4,
@@ -13225,6 +14051,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "827": {
     jaName: "クスネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/827.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/827.gif",
     type1Name: "dark",
     type2Name: null,
     height: 6,
@@ -13241,6 +14068,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "828": {
     jaName: "フォクスライ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/828.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/828.gif",
     type1Name: "dark",
     type2Name: null,
     height: 12,
@@ -13257,6 +14085,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "829": {
     jaName: "ヒメンカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/829.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/829.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -13273,6 +14102,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "830": {
     jaName: "ワタシラガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/830.gif",
     type1Name: "grass",
     type2Name: null,
     height: 5,
@@ -13289,6 +14119,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "831": {
     jaName: "ウールー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/831.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/831.gif",
     type1Name: "normal",
     type2Name: null,
     height: 6,
@@ -13305,6 +14136,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "832": {
     jaName: "バイウールー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/832.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/832.gif",
     type1Name: "normal",
     type2Name: null,
     height: 13,
@@ -13321,6 +14153,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "833": {
     jaName: "カムカメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/833.gif",
     type1Name: "water",
     type2Name: null,
     height: 3,
@@ -13337,6 +14170,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "834": {
     jaName: "カジリガメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/834.gif",
     type1Name: "water",
     type2Name: "rock",
     height: 10,
@@ -13353,6 +14187,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "835": {
     jaName: "ワンパチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/835.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/835.gif",
     type1Name: "electric",
     type2Name: null,
     height: 3,
@@ -13369,6 +14204,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "836": {
     jaName: "パルスワン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/836.gif",
     type1Name: "electric",
     type2Name: null,
     height: 10,
@@ -13385,6 +14221,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "837": {
     jaName: "タンドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/837.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/837.gif",
     type1Name: "rock",
     type2Name: null,
     height: 3,
@@ -13401,6 +14238,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "838": {
     jaName: "トロッゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/838.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/838.gif",
     type1Name: "rock",
     type2Name: "fire",
     height: 11,
@@ -13417,6 +14255,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "839": {
     jaName: "セキタンザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/839.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/839.gif",
     type1Name: "rock",
     type2Name: "fire",
     height: 28,
@@ -13433,6 +14272,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "840": {
     jaName: "カジッチュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/840.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/840.gif",
     type1Name: "grass",
     type2Name: "dragon",
     height: 2,
@@ -13449,6 +14289,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "841": {
     jaName: "アップリュー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/841.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/841.gif",
     type1Name: "grass",
     type2Name: "dragon",
     height: 3,
@@ -13465,6 +14306,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "842": {
     jaName: "タルップル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/842.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/842.gif",
     type1Name: "grass",
     type2Name: "dragon",
     height: 4,
@@ -13481,6 +14323,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "843": {
     jaName: "スナヘビ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/843.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/843.gif",
     type1Name: "ground",
     type2Name: null,
     height: 22,
@@ -13497,6 +14340,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "844": {
     jaName: "サダイジャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/844.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/844.gif",
     type1Name: "ground",
     type2Name: null,
     height: 38,
@@ -13513,6 +14357,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "845": {
     jaName: "ウッウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/845.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/845.gif",
     type1Name: "flying",
     type2Name: "water",
     height: 8,
@@ -13529,6 +14374,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "846": {
     jaName: "サシカマス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/846.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/846.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -13545,6 +14391,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "847": {
     jaName: "カマスジョー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/847.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/847.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -13561,6 +14408,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "848": {
     jaName: "エレズン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/848.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/848.gif",
     type1Name: "electric",
     type2Name: "poison",
     height: 4,
@@ -13577,6 +14425,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "849": {
     jaName: "ストリンダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/849.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/849.gif",
     type1Name: "electric",
     type2Name: "poison",
     height: 16,
@@ -13593,6 +14442,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "850": {
     jaName: "ヤクデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/850.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/850.gif",
     type1Name: "fire",
     type2Name: "bug",
     height: 7,
@@ -13609,6 +14459,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "851": {
     jaName: "マルヤクデ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/851.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/851.gif",
     type1Name: "fire",
     type2Name: "bug",
     height: 30,
@@ -13625,6 +14476,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "852": {
     jaName: "タタッコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/852.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/852.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 6,
@@ -13641,6 +14493,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "853": {
     jaName: "オトスパス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/853.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/853.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 16,
@@ -13657,6 +14510,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "854": {
     jaName: "ヤバチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/854.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/854.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 1,
@@ -13673,6 +14527,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "855": {
     jaName: "ポットデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/855.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 2,
@@ -13689,6 +14544,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "856": {
     jaName: "ミブリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/856.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/856.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 4,
@@ -13705,6 +14561,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "857": {
     jaName: "テブリム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/857.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/857.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 6,
@@ -13721,6 +14578,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "858": {
     jaName: "ブリムオン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/858.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/858.gif",
     type1Name: "psychic",
     type2Name: "fairy",
     height: 21,
@@ -13737,6 +14595,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "859": {
     jaName: "ベロバー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/859.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/859.gif",
     type1Name: "dark",
     type2Name: "fairy",
     height: 4,
@@ -13753,6 +14612,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "860": {
     jaName: "ギモー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/860.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/860.gif",
     type1Name: "dark",
     type2Name: "fairy",
     height: 8,
@@ -13769,6 +14629,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "861": {
     jaName: "オーロンゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/861.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/861.gif",
     type1Name: "dark",
     type2Name: "fairy",
     height: 15,
@@ -13785,6 +14646,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "862": {
     jaName: "タチフサグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/862.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/862.gif",
     type1Name: "dark",
     type2Name: "normal",
     height: 16,
@@ -13801,6 +14663,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "863": {
     jaName: "ニャイキング",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/863.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/863.gif",
     type1Name: "steel",
     type2Name: null,
     height: 8,
@@ -13817,6 +14680,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "864": {
     jaName: "サニゴーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/864.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/864.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 10,
@@ -13833,6 +14697,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "865": {
     jaName: "ネギガナイト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/865.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/865.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 8,
@@ -13849,6 +14714,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "866": {
     jaName: "バリコオル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/866.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/866.gif",
     type1Name: "ice",
     type2Name: "psychic",
     height: 15,
@@ -13865,6 +14731,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "867": {
     jaName: "デスバーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/867.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/867.gif",
     type1Name: "ground",
     type2Name: "ghost",
     height: 16,
@@ -13881,6 +14748,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "868": {
     jaName: "マホミル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/868.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/868.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 2,
@@ -13897,6 +14765,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "869": {
     jaName: "マホイップ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/869.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/869.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 3,
@@ -13913,6 +14782,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "870": {
     jaName: "タイレーツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/870.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/870.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 30,
@@ -13929,6 +14799,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "871": {
     jaName: "バチンウニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/871.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/871.gif",
     type1Name: "electric",
     type2Name: null,
     height: 3,
@@ -13945,6 +14816,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "872": {
     jaName: "ユキハミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/872.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/872.gif",
     type1Name: "ice",
     type2Name: "bug",
     height: 3,
@@ -13961,6 +14833,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "873": {
     jaName: "モスノウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/873.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/873.gif",
     type1Name: "ice",
     type2Name: "bug",
     height: 13,
@@ -13977,6 +14850,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "874": {
     jaName: "イシヘンジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/874.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/874.gif",
     type1Name: "rock",
     type2Name: null,
     height: 25,
@@ -13993,6 +14867,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "875": {
     jaName: "コオリッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/875.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/875.gif",
     type1Name: "ice",
     type2Name: null,
     height: 14,
@@ -14009,6 +14884,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "876": {
     jaName: "イエッサン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/876.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/876.gif",
     type1Name: "psychic",
     type2Name: "normal",
     height: 9,
@@ -14025,6 +14901,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "877": {
     jaName: "モルペコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/877.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/877.gif",
     type1Name: "electric",
     type2Name: "dark",
     height: 3,
@@ -14041,6 +14918,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "878": {
     jaName: "ゾウドウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/878.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/878.gif",
     type1Name: "steel",
     type2Name: null,
     height: 12,
@@ -14057,6 +14935,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "879": {
     jaName: "ダイオウドウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/879.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/879.gif",
     type1Name: "steel",
     type2Name: null,
     height: 30,
@@ -14073,6 +14952,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "880": {
     jaName: "パッチラゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/880.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/880.gif",
     type1Name: "electric",
     type2Name: "dragon",
     height: 18,
@@ -14089,6 +14969,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "881": {
     jaName: "パッチルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/881.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/881.gif",
     type1Name: "electric",
     type2Name: "ice",
     height: 23,
@@ -14105,6 +14986,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "882": {
     jaName: "ウオノラゴン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/882.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/882.gif",
     type1Name: "water",
     type2Name: "dragon",
     height: 23,
@@ -14121,6 +15003,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "883": {
     jaName: "ウオチルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/883.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/883.gif",
     type1Name: "water",
     type2Name: "ice",
     height: 20,
@@ -14137,6 +15020,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "884": {
     jaName: "ジュラルドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/884.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/884.gif",
     type1Name: "steel",
     type2Name: "dragon",
     height: 18,
@@ -14153,6 +15037,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "885": {
     jaName: "ドラメシヤ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/885.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/885.gif",
     type1Name: "dragon",
     type2Name: "ghost",
     height: 5,
@@ -14169,6 +15054,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "886": {
     jaName: "ドロンチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/886.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/886.gif",
     type1Name: "dragon",
     type2Name: "ghost",
     height: 14,
@@ -14185,6 +15071,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "887": {
     jaName: "ドラパルト",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/887.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/887.gif",
     type1Name: "dragon",
     type2Name: "ghost",
     height: 30,
@@ -14201,6 +15088,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "888": {
     jaName: "ザシアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/888.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/888.gif",
     type1Name: "fairy",
     type2Name: null,
     height: 28,
@@ -14217,6 +15105,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "889": {
     jaName: "ザマゼンタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/889.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/889.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 29,
@@ -14233,6 +15122,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "890": {
     jaName: "ムゲンダイナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/890.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/890.gif",
     type1Name: "poison",
     type2Name: "dragon",
     height: 200,
@@ -14249,6 +15139,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "891": {
     jaName: "ダクマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/891.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/891.gif",
     type1Name: "fighting",
     type2Name: null,
     height: 6,
@@ -14265,6 +15156,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "892": {
     jaName: "ウーラオス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/892.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/892.gif",
     type1Name: "fighting",
     type2Name: "dark",
     height: 19,
@@ -14281,6 +15173,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "893": {
     jaName: "ザルード",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/893.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/893.gif",
     type1Name: "dark",
     type2Name: "grass",
     height: 18,
@@ -14297,6 +15190,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "894": {
     jaName: "レジエレキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/894.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/894.gif",
     type1Name: "electric",
     type2Name: null,
     height: 12,
@@ -14313,6 +15207,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "895": {
     jaName: "レジドラゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/895.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/895.gif",
     type1Name: "dragon",
     type2Name: null,
     height: 21,
@@ -14329,6 +15224,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "896": {
     jaName: "ブリザポス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/896.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/896.gif",
     type1Name: "ice",
     type2Name: null,
     height: 22,
@@ -14345,6 +15241,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "897": {
     jaName: "レイスポス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/897.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/897.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 20,
@@ -14361,6 +15258,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "898": {
     jaName: "バドレックス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/898.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/898.gif",
     type1Name: "psychic",
     type2Name: "grass",
     height: 11,
@@ -14377,6 +15275,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "899": {
     jaName: "アヤシシ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/899.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/899.gif",
     type1Name: "normal",
     type2Name: "psychic",
     height: 18,
@@ -14393,6 +15292,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "900": {
     jaName: "バサギリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/900.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/900.gif",
     type1Name: "bug",
     type2Name: "rock",
     height: 18,
@@ -14409,6 +15309,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "901": {
     jaName: "ガチグマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/901.gif",
     type1Name: "ground",
     type2Name: "normal",
     height: 24,
@@ -14425,6 +15326,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "902": {
     jaName: "イダイトウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/902.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/902.gif",
     type1Name: "water",
     type2Name: "ghost",
     height: 30,
@@ -14441,6 +15343,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "903": {
     jaName: "オオニューラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/903.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/903.gif",
     type1Name: "fighting",
     type2Name: "poison",
     height: 13,
@@ -14457,6 +15360,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "904": {
     jaName: "ハリーマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/904.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/904.gif",
     type1Name: "dark",
     type2Name: "poison",
     height: 25,
@@ -14473,6 +15377,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "905": {
     jaName: "ラブトロス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/905.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/905.gif",
     type1Name: "fairy",
     type2Name: "flying",
     height: 16,
@@ -14489,6 +15394,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "906": {
     jaName: "ニャオハ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/906.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/906.gif",
     type1Name: "grass",
     type2Name: null,
     height: 4,
@@ -14505,6 +15411,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "907": {
     jaName: "ニャローテ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/907.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/907.gif",
     type1Name: "grass",
     type2Name: null,
     height: 9,
@@ -14521,6 +15428,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "908": {
     jaName: "マスカーニャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/908.gif",
     type1Name: "grass",
     type2Name: "dark",
     height: 15,
@@ -14537,6 +15445,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "909": {
     jaName: "ホゲータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/909.gif",
     type1Name: "fire",
     type2Name: null,
     height: 4,
@@ -14553,6 +15462,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "910": {
     jaName: "アチゲータ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/910.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/910.gif",
     type1Name: "fire",
     type2Name: null,
     height: 10,
@@ -14569,6 +15479,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "911": {
     jaName: "ラウドボーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/911.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/911.gif",
     type1Name: "fire",
     type2Name: "ghost",
     height: 16,
@@ -14585,6 +15496,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "912": {
     jaName: "クワッス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/912.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/912.gif",
     type1Name: "water",
     type2Name: null,
     height: 5,
@@ -14601,6 +15513,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "913": {
     jaName: "ウェルカモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/913.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/913.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -14617,6 +15530,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "914": {
     jaName: "ウェーニバル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/914.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/914.gif",
     type1Name: "water",
     type2Name: "fighting",
     height: 18,
@@ -14633,6 +15547,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "915": {
     jaName: "グルトン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/915.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/915.gif",
     type1Name: "normal",
     type2Name: null,
     height: 5,
@@ -14649,6 +15564,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "916": {
     jaName: "パフュートン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/916.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/916.gif",
     type1Name: "normal",
     type2Name: null,
     height: 10,
@@ -14665,6 +15581,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "917": {
     jaName: "タマンチュラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/917.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/917.gif",
     type1Name: "bug",
     type2Name: null,
     height: 3,
@@ -14681,6 +15598,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "918": {
     jaName: "ワナイダー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/918.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/918.gif",
     type1Name: "bug",
     type2Name: null,
     height: 10,
@@ -14697,6 +15615,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "919": {
     jaName: "マメバッタ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/919.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/919.gif",
     type1Name: "bug",
     type2Name: null,
     height: 2,
@@ -14713,6 +15632,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "920": {
     jaName: "エクスレッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/920.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/920.gif",
     type1Name: "bug",
     type2Name: "dark",
     height: 10,
@@ -14729,6 +15649,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "921": {
     jaName: "パモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/921.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: null,
     height: 3,
@@ -14745,6 +15666,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "922": {
     jaName: "パモット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/922.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "fighting",
     height: 4,
@@ -14761,6 +15683,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "923": {
     jaName: "パーモット",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/923.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "fighting",
     height: 9,
@@ -14777,6 +15700,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "924": {
     jaName: "ワッカネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/924.png",
+    gifUrl: null,
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -14793,6 +15717,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "925": {
     jaName: "イッカネズミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/925.png",
+    gifUrl: null,
     type1Name: "normal",
     type2Name: null,
     height: 3,
@@ -14809,6 +15734,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "926": {
     jaName: "パピモッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/926.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: null,
     height: 3,
@@ -14825,6 +15751,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "927": {
     jaName: "バウッツェル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/927.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: null,
     height: 5,
@@ -14841,6 +15768,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "928": {
     jaName: "ミニーブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/928.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "normal",
     height: 3,
@@ -14857,6 +15785,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "929": {
     jaName: "オリーニョ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/929.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "normal",
     height: 6,
@@ -14873,6 +15802,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "930": {
     jaName: "オリーヴァ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/930.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "normal",
     height: 14,
@@ -14889,6 +15819,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "931": {
     jaName: "イキリンコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/931.png",
+    gifUrl: null,
     type1Name: "normal",
     type2Name: "flying",
     height: 6,
@@ -14905,6 +15836,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "932": {
     jaName: "コジオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/932.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: null,
     height: 4,
@@ -14921,6 +15853,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "933": {
     jaName: "ジオヅム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/933.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: null,
     height: 6,
@@ -14937,6 +15870,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "934": {
     jaName: "キョジオーン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/934.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: null,
     height: 23,
@@ -14953,6 +15887,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "935": {
     jaName: "カルボウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/935.png",
+    gifUrl: null,
     type1Name: "fire",
     type2Name: null,
     height: 6,
@@ -14969,6 +15904,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "936": {
     jaName: "グレンアルマ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png",
+    gifUrl: null,
     type1Name: "fire",
     type2Name: "psychic",
     height: 15,
@@ -14985,6 +15921,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "937": {
     jaName: "ソウブレイズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png",
+    gifUrl: null,
     type1Name: "fire",
     type2Name: "ghost",
     height: 16,
@@ -15001,6 +15938,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "938": {
     jaName: "ズピカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/938.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: null,
     height: 3,
@@ -15017,6 +15955,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "939": {
     jaName: "ハラバリー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/939.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: null,
     height: 12,
@@ -15033,6 +15972,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "940": {
     jaName: "カイデン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/940.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "flying",
     height: 4,
@@ -15049,6 +15989,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "941": {
     jaName: "タイカイデン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/941.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "flying",
     height: 14,
@@ -15065,6 +16006,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "942": {
     jaName: "オラチフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/942.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: null,
     height: 5,
@@ -15081,6 +16023,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "943": {
     jaName: "マフィティフ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/943.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: null,
     height: 11,
@@ -15097,6 +16040,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "944": {
     jaName: "シルシュルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/944.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "normal",
     height: 2,
@@ -15113,6 +16057,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "945": {
     jaName: "タギングル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/945.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "normal",
     height: 7,
@@ -15129,6 +16074,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "946": {
     jaName: "アノクサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/946.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "ghost",
     height: 6,
@@ -15145,6 +16091,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "947": {
     jaName: "アノホラグサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/947.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "ghost",
     height: 12,
@@ -15161,6 +16108,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "948": {
     jaName: "ノノクラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/948.png",
+    gifUrl: null,
     type1Name: "ground",
     type2Name: "grass",
     height: 9,
@@ -15177,6 +16125,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "949": {
     jaName: "リククラゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/949.png",
+    gifUrl: null,
     type1Name: "ground",
     type2Name: "grass",
     height: 19,
@@ -15193,6 +16142,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "950": {
     jaName: "ガケガニ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/950.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: null,
     height: 13,
@@ -15209,6 +16159,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "951": {
     jaName: "カプサイジ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/951.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: null,
     height: 3,
@@ -15225,6 +16176,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "952": {
     jaName: "スコヴィラン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/952.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "fire",
     height: 9,
@@ -15241,6 +16193,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "953": {
     jaName: "シガロコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/953.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/953.gif",
     type1Name: "bug",
     type2Name: null,
     height: 2,
@@ -15257,6 +16210,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "954": {
     jaName: "ベラカス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/954.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/954.gif",
     type1Name: "bug",
     type2Name: "psychic",
     height: 3,
@@ -15273,6 +16227,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "955": {
     jaName: "ヒラヒナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/955.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/955.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 2,
@@ -15289,6 +16244,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "956": {
     jaName: "クエスパトラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/956.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/956.gif",
     type1Name: "psychic",
     type2Name: null,
     height: 19,
@@ -15305,6 +16261,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "957": {
     jaName: "カヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/957.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: "steel",
     height: 4,
@@ -15321,6 +16278,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "958": {
     jaName: "ナカヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/958.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: "steel",
     height: 7,
@@ -15337,6 +16295,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "959": {
     jaName: "デカヌチャン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/959.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: "steel",
     height: 7,
@@ -15353,6 +16312,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "960": {
     jaName: "ウミディグダ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/960.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/960.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -15369,6 +16329,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "961": {
     jaName: "ウミトリオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/961.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/961.gif",
     type1Name: "water",
     type2Name: null,
     height: 12,
@@ -15385,6 +16346,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "962": {
     jaName: "オトシドリ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/962.png",
+    gifUrl: null,
     type1Name: "flying",
     type2Name: "dark",
     height: 15,
@@ -15401,6 +16363,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "963": {
     jaName: "ナミイルカ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/963.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/963.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -15417,6 +16380,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "964": {
     jaName: "イルカマン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/964.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/964.gif",
     type1Name: "water",
     type2Name: null,
     height: 13,
@@ -15433,6 +16397,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "965": {
     jaName: "ブロロン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/965.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: "poison",
     height: 10,
@@ -15449,6 +16414,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "966": {
     jaName: "ブロロローム",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/966.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: "poison",
     height: 18,
@@ -15465,6 +16431,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "967": {
     jaName: "モトトカゲ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/967.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "normal",
     height: 16,
@@ -15481,6 +16448,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "968": {
     jaName: "ミミズズ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/968.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: null,
     height: 25,
@@ -15497,6 +16465,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "969": {
     jaName: "キラーメ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/969.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: "poison",
     height: 7,
@@ -15513,6 +16482,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "970": {
     jaName: "キラフロル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/970.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: "poison",
     height: 15,
@@ -15529,6 +16499,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "971": {
     jaName: "ボチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/971.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/971.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 6,
@@ -15545,6 +16516,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "972": {
     jaName: "ハカドッグ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/972.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/972.gif",
     type1Name: "ghost",
     type2Name: null,
     height: 20,
@@ -15561,6 +16533,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "973": {
     jaName: "カラミンゴ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/973.png",
+    gifUrl: null,
     type1Name: "flying",
     type2Name: "fighting",
     height: 16,
@@ -15577,6 +16550,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "974": {
     jaName: "アルクジラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/974.png",
+    gifUrl: null,
     type1Name: "ice",
     type2Name: null,
     height: 12,
@@ -15593,6 +16567,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "975": {
     jaName: "ハルクジラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/975.png",
+    gifUrl: null,
     type1Name: "ice",
     type2Name: null,
     height: 45,
@@ -15609,6 +16584,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "976": {
     jaName: "ミガルーサ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/976.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/976.gif",
     type1Name: "water",
     type2Name: "psychic",
     height: 25,
@@ -15625,6 +16601,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "977": {
     jaName: "ヘイラッシャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/977.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/977.gif",
     type1Name: "water",
     type2Name: null,
     height: 120,
@@ -15641,6 +16618,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "978": {
     jaName: "シャリタツ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/978.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "water",
     height: 3,
@@ -15657,6 +16635,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "979": {
     jaName: "コノヨザル",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/979.png",
+    gifUrl: null,
     type1Name: "fighting",
     type2Name: "ghost",
     height: 12,
@@ -15673,6 +16652,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "980": {
     jaName: "ドオー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/980.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "ground",
     height: 18,
@@ -15689,6 +16669,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "981": {
     jaName: "リキキリン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/981.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/981.gif",
     type1Name: "normal",
     type2Name: "psychic",
     height: 32,
@@ -15705,6 +16686,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "982": {
     jaName: "ノココッチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/982.png",
+    gifUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/982.gif",
     type1Name: "normal",
     type2Name: null,
     height: 36,
@@ -15721,6 +16703,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "983": {
     jaName: "ドドゲザン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/983.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "steel",
     height: 20,
@@ -15737,6 +16720,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "984": {
     jaName: "イダイナキバ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/984.png",
+    gifUrl: null,
     type1Name: "ground",
     type2Name: "fighting",
     height: 22,
@@ -15753,6 +16737,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "985": {
     jaName: "サケブシッポ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/985.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: "psychic",
     height: 12,
@@ -15769,6 +16754,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "986": {
     jaName: "アラブルタケ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/986.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "dark",
     height: 12,
@@ -15785,6 +16771,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "987": {
     jaName: "ハバタクカミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/987.png",
+    gifUrl: null,
     type1Name: "ghost",
     type2Name: "fairy",
     height: 14,
@@ -15801,6 +16788,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "988": {
     jaName: "チヲハウハネ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/988.png",
+    gifUrl: null,
     type1Name: "bug",
     type2Name: "fighting",
     height: 32,
@@ -15817,6 +16805,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "989": {
     jaName: "スナノケガワ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/989.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "ground",
     height: 23,
@@ -15833,6 +16822,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "990": {
     jaName: "テツノワダチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/990.png",
+    gifUrl: null,
     type1Name: "ground",
     type2Name: "steel",
     height: 9,
@@ -15849,6 +16839,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "991": {
     jaName: "テツノツツミ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/991.png",
+    gifUrl: null,
     type1Name: "ice",
     type2Name: "water",
     height: 6,
@@ -15865,6 +16856,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "992": {
     jaName: "テツノカイナ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/992.png",
+    gifUrl: null,
     type1Name: "fighting",
     type2Name: "electric",
     height: 18,
@@ -15881,6 +16873,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "993": {
     jaName: "テツノコウベ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/993.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "flying",
     height: 13,
@@ -15897,6 +16890,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "994": {
     jaName: "テツノドクガ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/994.png",
+    gifUrl: null,
     type1Name: "fire",
     type2Name: "poison",
     height: 12,
@@ -15913,6 +16907,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "995": {
     jaName: "テツノイバラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/995.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: "electric",
     height: 16,
@@ -15929,6 +16924,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "996": {
     jaName: "セビエ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/996.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "ice",
     height: 5,
@@ -15945,6 +16941,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "997": {
     jaName: "セゴール",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/997.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "ice",
     height: 8,
@@ -15961,6 +16958,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "998": {
     jaName: "セグレイブ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/998.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "ice",
     height: 21,
@@ -15977,6 +16975,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "999": {
     jaName: "コレクレー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/999.png",
+    gifUrl: null,
     type1Name: "ghost",
     type2Name: null,
     height: 3,
@@ -15993,6 +16992,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1000": {
     jaName: "サーフゴー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1000.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: "ghost",
     height: 12,
@@ -16009,6 +17009,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1001": {
     jaName: "チオンジェン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1001.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "grass",
     height: 15,
@@ -16025,6 +17026,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1002": {
     jaName: "パオジアン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1002.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "ice",
     height: 19,
@@ -16041,6 +17043,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1003": {
     jaName: "ディンルー",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1003.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "ground",
     height: 27,
@@ -16057,6 +17060,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1004": {
     jaName: "イーユイ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1004.png",
+    gifUrl: null,
     type1Name: "dark",
     type2Name: "fire",
     height: 4,
@@ -16073,6 +17077,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1005": {
     jaName: "トドロクツキ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1005.png",
+    gifUrl: null,
     type1Name: "dragon",
     type2Name: "dark",
     height: 20,
@@ -16089,6 +17094,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1006": {
     jaName: "テツノブジン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1006.png",
+    gifUrl: null,
     type1Name: "fairy",
     type2Name: "fighting",
     height: 14,
@@ -16105,6 +17111,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1007": {
     jaName: "コライドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1007.png",
+    gifUrl: null,
     type1Name: "fighting",
     type2Name: "dragon",
     height: 25,
@@ -16121,6 +17128,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1008": {
     jaName: "ミライドン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1008.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "dragon",
     height: 35,
@@ -16137,6 +17145,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1009": {
     jaName: "ウネルミナモ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1009.png",
+    gifUrl: null,
     type1Name: "water",
     type2Name: "dragon",
     height: 35,
@@ -16153,6 +17162,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1010": {
     jaName: "テツノイサハ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1010.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "psychic",
     height: 15,
@@ -16169,6 +17179,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1011": {
     jaName: "カミッチュ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1011.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "dragon",
     height: 4,
@@ -16185,6 +17196,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1012": {
     jaName: "チャデス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1012.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "ghost",
     height: 1,
@@ -16201,6 +17213,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1013": {
     jaName: "ヤバソチャ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1013.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "ghost",
     height: 2,
@@ -16217,6 +17230,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1014": {
     jaName: "イイネイヌ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1014.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "fighting",
     height: 18,
@@ -16233,6 +17247,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1015": {
     jaName: "マシマシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1015.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "psychic",
     height: 10,
@@ -16249,6 +17264,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1016": {
     jaName: "キチキギス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1016.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "fairy",
     height: 14,
@@ -16265,6 +17281,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1017": {
     jaName: "オーガポン",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1017.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: null,
     height: 12,
@@ -16281,6 +17298,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1018": {
     jaName: "ブリジュラス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1018.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: "dragon",
     height: 20,
@@ -16297,6 +17315,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1019": {
     jaName: "カミツオロチ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1019.png",
+    gifUrl: null,
     type1Name: "grass",
     type2Name: "dragon",
     height: 18,
@@ -16313,6 +17332,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1020": {
     jaName: "ウガツホムラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1020.png",
+    gifUrl: null,
     type1Name: "fire",
     type2Name: "dragon",
     height: 35,
@@ -16329,6 +17349,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1021": {
     jaName: "タケルライコ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1021.png",
+    gifUrl: null,
     type1Name: "electric",
     type2Name: "dragon",
     height: 52,
@@ -16345,6 +17366,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1022": {
     jaName: "テツノイワオ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1022.png",
+    gifUrl: null,
     type1Name: "rock",
     type2Name: "psychic",
     height: 15,
@@ -16361,6 +17383,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1023": {
     jaName: "テツノカシラ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1023.png",
+    gifUrl: null,
     type1Name: "steel",
     type2Name: "psychic",
     height: 16,
@@ -16377,6 +17400,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1024": {
     jaName: "テラパゴス",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1024.png",
+    gifUrl: null,
     type1Name: "normal",
     type2Name: null,
     height: 2,
@@ -16393,6 +17417,7 @@ export const STATIC_POKE_DICT: Record<string, StaticPokeData> = {
   "1025": {
     jaName: "モモワロウ",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1025.png",
+    gifUrl: null,
     type1Name: "poison",
     type2Name: "ghost",
     height: 3,
