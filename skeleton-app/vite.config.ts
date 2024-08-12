@@ -34,7 +34,14 @@ export default defineConfig({
     {
       name: "generate-404",
       closeBundle() {
-        fs.writeFileSync(path.resolve(__dirname, "build", "404.html"), content404);
+        const dirPath = path.resolve(__dirname, "build");
+        if (!fs.existsSync(dirPath)) {
+          fs.mkdirSync(dirPath, { recursive: true });
+        }
+        const filePath = path.resolve(dirPath, "404.html");
+        if (!fs.existsSync(filePath)) {
+          fs.writeFileSync(filePath, content404);
+        }
         console.log("404.html generated");
       },
     },
