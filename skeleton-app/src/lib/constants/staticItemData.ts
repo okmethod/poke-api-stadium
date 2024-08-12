@@ -1,10 +1,6 @@
 import type { StaticItemData } from "$lib/types/item";
 
-export function fetchBall(key: string): StaticItemData {
-  return STATIC_BALL_DICT[key];
-}
-
-const STATIC_BALL_DICT: Record<string, StaticItemData> = {
+export const STATIC_BALL_DICT: Record<string, StaticItemData> = {
   "poke-ball": {
     id: 4,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",

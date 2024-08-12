@@ -1,47 +1,9 @@
-<script>
-  import { navigateTo } from "$lib/utils/navigation.client";
-  import { fetchBall } from "$lib/constants/staticItemData";
+<script lang="ts">
+  import type { ContentButtonProps } from "./+page";
 
-  const githubRepoUrl = "https://github.com/okmethod/poke-api-stadium";
-
-  const contents = [
-    {
-      text: "ポケモンずかん",
-      imageUrl: fetchBall("poke-ball").imageUrl,
-      alt: "poke-ball",
-      onClick: () => navigateTo("/zukan"),
-    },
-    {
-      text: "ポケモンXXくらべ",
-      imageUrl: fetchBall("great-ball").imageUrl,
-      alt: "great-ball",
-      onClick: () => navigateTo("/kurabe"),
-    },
-    {
-      text: "ポケモンタイプじゃんけん",
-      imageUrl: fetchBall("ultra-ball").imageUrl,
-      alt: "great-ball",
-      onClick: () => navigateTo("/janken"),
-    },
-    {
-      text: "ポケモンしりとり",
-      imageUrl: fetchBall("safari-ball").imageUrl,
-      alt: "safari-ball",
-      onClick: () => navigateTo("/shiritori"),
-    },
-    {
-      text: "ポケモンだ〜れだ？",
-      imageUrl: fetchBall("dusk-ball").imageUrl,
-      alt: "dusk-ball",
-      onClick: () => navigateTo("/dareda"),
-    },
-    {
-      text: "ソースコード",
-      imageUrl: fetchBall("premier-ball").imageUrl,
-      alt: "premier-ball",
-      onClick: () => window.open(githubRepoUrl, "_blank"),
-    },
-  ];
+  export let data: {
+    propsArray: Array<ContentButtonProps>;
+  };
 </script>
 
 <div class="cRouteBodyStyle">
@@ -52,10 +14,10 @@
 
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !ml-4">
-    {#each contents as item}
-      <button on:click|preventDefault={item.onClick} class="cLinkButtonStyle md:!text-2xl">
-        <img src={item.imageUrl} alt={item.alt} class="w-6 h-6 mr-2" />
-        {item.text}
+    {#each data.propsArray as props}
+      <button on:click|preventDefault={props.onClick} class="cLinkButtonStyle md:!text-2xl">
+        <img src={props.imageUrl} alt={props.alt} class="w-6 h-6 mr-2" />
+        {props.title}
       </button>
     {/each}
   </div>
