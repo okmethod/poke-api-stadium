@@ -27,8 +27,14 @@
     const tailChar = getTailChar(pushedPokeItems[pushedPokeItems.length - 1].jaName);
     const unusedDict = _getUnusedDict(pokeDict);
     const unusedPossiblePokeDict = _getPossiblePokeDict(unusedDict, groupByHeadCharDict, tailChar);
-    const pickedUnusedPokeItems = pickRandomElementsFromObject(unusedDict, pokeCount);
-    const pickedUnusedPossiblePokeItems = pickRandomElementsFromObject(unusedPossiblePokeDict, possiblePokeCount);
+    const pickedUnusedPokeItems =
+      Object.keys(unusedDict).length > pokeCount
+        ? pickRandomElementsFromObject(unusedDict, pokeCount)
+        : Object.values(unusedDict);
+    const pickedUnusedPossiblePokeItems =
+      Object.keys(unusedPossiblePokeDict).length > possiblePokeCount
+        ? pickRandomElementsFromObject(unusedPossiblePokeDict, possiblePokeCount)
+        : Object.values(unusedPossiblePokeDict);
     pickedPokeItems = shuffleArray([...new Set([...pickedUnusedPokeItems, ...pickedUnusedPossiblePokeItems])]).slice(
       0,
       pokeCount,
