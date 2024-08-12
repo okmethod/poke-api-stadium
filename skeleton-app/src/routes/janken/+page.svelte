@@ -18,6 +18,8 @@
     speed: number;
   }
 
+  type Result = "win" | "lose" | "draw";
+
   // ポケモン抽選
   let ownPokeItems: PokeItem[] = [];
   let opoPokeItems: PokeItem[] = [];
@@ -46,7 +48,7 @@
     }
   }
 
-  // 勝負ポケモン決定
+  // 勝負ポケモン決定 -> 相手ポケモン抽選
   let selectedOwnPokeIndex = -1;
   let selectedOpoPokeIndex = -1;
   let selectedOwnPokeItem: PokeItem;
@@ -58,12 +60,12 @@
     phase = "select_type";
   }
 
-  // 勝負タイプ決定
+  // 勝負タイプ決定 -> 相手タイプ抽選 -> 攻守/勝敗判定
   let attackPokeName: string;
   let attackType: TypeData & TypeColors;
   let defenseType: TypeData & TypeColors;
-  let efficacyMessage: string;
-  let resultMessage: string;
+  let damageRatio: DamageRatio;
+  let result: Result;
   function commitOwnType(selectedOwnPokeType: TypeData & TypeColors): void {
     const selectedOpoPokeType =
       selectedOpoPokeItem.type.length === 1
@@ -77,7 +79,7 @@
       selectedOwnPokeType,
       selectedOpoPokeType,
     ));
-    ({ efficacyMessage, resultMessage } = _judgeJankenResult(isOwnAttack, attackType, defenseType));
+    ({ damageRatio, result } = _judgeJankenResult(isOwnAttack, attackType, defenseType));
     phase = "term";
 
     function _judgeAttackSide(
@@ -104,27 +106,24 @@
       isOwnAttack: boolean,
       attackType: TypeData & TypeColors,
       defenseType: TypeData & TypeColors,
-    ) {
-      const resultMap: Record<DamageRatio, { efficacyMessage: string; resultMessage: string }> = {
-        double: {
-          efficacyMessage: "ばつぐん だ！",
-          resultMessage: isOwnAttack ? "あなた の かち！" : "あなた の まけ...",
-        },
-        half: {
-          efficacyMessage: "いまひとつ...",
-          resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
-        },
-        no: {
-          efficacyMessage: "こうかは なし...",
-          resultMessage: isOwnAttack ? "あなた の まけ..." : "あなた の かち！",
-        },
-        default: { efficacyMessage: "まずまず だ", resultMessage: "あいこ" },
-      };
+    ): {
+      damageRatio: DamageRatio;
+      result: Result;
+    } {
       const damageRatio = _getDamageRatio(attackType, defenseType.enName);
-      return resultMap[damageRatio] || resultMap.default;
+      const resultMap: Record<DamageRatio, Result> = {
+        double: isOwnAttack ? "win" : "lose",
+        half: isOwnAttack ? "lose" : "win",
+        no: isOwnAttack ? "lose" : "win",
+        default: "draw",
+      };
+      return {
+        damageRatio,
+        result: resultMap[damageRatio],
+      };
     }
 
-    function _getDamageRatio(attackType: TypeData, diffenceTypeName: TypeName): DamageRatio {
+    function _getDamageRatio(attackType: TypeData, defenseTypeName: TypeName): DamageRatio {
       const { doubleDamageTo, halfDamageTo, noDamageTo } = attackType.damageRelations;
       const damageRelations = {
         double: doubleDamageTo,
@@ -132,7 +131,7 @@
         no: noDamageTo,
       };
       for (const [ratio, types] of Object.entries(damageRelations)) {
-        if (types.includes(diffenceTypeName)) {
+        if (types.includes(defenseTypeName)) {
           return ratio as DamageRatio;
         }
       }
@@ -144,17 +143,31 @@
   type Phase = "init" | "select_poke" | "select_type" | "term";
   let phase: Phase = "init";
   let guideMessage: string;
+  let damageRatioMessage: string;
   function updateGuideMessage(): void {
-    const messages: Record<Phase, string> = {
+    const resultMessageMap: Record<Result, string> = {
+      win: "あなた の かち！",
+      lose: "あなた の まけ...",
+      draw: "あいこ",
+    };
+    const guideMessageMap: Record<Phase, string> = {
       init: "ポケモン を よびだしてね",
       select_poke:
         selectedOwnPokeIndex == -1
           ? "ポケモン をえらんでね"
           : `${ownPokeItems[selectedOwnPokeIndex].jaName} で しょうぶ する？`,
       select_type: "タイプ をえらんでね",
-      term: resultMessage,
+      term: resultMessageMap[result],
     };
-    guideMessage = messages[phase];
+    guideMessage = guideMessageMap[phase];
+
+    const damageRatioMessageMap: Record<DamageRatio, string> = {
+      double: "ばつぐん だ！",
+      half: "いまひとつ...",
+      no: "こうかは なし...",
+      default: "まずまず だ",
+    };
+    damageRatioMessage = damageRatioMessageMap[damageRatio];
   }
   $: if (phase || selectedOwnPokeIndex) {
     updateGuideMessage();
@@ -286,7 +299,7 @@
               >
                 {defenseType.jaName}
               </span>
-              に {efficacyMessage}
+              に {damageRatioMessage}
             </span></span
           >
         {/if}
