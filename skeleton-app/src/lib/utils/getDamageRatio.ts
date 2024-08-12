@@ -1,8 +1,8 @@
 import type { TypeName, TypeData, DamageRatio } from "$lib/types/type";
-import { STATIC_TYPE_DICT } from "$lib/constants/staticTypeData";
+import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
 
 export function getDamageRatio(attackTypeName: TypeName, diffenceTypeName: TypeName): DamageRatio {
-  const typeData = STATIC_TYPE_DICT[attackTypeName] as TypeData;
+  const typeData = fetchTypeData(attackTypeName) as TypeData;
   if (!typeData) {
     return "default";
   }

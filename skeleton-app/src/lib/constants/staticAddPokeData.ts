@@ -1,7 +1,19 @@
 import type { StaticPokeData } from "$lib/types/poke";
 
+let cache: string[] | null = null;
+export function keys(): string[] {
+  if (cache !== null) return cache;
+  const keys = Object.keys(STATIC_ADDITIONAL_POKE_DICT);
+  cache = keys;
+  return keys;
+}
+
+export function fetch(key: string): StaticPokeData {
+  return STATIC_ADDITIONAL_POKE_DICT[key];
+}
+
 // cheat画面から取得したstaticデータ
-export const STATIC_ADDITIONAL_POKE_DICT: Record<string, StaticPokeData> = {
+const STATIC_ADDITIONAL_POKE_DICT: Record<string, StaticPokeData> = {
   "10001": {
     jaName: "デオキシス",
     jaGenus: "ＤＮＡポケモン",

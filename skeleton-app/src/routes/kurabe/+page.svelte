@@ -1,13 +1,11 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
   import type { TypeName } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
-  import { pickRandomNumbers, formatHeightWeight, formatStat } from "$lib/utils/numerics";
-  import { LATEST_POKE_ID } from "$lib/constants/common";
+  import { pickRandomElementsFromArray, formatHeightWeight, formatStat } from "$lib/utils/numerics";
 
   interface PokeItem {
     id: number; // dndzone で使用するため id という命名にしている
@@ -19,31 +17,6 @@
     weight: number;
     stats: Stats;
   }
-
-  // staticデータロード
-  let POKE_DICT: Record<number, PokeItem>;
-  onMount(async () => {
-    // 利用スコープを局所化してガベージコレクションされるようにする
-    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-
-    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
-    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
-      const pokeDict: Record<number, PokeItem> = {};
-      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
-        pokeDict[Number(pokeId)] = {
-          id: Number(pokeId),
-          jaName: staticPokeData.jaName,
-          imageUrl: staticPokeData.imageUrl ?? "not_found",
-          type1Name: staticPokeData.type1Name as TypeName,
-          type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
-          height: staticPokeData.height,
-          weight: staticPokeData.weight,
-          stats: staticPokeData.stats,
-        };
-      });
-      return pokeDict;
-    }
-  });
 
   // 選択可能な比較対象
   interface Mode {
@@ -100,22 +73,24 @@
   let isOpen = false;
   let pickedPokeItems: PokeItem[] = [];
   let pokeCount = 3;
-  function pickPokeItems(): void {
+  async function pickPokeItems(): Promise<void> {
     resetState();
-    const allPokeIds = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
-    pickedPokeItems = _convertIdsToItems(pickRandomNumbers(allPokeIds, pokeCount));
+    const staticPokeData = await import("$lib/constants/staticPokeData");
+    const keys = staticPokeData.keys();
+    const pickedKeys = pickRandomElementsFromArray(keys, pokeCount);
+    pickedPokeItems = pickedKeys.map((key) => _convertToPokeItem(key, staticPokeData.fetch(key)));
 
-    function _convertIdsToItems(pokeIds: number[]): PokeItem[] {
-      return pokeIds.map((pokeId) => ({
-        id: pokeId,
-        jaName: POKE_DICT[pokeId].jaName,
-        imageUrl: POKE_DICT[pokeId].imageUrl,
-        type1Name: POKE_DICT[pokeId].type1Name,
-        type2Name: POKE_DICT[pokeId].type2Name,
-        height: POKE_DICT[pokeId].height,
-        weight: POKE_DICT[pokeId].weight,
-        stats: POKE_DICT[pokeId].stats,
-      }));
+    function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): PokeItem {
+      return {
+        id: Number(pokeId),
+        jaName: staticPokeData.jaName,
+        imageUrl: staticPokeData.imageUrl ?? "not_found",
+        type1Name: staticPokeData.type1Name as TypeName,
+        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+        height: staticPokeData.height,
+        weight: staticPokeData.weight,
+        stats: staticPokeData.stats,
+      };
     }
   }
 
@@ -127,7 +102,7 @@
       return;
     }
     isOpen = true;
-    const values = pickedPokeItems.map((pokeItem) => modes[modeId].value(POKE_DICT[pokeItem.id]));
+    const values = pickedPokeItems.map((pokeItem) => modes[modeId].value(pokeItem));
     if (_isSortedDesc(values)) {
       const messages: { [key: string]: string } = {
         3: "せいかい！",

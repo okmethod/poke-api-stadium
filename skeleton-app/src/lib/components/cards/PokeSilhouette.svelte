@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { TypeName } from "$lib/types/type";
-  import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
+  import { TypeName } from "$lib/types/type";
+  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
   import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
 
   export let pokeId: number | null = null;
@@ -11,7 +11,7 @@
   export let imageUrl: string | null = null;
   export let isOpen: boolean = false;
 
-  const unknownColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  const unknownColor = fetchTypeData(TypeName.Unknown).themeColor;
   let headerColor = unknownColor;
   let footerColor = unknownColor;
   let viewName = "???";
@@ -23,8 +23,8 @@
         viewName = `とくべつな ${name}`;
       }
     }
-    headerColor = type1Name ? TYPE_COLOR_DICT[type1Name].themeColor : unknownColor;
-    footerColor = type2Name ? TYPE_COLOR_DICT[type2Name].themeColor : headerColor;
+    headerColor = type1Name ? fetchTypeData(type1Name).themeColor : unknownColor;
+    footerColor = type2Name ? fetchTypeData(type2Name).themeColor : headerColor;
   }
 
   let isImageLoaded = false;

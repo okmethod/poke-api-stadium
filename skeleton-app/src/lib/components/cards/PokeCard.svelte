@@ -3,20 +3,21 @@
   import Icon from "@iconify/svelte";
   import { Chart, registerables } from "chart.js";
   import type { PokeData } from "$lib/types/poke";
+  import { TypeName } from "$lib/types/type";
+  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
   import { formatHeightWeight } from "$lib/utils/numerics";
-  import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
 
   export let pokeData: PokeData | null;
 
   let imageUrlCount = 0;
-  const unknownColor = TYPE_COLOR_DICT["unknown"].themeColor;
+  const unknownColor = fetchTypeData(TypeName.Unknown).themeColor;
   let headerColor = unknownColor;
   let footerColor = unknownColor;
   $: {
     if (pokeData) {
       imageUrlCount = pokeData.imageUrlArray.length;
-      headerColor = TYPE_COLOR_DICT[pokeData.type1.enName].themeColor;
-      footerColor = pokeData.type2 !== null ? TYPE_COLOR_DICT[pokeData.type2.enName].themeColor : headerColor;
+      headerColor = fetchTypeData(pokeData.type1.enName).themeColor;
+      footerColor = pokeData.type2 !== null ? fetchTypeData(pokeData.type2.enName).themeColor : headerColor;
       statsData = [
         pokeData?.stats.hp,
         pokeData?.stats.attack,

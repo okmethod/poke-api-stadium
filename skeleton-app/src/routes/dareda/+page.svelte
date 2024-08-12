@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { getToastStore } from "@skeletonlabs/skeleton";
   import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
-  import type { TypeName, TypeData } from "$lib/types/type";
+  import type { TypeName } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { pickRandomKey, getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
+  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
+  import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
+  import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
 
   interface PokeItem {
+    pokeId: number;
     jaName: string;
     gifUrl: string;
     jaGenus: string | null;
@@ -20,47 +22,40 @@
     stats: Stats;
   }
 
-  // staticデータロード
-  let TOTAL_POKE_DICT: Record<number, PokeItem>;
-  let TYPE_DICT: Record<TypeName, TypeData>;
-  onMount(async () => {
-    // 利用スコープを局所化してガベージコレクションされるようにする
-    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-    const POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
-
-    const { STATIC_ADDITIONAL_POKE_DICT } = await import("$lib/constants/staticAddPokeData");
-    const ADDITIONAL_POKE_DICT = _initPokeDict(STATIC_ADDITIONAL_POKE_DICT);
-
-    TOTAL_POKE_DICT = { ...POKE_DICT, ...ADDITIONAL_POKE_DICT };
-
-    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
-      const pokeDict: Record<number, PokeItem> = {};
-      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
-        if (staticPokeData.gifUrl !== null) {
-          pokeDict[Number(pokeId)] = {
-            jaName: staticPokeData.jaName,
-            gifUrl: staticPokeData.gifUrl,
-            jaGenus: staticPokeData.jaGenus,
-            type1Name: staticPokeData.type1Name as TypeName,
-            type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
-            height: staticPokeData.height,
-            weight: staticPokeData.weight,
-            stats: staticPokeData.stats,
-          };
-        }
-      });
-      return pokeDict;
-    }
-
-    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
-    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
-  });
-
   // データ管理
-  let pickedPokeId = 0;
-  function pickPokeId(): void {
+  let pickedPokeItem: PokeItem | null = null;
+  async function pickPokeId(): Promise<void> {
     resetState();
-    pickedPokeId = pickRandomKey(TOTAL_POKE_DICT);
+    const staticPokeData = await import("$lib/constants/staticPokeData");
+    const staticAddPokeData = await import("$lib/constants/staticAddPokeData");
+    const keys = [...staticPokeData.keys(), ...staticAddPokeData.keys()];
+
+    let pickedPokeId;
+    let pickedPokeData;
+    do {
+      pickedPokeId = keys[getRandomNumber(keys.length)];
+      if (Number(pickedPokeId) < FIRST_ADDITIONAL_POKE_ID) {
+        pickedPokeData = staticPokeData.fetch(pickedPokeId);
+      } else {
+        pickedPokeData = staticAddPokeData.fetch(pickedPokeId);
+      }
+      // gifUrlがnullの場合は再抽選
+    } while (pickedPokeData.gifUrl === null);
+    pickedPokeItem = _convertToPokeItem(pickedPokeId, pickedPokeData);
+
+    function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): PokeItem {
+      return {
+        pokeId: Number(pokeId),
+        jaName: staticPokeData.jaName,
+        gifUrl: staticPokeData.gifUrl ?? "",
+        jaGenus: staticPokeData.jaGenus,
+        type1Name: staticPokeData.type1Name as TypeName,
+        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+        height: staticPokeData.height,
+        weight: staticPokeData.weight,
+        stats: staticPokeData.stats,
+      };
+    }
   }
 
   let isOpen = false;
@@ -88,18 +83,17 @@
     toastStore.trigger(t);
 
     function _getRandomHint(): string {
-      if (pickedPokeId <= 0) {
+      if (pickedPokeItem === null) {
         return "よびだすボタン を おしてね";
       }
-      const pokeItem = TOTAL_POKE_DICT[pickedPokeId];
-      const { pros, cons } = _getProsCons(_sortDescStats(pokeItem.stats));
+      const { pros, cons } = _getProsCons(_sortDescStats(pickedPokeItem.stats));
       const hints = [
-        pokeItem.jaName[0] + "○".repeat(pokeItem.jaName.length - 1),
-        pokeItem.jaGenus,
-        `${TYPE_DICT[pokeItem.type1Name].jaName}タイプ`,
-        pokeItem.type2Name ? `${TYPE_DICT[pokeItem.type2Name].jaName}タイプ` : "タイプは1つだけ",
-        `たかさ${formatHeightWeight(pokeItem.height, "height")}`,
-        `おもさ${formatHeightWeight(pokeItem.weight, "weight")}`,
+        pickedPokeItem.jaName[0] + "○".repeat(pickedPokeItem.jaName.length - 1),
+        pickedPokeItem.jaGenus,
+        `${fetchTypeData(pickedPokeItem.type1Name).jaName}タイプ`,
+        pickedPokeItem.type2Name ? `${fetchTypeData(pickedPokeItem.type2Name).jaName}タイプ` : "タイプは1つだけ",
+        `たかさ${formatHeightWeight(pickedPokeItem.height, "height")}`,
+        `おもさ${formatHeightWeight(pickedPokeItem.weight, "weight")}`,
         pros ? `${pros}が たかい` : null,
         cons ? `${cons}は ひくい` : null,
       ];
@@ -168,11 +162,11 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <PokeSilhouette
-          pokeId={pickedPokeId}
-          name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.jaName : null}
-          type1Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type1Name : null}
-          type2Name={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.type2Name : null}
-          imageUrl={pickedPokeId > 0 ? TOTAL_POKE_DICT[pickedPokeId]?.gifUrl : null}
+          pokeId={pickedPokeItem?.pokeId ?? null}
+          name={pickedPokeItem?.jaName ?? null}
+          type1Name={pickedPokeItem?.type1Name ?? null}
+          type2Name={pickedPokeItem?.type2Name ?? null}
+          imageUrl={pickedPokeItem?.gifUrl ?? null}
           {isOpen}
         />
       </div>

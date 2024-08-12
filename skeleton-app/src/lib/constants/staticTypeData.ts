@@ -1,13 +1,15 @@
 import { TypeName } from "$lib/types/type";
 import type { StaticTypeData } from "$lib/types/type";
 
-export const TYPE_COLOR_DICT: Record<
-  string,
-  {
-    themeColor: string;
-    textColor: string;
-  }
-> = {
+export function fetch(key: TypeName): StaticTypeData & TypeColors {
+  return { ...STATIC_TYPE_DICT[key], ...TYPE_COLOR_DICT[key] };
+}
+
+interface TypeColors {
+  themeColor: string;
+  textColor: string;
+}
+const TYPE_COLOR_DICT: Record<TypeName, TypeColors> = {
   normal: { themeColor: "#FDF6CB", textColor: "#000000" },
   fighting: { themeColor: "#EE8130", textColor: "#000000" },
   flying: { themeColor: "#A2C3E8", textColor: "#000000" },
@@ -28,8 +30,9 @@ export const TYPE_COLOR_DICT: Record<
   fairy: { themeColor: "#FCAFF9", textColor: "#000000" },
   unknown: { themeColor: "#888888", textColor: "#FFFFFF" },
 };
+
 // cheat画面から取得したstaticデータ
-export const STATIC_TYPE_DICT: Record<TypeName, StaticTypeData> = {
+const STATIC_TYPE_DICT: Record<TypeName, StaticTypeData> = {
   normal: {
     id: 1,
     enName: "normal",

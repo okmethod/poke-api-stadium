@@ -1,43 +1,43 @@
 <script>
   import { navigateTo } from "$lib/utils/navigation.client";
-  import { STATIC_BALL_DICT } from "$lib/constants/staticItemData";
+  import { fetchBall } from "$lib/constants/staticItemData";
 
   const githubRepoUrl = "https://github.com/okmethod/poke-api-stadium";
 
   const contents = [
     {
       text: "ポケモンずかん",
-      imageUrl: STATIC_BALL_DICT["poke-ball"].imageUrl,
+      imageUrl: fetchBall("poke-ball").imageUrl,
       alt: "poke-ball",
       onClick: () => navigateTo("/zukan"),
     },
     {
       text: "ポケモンXXくらべ",
-      imageUrl: STATIC_BALL_DICT["great-ball"].imageUrl,
+      imageUrl: fetchBall("great-ball").imageUrl,
       alt: "great-ball",
       onClick: () => navigateTo("/kurabe"),
     },
     {
       text: "ポケモンタイプじゃんけん",
-      imageUrl: STATIC_BALL_DICT["ultra-ball"].imageUrl,
+      imageUrl: fetchBall("ultra-ball").imageUrl,
       alt: "great-ball",
       onClick: () => navigateTo("/janken"),
     },
     {
       text: "ポケモンしりとり",
-      imageUrl: STATIC_BALL_DICT["safari-ball"].imageUrl,
+      imageUrl: fetchBall("safari-ball").imageUrl,
       alt: "safari-ball",
       onClick: () => navigateTo("/shiritori"),
     },
     {
       text: "ポケモンだ〜れだ？",
-      imageUrl: STATIC_BALL_DICT["dusk-ball"].imageUrl,
+      imageUrl: fetchBall("dusk-ball").imageUrl,
       alt: "dusk-ball",
       onClick: () => navigateTo("/dareda"),
     },
     {
       text: "ソースコード",
-      imageUrl: STATIC_BALL_DICT["premier-ball"].imageUrl,
+      imageUrl: fetchBall("premier-ball").imageUrl,
       alt: "premier-ball",
       onClick: () => window.open(githubRepoUrl, "_blank"),
     },

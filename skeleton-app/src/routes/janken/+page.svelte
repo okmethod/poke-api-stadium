@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
-  import type { TypeName, TypeData, DamageRatio } from "$lib/types/type";
+  import type { TypeName, DamageRatio } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
+  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
   import getDamageRatio from "$lib/utils/getDamageRatio";
-  import { getRandomNumber, pickRandomNumbers } from "$lib/utils/numerics";
-  import { LATEST_POKE_ID } from "$lib/constants/common";
-  import { TYPE_COLOR_DICT } from "$lib/constants/staticTypeData";
+  import { getRandomNumber, pickRandomElementsFromArray } from "$lib/utils/numerics";
 
   interface PokeItem {
+    pokeId: number;
     jaName: string;
     imageUrl: string;
     type1Name: TypeName;
@@ -21,42 +20,30 @@
     speed: number;
   }
 
-  // staticデータロード
-  let POKE_DICT: Record<number, PokeItem>;
-  let TYPE_DICT: Record<TypeName, TypeData>;
-  onMount(async () => {
-    // 利用スコープを局所化してガベージコレクションされるようにする
-    const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-    POKE_DICT = _initPokeDict(STATIC_POKE_DICT);
-    function _initPokeDict(staticPokeDict: Record<number, StaticPokeData>): Record<number, PokeItem> {
-      const pokeDict: Record<number, PokeItem> = {};
-      Object.entries(staticPokeDict).forEach(([pokeId, staticPokeData]) => {
-        pokeDict[Number(pokeId)] = {
-          jaName: staticPokeData.jaName,
-          imageUrl: staticPokeData.imageUrl ?? "not_found",
-          type1Name: staticPokeData.type1Name as TypeName,
-          type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
-          speed: staticPokeData.stats.speed,
-        };
-      });
-      return pokeDict;
-    }
-
-    const { STATIC_TYPE_DICT } = await import("$lib/constants/staticTypeData");
-    TYPE_DICT = STATIC_TYPE_DICT as Record<TypeName, TypeData>;
-  });
-
   // ゲームデータ管理
-  let ownPokeIds: number[] = [];
-  let opoPokeIds: number[] = [];
+  let ownPokeItems: PokeItem[] = [];
+  let opoPokeItems: PokeItem[] = [];
   const pokeCountByPlayer = 3;
-  function pickPokeIds(): void {
+  async function pickPokeIds(): Promise<void> {
     resetState();
-    const pokeIndexes = Array.from({ length: LATEST_POKE_ID }, (_, i) => i + 1);
-    const pickedPokeIds = pickRandomNumbers(pokeIndexes, pokeCountByPlayer * 2);
-    ownPokeIds = pickedPokeIds.slice(0, pokeCountByPlayer);
-    opoPokeIds = pickedPokeIds.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
+    const staticPokeData = await import("$lib/constants/staticPokeData");
+    const keys = staticPokeData.keys();
+    const pickedKeys = pickRandomElementsFromArray(keys, pokeCountByPlayer * 2);
+    const pickedPokeItems = pickedKeys.map((key) => _convertToPokeItem(key, staticPokeData.fetch(key)));
+    ownPokeItems = pickedPokeItems.slice(0, pokeCountByPlayer);
+    opoPokeItems = pickedPokeItems.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
     phase = "select_poke";
+
+    function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): PokeItem {
+      return {
+        pokeId: Number(pokeId),
+        jaName: staticPokeData.jaName,
+        imageUrl: staticPokeData.imageUrl ?? "not_found",
+        type1Name: staticPokeData.type1Name as TypeName,
+        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+        speed: staticPokeData.stats.speed,
+      };
+    }
   }
 
   let selectedOwnPokeIndex = -1;
@@ -66,8 +53,7 @@
     selectedOpoPokeIndex = getRandomNumber(pokeCountByPlayer);
   }
 
-  function fetchPokeTypeNameArray(pokeId: number): TypeName[] {
-    const pokeItem = POKE_DICT[pokeId];
+  function fetchPokeTypeNameArray(pokeItem: PokeItem): TypeName[] {
     return pokeItem.type2Name ? [pokeItem.type1Name, pokeItem.type2Name] : [pokeItem.type1Name];
   }
 
@@ -78,15 +64,15 @@
   let efficacyMessage: string;
   let resultMessage: string;
   function commitOwnType(selectedOwnPokeTypeName: TypeName): void {
-    const selectedOpoPokeId = opoPokeIds[selectedOpoPokeIndex];
-    const opoTypeNameArray = fetchPokeTypeNameArray(selectedOpoPokeId);
+    const selectedOpoPokeItem = opoPokeItems[selectedOpoPokeIndex];
+    const opoTypeNameArray = fetchPokeTypeNameArray(selectedOpoPokeItem);
     const selectedOpoPokeTypeName =
       opoTypeNameArray.length === 1 ? opoTypeNameArray[0] : opoTypeNameArray[getRandomNumber(2)];
 
     let isOwnAttack: boolean;
     ({ isOwnAttack, attackPokeName, attackTypeName, defenseTypeName } = _judgeAttackSide(
-      ownPokeIds[selectedOwnPokeIndex],
-      selectedOpoPokeId,
+      ownPokeItems[selectedOwnPokeIndex],
+      selectedOpoPokeItem,
       selectedOwnPokeTypeName,
       selectedOpoPokeTypeName,
     ));
@@ -94,8 +80,8 @@
     phase = "term";
 
     function _judgeAttackSide(
-      ownPokeId: number,
-      opoPokeId: number,
+      ownPokeItem: PokeItem,
+      opoPokeItem: PokeItem,
       ownPokeTypeName: TypeName,
       opoPokeTypeName: TypeName,
     ): {
@@ -104,10 +90,10 @@
       attackTypeName: TypeName;
       defenseTypeName: TypeName;
     } {
-      const isOwnAttack = POKE_DICT[ownPokeId].speed >= POKE_DICT[opoPokeId].speed;
+      const isOwnAttack = ownPokeItem.speed >= opoPokeItem.speed;
       return {
         isOwnAttack,
-        attackPokeName: isOwnAttack ? POKE_DICT[ownPokeId].jaName : POKE_DICT[opoPokeId].jaName,
+        attackPokeName: isOwnAttack ? ownPokeItem.jaName : opoPokeItem.jaName,
         attackTypeName: isOwnAttack ? ownPokeTypeName : opoPokeTypeName,
         defenseTypeName: isOwnAttack ? opoPokeTypeName : ownPokeTypeName,
       };
@@ -144,7 +130,7 @@
       select_poke:
         selectedOwnPokeIndex == -1
           ? "ポケモン をえらんでね"
-          : `${POKE_DICT[ownPokeIds[selectedOwnPokeIndex]].jaName} で しょうぶ する？`,
+          : `${ownPokeItems[selectedOwnPokeIndex].jaName} で しょうぶ する？`,
       select_type: "タイプ をえらんでね",
       term: resultMessage,
     };
@@ -156,8 +142,8 @@
 
   // 状態リセット
   function resetState(): void {
-    ownPokeIds = [];
-    opoPokeIds = [];
+    ownPokeItems = [];
+    opoPokeItems = [];
     selectedOwnPokeIndex = -1;
     selectedOpoPokeIndex = -1;
   }
@@ -238,13 +224,13 @@
     <div class={cPokeFieldStyle}>
       <span class="block mt-1 ml-2">あいて</span>
       <div class={cPokeArrayStyle}>
-        {#each opoPokeIds as pokeId, index}
+        {#each opoPokeItems as pokeItem, index}
           <div class="rounded-2xl border-2 {index == selectedOpoPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <PokeTile
-              name={POKE_DICT[pokeId].jaName}
-              type1Name={POKE_DICT[pokeId].type1Name}
-              type2Name={POKE_DICT[pokeId].type2Name}
-              imageUrl={POKE_DICT[pokeId].imageUrl}
+              name={pokeItem.jaName}
+              type1Name={pokeItem.type1Name}
+              type2Name={pokeItem.type2Name}
+              imageUrl={pokeItem.imageUrl}
             />
           </div>
         {/each}
@@ -262,22 +248,22 @@
             <span class="inline">
               <span
                 style="
-                  background-color: {TYPE_COLOR_DICT[attackTypeName].themeColor};
-                  color: {TYPE_COLOR_DICT[attackTypeName].textColor};
+                  background-color: {fetchTypeData(attackTypeName).themeColor};
+                  color: {fetchTypeData(attackTypeName).textColor};
                 "
                 class={cTypeChipStyle}
               >
-                {TYPE_DICT[attackTypeName].jaName}
+                {fetchTypeData(attackTypeName).jaName}
               </span>
               は
               <span
                 style="
-                  background-color: {TYPE_COLOR_DICT[defenseTypeName].themeColor};
-                  color: {TYPE_COLOR_DICT[defenseTypeName].textColor};
+                  background-color: {fetchTypeData(defenseTypeName).themeColor};
+                  color: {fetchTypeData(defenseTypeName).textColor};
                 "
                 class={cTypeChipStyle}
               >
-                {TYPE_DICT[defenseTypeName].jaName}
+                {fetchTypeData(defenseTypeName).jaName}
               </span>
               に {efficacyMessage}
             </span></span
@@ -290,7 +276,7 @@
     <div class={cPokeFieldStyle}>
       <span class="block mt-1 ml-2">あなた</span>
       <div class={cPokeArrayStyle}>
-        {#each ownPokeIds as pokeId, index}
+        {#each ownPokeItems as pokeItem, index}
           <div class="rounded-2xl border-2 {index == selectedOwnPokeIndex ? 'border-red-500' : 'border-transparent'}">
             <button
               type="button"
@@ -303,10 +289,10 @@
               }}
             >
               <PokeTile
-                name={POKE_DICT[pokeId].jaName}
-                type1Name={POKE_DICT[pokeId].type1Name}
-                type2Name={POKE_DICT[pokeId].type2Name}
-                imageUrl={POKE_DICT[pokeId].imageUrl}
+                name={pokeItem.jaName}
+                type1Name={pokeItem.type1Name}
+                type2Name={pokeItem.type2Name}
+                imageUrl={pokeItem.imageUrl}
               />
             </button>
           </div>
@@ -327,16 +313,16 @@
           </button>
         {:else if phase == "select_type"}
           <!-- ポケモン選択済み、タイプ選択中のとき-->
-          {#each fetchPokeTypeNameArray(ownPokeIds[selectedOwnPokeIndex]) as typeName}
+          {#each fetchPokeTypeNameArray(ownPokeItems[selectedOwnPokeIndex]) as typeName}
             <button
               style="
-                background-color: {TYPE_COLOR_DICT[typeName].themeColor};
-                color: {TYPE_COLOR_DICT[typeName].textColor};
+                background-color: {fetchTypeData(typeName).themeColor};
+                color: {fetchTypeData(typeName).textColor};
               "
               class="{cTypeChipStyle} flex items-center hover:brightness-85"
               on:click={() => commitOwnType(typeName)}
             >
-              {TYPE_DICT[typeName].jaName}
+              {fetchTypeData(typeName).jaName}
             </button>
           {/each}
         {/if}
