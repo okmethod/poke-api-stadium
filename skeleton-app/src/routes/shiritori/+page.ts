@@ -1,5 +1,5 @@
 import { fetchPokeData } from "$lib/constants/fetchStaticData";
-import { getHeadChar } from "$lib/utils/shiritori";
+import { getHeadChar } from "$lib/internals/shiritoriRule";
 import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
 export interface PokeItem {

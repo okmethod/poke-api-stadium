@@ -24,3 +24,9 @@ export function getTailChar(name: string): string {
   }
   return normalizeChar(tailChar);
 }
+
+export function solveShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
+  const tailChar = getTailChar(tailPokeName);
+  const nextChar = getHeadChar(nextPokeName);
+  return tailChar === nextChar;
+}

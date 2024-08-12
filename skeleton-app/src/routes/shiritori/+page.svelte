@@ -5,7 +5,7 @@
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getRandomNumber, pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/numerics";
-  import { getHeadChar, getTailChar } from "$lib/utils/shiritori";
+  import { getTailChar, solveShiritoriRule } from "$lib/internals/shiritoriRule";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -18,8 +18,8 @@
   // 候補ポケモン抽選
   const pokeCount = 12;
   const possiblePokeCount = 4;
-  let candidatedPokeItems: PokeItem[] = [];
-  function candidatePokeItems(): void {
+  let pickedPokeItems: PokeItem[] = [];
+  function pickPokeItems(): void {
     if (pushedPokeItems.length === 0) {
       pushFirstPokeData();
     }
@@ -28,9 +28,10 @@
     const unusedPossiblePokeDict = _getPossiblePokeDict(unusedDict, groupByHeadCharDict, tailChar);
     const pickedUnusedPokeItems = pickRandomElementsFromObject(unusedDict, pokeCount);
     const pickedUnusedPossiblePokeItems = pickRandomElementsFromObject(unusedPossiblePokeDict, possiblePokeCount);
-    candidatedPokeItems = shuffleArray([
-      ...new Set([...pickedUnusedPokeItems, ...pickedUnusedPossiblePokeItems]),
-    ]).slice(0, pokeCount);
+    pickedPokeItems = shuffleArray([...new Set([...pickedUnusedPokeItems, ...pickedUnusedPossiblePokeItems])]).slice(
+      0,
+      pokeCount,
+    );
 
     function _getUnusedDict(pokeDict: Record<string, PokeItem>): Record<string, PokeItem> {
       return Object.fromEntries(Object.entries(pokeDict).filter(([, value]) => !value.isUsed));
@@ -48,7 +49,7 @@
 
   function markAsUsed(key: number): void {
     pokeDict[key].isUsed = true;
-    candidatedPokeItems = candidatedPokeItems.map((pokeItem) =>
+    pickedPokeItems = pickedPokeItems.map((pokeItem) =>
       pokeItem.pokeId === key ? { ...pokeItem, isUsed: true } : pokeItem,
     );
   }
@@ -69,18 +70,12 @@
     }
     const tailPokeName = pushedPokeItems[pushedPokeItems.length - 1].jaName;
     const nextPokeName = nextPokeItem.jaName;
-    if (!_judgeShiritoriRule(tailPokeName, nextPokeName)) {
+    if (!solveShiritoriRule(tailPokeName, nextPokeName)) {
       message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
       return;
     }
     markAsUsed(nextPokeItem.pokeId);
     pushedPokeItems = [...pushedPokeItems, nextPokeItem];
-
-    function _judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
-      const tailChar = getTailChar(tailPokeName);
-      const nextChar = getHeadChar(nextPokeName);
-      return tailChar === nextChar;
-    }
   }
 
   // メッセージ更新
@@ -113,7 +108,7 @@
     pokeDict = _resetPokeDictUsedFlag(pokeDict);
     pushedPokeItems = [];
     pushFirstPokeData();
-    candidatePokeItems();
+    pickPokeItems();
     updateMessage();
 
     function _resetPokeDictUsedFlag(pokeDict: Record<number, PokeItem>): Record<number, PokeItem> {
@@ -161,7 +156,7 @@
     <div class="ml-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">
-          {#if candidatedPokeItems.length === 0}
+          {#if pickedPokeItems.length === 0}
             しりとり スタート
           {:else}
             しりとり リセット
@@ -190,7 +185,7 @@
     <!-- 候補ポケモン -->
     <div class={cPokeFieldStyle}>
       <div class={cPokeArrayStyle}>
-        {#each candidatedPokeItems as pokeItem}
+        {#each pickedPokeItems as pokeItem}
           <div class="rounded-2xl border-2">
             {#if !pokeItem.isUsed}
               <button type="button" on:click={() => challengeShiritori(pokeItem)}>
@@ -208,7 +203,7 @@
     <div class="ml-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を いれかえる</span>
-        <form on:submit|preventDefault={candidatePokeItems}>
+        <form on:submit|preventDefault={pickPokeItems}>
           <button
             type="submit"
             disabled={pushedPokeItems.length == 0}
