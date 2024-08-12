@@ -196,6 +196,7 @@
         {#each pickedPokeItems as pokeItem, index (pokeItem.id)}
           <div>
             <PokeTile
+              pokeId={pokeItem.id}
               name={pokeItem.jaName}
               type1Name={pokeItem.type1Name}
               type2Name={pokeItem.type2Name}

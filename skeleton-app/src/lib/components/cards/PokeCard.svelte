@@ -4,20 +4,30 @@
   import { Chart, registerables } from "chart.js";
   import type { PokeData } from "$lib/types/poke";
   import { TypeName } from "$lib/types/type";
-  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
+  import { fetchTypeData } from "$lib/constants/fetchStaticData";
   import { formatHeightWeight } from "$lib/utils/numerics";
 
   export let pokeData: PokeData | null;
 
+  onMount(async () => {
+    await updateColors();
+    await initializeChart();
+  });
+
+  let unknownColor = "";
+  let headerColor = "";
+  let footerColor = "";
+  async function updateColors() {
+    if (unknownColor === "") unknownColor = (await fetchTypeData(TypeName.Unknown)).themeColor;
+    headerColor = pokeData?.type1 ? (await fetchTypeData(pokeData.type1.enName)).themeColor : unknownColor;
+    footerColor = pokeData?.type2 ? (await fetchTypeData(pokeData.type2.enName)).themeColor : headerColor;
+  }
+
   let imageUrlCount = 0;
-  const unknownColor = fetchTypeData(TypeName.Unknown).themeColor;
-  let headerColor = unknownColor;
-  let footerColor = unknownColor;
   $: {
+    void updateColors();
     if (pokeData) {
       imageUrlCount = pokeData.imageUrlArray.length;
-      headerColor = fetchTypeData(pokeData.type1.enName).themeColor;
-      footerColor = pokeData.type2 !== null ? fetchTypeData(pokeData.type2.enName).themeColor : headerColor;
       statsData = [
         pokeData?.stats.hp,
         pokeData?.stats.attack,
@@ -28,8 +38,6 @@
       ];
     } else {
       imageUrlCount = 0;
-      headerColor = unknownColor;
-      footerColor = unknownColor;
       statsData = [0, 0, 0, 0, 0, 0];
     }
     if (chartInstance) {
@@ -55,7 +63,7 @@
   let chartCanvas: HTMLCanvasElement;
   let chartInstance: Chart | null = null;
   let statsData: number[] = [];
-  onMount(() => {
+  async function initializeChart() {
     const ctx = chartCanvas.getContext("2d");
     if (!ctx) return;
     chartInstance = new Chart(ctx, {
@@ -108,7 +116,7 @@
         },
       },
     });
-  });
+  }
 
   const cIndexStyle = "text-l font-semibold text-gray-700";
   const cTextStyle = "text-s text-gray-600";

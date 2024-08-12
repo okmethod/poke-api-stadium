@@ -91,4 +91,9 @@ type ReplaceTypeNameWithString<T> = {
 // 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
 export type StaticTypeData = ReplaceTypeNameWithString<TypeData>;
 
+export interface TypeColors {
+  themeColor: string;
+  textColor: string;
+}
+
 export type DamageRatio = "double" | "half" | "no" | "default";

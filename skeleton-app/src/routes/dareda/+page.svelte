@@ -3,10 +3,10 @@
   import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { StaticPokeData } from "$lib/types/poke";
-  import type { TypeName } from "$lib/types/type";
+  import type { TypeName, TypeData } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
+  import { fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
 
@@ -15,14 +15,14 @@
     jaName: string;
     gifUrl: string;
     jaGenus: string | null;
-    type1Name: TypeName;
-    type2Name: TypeName | null;
+    type1: TypeData;
+    type2: TypeData | null;
     height: number;
     weight: number;
     stats: Stats;
   }
 
-  // データ管理
+  // ポケモン抽選
   let pickedPokeItem: PokeItem | null = null;
   async function pickPokeId(): Promise<void> {
     resetState();
@@ -41,16 +41,16 @@
       }
       // gifUrlがnullの場合は再抽選
     } while (pickedPokeData.gifUrl === null);
-    pickedPokeItem = _convertToPokeItem(pickedPokeId, pickedPokeData);
+    pickedPokeItem = await _convertToPokeItem(pickedPokeId, pickedPokeData);
 
-    function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): PokeItem {
+    async function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): Promise<PokeItem> {
       return {
         pokeId: Number(pokeId),
         jaName: staticPokeData.jaName,
         gifUrl: staticPokeData.gifUrl ?? "",
         jaGenus: staticPokeData.jaGenus,
-        type1Name: staticPokeData.type1Name as TypeName,
-        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
+        type1: await fetchTypeData(staticPokeData.type1Name as TypeName),
+        type2: staticPokeData.type2Name ? await fetchTypeData(staticPokeData.type2Name as TypeName) : null,
         height: staticPokeData.height,
         weight: staticPokeData.weight,
         stats: staticPokeData.stats,
@@ -90,8 +90,8 @@
       const hints = [
         pickedPokeItem.jaName[0] + "○".repeat(pickedPokeItem.jaName.length - 1),
         pickedPokeItem.jaGenus,
-        `${fetchTypeData(pickedPokeItem.type1Name).jaName}タイプ`,
-        pickedPokeItem.type2Name ? `${fetchTypeData(pickedPokeItem.type2Name).jaName}タイプ` : "タイプは1つだけ",
+        `${pickedPokeItem.type1.jaName}タイプ`,
+        pickedPokeItem.type2 ? `${pickedPokeItem.type2.jaName}タイプ` : "タイプは1つだけ",
         `たかさ${formatHeightWeight(pickedPokeItem.height, "height")}`,
         `おもさ${formatHeightWeight(pickedPokeItem.weight, "weight")}`,
         pros ? `${pros}が たかい` : null,
@@ -164,8 +164,8 @@
         <PokeSilhouette
           pokeId={pickedPokeItem?.pokeId ?? null}
           name={pickedPokeItem?.jaName ?? null}
-          type1Name={pickedPokeItem?.type1Name ?? null}
-          type2Name={pickedPokeItem?.type2Name ?? null}
+          type1Name={pickedPokeItem?.type1.enName ?? null}
+          type2Name={pickedPokeItem?.type2?.enName ?? null}
           imageUrl={pickedPokeItem?.gifUrl ?? null}
           {isOpen}
         />

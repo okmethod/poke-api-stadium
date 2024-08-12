@@ -1,19 +1,24 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { TypeName } from "$lib/types/type";
-  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
+  import { fetchTypeData } from "$lib/constants/fetchStaticData";
 
+  export let pokeId: number | null = null;
   export let name: string | null = null;
   export let type1Name: TypeName | null = null;
   export let type2Name: TypeName | null = null;
   export let imageUrl: string | null = null;
 
-  const unknownColor = fetchTypeData(TypeName.Unknown).themeColor;
-  let headerColor = unknownColor;
-  let footerColor = unknownColor;
-  $: if (name) {
-    headerColor = type1Name ? fetchTypeData(type1Name).themeColor : unknownColor;
-    footerColor = type2Name ? fetchTypeData(type2Name).themeColor : headerColor;
+  let unknownColor = "";
+  let headerColor = "";
+  let footerColor = "";
+  async function updateColors() {
+    if (unknownColor === "") unknownColor = (await fetchTypeData(TypeName.Unknown)).themeColor;
+    headerColor = type1Name ? (await fetchTypeData(type1Name)).themeColor : unknownColor;
+    footerColor = type2Name ? (await fetchTypeData(type2Name)).themeColor : headerColor;
+  }
+  $: if (pokeId) {
+    void updateColors();
   }
 
   let isImageLoaded = false;

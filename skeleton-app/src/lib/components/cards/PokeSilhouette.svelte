@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { TypeName } from "$lib/types/type";
-  import { fetch as fetchTypeData } from "$lib/constants/staticTypeData";
+  import { fetchTypeData } from "$lib/constants/fetchStaticData";
   import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
 
   export let pokeId: number | null = null;
@@ -11,11 +11,18 @@
   export let imageUrl: string | null = null;
   export let isOpen: boolean = false;
 
-  const unknownColor = fetchTypeData(TypeName.Unknown).themeColor;
-  let headerColor = unknownColor;
-  let footerColor = unknownColor;
+  let unknownColor = "";
+  let headerColor = "";
+  let footerColor = "";
+  async function updateColors() {
+    if (unknownColor === "") unknownColor = (await fetchTypeData(TypeName.Unknown)).themeColor;
+    headerColor = type1Name ? (await fetchTypeData(type1Name)).themeColor : unknownColor;
+    footerColor = type2Name ? (await fetchTypeData(type2Name)).themeColor : headerColor;
+  }
+
   let viewName = "???";
   $: if (pokeId) {
+    void updateColors();
     if (name !== null) {
       if (pokeId < FIRST_ADDITIONAL_POKE_ID) {
         viewName = name;
@@ -23,8 +30,6 @@
         viewName = `とくべつな ${name}`;
       }
     }
-    headerColor = type1Name ? fetchTypeData(type1Name).themeColor : unknownColor;
-    footerColor = type2Name ? fetchTypeData(type2Name).themeColor : headerColor;
   }
 
   let isImageLoaded = false;
