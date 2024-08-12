@@ -4,7 +4,8 @@
   import Icon from "@iconify/svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { getRandomNumber, pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/numerics";
+  import { getRandomNumber } from "$lib/utils/numerics";
+  import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
   import { getTailChar, solveShiritoriRule } from "$lib/internals/shiritoriRule";
   import type { PokeItem } from "./+page";
 

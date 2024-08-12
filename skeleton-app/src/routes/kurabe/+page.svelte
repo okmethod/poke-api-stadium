@@ -6,7 +6,8 @@
   import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import { fetchPokeData } from "$lib/constants/fetchStaticData";
-  import { pickRandomElementsFromArray, formatHeightWeight, formatStat } from "$lib/utils/numerics";
+  import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {

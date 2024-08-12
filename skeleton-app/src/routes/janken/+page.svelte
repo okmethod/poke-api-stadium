@@ -8,7 +8,8 @@
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
   import { fetchPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
-  import { getRandomNumber, pickRandomElementsFromArray } from "$lib/utils/numerics";
+  import { getRandomNumber } from "$lib/utils/numerics";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {
