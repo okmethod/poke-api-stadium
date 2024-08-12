@@ -1,63 +1,21 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { fetchPokeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/numerics";
-  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
+  import { getHeadChar, getTailChar } from "$lib/utils/shiritori";
+  import type { PokeItem } from "./+page";
 
-  interface PokeItem {
-    pokeId: number; // dictにとっては冗長だが、listで使えるようにidを持たせる
-    jaName: string;
-    imageUrl: string;
-    isUsed: boolean; // しりとり進行中に更新されるフラグ
-  }
+  export let data: {
+    pokeDict: Record<number, PokeItem>; // 利用状況を管理するため全ポケモン情報を保持
+    groupByHeadCharDict: Record<string, number[]>; // key: headChar, value: PokeIds
+  };
+  let pokeDict = data.pokeDict;
+  const groupByHeadCharDict = data.groupByHeadCharDict;
 
-  // ゲームデータ準備（全ポケモン＆頭文字別ID辞書）
-  let pokeDict: Record<number, PokeItem>; // 利用状況を管理するため全ポケモン情報を保持
-  let groupByHeadCharDict: Record<string, number[]>; // key: headChar, value: PokeIds
-  onMount(async () => {
-    pokeDict = await _initPokeDict();
-    groupByHeadCharDict = _groupByHeadChar(pokeDict);
-
-    async function _initPokeDict(): Promise<Record<number, PokeItem>> {
-      const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
-      const pokeDict: Record<number, PokeItem> = {};
-      const pokeDataPromises = keys.map(async (key) => {
-        const pokeData = await fetchPokeData(key.toString());
-        return {
-          pokeId: key,
-          jaName: pokeData.jaName,
-          imageUrl: pokeData.imageUrl ?? "not_found",
-          isUsed: false,
-        };
-      });
-      const pokeDataArray = await Promise.all(pokeDataPromises);
-      pokeDataArray.forEach((pokeData) => {
-        pokeDict[pokeData.pokeId] = pokeData;
-      });
-      return pokeDict;
-    }
-
-    function _groupByHeadChar(pokeDict: Record<number, PokeItem>): Record<string, number[]> {
-      return Object.entries(pokeDict).reduce(
-        (acc, [pokeId, pokeData]) => {
-          const firstChar = getHeadChar(pokeData.jaName);
-          if (!acc[firstChar]) {
-            acc[firstChar] = [];
-          }
-          acc[firstChar].push(Number(pokeId));
-          return acc;
-        },
-        {} as Record<string, number[]>,
-      );
-    }
-  });
-
-  // ゲームデータ管理（候補として表示するポケモン）
+  // 候補ポケモン抽選
   const pokeCount = 12;
   const possiblePokeCount = 4;
   let candidatedPokeItems: PokeItem[] = [];
@@ -88,15 +46,22 @@
     }
   }
 
-  // ゲームデータ管理（しりとりに並んだポケモン）
+  function markAsUsed(key: number): void {
+    pokeDict[key].isUsed = true;
+    candidatedPokeItems = candidatedPokeItems.map((pokeItem) =>
+      pokeItem.pokeId === key ? { ...pokeItem, isUsed: true } : pokeItem,
+    );
+  }
+
+  // しりとりに並んだポケモン管理
   let pushedPokeItems: PokeItem[] = [];
   function pushFirstPokeData(): void {
     const pickedKey = pickRandomKey(pokeDict); // 最初はすべて未使用の前提
-    pokeDict[pickedKey].isUsed = true;
+    markAsUsed(pickedKey);
     pushedPokeItems = [pokeDict[pickedKey]];
   }
 
-  // しりとりルール管理
+  // しりとりルール解決
   function challengeShiritori(nextPokeItem: PokeItem): void {
     if (pushedPokeItems.length === 0) {
       message = "ポケモン を よびだしてね";
@@ -108,7 +73,7 @@
       message = `「${getTailChar(tailPokeName ?? "")}」 から はじまる ポケモン を えらんでね`;
       return;
     }
-    pokeDict[nextPokeItem.pokeId].isUsed = true;
+    markAsUsed(nextPokeItem.pokeId);
     pushedPokeItems = [...pushedPokeItems, nextPokeItem];
 
     function _judgeShiritoriRule(tailPokeName: string, nextPokeName: string): boolean {
@@ -116,33 +81,6 @@
       const nextChar = getHeadChar(nextPokeName);
       return tailChar === nextChar;
     }
-  }
-
-  function normalizeChar(char: string): string {
-    // prettier-ignore
-    const normalizationMap: { [key: string]: string } = {
-      'ガ': 'カ', 'ギ': 'キ', 'グ': 'ク', 'ゲ': 'ケ', 'ゴ': 'コ',
-      'ザ': 'サ', 'ジ': 'シ', 'ズ': 'ス', 'ゼ': 'セ', 'ゾ': 'ソ',
-      'ダ': 'タ', 'ヂ': 'チ', 'ヅ': 'ツ', 'デ': 'テ', 'ド': 'ト',
-      'バ': 'ハ', 'ビ': 'ヒ', 'ブ': 'フ', 'ベ': 'ヘ', 'ボ': 'ホ', 
-      'パ': 'ハ', 'ピ': 'ヒ', 'プ': 'フ', 'ペ': 'ヘ', 'ポ': 'ホ',
-      'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
-      'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ', 'ッ': 'ツ'
-    };
-    return normalizationMap[char] || char;
-  }
-
-  function getHeadChar(name: string): string {
-    return normalizeChar(name.slice(0, 1));
-  }
-
-  function getTailChar(name: string): string {
-    let tailChar = name.slice(-1);
-    const ignoreChars = ["ー", "♀", "♂", "２", "Ｚ"];
-    if (ignoreChars.includes(tailChar) && name.length > 1) {
-      tailChar = name.slice(-2, -1);
-    }
-    return normalizeChar(tailChar);
   }
 
   // メッセージ更新
