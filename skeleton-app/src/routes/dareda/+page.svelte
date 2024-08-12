@@ -6,7 +6,7 @@
   import type { TypeName, TypeData } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { fetchAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
+  import { fetchPokeData, fetchAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
 
@@ -31,13 +31,12 @@
       ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
     ];
 
-    const staticPokeData = await import("$lib/constants/staticPokeData");
     let pickedPokeId;
     let pickedPokeData;
     do {
       pickedPokeId = keys[getRandomNumber(keys.length)];
       if (Number(pickedPokeId) < FIRST_ADDITIONAL_POKE_ID) {
-        pickedPokeData = staticPokeData.fetch(pickedPokeId.toString());
+        pickedPokeData = await fetchPokeData(pickedPokeId.toString());
       } else {
         pickedPokeData = await fetchAddPokeData(pickedPokeId.toString());
       }
@@ -47,7 +46,7 @@
 
     async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
       return {
-        pokeId: pokeId,
+        pokeId,
         jaName: staticPokeData.jaName,
         gifUrl: staticPokeData.gifUrl ?? "",
         jaGenus: staticPokeData.jaGenus,

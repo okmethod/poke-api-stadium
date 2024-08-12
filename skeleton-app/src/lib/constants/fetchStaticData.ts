@@ -2,6 +2,11 @@ import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName, TypeData, TypeColors } from "$lib/types/type";
 import type { StaticItemData } from "$lib/types/item";
 
+export async function fetchPokeData(key: string): Promise<StaticPokeData> {
+  const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
+  return STATIC_POKE_DICT[key];
+}
+
 export async function fetchAddPokeData(key: string): Promise<StaticPokeData> {
   const { STATIC_ADDITIONAL_POKE_DICT } = await import("$lib/constants/staticAddPokeData");
   return STATIC_ADDITIONAL_POKE_DICT[key];

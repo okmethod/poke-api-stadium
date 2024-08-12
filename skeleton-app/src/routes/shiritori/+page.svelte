@@ -5,7 +5,9 @@
   import Icon from "@iconify/svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { pickRandomKey, pickRandomElementsFromObject, getRandomNumber, shuffleArray } from "$lib/utils/numerics";
+  import { fetchPokeData } from "$lib/constants/fetchStaticData";
+  import { getRandomNumber, pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/numerics";
+  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {
     pokeId: number; // dictにとっては冗長だが、listで使えるようにidを持たせる
@@ -22,17 +24,20 @@
     groupByHeadCharDict = _groupByHeadChar(pokeDict);
 
     async function _initPokeDict(): Promise<Record<number, PokeItem>> {
-      const staticPokeData = await import("$lib/constants/staticPokeData");
-      const keys = staticPokeData.keys();
+      const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
       const pokeDict: Record<number, PokeItem> = {};
-      keys.map((key) => {
-        const pokeData = staticPokeData.fetch(key);
-        pokeDict[Number(key)] = {
-          pokeId: Number(key),
+      const pokeDataPromises = keys.map(async (key) => {
+        const pokeData = await fetchPokeData(key.toString());
+        return {
+          pokeId: key,
           jaName: pokeData.jaName,
           imageUrl: pokeData.imageUrl ?? "not_found",
           isUsed: false,
         };
+      });
+      const pokeDataArray = await Promise.all(pokeDataPromises);
+      pokeDataArray.forEach((pokeData) => {
+        pokeDict[pokeData.pokeId] = pokeData;
       });
       return pokeDict;
     }

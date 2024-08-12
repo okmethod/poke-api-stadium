@@ -7,8 +7,9 @@
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
-  import { fetchTypeData } from "$lib/constants/fetchStaticData";
+  import { fetchPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, pickRandomElementsFromArray } from "$lib/utils/numerics";
+  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {
     pokeId: number;
@@ -26,20 +27,19 @@
   const pokeCountByPlayer = 3;
   async function pickPokeItems(): Promise<void> {
     resetState();
-    const staticPokeData = await import("$lib/constants/staticPokeData");
-    const keys = staticPokeData.keys();
+    const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pickedKeys = pickRandomElementsFromArray(keys, pokeCountByPlayer * 2);
     const pickedPokeItems = await Promise.all(
-      pickedKeys.map(async (key) => await _convertToPokeItem(key, await staticPokeData.fetch(key))),
+      pickedKeys.map(async (key) => await _convertToPokeItem(key, await fetchPokeData(key.toString()))),
     );
     ownPokeItems = pickedPokeItems.slice(0, pokeCountByPlayer);
     opoPokeItems = pickedPokeItems.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
     phase = "select_poke";
 
-    async function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): Promise<PokeItem> {
+    async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
       const type1 = await fetchTypeData(staticPokeData.type1Name as TypeName);
       return {
-        pokeId: Number(pokeId),
+        pokeId,
         jaName: staticPokeData.jaName,
         imageUrl: staticPokeData.imageUrl ?? "not_found",
         type: staticPokeData.type2Name ? [type1, await fetchTypeData(staticPokeData.type2Name as TypeName)] : [type1],

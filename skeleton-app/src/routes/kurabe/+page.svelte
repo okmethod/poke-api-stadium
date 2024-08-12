@@ -5,7 +5,9 @@
   import type { TypeName } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
+  import { fetchPokeData } from "$lib/constants/fetchStaticData";
   import { pickRandomElementsFromArray, formatHeightWeight, formatStat } from "$lib/utils/numerics";
+  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {
     id: number; // dndzone で使用するため id という命名にしている
@@ -75,14 +77,15 @@
   let pokeCount = 3;
   async function pickPokeItems(): Promise<void> {
     resetState();
-    const staticPokeData = await import("$lib/constants/staticPokeData");
-    const keys = staticPokeData.keys();
+    const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pickedKeys = pickRandomElementsFromArray(keys, pokeCount);
-    pickedPokeItems = pickedKeys.map((key) => _convertToPokeItem(key, staticPokeData.fetch(key)));
+    pickedPokeItems = await Promise.all(
+      pickedKeys.map(async (key) => _convertToPokeItem(key, await fetchPokeData(key.toString()))),
+    );
 
-    function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): PokeItem {
+    function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): PokeItem {
       return {
-        id: Number(pokeId),
+        id: pokeId,
         jaName: staticPokeData.jaName,
         imageUrl: staticPokeData.imageUrl ?? "not_found",
         type1Name: staticPokeData.type1Name as TypeName,
