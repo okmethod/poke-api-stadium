@@ -31,7 +31,7 @@ const contents: Content[] = [
   },
   {
     title: "ポケモンタイプじゃんけん",
-    ballName: "great-ball",
+    ballName: "ultra-ball",
     action: "navigate",
     route: "/janken",
   },
