@@ -50,7 +50,9 @@
       tailChar: string,
     ): Record<string, PokeItem> {
       const possiblePokeIds = groupByHeadCharDict[tailChar] ?? [];
-      return Object.fromEntries(possiblePokeIds.map((pokeId) => [pokeId, pokeDict[pokeId]]));
+      return Object.fromEntries(
+        possiblePokeIds.filter((pokeId) => pokeId in pokeDict).map((pokeId) => [pokeId, pokeDict[pokeId]]),
+      );
     }
   }
 
