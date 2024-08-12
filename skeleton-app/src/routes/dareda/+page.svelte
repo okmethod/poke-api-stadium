@@ -6,9 +6,9 @@
   import type { TypeName, TypeData } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { fetchTypeData } from "$lib/constants/fetchStaticData";
+  import { fetchAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
-  import { FIRST_ADDITIONAL_POKE_ID } from "$lib/constants/common";
+  import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
 
   interface PokeItem {
     pokeId: number;
@@ -26,26 +26,28 @@
   let pickedPokeItem: PokeItem | null = null;
   async function pickPokeId(): Promise<void> {
     resetState();
-    const staticPokeData = await import("$lib/constants/staticPokeData");
-    const staticAddPokeData = await import("$lib/constants/staticAddPokeData");
-    const keys = [...staticPokeData.keys(), ...staticAddPokeData.keys()];
+    const keys = [
+      ...Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i),
+      ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
+    ];
 
+    const staticPokeData = await import("$lib/constants/staticPokeData");
     let pickedPokeId;
     let pickedPokeData;
     do {
       pickedPokeId = keys[getRandomNumber(keys.length)];
       if (Number(pickedPokeId) < FIRST_ADDITIONAL_POKE_ID) {
-        pickedPokeData = staticPokeData.fetch(pickedPokeId);
+        pickedPokeData = staticPokeData.fetch(pickedPokeId.toString());
       } else {
-        pickedPokeData = staticAddPokeData.fetch(pickedPokeId);
+        pickedPokeData = await fetchAddPokeData(pickedPokeId.toString());
       }
-      // gifUrlがnullの場合は再抽選
-    } while (pickedPokeData.gifUrl === null);
+      // キー無し または gifUrl無し の場合は再抽選
+    } while (!pickedPokeData || pickedPokeData.gifUrl === null);
     pickedPokeItem = await _convertToPokeItem(pickedPokeId, pickedPokeData);
 
-    async function _convertToPokeItem(pokeId: string, staticPokeData: StaticPokeData): Promise<PokeItem> {
+    async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
       return {
-        pokeId: Number(pokeId),
+        pokeId: pokeId,
         jaName: staticPokeData.jaName,
         gifUrl: staticPokeData.gifUrl ?? "",
         jaGenus: staticPokeData.jaGenus,
