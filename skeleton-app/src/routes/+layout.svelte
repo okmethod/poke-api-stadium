@@ -23,23 +23,6 @@
   import { storePopup } from "@skeletonlabs/skeleton";
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-  // Dynamic Adjustment by ViewportHeight
-  import { onMount } from "svelte";
-  let containerStyle = "";
-  onMount(() => {
-    const setViewportHeight = () => {
-      const viewportHeight = window.innerHeight;
-      containerStyle = `height: ${viewportHeight}px;`;
-    };
-
-    setViewportHeight();
-    window.addEventListener("resize", setViewportHeight);
-
-    return () => {
-      window.removeEventListener("resize", setViewportHeight);
-    };
-  });
-
   import { navigateTo } from "$lib/utils/navigation.client";
 </script>
 
@@ -61,7 +44,7 @@
     </AppBar>
   </div>
 
-  <div class="container mx-auto overflow-y-auto pb-16" style={containerStyle}>
+  <div class="container mx-auto overflow-y-auto pb-16">
     <slot />
   </div>
 </div>
