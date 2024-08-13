@@ -39,9 +39,7 @@ export default defineConfig({
           fs.mkdirSync(dirPath, { recursive: true });
         }
         const filePath = path.resolve(dirPath, "404.html");
-        if (!fs.existsSync(filePath)) {
-          fs.writeFileSync(filePath, content404);
-        }
+        fs.writeFileSync(filePath, content404);
         console.log("404.html generated");
       },
     },
