@@ -1,8 +1,10 @@
 export interface Sprites {
   front_default: string;
+  back_default: string | null;
   other: {
     showdown: {
       front_default: string | null;
+      back_default: string | null;
     };
   };
   // 他にもたくさんあるが、collectStringsRecursively を使えば定義しなくても取得できる
