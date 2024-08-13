@@ -21,9 +21,16 @@
     footerColor = type2Name ? (await fetchTypeData(type2Name)).themeColor : headerColor;
   }
 
+  let isImageLoaded: boolean = false;
   let viewName = "???";
   $: if (pokeId) {
-    void updateColors();
+    isImageLoaded = false;
+    currentImageBoolean = true;
+    if (imageBackUrl) {
+      // 背面画像も事前に読み込んでおく
+      const img = new Image();
+      img.src = imageBackUrl;
+    }
     if (name !== null) {
       if (pokeId < FIRST_ADDITIONAL_POKE_ID) {
         viewName = name;
@@ -31,14 +38,14 @@
         viewName = `とくべつな ${name}`;
       }
     }
+    void updateColors();
   }
 
-  let isImageLoaded = false;
   let imageElement: HTMLImageElement;
   let cPadding = "";
   function handleImageLoad() {
-    isImageLoaded = true;
     if (cPadding === "") cPadding = _adjustImagePadding(imageElement.naturalWidth, imageElement.naturalHeight);
+    isImageLoaded = true;
 
     function _adjustImagePadding(imageWidth: number, imageHeight: number): string {
       const aspectRatio = imageWidth / imageHeight;
@@ -56,16 +63,8 @@
       return "p-0";
     }
   }
-  $: if (imageUrl) {
-    isImageLoaded = false;
-    if (imageBackUrl) {
-      // 背面画像も事前に読み込んでおく
-      const img = new Image();
-      img.src = imageBackUrl;
-    }
-  }
 
-  let currentImageBoolean = true;
+  let currentImageBoolean = true; // true: 表面画像, false: 背面画像
   function toggleImage(): void {
     currentImageBoolean = !currentImageBoolean;
   }

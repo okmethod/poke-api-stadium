@@ -26,7 +26,6 @@
   // ポケモン抽選
   let pickedPokeItem: PokeItem | null = null;
   async function pickPokeId(): Promise<void> {
-    resetState();
     const keys = [
       ...Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i),
       ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
@@ -44,6 +43,7 @@
       // キー無し または gifUrl無し の場合は再抽選
     } while (!pickedPokeData || pickedPokeData.gifUrl === null);
     pickedPokeItem = await _convertToPokeItem(pickedPokeId, pickedPokeData);
+    resetState();
 
     async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
       return {
