@@ -9,6 +9,7 @@
   export let type1Name: TypeName | null = null;
   export let type2Name: TypeName | null = null;
   export let imageUrl: string | null = null;
+  export let imageBackUrl: string | null = null;
   export let isOpen: boolean = false;
 
   let unknownColor = "";
@@ -37,7 +38,7 @@
   let cPadding = "";
   function handleImageLoad() {
     isImageLoaded = true;
-    cPadding = _adjustImagePadding(imageElement.naturalWidth, imageElement.naturalHeight);
+    if (cPadding === "") cPadding = _adjustImagePadding(imageElement.naturalWidth, imageElement.naturalHeight);
 
     function _adjustImagePadding(imageWidth: number, imageHeight: number): string {
       const aspectRatio = imageWidth / imageHeight;
@@ -57,6 +58,16 @@
   }
   $: if (imageUrl) {
     isImageLoaded = false;
+    if (imageBackUrl) {
+      // 背面画像も事前に読み込んでおく
+      const img = new Image();
+      img.src = imageBackUrl;
+    }
+  }
+
+  let currentImageBoolean = true;
+  function toggleImage(): void {
+    currentImageBoolean = !currentImageBoolean;
   }
 </script>
 
@@ -79,16 +90,23 @@
     <div class="flex justify-center">
       <div class="flex items-center h-[200px] w-[200px] justify-center bg-white rounded-2xl border border-gray-200">
         {#if imageUrl !== null}
-          <img
-            src={imageUrl}
-            alt={viewName}
-            class="w-full h-full object-contain {cPadding}"
-            style={isOpen ? "" : "filter: brightness(0);"}
-            class:image={!isImageLoaded}
-            class:loaded={isImageLoaded}
-            bind:this={imageElement}
-            on:load={handleImageLoad}
-          />
+          <button
+            type="button"
+            on:click={toggleImage}
+            class="w-full h-full {cPadding}"
+            style="-webkit-tap-highlight-color: transparent;"
+          >
+            <img
+              src={currentImageBoolean ? imageUrl : imageBackUrl}
+              alt={viewName}
+              class="w-full h-full object-contain"
+              style={isOpen ? "" : "filter: brightness(0);"}
+              class:image={!isImageLoaded}
+              class:loaded={isImageLoaded}
+              bind:this={imageElement}
+              on:load={handleImageLoad}
+            />
+          </button>
           {#if !isImageLoaded}
             <div class="absolute inset-0 flex items-center justify-center h-full">
               <Icon icon="mdi:progress-download" class="w-full h-full text-white bg-gray-100 object-cover" />

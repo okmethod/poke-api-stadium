@@ -14,6 +14,7 @@
     pokeId: number;
     jaName: string;
     gifUrl: string;
+    backGifUrl: string;
     jaGenus: string | null;
     type1: TypeData;
     type2: TypeData | null;
@@ -49,6 +50,7 @@
         pokeId,
         jaName: staticPokeData.jaName,
         gifUrl: staticPokeData.gifUrl ?? "",
+        backGifUrl: staticPokeData.gifBackUrl ?? "",
         jaGenus: staticPokeData.jaGenus,
         type1: await fetchTypeData(staticPokeData.type1Name as TypeName),
         type2: staticPokeData.type2Name ? await fetchTypeData(staticPokeData.type2Name as TypeName) : null,
@@ -168,6 +170,7 @@
           type1Name={pickedPokeItem?.type1.enName ?? null}
           type2Name={pickedPokeItem?.type2?.enName ?? null}
           imageUrl={pickedPokeItem?.gifUrl ?? null}
+          imageBackUrl={pickedPokeItem?.backGifUrl ?? null}
           {isOpen}
         />
       </div>
