@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import fs from "fs";
 import path from "path";
 
-const githubRepo = "poke-api-stadium";
+const githubRepoName = "poke-api-stadium";
 
 const content404 = ((base: string) => `
 <!DOCTYPE html>
@@ -25,9 +25,11 @@ const content404 = ((base: string) => `
   <p>Redirecting...</p>
 </body>
 </html>
-`)(githubRepo);
+`)(githubRepoName);
 
 export default defineConfig({
+  // Github Pagesで公開する場合は、base にリポジトリ名を指定
+  base: `/${githubRepoName}/`,
   plugins: [
     sveltekit(),
     purgeCss(),
@@ -43,7 +45,22 @@ export default defineConfig({
         console.log("404.html generated");
       },
     },
+    {
+      name: "log-version",
+      closeBundle() {
+        const versionFilePath = path.resolve(__dirname, "build/app/version.json");
+        if (fs.existsSync(versionFilePath)) {
+          const versionContent = fs.readFileSync(versionFilePath, "utf-8");
+          console.log("version.json:", versionContent);
+        } else {
+          console.log("version.json not found");
+        }
+      },
+    },
   ],
-  // Github Pagesで公開する場合は、base にリポジトリ名を指定
-  base: `/${githubRepo}/`,
+  build: {
+    rollupOptions: {
+      external: ["matter-js"],
+    },
+  },
 });

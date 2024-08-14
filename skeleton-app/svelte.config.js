@@ -1,7 +1,7 @@
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const githubRepo = "poke-api-stadium";
+const githubRepoName = "poke-api-stadium";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -27,7 +27,7 @@ const config = {
     }),
     paths: {
       // Github Pagesで公開する場合は、base にリポジトリ名を指定
-      base: `/${githubRepo}`,
+      base: `/${githubRepoName}`,
     },
   },
 };
