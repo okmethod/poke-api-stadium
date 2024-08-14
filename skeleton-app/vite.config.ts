@@ -58,9 +58,4 @@ export default defineConfig({
       },
     },
   ],
-  build: {
-    rollupOptions: {
-      external: ["matter-js"],
-    },
-  },
 });
