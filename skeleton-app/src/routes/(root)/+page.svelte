@@ -15,10 +15,12 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !ml-4">
     {#each data.propsArray as props}
-      <button on:click|preventDefault={props.onClick} class="cLinkButtonStyle md:!text-2xl">
-        <img src={props.imageUrl} alt={props.alt} class="w-6 h-6 mr-2" />
-        {props.title}
-      </button>
+      <div class="">
+        <button on:click|preventDefault={props.onClick} class="flex items-center">
+          <img src={props.imageUrl} alt={props.alt} class="w-6 h-6 mr-2" />
+          <span class="cLinkButtonStyle md:!text-2xl">{props.title}</span>
+        </button>
+      </div>
     {/each}
   </div>
 </div>

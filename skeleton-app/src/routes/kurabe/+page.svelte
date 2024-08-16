@@ -146,7 +146,7 @@
   const dropTargetStyle = { outline: "0px" };
 
   // スタイル
-  const cPokeFieldStyle = "min-h-[250px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeFieldStyle = "min-h-[250px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
 

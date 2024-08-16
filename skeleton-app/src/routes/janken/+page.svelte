@@ -211,7 +211,7 @@
   }
 
   // スタイル
-  const cPokeFieldStyle = "min-h-[220px] min-w-[300px] border bg-white rounded-xl";
+  const cPokeFieldStyle = "min-h-[220px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
   const cTypeChipStyle = "px-2 py-1 rounded h-full";
 </script>
