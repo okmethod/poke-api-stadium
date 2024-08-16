@@ -13,7 +13,7 @@
   </div>
 
   <!-- コンテンツ部 -->
-  <div class="cContentPartStyle !ml-4">
+  <div class="cContentPartStyle !m-4">
     {#each data.propsArray as props}
       <div class="">
         <button on:click|preventDefault={props.onClick} class="flex items-center">

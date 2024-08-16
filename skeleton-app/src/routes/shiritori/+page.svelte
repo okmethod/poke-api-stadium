@@ -162,7 +162,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[750px]">
     <!-- 入力フォーム -->
-    <div class="ml-4 space-y-2">
+    <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">
           {#if pickedPokeItems.length === 0}
@@ -209,7 +209,7 @@
     </div>
 
     <!-- いれかえボタン -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を いれかえる</span>
         <form on:submit|preventDefault={pickPokeItems}>
@@ -251,7 +251,7 @@
     </div>
 
     <!-- メッセージ -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle mb-2">
         <span class="text-lg">{message}</span>
       </div>

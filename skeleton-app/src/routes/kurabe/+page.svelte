@@ -159,7 +159,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
-    <div class="ml-4 space-y-2">
+    <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
         <select bind:value={modeId} id="modeId" class="border rounded px-10 py-1">
           {#each Object.entries(modes) as [key, value]}
@@ -214,7 +214,7 @@
     </div>
 
     <!-- メッセージ -->
-    <div class="ml-4 mt-2">
+    <div class="m-4 mt-2">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">こたえあわせ</span>
         <button type="button" class="cIconButtonStyle" on:click={compareValues}>

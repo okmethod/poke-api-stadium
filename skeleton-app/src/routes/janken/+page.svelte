@@ -225,7 +225,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[600px]">
     <!-- 入力フォーム -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
@@ -337,7 +337,7 @@
     </div>
 
     <!-- メッセージ -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">{guideMessage}</span>
         {#if phase == "select_poke" && selectedOwnPokeIndex !== -1}

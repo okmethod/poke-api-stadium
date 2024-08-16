@@ -140,7 +140,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeId}>
@@ -162,7 +162,7 @@
     </div>
 
     <!-- ポケモン情報 -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <PokeSilhouette
           pokeId={pickedPokeItem?.pokeId ?? null}
@@ -177,7 +177,7 @@
     </div>
 
     <!-- メッセージ -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">こたえをみる</span>
         <button type="button" class="cIconButtonStyle" on:click={toggleSilhouette}>

@@ -66,7 +66,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[600px]">
     <!-- 全ポケモン (通常フォルム) -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="flex flex-col md:flex-row space-x-3">
         <span class="text-lg">全ポケモン(通常フォルム) Json DL</span>
         <div class="cInputFormAndMessagePartStyle">
@@ -91,7 +91,7 @@
     </div>
 
     <!-- 全ポケモン (別フォルム) -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="flex flex-col md:flex-row space-x-3">
         <span class="text-lg">全ポケモン(別フォルム) Json DL</span>
         <div class="cInputFormAndMessagePartStyle">
@@ -120,7 +120,7 @@
     </div>
 
     <!-- 全タイプ -->
-    <div class="ml-4">
+    <div class="m-4">
       <div class="flex flex-col md:flex-row space-x-3">
         <span class="text-lg">全タイプJson DL</span>
         <div class="cInputFormAndMessagePartStyle">

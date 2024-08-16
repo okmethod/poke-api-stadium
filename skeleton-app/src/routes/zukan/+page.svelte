@@ -31,7 +31,7 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
-    <div class="ml-4">
+    <div class="m-4">
       <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
         <label for="pokeId" class="text-lg">
           <span class="hidden sm:inline">全国図鑑</span>
