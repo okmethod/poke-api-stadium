@@ -32,9 +32,9 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
     const pokeItemPromises = keys.map(async (key) => {
       let pickedPokeData;
       if (key < FIRST_ADDITIONAL_POKE_ID) {
-        pickedPokeData = await fetchStaticPokeData(window.fetch, key.toString());
+        pickedPokeData = await fetchStaticPokeData(fetch, key.toString());
       } else {
-        pickedPokeData = await fetchStaticAddPokeData(window.fetch, key.toString());
+        pickedPokeData = await fetchStaticAddPokeData(fetch, key.toString());
       }
       return pickedPokeData && pickedPokeData.gifUrl !== null && pickedPokeData.gifBackUrl !== null
         ? _convertToPokeItem(key, pickedPokeData)

@@ -24,7 +24,7 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
   async function _getPokeItems(): Promise<PokeItem[]> {
     const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pokeItemPromises = keys.map(async (key) => {
-      const pickedPokeData = await fetchStaticPokeData(window.fetch, key.toString());
+      const pickedPokeData = await fetchStaticPokeData(fetch, key.toString());
       return pickedPokeData && pickedPokeData.imageUrl !== null ? _convertToPokeItem(key, pickedPokeData) : null;
     });
     const pokeItems = await Promise.all(pokeItemPromises);

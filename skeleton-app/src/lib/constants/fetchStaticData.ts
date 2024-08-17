@@ -1,7 +1,7 @@
 import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName, TypeData, TypeColors } from "$lib/types/type";
 import type { StaticItemData } from "$lib/types/item";
-import { loadCompressedFile } from "$lib/utils/download.client";
+import { loadCompressedFile } from "$lib/utils/fileload";
 
 let staticPokeDict: { [key: string]: StaticPokeData } | null = null;
 export async function fetchStaticPokeData(fetchFunction: typeof window.fetch, key: string): Promise<StaticPokeData> {
