@@ -2,13 +2,20 @@ import { base } from "$app/paths";
 import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName, TypeData, TypeColors } from "$lib/types/type";
 import type { StaticItemData } from "$lib/types/item";
+import { decompressBlob } from "$lib/utils/download.client";
 
-async function loadJson(filePath: string): Promise<{ [key: string]: StaticPokeData }> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function loadJson(filePath: string): Promise<{ [key: string]: any }> {
   console.log("loading: ", filePath);
   try {
     const response = await fetch(filePath);
     const blob = await response.blob();
-    const jsonData = await blob.text();
+    let jsonData: string;
+    if (import.meta.env.MODE === "development") {
+      jsonData = await blob.text();
+    } else {
+      jsonData = await decompressBlob(blob);
+    }
     return JSON.parse(jsonData);
   } catch (error) {
     console.error(`failed to load ${filePath}:`, error);
