@@ -1,12 +1,11 @@
 import type { Point } from "$lib/types/matter";
 
-export async function getVertices(imageUrl: string, scale: number): Promise<Point[]> {
+export async function getVertices(imageUrl: string): Promise<Point[]> {
   const imageElement = await loadImage(imageUrl);
   const imageArray = getImageArrayFromElement(imageElement);
   const vertices = getVerticesFromImageArray(imageArray, imageElement.width, imageElement.height);
   const verticesClockwise = sortVerticesClockwise(vertices);
-  const verticesScaled = scaleVertices(verticesClockwise, scale);
-  return verticesScaled;
+  return verticesClockwise;
 }
 
 async function loadImage(url: string): Promise<HTMLImageElement> {
@@ -84,7 +83,7 @@ function sortVerticesClockwise(vertices: Point[]): Point[] {
   return verticesWithAngles.map((vertex) => ({ x: vertex.x, y: vertex.y }));
 }
 
-function scaleVertices(vertices: Point[], scale: number): Matter.Vector[] {
+export function scaleVertices(vertices: Point[], scale: number): Point[] {
   const centerX = vertices.reduce((sum, v) => sum + v.x, 0) / vertices.length;
   const centerY = vertices.reduce((sum, v) => sum + v.y, 0) / vertices.length;
 

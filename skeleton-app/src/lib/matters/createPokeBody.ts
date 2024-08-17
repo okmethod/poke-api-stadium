@@ -1,25 +1,26 @@
 declare const Matter: typeof import("matter-js");
 import type { Point } from "$lib/types/matter";
-import { getVertices } from "$lib/matters/getVertices";
+import { getVertices, scaleVertices } from "$lib/matters/getVertices";
 
 export async function createPokeBody(
   imageUrl: string,
   normalizeSize: number | false,
   spawnPoint: Point,
 ): Promise<Matter.Body> {
-  const vertices = await getVertices(imageUrl, 0.9); // 当たり判定を画像よりも少し小さくする
+  const vertices = await getVertices(imageUrl);
 
   let normalizeRatio = 1;
+  let scaledVertices = vertices;
   if (normalizeSize) {
-    // 頂点のバウンディングボックスを計算
     const bounds = Matter.Bounds.create(vertices);
     const width = bounds.max.x - bounds.min.x;
     const height = bounds.max.y - bounds.min.y;
 
-    // 目標サイズを設定（例: 100x100）
     normalizeRatio = normalizeSize / Math.max(width, height);
+
+    const normalizeRatioForVertices = normalizeRatio * 0.9; // 当たり判定を画像よりも少し小さくする
+    scaledVertices = scaleVertices(vertices, normalizeRatioForVertices);
   }
-  const scaledVertices = Matter.Vertices.scale(vertices, normalizeRatio, normalizeRatio, { x: 0, y: 0 });
 
   // don't use poly-decomp
   return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [scaledVertices], {
