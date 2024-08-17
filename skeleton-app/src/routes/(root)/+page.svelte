@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { ContentButtonProps } from "./+page";
+  import type { ButtonConfig } from "./+page";
 
   export let data: {
-    propsArray: Array<ContentButtonProps>;
+    buttonConfigs: ButtonConfig[];
   };
 </script>
 
@@ -14,11 +14,11 @@
 
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle !m-4">
-    {#each data.propsArray as props}
+    {#each data.buttonConfigs as config}
       <div class="">
-        <button on:click|preventDefault={props.onClick} class="flex items-center">
-          <img src={props.imageUrl} alt={props.alt} class="w-6 h-6 mr-2" />
-          <span class="cLinkButtonStyle md:!text-2xl">{props.title}</span>
+        <button on:click|preventDefault={config.onClick} class="flex items-center">
+          <img src={config.imageUrl} alt={config.alt} class="w-6 h-6 mr-2" />
+          <span class="cLinkButtonStyle md:!text-2xl">{config.title}</span>
         </button>
       </div>
     {/each}

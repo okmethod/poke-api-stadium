@@ -9,13 +9,6 @@ interface Content {
   route: string;
 }
 
-export interface ContentButtonProps {
-  title: string;
-  imageUrl: string;
-  alt: string;
-  onClick: () => void;
-}
-
 const contents: Content[] = [
   {
     title: "ポケモンずかん",
@@ -55,9 +48,16 @@ const contents: Content[] = [
   },
 ];
 
-export async function load() {
+export interface ButtonConfig {
+  title: string;
+  imageUrl: string;
+  alt: string;
+  onClick: () => void;
+}
+
+export async function load(): Promise<{ buttonConfigs: ButtonConfig[] }> {
   const ballImages = await Promise.all(contents.map((content) => fetchBall(content.ballName)));
-  const propsArray: ContentButtonProps[] = contents.map((content, index) => ({
+  const buttonConfigs: ButtonConfig[] = contents.map((content, index) => ({
     title: content.title,
     imageUrl: ballImages[index]?.imageUrl ?? "not_found",
     alt: content.ballName,
@@ -72,5 +72,5 @@ export async function load() {
     return actions[action] || (() => {});
   }
 
-  return { propsArray };
+  return { buttonConfigs };
 }
