@@ -122,7 +122,7 @@
   const cTextStyle = "text-s text-gray-600";
 </script>
 
-<div class="flex flex-col bg-gray-50 rounded-2xl shadow border min-w-[300px] max-w-[600px] overflow-hidden select-none">
+<div class="flex flex-col bg-gray-50 rounded-2xl shadow border w-[400px] md:w-[600px] overflow-hidden select-none">
   <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部 -->

@@ -31,11 +31,10 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
-    <div class="m-4">
+    <div class="flex items-center justify-center">
       <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
         <label for="pokeId" class="text-lg">
-          <span class="hidden sm:inline">全国図鑑</span>
-          No:
+          <span>No:</span>
         </label>
         <div class="cInputFormAndMessagePartStyle">
           <input
@@ -61,7 +60,7 @@
     </div>
 
     <!-- ポケモン情報 -->
-    <div>
+    <div class="">
       <PokeCard {pokeData} />
     </div>
   </div>
