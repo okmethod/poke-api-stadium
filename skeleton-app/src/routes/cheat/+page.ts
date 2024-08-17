@@ -30,7 +30,7 @@ export async function load(): Promise<{ downloadConfigs: DownloadConfig[] }> {
     },
     {
       id: "dlAddPokeJson",
-      fileName: "staticAdditionalPokeDict.json",
+      fileName: "staticAddPokeDict.json",
       label: "全ポケモン(別ver) Json",
       makeFunction: makeStaticPokeDict,
       keys: _pokeIds(FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT),

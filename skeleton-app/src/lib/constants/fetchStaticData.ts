@@ -2,14 +2,24 @@ import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName, TypeData, TypeColors } from "$lib/types/type";
 import type { StaticItemData } from "$lib/types/item";
 
+let staticPokeDict: { [key: string]: StaticPokeData } | null = null;
 export async function fetchPokeData(key: string): Promise<StaticPokeData> {
-  const { STATIC_POKE_DICT } = await import("$lib/constants/staticPokeData");
-  return STATIC_POKE_DICT[key];
+  if (staticPokeDict === null) {
+    const staticPokeDictModule = await import("$lib/constants/staticPokeDict.json");
+    staticPokeDict = staticPokeDictModule.default as { [key: string]: StaticPokeData };
+    console.log("staticPokeDict.json loaded");
+  }
+  return staticPokeDict[key];
 }
 
+let staticAddPokeDict: { [key: string]: StaticPokeData } | null = null;
 export async function fetchAddPokeData(key: string): Promise<StaticPokeData> {
-  const { STATIC_ADDITIONAL_POKE_DICT } = await import("$lib/constants/staticAddPokeData");
-  return STATIC_ADDITIONAL_POKE_DICT[key];
+  if (staticAddPokeDict === null) {
+    const staticPokeDictModule = await import("$lib/constants/staticAddPokeDict.json");
+    staticAddPokeDict = staticPokeDictModule.default as { [key: string]: StaticPokeData };
+    console.log("staticAPokeDict loaded");
+  }
+  return staticAddPokeDict[key];
 }
 
 export async function fetchTypeData(key: TypeName): Promise<TypeData & TypeColors> {

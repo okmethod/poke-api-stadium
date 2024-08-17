@@ -80,6 +80,7 @@
     resetState();
     const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pickedKeys = pickRandomElementsFromArray(keys, pokeCount);
+    await fetchPokeData("load to cache"); //並列実行の前にキャッシュに読み込む
     pickedPokeItems = await Promise.all(
       pickedKeys.map(async (key) => _convertToPokeItem(key, await fetchPokeData(key.toString()))),
     );
