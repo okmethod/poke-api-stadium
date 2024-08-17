@@ -1,4 +1,3 @@
-import { base } from "$app/paths";
 import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName, TypeData, TypeColors } from "$lib/types/type";
 import type { StaticItemData } from "$lib/types/item";
@@ -6,18 +5,18 @@ import { loadCompressedFile } from "$lib/utils/download.client";
 
 let staticPokeDict: { [key: string]: StaticPokeData } | null = null;
 export async function fetchStaticPokeData(fetchFunction: typeof window.fetch, key: string): Promise<StaticPokeData> {
-  const gzFilePath = `${base}/staticPokeDict.json.gz`;
+  const gzFileName = "staticPokeDict.json.gz";
   if (staticPokeDict === null) {
-    staticPokeDict = (await loadCompressedFile(fetchFunction, gzFilePath)) as { [key: string]: StaticPokeData };
+    staticPokeDict = (await loadCompressedFile(fetchFunction, gzFileName)) as { [key: string]: StaticPokeData };
   }
   return staticPokeDict[key];
 }
 
 let staticAddPokeDict: { [key: string]: StaticPokeData } | null = null;
 export async function fetchStaticAddPokeData(fetchFunction: typeof window.fetch, key: string): Promise<StaticPokeData> {
-  const gzFilePath = `${base}/staticAddPokeDict.json.gz`;
+  const gzFileName = "staticAddPokeDict.json.gz";
   if (staticAddPokeDict === null) {
-    staticAddPokeDict = (await loadCompressedFile(fetchFunction, gzFilePath)) as { [key: string]: StaticPokeData };
+    staticAddPokeDict = (await loadCompressedFile(fetchFunction, gzFileName)) as { [key: string]: StaticPokeData };
   }
   return staticAddPokeDict[key];
 }

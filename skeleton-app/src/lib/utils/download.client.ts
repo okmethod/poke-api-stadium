@@ -1,3 +1,7 @@
+import { base } from "$app/paths";
+
+const isDevelopment = (import.meta.env.MODE as string) === "development";
+
 function clickDownloadLink(blob: Blob, fileName: string): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -47,13 +51,12 @@ export async function downloadJsonFile(jsonData: string, fileName: string, useCo
   }
 }
 
-const isDevelopment = (import.meta.env.MODE as string) === "development";
-
 export async function loadCompressedFile(
   fetchFunction: typeof window.fetch,
-  filePath: string,
+  fileName: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<{ [key: string]: any }> {
+  const filePath = `${base}/${fileName}`;
   console.log("loading: ", filePath);
   try {
     const response = await fetchFunction(filePath);
