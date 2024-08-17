@@ -23,8 +23,14 @@ const contents: Content[] = [
     route: "/kurabe",
   },
   {
-    title: "ポケモンタイプじゃんけん",
+    title: "ポケモンたかさくらべ改",
     ballName: "ultra-ball",
+    action: "navigate",
+    route: "/kurabe-h",
+  },
+  {
+    title: "ポケモンタイプじゃんけん",
+    ballName: "fast-ball",
     action: "navigate",
     route: "/janken",
   },
