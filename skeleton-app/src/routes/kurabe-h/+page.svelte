@@ -19,6 +19,8 @@
   };
 
   let renderContainer: HTMLDivElement;
+  let centerX: number;
+  let centerY: number;
   let engine: Matter.Engine; // eslint-disable-line no-undef
   let runner: Matter.Runner; // eslint-disable-line no-undef
   let render: Matter.Render; // eslint-disable-line no-undef
@@ -29,6 +31,9 @@
     engine = initEngine();
     runner = initRunner();
     render = initRender(engine, renderContainer);
+    centerX = renderContainer.clientWidth * 0.5;
+    centerY = renderContainer.clientHeight * 0.5;
+
     mouseConstraint = initMouse(engine, render);
     const walls = await initWalls(renderContainer);
     if (browser) {
@@ -59,21 +64,32 @@
   });
 
   // ゲームデータ管理
+  let isReady = false;
   let isOpen = false;
   let pokeCount = 3;
   let pickedPokeItems: PokeItem[] = [];
   let pickedPokeBodies: Matter.Body[] = []; // eslint-disable-line no-undef
   async function pickPokeItems(): Promise<void> {
     resetState();
+    guideMessage = "じゅんびちゅう...";
+
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
-      createPokeBody(pokeItem.imageUrl, 100, { x: 50 + index * 100, y: 20 }),
+      createPokeBody(pokeItem.imageUrl, 100, {
+        x: centerX + centerX * 0.6 * (index - 1),
+        y: centerY * 1.5,
+      }),
     );
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body) => {
+      Matter.Body.setStatic(body, true); // 静止状態
       Matter.World.add(engine.world, [body]);
       pickedPokeBodies.push(body); // 追加した Body を追跡
     });
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    guideMessage = "じゅんび かんりょう！";
+    isReady = true;
   }
 
   // 比較実行とメッセージ更新
@@ -81,6 +97,10 @@
   function compareHeight(): void {
     if (pickedPokeItems.length == 0) {
       guideMessage = "さきに ポケモンを よびだしてね";
+      return;
+    }
+    if (isReady === false) {
+      guideMessage = "じゅんびちゅう...";
       return;
     }
     if (isOpen === false) {
@@ -91,6 +111,10 @@
           body.render.sprite.xScale = body.render.sprite.xScale * scaleRatio;
           body.render.sprite.yScale = body.render.sprite.yScale * scaleRatio;
         }
+        Matter.Body.setStatic(body, false); // 動かす
+        Matter.Body.applyForce(body, { x: 0, y: 0 }, { x: 0, y: -0.02 });
+        Matter.Body.setVelocity(body, { x: 0, y: 0 });
+        Matter.Body.setAngularVelocity(body, 0);
       });
     }
     isOpen = true;
@@ -99,6 +123,7 @@
   // 状態リセット
   function resetState(): void {
     guideMessage = "";
+    isReady = false;
     isOpen = false;
     pickedPokeBodies.forEach((body) => Matter.World.remove(engine.world, body));
     pickedPokeBodies = [];

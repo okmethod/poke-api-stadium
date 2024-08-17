@@ -79,6 +79,8 @@
   let pickedPokeBodies: Matter.Body[] = []; // eslint-disable-line no-undef
   async function pickPokeItems(): Promise<void> {
     resetState();
+    guideMessage = "じゅんびちゅう...";
+
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
       createPokeBody(pokeItem.imageUrl, false, {
@@ -93,6 +95,8 @@
       Matter.World.add(engine.world, [body]);
       pickedPokeBodies.push(body); // 追加した Body を追跡
     });
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    guideMessage = "じゅんび かんりょう！";
     isReady = true;
   }
 
