@@ -12,13 +12,9 @@
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { getRandomNumber } from "$lib/utils/numerics";
 
-  const imageUrls = [
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-  ];
+  export let data: {
+    imageUrls: string[];
+  };
 
   let renderContainer: HTMLDivElement;
   let engine: Matter.Engine; // eslint-disable-line no-undef
@@ -63,9 +59,9 @@
   // ポケモン召喚
   let spawnPokeIndex;
   async function spawnPokeBody(): Promise<void> {
-    spawnPokeIndex = getRandomNumber(imageUrls.length);
+    spawnPokeIndex = getRandomNumber(data.imageUrls.length);
     const spawnPosX = getRandomNumber(100);
-    const body = await createPokeBody(imageUrls[spawnPokeIndex], 1, { x: 50 + spawnPosX * 2, y: 20 });
+    const body = await createPokeBody(data.imageUrls[spawnPokeIndex], 1, { x: 50 + spawnPosX * 2, y: 20 });
     Matter.World.add(engine.world, [body]);
   }
 </script>
