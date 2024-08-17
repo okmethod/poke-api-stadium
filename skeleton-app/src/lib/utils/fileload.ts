@@ -1,7 +1,5 @@
 import { browser } from "$app/environment";
 import { base } from "$app/paths";
-import path from "path";
-import fs from "fs/promises";
 
 const isDevelopment = (import.meta.env.MODE as string) === "development";
 
@@ -29,14 +27,13 @@ export async function loadCompressedFile(
         return JSON.parse(jsonData);
       } else {
         console.log("isDevelopment not browser");
-        const filePath = path.resolve("static", fileName);
-        const fileBuffer = await fs.readFile(filePath);
-        const blob = new Blob([fileBuffer]);
+        const { loadFileByNode } = await import("$lib/utils/fileload.server");
+        const blob = await loadFileByNode(fileName);
         const jsonData = await decompressBlob(blob);
         return JSON.parse(jsonData);
       }
     } else {
-      console.log("not isDevelopment");
+      console.log("isProduction");
       const filePath = `${base}/${fileName}`;
       const response = await fetchFunction(filePath);
       const blob = await response.blob();

@@ -33,7 +33,7 @@ export default defineConfig({
   publicDir: "static",
   build: {
     rollupOptions: {
-      external: ["matter-js"],
+      external: ["matter-js", "$lib/utils/fileload.server"],
     },
   },
   plugins: [
