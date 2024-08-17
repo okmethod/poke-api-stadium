@@ -2,55 +2,30 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import type { StaticPokeData } from "$lib/types/poke";
   import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
-  import { fetchStaticPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
-  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
+  import type { PokeItem } from "./+page";
 
-  interface PokeItem {
-    pokeId: number;
-    jaName: string;
-    imageUrl: string;
-    type: (TypeData & TypeColors)[]; // 1コ or 2コ
-    speed: number;
-  }
+  export let data: {
+    pokeItems: PokeItem[];
+  };
 
   type Result = "win" | "lose" | "draw";
 
   // ポケモン抽選
+  const pokeCountByPlayer = 3;
   let ownPokeItems: PokeItem[] = [];
   let opoPokeItems: PokeItem[] = [];
-  const pokeCountByPlayer = 3;
   async function pickPokeItems(): Promise<void> {
     resetState();
-    const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
-    const pickedKeys = pickRandomElementsFromArray(keys, pokeCountByPlayer * 2);
-    await fetchStaticPokeData(window.fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
-    const pickedPokeItems = await Promise.all(
-      pickedKeys.map(async (key) => {
-        const staticPokeData = await fetchStaticPokeData(window.fetch, key.toString());
-        return await _convertToPokeItem(key, staticPokeData);
-      }),
-    );
+    const pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCountByPlayer * 2);
     ownPokeItems = pickedPokeItems.slice(0, pokeCountByPlayer);
     opoPokeItems = pickedPokeItems.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
     phase = "select_poke";
-
-    async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
-      const type1 = await fetchTypeData(staticPokeData.type1Name as TypeName);
-      return {
-        pokeId,
-        jaName: staticPokeData.jaName,
-        imageUrl: staticPokeData.imageUrl ?? "not_found",
-        type: staticPokeData.type2Name ? [type1, await fetchTypeData(staticPokeData.type2Name as TypeName)] : [type1],
-        speed: staticPokeData.stats.speed,
-      };
-    }
   }
 
   // 勝負ポケモン決定 -> 相手ポケモン抽選
