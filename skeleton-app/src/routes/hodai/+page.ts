@@ -3,7 +3,8 @@ import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
 import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
 export async function load({ fetch }: LoadEvent): Promise<{ imageUrls: string[] }> {
-  await fetchStaticPokeData(fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
+  // 並列実行の前にキャッシュに読み込む
+  await fetchStaticPokeData(fetch, "load to cache");
   const imageUrls = await _getPokeImageUrlStrings();
 
   async function _getPokeImageUrlStrings(): Promise<string[]> {

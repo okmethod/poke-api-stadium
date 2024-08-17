@@ -14,7 +14,8 @@ export async function load({ fetch }: LoadEvent): Promise<{
   pokeDict: Record<number, PokeItem>;
   groupByHeadCharDict: Record<string, number[]>;
 }> {
-  await fetchStaticPokeData(fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
+  // 並列実行の前にキャッシュに読み込む
+  await fetchStaticPokeData(fetch, "load to cache");
   const pokeDict = await _initPokeDict();
   const groupByHeadCharDict = _groupByHeadChar(pokeDict);
 

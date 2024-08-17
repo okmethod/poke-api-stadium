@@ -19,17 +19,16 @@ export interface PokeItem {
 }
 
 export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[] }> {
-  const keys = [
-    ...Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i),
-    ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
-  ];
-
-  //並列実行の前にキャッシュに読み込む
+  // 並列実行の前にキャッシュに読み込む
   await fetchStaticPokeData(fetch, "load to cache");
   await fetchStaticAddPokeData(fetch, "load to cache");
   const pokeItems = await _getPokeItems();
 
   async function _getPokeItems(): Promise<PokeItem[]> {
+    const keys = [
+      ...Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i),
+      ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
+    ];
     const pokeItemPromises = keys.map(async (key) => {
       let pickedPokeData;
       if (key < FIRST_ADDITIONAL_POKE_ID) {
