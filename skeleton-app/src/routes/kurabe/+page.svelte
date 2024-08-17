@@ -1,25 +1,14 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
-  import type { StaticPokeData } from "$lib/types/poke";
-  import type { TypeName } from "$lib/types/type";
-  import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
-  import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
   import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
-  import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
+  import type { PokeItem } from "./+page";
 
-  interface PokeItem {
-    id: number; // dndzone で使用するため id という命名にしている
-    jaName: string;
-    imageUrl: string;
-    type1Name: TypeName;
-    type2Name: TypeName | null;
-    height: number;
-    weight: number;
-    stats: Stats;
-  }
+  export let data: {
+    pokeItems: PokeItem[];
+  };
 
   // 選択可能な比較対象
   interface Mode {
@@ -74,29 +63,11 @@
 
   // ゲームデータ管理
   let isOpen = false;
-  let pickedPokeItems: PokeItem[] = [];
   let pokeCount = 3;
+  let pickedPokeItems: PokeItem[] = [];
   async function pickPokeItems(): Promise<void> {
     resetState();
-    const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
-    const pickedKeys = pickRandomElementsFromArray(keys, pokeCount);
-    await fetchStaticPokeData(window.fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
-    pickedPokeItems = await Promise.all(
-      pickedKeys.map(async (key) => _convertToPokeItem(key, await fetchStaticPokeData(window.fetch, key.toString()))),
-    );
-
-    function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): PokeItem {
-      return {
-        id: pokeId,
-        jaName: staticPokeData.jaName,
-        imageUrl: staticPokeData.imageUrl ?? "not_found",
-        type1Name: staticPokeData.type1Name as TypeName,
-        type2Name: staticPokeData.type2Name ? (staticPokeData.type2Name as TypeName) : null,
-        height: staticPokeData.height,
-        weight: staticPokeData.weight,
-        stats: staticPokeData.stats,
-      };
-    }
+    pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
   }
 
   // 比較実行とメッセージ更新
