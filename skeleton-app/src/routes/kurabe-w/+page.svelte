@@ -41,7 +41,7 @@
     const walls = await initWalls(renderContainer);
 
     const SeesawWidth = renderContainer.clientHeight * 0.8;
-    ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.5 }));
+    ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.4 }));
 
     if (browser) {
       Matter.World.add(engine.world, walls);
@@ -72,24 +72,29 @@
   });
 
   // ゲームデータ管理
-  let isReady = false;
+  let isReady = true;
   let isOpen = false;
   let pokeCount = 2;
   let pickedPokeItems: PokeItem[] = [];
   let pickedPokeBodies: Matter.Body[] = []; // eslint-disable-line no-undef
   async function pickPokeItems(): Promise<void> {
-    resetState();
+    isReady = false;
     guideMessage = "じゅんびちゅう...";
+    resetState();
 
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
-    const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
-      createPokeBody(pokeItem.imageUrl, false, {
-        x: centerX + (index === 0 ? -centerX * 0.6 : centerX * 0.6),
-        y: centerY * 1.1,
-      }),
+    const bodyPromises = pickedPokeItems.map(
+      // 位置はbody作成後に再調整する
+      (pokeItem) => createPokeBody(pokeItem.imageUrl, false, { x: 0, y: 0 }),
     );
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body, index) => {
+      const bounds = body.bounds;
+      const bodyHeight = bounds.max.y - bounds.min.y;
+      Matter.Body.setPosition(body, {
+        x: centerX + (index === 0 ? -centerX * 0.6 : centerX * 0.6),
+        y: centerY * 0.8 - bodyHeight * 0.5,
+      });
       Matter.Body.setMass(body, pickedPokeItems[index].weight / 10);
       Matter.Body.setStatic(body, true); // 静止状態
       Matter.World.add(engine.world, [body]);
@@ -114,7 +119,7 @@
     if (isOpen === false) {
       pickedPokeBodies.forEach((body) => {
         Matter.Body.setStatic(body, false); // 動かす
-        Matter.Body.applyForce(body, { x: 0, y: 0 }, { x: 0, y: 0.01 });
+        Matter.Body.applyForce(body, body.position, { x: 0, y: body.mass * 0.01 });
         Matter.Body.setVelocity(body, { x: 0, y: 0 });
         Matter.Body.setAngularVelocity(body, 0);
       });
@@ -125,7 +130,6 @@
   // 状態リセット
   function resetState(): void {
     guideMessage = "";
-    isReady = false;
     isOpen = false;
     pickedPokeBodies.forEach((body) => Matter.World.remove(engine.world, body));
     pickedPokeBodies = [];
@@ -151,7 +155,7 @@
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
-          <button type="submit" class="cIconButtonStyle">
+          <button type="submit" disabled={!isReady} class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>

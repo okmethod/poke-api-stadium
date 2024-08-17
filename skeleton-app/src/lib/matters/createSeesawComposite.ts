@@ -14,7 +14,9 @@ export function createSeesawComposite(
   const seesaw = Composite.create();
   const seesawStick = Bodies.rectangle(pos.x, pos.y, width, height, {
     label: "seesawStick",
-    mass: 10,
+    restitution: 1.0,
+    friction: 0.8,
+    mass: 5,
     render: { fillStyle: "#888888" },
   });
   const seesawConstraint = Constraint.create({

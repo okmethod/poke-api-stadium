@@ -64,22 +64,24 @@
   });
 
   // ゲームデータ管理
-  let isReady = false;
+  let isReady = true;
   let isOpen = false;
   let pokeCount = 3;
   let pickedPokeItems: PokeItem[] = [];
   let pickedPokeBodies: Matter.Body[] = []; // eslint-disable-line no-undef
   async function pickPokeItems(): Promise<void> {
-    resetState();
+    isReady = false;
     guideMessage = "じゅんびちゅう...";
+    resetState();
 
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
-    const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
-      createPokeBody(pokeItem.imageUrl, 100, {
+    const bodyPromises = pickedPokeItems.map((pokeItem, index) => {
+      const normalizeSize = 100;
+      return createPokeBody(pokeItem.imageUrl, normalizeSize, {
         x: centerX + centerX * 0.6 * (index - 1),
         y: centerY * 1.5,
-      }),
-    );
+      });
+    });
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body) => {
       Matter.Body.setStatic(body, true); // 静止状態
@@ -112,7 +114,7 @@
           body.render.sprite.yScale = body.render.sprite.yScale * scaleRatio;
         }
         Matter.Body.setStatic(body, false); // 動かす
-        Matter.Body.applyForce(body, { x: 0, y: 0 }, { x: 0, y: -0.02 });
+        Matter.Body.applyForce(body, body.position, { x: 0, y: -body.mass * 0.02 });
         Matter.Body.setVelocity(body, { x: 0, y: 0 });
         Matter.Body.setAngularVelocity(body, 0);
       });
@@ -123,7 +125,6 @@
   // 状態リセット
   function resetState(): void {
     guideMessage = "";
-    isReady = false;
     isOpen = false;
     pickedPokeBodies.forEach((body) => Matter.World.remove(engine.world, body));
     pickedPokeBodies = [];
@@ -143,7 +144,7 @@
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
-          <button type="submit" class="cIconButtonStyle">
+          <button type="submit" disabled={!isReady} class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
             </div>
