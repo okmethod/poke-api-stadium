@@ -30,6 +30,7 @@ const content404 = ((base: string) => `
 export default defineConfig({
   // Github Pagesで公開する場合は、base にリポジトリ名を指定
   base: `/${githubRepoName}/`,
+  publicDir: "static",
   plugins: [
     sveltekit(),
     purgeCss(),

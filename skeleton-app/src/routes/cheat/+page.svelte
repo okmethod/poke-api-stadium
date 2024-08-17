@@ -55,7 +55,7 @@
               </button>
             </form>
             <form
-              on:submit|preventDefault={() => handleDownload(config.makeFunction, config.keys, config.fileName, false)}
+              on:submit|preventDefault={() => handleDownload(config.makeFunction, config.keys, config.fileName, true)}
             >
               <button
                 type="submit"
