@@ -2,63 +2,21 @@
   import { getToastStore } from "@skeletonlabs/skeleton";
   import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import type { StaticPokeData } from "$lib/types/poke";
-  import type { TypeName, TypeData } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { fetchStaticPokeData, fetchStaticAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
-  import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import type { PokeItem } from "./+page";
 
-  interface PokeItem {
-    pokeId: number;
-    jaName: string;
-    gifUrl: string;
-    backGifUrl: string;
-    jaGenus: string | null;
-    type1: TypeData;
-    type2: TypeData | null;
-    height: number;
-    weight: number;
-    stats: Stats;
-  }
+  export let data: {
+    pokeItems: PokeItem[];
+  };
 
   // ポケモン抽選
   let pickedPokeItem: PokeItem | null = null;
-  async function pickPokeId(): Promise<void> {
-    const keys = [
-      ...Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i),
-      ...Array.from({ length: ADDITIONAL_POKE_COUNT }, (_, i) => FIRST_ADDITIONAL_POKE_ID + i),
-    ];
-
-    let pickedPokeId;
-    let pickedPokeData;
-    do {
-      pickedPokeId = keys[getRandomNumber(keys.length)];
-      if (Number(pickedPokeId) < FIRST_ADDITIONAL_POKE_ID) {
-        pickedPokeData = await fetchStaticPokeData(window.fetch, pickedPokeId.toString());
-      } else {
-        pickedPokeData = await fetchStaticAddPokeData(window.fetch, pickedPokeId.toString());
-      }
-      // キー無し または gifUrl無し の場合は再抽選
-    } while (!pickedPokeData || pickedPokeData.gifUrl === null);
-    pickedPokeItem = await _convertToPokeItem(pickedPokeId, pickedPokeData);
+  async function pickPokeItem(): Promise<void> {
     resetState();
-
-    async function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): Promise<PokeItem> {
-      return {
-        pokeId,
-        jaName: staticPokeData.jaName,
-        gifUrl: staticPokeData.gifUrl ?? "",
-        backGifUrl: staticPokeData.gifBackUrl ?? "",
-        jaGenus: staticPokeData.jaGenus,
-        type1: await fetchTypeData(staticPokeData.type1Name as TypeName),
-        type2: staticPokeData.type2Name ? await fetchTypeData(staticPokeData.type2Name as TypeName) : null,
-        height: staticPokeData.height,
-        weight: staticPokeData.weight,
-        stats: staticPokeData.stats,
-      };
-    }
+    pickedPokeItem = pickRandomElementsFromArray(data.pokeItems, 1)[0];
   }
 
   let isOpen = false;
@@ -143,7 +101,7 @@
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="text-lg">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={pickPokeId}>
+        <form on:submit|preventDefault={pickPokeItem}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
               <Icon icon="mdi:pokeball" class="cIconStyle" />
@@ -170,7 +128,7 @@
           type1Name={pickedPokeItem?.type1.enName ?? null}
           type2Name={pickedPokeItem?.type2?.enName ?? null}
           imageUrl={pickedPokeItem?.gifUrl ?? null}
-          imageBackUrl={pickedPokeItem?.backGifUrl ?? null}
+          imageBackUrl={pickedPokeItem?.gifBackUrl ?? null}
           {isOpen}
         />
       </div>
