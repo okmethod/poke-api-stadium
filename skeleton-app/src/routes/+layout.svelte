@@ -14,6 +14,7 @@
 
 <svelte:head>
   <title>PokeAPI Stadium</title>
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.17.1/build/matter.min.js"></script>
 </svelte:head>
 
 <Modal />

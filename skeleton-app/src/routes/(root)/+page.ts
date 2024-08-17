@@ -30,7 +30,7 @@ const contents: Content[] = [
   },
   {
     title: "ポケモンしりとり",
-    ballName: "safari-ball",
+    ballName: "repeat-ball",
     action: "navigate",
     route: "/shiritori",
   },
@@ -39,6 +39,12 @@ const contents: Content[] = [
     ballName: "dusk-ball",
     action: "navigate",
     route: "/dareda",
+  },
+  {
+    title: "ポケモンとりほうだい",
+    ballName: "safari-ball",
+    action: "navigate",
+    route: "/hodai",
   },
   {
     title: "ソースコード",
