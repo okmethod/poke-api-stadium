@@ -26,8 +26,8 @@ export async function createPokeBody(
   return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [scaledVertices], {
     restitution: 0.2, // 反発係数
     friction: 0.1, // 摩擦係数
-    density: 0.001, // 密度
-    // mass:  // 質量は密度と面積から自動計算される
+    // density:  // 密度
+    // mass:  // 質量
     render: {
       sprite: {
         texture: imageUrl,

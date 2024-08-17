@@ -86,7 +86,6 @@
     if (isOpen === false) {
       pickedPokeBodies.forEach((body, index) => {
         const scaleRatio = pickedPokeItems[index].height / 10;
-        console.log(scaleRatio);
         Matter.Body.scale(body, scaleRatio, scaleRatio);
         if (body.render.sprite) {
           body.render.sprite.xScale = body.render.sprite.xScale * scaleRatio;

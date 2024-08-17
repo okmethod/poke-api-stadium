@@ -27,6 +27,8 @@
   let render: Matter.Render; // eslint-disable-line no-undef
   let mouseConstraint: Matter.MouseConstraint; // eslint-disable-line no-undef
   let eventHandlers: PointerEventHandlersMap;
+  let seesaw: Matter.Composite; // eslint-disable-line no-undef
+  let seesawStick: Matter.Body; // eslint-disable-line no-undef
   let isHolding = false;
   onMount(async () => {
     engine = initEngine();
@@ -39,11 +41,11 @@
     const walls = await initWalls(renderContainer);
 
     const SeesawWidth = renderContainer.clientHeight * 0.8;
-    const Seesaw = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.5 });
+    ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.5 }));
 
     if (browser) {
       Matter.World.add(engine.world, walls);
-      Matter.World.add(engine.world, Seesaw);
+      Matter.World.add(engine.world, seesaw);
       Matter.Runner.run(runner, engine);
       Matter.Render.run(render);
 
@@ -70,6 +72,7 @@
   });
 
   // ゲームデータ管理
+  let isReady = false;
   let isOpen = false;
   let pokeCount = 2;
   let pickedPokeItems: PokeItem[] = [];
@@ -78,13 +81,19 @@
     resetState();
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
-      createPokeBody(pokeItem.imageUrl, false, { x: centerX * (index === 0 ? 0.5 : 1.5), y: centerY }),
+      createPokeBody(pokeItem.imageUrl, false, {
+        x: centerX + (index === 0 ? -centerX * 0.6 : centerX * 0.6),
+        y: centerY * 1.1,
+      }),
     );
     const bodies = await Promise.all(bodyPromises);
-    bodies.forEach((body) => {
+    bodies.forEach((body, index) => {
+      Matter.Body.setMass(body, pickedPokeItems[index].weight / 10);
+      Matter.Body.setStatic(body, true); // 静止状態
       Matter.World.add(engine.world, [body]);
       pickedPokeBodies.push(body); // 追加した Body を追跡
     });
+    isReady = true;
   }
 
   // 比較実行とメッセージ更新
@@ -94,15 +103,16 @@
       guideMessage = "さきに ポケモンを よびだしてね";
       return;
     }
+    if (isReady === false) {
+      guideMessage = "じゅんびちゅう...";
+      return;
+    }
     if (isOpen === false) {
-      pickedPokeBodies.forEach((body, index) => {
-        const scaleRatio = pickedPokeItems[index].weight / 10;
-        console.log(scaleRatio);
-        Matter.Body.scale(body, scaleRatio, scaleRatio);
-        if (body.render.sprite) {
-          body.render.sprite.xScale = body.render.sprite.xScale * scaleRatio;
-          body.render.sprite.yScale = body.render.sprite.yScale * scaleRatio;
-        }
+      pickedPokeBodies.forEach((body) => {
+        Matter.Body.setStatic(body, false); // 動かす
+        Matter.Body.applyForce(body, { x: 0, y: 0 }, { x: 0, y: 0.01 });
+        Matter.Body.setVelocity(body, { x: 0, y: 0 });
+        Matter.Body.setAngularVelocity(body, 0);
       });
     }
     isOpen = true;
@@ -111,9 +121,16 @@
   // 状態リセット
   function resetState(): void {
     guideMessage = "";
+    isReady = false;
     isOpen = false;
     pickedPokeBodies.forEach((body) => Matter.World.remove(engine.world, body));
     pickedPokeBodies = [];
+
+    if (seesawStick) {
+      Matter.Body.setAngle(seesawStick, 0);
+      Matter.Body.setAngularVelocity(seesawStick, 0);
+      Matter.Body.setPosition(seesawStick, { x: centerX, y: centerY * 1.5 });
+    }
   }
 </script>
 
