@@ -11,6 +11,7 @@
   import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { formatHeightWeight } from "$lib/utils/numerics";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -61,12 +62,12 @@
   let isOpen = false;
   let pokeCount = 3;
   let pickedPokeItems: PokeItem[] = [];
-  let pickedPokeBodies: Matter.Body[] = [];
+  let pickedPokeBodies: Matter.Body[] = []; // eslint-disable-line no-undef
   async function pickPokeItems(): Promise<void> {
     resetState();
     pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
-    const bodyPromises = pickedPokeItems.map((pokeItem: PokeItem, index: number) =>
-      createPokeBody(pokeItem.imageUrl, 1, { x: 50 + index * 100, y: 20 }),
+    const bodyPromises = pickedPokeItems.map((pokeItem, index) =>
+      createPokeBody(pokeItem.imageUrl, 100, { x: 50 + index * 100, y: 20 }),
     );
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body) => {
@@ -76,17 +77,29 @@
   }
 
   // 比較実行とメッセージ更新
-  let comprareResult = "";
+  let guideMessage = "";
   function compareHeight(): void {
     if (pickedPokeItems.length == 0) {
-      comprareResult = "さきに ポケモンを よびだしてね";
+      guideMessage = "さきに ポケモンを よびだしてね";
       return;
+    }
+    if (isOpen === false) {
+      pickedPokeBodies.forEach((body, index) => {
+        const scaleRatio = pickedPokeItems[index].height / 10;
+        console.log(scaleRatio);
+        Matter.Body.scale(body, scaleRatio, scaleRatio);
+        if (body.render.sprite) {
+          body.render.sprite.xScale = body.render.sprite.xScale * scaleRatio;
+          body.render.sprite.yScale = body.render.sprite.yScale * scaleRatio;
+        }
+      });
     }
     isOpen = true;
   }
 
   // 状態リセット
   function resetState(): void {
+    guideMessage = "";
     isOpen = false;
     pickedPokeBodies.forEach((body) => Matter.World.remove(engine.world, body));
     pickedPokeBodies = [];
@@ -121,15 +134,26 @@
     </div>
 
     <!-- メッセージ -->
-    <div class="m-4 mt-2">
-      <div class="cInputFormAndMessagePartStyle">
+    <div class="m-4 mt-2 space-y-4">
+      <div class="cInputFormAndMessagePartStyle justify-center">
         <span class="text-lg">こたえあわせ</span>
         <button type="button" class="cIconButtonStyle" on:click={compareHeight}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />
           </div>
         </button>
-        <span class="text-lg">{comprareResult}</span>
+      </div>
+      <div class="cInputFormAndMessagePartStyle justify-center">
+        {#if isOpen}
+          {#each pickedPokeItems as pokeItem}
+            <div class="flex flex-col items-center">
+              <span class="text-base">[{pokeItem.jaName}]</span>
+              <span class="text-xl bold">{formatHeightWeight(pokeItem.height, "height")}</span>
+            </div>
+          {/each}
+        {:else}
+          <span class="text-lg">{guideMessage}</span>
+        {/if}
       </div>
     </div>
   </div>

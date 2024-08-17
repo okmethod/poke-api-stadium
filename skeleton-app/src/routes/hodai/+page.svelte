@@ -61,7 +61,7 @@
   async function spawnPokeBody(): Promise<void> {
     spawnPokeIndex = getRandomNumber(data.imageUrls.length);
     const spawnPosX = getRandomNumber(100);
-    const body = await createPokeBody(data.imageUrls[spawnPokeIndex], 1, { x: 50 + spawnPosX * 2, y: 20 });
+    const body = await createPokeBody(data.imageUrls[spawnPokeIndex], false, { x: 50 + spawnPosX * 2, y: 20 });
     Matter.World.add(engine.world, [body]);
   }
 </script>
