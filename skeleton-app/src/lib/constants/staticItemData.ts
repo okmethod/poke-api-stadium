@@ -33,6 +33,10 @@ export const STATIC_BALL_DICT: Record<string, StaticItemData> = {
     id: 12,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
   },
+  "heavy-ball": {
+    id: 452,
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heavy-ball.png",
+  },
   "fast-ball": {
     id: 453,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fast-ball.png",
