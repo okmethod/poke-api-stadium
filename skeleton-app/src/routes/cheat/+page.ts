@@ -3,7 +3,8 @@ import makeStaticTypeDict from "$lib/api/makeStaticTypeDict.client";
 import { TypeName } from "$lib/types/type";
 import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
 
-export type makeFunction = (fetchFunction: typeof window.fetch, keys: any) => Promise<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type makeFunction = (fetchFunction: typeof window.fetch, keys: any) => Promise<any>;
 
 export interface DownloadConfig {
   id: string;

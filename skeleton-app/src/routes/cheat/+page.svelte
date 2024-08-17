@@ -15,14 +15,9 @@
     useCompression: boolean,
   ): Promise<void> {
     isProcessing = true;
-    try {
-      const data = await makeFunction(window.fetch, keys);
-      const jsonData = JSON.stringify(data, null, 2);
-      await downloadJsonFile(jsonData, fileName, useCompression);
-      console.log(`File Write Done: ${fileName}`);
-    } catch (error) {
-      console.error("File Write Failed:", error);
-    }
+    const data = await makeFunction(window.fetch, keys);
+    const jsonData = JSON.stringify(data, null, 2);
+    await downloadJsonFile(jsonData, fileName, useCompression);
     isProcessing = false;
   }
 </script>
