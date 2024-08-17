@@ -5,7 +5,7 @@
   import type { TypeName } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
-  import { fetchPokeData } from "$lib/constants/fetchStaticData";
+  import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
   import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
@@ -80,9 +80,9 @@
     resetState();
     const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pickedKeys = pickRandomElementsFromArray(keys, pokeCount);
-    await fetchPokeData("load to cache"); //並列実行の前にキャッシュに読み込む
+    await fetchStaticPokeData(window.fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
     pickedPokeItems = await Promise.all(
-      pickedKeys.map(async (key) => _convertToPokeItem(key, await fetchPokeData(key.toString()))),
+      pickedKeys.map(async (key) => _convertToPokeItem(key, await fetchStaticPokeData(window.fetch, key.toString()))),
     );
 
     function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): PokeItem {

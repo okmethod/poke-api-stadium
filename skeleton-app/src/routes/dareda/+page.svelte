@@ -6,7 +6,7 @@
   import type { TypeName, TypeData } from "$lib/types/type";
   import type { Stats } from "$lib/types/stats";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
-  import { fetchPokeData, fetchAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
+  import { fetchStaticPokeData, fetchStaticAddPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
 
@@ -36,9 +36,9 @@
     do {
       pickedPokeId = keys[getRandomNumber(keys.length)];
       if (Number(pickedPokeId) < FIRST_ADDITIONAL_POKE_ID) {
-        pickedPokeData = await fetchPokeData(pickedPokeId.toString());
+        pickedPokeData = await fetchStaticPokeData(window.fetch, pickedPokeId.toString());
       } else {
-        pickedPokeData = await fetchAddPokeData(pickedPokeId.toString());
+        pickedPokeData = await fetchStaticAddPokeData(window.fetch, pickedPokeId.toString());
       }
       // キー無し または gifUrl無し の場合は再抽選
     } while (!pickedPokeData || pickedPokeData.gifUrl === null);

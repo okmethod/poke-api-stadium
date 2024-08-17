@@ -7,7 +7,7 @@
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
-  import { fetchPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
+  import { fetchStaticPokeData, fetchTypeData } from "$lib/constants/fetchStaticData";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
@@ -30,9 +30,12 @@
     resetState();
     const keys = Array.from({ length: POKE_COUNT }, (_, i) => FIRST_POKE_ID + i);
     const pickedKeys = pickRandomElementsFromArray(keys, pokeCountByPlayer * 2);
-    await fetchPokeData("load to cache"); //並列実行の前にキャッシュに読み込む
+    await fetchStaticPokeData(window.fetch, "load to cache"); //並列実行の前にキャッシュに読み込む
     const pickedPokeItems = await Promise.all(
-      pickedKeys.map(async (key) => await _convertToPokeItem(key, await fetchPokeData(key.toString()))),
+      pickedKeys.map(async (key) => {
+        const staticPokeData = await fetchStaticPokeData(window.fetch, key.toString());
+        return await _convertToPokeItem(key, staticPokeData);
+      }),
     );
     ownPokeItems = pickedPokeItems.slice(0, pokeCountByPlayer);
     opoPokeItems = pickedPokeItems.slice(pokeCountByPlayer, pokeCountByPlayer * 2);

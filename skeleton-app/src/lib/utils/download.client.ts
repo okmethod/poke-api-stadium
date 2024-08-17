@@ -48,11 +48,15 @@ export async function downloadJsonFile(jsonData: string, fileName: string, useCo
 }
 
 const isDevelopment = (import.meta.env.MODE as string) === "development";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function loadCompressedFile(filePath: string): Promise<{ [key: string]: any }> {
+
+export async function loadCompressedFile(
+  fetchFunction: typeof window.fetch,
+  filePath: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<{ [key: string]: any }> {
   console.log("loading: ", filePath);
   try {
-    const response = await fetch(filePath);
+    const response = await fetchFunction(filePath);
     const blob = await response.blob();
     let jsonData: string;
     if (isDevelopment) {
