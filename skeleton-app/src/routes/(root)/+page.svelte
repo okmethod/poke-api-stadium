@@ -3,6 +3,7 @@
 
   export let data: {
     buttonConfigs: ButtonConfig[];
+    idolUrl: string;
   };
 </script>
 
@@ -13,7 +14,7 @@
   </div>
 
   <!-- コンテンツ部 -->
-  <div class="cContentPartStyle !m-4">
+  <div class="cContentPartStyle !mt-4 !relative">
     {#each data.buttonConfigs as config}
       <div class="">
         <button on:click|preventDefault={config.onClick} class="flex items-center">
@@ -22,5 +23,8 @@
         </button>
       </div>
     {/each}
+    <div class="absolute -bottom-1 -right-14 w-20 h-20">
+      <img src={data.idolUrl} alt="idol" class="w-full h-full object-contain" />
+    </div>
   </div>
 </div>
