@@ -2,11 +2,12 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
-  import PokeChip from "$lib/components/cards/PokeChip.svelte";
-  import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
+  import { filterDictByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
   import { getTailChar, solveShiritoriRule } from "$lib/internals/shiritoriRule";
+  import PokeChip from "$lib/components/cards/PokeChip.svelte";
+  import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -114,7 +115,7 @@
 
   // 状態リセット
   function resetState(): void {
-    pokeDict = _resetPokeDictUsedFlag(pokeDict);
+    pokeDict = _resetPokeDictUsedFlag(filterDictByGeneration(data.pokeDict, "pokeId"));
     pushedPokeItems = [];
     pushFirstPokeData();
     pickPokeItems();

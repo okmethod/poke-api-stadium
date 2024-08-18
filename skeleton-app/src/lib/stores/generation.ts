@@ -74,3 +74,20 @@ export function filterArrayByGeneration<T>(array: Array<T>, pokeIdName: keyof T)
       : array.filter((item) => Number(item[pokeIdName]) <= generations[currentGenerationId].lastPokeId);
   return filteredArray;
 }
+
+export function filterDictByGeneration<T>(dict: Record<number, T>, pokeIdName: keyof T): Record<number, T> {
+  const currentGenerationId = get(generationId);
+  const filteredDict = Object.entries(dict).reduce(
+    (acc, [key, value]) => {
+      if (
+        currentGenerationId === ("all" as GenerationId) ||
+        Number(value[pokeIdName]) <= generations[currentGenerationId].lastPokeId
+      ) {
+        acc[key] = value;
+      }
+      return acc;
+    },
+    {} as Record<string, T>,
+  );
+  return filteredDict;
+}
