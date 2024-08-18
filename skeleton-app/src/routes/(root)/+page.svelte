@@ -3,7 +3,7 @@
 
   export let data: {
     buttonConfigs: ButtonConfig[];
-    idolUrl: string;
+    symbolUrl: string;
   };
 </script>
 
@@ -24,7 +24,7 @@
       </div>
     {/each}
     <div class="absolute -bottom-1 -right-14 w-20 h-20">
-      <img src={data.idolUrl} alt="idol" class="w-full h-full object-contain" />
+      <img src={data.symbolUrl} alt="symbol" class="w-full h-full object-contain" />
     </div>
   </div>
 </div>

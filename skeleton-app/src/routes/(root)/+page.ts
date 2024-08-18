@@ -68,7 +68,7 @@ const contents: Content[] = [
   },
 ];
 
-const idolPokeIds = [
+const symbolPokeIds = [
   10080, 10081, 10082, 10083, 10084, 10085, 10094, 10095, 10096, 10097, 10098, 10099, 10148, 10158, 10160,
 ];
 
@@ -79,7 +79,7 @@ export interface ButtonConfig {
   onClick: () => void;
 }
 
-export async function load({ fetch }: LoadEvent): Promise<{ buttonConfigs: ButtonConfig[]; idolUrl: string }> {
+export async function load({ fetch }: LoadEvent): Promise<{ buttonConfigs: ButtonConfig[]; symbolUrl: string }> {
   const ballImages = await Promise.all(contents.map((content) => fetchBall(content.ballName)));
   const buttonConfigs: ButtonConfig[] = contents.map((content, index) => ({
     title: content.title,
@@ -96,8 +96,8 @@ export async function load({ fetch }: LoadEvent): Promise<{ buttonConfigs: Butto
     return actions[action] || (() => {});
   }
 
-  const idolId = pickRandomNumbers(idolPokeIds, 1)[0];
-  const idolUrl = (await fetchStaticAddPokeData(fetch, idolId.toString())).gifUrl ?? "not_found";
+  const symbolId = pickRandomNumbers(symbolPokeIds, 1)[0];
+  const symbolUrl = (await fetchStaticAddPokeData(fetch, symbolId.toString())).gifUrl ?? "not_found";
 
-  return { buttonConfigs, idolUrl };
+  return { buttonConfigs, symbolUrl };
 }
