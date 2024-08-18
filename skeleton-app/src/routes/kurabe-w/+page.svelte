@@ -174,7 +174,7 @@
     <!-- メッセージ -->
     <div class="m-4 mt-2 space-y-4">
       <div class="cInputFormAndMessagePartStyle justify-center">
-        <span class="text-lg">こたえあわせ</span>
+        <span class="text-lg">こたえをみる</span>
         <button type="button" class="cIconButtonStyle" on:click={compareHeight}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />
