@@ -15,25 +15,25 @@ export async function loadCompressedFile(
   fileName: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<{ [key: string]: any }> {
-  console.log("loading: ", fileName);
+  console.debug("loading: ", fileName);
   try {
     if (isDevelopment) {
       if (browser) {
-        console.log("isDevelopment browser");
+        console.debug("isDevelopment browser");
         const filePath = `${base}/${fileName}`;
         const response = await fetchFunction(filePath);
         const blob = await response.blob();
         const jsonData = await blob.text();
         return JSON.parse(jsonData);
       } else {
-        console.log("isDevelopment not browser");
+        console.debug("isDevelopment not browser");
         const { loadFileByNode } = await import("$lib/utils/fileload.server");
         const blob = await loadFileByNode(fileName);
         const jsonData = await decompressBlob(blob);
         return JSON.parse(jsonData);
       }
     } else {
-      console.log("isProduction");
+      console.debug("isProduction");
       const filePath = `${base}/${fileName}`;
       const response = await fetchFunction(filePath);
       const blob = await response.blob();

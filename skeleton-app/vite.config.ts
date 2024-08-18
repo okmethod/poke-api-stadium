@@ -35,6 +35,12 @@ export default defineConfig({
     rollupOptions: {
       external: ["matter-js", "$lib/utils/fileload.server"],
     },
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        pure_funcs: ["console.debug"], // console.debug を無効化
+      },
+    },
   },
   plugins: [
     sveltekit(),

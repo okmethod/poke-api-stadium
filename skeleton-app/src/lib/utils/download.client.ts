@@ -27,7 +27,7 @@ async function downloadCompressedFile(data: string, fileName: string, mimeType: 
 }
 
 export async function downloadJsonFile(jsonData: string, fileName: string, useCompression: boolean): Promise<void> {
-  console.log("downloading:", fileName);
+  console.debug("downloading:", fileName);
   try {
     if (useCompression) {
       await downloadCompressedFile(jsonData, fileName, "application/json");
