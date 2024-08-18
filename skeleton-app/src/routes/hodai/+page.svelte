@@ -7,7 +7,7 @@
   import { onMount, onDestroy } from "svelte";
   import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
-  import { initEngine, initRunner, initRender, initMouse, initWalls } from "$lib/matters/initMatter";
+  import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
   import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
@@ -20,24 +20,20 @@
   };
 
   let renderContainer: HTMLDivElement;
-  let engine: Matter.Engine; // eslint-disable-line no-undef
-  let runner: Matter.Runner; // eslint-disable-line no-undef
-  let render: Matter.Render; // eslint-disable-line no-undef
-  let mouseConstraint: Matter.MouseConstraint; // eslint-disable-line no-undef
+  let matterBase: MatterBase;
   let eventHandlers: PointerEventHandlersMap;
   let isHolding = false;
   onMount(async () => {
-    engine = initEngine();
-    runner = initRunner();
-    render = initRender(engine, renderContainer);
-    mouseConstraint = initMouse(engine, render);
-    const walls = await initWalls(renderContainer);
+    matterBase = initMatterBase(renderContainer);
     if (browser) {
-      Matter.Composite.add(engine.world, walls);
-      Matter.Runner.run(runner, engine);
-      Matter.Render.run(render);
+      runMatterBase(matterBase);
 
-      let eventHandlers = createPointerEventHandlers(engine.world, mouseConstraint, renderContainer, { isHolding });
+      let eventHandlers = createPointerEventHandlers(
+        matterBase.engine.world,
+        matterBase.mouseConstraint,
+        renderContainer,
+        { isHolding },
+      );
       if (!eventHandlers) return;
       Object.entries(eventHandlers).forEach(([event, handler]) => {
         renderContainer.addEventListener(event, handler);
@@ -47,10 +43,7 @@
 
   onDestroy(() => {
     if (browser) {
-      Matter.Render.stop(render);
-      Matter.Runner.stop(runner);
-      Matter.World.clear(engine.world, false);
-      Matter.Engine.clear(engine);
+      cleanupMatterBase(matterBase);
 
       if (!eventHandlers) return;
       Object.entries(eventHandlers).forEach(([event, handler]) => {
@@ -66,7 +59,7 @@
     pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
     const spawnPosX = getRandomNumber(100);
     const body = await createPokeBody(pickedPokeItem.imageUrl, false, { x: 50 + spawnPosX * 2, y: 20 });
-    Matter.Composite.add(engine.world, [body]);
+    Matter.Composite.add(matterBase.engine.world, [body]);
   }
 </script>
 

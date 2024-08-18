@@ -2,7 +2,25 @@ declare const Matter: typeof import("matter-js");
 
 const isDevelopment = (import.meta.env.MODE as string) === "development";
 
-export function initEngine(): Matter.Engine {
+export interface MatterBase {
+  engine: Matter.Engine;
+  runner: Matter.Runner;
+  render: Matter.Render;
+  mouseConstraint: Matter.MouseConstraint;
+  walls: Matter.Composite;
+}
+
+export function initMatterBase(renderContainer: HTMLDivElement): MatterBase {
+  const engine = initEngine();
+  const runner = initRunner();
+  const render = initRender(engine, renderContainer);
+  const mouseConstraint = initMouse(engine, render);
+  const walls = initWalls(renderContainer);
+
+  return { engine, runner, render, mouseConstraint, walls };
+}
+
+function initEngine(): Matter.Engine {
   return Matter.Engine.create({
     enableSleeping: true,
     positionIterations: 6, // 位置の解決の反復回数(default=6)
@@ -11,11 +29,11 @@ export function initEngine(): Matter.Engine {
   });
 }
 
-export function initRunner(): Matter.Runner {
+function initRunner(): Matter.Runner {
   return Matter.Runner.create();
 }
 
-export function initRender(engine: Matter.Engine, renderContainer: HTMLDivElement): Matter.Render {
+function initRender(engine: Matter.Engine, renderContainer: HTMLDivElement): Matter.Render {
   const render = Matter.Render.create({
     element: renderContainer,
     engine: engine,
@@ -32,7 +50,7 @@ export function initRender(engine: Matter.Engine, renderContainer: HTMLDivElemen
   return render;
 }
 
-export function initMouse(engine: Matter.Engine, render: Matter.Render): Matter.MouseConstraint {
+function initMouse(engine: Matter.Engine, render: Matter.Render): Matter.MouseConstraint {
   const mouse = Matter.Mouse.create(render.canvas);
   render.mouse = mouse;
 
@@ -53,7 +71,7 @@ export function initMouse(engine: Matter.Engine, render: Matter.Render): Matter.
   return mouseConstraint;
 }
 
-export async function initWalls(renderContainer: HTMLDivElement): Promise<Matter.Composite> {
+function initWalls(renderContainer: HTMLDivElement): Matter.Composite {
   const width = renderContainer.clientWidth;
   const height = renderContainer.clientHeight;
 
@@ -76,4 +94,17 @@ export async function initWalls(renderContainer: HTMLDivElement): Promise<Matter
   );
 
   return Matter.Composite.add(Matter.Composite.create(), walls);
+}
+
+export function runMatterBase(matterBase: MatterBase): void {
+  Matter.Composite.add(matterBase.engine.world, matterBase.walls);
+  Matter.Runner.run(matterBase.runner, matterBase.engine);
+  Matter.Render.run(matterBase.render);
+}
+
+export function cleanupMatterBase(matterBase: MatterBase): void {
+  Matter.Render.stop(matterBase.render);
+  Matter.Runner.stop(matterBase.runner);
+  Matter.World.clear(matterBase.engine.world, false);
+  Matter.Engine.clear(matterBase.engine);
 }
