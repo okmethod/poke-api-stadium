@@ -15,7 +15,7 @@ export function createPointerEventHandlers(
 ): PointerEventHandlersMap {
   function handlePointerDown() {
     flags.isHolding = true;
-    Matter.World.add(world, mouseConstraint);
+    Matter.Composite.add(world, mouseConstraint);
   }
 
   function handlePointerUp() {

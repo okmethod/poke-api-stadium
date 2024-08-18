@@ -38,7 +38,7 @@
     mouseConstraint = initMouse(engine, render);
     const walls = await initWalls(renderContainer);
     if (browser) {
-      Matter.World.add(engine.world, walls);
+      Matter.Composite.add(engine.world, walls);
       Matter.Runner.run(runner, engine);
       Matter.Render.run(render);
 
@@ -87,7 +87,7 @@
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body) => {
       Matter.Body.setStatic(body, true); // 静止状態
-      Matter.World.add(engine.world, [body]);
+      Matter.Composite.add(engine.world, [body]);
       pickedPokeBodies.push(body); // 追加した Body を追跡
     });
 

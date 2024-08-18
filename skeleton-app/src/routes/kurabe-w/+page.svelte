@@ -45,8 +45,8 @@
     ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.4 }));
 
     if (browser) {
-      Matter.World.add(engine.world, walls);
-      Matter.World.add(engine.world, seesaw);
+      Matter.Composite.add(engine.world, walls);
+      Matter.Composite.add(engine.world, seesaw);
       Matter.Runner.run(runner, engine);
       Matter.Render.run(render);
 
@@ -99,7 +99,7 @@
       });
       Matter.Body.setMass(body, pickedPokeItems[index].weight / 10);
       Matter.Body.setStatic(body, true); // 静止状態
-      Matter.World.add(engine.world, [body]);
+      Matter.Composite.add(engine.world, [body]);
       pickedPokeBodies.push(body); // 追加した Body を追跡
     });
     await new Promise((resolve) => setTimeout(resolve, 500));

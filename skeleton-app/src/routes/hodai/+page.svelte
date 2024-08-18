@@ -33,7 +33,7 @@
     mouseConstraint = initMouse(engine, render);
     const walls = await initWalls(renderContainer);
     if (browser) {
-      Matter.World.add(engine.world, walls);
+      Matter.Composite.add(engine.world, walls);
       Matter.Runner.run(runner, engine);
       Matter.Render.run(render);
 
@@ -66,7 +66,7 @@
     pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
     const spawnPosX = getRandomNumber(100);
     const body = await createPokeBody(pickedPokeItem.imageUrl, false, { x: 50 + spawnPosX * 2, y: 20 });
-    Matter.World.add(engine.world, [body]);
+    Matter.Composite.add(engine.world, [body]);
   }
 </script>
 
