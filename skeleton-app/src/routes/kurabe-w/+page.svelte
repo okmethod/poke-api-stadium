@@ -33,11 +33,12 @@
 
     centerX = renderContainer.clientWidth * 0.5;
     centerY = renderContainer.clientHeight * 0.5;
-    const SeesawWidth = renderContainer.clientHeight * 0.8;
+    const SeesawWidth = renderContainer.clientWidth * 0.9;
     ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.4 }));
 
     if (browser) {
       runMatterBase(matterBase);
+      Matter.Composite.add(matterBase.engine.world, seesaw);
       removeEventHandlers = initEventHandlers(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
         isHolding,
       });
