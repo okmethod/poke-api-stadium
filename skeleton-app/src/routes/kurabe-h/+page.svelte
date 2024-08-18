@@ -112,7 +112,7 @@
   function resetState(): void {
     guideMessage = "";
     isOpen = false;
-    pickedPokeBodies.forEach((body) => Matter.World.remove(matterBase.engine.world, body));
+    pickedPokeBodies.forEach((body) => Matter.Composite.remove(matterBase.engine.world, body));
     pickedPokeBodies = [];
   }
 </script>

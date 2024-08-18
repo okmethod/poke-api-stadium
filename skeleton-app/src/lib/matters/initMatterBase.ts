@@ -105,6 +105,6 @@ export function runMatterBase(matterBase: MatterBase): void {
 export function cleanupMatterBase(matterBase: MatterBase): void {
   Matter.Render.stop(matterBase.render);
   Matter.Runner.stop(matterBase.runner);
-  Matter.World.clear(matterBase.engine.world, false);
+  Matter.Composite.clear(matterBase.engine.world, false);
   Matter.Engine.clear(matterBase.engine);
 }

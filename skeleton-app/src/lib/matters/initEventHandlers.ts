@@ -20,7 +20,7 @@ function createPointerEventHandlers(
 
   function handlePointerUp() {
     flags.isHolding = false;
-    Matter.World.remove(world, mouseConstraint);
+    Matter.Composite.remove(world, mouseConstraint);
   }
 
   function handlePointerLeave() {
@@ -28,7 +28,7 @@ function createPointerEventHandlers(
     mouseConstraint.constraint.bodyA = null;
     mouseConstraint.constraint.bodyB = null;
     mouseConstraint.mouse.position = { x: -1, y: -1 };
-    Matter.World.remove(world, mouseConstraint);
+    Matter.Composite.remove(world, mouseConstraint);
   }
 
   function handlePointerMove(event: PointerEvent) {
@@ -39,7 +39,7 @@ function createPointerEventHandlers(
       event.clientY < rect.top ||
       event.clientY > rect.bottom
     ) {
-      Matter.World.remove(world, mouseConstraint);
+      Matter.Composite.remove(world, mouseConstraint);
     }
   }
 
