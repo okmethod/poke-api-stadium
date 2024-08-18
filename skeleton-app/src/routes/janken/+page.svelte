@@ -3,11 +3,12 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { getRandomNumber } from "$lib/utils/numerics";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
-  import { getRandomNumber } from "$lib/utils/numerics";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -22,7 +23,8 @@
   let opoPokeItems: PokeItem[] = [];
   async function pickPokeItems(): Promise<void> {
     resetState();
-    const pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCountByPlayer * 2);
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    const pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCountByPlayer * 2);
     ownPokeItems = pickedPokeItems.slice(0, pokeCountByPlayer);
     opoPokeItems = pickedPokeItems.slice(pokeCountByPlayer, pokeCountByPlayer * 2);
     phase = "select_poke";

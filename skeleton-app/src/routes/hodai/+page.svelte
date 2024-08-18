@@ -10,10 +10,13 @@
   import { initEngine, initRunner, initRender, initMouse, initWalls } from "$lib/matters/initMatter";
   import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import type { PokeItem } from "./+page";
 
   export let data: {
-    imageUrls: string[];
+    pokeItems: PokeItem[];
   };
 
   let renderContainer: HTMLDivElement;
@@ -57,11 +60,12 @@
   });
 
   // ポケモン召喚
-  let spawnPokeIndex;
+  let pickedPokeItem: PokeItem;
   async function spawnPokeBody(): Promise<void> {
-    spawnPokeIndex = getRandomNumber(data.imageUrls.length);
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
     const spawnPosX = getRandomNumber(100);
-    const body = await createPokeBody(data.imageUrls[spawnPokeIndex], false, { x: 50 + spawnPosX * 2, y: 20 });
+    const body = await createPokeBody(pickedPokeItem.imageUrl, false, { x: 50 + spawnPosX * 2, y: 20 });
     Matter.World.add(engine.world, [body]);
   }
 </script>

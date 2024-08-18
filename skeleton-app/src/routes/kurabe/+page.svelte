@@ -1,9 +1,10 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
-  import PokeTile from "$lib/components/cards/PokeTile.svelte";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -67,7 +68,8 @@
   let pickedPokeItems: PokeItem[] = [];
   async function pickPokeItems(): Promise<void> {
     resetState();
-    pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "id");
+    pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount);
   }
 
   // 比較実行とメッセージ更新

@@ -11,6 +11,7 @@
   import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import type { PokeItem } from "./+page";
@@ -82,7 +83,8 @@
     guideMessage = "じゅんびちゅう...";
     resetState();
 
-    pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map(
       // 位置はbody作成後に再調整する
       (pokeItem) => createPokeBody(pokeItem.imageUrl, false, { x: 0, y: 0 }),

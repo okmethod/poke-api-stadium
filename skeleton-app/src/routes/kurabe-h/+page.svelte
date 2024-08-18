@@ -10,6 +10,7 @@
   import { initEngine, initRunner, initRender, initMouse, initWalls } from "$lib/matters/initMatter";
   import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import type { PokeItem } from "./+page";
@@ -74,7 +75,8 @@
     guideMessage = "じゅんびちゅう...";
     resetState();
 
-    pickedPokeItems = pickRandomElementsFromArray(data.pokeItems, pokeCount);
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map((pokeItem, index) => {
       const normalizeSize = 100;
       return createPokeBody(pokeItem.imageUrl, normalizeSize, {

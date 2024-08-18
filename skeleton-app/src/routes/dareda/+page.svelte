@@ -3,9 +3,10 @@
   import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { Stats } from "$lib/types/stats";
-  import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -16,7 +17,8 @@
   let pickedPokeItem: PokeItem | null = null;
   async function pickPokeItem(): Promise<void> {
     resetState();
-    pickedPokeItem = pickRandomElementsFromArray(data.pokeItems, 1)[0];
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
   }
 
   let isOpen = false;

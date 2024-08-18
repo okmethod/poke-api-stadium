@@ -4,6 +4,7 @@ import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
 import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
 export interface PokeItem {
+  pokeId: number;
   jaName: string;
   imageUrl: string;
   height: number;
@@ -26,6 +27,7 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
 
   function _convertToPokeItem(pokeId: number, staticPokeData: StaticPokeData): PokeItem {
     return {
+      pokeId,
       jaName: staticPokeData.jaName,
       imageUrl: staticPokeData.imageUrl ?? "not_found",
       height: staticPokeData.height,
