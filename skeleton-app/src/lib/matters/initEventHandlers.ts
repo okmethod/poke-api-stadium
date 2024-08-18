@@ -1,13 +1,13 @@
 declare const Matter: typeof import("matter-js");
 
-export interface PointerEventHandlersMap {
+interface PointerEventHandlersMap {
   pointerdown: () => void;
   pointerup: () => void;
   pointerleave: () => void;
   pointermove: (event: PointerEvent) => void;
 }
 
-export function createPointerEventHandlers(
+function createPointerEventHandlers(
   world: Matter.World,
   mouseConstraint: Matter.MouseConstraint,
   renderContainer: HTMLDivElement,
@@ -48,5 +48,24 @@ export function createPointerEventHandlers(
     pointerup: handlePointerUp,
     pointerleave: handlePointerLeave,
     pointermove: handlePointerMove,
+  };
+}
+
+export function initEventHandlers(
+  world: Matter.World,
+  mouseConstraint: Matter.MouseConstraint,
+  renderContainer: HTMLDivElement,
+  flags: { isHolding: boolean },
+) {
+  const eventHandlers = createPointerEventHandlers(world, mouseConstraint, renderContainer, flags);
+
+  Object.entries(eventHandlers).forEach(([event, handler]) => {
+    renderContainer.addEventListener(event, handler);
+  });
+
+  return () => {
+    Object.entries(eventHandlers).forEach(([event, handler]) => {
+      renderContainer.removeEventListener(event, handler);
+    });
   };
 }

@@ -8,7 +8,7 @@
   import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
   import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
-  import { createPointerEventHandlers, type PointerEventHandlersMap } from "$lib/matters/createEventHandlers";
+  import { initEventHandlers } from "$lib/matters/initEventHandlers";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
@@ -21,22 +21,14 @@
 
   let renderContainer: HTMLDivElement;
   let matterBase: MatterBase;
-  let eventHandlers: PointerEventHandlersMap;
+  let removeEventHandlers: () => void;
   let isHolding = false;
   onMount(async () => {
     matterBase = initMatterBase(renderContainer);
     if (browser) {
       runMatterBase(matterBase);
-
-      let eventHandlers = createPointerEventHandlers(
-        matterBase.engine.world,
-        matterBase.mouseConstraint,
-        renderContainer,
-        { isHolding },
-      );
-      if (!eventHandlers) return;
-      Object.entries(eventHandlers).forEach(([event, handler]) => {
-        renderContainer.addEventListener(event, handler);
+      removeEventHandlers = initEventHandlers(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
+        isHolding,
       });
     }
   });
@@ -44,11 +36,9 @@
   onDestroy(() => {
     if (browser) {
       cleanupMatterBase(matterBase);
-
-      if (!eventHandlers) return;
-      Object.entries(eventHandlers).forEach(([event, handler]) => {
-        renderContainer.removeEventListener(event, handler);
-      });
+      if (removeEventHandlers) {
+        removeEventHandlers();
+      }
     }
   });
 
