@@ -5,7 +5,12 @@
   import Icon from "@iconify/svelte";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation.js";
+  import { pickRandomNumbers } from "$lib/utils/collections";
   import { navigateTo } from "$lib/utils/navigation.client";
+
+  export let data: {
+    symbolUrlDict: Record<number, string>;
+  };
 
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
@@ -16,6 +21,7 @@
   ];
 
   let currentGenerationId: GenerationId | null = null;
+  let currentGenerationImageUrl: string | null = null;
   onMount(() => {
     if (typeof localStorage !== "undefined") {
       const savedGenerationId = localStorage.getItem("generationId") as GenerationId;
@@ -26,6 +32,8 @@
 
   generationId.subscribe((value: GenerationId) => {
     currentGenerationId = value;
+    const currentSymbolPokeId = pickRandomNumbers(generations[value].symbolPokeIds, 1)[0];
+    currentGenerationImageUrl = data.symbolUrlDict[currentSymbolPokeId];
     if (typeof localStorage !== "undefined") {
       localStorage.setItem("generationId", value);
     }
@@ -58,10 +66,15 @@
         </div>
         <span class="">HOME</span>
       </a>
+      <div class="flex-grow"><!--spacer--></div>
+      <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
+        <img src={currentGenerationImageUrl} alt="genImage" class="w-full h-full object-contain transform scale-150" />
+      </div>
       <select
-        class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
+        id="generationId"
         bind:value={currentGenerationId}
         on:change={handleChange}
+        class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
       >
         {#each options as option}
           <option value={option.value}>{option.label}</option>
