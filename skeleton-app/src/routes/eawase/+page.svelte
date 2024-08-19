@@ -12,14 +12,14 @@
   import { initPointerEvents } from "$lib/matters/initPointerEvents";
   import { initCollisionEvents } from "$lib/matters/initCollisionEvents";
   import { createPokeBody } from "$lib/matters/createPokeBody";
+  import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
+  import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import type { PokeItem } from "./+page";
 
   export let data: {
     pokeItems: PokeItem[];
   };
-
-  const pokeItems = data.pokeItems;
 
   let renderContainer: HTMLDivElement;
   let matterBase: MatterBase;
@@ -50,21 +50,28 @@
   });
 
   // ポケモン召喚
+  const pokeCount = 30;
   async function spawnPokeBodies(): Promise<void> {
-    const totalBodies = pokeItems.length * 2;
+    const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
+    const pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount * 2);
 
+    const totalBodies = pickedPokeItems.length * 2;
     const pokeBodyPromises = Promise.all(
       Array.from({ length: totalBodies }, async (_, i) => {
-        const spawnPokeIndex = i % pokeItems.length;
+        const spawnPokeIndex = i % pickedPokeItems.length;
         const spawnPosX = getRandomNumber(100); // 出現直後に消えないようにランダム化する
-        await _spawnSpriteBody(pokeItems[spawnPokeIndex], { x: spawnPosX * 3, y: 20 });
+        await _spawnSpriteBody(
+          pickedPokeItems[spawnPokeIndex],
+          spawnPokeIndex + 2, // カテゴリは 2以降を使う
+          { x: spawnPosX * 3, y: 50 },
+        );
       }),
     );
     await pokeBodyPromises;
 
-    async function _spawnSpriteBody(pokeItem: PokeItem, spawnPoint: Point): Promise<void> {
-      const body = await createPokeBody(pokeItem.imageUrl, false, 1.8, spawnPoint);
-      body.collisionFilter.category = pokeItem.category;
+    async function _spawnSpriteBody(pokeItem: PokeItem, category: number, spawnPoint: Point): Promise<void> {
+      const body = await createPokeBody(pokeItem.imageUrl, false, 1.0, spawnPoint);
+      body.collisionFilter.category = category;
       console.debug(body.collisionFilter);
       Matter.Composite.add(matterBase.engine.world, [body]);
     }
