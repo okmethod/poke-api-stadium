@@ -8,7 +8,7 @@
   import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
   import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
-  import { initEventHandlers } from "$lib/matters/initEventHandlers";
+  import { initPointerEvents } from "$lib/matters/initPointerEvents";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
@@ -26,8 +26,8 @@
   let matterBase: MatterBase;
   let seesaw: Matter.Composite; // eslint-disable-line no-undef
   let seesawStick: Matter.Body; // eslint-disable-line no-undef
-  let removeEventHandlers: () => void;
   let isHolding = false;
+  let removePointerEvents: () => void;
   onMount(async () => {
     matterBase = initMatterBase(renderContainer);
 
@@ -39,7 +39,7 @@
     if (browser) {
       runMatterBase(matterBase);
       Matter.Composite.add(matterBase.engine.world, seesaw);
-      removeEventHandlers = initEventHandlers(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
+      removePointerEvents = initPointerEvents(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
         isHolding,
       });
     }
@@ -48,8 +48,8 @@
   onDestroy(() => {
     if (browser) {
       cleanupMatterBase(matterBase);
-      if (removeEventHandlers) {
-        removeEventHandlers();
+      if (removePointerEvents) {
+        removePointerEvents();
       }
     }
   });

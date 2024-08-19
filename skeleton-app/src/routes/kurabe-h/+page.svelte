@@ -8,7 +8,7 @@
   import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
   import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
-  import { initEventHandlers } from "$lib/matters/initEventHandlers";
+  import { initPointerEvents } from "$lib/matters/initPointerEvents";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
@@ -20,20 +20,14 @@
   };
 
   let renderContainer: HTMLDivElement;
-  let centerX: number;
-  let centerY: number;
   let matterBase: MatterBase;
-  let removeEventHandlers: () => void;
   let isHolding = false;
+  let removePointerEvents: () => void;
   onMount(async () => {
     matterBase = initMatterBase(renderContainer);
-
-    centerX = renderContainer.clientWidth * 0.5;
-    centerY = renderContainer.clientHeight * 0.5;
-
     if (browser) {
       runMatterBase(matterBase);
-      removeEventHandlers = initEventHandlers(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
+      removePointerEvents = initPointerEvents(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
         isHolding,
       });
     }
@@ -42,8 +36,8 @@
   onDestroy(() => {
     if (browser) {
       cleanupMatterBase(matterBase);
-      if (removeEventHandlers) {
-        removeEventHandlers();
+      if (removePointerEvents) {
+        removePointerEvents();
       }
     }
   });
@@ -63,6 +57,8 @@
     pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map((pokeItem, index) => {
       const normalizeSize = 100;
+      const centerX = renderContainer.clientWidth * 0.5;
+      const centerY = renderContainer.clientHeight * 0.5;
       return createPokeBody(pokeItem.imageUrl, normalizeSize, {
         x: centerX + centerX * 0.6 * (index - 1),
         y: centerY * 1.5,

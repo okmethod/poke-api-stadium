@@ -51,7 +51,7 @@ function createPointerEventHandlers(
   };
 }
 
-export function initEventHandlers(
+export function initPointerEvents(
   world: Matter.World,
   mouseConstraint: Matter.MouseConstraint,
   renderContainer: HTMLDivElement,
