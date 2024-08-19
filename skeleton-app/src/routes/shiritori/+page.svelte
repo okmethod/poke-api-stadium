@@ -5,9 +5,9 @@
   import { filterDictByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
-  import { getTailChar, solveShiritoriRule } from "$lib/internals/shiritoriRule";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
+  import { getTailChar, solveShiritoriRule } from "./rules";
   import type { PokeItem } from "./+page";
 
   export let data: {
