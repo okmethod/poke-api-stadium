@@ -1,5 +1,6 @@
 import type { StaticItemData } from "$lib/types/item";
 
+// https://pokeapi.co/api/v2/item/${idOrName}
 export const STATIC_BALL_DICT: Record<string, StaticItemData> = {
   "master-ball": {
     id: 1,
@@ -32,6 +33,10 @@ export const STATIC_BALL_DICT: Record<string, StaticItemData> = {
   "premier-ball": {
     id: 12,
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
+  },
+  "heal-ball": {
+    id: 14,
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-ball.png",
   },
   "heavy-ball": {
     id: 452,

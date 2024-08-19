@@ -44,7 +44,7 @@ const contents: Content[] = [
   },
   {
     title: "ポケモンしりとり",
-    ballName: "repeat-ball",
+    ballName: "heal-ball",
     action: "navigate",
     route: "/shiritori",
   },
@@ -59,6 +59,12 @@ const contents: Content[] = [
     ballName: "safari-ball",
     action: "navigate",
     route: "/hodai",
+  },
+  {
+    title: "ポケモンえあわせ",
+    ballName: "repeat-ball",
+    action: "navigate",
+    route: "/eawase",
   },
   {
     title: "ソースコード",
