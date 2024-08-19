@@ -1,6 +1,6 @@
 declare const Matter: typeof import("matter-js");
 import type { Point } from "$lib/types/matter";
-import { getVertices, scaleVertices } from "$lib/matters/getVertices";
+import { getVertices, scaleVertices, convertToConvex } from "$lib/matters/getVertices";
 
 export async function createPokeBody(
   imageUrl: string,
@@ -22,8 +22,8 @@ export async function createPokeBody(
     scaledVertices = scaleVertices(vertices, normalizeRatioForVertices);
   }
 
-  // don't use poly-decomp
-  return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [scaledVertices], {
+  const convexVertices = convertToConvex(scaledVertices);
+  return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [convexVertices], {
     restitution: 0.2, // 反発係数
     friction: 0.1, // 摩擦係数
     // density:  // 密度

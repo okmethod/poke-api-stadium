@@ -4,7 +4,7 @@ export async function getVertices(imageUrl: string): Promise<Point[]> {
   const imageElement = await loadImage(imageUrl);
   const imageArray = getImageArrayFromElement(imageElement);
   const vertices = getVerticesFromImageArray(imageArray, imageElement.width, imageElement.height);
-  const verticesClockwise = sortVerticesClockwise(vertices);
+  const verticesClockwise = sortClockwise(vertices);
   return verticesClockwise;
 }
 
@@ -62,7 +62,7 @@ function getVerticesFromImageArray(imageArray: Uint8ClampedArray, width: number,
   return vertices;
 }
 
-function sortVerticesClockwise(vertices: Point[]): Point[] {
+function sortClockwise(vertices: Point[]): Point[] {
   const centroid = vertices.reduce(
     (acc, vertex) => {
       acc.x += vertex.x;
@@ -91,4 +91,26 @@ export function scaleVertices(vertices: Point[], scale: number): Point[] {
     x: centerX + (v.x - centerX) * scale,
     y: centerY + (v.y - centerY) * scale,
   }));
+}
+
+export function convertToConvex(vertices: Point[]): Point[] {
+  const convexVertices = vertices.slice();
+
+  for (let i = 0; i < convexVertices.length; i++) {
+    const p1 = convexVertices[i];
+    const p2 = convexVertices[(i + 1) % convexVertices.length];
+    const p3 = convexVertices[(i + 2) % convexVertices.length];
+
+    if (!_isConvex(p1, p2, p3)) {
+      // 凹型の頂点を削除
+      convexVertices.splice((i + 1) % convexVertices.length, 1);
+      i = -1; // 再度チェックするためにリセット
+    }
+  }
+
+  function _isConvex(p1: Point, p2: Point, p3: Point) {
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) >= 0;
+  }
+
+  return convexVertices;
 }
