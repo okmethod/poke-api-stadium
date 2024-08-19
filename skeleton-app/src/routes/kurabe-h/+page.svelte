@@ -59,7 +59,7 @@
       const normalizeSize = 100;
       const centerX = renderContainer.clientWidth * 0.5;
       const centerY = renderContainer.clientHeight * 0.5;
-      return createPokeBody(pokeItem.imageUrl, normalizeSize, {
+      return createPokeBody(pokeItem.imageUrl, normalizeSize, 1, {
         x: centerX + centerX * 0.6 * (index - 1),
         y: centerY * 1.5,
       });

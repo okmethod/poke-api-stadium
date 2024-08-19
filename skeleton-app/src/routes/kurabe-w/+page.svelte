@@ -69,7 +69,7 @@
     pickedPokeItems = pickRandomElementsFromArray(pokeItems, pokeCount);
     const bodyPromises = pickedPokeItems.map(
       // 位置はbody作成後に再調整する
-      (pokeItem) => createPokeBody(pokeItem.imageUrl, false, { x: 0, y: 0 }),
+      (pokeItem) => createPokeBody(pokeItem.imageUrl, false, 1, { x: 0, y: 0 }),
     );
     const bodies = await Promise.all(bodyPromises);
     bodies.forEach((body, index) => {

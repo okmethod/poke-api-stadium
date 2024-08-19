@@ -48,7 +48,7 @@
     const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
     pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
     const spawnPosX = getRandomNumber(100);
-    const body = await createPokeBody(pickedPokeItem.imageUrl, false, { x: 50 + spawnPosX * 2, y: 20 });
+    const body = await createPokeBody(pickedPokeItem.imageUrl, false, 1, { x: 50 + spawnPosX * 2, y: 20 });
     Matter.Composite.add(matterBase.engine.world, [body]);
   }
 </script>

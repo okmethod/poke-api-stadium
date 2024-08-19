@@ -63,7 +63,7 @@
     await pokeBodyPromises;
 
     async function _spawnSpriteBody(pokeItem: PokeItem, spawnPoint: Point): Promise<void> {
-      const body = await createPokeBody(pokeItem.imageUrl, 60, spawnPoint);
+      const body = await createPokeBody(pokeItem.imageUrl, false, 1.8, spawnPoint);
       body.collisionFilter.category = pokeItem.category;
       console.debug(body.collisionFilter);
       Matter.Composite.add(matterBase.engine.world, [body]);

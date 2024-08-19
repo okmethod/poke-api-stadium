@@ -5,6 +5,7 @@ import { getVertices, scaleVertices, convertToConvex } from "$lib/matters/getVer
 export async function createPokeBody(
   imageUrl: string,
   normalizeSize: number | false,
+  scale: number,
   spawnPoint: Point,
 ): Promise<Matter.Body> {
   const vertices = await getVertices(imageUrl);
@@ -15,12 +16,10 @@ export async function createPokeBody(
     const bounds = Matter.Bounds.create(vertices);
     const width = bounds.max.x - bounds.min.x;
     const height = bounds.max.y - bounds.min.y;
-
     normalizeRatio = normalizeSize / Math.max(width, height);
-
-    const normalizeRatioForVertices = normalizeRatio * 0.9; // 当たり判定を画像よりも少し小さくする
-    scaledVertices = scaleVertices(vertices, normalizeRatioForVertices);
   }
+  const adjustScale = 0.8; // 当たり判定を少し小さくする
+  scaledVertices = scaleVertices(vertices, normalizeRatio * scale * adjustScale);
 
   const convexVertices = convertToConvex(scaledVertices);
   return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [convexVertices], {
@@ -31,8 +30,8 @@ export async function createPokeBody(
     render: {
       sprite: {
         texture: imageUrl,
-        xScale: normalizeRatio,
-        yScale: normalizeRatio,
+        xScale: normalizeRatio * scale,
+        yScale: normalizeRatio * scale,
       },
     },
   });
