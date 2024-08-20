@@ -4,15 +4,13 @@
 </script>
 
 <script lang="ts">
-  import { onMount, onDestroy } from "svelte";
-  import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
-  import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
-  import { initPointerEvents } from "$lib/matters/initPointerEvents";
+  import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -21,26 +19,6 @@
 
   let renderContainer: HTMLDivElement;
   let matterBase: MatterBase;
-  let isHolding = false;
-  let removePointerEvents: () => void;
-  onMount(async () => {
-    matterBase = initMatterBase(renderContainer);
-    if (browser) {
-      runMatterBase(matterBase);
-      removePointerEvents = initPointerEvents(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
-        isHolding,
-      });
-    }
-  });
-
-  onDestroy(() => {
-    if (browser) {
-      cleanupMatterBase(matterBase);
-      if (removePointerEvents) {
-        removePointerEvents();
-      }
-    }
-  });
 
   // ポケモン召喚
   let pickedPokeItem: PokeItem;
@@ -77,7 +55,7 @@
 
     <!-- Render -->
     <div class="m-4">
-      <div bind:this={renderContainer} class="w-80 h-80 bg-gray-300 border border-black"></div>
+      <MatterRenderContainer bind:renderContainer bind:matterBase />
     </div>
   </div>
 </div>

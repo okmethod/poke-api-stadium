@@ -4,16 +4,16 @@
 </script>
 
 <script lang="ts">
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
   import { browser } from "$app/environment";
   import Icon from "@iconify/svelte";
-  import { initMatterBase, runMatterBase, cleanupMatterBase, type MatterBase } from "$lib/matters/initMatterBase";
-  import { initPointerEvents } from "$lib/matters/initPointerEvents";
+  import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
+  import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
   import type { PokeItem } from "./+page";
 
   export let data: {
@@ -26,33 +26,16 @@
   let matterBase: MatterBase;
   let seesaw: Matter.Composite; // eslint-disable-line no-undef
   let seesawStick: Matter.Body; // eslint-disable-line no-undef
-  let isHolding = false;
-  let removePointerEvents: () => void;
-  onMount(async () => {
-    matterBase = initMatterBase(renderContainer);
+  if (browser) {
+    onMount(async () => {
+      centerX = renderContainer.clientWidth * 0.5;
+      centerY = renderContainer.clientHeight * 0.5;
+      const SeesawWidth = renderContainer.clientWidth * 0.9;
+      ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.4 }));
 
-    centerX = renderContainer.clientWidth * 0.5;
-    centerY = renderContainer.clientHeight * 0.5;
-    const SeesawWidth = renderContainer.clientWidth * 0.9;
-    ({ seesaw, seesawStick } = createSeesawComposite(SeesawWidth, 20, { x: centerX, y: centerY * 1.4 }));
-
-    if (browser) {
-      runMatterBase(matterBase);
       Matter.Composite.add(matterBase.engine.world, seesaw);
-      removePointerEvents = initPointerEvents(matterBase.engine.world, matterBase.mouseConstraint, renderContainer, {
-        isHolding,
-      });
-    }
-  });
-
-  onDestroy(() => {
-    if (browser) {
-      cleanupMatterBase(matterBase);
-      if (removePointerEvents) {
-        removePointerEvents();
-      }
-    }
-  });
+    });
+  }
 
   // ゲームデータ管理
   let isReady = true;
@@ -150,7 +133,7 @@
 
     <!-- Render -->
     <div class="m-4">
-      <div bind:this={renderContainer} class="w-80 h-80 bg-gray-300 border border-black"></div>
+      <MatterRenderContainer bind:renderContainer bind:matterBase />
     </div>
 
     <!-- メッセージ -->
