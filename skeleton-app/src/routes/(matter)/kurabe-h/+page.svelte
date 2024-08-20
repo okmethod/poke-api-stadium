@@ -11,7 +11,7 @@
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
-  import type { PokeItem } from "./+page";
+  import type { PokeItem } from "../+layout";
 
   export let data: {
     pokeItems: PokeItem[];
