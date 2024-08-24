@@ -2,7 +2,7 @@ import type { LoadEvent } from "@sveltejs/kit";
 import { navigateTo } from "$lib/utils/navigation.client";
 import { pickRandomNumbers } from "$lib/utils/collections";
 import { fetchStaticAddPokeData, fetchBall } from "$lib/constants/fetchStaticData";
-import { GITHUB_REPO_URL } from "$lib/constants/common";
+import { GITHUB_REPO_URL, POKENATOR_URL } from "$lib/constants/common";
 
 interface Content {
   title: string;
@@ -65,6 +65,12 @@ const contents: Content[] = [
     ballName: "repeat-ball",
     action: "navigate",
     route: "/eawase",
+  },
+  {
+    title: "ポケネーター",
+    ballName: "luxury-ball",
+    action: "redirect",
+    route: POKENATOR_URL,
   },
   {
     title: "ソースコード",

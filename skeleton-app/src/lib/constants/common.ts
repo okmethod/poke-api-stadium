@@ -1,4 +1,5 @@
 export const GITHUB_REPO_URL = "https://github.com/okmethod/poke-api-stadium";
+export const POKENATOR_URL = "https://okmethod-gemini-trial.web.app/";
 
 // 通常フォルムのポケモンの図鑑番号の最小値〜最大値
 export const FIRST_POKE_ID = 1;
