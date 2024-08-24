@@ -4,10 +4,12 @@ import { pickRandomNumbers } from "$lib/utils/collections";
 import { fetchStaticAddPokeData, fetchBall } from "$lib/constants/fetchStaticData";
 import { GITHUB_REPO_URL, POKENATOR_URL } from "$lib/constants/common";
 
+type Action = "navigate" | "redirect" | "redirectNewTab";
+
 interface Content {
   title: string;
   ballName: string;
-  action: "navigate" | "redirect";
+  action: Action;
   route: string;
 }
 
@@ -67,7 +69,7 @@ const contents: Content[] = [
     route: "/eawase",
   },
   {
-    title: "ポケネーター",
+    title: "ポケネイター",
     ballName: "luxury-ball",
     action: "redirect",
     route: POKENATOR_URL,
@@ -75,13 +77,16 @@ const contents: Content[] = [
   {
     title: "ソースコード",
     ballName: "premier-ball",
-    action: "redirect",
+    action: "redirectNewTab",
     route: GITHUB_REPO_URL,
   },
 ];
 
+// prettier-ignore
 const symbolPokeIds = [
-  10080, 10081, 10082, 10083, 10084, 10085, 10094, 10095, 10096, 10097, 10098, 10099, 10148, 10158, 10160,
+  10080, 10081, 10082, 10083, 10084, 10085,
+  10094, 10095, 10096, 10097, 10098, 10099,
+  10148, 10158, 10160,
 ];
 
 export interface ButtonConfig {
@@ -100,10 +105,13 @@ export async function load({ fetch }: LoadEvent): Promise<{ buttonConfigs: Butto
     onClick: _getOnClick(content.action, content.route),
   }));
 
-  function _getOnClick(action: string, route: string): () => void {
-    const actions: { [key: string]: () => void } = {
+  function _getOnClick(action: Action, route: string): () => void {
+    const actions: { [key in Action]: () => void } = {
       navigate: () => navigateTo(route),
-      redirect: () => window.open(route, "_blank"),
+      redirect: () => {
+        window.location.href = route;
+      },
+      redirectNewTab: () => window.open(route, "_blank"),
     };
     return actions[action] || (() => {});
   }
