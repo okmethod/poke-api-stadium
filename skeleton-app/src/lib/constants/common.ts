@@ -1,4 +1,6 @@
+// 外部サイトURL
 export const GITHUB_REPO_URL = "https://github.com/okmethod/poke-api-stadium";
+export const MATTER_PROTOTYPE_URL = "https://okmethod.github.io/thin-2d-physics-sim/";
 export const POKENATOR_URL = "https://okmethod-gemini-trial.web.app/";
 
 // 通常フォルムのポケモンの図鑑番号の最小値〜最大値

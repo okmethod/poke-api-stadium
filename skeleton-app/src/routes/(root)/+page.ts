@@ -67,8 +67,14 @@ const contents: ContentLink[] = [
     route: POKENATOR_URL,
   },
   {
-    title: "ソースコード",
+    title: "しさくひん",
     ballName: "premier-ball",
+    action: "navigate",
+    route: "/prototype",
+  },
+  {
+    title: "ソースコード",
+    ballName: "master-ball",
     action: "redirectNewTab",
     route: GITHUB_REPO_URL,
   },
