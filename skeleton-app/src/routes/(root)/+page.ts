@@ -1,19 +1,11 @@
 import type { LoadEvent } from "@sveltejs/kit";
-import { navigateTo } from "$lib/utils/navigation.client";
 import { pickRandomNumbers } from "$lib/utils/collections";
+import type { ContentLink, TransitionButtonConfig } from "$lib/utils/transitions";
+import { getOnClick } from "$lib/utils/transitions";
 import { fetchStaticAddPokeData, fetchBall } from "$lib/constants/fetchStaticData";
 import { GITHUB_REPO_URL, POKENATOR_URL } from "$lib/constants/common";
 
-type Action = "navigate" | "redirect" | "redirectNewTab";
-
-interface Content {
-  title: string;
-  ballName: string;
-  action: Action;
-  route: string;
-}
-
-const contents: Content[] = [
+const contents: ContentLink[] = [
   {
     title: "ポケモンずかん",
     ballName: "poke-ball",
@@ -89,32 +81,16 @@ const symbolPokeIds = [
   10148, 10158, 10160,
 ];
 
-export interface ButtonConfig {
-  title: string;
-  imageUrl: string;
-  alt: string;
-  onClick: () => void;
-}
-
-export async function load({ fetch }: LoadEvent): Promise<{ buttonConfigs: ButtonConfig[]; symbolUrl: string }> {
+export async function load({
+  fetch,
+}: LoadEvent): Promise<{ buttonConfigs: TransitionButtonConfig[]; symbolUrl: string }> {
   const ballImages = await Promise.all(contents.map((content) => fetchBall(content.ballName)));
-  const buttonConfigs: ButtonConfig[] = contents.map((content, index) => ({
+  const buttonConfigs: TransitionButtonConfig[] = contents.map((content, index) => ({
     title: content.title,
     imageUrl: ballImages[index]?.imageUrl ?? "not_found",
     alt: content.ballName,
-    onClick: _getOnClick(content.action, content.route),
+    onClick: getOnClick(content.action, content.route),
   }));
-
-  function _getOnClick(action: Action, route: string): () => void {
-    const actions: { [key in Action]: () => void } = {
-      navigate: () => navigateTo(route),
-      redirect: () => {
-        window.location.href = route;
-      },
-      redirectNewTab: () => window.open(route, "_blank"),
-    };
-    return actions[action] || (() => {});
-  }
 
   const symbolId = pickRandomNumbers(symbolPokeIds, 1)[0];
   const symbolUrl = (await fetchStaticAddPokeData(fetch, symbolId.toString())).gifUrl ?? "not_found";

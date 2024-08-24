@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { ButtonConfig } from "./+page";
+  import type { TransitionButtonConfig } from "$lib/utils/transitions";
 
   export let data: {
-    buttonConfigs: ButtonConfig[];
+    buttonConfigs: TransitionButtonConfig[];
     symbolUrl: string;
   };
 </script>
