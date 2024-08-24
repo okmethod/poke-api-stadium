@@ -1,7 +1,7 @@
 import type { ContentLink, TransitionButtonConfig } from "$lib/utils/transitions";
 import { getOnClick } from "$lib/utils/transitions";
 import { fetchBall } from "$lib/constants/fetchStaticData";
-import { MATTER_PROTOTYPE_URL } from "$lib/constants/common";
+import { MATTER_PROTOTYPE_URL, AMMO_PROTOTYPE_URL } from "$lib/constants/common";
 
 const contents: ContentLink[] = [
   {
@@ -9,6 +9,12 @@ const contents: ContentLink[] = [
     ballName: "premier-ball",
     action: "redirectNewTab",
     route: MATTER_PROTOTYPE_URL,
+  },
+  {
+    title: "3D物理エンジン + 3D描画",
+    ballName: "premier-ball",
+    action: "redirectNewTab",
+    route: AMMO_PROTOTYPE_URL,
   },
 ];
 
