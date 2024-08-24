@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <div class="container mx-auto overflow-y-auto pb-16">
+  <div class="container mx-auto overflow-y-auto pb-32">
     <slot />
   </div>
 

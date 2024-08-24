@@ -76,7 +76,7 @@
     <!-- 入力フォーム -->
     <div class="flex items-center justify-center">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を よびだす</span>
+        <span class="cSpanTextStyle">ポケモン を よびだす</span>
         <form on:submit|preventDefault={spawnPokeBodies}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">

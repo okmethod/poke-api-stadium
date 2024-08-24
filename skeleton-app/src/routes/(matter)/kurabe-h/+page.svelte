@@ -102,7 +102,7 @@
     <!-- 入力フォーム -->
     <div class="flex items-center justify-center">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を よびだす</span>
+        <span class="cSpanTextStyle">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" disabled={!isReady} class="cIconButtonStyle">
             <div class="cIconDivStyle">
@@ -121,7 +121,7 @@
     <!-- メッセージ -->
     <div class="m-4 mt-2 space-y-4">
       <div class="cInputFormAndMessagePartStyle justify-center">
-        <span class="text-lg">こたえをみる</span>
+        <span class="cSpanTextStyle">こたえをみる</span>
         <button type="button" class="cIconButtonStyle" on:click={compareHeight}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />
@@ -137,7 +137,7 @@
             </div>
           {/each}
         {:else}
-          <span class="text-lg">{guideMessage}</span>
+          <span class="cSpanTextStyle">{guideMessage}</span>
         {/if}
       </div>
     </div>

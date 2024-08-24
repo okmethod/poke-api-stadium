@@ -42,7 +42,7 @@
     <!-- 入力フォーム -->
     <div class="flex items-center justify-center">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン ゲットだぜ！</span>
+        <span class="cSpanTextStyle">ポケモン ゲットだぜ！</span>
         <form on:submit|preventDefault={spawnPokeBody}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">

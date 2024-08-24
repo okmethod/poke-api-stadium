@@ -165,7 +165,7 @@
     <!-- 入力フォーム -->
     <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">
+        <span class="cSpanTextStyle">
           {#if pickedPokeItems.length === 0}
             しりとり スタート
           {:else}
@@ -180,7 +180,7 @@
           </button>
         </form>
         <div class="flex-grow"><!-- spacer --></div>
-        <p class="text-lg">{pushedPokeItems.length}</p>
+        <p class="cSpanTextStyle">{pushedPokeItems.length}</p>
         <form on:submit|preventDefault={showPokeListModal}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
@@ -212,7 +212,7 @@
     <!-- いれかえボタン -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を いれかえる</span>
+        <span class="cSpanTextStyle">ポケモン を いれかえる</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button
             type="submit"
@@ -254,7 +254,7 @@
     <!-- メッセージ -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle mb-2">
-        <span class="text-lg">{message}</span>
+        <span class="cSpanTextStyle">{message}</span>
       </div>
     </div>
   </div>

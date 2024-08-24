@@ -31,37 +31,46 @@
 </script>
 
 <div
-  class="relative flex flex-col bg-gray-50 rounded-2xl shadow border h-[150px] w-[150px] overflow-hidden select-none"
+  class="
+    relative flex flex-col bg-gray-50 rounded-2xl shadow border
+    h-[100px] sm:h-[150px] w-[100px] sm:w-[150px]
+    overflow-hidden select-none
+  "
 >
   <header class="absolute top-0 w-full z-10 p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <div class="p-2 bg-transparent z-20">
     <!-- タイトル部分 -->
-    <div class="flex justify-center">
-      <h1 class="bg-white bg-opacity-50 text-xl font-bold text-gray-900">
+    <div class="absolute inset-0 flex justify-center m-1 sm:m-2 h-5 sm:h-8 z-30">
+      <h1 class="bg-white bg-opacity-50 text-sm sm:text-xl font-bold text-gray-900">
         <div>{name ?? "???"}</div>
       </h1>
     </div>
     <!-- 画像部分 -->
     <div class="flex justify-center">
-      <div class="flex items-center justify-center bg-white rounded-full border border-gray-200">
+      <div class="absolute inset-4 flex items-center justify-center bg-white rounded-full border border-gray-200">
         {#if imageUrl !== null}
-          <img
-            src={imageUrl}
-            alt={name ?? "???"}
-            class="w-full h-full object-cover"
-            class:image={!isImageLoaded}
-            class:loaded={isImageLoaded}
-            on:load={handleImageLoad}
-          />
+          <div class="absolute inset-0 flex items-center justify-center h-full">
+            <img
+              src={imageUrl}
+              alt={name ?? "???"}
+              class="w-full h-full object-cover"
+              class:image={!isImageLoaded}
+              class:loaded={isImageLoaded}
+              on:load={handleImageLoad}
+            />
+          </div>
           {#if !isImageLoaded}
             <div class="absolute inset-0 flex items-center justify-center h-full">
-              <Icon icon="mdi:progress-download" class="w-full h-full text-white bg-gray-100 object-cover" />
+              <Icon
+                icon="mdi:progress-download"
+                class="w-full h-full text-white bg-gray-100 object-cover rounded-full"
+              />
             </div>
           {/if}
         {:else}
           <div class="absolute inset-0 flex items-center justify-center h-full">
-            <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white" />
+            <Icon icon="mdi:image-off-outline" class="w-8 h-8 bg-white rounded-full" />
           </div>
         {/if}
       </div>

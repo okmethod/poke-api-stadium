@@ -102,7 +102,7 @@
     <!-- 入力フォーム -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を よびだす</span>
+        <span class="cSpanTextStyle">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItem}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
@@ -139,7 +139,7 @@
     <!-- メッセージ -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">こたえをみる</span>
+        <span class="cSpanTextStyle">こたえをみる</span>
         <button type="button" class="cIconButtonStyle" on:click={toggleSilhouette}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />

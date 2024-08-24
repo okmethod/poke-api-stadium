@@ -192,7 +192,7 @@
   }
 
   // スタイル
-  const cPokeFieldStyle = "min-h-[220px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
+  const cPokeFieldStyle = "min-h-[180px] sm:min-h-[220px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
   const cTypeChipStyle = "px-2 py-1 rounded h-full";
 </script>
@@ -208,7 +208,7 @@
     <!-- 入力フォーム -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を よびだす</span>
+        <span class="cSpanTextStyle">ポケモン を よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
@@ -255,7 +255,7 @@
 
     <!-- 中央分離帯 -->
     <div>
-      <p class="text-center text-lg">
+      <p class="text-center cSpanTextStyle">
         {#if phase !== "term"}
           <span class="block">VS</span>
         {:else}
@@ -320,7 +320,7 @@
     <!-- メッセージ -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">{guideMessage}</span>
+        <span class="cSpanTextStyle">{guideMessage}</span>
         {#if phase == "select_poke" && selectedOwnPokeIndex !== -1}
           <!-- ポケモン選択済み、決定前のとき-->
           <button type="button" class="cIconButtonStyle" on:click={commitOwnPoke}>

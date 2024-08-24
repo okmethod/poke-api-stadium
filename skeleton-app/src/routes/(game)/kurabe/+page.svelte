@@ -120,7 +120,7 @@
   const dropTargetStyle = { outline: "0px" };
 
   // スタイル
-  const cPokeFieldStyle = "min-h-[250px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
+  const cPokeFieldStyle = "min-h-[200px] sm:min-h-[250px] min-w-[300px] md:min-w-[600px] border bg-white rounded-xl";
   const cPokeArrayStyle = "flex flex-wrap justify-between gap-y-1 p-4";
 </script>
 
@@ -140,10 +140,10 @@
             <option value={key}>{value.name}</option>
           {/each}
         </select>
-        <span class="text-lg">で くらべる</span>
+        <span class="cSpanTextStyle">で くらべる</span>
       </div>
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">ポケモン を </span>
+        <span class="cSpanTextStyle">ポケモン を </span>
         <input
           type="number"
           id="pokeCount"
@@ -152,7 +152,7 @@
           bind:value={pokeCount}
           class="border rounded px-4 py-1 h-full"
         />
-        <span class="text-lg">たい よびだす</span>
+        <span class="cSpanTextStyle">たい よびだす</span>
         <form on:submit|preventDefault={pickPokeItems}>
           <button type="submit" class="cIconButtonStyle">
             <div class="cIconDivStyle">
@@ -190,13 +190,13 @@
     <!-- メッセージ -->
     <div class="m-4 mt-2">
       <div class="cInputFormAndMessagePartStyle">
-        <span class="text-lg">こたえあわせ</span>
+        <span class="cSpanTextStyle">こたえあわせ</span>
         <button type="button" class="cIconButtonStyle" on:click={compareValues}>
           <div class="cIconDivStyle">
             <Icon icon="mdi:pokeball" class="cIconStyle" />
           </div>
         </button>
-        <span class="text-lg">{comprareResult}</span>
+        <span class="cSpanTextStyle">{comprareResult}</span>
       </div>
     </div>
   </div>

@@ -62,7 +62,7 @@
                 </div>
               </button>
             </form>
-            <span class="text-lg">{config.label}</span>
+            <span class="cSpanTextStyle">{config.label}</span>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@
     <!-- 入力フォーム -->
     <div class="flex items-center justify-center">
       <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
-        <label for="pokeId" class="text-lg">
+        <label for="pokeId" class="cSpanTextStyle">
           <span>No:</span>
         </label>
         <div class="cInputFormAndMessagePartStyle">
