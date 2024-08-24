@@ -1,0 +1,1 @@
+const t="https://github.com/okmethod/poke-api-stadium",s="https://okmethod.github.io/thin-2d-physics-sim/",i="https://okmethod.github.io/thin-3d-physics-sim/",h="https://okmethod-gemini-trial.web.app/",o=1,a=1025,p=10001,m=277;export{i as A,o as F,t as G,s as M,a as P,h as a,m as b,p as c};
