@@ -5,6 +5,7 @@ import { makeSpritesArray } from "$lib/types/sprites";
 import type { Stat, Stats } from "$lib/types/stats";
 import { transformStats } from "$lib/types/stats";
 
+// https://pokeapi.co/api/v2/pokemon/${idOrName}
 export interface ResponsePokemonJson {
   id: number;
   species: {
@@ -25,6 +26,7 @@ export interface ResponsePokemonJson {
   is_default: boolean; // true:通常フォルム、false:別フォルム
 }
 
+// https://pokeapi.co/api/v2/pokemon-species/${idOrName}
 export interface ResponseSpeciesJson {
   names: Array<{
     language: {
@@ -49,6 +51,11 @@ export interface ResponseSpeciesJson {
     name: string;
     url: string;
   };
+  shape: {
+    name: string;
+    url: string;
+  };
+  is_baby: boolean;
   is_legendary: boolean;
   is_mythical: boolean;
 }
@@ -68,9 +75,13 @@ export interface PokeData {
   height: number;
   weight: number;
   stats: Stats;
-  isDefault: boolean;
   varieties: string[];
   generation: string;
+  shape: string;
+  isDefault: boolean;
+  isBaby: boolean;
+  isLegendary: boolean;
+  isMythical: boolean;
 }
 
 export function convertToPokeData(
@@ -94,11 +105,15 @@ export function convertToPokeData(
     height: pokemonJson.height,
     weight: pokemonJson.weight,
     stats: transformStats(pokemonJson.stats),
-    isDefault: pokemonJson.is_default,
     varieties: speciesJson.varieties
       .filter((variety) => variety.pokemon.name !== pokemonJson.species.name)
       .map((variety) => variety.pokemon.name),
     generation: speciesJson.generation.name,
+    shape: speciesJson.shape.name,
+    isDefault: pokemonJson.is_default,
+    isBaby: speciesJson.is_baby,
+    isLegendary: speciesJson.is_legendary,
+    isMythical: speciesJson.is_mythical,
   };
 }
 

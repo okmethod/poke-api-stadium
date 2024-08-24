@@ -1,5 +1,6 @@
 import makeStaticPokeDict from "$lib/api/makeStaticPokeDict.client";
 import makeStaticTypeDict from "$lib/api/makeStaticTypeDict.client";
+import makePokenatorTuningDict from "$lib/api/makePokenatorTuningDict.client";
 import { TypeName } from "$lib/types/type";
 import { FIRST_POKE_ID, POKE_COUNT, FIRST_ADDITIONAL_POKE_ID, ADDITIONAL_POKE_COUNT } from "$lib/constants/common";
 
@@ -42,6 +43,13 @@ export async function load(): Promise<{ downloadConfigs: DownloadConfig[] }> {
       label: "全タイプJson",
       makeFunction: makeStaticTypeDict,
       keys: _typeNames(),
+    },
+    {
+      id: "dlPokenatorTuningCsv",
+      fileName: "tuningPokenator.csv",
+      label: "Pokenatorチューニング用CSV",
+      makeFunction: makePokenatorTuningDict,
+      keys: _pokeIds(FIRST_POKE_ID, 151),
     },
   ];
 
