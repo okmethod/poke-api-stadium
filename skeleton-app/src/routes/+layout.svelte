@@ -4,12 +4,15 @@
   import { Toast, Modal, initializeStores, storePopup } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
+  import { page } from "$app/stores";
+  import { base } from "$app/paths";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation.js";
   import { pickRandomNumbers } from "$lib/utils/collections";
   import { navigateTo } from "$lib/utils/navigation.client";
 
   export let data: {
-    symbolUrlDict: Record<number, string>;
+    generationSymbolUrlDict: Record<number, string>;
+    footerSymbolUrl: string;
   };
 
   initializeStores();
@@ -33,7 +36,7 @@
   generationId.subscribe((value: GenerationId) => {
     currentGenerationId = value;
     const currentSymbolPokeId = pickRandomNumbers(generations[value].symbolPokeIds, 1)[0];
-    currentGenerationImageUrl = data.symbolUrlDict[currentSymbolPokeId];
+    currentGenerationImageUrl = data.generationSymbolUrlDict[currentSymbolPokeId];
     if (typeof localStorage !== "undefined") {
       localStorage.setItem("generationId", value);
     }
@@ -43,6 +46,9 @@
     const target = event.target as HTMLSelectElement;
     generationId.set(target.value as GenerationId);
   }
+
+  $: currentPath = $page.url.pathname;
+  const visibleFooterPaths = [`${base}/`, `${base}/prototype`];
 </script>
 
 <svelte:head>
@@ -54,7 +60,7 @@
 <Toast position="tr" rounded="rounded-lg" />
 
 <div class="flex flex-col h-screen">
-  <div class="border-b border-gray-400 bg-gray-100">
+  <div class="relative border-b border-gray-400 bg-gray-100">
     <div class="flex items-center justify-between h-full">
       <a
         href="/"
@@ -68,7 +74,11 @@
       </a>
       <div class="flex-grow"><!--spacer--></div>
       <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
-        <img src={currentGenerationImageUrl} alt="genImage" class="w-full h-full object-contain transform scale-150" />
+        <img
+          src={currentGenerationImageUrl}
+          alt="generationSymbol"
+          class="w-full h-full object-contain transform scale-150"
+        />
       </div>
       <select
         id="generationId"
@@ -86,4 +96,12 @@
   <div class="container mx-auto overflow-y-auto pb-16">
     <slot />
   </div>
+
+  <footer class="absolute bottom-0 w-full h-2 flex items-center justify-end bg-transparent pointer-events-none">
+    <div class="absolute bottom-0 mb-10 mr-4 w-20 h-20">
+      {#if visibleFooterPaths.includes(currentPath)}
+        <img src={data.footerSymbolUrl} alt="footerSymbol" />
+      {/if}
+    </div>
+  </footer>
 </div>

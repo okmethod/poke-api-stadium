@@ -1,8 +1,6 @@
-import type { LoadEvent } from "@sveltejs/kit";
-import { pickRandomNumbers } from "$lib/utils/collections";
 import type { ContentLink, TransitionButtonConfig } from "$lib/utils/transitions";
 import { getOnClick } from "$lib/utils/transitions";
-import { fetchStaticAddPokeData, fetchBall } from "$lib/constants/fetchStaticData";
+import { fetchBall } from "$lib/constants/fetchStaticData";
 import { GITHUB_REPO_URL, POKENATOR_URL } from "$lib/constants/common";
 
 const contents: ContentLink[] = [
@@ -80,16 +78,7 @@ const contents: ContentLink[] = [
   },
 ];
 
-// prettier-ignore
-const symbolPokeIds = [
-  10080, 10081, 10082, 10083, 10084, 10085,
-  10094, 10095, 10096, 10097, 10098, 10099,
-  10148, 10158, 10160,
-];
-
-export async function load({
-  fetch,
-}: LoadEvent): Promise<{ buttonConfigs: TransitionButtonConfig[]; symbolUrl: string }> {
+export async function load(): Promise<{ buttonConfigs: TransitionButtonConfig[] }> {
   const ballImages = await Promise.all(contents.map((content) => fetchBall(content.ballName)));
   const buttonConfigs: TransitionButtonConfig[] = contents.map((content, index) => ({
     title: content.title,
@@ -98,8 +87,5 @@ export async function load({
     onClick: getOnClick(content.action, content.route),
   }));
 
-  const symbolId = pickRandomNumbers(symbolPokeIds, 1)[0];
-  const symbolUrl = (await fetchStaticAddPokeData(fetch, symbolId.toString())).gifUrl ?? "not_found";
-
-  return { buttonConfigs, symbolUrl };
+  return { buttonConfigs };
 }
