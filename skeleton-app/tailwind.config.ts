@@ -12,6 +12,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "360px", // 480px 以上のカスタムブレークポイント
+      },
       brightness: {
         85: "0.85",
       },
