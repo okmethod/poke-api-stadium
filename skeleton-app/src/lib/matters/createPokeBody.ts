@@ -1,6 +1,6 @@
 declare const Matter: typeof import("matter-js");
 import type { Point } from "$lib/types/matter";
-import { getVertices, scaleVertices, convertToConvex } from "$lib/matters/getVertices";
+import { getVertices, scaleVertices, convertToConvex } from "$lib/matters/calcVertices";
 
 export async function createPokeBody(
   imageUrl: string,
