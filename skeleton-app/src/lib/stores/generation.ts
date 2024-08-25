@@ -14,6 +14,12 @@ const savedGenerationId =
 
 export const generationId = writable<GenerationId>(savedGenerationId ?? "all");
 
+generationId.subscribe((value: GenerationId) => {
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("generationId", value);
+  }
+});
+
 export const generations: Record<GenerationId, GenerationData> = {
   gen1: {
     label: "第1世代",

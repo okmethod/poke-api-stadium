@@ -5,6 +5,12 @@ const savedAudioOn = typeof localStorage !== "undefined" ? localStorage.getItem(
 
 export const audioOn = writable<boolean>(savedAudioOn ?? false);
 
+audioOn.subscribe((value: boolean) => {
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("audioOn", value.toString());
+  }
+});
+
 export function playAudio(audioUrl: string | null): void {
   if (browser && get(audioOn) && audioUrl !== null) {
     const audio = new Audio(audioUrl);

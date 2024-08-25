@@ -1,6 +1,7 @@
 <script lang="ts">
   import "../app.postcss";
   import { onMount } from "svelte";
+  import { get } from "svelte/store";
   import { Toast, Modal, initializeStores, storePopup } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
@@ -28,38 +29,27 @@
   let currentGenerationId: GenerationId | null = null;
   let currentGenerationImageUrl: string | null = null;
   onMount(() => {
-    if (typeof localStorage !== "undefined") {
-      const currentAudioOn = localStorage.getItem("audioOn") === "true";
-      const savedGenerationId = localStorage.getItem("generationId") as GenerationId;
-      if (currentAudioOn) audioOn.set(currentAudioOn);
-      if (savedGenerationId) generationId.set(savedGenerationId);
-      options = options.filter((option) => option.value !== "");
-    }
+    currentAudioOn = get(audioOn);
+    currentGenerationId = get(generationId);
+    currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
+    options = options.filter((option) => option.value !== "");
   });
 
-  audioOn.subscribe((value: boolean) => {
-    currentAudioOn = value;
-    if (typeof localStorage !== "undefined") {
-      localStorage.setItem("audioOn", value.toString());
-    }
-  });
-
-  generationId.subscribe((value: GenerationId) => {
-    currentGenerationId = value;
-    const currentSymbolPokeId = pickRandomNumbers(generations[value].symbolPokeIds, 1)[0];
-    currentGenerationImageUrl = data.generationSymbolUrlDict[currentSymbolPokeId];
-    if (typeof localStorage !== "undefined") {
-      localStorage.setItem("generationId", value);
-    }
-  });
+  function getSymbolImageUrl(generationId: GenerationId): string {
+    const symbolPokeId = pickRandomNumbers(generations[generationId].symbolPokeIds, 1)[0];
+    return data.generationSymbolUrlDict[symbolPokeId];
+  }
 
   function toggleAudioOn() {
-    audioOn.set(!currentAudioOn);
+    currentAudioOn = !currentAudioOn;
+    audioOn.set(currentAudioOn);
   }
 
   function handleGenerationChange(event: Event) {
     const target = event.target as HTMLSelectElement;
-    generationId.set(target.value as GenerationId);
+    currentGenerationId = target.value as GenerationId;
+    currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
+    generationId.set(currentGenerationId);
   }
 
   $: currentPath = $page.url.pathname;
