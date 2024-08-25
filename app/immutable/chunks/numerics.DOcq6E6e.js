@@ -1,1 +1,0 @@
-function t(t,n){return`${t?(.1*t).toFixed(1):"???"} ${"height"===n?"m":"kg"}`}function n(t){return void 0!==t?t.toString():"???"}function o(t){return Math.floor(Math.random()*t)}export{n as a,t as f,o as g};
