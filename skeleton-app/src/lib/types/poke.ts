@@ -13,6 +13,10 @@ export interface ResponsePokemonJson {
     url: string;
   };
   sprites: Sprites;
+  cries: {
+    latest: string;
+    legacy: string;
+  };
   types: Array<{
     slot: number;
     type: {
@@ -68,6 +72,8 @@ export interface PokeData {
   imageBackUrl: string | null;
   gifUrl: string | null;
   gifBackUrl: string | null;
+  oggUrl: string | null;
+  oggLegacyUrl: string | null;
   imageUrlArray: string[];
   jaGenus: string | null;
   type1: TypeData;
@@ -77,7 +83,7 @@ export interface PokeData {
   stats: Stats;
   varieties: string[];
   generation: string;
-  shape: string;
+  shape: string | null;
   isDefault: boolean;
   isBaby: boolean;
   isLegendary: boolean;
@@ -98,6 +104,8 @@ export function convertToPokeData(
     imageBackUrl: pokemonJson.sprites.back_default ?? null,
     gifUrl: pokemonJson.sprites.other.showdown.front_default ?? null,
     gifBackUrl: pokemonJson.sprites.other.showdown.back_default ?? null,
+    oggUrl: pokemonJson.cries.latest,
+    oggLegacyUrl: pokemonJson.cries.legacy,
     imageUrlArray: makeSpritesArray(pokemonJson.sprites),
     jaGenus: speciesJson.genera.find((genus) => genus.language.name === "ja")?.genus ?? null,
     type1: convertToTypeData(type1Json),
@@ -109,7 +117,7 @@ export function convertToPokeData(
       .filter((variety) => variety.pokemon.name !== pokemonJson.species.name)
       .map((variety) => variety.pokemon.name),
     generation: speciesJson.generation.name,
-    shape: speciesJson.shape.name,
+    shape: speciesJson.shape?.name ?? null,
     isDefault: pokemonJson.is_default,
     isBaby: speciesJson.is_baby,
     isLegendary: speciesJson.is_legendary,
@@ -124,6 +132,8 @@ export interface StaticPokeData {
   imageBackUrl: string | null;
   gifUrl: string | null;
   gifBackUrl: string | null;
+  oggUrl: string | null;
+  oggLegacyUrl: string | null;
   type1Name: string; // 期待する値は TypeName だが、jsonファイルからstaticデータを作るためにstringにしている
   type2Name: string | null;
   height: number;
@@ -139,6 +149,8 @@ export function convertToStaticPokeData(pokeData: PokeData): StaticPokeData {
     imageBackUrl: pokeData.imageBackUrl,
     gifUrl: pokeData.gifUrl,
     gifBackUrl: pokeData.gifBackUrl,
+    oggUrl: pokeData.oggUrl,
+    oggLegacyUrl: pokeData.oggLegacyUrl,
     type1Name: pokeData.type1.enName,
     type2Name: pokeData.type2?.enName ?? null,
     height: pokeData.height,

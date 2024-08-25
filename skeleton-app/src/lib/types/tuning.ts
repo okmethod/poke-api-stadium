@@ -15,7 +15,7 @@ export interface TuningPokeData {
   重さ: string;
   // evolveTo: string;
   // evolveFrom: string;
-  姿: string;
+  姿: string | null;
   // isBaby: boolean;
   伝説である: boolean;
 }
