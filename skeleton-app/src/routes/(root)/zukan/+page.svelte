@@ -1,6 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import makePokeData from "$lib/api/makePokeData.client";
+  import { playAudio } from "$lib/stores/audio";
   import type { PokeData } from "$lib/types/poke";
   import PokeCard from "$lib/components/cards/PokeCard.svelte";
 
@@ -14,6 +15,7 @@
     try {
       isUnkown = false;
       pokeData = await makePokeData(fetch, pokeId);
+      playAudio(pokeData.oggUrl);
     } catch {
       isUnkown = true;
       pokeData = null;
