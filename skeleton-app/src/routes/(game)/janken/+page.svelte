@@ -4,6 +4,7 @@
   import Icon from "@iconify/svelte";
   import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
   import { filterArrayByGeneration } from "$lib/stores/generation";
+  import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
@@ -38,6 +39,8 @@
   function commitOwnPoke(): void {
     selectedOpoPokeIndex = getRandomNumber(pokeCountByPlayer);
     selectedOwnPokeItem = ownPokeItems[selectedOwnPokeIndex];
+    playAudio(selectedOwnPokeItem.oggUrl);
+
     selectedOpoPokeItem = opoPokeItems[selectedOpoPokeIndex];
     phase = "select_type";
   }
@@ -62,6 +65,14 @@
       selectedOpoPokeType,
     ));
     ({ damageRatio, result } = _judgeJankenResult(isOwnAttack, attackType, defenseType));
+
+    if (result === "win") {
+      playAudio(selectedOwnPokeItem.oggUrl);
+    } else if (result === "lose") {
+      playAudio(selectedOpoPokeItem.oggUrl);
+    } else {
+      // draw
+    }
     phase = "term";
 
     function _judgeAttackSide(

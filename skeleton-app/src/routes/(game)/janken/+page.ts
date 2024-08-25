@@ -8,6 +8,7 @@ export interface PokeItem {
   pokeId: number;
   jaName: string;
   imageUrl: string;
+  oggUrl: string | null;
   type: (TypeData & TypeColors)[]; // 1コ or 2コ
   speed: number;
 }
@@ -33,6 +34,7 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
       pokeId,
       jaName: staticPokeData.jaName,
       imageUrl: staticPokeData.imageUrl ?? "not_found",
+      oggUrl: staticPokeData.oggUrl,
       type: staticPokeData.type2Name ? [type1, await fetchTypeData(staticPokeData.type2Name as TypeName)] : [type1],
       speed: staticPokeData.stats.speed,
     };
