@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   import { Chart, registerables } from "chart.js";
+  import { generations, type GenerationId } from "$lib/stores/generation";
   import type { PokeData } from "$lib/types/poke";
   import { TypeName } from "$lib/types/type";
   import { fetchTypeData } from "$lib/constants/fetchStaticData";
@@ -24,10 +25,13 @@
   }
 
   let imageUrlCount = 0;
+  let generationId: GenerationId;
+  let statsData: number[] = [];
   $: {
     void updateColors();
     if (pokeData) {
       imageUrlCount = pokeData.imageUrlArray.length;
+      generationId = pokeData?.generation as GenerationId;
       statsData = [
         pokeData?.stats.hp,
         pokeData?.stats.attack,
@@ -62,7 +66,6 @@
   Chart.register(...registerables);
   let chartCanvas: HTMLCanvasElement;
   let chartInstance: Chart | null = null;
-  let statsData: number[] = [];
   async function initializeChart() {
     const ctx = chartCanvas.getContext("2d");
     if (!ctx) return;
@@ -104,7 +107,13 @@
           legend: {
             display: false,
           },
+          tooltip: {
+            enabled: true,
+            mode: "nearest",
+            intersect: false,
+          },
         },
+        events: ["mousemove", "touchstart"],
         elements: {
           line: {
             borderWidth: 1,
@@ -122,7 +131,7 @@
   const cTextStyle = "text-s text-gray-600";
 </script>
 
-<div class="flex flex-col bg-gray-50 rounded-2xl shadow border w-[400px] md:w-[600px] overflow-hidden select-none">
+<div class="flex flex-col bg-gray-50 rounded-2xl shadow border w-[400px] md:w-[700px] overflow-hidden select-none">
   <header class="p-4 bg-transparent" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部 -->
@@ -144,7 +153,7 @@
   <!-- データ部 -->
   <div class="flex flex-wrap md:flex-nowrap w-full min-h-[280px] items-center justify-center">
     <!-- 画像 -->
-    <div class="md:w-2/5 m-2 md:p-4">
+    <div class="md:w-4/12 m-2 md:p-4">
       <div class="relative w-48 h-48 bg-white rounded-lg border border-gray-200">
         {#if pokeData !== null}
           <button type="button" on:click={toggleImage}>
@@ -175,11 +184,11 @@
     </div>
 
     <!-- 数値 -->
-    <div class="md:w-1/5 m-2 md:m-0">
+    <div class="md:w-3/12 m-2 md:m-0">
       <!-- タイプ -->
       <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
         <h2 class={cIndexStyle}>[タイプ]</h2>
-        <ul class="flex flex-row md:flex-col space-x-2 md:space-x-0 list-inside ml-1">
+        <ul class="flex flex-row space-x-2 list-inside ml-1">
           {#if pokeData !== null}
             <li class={cTextStyle}>{pokeData?.type1.jaName}</li>
             <li class={cTextStyle}>{pokeData?.type2 !== null ? pokeData?.type2.jaName : ""}</li>
@@ -203,10 +212,22 @@
           </ul>
         </div>
       </div>
+      <!--世代-->
+      <div class="flex flex-row md:flex-col mb-2 mr-2 md:mr-4">
+        <h2 class={cIndexStyle}>[せだい]</h2>
+        <ul class="flex flex-row md:flex-col space-x-2 md:space-x-0 list-inside ml-1">
+          {#if pokeData !== null}
+            <li class={cTextStyle}>{generations[generationId].label ?? "???"}</li>
+            <li class={cTextStyle}>({generations[generationId].description ?? "???"})</li>
+          {:else}
+            <li class={cTextStyle}>???</li>
+          {/if}
+        </ul>
+      </div>
     </div>
 
     <!-- レーダーチャート -->
-    <div class="md:w-2/5 m-2">
+    <div class="md:w-5/12 m-2">
       <div class="flex flex-col items-center justify-center">
         <h2 class={cIndexStyle}>[ステータス]</h2>
         <canvas bind:this={chartCanvas}></canvas>

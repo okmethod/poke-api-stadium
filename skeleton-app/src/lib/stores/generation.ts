@@ -1,6 +1,16 @@
 import { writable, get } from "svelte/store";
 
-export type GenerationId = "all" | "gen1" | "gen2" | "gen3" | "gen4" | "gen5" | "gen6" | "gen7" | "gen8" | "gen9";
+export type GenerationId =
+  | "all"
+  | "generation-i"
+  | "generation-ii"
+  | "generation-iii"
+  | "generation-iv"
+  | "generation-v"
+  | "generation-vi"
+  | "generation-vii"
+  | "generation-viii"
+  | "generation-ix";
 
 export interface GenerationData {
   label: string;
@@ -21,55 +31,55 @@ generationId.subscribe((value: GenerationId) => {
 });
 
 export const generations: Record<GenerationId, GenerationData> = {
-  gen1: {
+  "generation-i": {
     label: "第1世代",
     description: "赤・緑・青・黄",
     lastPokeId: 151,
     symbolPokeIds: [1, 4, 7],
   },
-  gen2: {
+  "generation-ii": {
     label: "第2世代",
     description: "金・銀・クリスタル",
     lastPokeId: 251,
     symbolPokeIds: [152, 155, 158],
   },
-  gen3: {
+  "generation-iii": {
     label: "第3世代",
     description: "ルビー・サファイア・エメラルド",
     lastPokeId: 386,
     symbolPokeIds: [252, 255, 258],
   },
-  gen4: {
+  "generation-iv": {
     label: "第4世代",
     description: "ダイヤモンド・パール",
     lastPokeId: 494,
     symbolPokeIds: [387, 390, 393],
   },
-  gen5: {
+  "generation-v": {
     label: "第5世代",
     description: "ブラック・ホワイト",
     lastPokeId: 649,
     symbolPokeIds: [495, 498, 501],
   },
-  gen6: {
+  "generation-vi": {
     label: "第6世代",
     description: "X・Y",
     lastPokeId: 721,
     symbolPokeIds: [650, 653, 656],
   },
-  gen7: {
+  "generation-vii": {
     label: "第7世代",
     description: "サン・ムーン",
     lastPokeId: 809,
     symbolPokeIds: [722, 725, 728],
   },
-  gen8: {
+  "generation-viii": {
     label: "第8世代",
     description: "ソード・シールド",
     lastPokeId: 905,
     symbolPokeIds: [810, 813, 816],
   },
-  gen9: {
+  "generation-ix": {
     label: "第9世代",
     description: "スカーレット・バイオレット",
     lastPokeId: 1025,
