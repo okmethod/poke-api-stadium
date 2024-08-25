@@ -1,22 +1,23 @@
 import type { PokeData } from "$lib/types/poke";
+import { formatHeightWeight } from "$lib/utils/numerics";
 
 export interface TuningPokeData {
-  jaName: string;
-  jaGenus: string | null;
-  //imageUrl: string | null;
-  //imageBackUrl: string | null;
-  //gifUrl: string | null;
-  //gifBackUrl: string | null;
+  名前: string;
+  分類: string | null;
+  // imageUrl: string | null;
+  // imageBackUrl: string | null;
+  // gifUrl: string | null;
+  // gifBackUrl: string | null;
   // generation: string;
-  type1Name: string;
-  type2Name: string | null;
-  height: number;
-  weight: number;
+  タイプ1: string;
+  タイプ2: string | null;
+  高さ: string;
+  重さ: string;
   // evolveTo: string;
   // evolveFrom: string;
-  shape: string;
+  姿: string;
   // isBaby: boolean;
-  isLegendary: boolean;
+  伝説である: boolean;
 }
 
 export function convertToTuningPokeData(pokeData: PokeData): TuningPokeData {
@@ -25,9 +26,9 @@ export function convertToTuningPokeData(pokeData: PokeData): TuningPokeData {
     分類: pokeData.jaGenus,
     タイプ1: pokeData.type1.jaName,
     タイプ2: pokeData.type2?.jaName ?? null,
-    たかさ: pokeData.height,
-    おもさ: pokeData.weight,
-    すがた: pokeData.shape,
-    伝説: pokeData.isLegendary || pokeData.isMythical,
+    高さ: formatHeightWeight(pokeData.height, "height"),
+    重さ: formatHeightWeight(pokeData.weight, "weight"),
+    姿: pokeData.shape,
+    伝説である: pokeData.isLegendary || pokeData.isMythical,
   };
 }
