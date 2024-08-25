@@ -8,6 +8,7 @@
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation";
+  import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
@@ -25,6 +26,7 @@
   async function spawnPokeBody(): Promise<void> {
     const pokeItems = filterArrayByGeneration(data.pokeItems, "pokeId");
     pickedPokeItem = pickRandomElementsFromArray(pokeItems, 1)[0];
+    playAudio(pickedPokeItem.oggUrl);
     const spawnPosX = getRandomNumber(100);
     const body = await createPokeBody(pickedPokeItem.imageUrl, false, 1, { x: 50 + spawnPosX * 2, y: 20 });
     Matter.Composite.add(matterBase.engine.world, [body]);
@@ -56,6 +58,12 @@
     <!-- Render -->
     <div class="m-4">
       <MatterRenderContainer bind:renderContainer bind:matterBase />
+    </div>
+
+    <div class="m-4">
+      <div class="flex items-center justify-center">
+        <strong>{pickedPokeItem ? pickedPokeItem.jaName : ""}</strong>
+      </div>
     </div>
   </div>
 </div>

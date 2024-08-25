@@ -7,6 +7,7 @@ export interface PokeItem {
   pokeId: number;
   jaName: string;
   imageUrl: string;
+  oggUrl: string | null;
   height: number;
   weight: number;
 }
@@ -31,6 +32,7 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
       pokeId,
       jaName: staticPokeData.jaName,
       imageUrl: staticPokeData.imageUrl ?? "not_found",
+      oggUrl: staticPokeData.oggUrl,
       height: staticPokeData.height,
       weight: staticPokeData.weight,
     };
