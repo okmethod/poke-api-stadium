@@ -4,6 +4,7 @@ import { getVertices, scaleVertices, convertToConvex } from "$lib/matters/calcVe
 
 export async function createPokeBody(
   imageUrl: string,
+  label: string | null,
   normalizeSize: number | false,
   scale: number,
   spawnPoint: Point,
@@ -22,7 +23,7 @@ export async function createPokeBody(
   scaledVertices = scaleVertices(vertices, normalizeRatio * scale * adjustScale);
 
   const convexVertices = convertToConvex(scaledVertices);
-  return Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [convexVertices], {
+  const pokeBody = Matter.Bodies.fromVertices(spawnPoint.x, spawnPoint.y, [convexVertices], {
     restitution: 0.2, // 反発係数
     friction: 0.1, // 摩擦係数
     // density:  // 密度
@@ -35,4 +36,7 @@ export async function createPokeBody(
       },
     },
   });
+  if (label) pokeBody.label = label;
+  console.log("pokeBody", pokeBody.label);
+  return pokeBody;
 }

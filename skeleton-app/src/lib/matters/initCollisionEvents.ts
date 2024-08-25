@@ -1,4 +1,5 @@
 declare const Matter: typeof import("matter-js");
+import { playAudio } from "$lib/stores/audio";
 
 function createCollisionEvents(engine: Matter.Engine, event: Matter.IEventCollision<Matter.Engine>) {
   const pairs = event.pairs;
@@ -20,6 +21,7 @@ function createCollisionEvents(engine: Matter.Engine, event: Matter.IEventCollis
     if (bodyA.collisionFilter.category === bodyB.collisionFilter.category) {
       Matter.Composite.remove(engine.world, bodyA);
       Matter.Composite.remove(engine.world, bodyB);
+      playAudio(bodyA.label);
     }
   });
 }
