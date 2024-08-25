@@ -3,6 +3,7 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import { filterDictByGeneration } from "$lib/stores/generation";
+  import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
@@ -69,7 +70,9 @@
   function pushFirstPokeData(): void {
     const pickedKey = pickRandomKey(pokeDict); // 最初はすべて未使用の前提
     markAsUsed(pickedKey);
-    pushedPokeItems = [pokeDict[pickedKey]];
+    const firstPokeItem = pokeDict[pickedKey];
+    playAudio(firstPokeItem.oggUrl);
+    pushedPokeItems = [firstPokeItem];
   }
 
   // しりとりルール解決
@@ -85,6 +88,7 @@
       return;
     }
     markAsUsed(nextPokeItem.pokeId);
+    playAudio(nextPokeItem.oggUrl);
     pushedPokeItems = [...pushedPokeItems, nextPokeItem];
   }
 

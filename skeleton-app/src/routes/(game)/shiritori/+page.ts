@@ -7,6 +7,7 @@ export interface PokeItem {
   pokeId: number; // dictにとっては冗長だが、listで使えるようにidを持たせる
   jaName: string;
   imageUrl: string;
+  oggUrl: string | null;
   isUsed: boolean; // しりとり進行中に更新されるフラグ
 }
 
@@ -28,6 +29,7 @@ export async function load({ fetch }: LoadEvent): Promise<{
         pokeId: key,
         jaName: pokeData.jaName,
         imageUrl: pokeData.imageUrl ?? "not_found",
+        oggUrl: pokeData.oggUrl,
         isUsed: false,
       };
     });
