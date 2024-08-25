@@ -6,7 +6,8 @@
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { page } from "$app/stores";
   import { base } from "$app/paths";
-  import { generations, generationId, type GenerationId } from "$lib/stores/generation.js";
+  import { audioOn } from "$lib/stores/audio";
+  import { generations, generationId, type GenerationId } from "$lib/stores/generation";
   import { pickRandomNumbers } from "$lib/utils/collections";
   import { navigateTo } from "$lib/utils/navigation.client";
 
@@ -23,13 +24,23 @@
     ...Object.entries(generations).map(([value, { label }]) => ({ value, label })),
   ];
 
+  let currentAudioOn = false;
   let currentGenerationId: GenerationId | null = null;
   let currentGenerationImageUrl: string | null = null;
   onMount(() => {
     if (typeof localStorage !== "undefined") {
+      const currentAudioOn = localStorage.getItem("audioOn") === "true";
       const savedGenerationId = localStorage.getItem("generationId") as GenerationId;
+      if (currentAudioOn) audioOn.set(currentAudioOn);
       if (savedGenerationId) generationId.set(savedGenerationId);
       options = options.filter((option) => option.value !== "");
+    }
+  });
+
+  audioOn.subscribe((value: boolean) => {
+    currentAudioOn = value;
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("audioOn", value.toString());
     }
   });
 
@@ -42,7 +53,11 @@
     }
   });
 
-  function handleChange(event: Event) {
+  function toggleAudioOn() {
+    audioOn.set(!currentAudioOn);
+  }
+
+  function handleGenerationChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     generationId.set(target.value as GenerationId);
   }
@@ -72,6 +87,11 @@
         </div>
         <span class="">HOME</span>
       </a>
+      <div class="w-8 h-8 bg-white border border-gray-400 rounded-full ml-1">
+        <button on:click={toggleAudioOn} class="w-full h-full flex items-center justify-center">
+          <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="text-gray-500 w-3/4 h-3/4" />
+        </button>
+      </div>
       <div class="flex-grow"><!--spacer--></div>
       <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
         <img
@@ -83,7 +103,7 @@
       <select
         id="generationId"
         bind:value={currentGenerationId}
-        on:change={handleChange}
+        on:change={handleGenerationChange}
         class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
       >
         {#each options as option}

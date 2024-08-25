@@ -10,6 +10,8 @@ export interface PokeItem {
   jaName: string;
   gifUrl: string;
   gifBackUrl: string;
+  oggUrl: string | null;
+  oggLegacyUrl: string | null;
   jaGenus: string | null;
   type1: TypeData;
   type2: TypeData | null;
@@ -50,6 +52,8 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
       jaName: staticPokeData.jaName,
       gifUrl: staticPokeData.gifUrl ?? "",
       gifBackUrl: staticPokeData.gifBackUrl ?? "",
+      oggUrl: staticPokeData.oggUrl,
+      oggLegacyUrl: staticPokeData.oggLegacyUrl,
       jaGenus: staticPokeData.jaGenus,
       type1: await fetchTypeData(staticPokeData.type1Name as TypeName),
       type2: staticPokeData.type2Name ? await fetchTypeData(staticPokeData.type2Name as TypeName) : null,

@@ -4,6 +4,7 @@
   import Icon from "@iconify/svelte";
   import type { Stats } from "$lib/types/stats";
   import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
@@ -24,6 +25,7 @@
   let isOpen = false;
   function toggleSilhouette(): void {
     isOpen = !isOpen; // 隠しコマンドで、もう一度押せば閉じる
+    if (isOpen && pickedPokeItem !== null) playAudio(pickedPokeItem.oggUrl);
   }
 
   // 状態リセット
