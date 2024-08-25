@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { makeFunction, DownloadConfig } from "./+page";
-  import { downloadJsonFile } from "$lib/utils/download.client";
+  import { downloadFile } from "$lib/utils/download.client";
 
   export let data: {
     downloadConfigs: DownloadConfig[];
@@ -16,9 +16,44 @@
   ): Promise<void> {
     isProcessing = true;
     const data = await makeFunction(window.fetch, keys);
-    const jsonData = JSON.stringify(data, null, 2);
-    await downloadJsonFile(jsonData, fileName, useCompression);
+
+    const extension = getFileExtension(fileName);
+    if (extension === "json") {
+      const jsonData = JSON.stringify(data, null, 2);
+      await downloadFile(jsonData, fileName, "application/json", useCompression);
+    } else if (extension === "csv") {
+      const csvData = convertDictToCsv(data);
+      console.log(csvData);
+
+      await downloadFile(csvData, fileName, "application/json", useCompression);
+    } else {
+      console.log(`Unsupported file extension: ${extension}`);
+    }
     isProcessing = false;
+  }
+
+  function getFileExtension(fileName: string): string {
+    const dotIndex = fileName.lastIndexOf(".");
+    if (dotIndex === -1) {
+      return ""; // 拡張子がない場合は空文字を返す
+    }
+    return fileName.substring(dotIndex + 1);
+  }
+
+  function convertDictToCsv<T>(data: Record<string, T>[]): string {
+    const values = Object.values(data);
+    const keys = Object.keys(data);
+    if (keys.length === 0) return "";
+
+    const headerKeys = Object.keys(values[0]);
+    const header = ["No", ...headerKeys].join(",") + "\n";
+    const body = keys
+      .map((key, index) =>
+        [key, ...headerKeys.map((k) => (values[index][k] !== null ? values[index][k] : "null"))].join(","),
+      )
+      .join("\n");
+
+    return header + body;
   }
 </script>
 

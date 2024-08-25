@@ -9,31 +9,29 @@ function clickDownloadLink(blob: Blob, fileName: string): void {
   URL.revokeObjectURL(url);
 }
 
-function downloadFile(data: string, fileName: string, mimeType: string): void {
-  const blob = new Blob([data], { type: mimeType });
-  clickDownloadLink(blob, fileName);
-}
-
-async function compressData(data: string, mimeType: string): Promise<Blob> {
+async function compressBlob(data: string, mimeType: string): Promise<Blob> {
   const blob = new Blob([data], { type: mimeType });
   const compressedStream = blob.stream().pipeThrough(new CompressionStream("gzip"));
   const compressedBlob = await new Response(compressedStream).blob();
   return compressedBlob;
 }
 
-async function downloadCompressedFile(data: string, fileName: string, mimeType: string): Promise<void> {
-  const compressedBlob = await compressData(data, mimeType);
-  clickDownloadLink(compressedBlob, fileName + ".gz");
-}
-
-export async function downloadJsonFile(jsonData: string, fileName: string, useCompression: boolean): Promise<void> {
+export async function downloadFile(
+  dataString: string,
+  fileName: string,
+  mimeType: string,
+  useCompression: boolean,
+): Promise<void> {
   console.debug("downloading:", fileName);
   try {
+    let blob: Blob;
     if (useCompression) {
-      await downloadCompressedFile(jsonData, fileName, "application/json");
+      blob = await compressBlob(dataString, mimeType);
+      fileName += ".gz";
     } else {
-      downloadFile(jsonData, fileName, "application/json");
+      blob = new Blob([dataString], { type: mimeType });
     }
+    clickDownloadLink(blob, fileName);
   } catch (error) {
     console.error(`failed to download ${fileName}:`, error);
     throw error;
