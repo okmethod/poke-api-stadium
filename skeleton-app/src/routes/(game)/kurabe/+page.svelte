@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import Icon from "@iconify/svelte";
-  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { filterArrayByGeneration } from "$lib/stores/generation";
   import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";

@@ -3,7 +3,7 @@
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
-  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { filterArrayByGeneration } from "$lib/stores/generation";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";

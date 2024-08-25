@@ -7,7 +7,7 @@
   import Icon from "@iconify/svelte";
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
-  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { filterArrayByGeneration } from "$lib/stores/generation";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";

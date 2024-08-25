@@ -3,7 +3,7 @@
   import type { ToastSettings } from "@skeletonlabs/skeleton";
   import Icon from "@iconify/svelte";
   import type { Stats } from "$lib/types/stats";
-  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";

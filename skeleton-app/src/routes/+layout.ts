@@ -1,5 +1,5 @@
 import type { LoadEvent } from "@sveltejs/kit";
-import { generations } from "$lib/stores/generation.js";
+import { generations } from "$lib/stores/generation";
 import { pickRandomNumbers } from "$lib/utils/collections";
 import { fetchStaticPokeData, fetchStaticAddPokeData } from "$lib/constants/fetchStaticData";
 

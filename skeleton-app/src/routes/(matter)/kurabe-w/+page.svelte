@@ -10,7 +10,7 @@
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
-  import { filterArrayByGeneration } from "$lib/stores/generation.js";
+  import { filterArrayByGeneration } from "$lib/stores/generation";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
