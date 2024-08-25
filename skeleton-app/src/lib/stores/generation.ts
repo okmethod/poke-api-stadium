@@ -1,26 +1,28 @@
 import { writable, get } from "svelte/store";
 
-export type GenerationId =
-  | "all"
-  | "generation-i"
-  | "generation-ii"
-  | "generation-iii"
-  | "generation-iv"
-  | "generation-v"
-  | "generation-vi"
-  | "generation-vii"
-  | "generation-viii"
-  | "generation-ix";
-
-export interface GenerationData {
-  label: string;
-  description: string;
-  lastPokeId: number;
-  symbolPokeIds: number[];
+export enum GenerationId {
+  All = "all",
+  GenerationI = "generation-i",
+  GenerationII = "generation-ii",
+  GenerationIII = "generation-iii",
+  GenerationIV = "generation-iv",
+  GenerationV = "generation-v",
+  GenerationVI = "generation-vi",
+  GenerationVII = "generation-vii",
+  GenerationVIII = "generation-viii",
+  GenerationIX = "generation-ix",
 }
 
-const savedGenerationId =
-  typeof localStorage !== "undefined" ? (localStorage.getItem("generationId") as GenerationId) : "all";
+const savedGenerationId: GenerationId = (() => {
+  if (typeof localStorage === "undefined") {
+    return GenerationId.All;
+  }
+  const item = localStorage.getItem("generationId");
+  if (item && Object.values(GenerationId).includes(item as GenerationId)) {
+    return item as GenerationId;
+  }
+  return GenerationId.All;
+})();
 
 export const generationId = writable<GenerationId>(savedGenerationId ?? "all");
 
@@ -29,6 +31,13 @@ generationId.subscribe((value: GenerationId) => {
     localStorage.setItem("generationId", value);
   }
 });
+
+export interface GenerationData {
+  label: string;
+  description: string;
+  lastPokeId: number;
+  symbolPokeIds: number[];
+}
 
 export const generations: Record<GenerationId, GenerationData> = {
   "generation-i": {
