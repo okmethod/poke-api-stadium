@@ -17,13 +17,13 @@ const contents: ContentLink[] = [
     route: "/kurabe",
   },
   {
-    title: "ポケモンたかさくらべ改",
+    title: "ポケモンたかさくらべ 改",
     ballName: "ultra-ball",
     action: "navigate",
     route: "/kurabe-h",
   },
   {
-    title: "ポケモンおもさくらべ改",
+    title: "ポケモンおもさくらべ 改",
     ballName: "heavy-ball",
     action: "navigate",
     route: "/kurabe-w",
@@ -45,6 +45,12 @@ const contents: ContentLink[] = [
     ballName: "dusk-ball",
     action: "navigate",
     route: "/dareda",
+  },
+  {
+    title: "ポケモンだ〜れだ？ 改",
+    ballName: "luxury-ball",
+    action: "redirect",
+    route: `${POKENATOR_URL}/dareda`,
   },
   {
     title: "ポケモンとりほうだい",
