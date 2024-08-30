@@ -1,0 +1,1 @@
+import{w as e}from"./index.CnH4iqqA.js";import{x as o}from"./scheduler.CKlfITpV.js";const t=e(("undefined"!=typeof localStorage&&"true"===localStorage.getItem("audioOn"))??!1);t.subscribe((e=>{"undefined"!=typeof localStorage&&localStorage.setItem("audioOn",e.toString())}));function a(e){o(t),0}export{t as a,a as p};
