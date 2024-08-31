@@ -42,6 +42,9 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    exclude: ["@ffmpeg/ffmpeg"],
+  },
   plugins: [
     sveltekit(),
     purgeCss(),

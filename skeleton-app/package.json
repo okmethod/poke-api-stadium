@@ -54,6 +54,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.10",
     "@floating-ui/dom": "1.6.8"
   }
 }

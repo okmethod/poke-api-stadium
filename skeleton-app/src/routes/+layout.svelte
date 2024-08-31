@@ -10,6 +10,7 @@
   import { audioOn } from "$lib/stores/audio";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation";
   import { pickRandomNumbers } from "$lib/utils/collections";
+  import { loadFFmpeg } from "$lib/utils/convertOggToMp3.client";
   import { navigateTo } from "$lib/utils/navigation.client";
 
   export let data: {
@@ -28,11 +29,14 @@
   let currentAudioOn = false;
   let currentGenerationId: GenerationId | null = null;
   let currentGenerationImageUrl: string | null = null;
-  onMount(() => {
+  onMount(async () => {
     currentAudioOn = get(audioOn);
     currentGenerationId = get(generationId);
     currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
     options = options.filter((option) => option.value !== "");
+    const audio = document.createElement("audio");
+    const isSupportedOgg = !!audio.canPlayType('audio/ogg; codecs="vorbis"');
+    await loadFFmpeg(isSupportedOgg);
   });
 
   function getSymbolImageUrl(generationId: GenerationId): string {
