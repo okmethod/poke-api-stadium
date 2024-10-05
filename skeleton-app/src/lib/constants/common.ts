@@ -1,8 +1,12 @@
 // 外部サイトURL
 export const GITHUB_REPO_URL = "https://github.com/okmethod/poke-api-stadium";
-export const MATTER_PROTOTYPE_URL = "https://okmethod.github.io/thin-2d-physics-sim";
-export const AMMO_PROTOTYPE_URL = "https://okmethod.github.io/thin-3d-physics-sim";
-export const PGM_BOY_ADVANCE_URL = "https://okmethod.github.io/programming-boy-advance/";
+
+const GITHUB_URL = "https://okmethod.github.io";
+export const MATTER_PROTOTYPE_URL = `${GITHUB_URL}/thin-2d-physics-sim`;
+export const AMMO_PROTOTYPE_URL = `${GITHUB_URL}/thin-3d-physics-sim`;
+export const PGM_BOY_ADVANCE_URL = `${GITHUB_URL}/programming-boy-advance`;
+export const MASTER_DRILL_URL = `${GITHUB_URL}/master-drill`;
+
 export const POKENATOR_URL = "https://okmethod-gemini-trial.web.app";
 
 // 通常フォルムのポケモンの図鑑番号の最小値〜最大値

@@ -1,7 +1,7 @@
 import type { ContentLink, TransitionButtonConfig } from "$lib/utils/transitions";
 import { getOnClick } from "$lib/utils/transitions";
 import { fetchBall } from "$lib/constants/fetchStaticData";
-import { MATTER_PROTOTYPE_URL, AMMO_PROTOTYPE_URL, PGM_BOY_ADVANCE_URL } from "$lib/constants/common";
+import { MATTER_PROTOTYPE_URL, AMMO_PROTOTYPE_URL, PGM_BOY_ADVANCE_URL, MASTER_DRILL_URL } from "$lib/constants/common";
 
 const contents: ContentLink[] = [
   {
@@ -21,6 +21,12 @@ const contents: ContentLink[] = [
     ballName: "premier-ball",
     action: "redirectNewTab",
     route: PGM_BOY_ADVANCE_URL,
+  },
+  {
+    title: "自学マスタードリル",
+    ballName: "premier-ball",
+    action: "redirectNewTab",
+    route: MASTER_DRILL_URL,
   },
 ];
 
