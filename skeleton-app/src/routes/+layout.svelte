@@ -3,7 +3,6 @@
   import { onMount } from "svelte";
   import { get } from "svelte/store";
   import { Toast, Modal, initializeStores, storePopup } from "@skeletonlabs/skeleton";
-  import Icon from "@iconify/svelte";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { page } from "$app/stores";
   import { base } from "$app/paths";
@@ -86,13 +85,11 @@
           cButton="variant-ghost bg-white text-gray-600 !space-x-0 !py-1 !px-2"
           onClick={() => navigateTo("/")}
         />
-        <button
-          type="button"
-          class="btn-icon btn-icon-sm variant-ghost bg-white text-gray-500"
-          on:click={toggleAudioOn}
-        >
-          <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="w-6 h-6" />
-        </button>
+        <IconButton
+          icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"}
+          cButton="btn-icon btn-icon-sm variant-ghost bg-white text-gray-500"
+          onClick={toggleAudioOn}
+        />
         <div class="flex-grow"><!--spacer--></div>
         <div class="w-9 h-9 variant-ghost bg-white border rounded-full">
           <img
