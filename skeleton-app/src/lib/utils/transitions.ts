@@ -52,15 +52,15 @@ function getOnClick(action: TransitionAction, target: string): () => void {
 
 export function generateButtonConfigs(
   contents: TransitionContent[],
-  imageUrlDict?: Record<string, string>,
+  imageUrlMap?: Record<string, string>,
 ): TransitionButtonConfig[] {
   return contents.map((content) => ({
     label: content.label,
     symbol:
       content.symbolSrc !== undefined
-        ? content.symbolSrc.type === "image" && imageUrlDict !== undefined
+        ? content.symbolSrc.type === "image" && imageUrlMap !== undefined
           ? {
-              src: imageUrlDict[content.symbolSrc.key],
+              src: imageUrlMap[content.symbolSrc.key],
               alt: content.symbolSrc.key,
             }
           : {

@@ -90,7 +90,7 @@ export async function load(): Promise<{ buttonConfigs: TransitionButtonConfig[] 
       content.symbolSrc && content.symbolSrc.key ? fetchBall(content.symbolSrc.key) : null,
     ),
   );
-  const ballImageDict: Record<string, string> = contentLinks.reduce(
+  const ballImageMap: Record<string, string> = contentLinks.reduce(
     (acc, content, index) => {
       if (content.symbolSrc && content.symbolSrc.key && ballImages[index] !== null) {
         acc[content.symbolSrc.key] = ballImages[index].imageUrl;
@@ -99,7 +99,7 @@ export async function load(): Promise<{ buttonConfigs: TransitionButtonConfig[] 
     },
     {} as Record<string, string>,
   );
-  const buttonConfigs = generateButtonConfigs(contentLinks, ballImageDict);
+  const buttonConfigs = generateButtonConfigs(contentLinks, ballImageMap);
 
   return { buttonConfigs };
 }
