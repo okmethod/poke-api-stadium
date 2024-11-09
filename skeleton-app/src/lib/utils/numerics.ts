@@ -7,7 +7,3 @@ export function formatHeightWeight(value: number | null, mode: "height" | "weigh
 export function formatStat(value: number | undefined): string {
   return value !== undefined ? value.toString() : "???";
 }
-
-export function getRandomNumber(length: number): number {
-  return Math.floor(Math.random() * length);
-}

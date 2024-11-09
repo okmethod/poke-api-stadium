@@ -1,4 +1,6 @@
-import { getRandomNumber } from "$lib/utils/numerics";
+export function getRandomNumber(length: number): number {
+  return Math.floor(Math.random() * length);
+}
 
 export function pickRandomKey<T extends Record<string, unknown>>(obj: T): keyof T {
   const keys = Object.keys(obj) as Array<keyof T>;

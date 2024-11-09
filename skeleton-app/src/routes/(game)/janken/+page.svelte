@@ -4,8 +4,7 @@
   import type { TypeData, TypeColors, DamageRatio } from "$lib/types/type";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
-  import { getRandomNumber } from "$lib/utils/numerics";
-  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
+  import { getRandomNumber, pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
