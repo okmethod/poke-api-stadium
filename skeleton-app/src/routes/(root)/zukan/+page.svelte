@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getToastStore, type ToastSettings } from "@skeletonlabs/skeleton";
   import makePokeData from "$lib/api/makePokeData.client";
   import { playAudio } from "$lib/stores/audio";
   import type { PokeData } from "$lib/types/poke";
@@ -9,18 +10,30 @@
   let pokeData: PokeData | null = null;
 
   let isLoading = false;
-  let isUnknown = false;
   async function fetchPokeData(): Promise<void> {
     isLoading = true;
     try {
-      isUnknown = false;
       pokeData = await makePokeData(fetch, pokeId);
       playAudio(pokeData.oggUrl);
     } catch {
-      isUnknown = true;
+      showWaringToast();
       pokeData = null;
     }
     isLoading = false;
+  }
+
+  // トースト表示
+  const toastStore = getToastStore();
+  function toastSettings(message: string): ToastSettings {
+    return {
+      message: message,
+      background: "bg-red-100 select-none",
+      timeout: 2000,
+    };
+  }
+  function showWaringToast(): void {
+    const t = toastSettings("みはっけんのポケモン");
+    toastStore.trigger(t);
   }
 </script>
 
@@ -38,11 +51,6 @@
       <div class="cInputFormAndMessagePartStyle">
         <input type="number" min="1" max="99999" id="pokeId" bind:value={pokeId} class="border rounded px-5 py-1 h-9" />
         <IconButton icon="mdi:search" cButton="btn-sm" onClick={fetchPokeData} disabled={isLoading} />
-        <div>
-          {#if isUnknown}
-            <span class="text-red-500">みはっけんのポケモン</span>
-          {/if}
-        </div>
       </div>
     </div>
 

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { getToastStore } from "@skeletonlabs/skeleton";
-  import type { ToastSettings } from "@skeletonlabs/skeleton";
+  import { getToastStore, type ToastSettings } from "@skeletonlabs/skeleton";
   import type { Stats } from "$lib/types/stats";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
