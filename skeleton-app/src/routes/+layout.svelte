@@ -7,6 +7,7 @@
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { page } from "$app/stores";
   import { base } from "$app/paths";
+  import { setTheme } from "$lib/stores/theme";
   import { audioOn } from "$lib/stores/audio";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation";
   import { pickRandomNumbers } from "$lib/utils/collections";
@@ -26,6 +27,7 @@
     ...Object.entries(generations).map(([value, { label }]) => ({ value, label })),
   ];
 
+  let isLoaded = false;
   let currentAudioOn = false;
   let currentGenerationId: GenerationId | null = null;
   let currentGenerationImageUrl: string | null = null;
@@ -36,7 +38,12 @@
     options = options.filter((option) => option.value !== "");
     const audio = document.createElement("audio");
     const isSupportedOgg = !!audio.canPlayType('audio/ogg; codecs="vorbis"');
-    await loadFFmpeg(isSupportedOgg);
+
+    function wait(ms: number) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+    await Promise.all([setTheme({ name: "hamlindigo", dark: false }), loadFFmpeg(isSupportedOgg), wait(500)]);
+    isLoaded = true;
   });
 
   function getSymbolImageUrl(generationId: GenerationId): string {
