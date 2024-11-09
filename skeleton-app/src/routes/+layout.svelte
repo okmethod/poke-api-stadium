@@ -10,7 +10,7 @@
   import { setTheme } from "$lib/stores/theme";
   import { audioOn } from "$lib/stores/audio";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation";
-  import { pickRandomNumbers } from "$lib/utils/collections";
+  import { pickRandomNumbers } from "$lib/utils/pickRandom";
   import { loadFFmpeg } from "$lib/utils/convertOggToMp3.client";
   import { navigateTo } from "$lib/utils/navigation.client";
   import IconButton from "$lib/components/IconButton.svelte";

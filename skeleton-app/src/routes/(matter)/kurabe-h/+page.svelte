@@ -7,7 +7,7 @@
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import IconButton from "$lib/components/IconButton.svelte";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";

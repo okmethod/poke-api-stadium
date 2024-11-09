@@ -4,7 +4,7 @@
   import { filterDictByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
-  import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
+  import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/pickRandom";
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";

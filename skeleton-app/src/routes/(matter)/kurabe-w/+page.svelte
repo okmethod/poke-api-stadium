@@ -10,7 +10,7 @@
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
   import { filterArrayByGeneration } from "$lib/stores/generation";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import { formatHeightWeight } from "$lib/utils/numerics";
   import IconButton from "$lib/components/IconButton.svelte";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";

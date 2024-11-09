@@ -5,7 +5,7 @@
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
   import type { PokeItem } from "./+page";

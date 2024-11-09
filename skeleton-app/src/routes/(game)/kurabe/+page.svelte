@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import { filterArrayByGeneration } from "$lib/stores/generation";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import type { PokeItem, CompareModeMap } from "./+page";

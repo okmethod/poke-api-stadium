@@ -1,6 +1,6 @@
 import type { LoadEvent } from "@sveltejs/kit";
 import { generations } from "$lib/stores/generation";
-import { pickRandomNumbers } from "$lib/utils/collections";
+import { pickRandomNumbers } from "$lib/utils/pickRandom";
 import { fetchStaticPokeData, fetchStaticAddPokeData } from "$lib/constants/fetchStaticData";
 
 // prettier-ignore

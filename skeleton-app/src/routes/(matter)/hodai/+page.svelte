@@ -9,7 +9,7 @@
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
-  import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import { pickRandomElementsFromArray } from "$lib/utils/pickRandom";
   import IconButton from "$lib/components/IconButton.svelte";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
   import type { PokeItem } from "../+layout";
