@@ -1,9 +1,9 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
-  import Icon from "@iconify/svelte";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import IconButton from "$lib/components/IconButton.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import type { PokeItem } from "./+page";
 
@@ -125,14 +125,12 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンXXくらべ</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
         <select bind:value={modeId} id="modeId" class="border rounded px-10 py-1">
@@ -153,13 +151,7 @@
           class="border rounded px-4 py-1 h-full"
         />
         <span class="cSpanTextStyle">たい よびだす</span>
-        <form on:submit|preventDefault={pickPokeItems}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={pickPokeItems} />
       </div>
     </div>
 
@@ -187,15 +179,11 @@
       </div>
     </div>
 
-    <!-- メッセージ -->
+    <!-- 下部ボタン -->
     <div class="m-4 mt-2">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">こたえあわせ</span>
-        <button type="button" class="cIconButtonStyle" on:click={compareValues}>
-          <div class="cIconDivStyle">
-            <Icon icon="mdi:pokeball" class="cIconStyle" />
-          </div>
-        </button>
+        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={compareValues} />
         <span class="cSpanTextStyle">{comprareResult}</span>
       </div>
     </div>

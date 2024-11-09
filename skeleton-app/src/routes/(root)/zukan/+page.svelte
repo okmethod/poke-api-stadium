@@ -1,23 +1,23 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
   import makePokeData from "$lib/api/makePokeData.client";
   import { playAudio } from "$lib/stores/audio";
   import type { PokeData } from "$lib/types/poke";
+  import IconButton from "$lib/components/IconButton.svelte";
   import PokeCard from "$lib/components/cards/PokeCard.svelte";
 
   let pokeId = "";
   let pokeData: PokeData | null = null;
 
   let isLoading = false;
-  let isUnkown = false;
+  let isUnknown = false;
   async function fetchPokeData(): Promise<void> {
     isLoading = true;
     try {
-      isUnkown = false;
+      isUnknown = false;
       pokeData = await makePokeData(fetch, pokeId);
       playAudio(pokeData.oggUrl);
     } catch {
-      isUnkown = true;
+      isUnknown = true;
       pokeData = null;
     }
     isLoading = false;
@@ -33,32 +33,26 @@
   <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
     <!-- 入力フォーム -->
-    <div class="flex items-center justify-center">
-      <form on:submit|preventDefault={fetchPokeData} class="cInputFormAndMessagePartStyle">
-        <label for="pokeId" class="cSpanTextStyle">
-          <span>No:</span>
-        </label>
-        <div class="cInputFormAndMessagePartStyle">
-          <input
-            type="number"
-            min="1"
-            max="99999"
-            id="pokeId"
-            bind:value={pokeId}
-            class="border rounded px-5 py-1 h-full"
-          />
-          <button type="submit" disabled={isLoading} class="cIconButtonStyle {isLoading ? '!bg-gray-500' : ''}">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:search" class="cIconStyle" />
-            </div>
-          </button>
-          <div>
-            {#if isUnkown}
-              <span class="text-red-500">みはっけんのポケモン</span>
-            {/if}
-          </div>
+    <div class="flex items-center justify-center space-x-1">
+      <label for="pokeId" class="cSpanTextStyle">
+        <span>No:</span>
+      </label>
+      <div class="cInputFormAndMessagePartStyle">
+        <input
+          type="number"
+          min="1"
+          max="99999"
+          id="pokeId"
+          bind:value={pokeId}
+          class="border rounded px-5 py-1 h-full"
+        />
+        <IconButton icon="mdi:search" cButton="btn-sm" onClick={fetchPokeData} disabled={isLoading} />
+        <div>
+          {#if isUnknown}
+            <span class="text-red-500">みはっけんのポケモン</span>
+          {/if}
         </div>
-      </form>
+      </div>
     </div>
 
     <!-- ポケモン情報 -->

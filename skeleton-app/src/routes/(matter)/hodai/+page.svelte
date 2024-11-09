@@ -4,13 +4,13 @@
 </script>
 
 <script lang="ts">
-  import Icon from "@iconify/svelte";
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import IconButton from "$lib/components/IconButton.svelte";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
   import type { PokeItem } from "../+layout";
 
@@ -34,24 +34,16 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンとりほうだい</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="flex items-center justify-center">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">ポケモン ゲットだぜ！</span>
-        <form on:submit|preventDefault={spawnPokeBody}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={spawnPokeBody} />
       </div>
     </div>
 
@@ -60,6 +52,7 @@
       <MatterRenderContainer bind:renderContainer bind:matterBase />
     </div>
 
+    <!-- 下部メッセージ -->
     <div class="m-4">
       <div class="flex items-center justify-center">
         <strong>{pickedPokeItem ? pickedPokeItem.jaName : ""}</strong>

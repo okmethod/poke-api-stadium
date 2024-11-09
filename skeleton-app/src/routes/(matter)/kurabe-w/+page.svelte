@@ -6,13 +6,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
-  import Icon from "@iconify/svelte";
   import type { MatterBase } from "$lib/matters/initMatterBase";
   import { createPokeBody } from "$lib/matters/createPokeBody";
   import { createSeesawComposite } from "$lib/matters/createSeesawComposite";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import { formatHeightWeight } from "$lib/utils/numerics";
+  import IconButton from "$lib/components/IconButton.svelte";
   import MatterRenderContainer from "$lib/components/matters/MatterRenderContainer.svelte";
   import type { PokeItem } from "../+layout";
 
@@ -110,24 +110,16 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンおもさくらべ 改</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="flex items-center justify-center">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={pickPokeItems}>
-          <button type="submit" disabled={!isReady} class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={pickPokeItems} disabled={!isReady} />
       </div>
     </div>
 
@@ -136,15 +128,11 @@
       <MatterRenderContainer bind:renderContainer bind:matterBase />
     </div>
 
-    <!-- メッセージ -->
+    <!-- 下部ボタン -->
     <div class="m-4 mt-2 space-y-4">
       <div class="cInputFormAndMessagePartStyle justify-center">
         <span class="cSpanTextStyle">こたえをみる</span>
-        <button type="button" class="cIconButtonStyle" on:click={compareHeight}>
-          <div class="cIconDivStyle">
-            <Icon icon="mdi:pokeball" class="cIconStyle" />
-          </div>
-        </button>
+        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={compareHeight} />
       </div>
       <div class="cInputFormAndMessagePartStyle justify-center">
         {#if isOpen}

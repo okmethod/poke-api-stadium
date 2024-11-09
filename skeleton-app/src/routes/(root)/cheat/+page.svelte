@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
   import type { makeFunction, DownloadConfig } from "./+page";
   import { downloadFile } from "$lib/utils/download.client";
+  import IconButton from "$lib/components/IconButton.svelte";
 
   export let data: {
     downloadConfigs: DownloadConfig[];
@@ -58,49 +58,32 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">うらわざ</h1>
   </div>
 
-  <!-- コンテンツ部 -->
-  <div class="cContentPartStyle !min-w-[300px] !max-w-[600px]">
-    <!-- 各種ダウンロードボタン -->
-    {#each data.downloadConfigs as config}
-      <div class="m-4">
-        <div class="flex flex-col md:flex-row space-x-3">
-          <div class="cInputFormAndMessagePartStyle">
-            <input type="text" id={config.id} bind:value={config.fileName} class="border rounded px-4 py-1 h-full" />
-            <form
-              on:submit|preventDefault={() => handleDownload(config.makeFunction, config.keys, config.fileName, false)}
-            >
-              <button
-                type="submit"
-                disabled={isProcessing}
-                class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}"
-              >
-                <div class="cIconDivStyle">
-                  <Icon icon="mdi:download-box-outline" class="cIconStyle" />
-                </div>
-              </button>
-            </form>
-            <form
-              on:submit|preventDefault={() => handleDownload(config.makeFunction, config.keys, config.fileName, true)}
-            >
-              <button
-                type="submit"
-                disabled={isProcessing}
-                class="cIconButtonStyle {isProcessing ? '!bg-gray-500' : ''}"
-              >
-                <div class="cIconDivStyle">
-                  <Icon icon="mdi:zip-box-outline" class="cIconStyle" />
-                </div>
-              </button>
-            </form>
-            <span class="cSpanTextStyle">{config.label}</span>
+  <div class="cContentPartStyle !min-w-[300px] !max-w-[800px]">
+    <div class="flex flex-col">
+      {#each data.downloadConfigs as config}
+        <div class="m-4">
+          <div class="flex flex-col md:flex-row space-x-3">
+            <div class="cInputFormAndMessagePartStyle">
+              <input type="text" id={config.id} bind:value={config.fileName} class="border rounded px-4 py-1 h-full" />
+              <IconButton
+                icon="mdi:download-box-outline"
+                cButton="btn-sm"
+                onClick={() => handleDownload(config.makeFunction, config.keys, config.fileName, false)}
+              />
+              <IconButton
+                icon="mdi:zip-box-outline"
+                cButton="btn-sm"
+                onClick={() => handleDownload(config.makeFunction, config.keys, config.fileName, true)}
+              />
+              <span class="cSpanTextStyle">{config.label}</span>
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 </div>

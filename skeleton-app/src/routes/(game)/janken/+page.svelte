@@ -1,12 +1,12 @@
 <script lang="ts">
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
-  import Icon from "@iconify/svelte";
   import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import IconButton from "$lib/components/IconButton.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
@@ -209,40 +209,19 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンタイプじゃんけん</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[600px]">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={pickPokeItems}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={pickPokeItems} />
         <div class="flex-grow"><!-- spacer --></div>
-        <form on:submit|preventDefault={showHelpModal}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:head-question-outline" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
-        <form on:submit|preventDefault={showTypeRelationsModal}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:table-question" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
-        <div class="mr-4"><!-- spacer --></div>
+        <IconButton icon="mdi:head-question-outline" cButton="btn-sm" onClick={showHelpModal} />
+        <IconButton icon="mdi:table-question" cButton="btn-sm" onClick={showTypeRelationsModal} />
       </div>
     </div>
 
@@ -328,17 +307,13 @@
       </div>
     </div>
 
-    <!-- メッセージ -->
+    <!-- 下部ボタン -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">{guideMessage}</span>
         {#if phase == "select_poke" && selectedOwnPokeIndex !== -1}
           <!-- ポケモン選択済み、決定前のとき-->
-          <button type="button" class="cIconButtonStyle" on:click={commitOwnPoke}>
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
+          <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={commitOwnPoke} />
         {:else if phase == "select_type"}
           <!-- ポケモン選択済み、タイプ選択中のとき-->
           {#each selectedOwnPokeItem.type as type}

@@ -1,12 +1,12 @@
 <script lang="ts">
   import { getToastStore } from "@skeletonlabs/skeleton";
   import type { ToastSettings } from "@skeletonlabs/skeleton";
-  import Icon from "@iconify/svelte";
   import type { Stats } from "$lib/types/stats";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber, formatHeightWeight } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
+  import IconButton from "$lib/components/IconButton.svelte";
   import PokeSilhouette from "$lib/components/cards/PokeSilhouette.svelte";
   import type { PokeItem } from "./+page";
 
@@ -94,32 +94,18 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンだ〜れだ？</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">ポケモン を よびだす</span>
-        <form on:submit|preventDefault={pickPokeItem}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={pickPokeItem} />
         <div class="w-4"><!-- spacer --></div>
-        <form on:submit|preventDefault={showHintToast}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:lightbulb-on-outline" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:lightbulb-on-outline" cButton="btn-sm" onClick={showHintToast} />
       </div>
     </div>
 
@@ -138,15 +124,11 @@
       </div>
     </div>
 
-    <!-- メッセージ -->
+    <!-- 下部ボタン -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">こたえをみる</span>
-        <button type="button" class="cIconButtonStyle" on:click={toggleSilhouette}>
-          <div class="cIconDivStyle">
-            <Icon icon="mdi:pokeball" class="cIconStyle" />
-          </div>
-        </button>
+        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={toggleSilhouette} />
       </div>
     </div>
   </div>

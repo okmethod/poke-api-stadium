@@ -1,11 +1,11 @@
 <script lang="ts">
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
-  import Icon from "@iconify/svelte";
   import { filterDictByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
   import { pickRandomKey, pickRandomElementsFromObject, shuffleArray } from "$lib/utils/collections";
+  import IconButton from "$lib/components/IconButton.svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
   import { getTailChar, solveShiritoriRule } from "./rules";
@@ -159,14 +159,12 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンしりとり</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle !min-w-[300px] !max-w-[750px]">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">
@@ -176,22 +174,10 @@
             しりとり リセット
           {/if}
         </span>
-        <form on:submit|preventDefault={resetState}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={resetState} />
         <div class="flex-grow"><!-- spacer --></div>
         <p class="cSpanTextStyle">{pushedPokeItems.length}</p>
-        <form on:submit|preventDefault={showPokeListModal}>
-          <button type="submit" class="cIconButtonStyle">
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:format-list-numbered" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton icon="mdi:format-list-numbered" cButton="btn-sm" onClick={showPokeListModal} />
         <div class="mr-4"><!-- spacer --></div>
       </div>
     </div>
@@ -217,17 +203,12 @@
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle">
         <span class="cSpanTextStyle">ポケモン を いれかえる</span>
-        <form on:submit|preventDefault={pickPokeItems}>
-          <button
-            type="submit"
-            disabled={pushedPokeItems.length == 0}
-            class="cIconButtonStyle {pushedPokeItems.length == 0 ? '!bg-gray-500' : ''}"
-          >
-            <div class="cIconDivStyle">
-              <Icon icon="mdi:pokeball" class="cIconStyle" />
-            </div>
-          </button>
-        </form>
+        <IconButton
+          icon="mdi:pokeball"
+          cButton="btn-sm"
+          onClick={pickPokeItems}
+          disabled={pushedPokeItems.length == 0}
+        />
       </div>
     </div>
 
@@ -255,7 +236,7 @@
       </div>
     </div>
 
-    <!-- メッセージ -->
+    <!-- 下部メッセージ -->
     <div class="m-4">
       <div class="cInputFormAndMessagePartStyle mb-2">
         <span class="cSpanTextStyle">{message}</span>
