@@ -1,43 +1,51 @@
-import type { ContentLink, TransitionButtonConfig } from "$lib/utils/transitions";
-import { getOnClick } from "$lib/utils/transitions";
+import type { TransitionContent, TransitionButtonConfig } from "$lib/utils/transitions";
+import { generateButtonConfigs } from "$lib/utils/transitions";
 import { fetchBall } from "$lib/constants/fetchStaticData";
 import { MATTER_PROTOTYPE_URL, AMMO_PROTOTYPE_URL, PGM_BOY_ADVANCE_URL, MASTER_DRILL_URL } from "$lib/constants/common";
 
-const contents: ContentLink[] = [
+const contentLinks: TransitionContent[] = [
   {
-    title: "2D物理エンジン",
-    ballName: "premier-ball",
+    label: "2D物理エンジン",
+    symbolSrc: { type: "image", key: "premier-ball" },
     action: "redirectNewTab",
-    route: MATTER_PROTOTYPE_URL,
+    target: MATTER_PROTOTYPE_URL,
   },
   {
-    title: "3D物理エンジン + 3D描画",
-    ballName: "premier-ball",
+    label: "3D物理エンジン + 3D描画",
+    symbolSrc: { type: "image", key: "premier-ball" },
     action: "redirectNewTab",
-    route: AMMO_PROTOTYPE_URL,
+    target: AMMO_PROTOTYPE_URL,
   },
   {
-    title: "プログラミング教材",
-    ballName: "premier-ball",
+    label: "プログラミング教材",
+    symbolSrc: { type: "image", key: "premier-ball" },
     action: "redirectNewTab",
-    route: PGM_BOY_ADVANCE_URL,
+    target: PGM_BOY_ADVANCE_URL,
   },
   {
-    title: "自学マスタードリル",
-    ballName: "premier-ball",
+    label: "自学マスタードリル",
+    symbolSrc: { type: "image", key: "premier-ball" },
     action: "redirectNewTab",
-    route: MASTER_DRILL_URL,
+    target: MASTER_DRILL_URL,
   },
 ];
 
 export async function load(): Promise<{ buttonConfigs: TransitionButtonConfig[] }> {
-  const ballImages = await Promise.all(contents.map((content) => fetchBall(content.ballName)));
-  const buttonConfigs: TransitionButtonConfig[] = contents.map((content, index) => ({
-    title: content.title,
-    imageUrl: ballImages[index]?.imageUrl ?? "not_found",
-    alt: content.ballName,
-    onClick: getOnClick(content.action, content.route),
-  }));
+  const ballImages = await Promise.all(
+    contentLinks.map((content) =>
+      content.symbolSrc && content.symbolSrc.key ? fetchBall(content.symbolSrc.key) : null,
+    ),
+  );
+  const ballImageDict: Record<string, string> = contentLinks.reduce(
+    (acc, content, index) => {
+      if (content.symbolSrc && content.symbolSrc.key && ballImages[index] !== null) {
+        acc[content.symbolSrc.key] = ballImages[index].imageUrl;
+      }
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
+  const buttonConfigs = generateButtonConfigs(contentLinks, ballImageDict);
 
   return { buttonConfigs };
 }
