@@ -1,14 +1,13 @@
 <script lang="ts">
   import "../app.postcss";
   import { onMount } from "svelte";
-  import { get } from "svelte/store";
   import { Toast, Modal, initializeStores, storePopup } from "@skeletonlabs/skeleton";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import { page } from "$app/stores";
   import { base } from "$app/paths";
   import { setTheme } from "$lib/stores/theme";
   import { getAudioOn, setAudioOn } from "$lib/stores/audio";
-  import { generations, generationId, type GenerationId } from "$lib/stores/generation";
+  import { generations, getGenerationId, setGenerationId, type GenerationId } from "$lib/stores/generation";
   import { pickRandomNumbers } from "$lib/utils/pickRandom";
   import { loadFFmpeg } from "$lib/utils/convertOggToMp3.client";
   import { navigateTo } from "$lib/utils/navigation.client";
@@ -33,7 +32,7 @@
   let currentGenerationImageUrl: string | null = null;
   onMount(async () => {
     currentAudioOn = getAudioOn();
-    currentGenerationId = get(generationId);
+    currentGenerationId = getGenerationId();
     currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
     options = options.filter((option) => option.value !== "");
     const audio = document.createElement("audio");
@@ -60,7 +59,7 @@
     const target = event.target as HTMLSelectElement;
     currentGenerationId = target.value as GenerationId;
     currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
-    generationId.set(currentGenerationId);
+    setGenerationId(currentGenerationId);
   }
 
   $: currentPath = $page.url.pathname;

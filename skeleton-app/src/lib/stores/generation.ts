@@ -24,13 +24,18 @@ const savedGenerationId: GenerationId = (() => {
   return GenerationId.All;
 })();
 
-export const generationId = writable<GenerationId>(savedGenerationId ?? "all");
+const generationIdStore = writable<GenerationId>(savedGenerationId ?? "all");
 
-generationId.subscribe((value: GenerationId) => {
+export function getGenerationId(): GenerationId {
+  return get(generationIdStore);
+}
+
+export function setGenerationId(generationId: GenerationId): void {
+  generationIdStore.set(generationId);
   if (typeof localStorage !== "undefined") {
-    localStorage.setItem("generationId", value);
+    localStorage.setItem("generationId", generationId);
   }
-});
+}
 
 export interface GenerationData {
   label: string;
@@ -103,7 +108,7 @@ export const generations: Record<GenerationId, GenerationData> = {
 };
 
 export function filterArrayByGeneration<T>(array: Array<T>, pokeIdName: keyof T): Array<T> {
-  const currentGenerationId = get(generationId);
+  const currentGenerationId = getGenerationId();
   const filteredArray =
     currentGenerationId === ("all" as GenerationId)
       ? array
@@ -112,7 +117,7 @@ export function filterArrayByGeneration<T>(array: Array<T>, pokeIdName: keyof T)
 }
 
 export function filterDictByGeneration<T>(dict: Record<number, T>, pokeIdName: keyof T): Record<number, T> {
-  const currentGenerationId = get(generationId);
+  const currentGenerationId = getGenerationId();
   const filteredDict = Object.entries(dict).reduce(
     (acc, [key, value]) => {
       if (
