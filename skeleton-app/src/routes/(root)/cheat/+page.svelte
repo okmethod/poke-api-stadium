@@ -73,11 +73,13 @@
                 icon="mdi:download-box-outline"
                 cButton="btn-sm"
                 onClick={() => handleDownload(config.makeFunction, config.keys, config.fileName, false)}
+                disabled={isProcessing}
               />
               <IconButton
                 icon="mdi:zip-box-outline"
                 cButton="btn-sm"
                 onClick={() => handleDownload(config.makeFunction, config.keys, config.fileName, true)}
+                disabled={isProcessing}
               />
               <span class="cSpanTextStyle">{config.label}</span>
             </div>
