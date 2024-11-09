@@ -4,13 +4,18 @@ import { availableAudioUrl } from "$lib/utils/convertOggToMp3.client";
 
 const savedAudioOn = typeof localStorage !== "undefined" ? localStorage.getItem("audioOn") === "true" : false;
 
-export const audioOn = writable<boolean>(savedAudioOn ?? false);
+const audioOnStore = writable<boolean>(savedAudioOn ?? false);
 
-audioOn.subscribe((value: boolean) => {
+export function getAudioOn(): boolean {
+  return get(audioOnStore);
+}
+
+export function setAudioOn(audioOn: boolean): void {
+  audioOnStore.set(audioOn);
   if (typeof localStorage !== "undefined") {
-    localStorage.setItem("audioOn", value.toString());
+    localStorage.setItem("audioOn", audioOn.toString());
   }
-});
+}
 
 let audioContext: AudioContext | null = null;
 let audioBuffer: AudioBuffer | null = null;
@@ -32,7 +37,7 @@ async function loadAudio(oggUrl: string): Promise<void> {
 }
 
 export async function playAudio(oggUrl: string | null) {
-  if (!browser || !get(audioOn) || !oggUrl) return;
+  if (!browser || !getAudioOn() || !oggUrl) return;
   await loadAudio(oggUrl);
   if (audioBuffer && audioContext) {
     const source = audioContext.createBufferSource();

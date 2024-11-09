@@ -7,7 +7,7 @@
   import { page } from "$app/stores";
   import { base } from "$app/paths";
   import { setTheme } from "$lib/stores/theme";
-  import { audioOn } from "$lib/stores/audio";
+  import { getAudioOn, setAudioOn } from "$lib/stores/audio";
   import { generations, generationId, type GenerationId } from "$lib/stores/generation";
   import { pickRandomNumbers } from "$lib/utils/pickRandom";
   import { loadFFmpeg } from "$lib/utils/convertOggToMp3.client";
@@ -32,7 +32,7 @@
   let currentGenerationId: GenerationId | null = null;
   let currentGenerationImageUrl: string | null = null;
   onMount(async () => {
-    currentAudioOn = get(audioOn);
+    currentAudioOn = getAudioOn();
     currentGenerationId = get(generationId);
     currentGenerationImageUrl = getSymbolImageUrl(currentGenerationId);
     options = options.filter((option) => option.value !== "");
@@ -53,7 +53,7 @@
 
   function toggleAudioOn() {
     currentAudioOn = !currentAudioOn;
-    audioOn.set(currentAudioOn);
+    setAudioOn(currentAudioOn);
   }
 
   function handleGenerationChange(event: Event) {
@@ -86,7 +86,7 @@
           onClick={() => navigateTo("/")}
         />
         <IconButton
-          icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"}
+          icon={currentAudioOn ? "mdi:volume-high" : "mdi:volume-off"}
           cButton="btn-icon btn-icon-sm variant-ghost bg-white text-gray-500"
           onClick={toggleAudioOn}
         />
