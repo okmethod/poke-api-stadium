@@ -13,6 +13,7 @@
   import { pickRandomNumbers } from "$lib/utils/collections";
   import { loadFFmpeg } from "$lib/utils/convertOggToMp3.client";
   import { navigateTo } from "$lib/utils/navigation.client";
+  import IconButton from "$lib/components/IconButton.svelte";
 
   export let data: {
     generationSymbolUrlDict: Record<number, string>;
@@ -77,25 +78,23 @@
 
 {#if isLoaded}
   <div class="flex flex-col h-screen">
-    <div class="relative border-b border-gray-400 bg-gray-100">
-      <div class="flex items-center justify-between h-full">
-        <a
-          href="/"
-          class="flex flex-row items-center space-x-1 pt-1 pb-1 pl-1 pr-2 m-1 text-sm text-gray-500 bg-white border border-gray-400 rounded-md"
-          on:click|preventDefault={() => navigateTo("/")}
+    <div class="relative border-b border-gray-400 bg-primary-300 p-1">
+      <div class="flex items-center justify-between h-full space-x-2">
+        <IconButton
+          icon="mdi:home-outline"
+          label="Home"
+          cButton="variant-ghost bg-white text-gray-500 !space-x-0 !py-1 !px-2"
+          onClick={() => navigateTo("/")}
+        />
+        <button
+          type="button"
+          class="btn-icon btn-icon-sm variant-ghost bg-white text-gray-500"
+          on:click={toggleAudioOn}
         >
-          <div class="w-5 h-5">
-            <Icon icon="mdi:home-outline" class="text-gray-500 w-full h-full" />
-          </div>
-          <span class="">HOME</span>
-        </a>
-        <div class="w-8 h-8 bg-white border border-gray-400 rounded-full ml-1">
-          <button on:click={toggleAudioOn} class="w-full h-full flex items-center justify-center">
-            <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="text-gray-500 w-3/4 h-3/4" />
-          </button>
-        </div>
+          <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="w-6 h-6" />
+        </button>
         <div class="flex-grow"><!--spacer--></div>
-        <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
+        <div class="w-9 h-9 variant-ghost bg-white border rounded-full">
           <img
             src={currentGenerationImageUrl}
             alt="generationSymbol"
@@ -106,7 +105,7 @@
           id="generationId"
           bind:value={currentGenerationId}
           on:change={handleGenerationChange}
-          class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
+          class="w-24 h-8 py-1 px-2 m-1 text-sm variant-ghost bg-white text-gray-500 border border-0 rounded-sm"
         >
           {#each options as option}
             <option value={option.value}>{option.label}</option>
