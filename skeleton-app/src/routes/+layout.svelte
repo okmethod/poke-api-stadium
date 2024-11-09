@@ -75,54 +75,61 @@
 <Modal />
 <Toast position="tr" rounded="rounded-lg" />
 
-<div class="flex flex-col h-screen">
-  <div class="relative border-b border-gray-400 bg-gray-100">
-    <div class="flex items-center justify-between h-full">
-      <a
-        href="/"
-        class="flex flex-row items-center space-x-1 pt-1 pb-1 pl-1 pr-2 m-1 text-sm text-gray-500 bg-white border border-gray-400 rounded-md"
-        on:click|preventDefault={() => navigateTo("/")}
-      >
-        <div class="w-5 h-5">
-          <Icon icon="mdi:home-outline" class="text-gray-500 w-full h-full" />
+{#if isLoaded}
+  <div class="flex flex-col h-screen">
+    <div class="relative border-b border-gray-400 bg-gray-100">
+      <div class="flex items-center justify-between h-full">
+        <a
+          href="/"
+          class="flex flex-row items-center space-x-1 pt-1 pb-1 pl-1 pr-2 m-1 text-sm text-gray-500 bg-white border border-gray-400 rounded-md"
+          on:click|preventDefault={() => navigateTo("/")}
+        >
+          <div class="w-5 h-5">
+            <Icon icon="mdi:home-outline" class="text-gray-500 w-full h-full" />
+          </div>
+          <span class="">HOME</span>
+        </a>
+        <div class="w-8 h-8 bg-white border border-gray-400 rounded-full ml-1">
+          <button on:click={toggleAudioOn} class="w-full h-full flex items-center justify-center">
+            <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="text-gray-500 w-3/4 h-3/4" />
+          </button>
         </div>
-        <span class="">HOME</span>
-      </a>
-      <div class="w-8 h-8 bg-white border border-gray-400 rounded-full ml-1">
-        <button on:click={toggleAudioOn} class="w-full h-full flex items-center justify-center">
-          <Icon icon={$audioOn ? "mdi:volume-high" : "mdi:volume-off"} class="text-gray-500 w-3/4 h-3/4" />
-        </button>
+        <div class="flex-grow"><!--spacer--></div>
+        <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
+          <img
+            src={currentGenerationImageUrl}
+            alt="generationSymbol"
+            class="w-full h-full object-contain transform scale-150"
+          />
+        </div>
+        <select
+          id="generationId"
+          bind:value={currentGenerationId}
+          on:change={handleGenerationChange}
+          class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
+        >
+          {#each options as option}
+            <option value={option.value}>{option.label}</option>
+          {/each}
+        </select>
       </div>
-      <div class="flex-grow"><!--spacer--></div>
-      <div class="w-8 h-8 bg-white border border-gray-400 rounded-full">
-        <img
-          src={currentGenerationImageUrl}
-          alt="generationSymbol"
-          class="w-full h-full object-contain transform scale-150"
-        />
+    </div>
+
+    <div class="w-screen mx-auto overflow-y-scroll scrollbar-gutter-stable sm:ml-2 pb-24 sm:pb-10">
+      <slot />
+    </div>
+
+    <footer class="absolute bottom-0 w-full h-2 flex items-center justify-end bg-transparent pointer-events-none">
+      <div class="absolute bottom-0 mb-10 mr-4 w-20 h-20">
+        {#if visibleFooterPaths.includes(currentPath)}
+          <img src={data.footerSymbolUrl} alt="footerSymbol" />
+        {/if}
       </div>
-      <select
-        id="generationId"
-        bind:value={currentGenerationId}
-        on:change={handleGenerationChange}
-        class="w-24 pt-1 pb-1 pl-2 pr-2 m-1 text-sm text-gray-500 border-gray-400 rounded-md"
-      >
-        {#each options as option}
-          <option value={option.value}>{option.label}</option>
-        {/each}
-      </select>
-    </div>
+    </footer>
   </div>
-
-  <div class="w-screen mx-auto overflow-y-scroll scrollbar-gutter-stable sm:ml-2 pb-24 sm:pb-10">
-    <slot />
+{:else}
+  <div class="flex items-center justify-center h-screen bg-gray-200 space-x-2">
+    <div class="font-mono text-black text-2xl">Now Loading...</div>
+    <img src={data.footerSymbolUrl} alt="footerSymbol" />
   </div>
-
-  <footer class="absolute bottom-0 w-full h-2 flex items-center justify-end bg-transparent pointer-events-none">
-    <div class="absolute bottom-0 mb-10 mr-4 w-20 h-20">
-      {#if visibleFooterPaths.includes(currentPath)}
-        <img src={data.footerSymbolUrl} alt="footerSymbol" />
-      {/if}
-    </div>
-  </footer>
-</div>
+{/if}
