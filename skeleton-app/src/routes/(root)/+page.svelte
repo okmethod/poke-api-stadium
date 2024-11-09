@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TransitionButtonConfig } from "$lib/utils/transitions";
+  import { isImageConfig, type TransitionButtonConfig } from "$lib/utils/transitions";
 
   export let data: {
     buttonConfigs: TransitionButtonConfig[];
@@ -19,8 +19,14 @@
       {#each data.buttonConfigs as config}
         <div class="">
           <button type="button" class="btn variant-ghost flex items-center" on:click={config.onClick}>
-            <img src={config.imageUrl} alt={config.alt} class="w-6 h-6 mr-2" />
-            <span class="hover:underline text-xl md:text-2xl w-80">{config.title}</span>
+            <div class="w-6 h-6 mr-1">
+              {#if config.symbol === null}
+                <!-- no symbol -->
+              {:else if isImageConfig(config.symbol)}
+                <img src={config.symbol.src} alt={config.symbol.alt} class="w-full h-full" />
+              {/if}
+            </div>
+            <span class="hover:underline text-left text-xl md:text-2xl w-64 md:w-72">{config.label}</span>
           </button>
         </div>
       {/each}
