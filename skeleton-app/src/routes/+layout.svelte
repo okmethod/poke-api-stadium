@@ -83,7 +83,7 @@
         <IconButton
           icon="mdi:home-outline"
           label="Home"
-          cButton="variant-ghost bg-white text-gray-500 !space-x-0 !py-1 !px-2"
+          cButton="variant-ghost bg-white text-gray-600 !space-x-0 !py-1 !px-2"
           onClick={() => navigateTo("/")}
         />
         <button
@@ -105,7 +105,7 @@
           id="generationId"
           bind:value={currentGenerationId}
           on:change={handleGenerationChange}
-          class="w-24 h-8 py-1 px-2 m-1 text-sm variant-ghost bg-white text-gray-500 border border-0 rounded-sm"
+          class="w-24 h-8 py-1 px-2 m-1 text-sm variant-ghost bg-white text-gray-600 border border-0 rounded-sm"
         >
           {#each options as option}
             <option value={option.value}>{option.label}</option>
