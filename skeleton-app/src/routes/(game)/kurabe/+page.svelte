@@ -83,7 +83,7 @@
     <!-- 上部ボタン -->
     <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
-        <select bind:value={compareMode} id="compareMode" class="border rounded px-10 py-1">
+        <select bind:value={compareMode} id="compareMode" class="border rounded px-10 py-1 h-9">
           {#each Object.entries(data.compareModeMap) as [key, value]}
             <option value={key}>{value.name}</option>
           {/each}
@@ -98,7 +98,7 @@
           min="3"
           max="6"
           bind:value={pokeCount}
-          class="border rounded px-4 py-1 h-full"
+          class="border rounded px-4 py-1 h-9"
         />
         <span class="cSpanTextStyle">たい よびだす</span>
         <IconButton icon="mdi:pokeball" cButton="btn-sm" onClick={pickPokeItems} />

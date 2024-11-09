@@ -25,27 +25,18 @@
 </script>
 
 <div class="cRouteBodyStyle">
-  <!-- タイトル部 -->
   <div class="cTitlePartStyle">
     <h1 class="cTitleStyle">ポケモンずかん</h1>
   </div>
 
-  <!-- コンテンツ部 -->
   <div class="cContentPartStyle">
-    <!-- 入力フォーム -->
+    <!-- 上部ボタン -->
     <div class="flex items-center justify-center space-x-1">
       <label for="pokeId" class="cSpanTextStyle">
         <span>No:</span>
       </label>
       <div class="cInputFormAndMessagePartStyle">
-        <input
-          type="number"
-          min="1"
-          max="99999"
-          id="pokeId"
-          bind:value={pokeId}
-          class="border rounded px-5 py-1 h-full"
-        />
+        <input type="number" min="1" max="99999" id="pokeId" bind:value={pokeId} class="border rounded px-5 py-1 h-9" />
         <IconButton icon="mdi:search" cButton="btn-sm" onClick={fetchPokeData} disabled={isLoading} />
         <div>
           {#if isUnknown}
