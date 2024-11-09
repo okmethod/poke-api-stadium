@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getModalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
-  import type { TypeName, TypeData, TypeColors, DamageRatio } from "$lib/types/type";
+  import type { TypeData, TypeColors, DamageRatio } from "$lib/types/type";
   import { filterArrayByGeneration } from "$lib/stores/generation";
   import { playAudio } from "$lib/stores/audio";
   import { getRandomNumber } from "$lib/utils/numerics";
@@ -10,13 +10,12 @@
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
   import TypeRelationsModal from "$lib/components/modals/TypeRelationsModal.svelte";
   import HelpJankenModal from "$lib/components/modals/HelpJankenModal.svelte";
+  import { judgeAttackSide, judgeJankenResult, type Result } from "./logic";
   import type { PokeItem } from "./+page";
 
   export let data: {
     pokeItems: PokeItem[];
   };
-
-  type Result = "win" | "lose" | "draw";
 
   // ポケモン抽選
   const pokeCountByPlayer = 3;
@@ -58,13 +57,13 @@
         : selectedOpoPokeItem.type[getRandomNumber(2)];
 
     let isOwnAttack: boolean;
-    ({ isOwnAttack, attackPokeName, attackType, defenseType } = _judgeAttackSide(
+    ({ isOwnAttack, attackPokeName, attackType, defenseType } = judgeAttackSide(
       selectedOwnPokeItem,
       selectedOpoPokeItem,
       selectedOwnPokeType,
       selectedOpoPokeType,
     ));
-    ({ damageRatio, result } = _judgeJankenResult(isOwnAttack, attackType, defenseType));
+    ({ damageRatio, result } = judgeJankenResult(isOwnAttack, attackType, defenseType));
 
     if (result === "win") {
       playAudio(selectedOwnPokeItem.oggUrl);
@@ -74,62 +73,6 @@
       // draw
     }
     phase = "term";
-
-    function _judgeAttackSide(
-      ownPokeItem: PokeItem,
-      opoPokeItem: PokeItem,
-      ownPokeType: TypeData & TypeColors,
-      opoPokeType: TypeData & TypeColors,
-    ): {
-      isOwnAttack: boolean;
-      attackPokeName: string;
-      attackType: TypeData & TypeColors;
-      defenseType: TypeData & TypeColors;
-    } {
-      const isOwnAttack = ownPokeItem.speed >= opoPokeItem.speed;
-      return {
-        isOwnAttack,
-        attackPokeName: isOwnAttack ? ownPokeItem.jaName : opoPokeItem.jaName,
-        attackType: isOwnAttack ? ownPokeType : opoPokeType,
-        defenseType: isOwnAttack ? opoPokeType : ownPokeType,
-      };
-    }
-
-    function _judgeJankenResult(
-      isOwnAttack: boolean,
-      attackType: TypeData & TypeColors,
-      defenseType: TypeData & TypeColors,
-    ): {
-      damageRatio: DamageRatio;
-      result: Result;
-    } {
-      const damageRatio = _getDamageRatio(attackType, defenseType.enName);
-      const resultMap: Record<DamageRatio, Result> = {
-        double: isOwnAttack ? "win" : "lose",
-        half: isOwnAttack ? "lose" : "win",
-        no: isOwnAttack ? "lose" : "win",
-        default: "draw",
-      };
-      return {
-        damageRatio,
-        result: resultMap[damageRatio],
-      };
-    }
-
-    function _getDamageRatio(attackType: TypeData, defenseTypeName: TypeName): DamageRatio {
-      const { doubleDamageTo, halfDamageTo, noDamageTo } = attackType.damageRelations;
-      const damageRelations = {
-        double: doubleDamageTo,
-        half: halfDamageTo,
-        no: noDamageTo,
-      };
-      for (const [ratio, types] of Object.entries(damageRelations)) {
-        if (types.includes(defenseTypeName)) {
-          return ratio as DamageRatio;
-        }
-      }
-      return "default";
-    }
   }
 
   // フェーズ進行とメッセージ更新
