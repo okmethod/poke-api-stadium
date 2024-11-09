@@ -2,6 +2,7 @@ import type { LoadEvent } from "@sveltejs/kit";
 import type { StaticPokeData } from "$lib/types/poke";
 import type { TypeName } from "$lib/types/type";
 import type { Stats } from "$lib/types/stats";
+import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
 import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
 import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
 
@@ -16,7 +17,61 @@ export interface PokeItem {
   stats: Stats;
 }
 
-export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[] }> {
+interface CompareMode {
+  name: string;
+  value: (value: PokeItem) => number;
+  formatValue: (value: PokeItem) => string;
+}
+
+export type CompareModeMap = Record<string, CompareMode>;
+
+const compareModeMap: CompareModeMap = {
+  height: {
+    name: "たかさ",
+    value: (value: PokeItem) => value.height,
+    formatValue: (value: PokeItem) => formatHeightWeight(value.height, "height"),
+  },
+  weight: {
+    name: "おもさ",
+    value: (value: PokeItem) => value.weight,
+    formatValue: (value: PokeItem) => formatHeightWeight(value.weight, "weight"),
+  },
+  hp: {
+    name: "HP",
+    value: (value: PokeItem) => value.stats.hp,
+    formatValue: (value: PokeItem) => formatStat(value.stats.hp),
+  },
+  attack: {
+    name: "こうげき",
+    value: (value: PokeItem) => value.stats.attack,
+    formatValue: (value: PokeItem) => formatStat(value.stats.attack),
+  },
+  defense: {
+    name: "ぼうぎょ",
+    value: (value: PokeItem) => value.stats.defense,
+    formatValue: (value: PokeItem) => formatStat(value.stats.defense),
+  },
+  specialAttack: {
+    name: "とくこう",
+    value: (value: PokeItem) => value.stats.specialAttack,
+    formatValue: (value: PokeItem) => formatStat(value.stats.specialAttack),
+  },
+  specialDefense: {
+    name: "とくぼう",
+    value: (value: PokeItem) => value.stats.specialDefense,
+    formatValue: (value: PokeItem) => formatStat(value.stats.specialDefense),
+  },
+  speed: {
+    name: "すばやさ",
+    value: (value: PokeItem) => value.stats.speed,
+    formatValue: (value: PokeItem) => formatStat(value.stats.speed),
+  },
+};
+
+export async function load({ fetch }: LoadEvent): Promise<{
+  pokeItems: PokeItem[];
+  compareModeMap: CompareModeMap;
+}> {
   // 並列実行の前にキャッシュに読み込む
   await fetchStaticPokeData(fetch, "load to cache");
   const pokeItems = await _getPokeItems();
@@ -44,5 +99,5 @@ export async function load({ fetch }: LoadEvent): Promise<{ pokeItems: PokeItem[
     };
   }
 
-  return { pokeItems };
+  return { pokeItems, compareModeMap };
 }

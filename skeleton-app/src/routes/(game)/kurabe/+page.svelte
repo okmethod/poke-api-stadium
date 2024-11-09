@@ -1,65 +1,14 @@
 <script lang="ts">
   import { dndzone } from "svelte-dnd-action";
   import { filterArrayByGeneration } from "$lib/stores/generation";
-  import { formatHeightWeight, formatStat } from "$lib/utils/numerics";
   import { pickRandomElementsFromArray } from "$lib/utils/collections";
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeTile from "$lib/components/cards/PokeTile.svelte";
-  import type { PokeItem } from "./+page";
+  import type { PokeItem, CompareModeMap } from "./+page";
 
   export let data: {
     pokeItems: PokeItem[];
-  };
-
-  // 選択可能な比較対象
-  interface Mode {
-    name: string;
-    value: (value: PokeItem) => number;
-    formatValue: (value: PokeItem) => string;
-  }
-
-  let modeId = "height";
-  const modes: Record<string, Mode> = {
-    height: {
-      name: "たかさ",
-      value: (value: PokeItem) => value.height,
-      formatValue: (value: PokeItem) => formatHeightWeight(value.height, "height"),
-    },
-    weight: {
-      name: "おもさ",
-      value: (value: PokeItem) => value.weight,
-      formatValue: (value: PokeItem) => formatHeightWeight(value.weight, "weight"),
-    },
-    hp: {
-      name: "HP",
-      value: (value: PokeItem) => value.stats.hp,
-      formatValue: (value: PokeItem) => formatStat(value.stats.hp),
-    },
-    attack: {
-      name: "こうげき",
-      value: (value: PokeItem) => value.stats.attack,
-      formatValue: (value: PokeItem) => formatStat(value.stats.attack),
-    },
-    defense: {
-      name: "ぼうぎょ",
-      value: (value: PokeItem) => value.stats.defense,
-      formatValue: (value: PokeItem) => formatStat(value.stats.defense),
-    },
-    specialAttack: {
-      name: "とくこう",
-      value: (value: PokeItem) => value.stats.specialAttack,
-      formatValue: (value: PokeItem) => formatStat(value.stats.specialAttack),
-    },
-    specialDefense: {
-      name: "とくぼう",
-      value: (value: PokeItem) => value.stats.specialDefense,
-      formatValue: (value: PokeItem) => formatStat(value.stats.specialDefense),
-    },
-    speed: {
-      name: "すばやさ",
-      value: (value: PokeItem) => value.stats.speed,
-      formatValue: (value: PokeItem) => formatStat(value.stats.speed),
-    },
+    compareModeMap: CompareModeMap;
   };
 
   // ゲームデータ管理
@@ -73,6 +22,7 @@
   }
 
   // 比較実行とメッセージ更新
+  let compareMode = "height";
   let comprareResult = "";
   function compareValues(): void {
     if (pickedPokeItems.length == 0) {
@@ -80,7 +30,7 @@
       return;
     }
     isOpen = true;
-    const values = pickedPokeItems.map((pokeItem) => modes[modeId].value(pokeItem));
+    const values = pickedPokeItems.map((pokeItem) => data.compareModeMap[compareMode].value(pokeItem));
     if (_isSortedDesc(values)) {
       const messages: { [key: string]: string } = {
         3: "せいかい！",
@@ -103,7 +53,7 @@
     isOpen = false;
     comprareResult = "";
   }
-  $: if (modeId || pokeCount) {
+  $: if (compareMode || pokeCount) {
     resetState();
   }
 
@@ -133,8 +83,8 @@
     <!-- 上部ボタン -->
     <div class="m-4 space-y-2">
       <div class="cInputFormAndMessagePartStyle">
-        <select bind:value={modeId} id="modeId" class="border rounded px-10 py-1">
-          {#each Object.entries(modes) as [key, value]}
+        <select bind:value={compareMode} id="compareMode" class="border rounded px-10 py-1">
+          {#each Object.entries(data.compareModeMap) as [key, value]}
             <option value={key}>{value.name}</option>
           {/each}
         </select>
@@ -172,7 +122,9 @@
               type2Name={pokeItem.type2Name}
               imageUrl={pokeItem.imageUrl}
             />
-            <p class="text-center">{isOpen ? modes[modeId].formatValue(pokeItem) : "???"}</p>
+            <p class="text-center">
+              {isOpen ? data.compareModeMap[compareMode].formatValue(pokeItem) : "???"}
+            </p>
             <p class="text-center">{index + 1} ばんめ</p>
           </div>
         {/each}
