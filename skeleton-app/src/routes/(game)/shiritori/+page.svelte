@@ -8,7 +8,7 @@
   import IconButton from "$lib/components/IconButton.svelte";
   import PokeChip from "$lib/components/cards/PokeChip.svelte";
   import PokeListModal from "$lib/components/modals/PokeListModal.svelte";
-  import { getTailChar, solveShiritoriRule } from "./rules";
+  import { getTailChar, solveShiritoriRule } from "./logic";
   import type { PokeItem } from "./+page";
 
   export let data: {
