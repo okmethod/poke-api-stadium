@@ -1,7 +1,7 @@
 import type { LoadEvent } from "@sveltejs/kit";
 import { fetchStaticPokeData } from "$lib/constants/fetchStaticData";
 import { FIRST_POKE_ID, POKE_COUNT } from "$lib/constants/common";
-import { getHeadChar } from "./rules";
+import { getHeadChar } from "./logic";
 
 export interface PokeItem {
   pokeId: number; // dictにとっては冗長だが、listで使えるようにidを持たせる
