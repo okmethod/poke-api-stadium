@@ -64,6 +64,8 @@
 
   $: currentPath = $page.url.pathname;
   const visibleFooterPaths = [`${base}/`, `${base}/prototype`];
+
+  const cHeaderButtonStyle = "variant-filled bg-white text-gray-800 border border-primary-600";
 </script>
 
 <svelte:head>
@@ -75,22 +77,22 @@
 <Toast position="tr" rounded="rounded-lg" />
 
 {#if isLoaded}
-  <div class="flex flex-col h-screen">
-    <div class="relative border-b border-gray-400 bg-primary-300 p-1">
-      <div class="flex items-center justify-between h-full space-x-2">
+  <div class="h-screen flex flex-col">
+    <div class="relative border-b border-primary-400 bg-primary-300 p-1">
+      <div class="h-full flex items-center justify-between space-x-2">
         <IconButton
           icon="mdi:home-outline"
           label="Home"
-          cButton="variant-ghost bg-white text-gray-600 !space-x-0 !py-1 !px-2"
+          cButton="{cHeaderButtonStyle} !space-x-0 !py-1 !px-2"
           onClick={() => navigateTo("/")}
         />
         <IconButton
           icon={currentAudioOn ? "mdi:volume-high" : "mdi:volume-off"}
-          cButton="btn-icon btn-icon-sm variant-ghost bg-white text-gray-500"
+          cButton="btn-icon btn-icon-sm {cHeaderButtonStyle}"
           onClick={toggleAudioOn}
         />
         <div class="flex-grow"><!--spacer--></div>
-        <div class="w-9 h-9 variant-ghost bg-white border rounded-full">
+        <div class="w-9 h-9 {cHeaderButtonStyle} rounded-full">
           <img
             src={currentGenerationImageUrl}
             alt="generationSymbol"
@@ -101,7 +103,7 @@
           id="generationId"
           bind:value={currentGenerationId}
           on:change={handleGenerationChange}
-          class="w-24 h-8 py-1 px-2 m-1 text-sm variant-ghost bg-white text-gray-600 border border-0 rounded-sm"
+          class="w-24 h-8 {cHeaderButtonStyle} text-sm rounded-sm py-1 px-2 m-1"
         >
           {#each options as option}
             <option value={option.value}>{option.label}</option>
@@ -114,8 +116,8 @@
       <slot />
     </div>
 
-    <footer class="absolute bottom-0 w-full h-2 flex items-center justify-end bg-transparent pointer-events-none">
-      <div class="absolute bottom-0 mb-10 mr-4 w-20 h-20">
+    <footer class="w-full h-2 absolute bottom-0 flex items-center justify-end bg-transparent pointer-events-none">
+      <div class="w-20 h-20 absolute bottom-0 mb-10 mr-4">
         {#if visibleFooterPaths.includes(currentPath)}
           <img src={data.footerSymbolUrl} alt="footerSymbol" />
         {/if}
@@ -123,7 +125,7 @@
     </footer>
   </div>
 {:else}
-  <div class="flex items-center justify-center h-screen bg-gray-200 space-x-2">
+  <div class="h-screen flex items-center justify-center bg-gray-200 space-x-2">
     <div class="font-mono text-black text-2xl">Now Loading...</div>
     <img src={data.footerSymbolUrl} alt="footerSymbol" />
   </div>
