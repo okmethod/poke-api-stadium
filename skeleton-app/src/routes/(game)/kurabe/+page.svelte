@@ -25,10 +25,6 @@
   let compareMode = "height";
   let comprareResult = "";
   function compareValues(): void {
-    if (pickedPokeItems.length == 0) {
-      comprareResult = "さきに ポケモンを よびだしてね";
-      return;
-    }
     isOpen = true;
     const values = pickedPokeItems.map((pokeItem) => data.compareModeMap[compareMode].value(pokeItem));
     if (_isSortedDesc(values)) {
@@ -132,10 +128,18 @@
     </div>
 
     <!-- 下部ボタン -->
-    <div class="m-4 mt-2">
-      <div class="cInputFormAndMessagePartStyle">
-        <span class="cSpanTextStyle">こたえあわせ</span>
-        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={compareValues} />
+    <div class="m-4 mt-2 space-y-4">
+      <div class="flex justify-center">
+        <button
+          type="button"
+          on:click={compareValues}
+          class="btn variant-filled"
+          disabled={pickedPokeItems.length == 0}
+        >
+          こたえあわせ
+        </button>
+      </div>
+      <div class="flex justify-center">
         <span class="cSpanTextStyle">{comprareResult}</span>
       </div>
     </div>

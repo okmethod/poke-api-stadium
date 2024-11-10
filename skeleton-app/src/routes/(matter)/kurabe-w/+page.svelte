@@ -74,11 +74,7 @@
 
   // 比較実行とメッセージ更新
   let guideMessage = "";
-  function compareHeight(): void {
-    if (pickedPokeItems.length == 0) {
-      guideMessage = "さきに ポケモンを よびだしてね";
-      return;
-    }
+  function compareWeight(): void {
     if (isReady === false) {
       guideMessage = "じゅんびちゅう...";
       return;
@@ -130,11 +126,17 @@
 
     <!-- 下部ボタン -->
     <div class="m-4 mt-2 space-y-4">
-      <div class="cInputFormAndMessagePartStyle justify-center">
-        <span class="cSpanTextStyle">こたえをみる</span>
-        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={compareHeight} />
+      <div class="flex justify-center">
+        <button
+          type="button"
+          on:click={compareWeight}
+          class="btn variant-filled"
+          disabled={pickedPokeItems.length == 0}
+        >
+          こたえをみる
+        </button>
       </div>
-      <div class="cInputFormAndMessagePartStyle justify-center">
+      <div class="flex justify-center">
         {#if isOpen}
           {#each pickedPokeItems as pokeItem}
             <div class="flex flex-col items-center">

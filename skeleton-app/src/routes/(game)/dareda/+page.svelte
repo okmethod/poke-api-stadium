@@ -124,10 +124,11 @@
     </div>
 
     <!-- 下部ボタン -->
-    <div class="m-4">
-      <div class="cInputFormAndMessagePartStyle">
-        <span class="cSpanTextStyle">こたえをみる</span>
-        <IconButton icon="mdi:eye" cButton="btn-sm" onClick={toggleSilhouette} />
+    <div class="m-4 mt-2 space-y-4">
+      <div class="flex justify-center">
+        <button type="button" on:click={toggleSilhouette} class="btn variant-filled" disabled={pickedPokeItem === null}>
+          こたえをみる
+        </button>
       </div>
     </div>
   </div>
