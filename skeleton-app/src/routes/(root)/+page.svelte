@@ -8,7 +8,7 @@
 
 <div class="cRouteBodyStyle">
   <div class="cTitlePartStyle !m-0 !mt-2 !mb-2 md:!mt-4 md:!mb-4">
-    <h1 class="cTitleStyle md:!text-3xl">
+    <h1 class="cTitleStyle">
       <span class="block xs:inline">PokeAPI スタジアム</span>
       <span class="block text-right xs:inline">へようこそ !</span>
     </h1>
@@ -25,7 +25,7 @@
               <img src={config.symbol.src} alt={config.symbol.alt} class="w-full h-full" />
             {/if}
           </div>
-          <span class="hover:underline text-left text-xl md:text-2xl w-64 md:w-72">{config.label}</span>
+          <span class="cRouteButtonStyle">{config.label}</span>
         </button>
       {/each}
     </div>
