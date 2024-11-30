@@ -1,11 +1,9 @@
 {
 	"folders": [
 		{
-			"name": "poke-api-stadium",
 			"path": "."
 		},
 		{
-			"name": "skeleton-app",
 			"path": "skeleton-app"
 		},
 	],
