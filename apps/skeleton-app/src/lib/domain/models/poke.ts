@@ -8,7 +8,7 @@
  */
 
 import type { Stats } from "./stats";
-import type { TypeName } from "./type";
+import type { PokeTypeName } from "./pokeType";
 
 /**
  * アプリ内部のポケモン統合モデル
@@ -22,9 +22,9 @@ export interface PokeData {
   readonly jaName: string;
   /** 公式アートワーク画像URL */
   readonly imageUrl: string;
-  readonly type1: TypeName;
+  readonly type1: PokeTypeName;
   /** 単タイプの場合は null */
-  readonly type2: TypeName | null;
+  readonly type2: PokeTypeName | null;
   readonly stats: Stats;
   /** 初登場世代（第 1〜9 世代） */
   readonly generation: number;

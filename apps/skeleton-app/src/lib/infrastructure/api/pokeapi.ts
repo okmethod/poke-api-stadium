@@ -57,6 +57,12 @@ export const PokemonSpeciesResponseSchema = z.object({
 export const TypeResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
+  names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
   damage_relations: z.object({
     no_damage_to: z.array(NamedResourceSchema),
     half_damage_to: z.array(NamedResourceSchema),

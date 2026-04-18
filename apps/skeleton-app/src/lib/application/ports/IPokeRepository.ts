@@ -20,7 +20,7 @@
  */
 
 import type { PokeData } from "$lib/domain/models/poke";
-import type { TypeData } from "$lib/domain/models/type";
+import type { PokeTypeData } from "$lib/domain/models/pokeType";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {
@@ -28,7 +28,7 @@ export interface IPokeRepository {
   getPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeData>;
 
   /** 番号またはタイプ名でタイプデータを取得 */
-  getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<TypeData>;
+  getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData>;
 
   /**
    * 複数の図鑑番号からポケモン辞書を取得
@@ -38,5 +38,5 @@ export interface IPokeRepository {
   getPokemons(fetchFunction: typeof fetch, ids: number[]): Promise<Record<string, PokeData>>;
 
   /** 複数のタイプ名からタイプ辞書を取得 */
-  getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, TypeData>>;
+  getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, PokeTypeData>>;
 }

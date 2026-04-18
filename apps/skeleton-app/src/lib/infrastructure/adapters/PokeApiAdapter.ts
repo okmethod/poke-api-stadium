@@ -15,7 +15,7 @@
  */
 
 import type { PokeData } from "$lib/domain/models/poke";
-import type { TypeData, TypeName } from "$lib/domain/models/type";
+import { pokeTypeColor, type PokeTypeData, type PokeTypeName } from "$lib/domain/models/pokeType";
 import type { Stats } from "$lib/domain/models/stats";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
@@ -59,8 +59,8 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     species.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
     pokemon.name;
 
-  const type1 = pokemon.types.find((t) => t.slot === 1)?.type.name as TypeName;
-  const type2 = (pokemon.types.find((t) => t.slot === 2)?.type.name as TypeName) ?? null;
+  const type1 = pokemon.types.find((t) => t.slot === 1)?.type.name as PokeTypeName;
+  const type2 = (pokemon.types.find((t) => t.slot === 2)?.type.name as PokeTypeName) ?? null;
 
   const imageUrl =
     pokemon.sprites.other["official-artwork"].front_default ??
@@ -80,11 +80,19 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
   };
 }
 
-function convertToTypeData(raw: TypeResponse): TypeData {
-  const toTypeNames = (list: { name: string }[]): TypeName[] => list.map((t) => t.name as TypeName);
+function convertToTypeData(raw: TypeResponse): PokeTypeData {
+  const toTypeNames = (list: { name: string }[]): PokeTypeName[] => list.map((t) => t.name as PokeTypeName);
+  const name = raw.name as PokeTypeName;
+  // "ja" (漢字あり) を優先し、なければ "ja-Hrkt" (カナ) を使用
+  const jaName =
+    raw.names.find((n) => n.language.name === "ja")?.name ??
+    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
+    name;
 
   return {
-    name: raw.name as TypeName,
+    name,
+    jaName,
+    color: pokeTypeColor(name),
     damageRelations: {
       noDamageTo: toTypeNames(raw.damage_relations.no_damage_to),
       halfDamageTo: toTypeNames(raw.damage_relations.half_damage_to),
@@ -108,7 +116,7 @@ class PokeApiAdapter implements IPokeRepository {
   }
 
   /** 番号またはタイプ名でタイプデータを取得 */
-  async getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<TypeData> {
+  async getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData> {
     const raw = await fetchType(fetchFunction, idOrName);
     return convertToTypeData(raw);
   }
@@ -135,8 +143,8 @@ class PokeApiAdapter implements IPokeRepository {
   }
 
   /** 複数のタイプ名からタイプ辞書を取得 */
-  async getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, TypeData>> {
-    const result: Record<string, TypeData> = {};
+  async getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, PokeTypeData>> {
+    const result: Record<string, PokeTypeData> = {};
     await Promise.all(
       names.map(async (name) => {
         result[name] = await this.getType(fetchFunction, name);
