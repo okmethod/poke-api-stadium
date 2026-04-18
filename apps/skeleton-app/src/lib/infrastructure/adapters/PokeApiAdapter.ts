@@ -16,6 +16,7 @@
 
 import type { PokeData } from "$lib/domain/models/pokeData";
 import { pokeTypeColor, type PokeTypeData, type PokeTypeName } from "$lib/domain/models/pokeType";
+import { generationData } from "$lib/domain/models/generation";
 import type { Stats } from "$lib/domain/models/stats";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
@@ -66,7 +67,7 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     pokemon.sprites.other["official-artwork"].front_default ??
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
 
-  const generation = GENERATION_NAME_MAP[species.generation.name] ?? 0;
+  const generationNumber = GENERATION_NAME_MAP[species.generation.name] ?? 0;
 
   return {
     id: pokemon.id,
@@ -79,7 +80,7 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     weight: pokemon.weight / 10,
     stats: convertToStats(pokemon.stats),
     imageUrl,
-    generation,
+    generationData: generationData(generationNumber),
   };
 }
 
