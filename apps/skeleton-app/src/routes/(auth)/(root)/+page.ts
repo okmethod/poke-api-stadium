@@ -1,6 +1,9 @@
 import type { TransitionContent, TransitionButtonConfig } from "$lib/presentation/utils/transitions";
 import { generateButtonConfigs } from "$lib/presentation/utils/transitions";
 import { GITHUB_REPO_URL } from "$lib/presentation/constants/common";
+import type { PokeData } from "$lib/domain/models/poke";
+import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+import type { LoadEvent } from "@sveltejs/kit";
 
 const contentLinks: TransitionContent[] = [
   {
@@ -23,8 +26,11 @@ const contentLinks: TransitionContent[] = [
   },
 ];
 
-export async function load(): Promise<{ buttonConfigs: TransitionButtonConfig[] }> {
+export async function load({
+  fetch,
+}: LoadEvent): Promise<{ buttonConfigs: TransitionButtonConfig[]; bulbasaur: PokeData }> {
   const buttonConfigs = generateButtonConfigs(contentLinks);
+  const bulbasaur = await getPokeRepository().getPokemon(fetch, 1);
 
-  return { buttonConfigs };
+  return { buttonConfigs, bulbasaur };
 }

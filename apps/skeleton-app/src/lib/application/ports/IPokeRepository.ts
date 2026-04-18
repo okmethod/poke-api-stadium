@@ -1,0 +1,42 @@
+/**
+ * IPokeRepository - Port/Adapter パターンの Port (抽象/契約定義)
+ *
+ * @remarks
+ * - テスト時にモック実装を注入可能
+ * - 将来的に別のデータソース（ローカルキャッシュ、FastAPI プロキシ等）への切り替えが容易
+ * - PokeAPI の実装詳細からアプリ層を完全に分離
+ *
+ * @architecture レイヤー間依存ルール - アプリ層 (Port)
+ * - ROLE: インフラ層が実装すべき抽象インターフェース（契約）の定義
+ * - ALLOWED: ドメイン層モデルへの依存
+ * - FORBIDDEN: インフラ層への依存
+ *
+ * Note: アプリ層 DTO を設けず、ドメイン層に直接依存させる理由
+ * - 本プロジェクトのミニゲーム（じゃんけん・だれだ・くらべ・しりとり）は
+ *   Application 層の usecase として実装するため、ドメイン層に厚いロジックを置かない
+ * - `jaName` / `imageUrl` はゲームルール（だれだ・しりとり）の判定にも使うため
+ *   「表示専用データ」が存在せず、DTO 分離のメリットが薄い
+ * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
+ */
+
+import type { PokeData } from "$lib/domain/models/poke";
+import type { TypeData } from "$lib/domain/models/type";
+
+/** PokeAPI データ取得の抽象インターフェース */
+export interface IPokeRepository {
+  /** 図鑑番号または英語名でポケモンデータを取得 */
+  getPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeData>;
+
+  /** 番号またはタイプ名でタイプデータを取得 */
+  getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<TypeData>;
+
+  /**
+   * 複数の図鑑番号からポケモン辞書を取得
+   *
+   * 取得失敗したIDはスキップしてログのみ出力する（ミニゲーム用途で部分失敗を許容）。
+   */
+  getPokemons(fetchFunction: typeof fetch, ids: number[]): Promise<Record<string, PokeData>>;
+
+  /** 複数のタイプ名からタイプ辞書を取得 */
+  getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, TypeData>>;
+}
