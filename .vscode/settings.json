@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "docs": true,
+    "apps": true,
+  },
+  "[makefile]": {
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
+},
+}

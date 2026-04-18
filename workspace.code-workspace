@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "docs"
+		},
+		{
+			"path": "apps/skeleton-app"
+		},
+		{
+			"path": "apps/fast-api-server"
+		},
+	],
+	"settings": {}
+}
