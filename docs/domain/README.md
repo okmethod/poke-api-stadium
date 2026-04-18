@@ -7,13 +7,13 @@
 
 ## ファイル一覧
 
-TODO: ドメイン知識ドキュメントを追加したらここに列挙する
-
-### 例: [overview.md](./overview.md)
+### [overview.md](./overview.md)
 
 **内容**:
 
-- ドメイン全体像とコードの対応
+- ドメインモデル一覧（PokeData, Stats, TypeName, TypeData）
+- PokeAPI エンドポイントとの対応関係
+- 図鑑番号の制約
 - ドメイン実装状況（✅ 完全実装 / 🚧 一部実装 / ⏳ 未実装 / ❌ 実装不要）
 
 ---
