@@ -41,13 +41,20 @@
 
 {#if isLoaded}
   <div class="h-screen flex flex-col">
-    <header class="shrink-0 p-2 sm:p-4 shadow-md bg-surface-100-900">
+    <header class="shrink-0 p-2 shadow-md bg-surface-100-900">
       <div class="flex justify-between items-center">
-        <a class="h5 flex items-center" href="./">
-          <span class="hidden sm:inline">PokeAPI スタジアム</span>
-          <Icon icon="mdi:home" class="size-6 sm:hidden" />
-        </a>
-
+        <!-- 左寄り -->
+        <nav>
+          <ul class="flex space-x-4 items-center justify-center">
+            <li>
+              <a class="btn preset-filled flex items-center gap-1 rounded-xl h-10 w-28" href="./">
+                <Icon icon="mdi:home-outline" class="size-5" />
+                <span>Home</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- 右寄り -->
         <nav>
           <ul class="flex space-x-4 items-center justify-center">
             <li>
