@@ -21,3 +21,5 @@ globs: "apps/skeleton-app/**/*.svelte"
   - 動的クラスは文字列リテラルで定義する（テンプレート文字列での動的生成は Tailwind スキャナーに検出されないため NG）
 - `$effect` でDOM操作が必要な場合は `tick()` を await してから実行する
 - `bind:this` が不安定な場合は `use:` ディレクティブで要素を登録する
+- アプリ内ページ遷移は `<a href>` ではなく `navigateTo()` を使う（base path 考慮のため）
+  - `import { navigateTo } from "$lib/presentation/utils/navigation"`
