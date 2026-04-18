@@ -17,7 +17,7 @@
 
 フロントエンドSPA + バックエンドAPIサーバーのテンプレート
 
-- **リポジトリ**: https://github.com/okmethod/my-static-site
+- **リポジトリ**: https://github.com/okmethod/poke-api-stadium
 - **技術スタック**:
   - TypeScript 6, Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
   - Python 3.13, FastAPI

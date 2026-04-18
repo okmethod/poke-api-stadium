@@ -1,10 +1,10 @@
-# my-static-site
+# Poke API スタジアム
 
-> フロントエンド SPA + バックエンド API サーバーのテンプレート
+> PokeAPI を利用したミニゲーム集アプリ
 
 ## プロジェクト概要
 
-GitHub Pages へのデプロイを前提とした、Svelte × FastAPI の開発テンプレート。
+[PokeAPI](https://pokeapi.co/) で取得したポケモンのデータを使ったミニゲーム集を提供する。
 
 ---
 
@@ -41,7 +41,7 @@ TODO: バックエンドのホストとデプロイ検討
 ## ディレクトリ構成
 
 ```
-my-static-site/
+poke-api-stadium/
 ├── apps/
 │   ├── skeleton-app/      # フロントエンド (Skeleton)
 │   └── fast-api-server/   # バックエンド (FastAPI)
@@ -67,7 +67,7 @@ cd apps/skeleton-app
 npm run deploy
 ```
 
-**公開 URL**: https://okmethod.github.io/my-static-site/
+**公開 URL**: https://okmethod.github.io/poke-api-stadium/
 
 ---
 
