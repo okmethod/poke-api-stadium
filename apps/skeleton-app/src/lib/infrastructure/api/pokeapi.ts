@@ -22,6 +22,8 @@ const NamedResourceSchema = z.object({
 export const PokemonResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
+  height: z.number(),
+  weight: z.number(),
   types: z.array(
     z.object({
       slot: z.number(),

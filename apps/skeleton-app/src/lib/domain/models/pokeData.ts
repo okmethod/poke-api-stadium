@@ -20,12 +20,23 @@ export interface PokeData {
   readonly id: number;
   readonly enName: string;
   readonly jaName: string;
+
+  /** たかさ（m） */
+  readonly height: number;
+  /** おもさ（kg） */
+  readonly weight: number;
+
+  /** タイプ1 */
+  readonly type1: PokeTypeName;
+  /** タイプ2（単タイプの場合は null） */
+  readonly type2: PokeTypeName | null;
+
+  /** ステータス */
+  readonly stats: Stats;
+
   /** 公式アートワーク画像URL */
   readonly imageUrl: string;
-  readonly type1: PokeTypeName;
-  /** 単タイプの場合は null */
-  readonly type2: PokeTypeName | null;
-  readonly stats: Stats;
+
   /** 初登場世代（第 1〜9 世代） */
   readonly generation: number;
 }

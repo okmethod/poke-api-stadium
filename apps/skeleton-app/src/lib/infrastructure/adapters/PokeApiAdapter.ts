@@ -72,10 +72,13 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     id: pokemon.id,
     enName: pokemon.name,
     jaName,
-    imageUrl,
     type1,
     type2,
+    // PokeAPI は height をデシメートル、weight をヘクトグラムで返すため変換
+    height: pokemon.height / 10,
+    weight: pokemon.weight / 10,
     stats: convertToStats(pokemon.stats),
+    imageUrl,
     generation,
   };
 }
