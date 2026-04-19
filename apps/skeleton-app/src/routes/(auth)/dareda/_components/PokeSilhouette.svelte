@@ -15,11 +15,8 @@
 <div class="flex flex-col items-center gap-3">
   {#if pokeData === null || imageUrl === null}
     <!-- プレースホルダー -->
-    <div
-      class="text-surface-400 border-surface-300 flex size-48 items-center justify-center rounded-xl border-2 border-dashed text-4xl"
-    >
-      ？
-    </div>
+    <div class="text-surface-400 border-surface-300 flex size-48 items-center justify-center rounded-xl text-4xl"></div>
+    <p class="text-surface-400 text-2xl font-bold">？？？</p>
   {:else}
     <img
       src={imageUrl}

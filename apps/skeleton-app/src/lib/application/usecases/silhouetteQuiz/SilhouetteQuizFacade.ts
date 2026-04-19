@@ -35,6 +35,8 @@ export class SilhouetteQuizFacade {
 
   /** ランダムにポケモンを選出してストアを更新する（選択世代でフィルター） */
   async pickPokemon(fetchFn: typeof fetch): Promise<FacadeResult> {
+    // 旧ポケモン画像をトランジション前に即時非表示にしてネタバレを防ぐ
+    silhouetteQuizStoreWriter.setPokeData(null);
     silhouetteQuizStoreWriter.setIsOpen(false);
     silhouetteQuizStoreWriter.setHintText(null);
     silhouetteQuizStoreWriter.setIsLoading(true);
