@@ -20,21 +20,24 @@ graph LR
     Assets["SPAアセット"]
   end
 
-  subgraph Server["サーバー"]
-    API["API サーバー"]
+  subgraph CF["Cloudflare"]
+    API["API サーバー<br>(Workers)"]
+    AIGateway["AI Gateway"]
   end
+
+  LLM["LLM プロバイダー"]
 
   Assets -->|配信| SPA
   SPA -->|REST API| API
+  API --> AIGateway
+  AIGateway --> LLM
 ```
 
 **技術スタック**:
 
 - **フロントエンド**: Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
 - **バックエンド**: Python 3.13 + FastAPI
-- **インフラ**: Docker Compose でワンコマンド起動
-
-TODO: バックエンドのホストとデプロイ検討
+- **インフラ**: GitHub Pages（フロントエンド） / Cloudflare Workers（バックエンド）
 
 ---
 
@@ -60,11 +63,18 @@ docker compose up
 
 ## デプロイ
 
-GitHub Pages への静的デプロイ:
+**フロントエンド**（GitHub Pages）:
 
 ```bash
 cd apps/skeleton-app
 npm run deploy
+```
+
+**バックエンド**（Cloudflare Workers）:
+
+```bash
+cd apps/fast-api-server
+wrangler deploy
 ```
 
 **公開 URL**: https://okmethod.github.io/poke-api-stadium/
