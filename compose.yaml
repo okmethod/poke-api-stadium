@@ -22,7 +22,16 @@ services:
     ports:
       - 8000:8000
     environment:
-      GOOGLE_CLOUD_PROJECT: emulator
+      # ローカル開発専用: シークレットをベタ書き（本番は wrangler secret put で設定）
+      APP_SECRET: "local-dev-secret"
+      AI_GATEWAY_BASE_URL: "https://gateway.ai.cloudflare.com/v1/{account_id}/{gateway_id}"
+      AI_GATEWAY_TOKEN: "your-ai-gateway-token"
+      # CORS: ローカルのフロントエンド開発サーバーを許可
+      ALLOWED_ORIGINS: '["http://localhost:5173"]'
+      # 各プロバイダーのモデル名（wrangler.toml の [vars] と揃える）
+      GEMINI_MODEL: "gemini-1.5-flash"
+      CLAUDE_MODEL: "claude-3-5-haiku-20241022"
+      GROQ_MODEL: "llama-3.3-70b-versatile"
     volumes:
       - ./apps/fast-api-server:/app
       - fast-api-server-venv:/app/.venv

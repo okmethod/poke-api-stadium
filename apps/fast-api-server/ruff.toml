@@ -66,8 +66,18 @@ select = [
     "FURB",  # refurb
     "RUF",   # Ruff-specific rules
 ]
-ignore = ["COM812"]
+ignore = [
+    "COM812",
+    # 日本語コードベースでは全角括弧・記号を使用するため除外
+    "RUF001",
+    "RUF002",
+    "RUF003",
+]
 
 [lint.per-file-ignores]
-"tests/**" = ["S101"]
+"tests/**" = [
+    "S101",
+    # テストコードでは PLR2004 (マジック値) を許容
+    "PLR2004",
+]
 
