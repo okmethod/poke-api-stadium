@@ -51,9 +51,7 @@ skeleton-app/src/lib/
 ```
 src/lib/domain/
 └── models/
-    ├── poke.ts    # PokeData（統合ポケモンモデル）
-    ├── stats.ts   # Stats（6種のステータス）
-    └── type.ts    # TypeName, TypeData, DamageRelations
+    └── PokeData/  # ポケモンデータ
 ```
 
 **重要**:
@@ -64,18 +62,10 @@ src/lib/domain/
 
 **主要コンポーネント**:
 
-- **PokeData**: アプリ内部のポケモン表現
-  - PokeAPI の複数エンドポイント（`/pokemon`, `/pokemon-species`）を統合したモデル
-  - `readonly` 修飾子で不変性を保証（Svelte Runes との相性）
+- **PokeData**: アプリ内部のポケモン統合モデル
+  - PokeAPI の複数エンドポイント（`/pokemon`, `/pokemon-species`）を統合した表現
+  - タイプ・ステータス・世代などのデータを統合管理する
   - PokeAPI レスポンス型（外部）とは明確に区別する
-
-- **Stats**: 6 種のステータス（HP / こうげき / ぼうぎょ / とくこう / とくぼう / すばやさ）
-  - PokeAPI の `stats` フィールドを整形したモデル
-
-- **TypeName**: 18 種類のポケモンタイプを表す Union 型
-
-- **TypeData**: タイプ相性情報（`DamageRelations`）を含む完全モデル
-  - ゲームロジック（じゃんけん等）でタイプ相性を参照するために使用
 
 ### Application Layer
 

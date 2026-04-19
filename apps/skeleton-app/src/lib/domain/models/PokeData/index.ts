@@ -7,9 +7,15 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
+import type { PokeTypeName, PokeTypeData } from "./pokeType";
+import { pokeTypeColor, pokeTypeJaName } from "./pokeType";
 import type { PokeStats } from "./pokeStats";
-import type { PokeTypeName } from "./pokeType";
 import type { GenerationData } from "./generation";
+import { generationData } from "./generation";
+
+// 各ドメインモデルを再エクスポート
+export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData };
+export { pokeTypeColor, pokeTypeJaName, generationData };
 
 /**
  * アプリ内部のポケモン統合モデル

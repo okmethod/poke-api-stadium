@@ -19,8 +19,8 @@
  * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
  */
 
-import type { PokeData } from "$lib/domain/models/pokeData";
-import type { PokeTypeData } from "$lib/domain/models/pokeType";
+import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {

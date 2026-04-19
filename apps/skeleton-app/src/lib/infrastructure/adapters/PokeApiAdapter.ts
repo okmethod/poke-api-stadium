@@ -14,10 +14,9 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import type { PokeData } from "$lib/domain/models/pokeData";
-import { pokeTypeColor, type PokeTypeData, type PokeTypeName } from "$lib/domain/models/pokeType";
-import { generationData } from "$lib/domain/models/generation";
-import type { PokeStats } from "$lib/domain/models/pokeStats";
+import type { PokeData, PokeTypeData, PokeTypeName } from "$lib/domain/models/PokeData";
+import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
+import type { PokeStats } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
