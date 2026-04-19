@@ -7,7 +7,7 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
-import type { Stats } from "./stats";
+import type { PokeStats } from "./pokeStats";
 import type { PokeTypeName } from "./pokeType";
 import type { GenerationData } from "./generation";
 
@@ -33,7 +33,7 @@ export interface PokeData {
   readonly type2: PokeTypeName | null;
 
   /** ステータス */
-  readonly stats: Stats;
+  readonly stats: PokeStats;
 
   /** 公式アートワーク画像URL */
   readonly imageUrl: string;

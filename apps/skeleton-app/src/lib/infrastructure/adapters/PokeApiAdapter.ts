@@ -17,7 +17,7 @@
 import type { PokeData } from "$lib/domain/models/pokeData";
 import { pokeTypeColor, type PokeTypeData, type PokeTypeName } from "$lib/domain/models/pokeType";
 import { generationData } from "$lib/domain/models/generation";
-import type { Stats } from "$lib/domain/models/stats";
+import type { PokeStats } from "$lib/domain/models/pokeStats";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
@@ -41,7 +41,7 @@ const GENERATION_NAME_MAP: Record<string, number> = {
   "generation-ix": 9,
 };
 
-function convertToStats(rawStats: PokemonResponse["stats"]): Stats {
+function convertToStats(rawStats: PokemonResponse["stats"]): PokeStats {
   const find = (name: string): number => rawStats.find((s) => s.stat.name === name)?.base_stat ?? 0;
   return {
     hp: find("hp"),

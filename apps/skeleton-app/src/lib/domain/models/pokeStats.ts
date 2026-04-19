@@ -8,7 +8,7 @@
  */
 
 /** ポケモンの 6 種基本ステータス */
-export interface Stats {
+export interface PokeStats {
   readonly hp: number;
   readonly attack: number;
   readonly defense: number;
