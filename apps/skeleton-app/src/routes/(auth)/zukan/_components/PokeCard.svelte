@@ -4,6 +4,7 @@
   import { pokeTypeColor } from "$lib/domain/models/PokeData";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
   import StatsRadarChart from "./StatsRadarChart.svelte";
+  import { getAudioOn } from "$lib/presentation/stores/audioStore";
 
   interface PokeCardProps {
     pokeData: PokeData | null;
@@ -36,7 +37,7 @@
   );
 
   function playCry() {
-    if (availableCryUrls.length === 0) return;
+    if (availableCryUrls.length === 0 || !getAudioOn()) return;
     new Audio(availableCryUrls[cryIndex]).play();
     cryIndex = (cryIndex + 1) % availableCryUrls.length;
   }
