@@ -12,10 +12,8 @@ import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import { pokeTypeJaName } from "$lib/domain/models/PokeData";
 import { getRandomNumber } from "$lib/shared/utils/randomUtils";
+import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
 import { silhouetteQuizStoreWriter, pokeData, isOpen } from "./silhouetteQuizStore";
-
-/** ポケモン図鑑番号の上限（第9世代まで） */
-const MAX_POKE_ID = 1025;
 
 /** Facade のコマンド結果型（プレゼン層への公開用） */
 export type FacadeResult = { readonly success: boolean; readonly error?: string };
@@ -35,13 +33,14 @@ export type GetHintResult = FacadeResult;
 export class SilhouetteQuizFacade {
   constructor(private readonly repository: IPokeRepository) {}
 
-  /** ランダムにポケモンを選出してストアを更新する */
+  /** ランダムにポケモンを選出してストアを更新する（選択世代でフィルター） */
   async pickPokemon(fetchFn: typeof fetch): Promise<FacadeResult> {
     silhouetteQuizStoreWriter.setIsOpen(false);
     silhouetteQuizStoreWriter.setHintText(null);
     silhouetteQuizStoreWriter.setIsLoading(true);
     try {
-      const id = getRandomNumber(MAX_POKE_ID) + 1;
+      const allIds = getSelectedPokeIds();
+      const id = allIds[getRandomNumber(allIds.length)];
       const data = await this.repository.getPokemon(fetchFn, id);
       silhouetteQuizStoreWriter.setPokeData(data);
       return { success: true };

@@ -10,10 +10,8 @@
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import { pickRandomNumbers } from "$lib/shared/utils/randomUtils";
+import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
 import { statsSortingQuizStoreWriter } from "./statsSortingQuizStore";
-
-/** ポケモン図鑑番号の上限（第9世代まで） */
-const MAX_POKE_ID = 1025;
 
 /** Facade のコマンド結果型 */
 export type FacadeResult = { readonly success: boolean; readonly error?: string };
@@ -90,7 +88,7 @@ export class StatsSortingQuizFacade {
     statsSortingQuizStoreWriter.setResult(null);
     statsSortingQuizStoreWriter.setIsLoading(true);
     try {
-      const allIds = Array.from({ length: MAX_POKE_ID }, (_, i) => i + 1);
+      const allIds = getSelectedPokeIds();
       const ids = pickRandomNumbers(allIds, count);
       const pokeDataMap = await this.repository.getPokemons(fetchFn, ids);
       // IDの選出順序を保持してPokeData[]に変換

@@ -4,9 +4,11 @@
   import { Portal, Toast } from "@skeletonlabs/skeleton-svelte";
   import Icon from "@iconify/svelte";
   import ThemeSwitchModal from "$lib/presentation/components/modals/ThemeSwitchModal.svelte";
+  import GenerationSelectorModal from "$lib/presentation/components/modals/GenerationSelectorModal.svelte";
   import AudioToggle from "$lib/presentation/components/buttons/AudioToggle.svelte";
   import { applyTheme } from "$lib/presentation/stores/themeStore";
   import { toaster } from "$lib/presentation/utils/toaster";
+  import { starterIconUrlStore } from "$lib/application/stores/generationStore";
 
   let { children } = $props();
 
@@ -52,13 +54,21 @@
                 <span>Home</span>
               </a>
             </li>
+            <li>
+              <AudioToggle />
+            </li>
           </ul>
         </nav>
         <!-- 右寄り -->
         <nav>
           <ul class="flex items-center justify-center space-x-4">
             <li>
-              <AudioToggle />
+              <div class="size-10 overflow-hidden rounded-full bg-white shadow-md">
+                <img src={$starterIconUrlStore} alt="starter" class="size-full scale-150 object-contain" />
+              </div>
+            </li>
+            <li>
+              <GenerationSelectorModal />
             </li>
             <li>
               <ThemeSwitchModal />
