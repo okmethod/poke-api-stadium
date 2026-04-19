@@ -1,7 +1,8 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/domain/models/PokeData";
-  import { pokeTypeColor, pokeTypeJaName } from "$lib/domain/models/PokeData";
+  import { pokeTypeColor } from "$lib/domain/models/PokeData";
+  import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
   import StatsRadarChart from "./StatsRadarChart.svelte";
 
   interface PokeCardProps {
@@ -94,29 +95,22 @@
     <div class="flex flex-col gap-3 min-w-28">
       <div>
         <p class="font-bold text-sm">[タイプ]</p>
-        <p class="text-sm">
+        <div class="flex gap-1 mt-1">
           {#if pokeData}
-            {pokeTypeJaName(pokeData.type1)}{pokeData.type2 ? "　" + pokeTypeJaName(pokeData.type2) : ""}
+            <PokeTypeBadge type={pokeData.type1} />
+            {#if pokeData.type2}
+              <PokeTypeBadge type={pokeData.type2} />
+            {/if}
           {:else}
-            ???
+            <span class="text-sm">???</span>
           {/if}
-        </p>
+        </div>
       </div>
       <div>
-        <p class="font-bold text-sm">[たかさ]</p>
+        <p class="font-bold text-sm">[たかさ/おもさ]</p>
         <p class="text-sm">
           {#if pokeData}
-            {pokeData.height} m
-          {:else}
-            ???
-          {/if}
-        </p>
-      </div>
-      <div>
-        <p class="font-bold text-sm">[おもさ]</p>
-        <p class="text-sm">
-          {#if pokeData}
-            {pokeData.weight} kg
+            {pokeData.height} m / {pokeData.weight} kg
           {:else}
             ???
           {/if}
