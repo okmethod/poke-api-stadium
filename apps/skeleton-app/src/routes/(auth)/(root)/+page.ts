@@ -13,7 +13,7 @@ type MenuItem = InternalMenuItem | ExternalMenuItem;
 
 const menuItems: MenuItem[] = [
   { label: "ポケモンずかん", ballKey: "poke-ball", action: "navigate", target: "/zukan" },
-  // { label: "ポケモンXXくらべ", ballKey: "great-ball", action: "navigate", target: "/zukan" },
+  { label: "ポケモンXXくらべ", ballKey: "great-ball", action: "navigate", target: "/kurabe" },
   // { label: "ポケモンたかさくらべ 改", ballKey: "ultra-ball", action: "navigate", target: "/zukan" },
   // { label: "ポケモンおもさくらべ 改", ballKey: "heavy-ball", action: "navigate", target: "/zukan" },
   // { label: "ポケモンタイプじゃんけん", ballKey: "fast-ball", action: "navigate", target: "/zukan" },
