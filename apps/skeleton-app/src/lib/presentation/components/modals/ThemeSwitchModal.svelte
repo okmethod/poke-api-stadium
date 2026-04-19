@@ -24,17 +24,17 @@
 </script>
 
 <Dialog open={openState} onOpenChange={(e) => (openState = e.open)}>
-  <Dialog.Trigger class="btn p-2 rounded-xl h-10 w-10 preset-filled">
+  <Dialog.Trigger class="btn preset-filled h-10 w-10 rounded-xl p-2">
     <Icon icon="mdi:shimmer" class="size-4" />
   </Dialog.Trigger>
   <Portal>
-    <Dialog.Backdrop class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40" />
-    <Dialog.Positioner class="fixed inset-0 flex items-center justify-center z-50">
-      <Dialog.Content class="card bg-surface-100-900 p-4 mx-auto space-y-4 shadow-xl max-w-80 sm:max-w-screen-sm">
+    <Dialog.Backdrop class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm" />
+    <Dialog.Positioner class="fixed inset-0 z-50 flex items-center justify-center">
+      <Dialog.Content class="card bg-surface-100-900 mx-auto max-w-80 space-y-4 p-4 shadow-xl sm:max-w-screen-sm">
         <header class="flex justify-between">
-          <h2 class="text-2xl sm:text-3xl w-64 sm:w-80">Switch Theme</h2>
+          <h2 class="w-64 text-2xl sm:w-80 sm:text-3xl">Switch Theme</h2>
           <Switch name="toggle-dark-mode" checked={currentTheme.dark} onCheckedChange={() => toggleDarkMode()}>
-            <Switch.Control class="h-8 w-12 bg-surface-200">
+            <Switch.Control class="bg-surface-200 h-8 w-12">
               <Switch.Thumb>
                 <Switch.Context>
                   {#snippet children(switch_)}
@@ -59,7 +59,7 @@
               <li>
                 <button
                   onclick={() => handleThemeChange(theme.name)}
-                  class={`btn w-full flex items-center space-x-1 ${
+                  class={`btn flex w-full items-center space-x-1 ${
                     currentTheme.name === theme.name
                       ? "preset-outlined-primary-500"
                       : "preset-filled-primary-500 dark:preset-tonal-primary"
@@ -67,7 +67,7 @@
                   aria-pressed={currentTheme.name === theme.name}
                 >
                   <span class="w-3 text-center">{theme.emoji}</span>
-                  <span class="flex-1 text-left hidden sm:inline">{theme.name}</span>
+                  <span class="hidden flex-1 text-left sm:inline">{theme.name}</span>
                 </button>
               </li>
             {/each}

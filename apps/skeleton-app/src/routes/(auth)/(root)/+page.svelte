@@ -16,10 +16,10 @@
     <span class="block text-right sm:inline">へようこそ !</span>
   </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full max-w-sm md:max-w-xl xl:max-w-3xl">
+  <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2 xl:max-w-3xl xl:grid-cols-3">
     {#each data.menuItems as item (item.label)}
-      <button onclick={item.onClick} class="btn preset-tonal border flex items-center gap-2 justify-start">
-        <img src={item.ballImageUrl} alt="" class="w-6 h-6 object-contain" />
+      <button onclick={item.onClick} class="btn preset-tonal flex items-center justify-start gap-2 border">
+        <img src={item.ballImageUrl} alt="" class="h-6 w-6 object-contain" />
         <span class="text-lg">{item.label}</span>
       </button>
     {/each}

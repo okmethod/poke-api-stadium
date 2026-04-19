@@ -24,7 +24,7 @@
   }
 </script>
 
-<div class="container mx-auto p-4 flex flex-col items-center gap-6">
+<div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンずかん</h1>
 
   <!-- 検索フォーム -->
@@ -37,7 +37,7 @@
       max="9999"
       bind:value={pokeIdInput}
       onkeydown={(e) => e.key === "Enter" && fetchPokeData()}
-      class="border rounded px-3 py-1 w-24 text-center"
+      class="w-24 rounded border px-3 py-1 text-center"
     />
     <button type="button" class="btn preset-filled-surface-500 btn-sm" onclick={fetchPokeData} disabled={isLoading}>
       <Icon icon="mdi:search" class="size-5" />

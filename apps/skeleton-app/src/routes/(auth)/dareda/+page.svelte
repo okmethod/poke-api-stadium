@@ -31,7 +31,7 @@
   }
 </script>
 
-<div class="container mx-auto p-4 flex flex-col items-center gap-6">
+<div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンだ〜れだ？</h1>
 
   <!-- 操作ボタン -->
@@ -64,9 +64,9 @@
 
   <!-- ヒントテキスト -->
   {#if $hintText !== null}
-    <p class="text-sm text-surface-600 dark:text-surface-300">ヒント: {$hintText}</p>
+    <p class="text-surface-600 dark:text-surface-300 text-sm">ヒント: {$hintText}</p>
   {:else}
-    <p class="text-sm text-surface-400">&nbsp;</p>
+    <p class="text-surface-400 text-sm">&nbsp;</p>
   {/if}
 
   <!-- シルエット表示 -->

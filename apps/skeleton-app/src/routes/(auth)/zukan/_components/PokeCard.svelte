@@ -42,7 +42,7 @@
   }
 </script>
 
-<div class="card bg-surface-50-950 rounded-2xl shadow w-full max-w-2xl overflow-hidden">
+<div class="card bg-surface-50-950 w-full max-w-2xl overflow-hidden rounded-2xl shadow">
   <header class="h-4" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部 -->
@@ -57,14 +57,14 @@
   </div>
 
   <!-- データ部 -->
-  <div class="flex flex-wrap md:flex-nowrap items-center justify-center gap-4 px-6 pb-4">
+  <div class="flex flex-wrap items-center justify-center gap-4 px-6 pb-4 md:flex-nowrap">
     <!-- 画像 -->
-    <div class="flex flex-col items-center gap-2 flex-shrink-0">
-      <div class="w-48 h-48 bg-white rounded-lg border border-surface-200-800 flex items-center justify-center">
+    <div class="flex flex-shrink-0 flex-col items-center gap-2">
+      <div class="border-surface-200-800 flex h-48 w-48 items-center justify-center rounded-lg border bg-white">
         {#if currentImageUrl}
-          <img src={currentImageUrl} alt={pokeData?.jaName} class="w-full h-full object-contain" />
+          <img src={currentImageUrl} alt={pokeData?.jaName} class="h-full w-full object-contain" />
         {:else}
-          <Icon icon="mdi:image-off-outline" class="size-12 text-surface-400" />
+          <Icon icon="mdi:image-off-outline" class="text-surface-400 size-12" />
         {/if}
       </div>
       <div class="flex gap-2">
@@ -92,10 +92,10 @@
     </div>
 
     <!-- 数値情報 -->
-    <div class="flex flex-col gap-3 min-w-28">
+    <div class="flex min-w-28 flex-col gap-3">
       <div>
-        <p class="font-bold text-sm">[タイプ]</p>
-        <div class="flex gap-1 mt-1">
+        <p class="text-sm font-bold">[タイプ]</p>
+        <div class="mt-1 flex gap-1">
           {#if pokeData}
             <PokeTypeBadge type={pokeData.type1} />
             {#if pokeData.type2}
@@ -107,7 +107,7 @@
         </div>
       </div>
       <div>
-        <p class="font-bold text-sm">[たかさ/おもさ]</p>
+        <p class="text-sm font-bold">[たかさ/おもさ]</p>
         <p class="text-sm">
           {#if pokeData}
             {pokeData.height} m / {pokeData.weight} kg
@@ -117,7 +117,7 @@
         </p>
       </div>
       <div>
-        <p class="font-bold text-sm">[せだい]</p>
+        <p class="text-sm font-bold">[せだい]</p>
         <p class="text-sm">
           {#if pokeData}
             {pokeData.generationData?.label ?? "不明"}
@@ -132,7 +132,7 @@
 
     <!-- レーダーチャート -->
     <div class="flex flex-col items-center">
-      <p class="font-bold text-sm mb-1">[ステータス]</p>
+      <p class="mb-1 text-sm font-bold">[ステータス]</p>
       <StatsRadarChart stats={pokeData?.stats ?? null} />
     </div>
   </div>

@@ -8,6 +8,6 @@
   let { type }: Props = $props();
 </script>
 
-<span class="badge text-white text-sm px-3 py-1 rounded-full" style="background-color: {pokeTypeColor(type)};">
+<span class="badge rounded-full px-3 py-1 text-sm text-white" style="background-color: {pokeTypeColor(type)};">
   {pokeTypeJaName(type)}
 </span>

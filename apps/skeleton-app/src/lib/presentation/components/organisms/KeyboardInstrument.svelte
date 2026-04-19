@@ -28,7 +28,7 @@
     value={selectedWaveType}
     onValueChange={(e) => (selectedWaveType = e.value as OscillatorType)}
   >
-    <SegmentedControl.Control class="flex flex-row h-10 space-x-1">
+    <SegmentedControl.Control class="flex h-10 flex-row space-x-1">
       <SegmentedControl.Indicator />
       {#each waveTypes as waveType, key (key)}
         <SegmentedControl.Item value={waveType}>
@@ -48,7 +48,7 @@
     value={selectedLabelType}
     onValueChange={(e) => (selectedLabelType = e.value as LabelType)}
   >
-    <SegmentedControl.Control class="flex flex-row h-10 space-x-1">
+    <SegmentedControl.Control class="flex h-10 flex-row space-x-1">
       <SegmentedControl.Indicator />
       {#each labelTypes as labelType, key (key)}
         <SegmentedControl.Item value={labelType}>
@@ -69,8 +69,8 @@
     : musicalNotes.filter((note) => !note.isSharp).slice(0, -1)}
   {@const blackKeys = musicalNotes.filter((note) => note.isSharp)}
   {@const cGridCols = includeRightC ? "grid-cols-8" : "grid-cols-7"}
-  <div class="w-80 h-32">
-    <div class="w-full h-full grid {cGridCols}">
+  <div class="h-32 w-80">
+    <div class="grid h-full w-full {cGridCols}">
       {#each whiteKeys as whiteKey, index (index)}
         <div class="relative flex-1">
           <!-- 白鍵 -->
@@ -114,7 +114,7 @@
   </div>
 {/snippet}
 
-<div class="flex flex-col items-center preset-tonal-primary rounded-lg shadow-lg space-y-4 p-4">
+<div class="preset-tonal-primary flex flex-col items-center space-y-4 rounded-lg p-4 shadow-lg">
   <div class="flex space-x-4">
     <div class="flex items-center justify-center">
       {@render waveControl()}

@@ -4,7 +4,7 @@
 
 <div class="flex h-screen">
   <div class="m-auto text-center">
-    <p class="text-4xl font-bold leading-loose tracking-wider">
+    <p class="text-4xl leading-loose font-bold tracking-wider">
       {page.status}
       {page.error?.message}
     </p>

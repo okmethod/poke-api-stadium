@@ -29,7 +29,7 @@
     value={selectedWaveType}
     onValueChange={(e) => (selectedWaveType = e.value as OscillatorType)}
   >
-    <SegmentedControl.Control class="flex flex-row h-10 space-x-1">
+    <SegmentedControl.Control class="flex h-10 flex-row space-x-1">
       <SegmentedControl.Indicator />
       {#each waveTypes as waveType, key (key)}
         <SegmentedControl.Item value={waveType}>
@@ -46,14 +46,14 @@
 {#snippet melodyList()}
   <ul class="w-full space-y-2">
     {#each editableMelody as note, index (index)}
-      <li class="grid grid-cols-8 place-items-center gap-2 p-1 h-12 bg-white dark:bg-gray-700 rounded shadow">
+      <li class="grid h-12 grid-cols-8 place-items-center gap-2 rounded bg-white p-1 shadow dark:bg-gray-700">
         <span class="col-span-1">
           {index + 1}.
         </span>
 
         <!-- 休符の切り替え -->
         <div class="col-span-1">
-          <button class="p-1 w-full bg-gray-300 dark:bg-gray-600 rounded" onclick={() => toggleRest(index)}>
+          <button class="w-full rounded bg-gray-300 p-1 dark:bg-gray-600" onclick={() => toggleRest(index)}>
             <Icon icon="mdi:{note ? 'music-note-quarter' : 'music-rest-quarter'}" />
           </button>
         </div>
@@ -63,7 +63,7 @@
             <!-- 音名 -->
             <input
               type="text"
-              class="p-1 border rounded dark:bg-gray-600 dark:text-gray-200"
+              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.name}
               oninput={(e: Event) => updateNote(index, "name", (e.target as HTMLInputElement).value)}
             />
@@ -71,7 +71,7 @@
             <!-- オクターブ -->
             <input
               type="number"
-              class="p-1 border rounded dark:bg-gray-600 dark:text-gray-200"
+              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.octave}
               oninput={(e: Event) => updateNote(index, "octave", parseInt((e.target as HTMLInputElement).value))}
             />
@@ -79,7 +79,7 @@
             <!-- 拍数 -->
             <input
               type="number"
-              class="p-1 border rounded dark:bg-gray-600 dark:text-gray-200"
+              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.duration}
               oninput={(e: Event) => updateNote(index, "duration", parseFloat((e.target as HTMLInputElement).value))}
             />
@@ -93,7 +93,7 @@
   </ul>
 {/snippet}
 
-<div class="flex flex-col items-center preset-tonal-primary rounded-lg shadow-lg space-y-4 p-4">
+<div class="preset-tonal-primary flex flex-col items-center space-y-4 rounded-lg p-4 shadow-lg">
   <div class="flex items-center justify-center">
     {@render waveControl()}
   </div>
