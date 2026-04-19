@@ -3,12 +3,11 @@
   import { onMount } from "svelte";
   import { Portal, Toast } from "@skeletonlabs/skeleton-svelte";
   import Icon from "@iconify/svelte";
-  import ThemeSwitchModal from "$lib/presentation/components/modals/ThemeSwitchModal.svelte";
-  import GenerationSelectorModal from "$lib/presentation/components/modals/GenerationSelectorModal.svelte";
-  import AudioToggle from "$lib/presentation/components/buttons/AudioToggle.svelte";
   import { applyTheme } from "$lib/presentation/stores/themeStore";
   import { toaster } from "$lib/presentation/utils/toaster";
   import { starterIconUrlStore } from "$lib/application/stores/generationStore";
+  import AudioToggle from "$lib/presentation/components/buttons/AudioToggle.svelte";
+  import SettingsModal from "$lib/presentation/components/modals/SettingsModal.svelte";
 
   let { children } = $props();
 
@@ -68,10 +67,7 @@
               </div>
             </li>
             <li>
-              <GenerationSelectorModal />
-            </li>
-            <li>
-              <ThemeSwitchModal />
+              <SettingsModal />
             </li>
           </ul>
         </nav>
