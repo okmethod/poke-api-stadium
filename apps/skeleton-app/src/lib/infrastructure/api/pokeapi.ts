@@ -5,6 +5,10 @@
  * - ROLE: 外部APIとの通信と、レスポンスの型安全な検証
  * - ALLOWED: インフラ層ユーティリティへの依存
  * - FORBIDDEN: ドメイン層・アプリ層への依存（変換はAdapterに委譲）
+ *
+ * @cache エンドポイントごとにモジュールスコープの Map でメモリキャッシュを保持する。
+ * ライフサイクルはページリロードまで（SSR ではサーバー起動中は永続）。
+ * 同一 idOrName への重複 API コールを抑制し、外部 API への通信量を最小化する。
  */
 
 import { z } from "zod";
@@ -97,14 +101,39 @@ export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
 
+// --- メモリキャッシュ ---
+
+/**
+ * エンドポイント別レスポンスのメモリキャッシュ
+ *
+ * ライフサイクル: ページリロードまで（メモリ上のみ）
+ * キー: idOrName を文字列化したもの（数値・文字列の両方を統一）
+ */
+const pokemonCache = new Map<string, PokemonResponse>();
+const speciesCache = new Map<string, PokemonSpeciesResponse>();
+const typeCache = new Map<string, TypeResponse>();
+
+/** キャッシュをすべてクリアする（テスト用） */
+export function clearCache(): void {
+  pokemonCache.clear();
+  speciesCache.clear();
+  typeCache.clear();
+}
+
 // --- API 呼び出し関数 ---
 
 /** /pokemon/{idOrName} を取得 */
 export async function fetchPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokemonResponse> {
+  const key = String(idOrName);
+  const cached = pokemonCache.get(key);
+  if (cached) return cached;
+
   const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon/${idOrName}`, {
     method: "GET",
   });
-  return PokemonResponseSchema.parse(await response.json());
+  const data = PokemonResponseSchema.parse(await response.json());
+  pokemonCache.set(key, data);
+  return data;
 }
 
 /** /pokemon-species/{idOrName} を取得 */
@@ -112,16 +141,28 @@ export async function fetchPokemonSpecies(
   fetchFunction: typeof fetch,
   idOrName: number | string,
 ): Promise<PokemonSpeciesResponse> {
+  const key = String(idOrName);
+  const cached = speciesCache.get(key);
+  if (cached) return cached;
+
   const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon-species/${idOrName}`, {
     method: "GET",
   });
-  return PokemonSpeciesResponseSchema.parse(await response.json());
+  const data = PokemonSpeciesResponseSchema.parse(await response.json());
+  speciesCache.set(key, data);
+  return data;
 }
 
 /** /type/{idOrName} を取得 */
 export async function fetchType(fetchFunction: typeof fetch, idOrName: number | string): Promise<TypeResponse> {
+  const key = String(idOrName);
+  const cached = typeCache.get(key);
+  if (cached) return cached;
+
   const response = await fetchApi(fetchFunction, `${BASE_URL}/type/${idOrName}`, {
     method: "GET",
   });
-  return TypeResponseSchema.parse(await response.json());
+  const data = TypeResponseSchema.parse(await response.json());
+  typeCache.set(key, data);
+  return data;
 }
