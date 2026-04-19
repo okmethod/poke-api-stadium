@@ -1,0 +1,1 @@
+function o(t){const r=[...t];for(let e=r.length-1;e>0;e--){const n=Math.floor(Math.random()*(e+1));[r[e],r[n]]=[r[n],r[e]]}return r}function a(t){return Math.floor(Math.random()*t)}function f(t,r){if(t.length<r)throw new Error("shortage elements in the array");return o(t).slice(0,r)}export{a as g,f as p};
