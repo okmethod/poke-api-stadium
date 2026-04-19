@@ -32,7 +32,7 @@
 </script>
 
 <div class="container mx-auto p-4 flex flex-col items-center gap-6">
-  <h1 class="h2">ポケモンだ〜れだ？</h1>
+  <h1 class="h3 sm:h2">ポケモンだ〜れだ？</h1>
 
   <!-- 操作ボタン -->
   <div class="flex items-center gap-4">
