@@ -44,6 +44,9 @@ export interface PokeData {
   /** 公式アートワーク画像URL */
   readonly imageUrl: string;
 
+  /** 鳴き声音声URL（存在しない場合は null） */
+  readonly cryUrl: string | null;
+
   /** 初登場世代（不明な場合は null） */
   readonly generationData: GenerationData | null;
 }

@@ -11,6 +11,11 @@
 
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
+
+  function playCry() {
+    if (!pokeData?.cryUrl) return;
+    new Audio(pokeData.cryUrl).play();
+  }
 </script>
 
 <div class="card bg-surface-50-950 rounded-2xl shadow w-full max-w-2xl overflow-hidden">
@@ -30,14 +35,18 @@
   <!-- データ部 -->
   <div class="flex flex-wrap md:flex-nowrap items-center justify-center gap-4 px-6 pb-4">
     <!-- 画像 -->
-    <div
-      class="w-48 h-48 bg-white rounded-lg border border-surface-200-800 flex items-center justify-center flex-shrink-0"
-    >
-      {#if pokeData}
-        <img src={pokeData.imageUrl} alt={pokeData.jaName} class="w-full h-full object-contain" />
-      {:else}
-        <Icon icon="mdi:image-off-outline" class="size-12 text-surface-400" />
-      {/if}
+    <div class="flex flex-col items-center gap-2 flex-shrink-0">
+      <div class="w-48 h-48 bg-white rounded-lg border border-surface-200-800 flex items-center justify-center">
+        {#if pokeData}
+          <img src={pokeData.imageUrl} alt={pokeData.jaName} class="w-full h-full object-contain" />
+        {:else}
+          <Icon icon="mdi:image-off-outline" class="size-12 text-surface-400" />
+        {/if}
+      </div>
+      <button type="button" class="btn preset-filled-surface-500 btn-sm" onclick={playCry} disabled={!pokeData?.cryUrl}>
+        <Icon icon="mdi:volume-high" class="size-4" />
+        なきごえ
+      </button>
     </div>
 
     <!-- 数値情報 -->

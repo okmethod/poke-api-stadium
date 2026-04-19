@@ -43,6 +43,9 @@ export const PokemonResponseSchema = z.object({
       }),
     }),
   }),
+  cries: z.object({
+    latest: z.string().nullable(),
+  }),
 });
 
 export const PokemonSpeciesResponseSchema = z.object({

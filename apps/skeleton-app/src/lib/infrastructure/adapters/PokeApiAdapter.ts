@@ -79,6 +79,7 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     weight: pokemon.weight / 10,
     stats: convertToStats(pokemon.stats),
     imageUrl,
+    cryUrl: pokemon.cries.latest,
     generationData: generationData(generationNumber),
   };
 }
