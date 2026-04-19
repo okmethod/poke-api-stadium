@@ -68,6 +68,19 @@ apps/fast-api-server/
 { "message": "alive", "app_version": "1.0.0" }
 ```
 
+**実行例:**
+
+```bash
+shohei@MacBook-Air github % curl http://localhost:8000/api/health | jq
+```
+
+```
+{
+  "message": "alive",
+  "app_version": "1.0.0"
+}
+```
+
 ### `POST /api/chat`
 
 AI チャット。`X-App-Secret` ヘッダー必須。レスポンスは `text/event-stream`。
@@ -84,6 +97,29 @@ AI チャット。`X-App-Secret` ヘッダー必須。レスポンスは `text/e
   ],
   "provider": "gemini"
 }
+```
+
+**実行例:**
+
+```bash
+curl -s -X POST http://localhost:8000/api/chat \
+  -H "Content-Type: application/json" \
+  -H "X-App-Secret: local-dev-secret" \
+  -d '{"app_id": "poke-stadium", "message": "こんにちは？", "provider": "stub"}'
+```
+
+```
+data: {"stub": true, "text": "私は"}
+data: {"stub": true, "text": "ダミーの"}
+data: {"stub": true, "text": "LLM"}
+data: {"stub": true, "text": "です。"}
+data: {"stub": true, "text": "実際の"}
+data: {"stub": true, "text": "推論は"}
+data: {"stub": true, "text": "せず、"}
+data: {"stub": true, "text": "固定の"}
+data: {"stub": true, "text": "メッセージを"}
+data: {"stub": true, "text": "回答して"}
+data: {"stub": true, "text": "います。"}
 ```
 
 ---
