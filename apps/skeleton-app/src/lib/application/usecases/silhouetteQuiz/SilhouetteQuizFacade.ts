@@ -8,15 +8,13 @@
  */
 
 import { get } from "svelte/store";
-import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import { pokeTypeJaName } from "$lib/domain/models/PokeData";
-import { getRandomNumber } from "$lib/shared/utils/randomUtils";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
+import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 import { silhouetteQuizStoreWriter, pokeData, isOpen } from "./silhouetteQuizStore";
-
-/** Facade のコマンド結果型（プレゼン層への公開用） */
-export type FacadeResult = { readonly success: boolean; readonly error?: string };
 
 /** toggleAnswer の戻り値（鳴き声URLの再生判断はプレゼン層で行う） */
 export type ToggleAnswerResult = { readonly cryUrl: string | null };

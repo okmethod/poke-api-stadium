@@ -7,14 +7,12 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存（Svelte/DOM/UIライブラリ）
  */
 
-import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
-import { pickRandomNumbers } from "$lib/shared/utils/randomUtils";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
+import { pickRandomNumbers } from "$lib/shared/utils/randomUtils";
 import { statsSortingQuizStoreWriter } from "./statsSortingQuizStore";
-
-/** Facade のコマンド結果型 */
-export type FacadeResult = { readonly success: boolean; readonly error?: string };
 
 /** 比較モードの定義 */
 export interface CompareMode {
