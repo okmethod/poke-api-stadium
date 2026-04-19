@@ -12,9 +12,32 @@
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
 
+  // pokeData が切り替わったらインデックスをリセット
+  let imageIndex = $state(0);
+  let cryIndex = $state(0);
+  $effect(() => {
+    void pokeData;
+    imageIndex = 0;
+    cryIndex = 0;
+  });
+
+  const currentImageUrl = $derived(
+    pokeData ? (pokeData.imageUrls.all[imageIndex] ?? pokeData.imageUrls.artwork.front) : null,
+  );
+
+  function nextImage() {
+    if (!pokeData || pokeData.imageUrls.all.length <= 1) return;
+    imageIndex = (imageIndex + 1) % pokeData.imageUrls.all.length;
+  }
+
+  const availableCryUrls = $derived(
+    pokeData ? [pokeData.cryUrls.latest, pokeData.cryUrls.legacy].filter((url): url is string => url !== null) : [],
+  );
+
   function playCry() {
-    if (!pokeData?.cryUrl) return;
-    new Audio(pokeData.cryUrl).play();
+    if (availableCryUrls.length === 0) return;
+    new Audio(availableCryUrls[cryIndex]).play();
+    cryIndex = (cryIndex + 1) % availableCryUrls.length;
   }
 </script>
 
@@ -37,16 +60,34 @@
     <!-- 画像 -->
     <div class="flex flex-col items-center gap-2 flex-shrink-0">
       <div class="w-48 h-48 bg-white rounded-lg border border-surface-200-800 flex items-center justify-center">
-        {#if pokeData}
-          <img src={pokeData.imageUrl} alt={pokeData.jaName} class="w-full h-full object-contain" />
+        {#if currentImageUrl}
+          <img src={currentImageUrl} alt={pokeData?.jaName} class="w-full h-full object-contain" />
         {:else}
           <Icon icon="mdi:image-off-outline" class="size-12 text-surface-400" />
         {/if}
       </div>
-      <button type="button" class="btn preset-filled-surface-500 btn-sm" onclick={playCry} disabled={!pokeData?.cryUrl}>
-        <Icon icon="mdi:volume-high" class="size-4" />
-        なきごえ
-      </button>
+      <div class="flex gap-2">
+        <button
+          type="button"
+          class="btn preset-filled-surface-500 btn-sm"
+          onclick={nextImage}
+          disabled={!pokeData || pokeData.imageUrls.all.length <= 1}
+          title="画像を切り替え ({pokeData ? imageIndex + 1 : 0}/{pokeData?.imageUrls.all.length ?? 0})"
+        >
+          <Icon icon="mdi:image-multiple-outline" class="size-4" />
+          {pokeData ? imageIndex + 1 : 0}/{pokeData?.imageUrls.all.length ?? 0}
+        </button>
+        <button
+          type="button"
+          class="btn preset-filled-surface-500 btn-sm"
+          onclick={playCry}
+          disabled={availableCryUrls.length === 0}
+          title="なきごえを再生（クリックで種類切り替え）"
+        >
+          <Icon icon="mdi:volume-high" class="size-4" />
+          なきごえ
+        </button>
+      </div>
     </div>
 
     <!-- 数値情報 -->

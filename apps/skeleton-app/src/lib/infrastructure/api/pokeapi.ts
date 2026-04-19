@@ -36,15 +36,28 @@ export const PokemonResponseSchema = z.object({
       stat: NamedResourceSchema,
     }),
   ),
-  sprites: z.object({
-    other: z.object({
-      "official-artwork": z.object({
+  sprites: z.looseObject({
+    front_default: z.string().nullish(),
+    back_default: z.string().nullish(),
+    other: z.looseObject({
+      "official-artwork": z.looseObject({
         front_default: z.string().nullable(),
+        // PokeAPI は official-artwork に back_default を含まない場合がある
+        back_default: z.string().nullish(),
       }),
+      // showdown スプライトが存在しない Pokemon もある
+      showdown: z
+        .looseObject({
+          front_default: z.string().nullish(),
+          back_default: z.string().nullish(),
+        })
+        .optional(),
     }),
   }),
   cries: z.object({
     latest: z.string().nullable(),
+    // 新世代 Pokemon は legacy cry がない場合がある
+    legacy: z.string().nullish(),
   }),
 });
 

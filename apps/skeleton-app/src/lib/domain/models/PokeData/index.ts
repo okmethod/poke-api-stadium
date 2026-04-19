@@ -12,9 +12,11 @@ import { pokeTypeColor, pokeTypeJaName } from "./pokeType";
 import type { PokeStats } from "./pokeStats";
 import type { GenerationData } from "./generation";
 import { generationData } from "./generation";
+import type { PokeImageUrls } from "./pokeImages";
+import type { PokeCryUrls } from "./pokeCries";
 
 // 各ドメインモデルを再エクスポート
-export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData };
+export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
 export { pokeTypeColor, pokeTypeJaName, generationData };
 
 /**
@@ -41,11 +43,11 @@ export interface PokeData {
   /** ステータス */
   readonly stats: PokeStats;
 
-  /** 公式アートワーク画像URL */
-  readonly imageUrl: string;
+  /** 画像URLコレクション */
+  readonly imageUrls: PokeImageUrls;
 
-  /** 鳴き声音声URL（存在しない場合は null） */
-  readonly cryUrl: string | null;
+  /** 鳴き声URLコレクション */
+  readonly cryUrls: PokeCryUrls;
 
   /** 初登場世代（不明な場合は null） */
   readonly generationData: GenerationData | null;

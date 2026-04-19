@@ -14,7 +14,7 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import type { PokeData, PokeTypeData, PokeTypeName } from "$lib/domain/models/PokeData";
+import type { PokeData, PokeTypeData, PokeTypeName, PokeImageUrls, PokeCryUrls } from "$lib/domain/models/PokeData";
 import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
 import type { PokeStats } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
@@ -52,6 +52,20 @@ function convertToStats(rawStats: PokemonResponse["stats"]): PokeStats {
   };
 }
 
+// sprites オブジェクトから画像URLを再帰的に抽出（png / gif のみ対象）
+function extractImageUrls(obj: unknown): string[] {
+  if (typeof obj === "string") {
+    return /\.(png|gif)(\?|$)/i.test(obj) ? [obj] : [];
+  }
+  if (Array.isArray(obj)) {
+    return obj.flatMap(extractImageUrls);
+  }
+  if (obj !== null && typeof obj === "object") {
+    return Object.values(obj as Record<string, unknown>).flatMap(extractImageUrls);
+  }
+  return [];
+}
+
 function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResponse): PokeData {
   // 日本語名: "ja" (漢字あり) を優先し、なければ "ja-Hrkt" (カナ) を使用
   const jaName =
@@ -62,9 +76,36 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
   const type1 = pokemon.types.find((t) => t.slot === 1)?.type.name as PokeTypeName;
   const type2 = (pokemon.types.find((t) => t.slot === 2)?.type.name as PokeTypeName) ?? null;
 
-  const imageUrl =
+  const artworkFront =
     pokemon.sprites.other["official-artwork"].front_default ??
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+
+  // artwork.front を先頭に固定し、sprites 全体から重複なく全画像URLを収集
+  const allImageUrls: string[] = [
+    artworkFront,
+    ...extractImageUrls(pokemon.sprites).filter((url) => url !== artworkFront),
+  ];
+
+  const imageUrls: PokeImageUrls = {
+    pixel: {
+      front: pokemon.sprites.front_default ?? null,
+      back: pokemon.sprites.back_default ?? null,
+    },
+    artwork: {
+      front: artworkFront,
+      back: pokemon.sprites.other["official-artwork"].back_default ?? null,
+    },
+    gif: {
+      front: pokemon.sprites.other.showdown?.front_default ?? null,
+      back: pokemon.sprites.other.showdown?.back_default ?? null,
+    },
+    all: allImageUrls,
+  };
+
+  const cryUrls: PokeCryUrls = {
+    latest: pokemon.cries.latest ?? null,
+    legacy: pokemon.cries.legacy ?? null,
+  };
 
   const generationNumber = GENERATION_NAME_MAP[species.generation.name] ?? 0;
 
@@ -78,8 +119,8 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     height: pokemon.height / 10,
     weight: pokemon.weight / 10,
     stats: convertToStats(pokemon.stats),
-    imageUrl,
-    cryUrl: pokemon.cries.latest,
+    imageUrls,
+    cryUrls,
     generationData: generationData(generationNumber),
   };
 }
