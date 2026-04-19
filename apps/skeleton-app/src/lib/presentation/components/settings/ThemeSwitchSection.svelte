@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Switch } from "@skeletonlabs/skeleton-svelte";
-  import Icon from "@iconify/svelte";
+  import { SegmentedControl } from "@skeletonlabs/skeleton-svelte";
   import { themeLabels, getTheme, setTheme, applyTheme } from "$lib/presentation/stores/themeStore";
 
   let currentTheme = $state(getTheme());
@@ -10,33 +9,32 @@
     currentTheme = getTheme();
     applyTheme();
   }
-
-  function toggleDarkMode() {
-    setTheme({ name: currentTheme.name, dark: !currentTheme.dark });
-    currentTheme = getTheme();
-    applyTheme();
-  }
 </script>
 
 <div class="space-y-3">
-  <div class="flex items-center justify-between">
-    <span class="text-sm opacity-70">ダークモード</span>
-    <Switch name="toggle-dark-mode" checked={currentTheme.dark} onCheckedChange={() => toggleDarkMode()}>
-      <Switch.Control class="bg-surface-200 h-8 w-12">
-        <Switch.Thumb>
-          <Switch.Context>
-            {#snippet children(switch_)}
-              {#if switch_().checked}
-                <Icon icon="mdi:weather-night" class="size-6" />
-              {:else}
-                <Icon icon="mdi:weather-sunny" class="size-6" />
-              {/if}
-            {/snippet}
-          </Switch.Context>
-        </Switch.Thumb>
-      </Switch.Control>
-      <Switch.HiddenInput />
-    </Switch>
+  <div class="flex items-center justify-end">
+    <SegmentedControl
+      name="toggle-dark-mode"
+      value={String(currentTheme.dark)}
+      onValueChange={(e) => {
+        const isDark = e.value === "true";
+        setTheme({ name: currentTheme.name, dark: isDark });
+        currentTheme = getTheme();
+        applyTheme();
+      }}
+    >
+      <SegmentedControl.Control class="flex flex-row">
+        <SegmentedControl.Indicator />
+        <SegmentedControl.Item value="false">
+          <SegmentedControl.ItemHiddenInput />
+          <SegmentedControl.ItemText>ライトモード</SegmentedControl.ItemText>
+        </SegmentedControl.Item>
+        <SegmentedControl.Item value="true">
+          <SegmentedControl.ItemHiddenInput />
+          <SegmentedControl.ItemText>ダークモード</SegmentedControl.ItemText>
+        </SegmentedControl.Item>
+      </SegmentedControl.Control>
+    </SegmentedControl>
   </div>
   <ul class="grid grid-cols-4 gap-2">
     {#each themeLabels as theme, key (key)}
