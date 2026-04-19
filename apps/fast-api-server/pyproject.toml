@@ -42,3 +42,9 @@ test = "pytest tests/"
 test-coverage = {shell = "pytest tests/ --cov=src --cov-branch --cov-report=term-missing --junitxml=pytest.xml | tee pytest-coverage.txt"}
 lint = ["ruff-format", "ruff-check", "mypy"]
 fix = ["ruff-format", "ruff-fix"]
+
+put-secret-app = {shell = "grep '^APP_SECRET=' .env | cut -d'=' -f2- | npx wrangler secret put APP_SECRET"}
+put-secret-gateway-url = {shell = "grep '^AI_GATEWAY_BASE_URL=' .env | cut -d'=' -f2- | npx wrangler secret put AI_GATEWAY_BASE_URL"}
+put-secret-gateway-token = {shell = "grep '^AI_GATEWAY_TOKEN=' .env | cut -d'=' -f2- | npx wrangler secret put AI_GATEWAY_TOKEN"}
+put-secrets = ["put-secret-app", "put-secret-gateway-url", "put-secret-gateway-token"]
+deploy = {shell = "npx wrangler deploy"}

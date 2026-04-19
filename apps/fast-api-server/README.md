@@ -153,12 +153,10 @@ uv run poe test-coverage # カバレッジ付きテスト
 
 ```bash
 # シークレット設定（初回のみ）
-wrangler secret put APP_SECRET
-wrangler secret put AI_GATEWAY_BASE_URL
-wrangler secret put AI_GATEWAY_TOKEN
+uv run poe put-secrets
 
 # デプロイ
-wrangler deploy
+uv run poe deploy
 ```
 
 ---

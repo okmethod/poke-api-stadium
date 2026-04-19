@@ -74,7 +74,7 @@ npm run deploy
 
 ```bash
 cd apps/fast-api-server
-wrangler deploy
+uv run poe deploy
 ```
 
 **公開 URL**: https://okmethod.github.io/poke-api-stadium/
