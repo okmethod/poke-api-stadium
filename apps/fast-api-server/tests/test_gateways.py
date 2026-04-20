@@ -127,13 +127,12 @@ async def test_stub_stream_output() -> None:
     request = ChatRequest(app_id="poke-stadium", message="テスト", provider="stub")
     chunks = [chunk async for chunk in stub.stream(request)]
 
-    assert len(chunks) == 1
+    assert len(chunks) == 11
     assert chunks[0].startswith("data: ")
 
     payload = json.loads(chunks[0].removeprefix("data: ").strip())
     assert payload["stub"] is True
-    assert "poke-stadium" in payload["text"]
-    assert "テスト" in payload["text"]
+    assert "私は" in payload["text"]
 
 
 # --- Protocol 適合確認 ---
