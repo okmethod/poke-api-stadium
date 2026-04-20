@@ -32,7 +32,7 @@ class Settings(BaseSettings):
         if not v.strip():
             msg = "must not be empty"
             raise ValueError(msg)
-        return v
+        return v.strip()
 
 
 @lru_cache

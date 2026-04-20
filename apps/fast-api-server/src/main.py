@@ -4,7 +4,7 @@ from logging.config import fileConfig
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.routes import chat, health
+from src.routes import auth, chat, health
 from src.settings import get_settings
 
 fileConfig("src/logging.ini", disable_existing_loggers=False)
@@ -38,6 +38,13 @@ app.include_router(
     health.router,
     prefix="/api/health",
     tags=["Health"],
+)
+
+# Auth API routers
+app.include_router(
+    auth.router,
+    prefix="/api/auth",
+    tags=["Auth"],
 )
 
 # Chat API routers
