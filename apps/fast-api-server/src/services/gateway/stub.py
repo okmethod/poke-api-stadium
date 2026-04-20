@@ -20,7 +20,7 @@ _STUB_CHUNKS: list[str] = [
 ]
 
 
-async def stream(request: ChatRequest) -> AsyncGenerator[str]:
+async def stream(_request: ChatRequest) -> AsyncGenerator[str]:
     """実際の AI Gateway を呼び出さずにダミー SSE を返すスタブ実装（動作確認用）"""
     for chunk in _STUB_CHUNKS:
         payload = {"stub": True, "text": chunk}

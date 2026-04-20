@@ -1,17 +1,11 @@
-from collections.abc import AsyncGenerator
-from typing import Protocol, assert_never
+from collections.abc import AsyncGenerator, Callable
+from typing import assert_never
 
 from src.schemas.chat import ChatRequest, LLMProvider
 from src.services.gateway import claude, gemini, groq, stub
 
-
-class GatewayStream(Protocol):
-    """LLM ゲートウェイの共通インターフェース
-
-    各 gateway モジュールの stream 関数はこの Protocol を満たす必要がある。
-    """
-
-    def __call__(self, request: ChatRequest) -> AsyncGenerator[str]: ...
+# LLM ゲートウェイの共通インターフェース（各 gateway モジュールの stream 関数はこの型を満たす必要がある）
+GatewayStream = Callable[[ChatRequest], AsyncGenerator[str]]
 
 
 def _get_gateway(provider: LLMProvider) -> GatewayStream:
