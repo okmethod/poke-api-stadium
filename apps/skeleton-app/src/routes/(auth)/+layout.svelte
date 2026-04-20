@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
-  import { getHealthRepository } from "$lib/infrastructure/adapters/FastApiHealthRepository";
+  import { getHealthCheckRepository } from "$lib/infrastructure/adapters/FastApiLLMProxyRepository";
 
   let { children } = $props();
 
@@ -9,7 +9,7 @@
 
   async function checkAuth(fetch: typeof window.fetch): Promise<boolean> {
     try {
-      const health = await getHealthRepository().checkHealth(fetch);
+      const health = await getHealthCheckRepository().checkHealth(fetch);
       console.log("Internal API health check:", health.message);
     } catch (error) {
       console.error("Internal API health check failed:", error);
