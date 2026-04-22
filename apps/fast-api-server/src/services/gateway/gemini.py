@@ -4,9 +4,9 @@ from logging import getLogger
 import httpx
 from pydantic import BaseModel
 
-from src.prompts.system_prompts import get_system_prompt
-from src.schemas.chat import ChatRequest
-from src.settings import get_settings
+from prompts.system_prompts import get_system_prompt
+from schemas.chat import ChatRequest
+from settings import get_settings
 
 logger = getLogger(__name__)
 

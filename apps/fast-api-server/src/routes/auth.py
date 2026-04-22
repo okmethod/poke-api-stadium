@@ -4,7 +4,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, Field
 
-from src.settings import Settings, get_settings
+from settings import Settings, get_settings
 
 router = APIRouter()
 

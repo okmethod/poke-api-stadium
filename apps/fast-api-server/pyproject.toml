@@ -5,11 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13.2"
 dependencies = [
-    "fastapi>=0.136.0",
-    "httpx>=0.28.1",
-    "pydantic>=2.13.2",
-    "pydantic-settings>=2.13.1",
-    "uvicorn>=0.44.0",
+    "fastapi",
+    "httpx",
+    "pydantic",
+    "pydantic-settings",
 ]
 
 [dependency-groups]
@@ -21,6 +20,8 @@ dev = [
     "pytest-cov>=7.1.0",
     "pytest-mock>=3.15.1",
     "ruff>=0.15.11",
+    "uvicorn>=0.44.0",
+    "workers-py>=0.0.12",
 ]
 
 [tool.pytest.ini_options]
@@ -36,15 +37,17 @@ executor = {type = "virtualenv", location = ".venv"}
 ruff-format = "ruff format ."
 ruff-check = "ruff check ."
 ruff-fix = "ruff check . --fix"
-mypy = "mypy ."
+mypy = {shell = "MYPYPATH=src mypy src/"}
+
+dev = {shell = "PYTHONPATH=src uvicorn main:app --reload --app-dir src"}
 
 test = "pytest tests/"
 test-coverage = {shell = "pytest tests/ --cov=src --cov-branch --cov-report=term-missing --junitxml=pytest.xml | tee pytest-coverage.txt"}
 lint = ["ruff-format", "ruff-check", "mypy"]
 fix = ["ruff-format", "ruff-fix"]
 
-put-secret-app = {shell = "grep '^APP_SECRET=' .env | cut -d'=' -f2- | npx wrangler secret put APP_SECRET"}
-put-secret-gateway-url = {shell = "grep '^AI_GATEWAY_BASE_URL=' .env | cut -d'=' -f2- | npx wrangler secret put AI_GATEWAY_BASE_URL"}
-put-secret-gateway-token = {shell = "grep '^AI_GATEWAY_TOKEN=' .env | cut -d'=' -f2- | npx wrangler secret put AI_GATEWAY_TOKEN"}
+put-secret-app = {shell = "grep '^APP_SECRET=' .env | cut -d'=' -f2- | uv run pywrangler secret put APP_SECRET"}
+put-secret-gateway-url = {shell = "grep '^AI_GATEWAY_BASE_URL=' .env | cut -d'=' -f2- | uv run pywrangler secret put AI_GATEWAY_BASE_URL"}
+put-secret-gateway-token = {shell = "grep '^AI_GATEWAY_TOKEN=' .env | cut -d'=' -f2- | uv run pywrangler secret put AI_GATEWAY_TOKEN"}
 put-secrets = ["put-secret-app", "put-secret-gateway-url", "put-secret-gateway-token"]
-deploy = {shell = "npx wrangler deploy"}
+deploy = {shell = "uv run pywrangler deploy"}

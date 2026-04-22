@@ -2,7 +2,7 @@ import asyncio
 import json
 from collections.abc import AsyncGenerator
 
-from src.schemas.chat import ChatRequest
+from schemas.chat import ChatRequest
 
 # ストリーミングを疑似する固定メッセージ（スペースで分割して逐次送信）
 _STUB_CHUNKS: list[str] = [

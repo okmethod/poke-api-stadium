@@ -1,8 +1,8 @@
 from collections.abc import AsyncGenerator, Callable
 from typing import assert_never
 
-from src.schemas.chat import ChatRequest, LLMProvider
-from src.services.gateway import claude, gemini, groq, stub
+from schemas.chat import ChatRequest, LLMProvider
+from services.gateway import claude, gemini, groq, stub
 
 # LLM ゲートウェイの共通インターフェース（各 gateway モジュールの stream 関数はこの型を満たす必要がある）
 GatewayStream = Callable[[ChatRequest], AsyncGenerator[str]]

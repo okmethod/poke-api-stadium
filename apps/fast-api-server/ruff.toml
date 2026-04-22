@@ -80,4 +80,10 @@ ignore = [
     # テストコードでは PLR2004 (マジック値) を許容
     "PLR2004",
 ]
+"src/main.py" = [
+    # Cloudflare Workers の起動 CPU 制限回避のため、重い import を関数内で遅延ロードする
+    "PLC0415",
+    # Cloudflare Workers API の型は Any で表現する（js.Response, workers.Request 等はランタイム専用）
+    "ANN401",
+]
 
