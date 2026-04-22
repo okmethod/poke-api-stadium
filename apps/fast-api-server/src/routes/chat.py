@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 
-from middleware.auth import verify_app_secret
-from schemas.chat import ChatRequest
-from services.gateway.protcol import stream_chat
+from src.middleware.auth import verify_app_secret
+from src.schemas.chat import ChatRequest
+from src.services.gateway.protcol import stream_chat
 
 router = APIRouter()
 

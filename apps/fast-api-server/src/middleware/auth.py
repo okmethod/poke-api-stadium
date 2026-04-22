@@ -3,7 +3,7 @@ from typing import Annotated
 
 from fastapi import Depends, Header, HTTPException, status
 
-from settings import Settings, get_settings
+from src.settings import Settings, get_settings
 
 # FastAPI の推奨パターン: Annotated で Depends/Header をラップし B008 を回避する
 SettingsDep = Annotated[Settings, Depends(get_settings)]
