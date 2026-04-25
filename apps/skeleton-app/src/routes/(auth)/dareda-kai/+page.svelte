@@ -65,7 +65,7 @@
     facade.resetGame();
   }
 
-  const introductionText = "私は1〜151番のポケモンだよ。私が誰かわかるかな？\n「はじめる」を押して、私に質問してね！";
+  const introductionText = "私はポケモンだよ。私が誰かわかるかな？\n「はじめる」を押して、私に質問してね！";
   const placeholderText = "質問を入力...";
 </script>
 
