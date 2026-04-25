@@ -11,8 +11,8 @@
     "put-secret-gateway-token": "grep '^AI_GATEWAY_TOKEN=' .env | cut -d'=' -f2- | wrangler secret put AI_GATEWAY_TOKEN",
     "put-secrets": "npm run put-secret-app && npm run put-secret-gateway-url && npm run put-secret-gateway-token",
     "check": "tsc --noEmit",
-    "format": "prettier --write src test",
-    "lint": "prettier --check src test && eslint src test && npm run check",
+    "format": "prettier --write src tests",
+    "lint": "prettier --check src tests && eslint src tests && npm run check",
     "test": "vitest",
     "test:run": "vitest run"
   },
