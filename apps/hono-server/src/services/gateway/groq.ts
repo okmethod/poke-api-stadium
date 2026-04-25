@@ -2,9 +2,7 @@ import type { Env } from "@/types/env";
 import type { ChatRequest } from "@/schemas/chat";
 import { fetchAndStream } from "@/utils/sse";
 
-type GroqContentPart =
-  | { type: "text"; text: string }
-  | { type: "image_url"; image_url: { url: string } };
+type GroqContentPart = { type: "text"; text: string } | { type: "image_url"; image_url: { url: string } };
 
 /** テキスト + 任意の画像からコンテンツパーツを構築する */
 function buildContent(text: string, imageUrl?: string): string | GroqContentPart[] {

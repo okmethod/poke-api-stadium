@@ -1,6 +1,5 @@
 // 全アプリ共通のシステムプロンプト
-const COMMON_PROMPT =
-  "回答は日本語で行ってください。";
+const COMMON_PROMPT = "回答は日本語で行ってください。";
 
 // PokeAPIスタジアム用の共通プロンプト
 const POKE_COMMON_PROMPT =

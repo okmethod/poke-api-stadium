@@ -31,7 +31,10 @@ function buildClaudeBody(request: ChatRequest, env: Env, systemPrompt: string) {
     max_tokens: 4096,
     stream: true,
     system: systemPrompt,
-    messages: [...historyMessages, { role: "user" as const, content: buildContent(request.message, request.image_url) }],
+    messages: [
+      ...historyMessages,
+      { role: "user" as const, content: buildContent(request.message, request.image_url) },
+    ],
   };
 }
 

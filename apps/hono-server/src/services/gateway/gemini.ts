@@ -50,10 +50,7 @@ function buildGeminiBody(request: ChatRequest, systemPrompt: string, currentImag
 
   return {
     system_instruction: { parts: [{ text: systemPrompt }] },
-    contents: [
-      ...historyContents,
-      { role: "user", parts: buildParts(request.message, currentImagePart) },
-    ],
+    contents: [...historyContents, { role: "user", parts: buildParts(request.message, currentImagePart) }],
   };
 }
 
