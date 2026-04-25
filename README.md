@@ -8,39 +8,6 @@
 
 ---
 
-## アーキテクチャ
-
-```mermaid
-graph LR
-  subgraph Browser["ユーザー"]
-    SPA["SPA"]
-  end
-
-  subgraph GHPages["GitHub Pages"]
-    Assets["SPAアセット"]
-  end
-
-  subgraph CF["Cloudflare"]
-    API["API サーバー<br>(Workers)"]
-    AIGateway["AI Gateway"]
-  end
-
-  LLM["LLM プロバイダー"]
-
-  Assets -->|配信| SPA
-  SPA -->|REST API| API
-  API --> AIGateway
-  AIGateway --> LLM
-```
-
-**技術スタック**:
-
-- **フロントエンド**: TypeScript 6, Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
-- **バックエンド**: TypeScript 5, Hono v4, Wrangler v3
-- **インフラ**: GitHub Pages（フロントエンド） / Cloudflare Workers（バックエンド）
-
----
-
 ## ディレクトリ構成
 
 ```

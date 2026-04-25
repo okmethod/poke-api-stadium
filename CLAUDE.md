@@ -18,9 +18,7 @@
 PokeAPI の豊富なポケモンデータを活用したミニゲーム集
 
 - **リポジトリ**: https://github.com/okmethod/poke-api-stadium
-- **技術スタック**:
-  - フロントエンド: TypeScript 6, Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
-  - バックエンド: TypeScript 5, Hono v4, Wrangler v3
+- **技術スタック**: TypeScript 6, Node.js 24
 - **前身プロジェクト**: https://github.com/okmethod/poke-api-stadium-v1
   - 本プロジェクトでは、大規模な設計変更をしつつ再構築中
 

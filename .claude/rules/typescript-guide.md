@@ -1,16 +1,17 @@
 ---
 description: TypeScript の開発規約・コマンド
-globs: "apps/skeleton-app/**/*.ts"
+globs: "apps/**/*.ts"
 ---
 
 # TypeScript
 
-- **言語**: TypeScript 5
+- **言語**: TypeScript 6
+- **開発環境**: Node.js 24
 - **パッケージ管理**: npm
 
 ## 開発規約
 
-- ドメインモデルの型フィールドは `readonly` を基本とする（不変性の保証・Svelte Runes との相性）
+- ドメインモデルの型フィールドは `readonly` を基本とする（不変性の保証）
 - コメントは**日本語**を基本とし、ログやエラーメッセージは**英文**を基本とする
 - JSDoc は **1行要約** を基本とし、型と重複する情報は書かない
   - 自明な `@param` / `@returns` は省く（引数名と型で十分なら不要）
@@ -20,11 +21,11 @@ globs: "apps/skeleton-app/**/*.ts"
 - 枝葉部分（個別実装・privateメソッド・メソッド内処理）は `//` コメントのみ（JSDocは書かない）
 - 未実装・負債は `// TODO:` / `// FIXME:` コメントで明示する
 
-## よく使うコマンド（apps/skeleton-app/ 内）
+## よく使うコマンド（apps/skeleton-app/ or apps/hono-server/ 内）
 
 ```bash
-npm run lint          # prettier check + eslint
-npm run format        # prettier format
-npm run check         # svelte-check --tsconfig
-npm run test:run      # vitest run
+npm run check    # tsc or svelte-check --tsconfig 
+npm run lint     # prettier check + eslint（+ tsc / svelte-check）
+npm run format   # prettier format
+npm run test:run # vitest run
 ```

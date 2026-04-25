@@ -7,6 +7,7 @@ globs: "apps/skeleton-app/**/*.svelte"
 
 - **FW**: SvelteKit 2 (Svelte 5) + Skeleton v4
 - **スタイル**: TailwindCSS v4
+- **バリデーション**: Zod v4
 - **ビルド**: Vite 6
 
 ## 開発規約

@@ -22,7 +22,7 @@
 [PokeAPI](https://pokeapi.co/) を入口にした、ポケモンデータ活用型ミニゲーム集
 
 - PokeAPI からポケモンデータを取得し、様々なミニゲームに活用する SPA を提供
-- FastAPI バックエンドをマルチプロバイダー対応の LLM エンドポイントプロキシとして利用し、ユーザーはパスフレーズのみで利用可能
+- Hono サーバーをマルチプロバイダー対応の LLM エンドポイントプロキシとして利用し、ユーザーはパスフレーズのみで利用可能
 
 ---
 
@@ -61,22 +61,63 @@ docs/
 | **architecture/** | アーキテクチャを大きく変更した時               |
 | **adr/**          | 重要な技術的決定をした時                       |
 
+## アーキテクチャ
+
+```mermaid
+graph LR
+  subgraph Browser["ユーザー"]
+    SPA["SPA"]
+  end
+
+  subgraph GHPages["GitHub Pages"]
+    Assets["SPAアセット"]
+  end
+
+  subgraph CF["Cloudflare"]
+    API["API サーバー<br>(Workers)"]
+    AIGateway["AI Gateway"]
+  end
+
+  LLM["LLM プロバイダー"]
+
+  Assets -->|配信| SPA
+  SPA -->|REST API| API
+  API --> AIGateway
+  AIGateway --> LLM
+```
+
 ---
 
 ## 技術スタック
 
 ### フロントエンド
 
-- **フレームワーク**: SvelteKit 2 (Svelte 5)
+- **開発環境**: Node.js 24
+  - パッケージ管理: npm
+  - Linter & Formatter: ESLint + Prettier
+  - Type checker: tsc
+  - Test: Vitest
+  - Task Runner: npm scripts
+- **言語**: TypeScript v6
+- **フレームワーク**: SvelteKit v2 (Svelte v5)
 - **UI ライブラリ**: Skeleton v4
-- **CSS**: TailwindCSS v4
-- **ビルド**: Vite 6
-- **言語**: TypeScript 5
+- **スタイル**: TailwindCSS v4
+- **バリデーション**: Zod v4
+- **ビルド**: Vite v6
+- **デプロイ・ホスティング**: gh-pages v6 + GitHub Pages
 
 ### バックエンド
 
-- **フレームワーク**: FastAPI
-- **言語**: Python 3.13
+- **開発環境**: Node.js 24
+  - パッケージ管理: npm
+  - Linter & Formatter: ESLint + Prettier
+  - Type checker: tsc
+  - Test: Vitest
+  - Task Runner: npm scripts
+- **言語**: TypeScript v6
+- **Web フレームワーク**: Hono v4
+- **バリデーション**: Zod v4
+- **ビルド・ホスティング**: Wrangler v4 + Cloudflare Workers
 
 ---
 
