@@ -1,6 +1,6 @@
 import type { Env } from "@/types/env";
 import type { ChatRequest } from "@/schemas/chat";
-import { readSSELines } from "@/utils/sse";
+import { fetchAndStream } from "@/utils/sse";
 
 type GroqContentPart =
   | { type: "text"; text: string }
@@ -43,19 +43,5 @@ export async function* streamGroq(
 ): AsyncGenerator<string, void, unknown> {
   const url = `${env.AI_GATEWAY_BASE_URL}/groq/openai/v1/chat/completions`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "cf-aig-authorization": `Bearer ${env.AI_GATEWAY_TOKEN}`,
-    },
-    body: JSON.stringify(buildGroqBody(request, env, systemPrompt)),
-  });
-
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(`AI Gateway error: HTTP ${response.status} - ${body}`);
-  }
-
-  yield* readSSELines(response);
+  yield* fetchAndStream(url, env.AI_GATEWAY_TOKEN, buildGroqBody(request, env, systemPrompt));
 }

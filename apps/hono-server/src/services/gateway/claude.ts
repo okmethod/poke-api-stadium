@@ -1,6 +1,6 @@
 import type { Env } from "@/types/env";
 import type { ChatRequest } from "@/schemas/chat";
-import { readSSELines } from "@/utils/sse";
+import { fetchAndStream } from "@/utils/sse";
 import { parseDataUrl } from "@/utils/image";
 
 type ClaudeContentPart =
@@ -43,20 +43,7 @@ export async function* streamClaude(
 ): AsyncGenerator<string, void, unknown> {
   const url = `${env.AI_GATEWAY_BASE_URL}/anthropic/v1/messages`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "cf-aig-authorization": `Bearer ${env.AI_GATEWAY_TOKEN}`,
-      "anthropic-version": "2023-06-01",
-    },
-    body: JSON.stringify(buildClaudeBody(request, env, systemPrompt)),
+  yield* fetchAndStream(url, env.AI_GATEWAY_TOKEN, buildClaudeBody(request, env, systemPrompt), {
+    "anthropic-version": "2023-06-01",
   });
-
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(`AI Gateway error: HTTP ${response.status} - ${body}`);
-  }
-
-  yield* readSSELines(response);
 }
