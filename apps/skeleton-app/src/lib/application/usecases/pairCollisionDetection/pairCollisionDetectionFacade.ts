@@ -60,7 +60,9 @@ export class PairCollisionDetectionFacade {
     try {
       const pokemons = await selectRandomPokemons(this.repository, fetchFn, count);
 
-      pokemons.forEach((poke) => {
+      // 画像解析を並列実行するために Promise を収集してから一括 await する
+      const addBodyPromises: Promise<void>[] = [];
+      for (const poke of pokemons) {
         const category = poke.id + POKEMON_CATEGORY_OFFSET;
         this.categoryToCryUrl.set(category, resolvedCryUrl(poke.cryUrls));
 
@@ -73,10 +75,11 @@ export class PairCollisionDetectionFacade {
             x: getRandomNumber(this.worldConfig!.width),
             y: SPAWN_Y,
           };
-          this.physics.addBody({ id, imageUrl, category, spawnPoint, radius: 32 });
           this.activeBodyIds.add(id);
+          addBodyPromises.push(this.physics.addBody({ id, imageUrl, category, spawnPoint, radius: 32 }));
         }
-      });
+      }
+      await Promise.all(addBodyPromises);
 
       pairCollisionDetectionStoreWriter.addActiveBodyCount(pokemons.length * 2);
       return { success: true };

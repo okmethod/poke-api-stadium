@@ -26,8 +26,8 @@ export interface I2dPhysicsEngine {
   /** エンジンを停止してリソースを解放する */
   dispose(): void;
 
-  /** ボディをワールドに追加する */
-  addBody(config: PhysicsBody2dConfig): void;
+  /** ボディをワールドに追加する（画像解析を伴うため非同期） */
+  addBody(config: PhysicsBody2dConfig): Promise<void>;
 
   /** IDでボディを削除する（存在しない場合はno-op） */
   removeBody(id: string): void;

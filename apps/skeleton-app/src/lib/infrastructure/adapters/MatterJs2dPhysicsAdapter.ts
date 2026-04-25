@@ -20,9 +20,12 @@ import type {
   Point2d,
 } from "$lib/domain/models/2dPhysics";
 import type * as MatterType from "matter-js";
+import { extractNormalizedVertices } from "./imageVertexExtractor";
 
 // 壁ボディはボディマップに登録しないことで衝突ハンドラのフィルタを実現する
 const WALL_THICKNESS = 100;
+// 輪郭ポリゴンをさらに縮小して当たり判定を引き締める
+const COLLISION_SCALE = 0.6;
 
 /** matter.js による 2D物理エンジン実装 */
 class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
@@ -63,12 +66,8 @@ class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
     this.dragConstraint = null;
   }
 
-  addBody(config: PhysicsBody2dConfig): void {
-    const body = this.M.Bodies.circle(config.spawnPoint.x, config.spawnPoint.y, config.radius, {
-      restitution: 0.2,
-      friction: 0.1,
-      label: config.id,
-    });
+  async addBody(config: PhysicsBody2dConfig): Promise<void> {
+    const body = await this.buildBody(config);
     // カテゴリをそのまま整数で設定（マッチング判定は等値比較で行うため bit mask は不要）
     body.collisionFilter.category = config.category;
 
@@ -147,6 +146,39 @@ class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
   }
 
   // --- private ---
+
+  /**
+   * 画像輪郭からポリゴンボディを生成する。
+   * 画像解析失敗時は円ボディにフォールバックする。
+   *
+   * @remarks
+   * Bodies.fromVertices() は内部で isConvex() チェックを行い浮動小数点誤差で誤判定するため、
+   * Body.create({ vertices }) で直接生成して poly-decomp 警告を回避する。
+   */
+  private async buildBody(config: PhysicsBody2dConfig): Promise<MatterType.Body> {
+    const bodyOptions = { restitution: 0.2, friction: 0.1, label: config.id };
+    const { x, y } = config.spawnPoint;
+
+    const normalizedVerts = await extractNormalizedVertices(config.imageUrl, config.radius);
+    if (normalizedVerts && normalizedVerts.length >= 3) {
+      // matter.js の実行時は {x,y} があれば動作するが型定義が Vertex[] を要求するためキャスト
+      const hull = this.M.Vertices.hull(normalizedVerts as unknown as MatterType.Vertex[]);
+      const scaledHull = hull.map((v) => ({ x: v.x * COLLISION_SCALE, y: v.y * COLLISION_SCALE }));
+      try {
+        // Body.create に vertices + position を渡すことで isConvex チェックをバイパスする
+        const body = this.M.Body.create({ ...bodyOptions, vertices: scaledHull, position: { x, y } });
+        console.debug(`[Physics] polygon body: ${hull.length} verts`, config.imageUrl);
+        return body;
+      } catch (e) {
+        console.warn("[Physics] polygon body failed, fallback to circle", config.imageUrl, e);
+      }
+    } else {
+      console.warn("[Physics] vertex extraction failed, fallback to circle", config.imageUrl);
+    }
+
+    // フォールバック: 円ボディ
+    return this.M.Bodies.circle(x, y, config.radius * COLLISION_SCALE, bodyOptions);
+  }
 
   private addWalls(width: number, height: number): void {
     const t = WALL_THICKNESS;
