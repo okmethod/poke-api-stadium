@@ -104,15 +104,15 @@ curl -s -X POST http://localhost:8787/api/chat \
 
 ## 環境変数
 
-| 変数名                | 必須 | 説明                                                        |
-| --------------------- | ---- | ----------------------------------------------------------- |
-| `APP_SECRET`          | ✅   | パスフレーズ認証用シークレット                              |
-| `AI_GATEWAY_BASE_URL` | ✅   | Cloudflare AI Gateway ベース URL                            |
-| `AI_GATEWAY_TOKEN`    | ✅   | AI Gateway 認証トークン                                     |
-| `ALLOWED_ORIGINS`     | -    | CORS 許可オリジン（カンマ区切り）                           |
-| `GEMINI_MODEL`        | -    | Gemini モデル名（デフォルト: `gemini-2.0-flash-lite`）      |
-| `CLAUDE_MODEL`        | -    | Claude モデル名（デフォルト: `claude-3-5-haiku-20241022`）  |
-| `GROQ_MODEL`          | -    | Groq モデル名（デフォルト: `llama-3.2-11b-vision-preview`） |
+| 変数名                | 必須 | 説明                                                                     |
+| --------------------- | ---- | ------------------------------------------------------------------------ |
+| `APP_SECRET`          | ✅   | パスフレーズ認証用シークレット                                           |
+| `AI_GATEWAY_BASE_URL` | ✅   | Cloudflare AI Gateway ベース URL                                         |
+| `AI_GATEWAY_TOKEN`    | ✅   | AI Gateway 認証トークン                                                  |
+| `ALLOWED_ORIGINS`     | -    | CORS 許可オリジン（カンマ区切り）                                        |
+| `GEMINI_MODEL`        | -    | Gemini モデル名（デフォルト: `gemini-2.0-flash-lite`）                   |
+| `CLAUDE_MODEL`        | -    | Claude モデル名（デフォルト: `claude-3-5-haiku-20241022`）               |
+| `GROQ_MODEL`          | -    | Groq モデル名（デフォルト: `meta-llama/llama-4-scout-17b-16e-instruct`） |
 
 ---
 
