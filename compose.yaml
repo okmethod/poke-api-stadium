@@ -8,7 +8,7 @@ services:
     working_dir: /app
     environment:
       LOCAL_API_BASE_URL: "http://hono-server:8787"
-      VITE_DEFAULT_LLM_PROVIDER: "gemini"
+      VITE_DEFAULT_LLM_PROVIDER: "claude"
     volumes:
       - ./apps/skeleton-app:/app
       - skeleton-app-node-modules:/app/node_modules
@@ -28,7 +28,7 @@ services:
       ALLOWED_ORIGINS: "http://localhost:5173"
       # 各プロバイダーのモデル名（wrangler.toml の [vars] と揃える）
       GEMINI_MODEL: "gemini-2.5-flash"
-      CLAUDE_MODEL: "claude-3-5-haiku-20241022"
+      CLAUDE_MODEL: "claude-haiku-4-5-20251001"
       GROQ_MODEL: "meta-llama/llama-4-scout-17b-16e-instruct"
     volumes:
       - ./apps/hono-server:/app
