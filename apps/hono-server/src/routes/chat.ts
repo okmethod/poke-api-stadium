@@ -1,49 +1,47 @@
-import { Hono } from 'hono'
-import type { Env } from '@/types/env'
-import { chatRequestSchema } from '@/schemas/chat'
-import { getSystemPrompt } from '@/prompts/systemPrompts'
-import { getGateway } from '@/services/gateway/protocol'
-import { authMiddleware } from '@/middleware/auth'
+import { Hono } from "hono";
+import type { Env } from "@/types/env";
+import { chatRequestSchema } from "@/schemas/chat";
+import { getSystemPrompt } from "@/prompts/systemPrompts";
+import { getGateway } from "@/services/gateway/protocol";
+import { authMiddleware } from "@/middleware/auth";
 
-const chat = new Hono<{ Bindings: Env }>()
+const chat = new Hono<{ Bindings: Env }>();
 
-chat.post('/', authMiddleware, async (c) => {
-  const body = await c.req.json()
-  const parsed = chatRequestSchema.safeParse(body)
+chat.post("/", authMiddleware, async (c) => {
+  const body = await c.req.json();
+  const parsed = chatRequestSchema.safeParse(body);
   if (!parsed.success) {
-    return c.json({ detail: 'Invalid request body', errors: parsed.error.flatten() }, 422)
+    return c.json({ detail: "Invalid request body", errors: parsed.error.flatten() }, 422);
   }
 
-  const request = parsed.data
-  const systemPrompt = getSystemPrompt(request.app_id)
-  const gateway = getGateway(request.provider)
+  const request = parsed.data;
+  const systemPrompt = getSystemPrompt(request.app_id);
+  const gateway = getGateway(request.provider);
 
-  const encoder = new TextEncoder()
+  const encoder = new TextEncoder();
   const readable = new ReadableStream({
     async start(controller) {
       try {
         for await (const chunk of gateway(request, c.env, systemPrompt)) {
-          controller.enqueue(encoder.encode(chunk))
+          controller.enqueue(encoder.encode(chunk));
         }
-        controller.close()
+        controller.close();
       } catch (err) {
-        const message = err instanceof Error ? err.message : String(err)
-        console.error('Gateway stream error:', message)
-        controller.enqueue(
-          encoder.encode(`event: error\ndata: ${JSON.stringify({ detail: message })}\n\n`),
-        )
-        controller.close()
+        const message = err instanceof Error ? err.message : String(err);
+        console.error("Gateway stream error:", message);
+        controller.enqueue(encoder.encode(`event: error\ndata: ${JSON.stringify({ detail: message })}\n\n`));
+        controller.close();
       }
     },
-  })
+  });
 
   return new Response(readable, {
     headers: {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'X-Accel-Buffering': 'no',
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      "X-Accel-Buffering": "no",
     },
-  })
-})
+  });
+});
 
-export default chat
+export default chat;
