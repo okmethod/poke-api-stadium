@@ -1,7 +1,7 @@
 /**
- * FastApiLLMProxyRepository - Port/Adapter パターンの Adapter (具象実装)
+ * HonoLLMProxyRepository - Port/Adapter パターンの Adapter (具象実装)
  *
- * FastAPI LLM プロキシの全エンドポイント（auth / health / chat）との統合を提供する。
+ * LLM プロキシの全エンドポイント（auth / health / chat）との統合を提供する。
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
  * - ROLE: Port に従った具体的な技術実装（API通信・SSEパース）

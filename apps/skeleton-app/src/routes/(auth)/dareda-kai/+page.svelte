@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { getLLMChatRepository } from "$lib/infrastructure/adapters/FastApiLLMProxyRepository";
+  import { getLLMChatRepository } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
   import AppSecretModal from "$lib/presentation/components/modals/AppSecretModal.svelte";
   import { InterrogationQuizFacade } from "$lib/application/usecases/interrogationQuiz/interrogationQuizFacade";

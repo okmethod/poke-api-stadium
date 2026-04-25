@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
-  import { getHealthCheckRepository } from "$lib/infrastructure/adapters/FastApiLLMProxyRepository";
+  import { getHealthCheckRepository } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
 
   let { children } = $props();
 
