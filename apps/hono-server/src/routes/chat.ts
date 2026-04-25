@@ -25,7 +25,13 @@ chat.post('/', authMiddleware, async (c) => {
         for await (const chunk of gateway(request, c.env, systemPrompt)) {
           controller.enqueue(encoder.encode(chunk))
         }
-      } finally {
+        controller.close()
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err)
+        console.error('Gateway stream error:', message)
+        controller.enqueue(
+          encoder.encode(`event: error\ndata: ${JSON.stringify({ detail: message })}\n\n`),
+        )
         controller.close()
       }
     },

@@ -33,7 +33,8 @@ export async function* streamGemini(
   })
 
   if (!response.ok) {
-    throw new Error(`AI Gateway error: HTTP ${response.status}`)
+    const body = await response.text()
+    throw new Error(`AI Gateway error: HTTP ${response.status} - ${body}`)
   }
 
   yield* readSSELines(response)

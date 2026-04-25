@@ -8,6 +8,7 @@ services:
     working_dir: /app
     environment:
       LOCAL_API_BASE_URL: "http://hono-server:8787"
+      VITE_DEFAULT_LLM_PROVIDER: "groq"
     volumes:
       - ./apps/skeleton-app:/app
       - skeleton-app-node-modules:/app/node_modules
@@ -21,14 +22,14 @@ services:
     environment:
       # ローカル開発専用: シークレットをベタ書き（本番は wrangler secret put で設定）
       APP_SECRET: "local-dev-secret"
-      AI_GATEWAY_BASE_URL: "https://gateway.ai.cloudflare.com/v1/{account_id}/{gateway_id}"
-      AI_GATEWAY_TOKEN: "your-ai-gateway-token"
+      AI_GATEWAY_BASE_URL: "${AI_GATEWAY_BASE_URL}"
+      AI_GATEWAY_TOKEN: "${AI_GATEWAY_TOKEN}"
       # CORS: ローカルのフロントエンド開発サーバーを許可（カンマ区切り）
       ALLOWED_ORIGINS: "http://localhost:5173"
       # 各プロバイダーのモデル名（wrangler.toml の [vars] と揃える）
-      GEMINI_MODEL: "gemini-1.5-flash"
+      GEMINI_MODEL: "gemini-2.0-flash-lite"
       CLAUDE_MODEL: "claude-3-5-haiku-20241022"
-      GROQ_MODEL: "llama-3.3-70b-versatile"
+      GROQ_MODEL: "llama-3.2-11b-vision-preview"
     volumes:
       - ./apps/hono-server:/app
       - hono-server-node-modules:/app/node_modules
@@ -37,6 +38,7 @@ services:
       - -c
       - |
         set -e
+        apt-get update -qq && apt-get install -y -qq ca-certificates --no-install-recommends && rm -rf /var/lib/apt/lists/*
         npm install
         {
           echo "APP_SECRET=$$APP_SECRET"
