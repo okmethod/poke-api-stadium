@@ -21,7 +21,7 @@ const menuItems: MenuItem[] = [
   { label: "ポケモンだ〜れだ？", ballKey: "dusk-ball", action: "navigate", target: "/dareda" },
   { label: "ポケモンだ〜れだ？改", ballKey: "luxury-ball", action: "navigate", target: "/dareda-kai" },
   // { label: "ポケモンとりほうだい", ballKey: "safari-ball", action: "navigate", target: "/zukan" },
-  // { label: "ポケモンえあわせ", ballKey: "repeat-ball", action: "navigate", target: "/zukan" },
+  { label: "ポケモンえあわせ", ballKey: "repeat-ball", action: "navigate", target: "/eawase" },
   // { label: "しさくひん", ballKey: "premier-ball", action: "navigate", target: "/zukan" },
   {
     label: "ソースコード",
