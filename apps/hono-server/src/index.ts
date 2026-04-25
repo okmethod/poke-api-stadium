@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import type { Env } from './types/env'
-import health from './routes/health'
-import auth from './routes/auth'
-import chat from './routes/chat'
+import type { Env } from '@/types/env'
+import health from '@/routes/health'
+import auth from '@/routes/auth'
+import chat from '@/routes/chat'
 
 const app = new Hono<{ Bindings: Env }>()
 

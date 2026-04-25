@@ -1,6 +1,6 @@
-import type { Env } from '../../types/env'
-import type { ChatRequest } from '../../schemas/chat'
-import { readSSELines } from '../../utils/sse'
+import type { Env } from '@/types/env'
+import type { ChatRequest } from '@/schemas/chat'
+import { readSSELines } from '@/utils/sse'
 
 /** Groq (OpenAI 互換) へのリクエストボディを構築する */
 function buildGroqBody(request: ChatRequest, env: Env, systemPrompt: string) {

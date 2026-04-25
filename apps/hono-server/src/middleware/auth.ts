@@ -1,6 +1,6 @@
 import type { Context, Next } from 'hono'
-import type { Env } from '../types/env'
-import { timingSafeEqual } from '../utils/crypto'
+import type { Env } from '@/types/env'
+import { timingSafeEqual } from '@/utils/crypto'
 
 /** X-App-Secret ヘッダーを検証する POST /api/chat 用の認証ミドルウェア */
 export async function authMiddleware(

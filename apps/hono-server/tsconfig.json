@@ -13,6 +13,11 @@
     "allowJs": true,
     "checkJs": true,
 
+    /* パスエイリアス */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
     /* 役割の明確化 */
     "noEmit": true,  // コンパイルはWranglerに任せる
     "skipLibCheck": true,

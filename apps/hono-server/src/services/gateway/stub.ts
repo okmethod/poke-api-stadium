@@ -1,5 +1,5 @@
-import type { Env } from '../../types/env'
-import type { ChatRequest } from '../../schemas/chat'
+import type { Env } from '@/types/env'
+import type { ChatRequest } from '@/schemas/chat'
 
 // テスト用固定チャンク一覧
 const STUB_CHUNKS = [

@@ -1,5 +1,5 @@
-import type { Env } from '../../types/env'
-import type { ChatRequest, LLMProvider } from '../../schemas/chat'
+import type { Env } from '@/types/env'
+import type { ChatRequest, LLMProvider } from '@/schemas/chat'
 import { streamStub } from './stub'
 import { streamGemini } from './gemini'
 import { streamClaude } from './claude'

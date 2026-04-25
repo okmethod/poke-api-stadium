@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
-import type { Env } from '../types/env'
-import { chatRequestSchema } from '../schemas/chat'
-import { getSystemPrompt } from '../prompts/systemPrompts'
-import { getGateway } from '../services/gateway/protocol'
-import { authMiddleware } from '../middleware/auth'
+import type { Env } from '@/types/env'
+import { chatRequestSchema } from '@/schemas/chat'
+import { getSystemPrompt } from '@/prompts/systemPrompts'
+import { getGateway } from '@/services/gateway/protocol'
+import { authMiddleware } from '@/middleware/auth'
 
 const chat = new Hono<{ Bindings: Env }>()
 

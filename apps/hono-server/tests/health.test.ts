@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import app from '../src/index'
-import type { Env } from '../src/types/env'
+import app from '@/index'
+import type { Env } from '@/types/env'
 
 const mockEnv: Env = {
   APP_SECRET: 'test-secret',

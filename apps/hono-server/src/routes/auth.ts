@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
-import type { Env } from '../types/env'
-import { timingSafeEqual } from '../utils/crypto'
+import type { Env } from '@/types/env'
+import { timingSafeEqual } from '@/utils/crypto'
 
 const auth = new Hono<{ Bindings: Env }>()
 

@@ -1,6 +1,6 @@
-import type { Env } from '../../types/env'
-import type { ChatRequest } from '../../schemas/chat'
-import { readSSELines } from '../../utils/sse'
+import type { Env } from '@/types/env'
+import type { ChatRequest } from '@/schemas/chat'
+import { readSSELines } from '@/utils/sse'
 
 /** Claude (Anthropic) へのリクエストボディを構築する */
 function buildClaudeBody(request: ChatRequest, env: Env, systemPrompt: string) {

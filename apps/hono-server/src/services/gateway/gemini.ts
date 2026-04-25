@@ -1,6 +1,6 @@
-import type { Env } from '../../types/env'
-import type { ChatRequest } from '../../schemas/chat'
-import { readSSELines } from '../../utils/sse'
+import type { Env } from '@/types/env'
+import type { ChatRequest } from '@/schemas/chat'
+import { readSSELines } from '@/utils/sse'
 
 /** Gemini (Google AI Studio) へのリクエストボディを構築する */
 function buildGeminiBody(request: ChatRequest, systemPrompt: string) {

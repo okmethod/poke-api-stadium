@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { streamStub } from '../src/services/gateway/stub'
-import { getGateway } from '../src/services/gateway/protocol'
-import type { ChatRequest } from '../src/schemas/chat'
-import type { Env } from '../src/types/env'
+import { streamStub } from '@/services/gateway/stub'
+import { getGateway } from '@/services/gateway/protocol'
+import type { ChatRequest } from '@/schemas/chat'
+import type { Env } from '@/types/env'
 
 const mockRequest: ChatRequest = {
   app_id: 'default',
