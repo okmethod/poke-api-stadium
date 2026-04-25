@@ -15,8 +15,10 @@ import {
 } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
 import type { ILLMChatRepository, LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { PokeData } from "$lib/domain/models/PokeData";
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
+import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 
 const APP_ID = "poke-api-stadium";
 
@@ -49,29 +51,17 @@ export class InterrogationQuizFacade {
    * AI に初回メッセージを送信する。「もう一度」時も同じメソッドを呼び出す。
    */
   async startGame(fetchFn: typeof fetch, provider: LLMProvider): Promise<FacadeResult> {
-    let pokeName: string;
-    let imageUrl: string;
-    let cryUrl: string | null;
-    try {
-      const pokeData = await selectRandomPokemon(this.pokeRepository, fetchFn);
-      pokeName = pokeData.jaName;
-      imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;
-      cryUrl = resolvedCryUrl(pokeData.cryUrls);
-    } catch {
-      return { success: false, error: "ポケモンデータの取得に失敗しました" };
-    }
-
-    interrogationQuizStoreWriter.setGameStatus("init");
-    interrogationQuizStoreWriter.setCurrentPokeName(pokeName);
-    interrogationQuizStoreWriter.setPokeImageUrl(imageUrl);
-    interrogationQuizStoreWriter.setPokeCryUrl(cryUrl);
-    interrogationQuizStoreWriter.setChatHistory([]);
-    interrogationQuizStoreWriter.setStreamingText("");
-    interrogationQuizStoreWriter.setIsAnswerRevealed(false);
-
-    // AI への最初のメッセージ: ポケモン名を伝えてゲーム開始を指示する
-    const initialMessage = `あなたは「${pokeName}」です。最初に1つヒントを教えてください。`;
-    return this._sendMessage(fetchFn, initialMessage, provider, true, imageUrl);
+    return withLoadingGuard(
+      () => selectRandomPokemon(this.pokeRepository, fetchFn),
+      undefined,
+      async (pokeData) => {
+        const { pokeName, imageUrl } = this._initGameState(pokeData);
+        // AI への最初のメッセージ: ポケモン名を伝えてゲーム開始を指示する
+        const initialMessage = `あなたは「${pokeName}」です。最初に1つヒントを教えてください。`;
+        return this._sendMessage(fetchFn, initialMessage, provider, true, imageUrl);
+      },
+      undefined,
+    );
   }
 
   /**
@@ -89,6 +79,22 @@ export class InterrogationQuizFacade {
   }
 
   // --- private helpers ---
+
+  private _initGameState(pokeData: PokeData) {
+    interrogationQuizStoreWriter.setGameStatus("init");
+    interrogationQuizStoreWriter.setChatHistory([]);
+    interrogationQuizStoreWriter.setStreamingText("");
+    interrogationQuizStoreWriter.setIsAnswerRevealed(false);
+
+    const pokeName = pokeData.jaName;
+    const imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;
+    const cryUrl = resolvedCryUrl(pokeData.cryUrls);
+    interrogationQuizStoreWriter.setCurrentPokeName(pokeName);
+    interrogationQuizStoreWriter.setPokeImageUrl(imageUrl);
+    interrogationQuizStoreWriter.setPokeCryUrl(cryUrl);
+
+    return { pokeName, imageUrl };
+  }
 
   private async _sendMessage(
     fetchFn: typeof fetch,

@@ -15,6 +15,7 @@ import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
+import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { silhouetteQuizStoreWriter, pokeData, isOpen } from "./silhouetteQuizStore";
 
 /** toggleAnswer の戻り値（鳴き声URLの再生判断はプレゼン層で行う） */
@@ -38,17 +39,12 @@ export class SilhouetteQuizFacade {
     silhouetteQuizStoreWriter.setPokeData(null);
     silhouetteQuizStoreWriter.setIsOpen(false);
     silhouetteQuizStoreWriter.setHintText(null);
-    silhouetteQuizStoreWriter.setIsLoading(true);
-    try {
-      const data = await selectRandomPokemon(this.repository, fetchFn);
-      silhouetteQuizStoreWriter.setPokeData(data);
-      return { success: true };
-    } catch {
-      silhouetteQuizStoreWriter.setPokeData(null);
-      return { success: false, error: "ポケモンをよびだせなかった" };
-    } finally {
-      silhouetteQuizStoreWriter.setIsLoading(false);
-    }
+    return withLoadingGuard(
+      () => selectRandomPokemon(this.repository, fetchFn),
+      (v) => silhouetteQuizStoreWriter.setIsLoading(v),
+      (pokeData) => silhouetteQuizStoreWriter.setPokeData(pokeData),
+      () => silhouetteQuizStoreWriter.setPokeData(null),
+    );
   }
 
   /**

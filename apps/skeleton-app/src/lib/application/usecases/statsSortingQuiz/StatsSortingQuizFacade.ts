@@ -11,6 +11,7 @@ import type { PokeData } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
+import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { statsSortingQuizStoreWriter } from "./statsSortingQuizStore";
 
 /** 比較モードの定義 */
@@ -83,17 +84,12 @@ export class StatsSortingQuizFacade {
   async pickPokemons(fetchFn: typeof fetch, count: number): Promise<FacadeResult> {
     statsSortingQuizStoreWriter.setIsOpen(false);
     statsSortingQuizStoreWriter.setResult(null);
-    statsSortingQuizStoreWriter.setIsLoading(true);
-    try {
-      const list = await selectRandomPokemons(this.repository, fetchFn, count);
-      statsSortingQuizStoreWriter.setPokeDataList(list);
-      return { success: true };
-    } catch {
-      statsSortingQuizStoreWriter.setPokeDataList([]);
-      return { success: false, error: "ポケモンをよびだせなかった" };
-    } finally {
-      statsSortingQuizStoreWriter.setIsLoading(false);
-    }
+    return withLoadingGuard(
+      () => selectRandomPokemons(this.repository, fetchFn, count),
+      (v) => statsSortingQuizStoreWriter.setIsLoading(v),
+      (pokeDataList) => statsSortingQuizStoreWriter.setPokeDataList(pokeDataList),
+      () => statsSortingQuizStoreWriter.setPokeDataList([]),
+    );
   }
 
   /**
