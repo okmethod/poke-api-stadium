@@ -20,11 +20,11 @@ import type {
 import { getAppSecret } from "$lib/application/stores/appSecretStore";
 import { constructRequestInit, fetchApi } from "$lib/infrastructure/utils/request";
 
-// --- /api/auth ---
-
-const pathHealth = "/api/health";
-const pathAuth = "/api/auth";
-const pathChat = "/api/chat";
+// ローカル開発時は Vite プロキシが "/api/*" を転送するため空文字のまま
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+const pathHealth = `${BASE_URL}/api/health`;
+const pathAuth = `${BASE_URL}/api/auth`;
+const pathChat = `${BASE_URL}/api/chat`;
 
 const HealthResponseSchema = z.object({
   message: z.string(),
