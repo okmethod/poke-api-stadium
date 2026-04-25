@@ -1,0 +1,32 @@
+{
+  "name": "hono-server",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "put-secret-app": "grep '^APP_SECRET=' .env | cut -d'=' -f2- | wrangler secret put APP_SECRET",
+    "put-secret-gateway-url": "grep '^AI_GATEWAY_BASE_URL=' .env | cut -d'=' -f2- | wrangler secret put AI_GATEWAY_BASE_URL",
+    "put-secret-gateway-token": "grep '^AI_GATEWAY_TOKEN=' .env | cut -d'=' -f2- | wrangler secret put AI_GATEWAY_TOKEN",
+    "put-secrets": "npm run put-secret-app && npm run put-secret-gateway-url && npm run put-secret-gateway-token",
+    "lint": "prettier --check src test && eslint src test",
+    "format": "prettier --write src test",
+    "check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "hono": "^4.6.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241022.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.1.0",
+    "wrangler": "^3.78.0"
+  }
+}

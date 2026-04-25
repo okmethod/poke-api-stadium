@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* 基本設定 */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext"],
+    "types": ["@cloudflare/workers-types"],
+
+    /* 厳格な型チェック */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "allowJs": true,
+    "checkJs": true,
+
+    /* 役割の明確化 */
+    "noEmit": true,  // コンパイルはWranglerに任せる
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", ".wrangler"]
+}

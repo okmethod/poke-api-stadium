@@ -1,13 +1,13 @@
 services:
   skeleton-app:
     depends_on:
-      - fast-api-server
+      - hono-server
     image: node:24.15.0-slim
     ports:
       - 5173:5173
     working_dir: /app
     environment:
-      VITE_API_BASE_URL: "http://fast-api-server:8000"
+      VITE_API_BASE_URL: "http://hono-server:8787"
     volumes:
       - ./apps/skeleton-app:/app
       - skeleton-app-node-modules:/app/node_modules
@@ -39,6 +39,44 @@ services:
       ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--log-config", "src/logging.ini", "--reload"]
     tty: true
 
+  hono-server:
+    image: node:24.15.0-slim
+    working_dir: /app
+    ports:
+      - 8787:8787
+    environment:
+      # ローカル開発専用: シークレットをベタ書き（本番は wrangler secret put で設定）
+      APP_SECRET: "local-dev-secret"
+      AI_GATEWAY_BASE_URL: "https://gateway.ai.cloudflare.com/v1/{account_id}/{gateway_id}"
+      AI_GATEWAY_TOKEN: "your-ai-gateway-token"
+      # CORS: ローカルのフロントエンド開発サーバーを許可（カンマ区切り）
+      ALLOWED_ORIGINS: "http://localhost:5173"
+      # 各プロバイダーのモデル名（wrangler.toml の [vars] と揃える）
+      GEMINI_MODEL: "gemini-1.5-flash"
+      CLAUDE_MODEL: "claude-3-5-haiku-20241022"
+      GROQ_MODEL: "llama-3.3-70b-versatile"
+    volumes:
+      - ./apps/hono-server:/app
+      - hono-server-node-modules:/app/node_modules
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        npm install
+        {
+          echo "APP_SECRET=$$APP_SECRET"
+          echo "AI_GATEWAY_BASE_URL=$$AI_GATEWAY_BASE_URL"
+          echo "AI_GATEWAY_TOKEN=$$AI_GATEWAY_TOKEN"
+          echo "ALLOWED_ORIGINS=$$ALLOWED_ORIGINS"
+          echo "GEMINI_MODEL=$$GEMINI_MODEL"
+          echo "CLAUDE_MODEL=$$CLAUDE_MODEL"
+          echo "GROQ_MODEL=$$GROQ_MODEL"
+        } > /app/.dev.vars
+        exec npx wrangler dev --ip 0.0.0.0 --port 8787 --show-interactive-dev-session false
+    tty: true
+
 volumes:
   skeleton-app-node-modules:
   fast-api-server-venv:
+  hono-server-node-modules:

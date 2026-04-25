@@ -12,6 +12,9 @@
 		{
 			"path": "apps/fast-api-server"
 		},
+		{
+			"path": "apps/hono-server"
+		},
 	],
 	"settings": {
 		// 全ワークスペース共通: Makefile はタブインデント
