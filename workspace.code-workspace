@@ -10,9 +10,6 @@
 			"path": "apps/skeleton-app"
 		},
 		{
-			"path": "apps/fast-api-server"
-		},
-		{
 			"path": "apps/hono-server"
 		},
 	],

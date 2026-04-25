@@ -35,8 +35,8 @@ graph LR
 
 **技術スタック**:
 
-- **フロントエンド**: Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
-- **バックエンド**: Python 3.13 + FastAPI
+- **フロントエンド**: TypeScript 6, Skeleton v4 (Svelte v5 + TailwindCSS v4 + Vite v6)
+- **バックエンド**: TypeScript 5, Hono v4, Wrangler v3
 - **インフラ**: GitHub Pages（フロントエンド） / Cloudflare Workers（バックエンド）
 
 ---
@@ -46,9 +46,9 @@ graph LR
 ```
 poke-api-stadium/
 ├── apps/
-│   ├── skeleton-app/      # フロントエンド (Skeleton)
-│   └── fast-api-server/   # バックエンド (FastAPI)
-└── docs/                  # ドキュメント
+│   ├── skeleton-app/  # フロントエンド (Skeleton)
+│   └── hono-server/   # バックエンド (Hono)
+└── docs/              # ドキュメント
 ```
 
 ---
@@ -73,8 +73,8 @@ npm run deploy
 **バックエンド**（Cloudflare Workers）:
 
 ```bash
-cd apps/fast-api-server
-uv run poe deploy
+cd apps/hono-server
+npm run deploy
 ```
 
 **公開 URL**: https://okmethod.github.io/poke-api-stadium/
