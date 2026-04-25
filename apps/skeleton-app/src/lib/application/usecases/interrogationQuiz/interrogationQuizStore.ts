@@ -15,6 +15,8 @@ export type GameStatus = "init" | "playing" | "finished";
 
 const gameStatusStore = writable<GameStatus>("init");
 const currentPokeNameStore = writable<string | null>(null);
+const pokeImageUrlStore = writable<string>("");
+const pokeCryUrlStore = writable<string | null>(null);
 const chatHistoryStore = writable<ChatMessage[]>([]);
 const streamingTextStore = writable<string>("");
 const isStreamingStore = writable<boolean>(false);
@@ -25,6 +27,12 @@ export const gameStatus = readonly(gameStatusStore);
 
 /** 現在の出題ポケモン名（読み取り専用） */
 export const currentPokeName = readonly(currentPokeNameStore);
+
+/** 出題ポケモンの画像URL（読み取り専用） */
+export const pokeImageUrl = readonly(pokeImageUrlStore);
+
+/** 出題ポケモンの鳴き声URL（読み取り専用） */
+export const pokeCryUrl = readonly(pokeCryUrlStore);
 
 /** チャット履歴（読み取り専用） */
 export const chatHistory = readonly(chatHistoryStore);
@@ -42,6 +50,8 @@ export const isAnswerRevealed = readonly(isAnswerRevealedStore);
 export const interrogationQuizStoreWriter = {
   setGameStatus: (value: GameStatus) => gameStatusStore.set(value),
   setCurrentPokeName: (value: string | null) => currentPokeNameStore.set(value),
+  setPokeImageUrl: (value: string) => pokeImageUrlStore.set(value),
+  setPokeCryUrl: (value: string | null) => pokeCryUrlStore.set(value),
   setChatHistory: (value: ChatMessage[]) => chatHistoryStore.set(value),
   setStreamingText: (value: string) => streamingTextStore.set(value),
   appendStreamingText: (chunk: string) => streamingTextStore.update((prev) => prev + chunk),

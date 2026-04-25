@@ -14,6 +14,9 @@ import {
   chatHistory,
 } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
 import type { ILLMChatRepository, LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
+import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 
 const APP_ID = "poke-api-stadium";
 
@@ -34,22 +37,36 @@ const SYSTEM_PROMPT =
  * テスト時にモックを注入可能にする。
  */
 export class InterrogationQuizFacade {
-  constructor(private readonly repository: ILLMChatRepository) {}
+  constructor(
+    private readonly repository: ILLMChatRepository,
+    private readonly pokeRepository: IPokeRepository,
+  ) {}
 
   /**
-   * ゲームを開始する
+   * ポケモンを抽選してゲームを開始する
    *
-   * ストアをリセットしてポケモン名をセットした後、AI に初回メッセージを送信する。
-   * imageFile が渡された場合、最初のメッセージに画像を添付してビジュアル情報を提供する。
+   * generationStore の選択世代からポケモンをランダムに選び、ストアをリセットした後、
+   * AI に初回メッセージを送信する。「もう一度」時も同じメソッドを呼び出す。
    */
-  async startGame(
-    fetchFn: typeof fetch,
-    pokeName: string,
-    provider: LLMProvider,
-    imageUrl?: string,
-  ): Promise<FacadeResult> {
+  async startGame(fetchFn: typeof fetch, provider: LLMProvider): Promise<FacadeResult> {
+    let pokeName: string;
+    let imageUrl: string;
+    let cryUrl: string | null;
+    try {
+      const allIds = getSelectedPokeIds();
+      const id = allIds[getRandomNumber(allIds.length)]!;
+      const pokeData = await this.pokeRepository.getPokemon(fetchFn, id);
+      pokeName = pokeData.jaName;
+      imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;
+      cryUrl = pokeData.cryUrls.latest ?? pokeData.cryUrls.legacy;
+    } catch {
+      return { success: false, error: "ポケモンデータの取得に失敗しました" };
+    }
+
     interrogationQuizStoreWriter.setGameStatus("init");
     interrogationQuizStoreWriter.setCurrentPokeName(pokeName);
+    interrogationQuizStoreWriter.setPokeImageUrl(imageUrl);
+    interrogationQuizStoreWriter.setPokeCryUrl(cryUrl);
     interrogationQuizStoreWriter.setChatHistory([]);
     interrogationQuizStoreWriter.setStreamingText("");
     interrogationQuizStoreWriter.setIsAnswerRevealed(false);
@@ -71,16 +88,6 @@ export class InterrogationQuizFacade {
   revealAnswer(): void {
     interrogationQuizStoreWriter.setIsAnswerRevealed(true);
     interrogationQuizStoreWriter.setGameStatus("finished");
-  }
-
-  /** ゲームをリセットする（次の startGame 呼び出しに備える） */
-  resetGame(): void {
-    interrogationQuizStoreWriter.setGameStatus("init");
-    interrogationQuizStoreWriter.setCurrentPokeName(null);
-    interrogationQuizStoreWriter.setChatHistory([]);
-    interrogationQuizStoreWriter.setStreamingText("");
-    interrogationQuizStoreWriter.setIsStreaming(false);
-    interrogationQuizStoreWriter.setIsAnswerRevealed(false);
   }
 
   // --- private helpers ---
