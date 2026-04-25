@@ -16,6 +16,7 @@ import type {
   IAuthCheckRepository,
   StreamChatParams,
   ILLMChatRepository,
+  LLMProvider,
 } from "$lib/application/ports/ILLMServiceRepository";
 import { getAppSecret } from "$lib/application/stores/appSecretStore";
 import { constructRequestInit, fetchApi } from "$lib/infrastructure/utils/request";
@@ -201,4 +202,12 @@ export function getLLMChatRepository(): ILLMChatRepository {
     chatRepositoryInstance = new LLMChatRepository();
   }
   return chatRepositoryInstance;
+}
+
+const LLM_PROVIDERS: readonly LLMProvider[] = ["stub", "gemini", "claude", "groq"];
+
+/** 環境変数から LLMProvider を解決する。未設定または不正値の場合は "stub" を返す */
+export function getDefaultLLMProvider(): LLMProvider {
+  const value = import.meta.env.VITE_DEFAULT_LLM_PROVIDER;
+  return LLM_PROVIDERS.includes(value as LLMProvider) ? (value as LLMProvider) : "stub";
 }

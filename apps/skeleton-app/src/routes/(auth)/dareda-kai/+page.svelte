@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { getLLMChatRepository } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
+  import { getLLMChatRepository, getDefaultLLMProvider } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
   import AppSecretModal from "$lib/presentation/components/modals/AppSecretModal.svelte";
@@ -15,14 +15,11 @@
     isAnswerRevealed,
     chatHistory,
   } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
-  import type { LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import ChatWindow from "./_components/ChatWindow.svelte";
 
-  const LLM_PROVIDERS: readonly LLMProvider[] = ["stub", "gemini", "claude", "groq"];
-  const providerEnv = import.meta.env.VITE_DEFAULT_LLM_PROVIDER;
-  const provider: LLMProvider = LLM_PROVIDERS.includes(providerEnv as LLMProvider) ? (providerEnv as LLMProvider) : "stub";
+  const provider = getDefaultLLMProvider();
 
   const facade = new InterrogationQuizFacade(getLLMChatRepository(), getPokeRepository());
 
