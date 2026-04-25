@@ -45,6 +45,7 @@ export type LLMProvider = "stub" | "gemini" | "claude" | "groq";
 /** streamChat のパラメータ */
 export interface StreamChatParams {
   readonly appId: string;
+  readonly systemPrompt?: string;
   readonly message: string;
   readonly imageUrl?: string;
   readonly history: ChatMessage[];

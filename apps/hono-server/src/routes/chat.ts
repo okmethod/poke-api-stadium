@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type { Env } from "@/types/env";
 import { chatRequestSchema } from "@/schemas/chat";
-import { getSystemPrompt } from "@/prompts/systemPrompts";
+import { buildSystemPrompt } from "@/prompts/systemPrompts";
 import { getGateway } from "@/services/gateway/protocol";
 import { authMiddleware } from "@/middleware/auth";
 
@@ -15,7 +15,7 @@ chat.post("/", authMiddleware, async (c) => {
   }
 
   const request = parsed.data;
-  const systemPrompt = getSystemPrompt(request.app_id);
+  const systemPrompt = buildSystemPrompt(request.app_id, request.system_prompt);
   const gateway = getGateway(request.provider);
 
   const encoder = new TextEncoder();

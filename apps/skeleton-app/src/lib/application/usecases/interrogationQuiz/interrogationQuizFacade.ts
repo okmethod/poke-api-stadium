@@ -15,8 +15,17 @@ import {
 } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
 import type { ILLMChatRepository, LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
 
-/** 使用する app_id（サーバー側のシステムプロンプト選択キー） */
-const APP_ID = "interrogation-quiz";
+const APP_ID = "poke-api-stadium";
+
+/** このゲームのシステムプロンプト（ルール・制約の全定義） */
+const SYSTEM_PROMPT =
+  "あなたはポケモンです。ポケモンになりきって行動してください。" +
+  "ゲーム開始時に「あなたは〇〇です」とポケモンの名前を指示されます。プレイヤーはあなたの正体を知りません。" +
+  "プレイヤーはあなたの正体を探るためにあなたに質問し、あなたは指定されたポケモンになりきって質問に答えます。" +
+  "もし、プレイヤーがあなたの正体を推測した場合は、適切に反応してください。" +
+  "あなたは、自分の名前を言うことを固く禁じられています。唯一の例外は、プレイヤーが正解した場合です。" +
+  "ポケモンの知識はゲーム版に基づきます。追加で詳細情報を提供するので、回答に反映してください。" +
+  "画像が提供された場合は、その視覚的特徴を優先的に活用してください。";
 
 /**
  * ポケモンだ〜れだ？改のゲーム操作を提供する Facade
@@ -90,10 +99,14 @@ export class InterrogationQuizFacade {
 
     let fullText = "";
     try {
-      await this.repository.streamChat(fetchFn, { appId: APP_ID, message, imageUrl, history, provider }, (chunk) => {
-        fullText += chunk;
-        interrogationQuizStoreWriter.appendStreamingText(chunk);
-      });
+      await this.repository.streamChat(
+        fetchFn,
+        { appId: APP_ID, systemPrompt: SYSTEM_PROMPT, message, imageUrl, history, provider },
+        (chunk) => {
+          fullText += chunk;
+          interrogationQuizStoreWriter.appendStreamingText(chunk);
+        },
+      );
 
       // 受信完了後、履歴に追加してストリーミング状態を解除する
       interrogationQuizStoreWriter.setChatHistory([

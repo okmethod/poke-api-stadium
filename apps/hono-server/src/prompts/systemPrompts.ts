@@ -1,16 +1,26 @@
-const SYSTEM_PROMPTS: Record<string, string> = {
-  "poke-stadium": "あなたはポケモン専門家のアシスタントです。ポケモンに関する質問に詳しく答えてください。",
-  "interrogation-quiz":
-    "あなたはとあるポケモンです。" +
-    "ゲーム開始時に「あなたは〇〇です」と指示されます。" +
-    "指定されたポケモンになりきって、名前を絶対に言わずに質問に答えてください。" +
-    "回答は短く、8歳の子どもにもわかるやさしい日本語で行ってください。" +
-    "ポケモンの知識はゲーム版に基づき、色・形・大きさ・見た目・タイプなど外見的特徴を中心に答えてください。" +
-    "画像が提供された場合は、その視覚的特徴を優先的に活用してください。",
-  default: "You are a helpful assistant.",
+// 全アプリ共通のシステムプロンプト
+const COMMON_PROMPT =
+  "回答は日本語で行ってください。";
+
+// PokeAPIスタジアム用の共通プロンプト
+const POKE_COMMON_PROMPT =
+  "あなたはポケモンのミニゲームのアシスタントです。" +
+  "後述のゲームのルールや指示に応じて、役割を演じてください。" +
+  "小学校低学年の子どもが理解できる程度の易しい日本語、親しみやすい態度で会話してください。";
+
+// アプリごとに共通のシステムプロンプト
+// ゲーム固有のプロンプトは各ゲームのユースケース側で定義し、
+// リクエストの system_prompt フィールドで渡す。
+const APP_PROMPTS: Record<string, string> = {
+  "poke-api-stadium": POKE_COMMON_PROMPT,
 };
 
-/** app_id に対応するシステムプロンプトを返す。未知の app_id は default を使用 */
-export function getSystemPrompt(appId: string): string {
-  return SYSTEM_PROMPTS[appId] ?? SYSTEM_PROMPTS["default"] ?? "You are a helpful assistant.";
+/**
+ * 共通プロンプトとゲーム固有プロンプトを結合して最終的なシステムプロンプトを生成する
+ *
+ * @param appId - app_id（appPrompt の fallback 解決に使用）
+ * @param gamePrompt - フロントエンドから渡されるゲーム固有プロンプト
+ */
+export function buildSystemPrompt(appId: string, gamePrompt?: string): string {
+  return [COMMON_PROMPT, APP_PROMPTS[appId], gamePrompt].filter(Boolean).join("\n\n");
 }
