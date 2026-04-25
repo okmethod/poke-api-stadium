@@ -46,6 +46,7 @@ export type LLMProvider = "stub" | "gemini" | "claude" | "groq";
 export interface StreamChatParams {
   readonly appId: string;
   readonly message: string;
+  readonly imageUrl?: string;
   readonly history: ChatMessage[];
   readonly provider: LLMProvider;
 }

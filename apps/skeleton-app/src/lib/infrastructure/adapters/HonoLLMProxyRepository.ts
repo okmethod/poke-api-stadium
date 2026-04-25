@@ -124,6 +124,7 @@ class LLMChatRepository implements ILLMChatRepository {
       body: JSON.stringify({
         app_id: params.appId,
         message: params.message,
+        image_url: params.imageUrl,
         history: params.history,
         provider: params.provider,
       }),
