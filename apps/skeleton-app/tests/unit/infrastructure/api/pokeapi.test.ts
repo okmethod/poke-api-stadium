@@ -78,7 +78,7 @@ describe("fetchPokemon", () => {
     expect(pokemon.id).toBe(25);
     expect(pokemon.name).toBe("pikachu");
     expect(pokemon.types).toHaveLength(1);
-    expect(pokemon.types[0].type.name).toBe("electric");
+    expect(pokemon.types[0]!.type.name).toBe("electric");
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/pokemon/25"), expect.any(Object));
   });

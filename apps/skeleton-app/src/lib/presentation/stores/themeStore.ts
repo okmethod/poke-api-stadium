@@ -49,7 +49,7 @@ interface Theme {
   dark: boolean;
 }
 
-const defaultTheme: Theme = { name: themeLabels[0]["name"], dark: false };
+const defaultTheme: Theme = { name: themeLabels[0]!["name"], dark: false };
 const savedTheme: Theme = browser
   ? JSON.parse(localStorage.getItem("theme") || JSON.stringify(defaultTheme))
   : defaultTheme;

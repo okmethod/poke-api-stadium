@@ -21,7 +21,7 @@
   const dataPoints = $derived(
     statsArr.map((v, i) => {
       const r = MAX_R * Math.min(v / MAX_STAT, 1);
-      return { x: CX + r * Math.cos(ANGLES[i]), y: CY + r * Math.sin(ANGLES[i]) };
+      return { x: CX + r * Math.cos(ANGLES[i]!), y: CY + r * Math.sin(ANGLES[i]!) };
     }),
   );
 

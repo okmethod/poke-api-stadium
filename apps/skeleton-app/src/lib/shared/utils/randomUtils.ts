@@ -31,5 +31,5 @@ export function pickRandomElementsFromArray<T>(array: readonly T[], count: numbe
 export function pickRandomElementsFromObject<T>(obj: Readonly<Record<string, T>>, count: number): T[] {
   const keys = Object.keys(obj);
   const pickedKeys = pickRandomElementsFromArray(keys, count);
-  return pickedKeys.map((key) => obj[key]);
+  return pickedKeys.map((key) => obj[key]!);
 }

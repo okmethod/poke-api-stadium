@@ -109,7 +109,7 @@ export class StatsSortingQuizFacade {
   revealResult(orderedPokeData: PokeData[], compareMode: CompareModeName): void {
     const mode = COMPARE_MODES[compareMode];
     const values = orderedPokeData.map((d) => mode.getValue(d));
-    const isCorrect = values.every((v, i) => i === 0 || values[i - 1] >= v);
+    const isCorrect = values.every((v, i) => i === 0 || values[i - 1]! >= v);
 
     const successMessages: Record<number, string> = {
       3: "せいかい！",

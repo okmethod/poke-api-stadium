@@ -146,9 +146,9 @@ export const triangleSoundEffects = createEffectsByWave("triangle");
  */
 const SE_ASSIGNMENTS = {
   // === システム・UI ===
-  confirm: { sound: SE.triangle.SHORT, desc: "決定: ピッ" },
-  cancel: { sound: SE.triangle.DESCEND, desc: "キャンセル: ポッ" },
-  error: { sound: SE.sawtooth.DISCORD, desc: "エラー: ブブッ" },
+  confirm: { sound: SE.triangle["SHORT"]!, desc: "決定: ピッ" },
+  cancel: { sound: SE.triangle["DESCEND"]!, desc: "キャンセル: ポッ" },
+  error: { sound: SE.sawtooth["DISCORD"]!, desc: "エラー: ブブッ" },
 } as const;
 
 /** アプリ用SE一覧（イテレート・一覧表示用） */

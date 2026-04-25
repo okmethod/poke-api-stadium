@@ -40,7 +40,7 @@ export class SilhouetteQuizFacade {
     silhouetteQuizStoreWriter.setIsLoading(true);
     try {
       const allIds = getSelectedPokeIds();
-      const id = allIds[getRandomNumber(allIds.length)];
+      const id = allIds[getRandomNumber(allIds.length)]!;
       const data = await this.repository.getPokemon(fetchFn, id);
       silhouetteQuizStoreWriter.setPokeData(data);
       return { success: true };
@@ -95,8 +95,8 @@ export class SilhouetteQuizFacade {
       ["すばやさ", data.stats.speed],
     ];
     const sorted = [...statsEntries].sort(([, a], [, b]) => b - a);
-    const topStat = sorted[0][1] > sorted[1][1] ? sorted[0][0] : null;
-    const bottomStat = sorted[5][1] < sorted[4][1] ? sorted[5][0] : null;
+    const topStat = sorted[0]![1] > sorted[1]![1] ? sorted[0]![0] : null;
+    const bottomStat = sorted[5]![1] < sorted[4]![1] ? sorted[5]![0] : null;
 
     const name = data.jaName;
     const candidates: (string | null)[] = [
@@ -109,6 +109,6 @@ export class SilhouetteQuizFacade {
       bottomStat ? `${bottomStat}は ひくい` : null,
     ];
     const hints = candidates.filter((h): h is string => h !== null);
-    return hints[getRandomNumber(hints.length)];
+    return hints[getRandomNumber(hints.length)]!;
   }
 }

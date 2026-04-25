@@ -97,7 +97,7 @@
           {#if blackKeyPositions[index] !== null}
             {@const blackKeyIdx = blackKeyPositions[index]!}
             <BeepButton
-              frequency={blackKeys[blackKeyIdx].frequency}
+              frequency={blackKeys[blackKeyIdx]!.frequency}
               waveType={selectedWaveType}
               className="
               absolute z-10 top-0 right-0 transform translate-x-1/2

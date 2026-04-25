@@ -56,7 +56,7 @@ export function generateButtonConfigs(
       content.symbolSrc !== undefined
         ? content.symbolSrc.type === "image" && imageUrlDict !== undefined
           ? {
-              src: imageUrlDict[content.symbolSrc.key],
+              src: imageUrlDict[content.symbolSrc.key] ?? "",
               alt: content.symbolSrc.key,
             }
           : {
