@@ -31,8 +31,14 @@ export class InterrogationQuizFacade {
    * ゲームを開始する
    *
    * ストアをリセットしてポケモン名をセットした後、AI に初回メッセージを送信する。
+   * imageFile が渡された場合、最初のメッセージに画像を添付してビジュアル情報を提供する。
    */
-  async startGame(fetchFn: typeof fetch, pokeName: string, provider: LLMProvider): Promise<FacadeResult> {
+  async startGame(
+    fetchFn: typeof fetch,
+    pokeName: string,
+    provider: LLMProvider,
+    imageUrl?: string,
+  ): Promise<FacadeResult> {
     interrogationQuizStoreWriter.setGameStatus("init");
     interrogationQuizStoreWriter.setCurrentPokeName(pokeName);
     interrogationQuizStoreWriter.setChatHistory([]);
@@ -41,7 +47,7 @@ export class InterrogationQuizFacade {
 
     // AI への最初のメッセージ: ポケモン名を伝えてゲーム開始を指示する
     const initialMessage = `あなたは「${pokeName}」です。最初に1つヒントを教えてください。`;
-    return this._sendMessage(fetchFn, initialMessage, provider, true);
+    return this._sendMessage(fetchFn, initialMessage, provider, true, imageUrl);
   }
 
   /**
@@ -75,6 +81,7 @@ export class InterrogationQuizFacade {
     message: string,
     provider: LLMProvider,
     isInitial: boolean,
+    imageUrl?: string,
   ): Promise<FacadeResult> {
     const history = get(chatHistory);
 
@@ -83,7 +90,7 @@ export class InterrogationQuizFacade {
 
     let fullText = "";
     try {
-      await this.repository.streamChat(fetchFn, { appId: APP_ID, message, history, provider }, (chunk) => {
+      await this.repository.streamChat(fetchFn, { appId: APP_ID, message, imageUrl, history, provider }, (chunk) => {
         fullText += chunk;
         interrogationQuizStoreWriter.appendStreamingText(chunk);
       });

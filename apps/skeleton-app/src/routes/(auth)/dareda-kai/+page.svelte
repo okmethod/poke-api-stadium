@@ -15,7 +15,11 @@
   import { showErrorToast } from "$lib/presentation/utils/toaster";
 
   interface Props {
-    data: { pokeName: string; provider: import("$lib/application/ports/ILLMServiceRepository").LLMProvider };
+    data: {
+      pokeName: string;
+      pokeImageUrl: string;
+      provider: import("$lib/application/ports/ILLMServiceRepository").LLMProvider;
+    };
   }
   let { data }: Props = $props();
 
@@ -30,7 +34,7 @@
 
   async function handleStart(): Promise<void> {
     userInput = "";
-    const result = await facade.startGame(fetch, data.pokeName, data.provider);
+    const result = await facade.startGame(fetch, data.pokeName, data.provider, data.pokeImageUrl);
     if (!result.success && result.error) showErrorToast(result.error);
   }
 
@@ -89,6 +93,7 @@
     <div class="card bg-primary-100-900 w-full rounded-2xl p-4 text-center">
       <p class="text-surface-600-400 text-sm">こたえは...</p>
       <p class="text-primary-700-300 mt-1 text-2xl font-bold">{$currentPokeName}</p>
+      <img src={data.pokeImageUrl} alt={$currentPokeName ?? ""} class="mx-auto mt-3 size-40 object-contain" />
     </div>
   {/if}
 
