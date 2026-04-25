@@ -8,7 +8,7 @@ services:
     working_dir: /app
     environment:
       LOCAL_API_BASE_URL: "http://hono-server:8787"
-      VITE_DEFAULT_LLM_PROVIDER: "claude"
+      VITE_DEFAULT_LLM_PROVIDER: "groq"
     volumes:
       - ./apps/skeleton-app:/app
       - skeleton-app-node-modules:/app/node_modules
@@ -21,7 +21,7 @@ services:
       - 8787:8787
     environment:
       # ローカル開発専用: シークレットをベタ書き（本番は wrangler secret put で設定）
-      APP_SECRET: "local-dev-secret"
+      APP_SECRET: "pass"
       AI_GATEWAY_BASE_URL: "${AI_GATEWAY_BASE_URL}"
       AI_GATEWAY_TOKEN: "${AI_GATEWAY_TOKEN}"
       # CORS: ローカルのフロントエンド開発サーバーを許可（カンマ区切り）
