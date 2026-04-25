@@ -14,10 +14,11 @@ import type { GenerationData } from "./generation";
 import { generationData } from "./generation";
 import type { PokeImageUrls } from "./pokeImages";
 import type { PokeCryUrls } from "./pokeCries";
+import { resolvedCryUrl } from "./pokeCries";
 
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
-export { pokeTypeColor, pokeTypeJaName, generationData };
+export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl };
 
 /**
  * アプリ内部のポケモン統合モデル

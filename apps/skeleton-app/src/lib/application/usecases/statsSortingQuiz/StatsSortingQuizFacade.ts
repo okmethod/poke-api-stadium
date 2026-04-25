@@ -10,8 +10,7 @@
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
-import { pickRandomNumbers } from "$lib/shared/utils/randomUtils";
+import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { statsSortingQuizStoreWriter } from "./statsSortingQuizStore";
 
 /** 比較モードの定義 */
@@ -86,11 +85,7 @@ export class StatsSortingQuizFacade {
     statsSortingQuizStoreWriter.setResult(null);
     statsSortingQuizStoreWriter.setIsLoading(true);
     try {
-      const allIds = getSelectedPokeIds();
-      const ids = pickRandomNumbers(allIds, count);
-      const pokeDataMap = await this.repository.getPokemons(fetchFn, ids);
-      // IDの選出順序を保持してPokeData[]に変換
-      const list = ids.map((id) => pokeDataMap[id.toString()]).filter((d): d is PokeData => d !== undefined);
+      const list = await selectRandomPokemons(this.repository, fetchFn, count);
       statsSortingQuizStoreWriter.setPokeDataList(list);
       return { success: true };
     } catch {

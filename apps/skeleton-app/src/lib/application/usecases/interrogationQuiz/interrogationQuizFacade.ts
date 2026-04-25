@@ -15,8 +15,8 @@ import {
 } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
 import type { ILLMChatRepository, LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
-import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
-import { getRandomNumber } from "$lib/shared/utils/randomUtils";
+import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 
 const APP_ID = "poke-api-stadium";
 
@@ -53,12 +53,10 @@ export class InterrogationQuizFacade {
     let imageUrl: string;
     let cryUrl: string | null;
     try {
-      const allIds = getSelectedPokeIds();
-      const id = allIds[getRandomNumber(allIds.length)]!;
-      const pokeData = await this.pokeRepository.getPokemon(fetchFn, id);
+      const pokeData = await selectRandomPokemon(this.pokeRepository, fetchFn);
       pokeName = pokeData.jaName;
       imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;
-      cryUrl = pokeData.cryUrls.latest ?? pokeData.cryUrls.legacy;
+      cryUrl = resolvedCryUrl(pokeData.cryUrls);
     } catch {
       return { success: false, error: "ポケモンデータの取得に失敗しました" };
     }

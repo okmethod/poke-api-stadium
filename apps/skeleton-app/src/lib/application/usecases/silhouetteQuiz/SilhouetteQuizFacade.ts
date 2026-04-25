@@ -12,8 +12,9 @@ import type { PokeData } from "$lib/domain/models/PokeData";
 import { pokeTypeJaName } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import { getSelectedPokeIds } from "$lib/application/stores/generationStore";
 import { getRandomNumber } from "$lib/shared/utils/randomUtils";
+import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 import { silhouetteQuizStoreWriter, pokeData, isOpen } from "./silhouetteQuizStore";
 
 /** toggleAnswer の戻り値（鳴き声URLの再生判断はプレゼン層で行う） */
@@ -39,9 +40,7 @@ export class SilhouetteQuizFacade {
     silhouetteQuizStoreWriter.setHintText(null);
     silhouetteQuizStoreWriter.setIsLoading(true);
     try {
-      const allIds = getSelectedPokeIds();
-      const id = allIds[getRandomNumber(allIds.length)]!;
-      const data = await this.repository.getPokemon(fetchFn, id);
+      const data = await selectRandomPokemon(this.repository, fetchFn);
       silhouetteQuizStoreWriter.setPokeData(data);
       return { success: true };
     } catch {
@@ -64,7 +63,7 @@ export class SilhouetteQuizFacade {
     const nextIsOpen = !get(isOpen);
     silhouetteQuizStoreWriter.setIsOpen(nextIsOpen);
     // こたえを開く時だけ鳴き声URLを返す（閉じる時は null）
-    return { cryUrl: nextIsOpen ? this.resolveCryUrl(current) : null };
+    return { cryUrl: nextIsOpen ? resolvedCryUrl(current.cryUrls) : null };
   }
 
   /** ランダムなヒントを生成してストアに書き込む */
@@ -80,10 +79,6 @@ export class SilhouetteQuizFacade {
   }
 
   // --- private helpers ---
-
-  private resolveCryUrl(data: PokeData): string | null {
-    return data.cryUrls.latest ?? data.cryUrls.legacy ?? null;
-  }
 
   private buildRandomHint(data: PokeData): string {
     const statsEntries: [string, number][] = [
