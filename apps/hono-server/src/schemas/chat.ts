@@ -6,12 +6,14 @@ export type LLMProvider = z.infer<typeof llmProviderSchema>;
 export const chatMessageSchema = z.object({
   role: z.enum(["user", "model"]),
   content: z.string(),
+  image_url: z.string().optional(),
 });
 export type ChatMessage = z.infer<typeof chatMessageSchema>;
 
 export const chatRequestSchema = z.object({
   app_id: z.string(),
   message: z.string(),
+  image_url: z.string().optional(),
   history: z.array(chatMessageSchema).default([]),
   provider: llmProviderSchema.default("stub"),
 });

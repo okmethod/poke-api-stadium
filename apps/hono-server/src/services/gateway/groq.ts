@@ -2,12 +2,25 @@ import type { Env } from "@/types/env";
 import type { ChatRequest } from "@/schemas/chat";
 import { readSSELines } from "@/utils/sse";
 
+type GroqContentPart =
+  | { type: "text"; text: string }
+  | { type: "image_url"; image_url: { url: string } };
+
+/** テキスト + 任意の画像からコンテンツパーツを構築する */
+function buildContent(text: string, imageUrl?: string): string | GroqContentPart[] {
+  if (!imageUrl) return text;
+  return [
+    { type: "image_url", image_url: { url: imageUrl } },
+    { type: "text", text },
+  ];
+}
+
 /** Groq (OpenAI 互換) へのリクエストボディを構築する */
 function buildGroqBody(request: ChatRequest, env: Env, systemPrompt: string) {
   // Groq の role は "system" | "user" | "assistant"。history の "model" を "assistant" に変換する
   const historyMessages = request.history.map((msg) => ({
     role: msg.role === "model" ? ("assistant" as const) : ("user" as const),
-    content: msg.content,
+    content: buildContent(msg.content, msg.image_url),
   }));
 
   return {
@@ -17,7 +30,7 @@ function buildGroqBody(request: ChatRequest, env: Env, systemPrompt: string) {
       // systemPrompt は先頭に role: "system" として追加
       { role: "system" as const, content: systemPrompt },
       ...historyMessages,
-      { role: "user" as const, content: request.message },
+      { role: "user" as const, content: buildContent(request.message, request.image_url) },
     ],
   };
 }
