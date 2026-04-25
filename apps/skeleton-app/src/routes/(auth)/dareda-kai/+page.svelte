@@ -13,12 +13,14 @@
     chatHistory,
   } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import ChatWindow from "./_components/ChatWindow.svelte";
 
   interface Props {
     data: {
       pokeName: string;
       pokeImageUrl: string;
+      pokeCryUrl: string | null;
       provider: import("$lib/application/ports/ILLMServiceRepository").LLMProvider;
     };
   }
@@ -30,18 +32,33 @@
   const firstModelIdx = $derived($chatHistory.findIndex((m) => m.role === "model"));
   const visibleHistory = $derived(firstModelIdx >= 0 ? $chatHistory.slice(firstModelIdx) : []);
 
+  function playCry(): void {
+    if (data.pokeCryUrl && getAudioOn()) {
+      new Audio(data.pokeCryUrl).play().catch(() => {});
+    }
+  }
+
   async function handleStart(): Promise<void> {
     const result = await facade.startGame(fetch, data.pokeName, data.provider, data.pokeImageUrl);
-    if (!result.success && result.error) showErrorToast(result.error);
+    if (!result.success && result.error) {
+      showErrorToast(result.error);
+    } else {
+      playCry();
+    }
   }
 
   async function handleSend(text: string): Promise<void> {
     const result = await facade.sendMessage(fetch, text, data.provider);
-    if (!result.success && result.error) showErrorToast(result.error);
+    if (!result.success && result.error) {
+      showErrorToast(result.error);
+    } else {
+      playCry();
+    }
   }
 
   function handleReveal(): void {
     facade.revealAnswer();
+    playCry();
   }
 
   function handleReset(): void {

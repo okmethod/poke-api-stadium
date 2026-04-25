@@ -15,12 +15,13 @@ const providerEnv = import.meta.env.VITE_DEFAULT_LLM_PROVIDER;
 
 export async function load({
   fetch,
-}: LoadEvent): Promise<{ pokeName: string; pokeImageUrl: string; provider: LLMProvider }> {
+}: LoadEvent): Promise<{ pokeName: string; pokeImageUrl: string; pokeCryUrl: string | null; provider: LLMProvider }> {
   const id = getRandomNumber(GEN1_MAX_ID) + 1; // 1〜151
   const pokeData = await getPokeRepository().getPokemon(fetch, id);
   return {
     pokeName: pokeData.jaName,
     pokeImageUrl: pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front,
+    pokeCryUrl: pokeData.cryUrls.latest ?? pokeData.cryUrls.legacy,
     provider: isLLMProvider(providerEnv) ? providerEnv : "stub",
   };
 }
