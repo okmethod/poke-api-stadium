@@ -7,11 +7,12 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
+import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import type { ISeesawPhysicsEngine } from "$lib/application/ports/ISeesawPhysicsEngine";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
+import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { storeWriter } from "./store";
 
 const POKE_COUNT = 2;
@@ -51,25 +52,22 @@ export class WeightComparisonFacade {
     this.seesawEngine.resetSeesaw();
     storeWriter.setIsRevealed(false);
 
-    storeWriter.setIsLoading(true);
-    try {
-      const pokemons = await selectRandomPokemons(this.repository, fetchFn, POKE_COUNT);
-      storeWriter.setPokeDataList(pokemons);
-
-      const addPromises = pokemons.map((poke, i) => {
-        const id = crypto.randomUUID();
-        this.activeBodyIds.push(id);
-        const imageUrl = poke.imageUrls.pixel.front ?? poke.imageUrls.artwork.front ?? "";
-        return this.seesawEngine.addPokeBody({ id, imageUrl, side: SIDES[i]!, mass: poke.weight });
-      });
-      await Promise.all(addPromises);
-      return { success: true };
-    } catch {
-      storeWriter.setPokeDataList([]);
-      return { success: false, error: "ポケモンをよびだせなかった" };
-    } finally {
-      storeWriter.setIsLoading(false);
-    }
+    return withLoadingGuard(
+      () => selectRandomPokemons(this.repository, fetchFn, POKE_COUNT),
+      (v) => storeWriter.setIsLoading(v),
+      async (pokemons) => {
+        storeWriter.setPokeDataList(pokemons);
+        const addPromises = pokemons.map((poke, i) => {
+          const id = crypto.randomUUID();
+          this.activeBodyIds.push(id);
+          const imageUrl = poke.imageUrls.pixel.front ?? poke.imageUrls.artwork.front ?? "";
+          return this.seesawEngine.addPokeBody({ id, imageUrl, side: SIDES[i]!, mass: poke.weight });
+        });
+        await Promise.all(addPromises);
+        return { success: true } as const;
+      },
+      () => storeWriter.setPokeDataList([]),
+    );
   }
 
   /** ポケモンボディを動的化してシーソーを動かす */
