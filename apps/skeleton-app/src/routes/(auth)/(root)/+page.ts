@@ -15,7 +15,7 @@ const menuItems: MenuItem[] = [
   { label: "ポケモンずかん", ballKey: "poke-ball", action: "navigate", target: "/zukan" },
   { label: "ポケモンXXくらべ", ballKey: "great-ball", action: "navigate", target: "/kurabe" },
   { label: "たかさくらべ 改", ballKey: "ultra-ball", action: "navigate", target: "/kurabe-h" },
-  // { label: "ポケモンおもさくらべ 改", ballKey: "heavy-ball", action: "navigate", target: "/zukan" },
+  { label: "おもさくらべ 改", ballKey: "heavy-ball", action: "navigate", target: "/kurabe-w" },
   // { label: "ポケモンタイプじゃんけん", ballKey: "fast-ball", action: "navigate", target: "/zukan" },
   // { label: "ポケモンしりとり", ballKey: "heal-ball", action: "navigate", target: "/zukan" },
   { label: "ポケモンだ〜れだ？", ballKey: "dusk-ball", action: "navigate", target: "/dareda" },
