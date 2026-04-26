@@ -29,6 +29,12 @@ export const hintText = readonly(hintTextStore);
 
 /** Facade からのみ使用するストア書き込みAPI */
 export const storeWriter = {
+  reset: () => {
+    pokeDataStore.set(null);
+    isOpenStore.set(false);
+    isLoadingStore.set(false);
+    hintTextStore.set(null);
+  },
   setPokeData: (value: PokeData | null) => pokeDataStore.set(value),
   setIsOpen: (value: boolean) => isOpenStore.set(value),
   setIsLoading: (value: boolean) => isLoadingStore.set(value),

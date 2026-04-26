@@ -78,10 +78,7 @@ export class InterrogationQuizFacade {
   // --- private helpers ---
 
   private _initGameState(pokeData: PokeData) {
-    storeWriter.setGameStatus("init");
-    storeWriter.setChatHistory([]);
-    storeWriter.setStreamingText("");
-    storeWriter.setIsAnswerRevealed(false);
+    storeWriter.reset();
 
     const pokeName = pokeData.jaName;
     const imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;

@@ -48,6 +48,16 @@ export const isAnswerRevealed = readonly(isAnswerRevealedStore);
 
 /** Facade からのみ使用するストア書き込みAPI */
 export const storeWriter = {
+  reset: () => {
+    gameStatusStore.set("init");
+    currentPokeNameStore.set(null);
+    pokeImageUrlStore.set("");
+    pokeCryUrlStore.set(null);
+    chatHistoryStore.set([]);
+    streamingTextStore.set("");
+    isStreamingStore.set(false);
+    isAnswerRevealedStore.set(false);
+  },
   setGameStatus: (value: GameStatus) => gameStatusStore.set(value),
   setCurrentPokeName: (value: string | null) => currentPokeNameStore.set(value),
   setPokeImageUrl: (value: string) => pokeImageUrlStore.set(value),

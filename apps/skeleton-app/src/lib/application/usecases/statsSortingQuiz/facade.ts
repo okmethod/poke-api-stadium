@@ -78,8 +78,7 @@ export class StatsSortingQuizFacade {
 
   /** ランダムにポケモンを選出してストアを更新する */
   async pickPokemons(fetchFn: typeof fetch, count: number): Promise<FacadeResult> {
-    storeWriter.setIsOpen(false);
-    storeWriter.setResult(null);
+    storeWriter.reset();
     return withLoadingGuard(
       () => selectRandomPokemons(this.repository, fetchFn, count),
       (v) => storeWriter.setIsLoading(v),
@@ -111,7 +110,6 @@ export class StatsSortingQuizFacade {
 
   /** ゲーム状態をリセットする */
   reset(): void {
-    storeWriter.setIsOpen(false);
-    storeWriter.setResult(null);
+    storeWriter.reset();
   }
 }

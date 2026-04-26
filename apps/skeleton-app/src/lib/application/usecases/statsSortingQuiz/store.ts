@@ -29,6 +29,12 @@ export const result = readonly(resultStore);
 
 /** Facade からのみ使用するストア書き込みAPI */
 export const storeWriter = {
+  reset: () => {
+    pokeDataListStore.set([]);
+    isOpenStore.set(false);
+    isLoadingStore.set(false);
+    resultStore.set(null);
+  },
   setPokeDataList: (value: PokeData[]) => pokeDataListStore.set(value),
   setIsOpen: (value: boolean) => isOpenStore.set(value),
   setIsLoading: (value: boolean) => isLoadingStore.set(value),
