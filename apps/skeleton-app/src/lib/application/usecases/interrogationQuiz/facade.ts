@@ -1,24 +1,21 @@
 /**
- * InterrogationQuizFacade - ポケモンだ〜れだ？改の全操作コマンドの唯一の入り口
+ * ポケモン尋問クイズの全操作コマンドの唯一の入り口
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
- * - ALLOWED: アプリ層ストアへの依存、アプリ層 Port への依存
- * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存（Svelte/DOM/UIライブラリ）
+ * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存、アプリ層 Port への依存
+ * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
 import { get } from "svelte/store";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import {
-  interrogationQuizStoreWriter,
-  chatHistory,
-} from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
 import type { ILLMChatRepository, LLMProvider } from "$lib/application/ports/ILLMServiceRepository";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
+import { storeWriter, chatHistory } from "./store";
 
 const APP_ID = "poke-api-stadium";
 
@@ -33,7 +30,7 @@ const SYSTEM_PROMPT =
   "画像が提供された場合は、その視覚的特徴を優先的に活用してください。";
 
 /**
- * ポケモンだ〜れだ？改のゲーム操作を提供する Facade
+ * ポケモン尋問クイズのゲーム操作を提供する Facade
  *
  * ILLMChatRepository を constructor injection で受け取ることで、
  * テスト時にモックを注入可能にする。
@@ -74,24 +71,24 @@ export class InterrogationQuizFacade {
 
   /** こたえを表示する */
   revealAnswer(): void {
-    interrogationQuizStoreWriter.setIsAnswerRevealed(true);
-    interrogationQuizStoreWriter.setGameStatus("finished");
+    storeWriter.setIsAnswerRevealed(true);
+    storeWriter.setGameStatus("finished");
   }
 
   // --- private helpers ---
 
   private _initGameState(pokeData: PokeData) {
-    interrogationQuizStoreWriter.setGameStatus("init");
-    interrogationQuizStoreWriter.setChatHistory([]);
-    interrogationQuizStoreWriter.setStreamingText("");
-    interrogationQuizStoreWriter.setIsAnswerRevealed(false);
+    storeWriter.setGameStatus("init");
+    storeWriter.setChatHistory([]);
+    storeWriter.setStreamingText("");
+    storeWriter.setIsAnswerRevealed(false);
 
     const pokeName = pokeData.jaName;
     const imageUrl = pokeData.imageUrls.pixel.front || pokeData.imageUrls.artwork.front;
     const cryUrl = resolvedCryUrl(pokeData.cryUrls);
-    interrogationQuizStoreWriter.setCurrentPokeName(pokeName);
-    interrogationQuizStoreWriter.setPokeImageUrl(imageUrl);
-    interrogationQuizStoreWriter.setPokeCryUrl(cryUrl);
+    storeWriter.setCurrentPokeName(pokeName);
+    storeWriter.setPokeImageUrl(imageUrl);
+    storeWriter.setPokeCryUrl(cryUrl);
 
     return { pokeName, imageUrl };
   }
@@ -105,8 +102,8 @@ export class InterrogationQuizFacade {
   ): Promise<FacadeResult> {
     const history = get(chatHistory);
 
-    interrogationQuizStoreWriter.setStreamingText("");
-    interrogationQuizStoreWriter.setIsStreaming(true);
+    storeWriter.setStreamingText("");
+    storeWriter.setIsStreaming(true);
 
     let fullText = "";
     try {
@@ -115,27 +112,27 @@ export class InterrogationQuizFacade {
         { appId: APP_ID, systemPrompt: SYSTEM_PROMPT, message, imageUrl, history, provider },
         (chunk) => {
           fullText += chunk;
-          interrogationQuizStoreWriter.appendStreamingText(chunk);
+          storeWriter.appendStreamingText(chunk);
         },
       );
 
       // 受信完了後、履歴に追加してストリーミング状態を解除する
-      interrogationQuizStoreWriter.setChatHistory([
+      storeWriter.setChatHistory([
         ...history,
         { role: "user", content: message },
         { role: "model", content: fullText },
       ]);
-      interrogationQuizStoreWriter.setStreamingText("");
+      storeWriter.setStreamingText("");
 
       if (isInitial) {
-        interrogationQuizStoreWriter.setGameStatus("playing");
+        storeWriter.setGameStatus("playing");
       }
       return { success: true };
     } catch {
-      interrogationQuizStoreWriter.setStreamingText("...エラーが発生しました。もう一度お試しください。");
+      storeWriter.setStreamingText("...エラーが発生しました。もう一度お試しください。");
       return { success: false, error: "AI との通信に失敗しました" };
     } finally {
-      interrogationQuizStoreWriter.setIsStreaming(false);
+      storeWriter.setIsStreaming(false);
     }
   }
 }

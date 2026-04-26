@@ -1,9 +1,9 @@
 /**
- * interrogationQuizStore - ポケモンだ〜れだ？改のゲーム状態ストア
+ * ポケモン尋問クイズのゲーム状態ストア
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Store)
- * - ROLE: ゲーム状態の保持・更新（InterrogationQuizFacade のみが書き込む）
- * - ALLOWED: アプリ層の Port 型への依存
+ * - ROLE: ゲーム状態の保持・更新（Facade のみが書き込む）
+ * - ALLOWED: ドメイン層への依存、アプリ層の Port 型への依存
  * - FORBIDDEN: インフラ層への依存、プレゼン層への依存
  */
 
@@ -46,8 +46,8 @@ export const isStreaming = readonly(isStreamingStore);
 /** こたえ表示済みかどうか（読み取り専用） */
 export const isAnswerRevealed = readonly(isAnswerRevealedStore);
 
-/** InterrogationQuizFacade からのみ使用するストア書き込みAPI */
-export const interrogationQuizStoreWriter = {
+/** Facade からのみ使用するストア書き込みAPI */
+export const storeWriter = {
   setGameStatus: (value: GameStatus) => gameStatusStore.set(value),
   setCurrentPokeName: (value: string | null) => currentPokeNameStore.set(value),
   setPokeImageUrl: (value: string) => pokeImageUrlStore.set(value),

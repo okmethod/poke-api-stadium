@@ -4,8 +4,14 @@
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
   import AppSecretModal from "$lib/presentation/components/modals/AppSecretModal.svelte";
-  import { InterrogationQuizFacade } from "$lib/application/usecases/interrogationQuiz/interrogationQuizFacade";
-  import {
+  import { InterrogationQuiz } from "$lib/application/usecases/InterrogationQuiz";
+  import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import { getAudioOn } from "$lib/presentation/stores/audioStore";
+  import ChatWindow from "./_components/ChatWindow.svelte";
+
+  const provider = getDefaultLLMProvider();
+  const facade = new InterrogationQuiz.Facade(getLLMChatRepository(), getPokeRepository());
+  const {
     gameStatus,
     currentPokeName,
     pokeImageUrl,
@@ -14,14 +20,7 @@
     isStreaming,
     isAnswerRevealed,
     chatHistory,
-  } from "$lib/application/usecases/interrogationQuiz/interrogationQuizStore";
-  import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import { getAudioOn } from "$lib/presentation/stores/audioStore";
-  import ChatWindow from "./_components/ChatWindow.svelte";
-
-  const provider = getDefaultLLMProvider();
-
-  const facade = new InterrogationQuizFacade(getLLMChatRepository(), getPokeRepository());
+  } = InterrogationQuiz.Store;
 
   // 初回 setup メッセージ（isInitial のユーザーメッセージ）を除いた表示用チャット履歴
   const firstModelIdx = $derived($chatHistory.findIndex((m) => m.role === "model"));
