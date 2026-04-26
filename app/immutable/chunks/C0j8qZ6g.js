@@ -1,0 +1,1 @@
+async function e(f,c,l,u,t="ポケモンをよびだせなかった"){c==null||c(!0);try{const a=l(await f());return a instanceof Promise?await a:{success:!0}}catch{return u==null||u(),{success:!1,error:t}}finally{c==null||c(!1)}}export{e as w};
