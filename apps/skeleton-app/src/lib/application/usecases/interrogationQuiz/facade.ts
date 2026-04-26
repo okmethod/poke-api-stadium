@@ -45,7 +45,7 @@ export class InterrogationQuizFacade {
    * ポケモンを抽選してゲームを開始する
    *
    * generationStore の選択世代からポケモンをランダムに選び、ストアをリセットした後、
-   * AI に初回メッセージを送信する。「もう一度」時も同じメソッドを呼び出す。
+   * LLM に初回メッセージを送信する。「もう一度」時も同じメソッドを呼び出す。
    */
   async startGame(fetchFn: typeof fetch, provider: LLMProvider): Promise<FacadeResult> {
     return withLoadingGuard(
@@ -53,7 +53,7 @@ export class InterrogationQuizFacade {
       undefined,
       async (pokeData) => {
         const { pokeName, imageUrl } = this._initGameState(pokeData);
-        // AI への最初のメッセージ: ポケモン名を伝えてゲーム開始を指示する
+        // LLM への最初のメッセージ: ポケモン名を伝えてゲーム開始を指示する
         const initialMessage = `あなたは「${pokeName}」です。最初に1つヒントを教えてください。`;
         return this._sendMessage(fetchFn, initialMessage, provider, true, imageUrl);
       },
@@ -62,7 +62,7 @@ export class InterrogationQuizFacade {
   }
 
   /**
-   * ユーザーのメッセージを送信し、AI のストリーミング応答を受信する
+   * ユーザーのメッセージを送信し、LLM のストリーミング応答を受信する
    */
   async sendMessage(fetchFn: typeof fetch, userText: string, provider: LLMProvider): Promise<FacadeResult> {
     if (!userText.trim()) return { success: false, error: "メッセージが空です" };
@@ -125,9 +125,15 @@ export class InterrogationQuizFacade {
         storeWriter.setGameStatus("playing");
       }
       return { success: true };
-    } catch {
-      storeWriter.setStreamingText("...エラーが発生しました。もう一度お試しください。");
-      return { success: false, error: "AI との通信に失敗しました" };
+    } catch (err) {
+      const isRateLimit = err instanceof Error && err.message === "RATE_LIMIT";
+      storeWriter.setStreamingText(
+        isRateLimit ? "今日はもう、つかれちゃったよ..." : "...エラーが発生しました。もう一度お試しください。",
+      );
+      return {
+        success: false,
+        error: isRateLimit ? "今日はもう、つかれちゃったよ..." : "LLM との通信に失敗しました",
+      };
     } finally {
       storeWriter.setIsStreaming(false);
     }

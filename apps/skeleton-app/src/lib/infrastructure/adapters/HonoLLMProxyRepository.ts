@@ -139,6 +139,7 @@ class LLMChatRepository implements ILLMChatRepository {
 
     const decoder = new TextDecoder();
     let buffer = "";
+    let currentEvent = "";
 
     try {
       while (true) {
@@ -151,7 +152,29 @@ class LLMChatRepository implements ILLMChatRepository {
         buffer = lines.pop() ?? "";
 
         for (const line of lines) {
+          if (line.startsWith("event:")) {
+            currentEvent = line.replace(/^event:\s*/, "").trim();
+            continue;
+          }
+          if (line.trim() === "") {
+            currentEvent = "";
+            continue;
+          }
           if (!line.startsWith("data:")) continue;
+
+          if (currentEvent === "error") {
+            // SSE エラーイベントを例外に変換する
+            const jsonStr = line.replace(/^data:\s*/, "").trim();
+            let detail = "Unknown stream error";
+            try {
+              const errorData = JSON.parse(jsonStr) as { detail?: string };
+              detail = errorData.detail ?? detail;
+            } catch {
+              // JSONパース失敗はデフォルトメッセージを使用
+            }
+            throw new Error(detail.includes("429") ? "RATE_LIMIT" : detail);
+          }
+
           const text = extractText(params.provider, line);
           if (text) onChunk(text);
         }
