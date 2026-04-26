@@ -2,11 +2,11 @@
 
 ## コンセプト: 4 層構造 かつドメイン中心の Clean Architecture
 
-PokeAPI への依存を UI・ゲームロジックから完全に分離し、変更に強くテストしやすい構成にする。
+外部サービス（PokeAPI・物理エンジン・LLM）への依存を UI・ゲームロジックから完全に分離し、変更に強くテストしやすい構成にする。
 
 1. **Domain Layer（ドメイン層）** : 外部に依存しないポケモンデータモデル
 2. **Application Layer（アプリ層）** : ユースケース・動的ゲーム状態管理・Port 定義
-3. **Infrastructure Layer（インフラ層）** : 外部 API アクセス（PokeAPI）
+3. **Infrastructure Layer（インフラ層）** : 外部サービスアクセス Adapter
 4. **Presentation Layer（プレゼン層）** : UI・Controller
 
 ```mermaid
@@ -14,10 +14,10 @@ PokeAPI への依存を UI・ゲームロジックから完全に分離し、変
     subgraph Game Core Logic
         D[ドメイン層<br>データモデル]
         A[アプリ層<br>ユースケース・状態管理]
-        IP(Port Interface<br>IPokeRepository)
+        IP(Port Interface)
     end
     P[プレゼン層<br>UI・Controller]
-    I[インフラ層<br>外部アクセス]
+    I[インフラ層<br>Adapter]
 
     P --> A
     A --> D
@@ -51,7 +51,6 @@ skeleton-app/src/lib/
 ```
 src/lib/domain/
 └── models/
-    └── PokeData/  # ポケモンデータ
 ```
 
 **重要**:
@@ -67,71 +66,67 @@ src/lib/domain/
   - タイプ・ステータス・世代などのデータを統合管理する
   - PokeAPI レスポンス型（外部）とは明確に区別する
 
+- **2dPhysics**: 2D物理演算モデル
+  - 2D空間、物体の表現
+
 ### Application Layer
 
 **責任**:
 
-- ユーザーの操作をユースケースとして実装する
+- 各ゲームの操作・状態管理をユースケースとして実装する
 - Port Interface を定義し、インフラ層への依存を抽象化する
-- Svelte Runes ストアでアプリ状態を管理する
 
 **ディレクトリ構造**
 
 ```
 src/lib/application/
 ├── ports/
-│   └── IPokeRepository.ts  # Port Interface（PokeAPI 取得の抽象）
-├── usecases/               # ゲームロジック
-│   ├── janken.ts           # じゃんけん（タイプ相性ベース）勝敗判定
-│   ├── dareda.ts           # だれだ（シルエット当て）出題・正解判定
-│   ├── kurabe.ts           # くらべ（ステータス比較）判定
-│   └── shiritori.ts        # しりとり ルール検証
-└── stores/
-    └── generationStore.ts  # 世代フィルタ（アプリ全体の SSOT）
+│   └── IXXXRepository  # 外部サービスに依存しないインターフェース
+├── usecases/
+│   └── GameXXX         # あるゲーム XXX のロジック
+│       ├── facade.ts   # ゲーム操作の唯一の入り口
+│       ├── store.ts    # ゲーム状態管理ストア
+│       └── index.ts    # facade / store の再エクスポート
+└── stores/             # アプリ全体の SSOT となる状態管理
 ```
 
 **主要コンポーネント**:
 
-- **IPokeRepository**: PokeAPI 取得の Port Interface（Port/Adapter Pattern）
-  - `getPokemon(idOrName)` / `getType(idOrName)` を定義
+- **IXXXRepository**: 外部サービスアクセスの抽象 Port Interface（Port/Adapter Pattern）
   - アプリ層は具象 API クライアントに依存しない
 
 - **usecases**: ゲームロジックを純粋関数として実装
   - ドメインモデル（TypeData 等）を参照するが、UI には依存しない
+  - プレゼン層に Facade 経由でのユーザ操作と、 store 経由での表示用データを提供する
+  - store 内の状態を更新するのは Facade のみ
   - テスト時に UI なしで検証できる構造を維持する
-
-- **generationStore**: 世代フィルタの SSOT
-  - 第 1〜9 世代 + 全世代をサポート
-  - ローカルストレージで選択を永続化
-  - 各ゲームページが subscribe してポケモン範囲を絞り込む
 
 ### Infrastructure Layer
 
 **責任**:
 
-- PokeAPI との通信を担う
+- 外部サービスとの通信を担う
 - Port Interface を実装し、アプリ層を API の実装詳細から隔離する
 
 **ディレクトリ構造**
 
 ```
 src/lib/infrastructure/
-└── adapters/
-    └── PokeApiAdapter.ts  # IPokeRepository の具象実装
+├── adapters/  # 外部サービスアクセスの具象実装
+└── api/       # 外部APIアクセスの Zod スキーマ検証
 ```
 
 **主要コンポーネント**:
 
-- **PokeApiAdapter**: Port/Adapter Pattern の Adapter
-  - `IPokeRepository` を実装
+- **XXXAdapter**: 外部サービスアクセスの具象 Adapter（Port/Adapter Pattern）
   - PokeAPI を呼び出し、Zod でレスポンスを検証する
-  - ドメインモデルへの変換（`convertToPokeData()` 等）を担う
+  - ドメインモデルへの変換を担う
   - テスト時はモック実装に差し替え可能
 
 **依存性逆転（Port/Adapter Pattern）**:
 
-- アプリ層は抽象 Port（`IPokeRepository`）に依存
-- インフラ層が具象 Adapter（`PokeApiAdapter`）を提供
+- アプリ層は抽象 Port（例: `IPokeRepository`）に依存
+- インフラ層が具象 Adapter（例: `PokeApiAdapter`）を提供
 - → アプリ層は PokeAPI の実装詳細から完全に分離
 
 ### Presentation Layer
@@ -147,45 +142,21 @@ src/lib/infrastructure/
 ```
 src/lib/presentation/
 ├── components/   # UI コンポーネント
-│   ├── cards/    # PokeCard, PokeChip, PokeTile 等
-│   ├── buttons/  # 汎用ボタン類
-│   └── modals/   # モーダルダイアログ
-├── stores/       # UI 状態管理（themeStore, audioStore）
-├── sounds/       # 音声処理
-├── utils/        # ナビゲーション・トースト等
-└── constants/    # UI 定数値
+├── stores/       # UI 状態管理
+└── sounds/       # 音声処理
 ```
 
 **ロジックの責務**:
 
-- ✅ 表示ロジック（アニメーション、モーダル制御等）
-- ❌ ゲームロジック（タイプ相性計算等）→ Application 層に委譲
+- Store の状態を画面に描画し、ユーザー入力を facade に伝える
+- ゲームロジック（タイプ相性計算等）は全て Application 層に委譲
 
 ---
 
 ## データフロー（Unidirectional）
 
-```
-1. User Action
-   ユーザーがゲームを操作（ポケモン選択等）
-
-2. Dispatch
-   UI が usecase または store のメソッドを呼ぶ
-
-3. Fetch & Convert
-   IPokeRepository.getPokemon(id) → PokeApiAdapter → PokeAPI
-   Zod でレスポンス検証 → PokeData（ドメインモデル）へ変換
-
-4. State Update
-   Store が新しい状態で上書き
-
-5. Re-render
-   Svelte が変更を検知し、画面を再描画
-```
-
----
-
-## 関連ドキュメント
-
-- [ドメイン知識](../domain/overview.md) - ポケモンデータのドメインモデル
-- [テスト戦略](./testing-strategy.md) - テストの方針と実装方法
+1. User Action : ユーザーがゲームを操作
+2. Dispatch : UI が usecase または store のメソッドを呼ぶ
+3. Fetch/Process : Port 経由でインフラ層が外部アクセスし、ドメインモデルへ変換
+4. State Update : Store が新しい状態で上書き
+5. Re-render : Svelte が変更を検知し、画面を再描画

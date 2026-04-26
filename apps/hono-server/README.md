@@ -137,17 +137,3 @@ npm run put-secrets
 # デプロイ
 npm run deploy
 ```
-
----
-
-## 拡張方法
-
-**アプリ追加:**
-
-1. `src/prompts/systemPrompts.ts` に `app_id` とプロンプトを追加
-
-**プロバイダー追加:**
-
-1. `src/services/gateway/{provider}.ts` を新規作成（`stream` 関数を実装）
-2. `src/schemas/chat.ts` の `LLMProvider` に追加
-3. `src/services/gateway/protocol.ts` のルーティングに追加

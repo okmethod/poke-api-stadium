@@ -22,10 +22,19 @@
 **内容**:
 
 - レイヤー構成と依存関係ルール
-- Port/Adapter パターン（PokeAPI の抽象化）
+- Port/Adapter パターン
 - ディレクトリ構造
 - データフロー
-- 世代フィルタの管理方針
+
+---
+
+### [physics-engine.md](./physics-engine.md)
+
+**内容**:
+
+- 物理エンジンのレイヤー別役割分担
+- Matter.js の現状課題
+- Rapier（WASM）への移行検討（メリット・デメリット・移行スコープ）
 
 ---
 
