@@ -1,10 +1,10 @@
 /**
- * PairCollisionDetectionFacade - えあわせゲームの全操作コマンドの唯一の入り口
+ * ポケモン対消滅の全操作コマンドの唯一の入り口
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
  * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存、アプリ層 Port への依存
- * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存（Svelte/DOM/UIライブラリ）
+ * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
 import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
@@ -14,13 +14,14 @@ import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/model
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { getRandomNumber } from "$lib/shared/utils/randomUtils";
-import { pairCollisionDetectionStoreWriter } from "./pairCollisionDetectionStore";
+import { storeWriter } from "./store";
 
 const SPAWN_Y = 50;
+
 // カテゴリ 1 はアダプター内で壁に使用するため、ポケモンは 2 以降を使う
 const POKEMON_CATEGORY_OFFSET = 2;
 
-/** えあわせゲームのゲーム操作を提供する Facade */
+/** ポケモン対消滅のゲーム操作を提供する Facade */
 export class PairCollisionDetectionFacade {
   private worldConfig: PhysicsWorld2dConfig | null = null;
   private removeCollisionListener: (() => void) | null = null;
@@ -39,7 +40,7 @@ export class PairCollisionDetectionFacade {
     this.worldConfig = config;
     await this.physics.initialize(config);
     this.removeCollisionListener = this.physics.onCollision(this.handleCollision.bind(this));
-    pairCollisionDetectionStoreWriter.reset();
+    storeWriter.reset();
   }
 
   /** エンジンを停止してリソースを解放する */
@@ -81,7 +82,7 @@ export class PairCollisionDetectionFacade {
       }
       await Promise.all(addBodyPromises);
 
-      pairCollisionDetectionStoreWriter.addActiveBodyCount(pokemons.length * 2);
+      storeWriter.addActiveBodyCount(pokemons.length * 2);
       return { success: true };
     } catch {
       return { success: false, error: "ポケモンをよびだせなかった" };
@@ -100,8 +101,8 @@ export class PairCollisionDetectionFacade {
     this.physics.removeBody(a.id);
     this.physics.removeBody(b.id);
 
-    pairCollisionDetectionStoreWriter.addMatchedCount(1);
-    pairCollisionDetectionStoreWriter.addActiveBodyCount(-2);
-    pairCollisionDetectionStoreWriter.setLastMatchCryUrl(this.categoryToCryUrl.get(a.category) ?? null);
+    storeWriter.addMatchedCount(1);
+    storeWriter.addActiveBodyCount(-2);
+    storeWriter.setLastMatchCryUrl(this.categoryToCryUrl.get(a.category) ?? null);
   }
 }

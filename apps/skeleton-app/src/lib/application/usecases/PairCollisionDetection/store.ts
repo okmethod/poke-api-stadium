@@ -1,10 +1,10 @@
 /**
- * pairCollisionDetectionStore - えあわせゲームの状態ストア
+ * ポケモン対消滅のゲーム状態ストア
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Store)
- * - ROLE: ゲーム状態の保持（PairCollisionDetectionFacade のみが書き込む）
- * - ALLOWED: ドメイン層モデルへの依存
- * - FORBIDDEN: インフラ層・プレゼン層への依存
+ * - ROLE: ゲーム状態の保持・更新（Facade のみが書き込む）
+ * - ALLOWED: ドメイン層への依存、アプリ層の Port 型への依存
+ * - FORBIDDEN: インフラ層への依存、プレゼン層への依存
  */
 
 import { writable, readonly } from "svelte/store";
@@ -29,8 +29,8 @@ export const activeBodyCount = readonly(activeBodyCountStore);
 /** 最後にマッチしたポケモンの鳴き声URL（読み取り専用） */
 export const lastMatchCryUrl = readonly(lastMatchCryUrlStore);
 
-/** PairCollisionDetectionFacade からのみ使用するストア書き込みAPI */
-export const pairCollisionDetectionStoreWriter = {
+/** Facade からのみ使用するストア書き込みAPI */
+export const storeWriter = {
   reset: () => {
     matchedCountStore.set(0);
     activeBodyCountStore.set(0);

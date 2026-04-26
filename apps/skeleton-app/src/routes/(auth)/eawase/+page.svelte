@@ -3,12 +3,7 @@
   import Icon from "@iconify/svelte";
   import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { PairCollisionDetectionFacade } from "$lib/application/usecases/pairCollisionDetection/pairCollisionDetectionFacade";
-  import {
-    matchedCount,
-    activeBodyCount,
-    lastMatchCryUrl,
-  } from "$lib/application/usecases/pairCollisionDetection/pairCollisionDetectionStore";
+  import { PairCollisionDetection } from "$lib/application/usecases/PairCollisionDetection";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
@@ -18,7 +13,8 @@
   const SPAWN_COUNT = 8;
 
   const engine = getMatterJs2dPhysicsAdapter();
-  const facade = new PairCollisionDetectionFacade(engine, getPokeRepository());
+  const facade = new PairCollisionDetection.Facade(engine, getPokeRepository());
+  const { matchedCount, activeBodyCount, lastMatchCryUrl } = PairCollisionDetection.Store;
 
   let isReady = $state(false);
   let isSpawning = $state(false);
