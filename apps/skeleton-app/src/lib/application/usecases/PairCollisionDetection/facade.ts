@@ -27,7 +27,8 @@ export class PairCollisionDetectionFacade {
   private removeCollisionListener: (() => void) | null = null;
   /** 衝突処理の二重実行を防ぐために追跡するアクティブボディID */
   private activeBodyIds = new Set<string>();
-  /** カテゴリ → 鳴き声URL のマッピング */
+  /** カテゴリ → ポケモン名・鳴き声URL のマッピング */
+  private categoryToName = new Map<number, string | null>();
   private categoryToCryUrl = new Map<number, string | null>();
 
   constructor(
@@ -48,7 +49,9 @@ export class PairCollisionDetectionFacade {
     this.removeCollisionListener?.();
     this.physics.dispose();
     this.activeBodyIds.clear();
+    this.categoryToName.clear();
     this.categoryToCryUrl.clear();
+    storeWriter.reset();
   }
 
   /**
@@ -65,6 +68,7 @@ export class PairCollisionDetectionFacade {
       const addBodyPromises: Promise<void>[] = [];
       for (const poke of pokemons) {
         const category = poke.id + POKEMON_CATEGORY_OFFSET;
+        this.categoryToName.set(category, poke.jaName);
         this.categoryToCryUrl.set(category, resolvedCryUrl(poke.cryUrls));
 
         const imageUrl = poke.imageUrls.pixel.front ?? poke.imageUrls.artwork.front;
@@ -103,6 +107,7 @@ export class PairCollisionDetectionFacade {
 
     storeWriter.addMatchedCount(1);
     storeWriter.addActiveBodyCount(-2);
+    storeWriter.setLastMatchJaName(this.categoryToName.get(a.category) ?? null);
     storeWriter.setLastMatchCryUrl(this.categoryToCryUrl.get(a.category) ?? null);
   }
 }

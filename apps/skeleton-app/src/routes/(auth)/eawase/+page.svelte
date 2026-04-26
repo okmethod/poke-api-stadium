@@ -9,12 +9,12 @@
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
 
   const CANVAS_WIDTH = 360;
-  const CANVAS_HEIGHT = 480;
-  const SPAWN_COUNT = 8;
+  const CANVAS_HEIGHT = 360;
+  const SPAWN_COUNT = 100;
 
   const engine = getMatterJs2dPhysicsAdapter();
   const facade = new PairCollisionDetection.Facade(engine, getPokeRepository());
-  const { matchedCount, activeBodyCount, lastMatchCryUrl } = PairCollisionDetection.Store;
+  const { matchedCount, activeBodyCount, lastMatchJaName, lastMatchCryUrl } = PairCollisionDetection.Store;
 
   let isReady = $state(false);
   let isSpawning = $state(false);
@@ -73,8 +73,10 @@
   </div>
 
   <!-- スコア -->
-  <p class="text-surface-600 dark:text-surface-300 text-sm">
-    マッチ: {$matchedCount} ペア / フィールド: {$activeBodyCount} 体
+  <p class="text-surface-600 dark:text-surface-300 flex items-center gap-3 text-sm">
+    フィールド: {$activeBodyCount} 体
+    <Icon icon="mdi:transfer-right" class="size-5" />
+    マッチ: {$matchedCount} ペア
   </p>
 
   <!-- Canvas -->
@@ -88,4 +90,7 @@
       <Icon icon="mdi:loading" class="text-surface-400 size-8 animate-spin" />
     </div>
   {/if}
+  <p class="text-surface-600 dark:text-surface-300 text-lg">
+    {$lastMatchJaName}
+  </p>
 </div>
