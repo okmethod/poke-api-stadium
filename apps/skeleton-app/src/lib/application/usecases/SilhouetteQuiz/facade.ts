@@ -1,10 +1,10 @@
 /**
- * SilhouetteQuizFacade - シルエットクイズの全操作コマンドの唯一の入り口
+ * シルエットクイズの全操作コマンドの唯一の入り口
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
- * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存
- * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存（Svelte/DOM/UIライブラリ）
+ * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存、アプリ層 Port への依存
+ * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
 import { get } from "svelte/store";
@@ -16,7 +16,7 @@ import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
-import { silhouetteQuizStoreWriter, pokeData, isOpen } from "./silhouetteQuizStore";
+import { storeWriter, pokeData, isOpen } from "./store";
 
 /** toggleAnswer の戻り値（鳴き声URLの再生判断はプレゼン層で行う） */
 export type ToggleAnswerResult = { readonly cryUrl: string | null };
@@ -36,14 +36,14 @@ export class SilhouetteQuizFacade {
   /** ランダムにポケモンを選出してストアを更新する（選択世代でフィルター） */
   async pickPokemon(fetchFn: typeof fetch): Promise<FacadeResult> {
     // 旧ポケモン画像をトランジション前に即時非表示にしてネタバレを防ぐ
-    silhouetteQuizStoreWriter.setPokeData(null);
-    silhouetteQuizStoreWriter.setIsOpen(false);
-    silhouetteQuizStoreWriter.setHintText(null);
+    storeWriter.setPokeData(null);
+    storeWriter.setIsOpen(false);
+    storeWriter.setHintText(null);
     return withLoadingGuard(
       () => selectRandomPokemon(this.repository, fetchFn),
-      (v) => silhouetteQuizStoreWriter.setIsLoading(v),
-      (pokeData) => silhouetteQuizStoreWriter.setPokeData(pokeData),
-      () => silhouetteQuizStoreWriter.setPokeData(null),
+      (v) => storeWriter.setIsLoading(v),
+      (pokeData) => storeWriter.setPokeData(pokeData),
+      () => storeWriter.setPokeData(null),
     );
   }
 
@@ -57,7 +57,7 @@ export class SilhouetteQuizFacade {
     if (current === null) return { cryUrl: null };
 
     const nextIsOpen = !get(isOpen);
-    silhouetteQuizStoreWriter.setIsOpen(nextIsOpen);
+    storeWriter.setIsOpen(nextIsOpen);
     // こたえを開く時だけ鳴き声URLを返す（閉じる時は null）
     return { cryUrl: nextIsOpen ? resolvedCryUrl(current.cryUrls) : null };
   }
@@ -70,7 +70,7 @@ export class SilhouetteQuizFacade {
     }
 
     const hint = this.buildRandomHint(current);
-    silhouetteQuizStoreWriter.setHintText(hint);
+    storeWriter.setHintText(hint);
     return { success: true };
   }
 

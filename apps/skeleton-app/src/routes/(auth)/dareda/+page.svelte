@@ -3,11 +3,11 @@
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { showSuccessToast, showErrorToast } from "$lib/presentation/utils/toaster";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
-  import { SilhouetteQuizFacade } from "$lib/application/usecases/silhouetteQuiz/SilhouetteQuizFacade";
-  import { pokeData, isOpen, isLoading, hintText } from "$lib/application/usecases/silhouetteQuiz/silhouetteQuizStore";
+  import { SilhouetteQuiz } from "$lib/application/usecases/SilhouetteQuiz";
   import PokeSilhouette from "./_components/PokeSilhouette.svelte";
 
-  const facade = new SilhouetteQuizFacade(getPokeRepository());
+  const facade = new SilhouetteQuiz.Facade(getPokeRepository());
+  const { pokeData, isOpen, isLoading, hintText } = SilhouetteQuiz.Store;
 
   async function handlePick(): Promise<void> {
     const result = await facade.pickPokemon(fetch);
