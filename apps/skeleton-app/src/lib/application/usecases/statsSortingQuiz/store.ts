@@ -1,9 +1,9 @@
 /**
- * statsSortingQuizStore - ステータス並べ替えクイズのゲーム状態ストア
+ * ステータス並べ替えクイズのゲーム状態ストア
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Store)
- * - ROLE: ゲーム状態の保持・更新（StatsSortingQuizFacade のみが書き込む）
- * - ALLOWED: ドメイン層モデルへの依存
+ * - ROLE: ゲーム状態の保持・更新（Facade のみが書き込む）
+ * - ALLOWED: ドメイン層への依存、アプリ層の Port 型への依存
  * - FORBIDDEN: インフラ層への依存、プレゼン層への依存
  */
 
@@ -27,8 +27,8 @@ export const isLoading = readonly(isLoadingStore);
 /** 正解/不正解メッセージ（null のとき非表示）（読み取り専用） */
 export const result = readonly(resultStore);
 
-/** StatsSortingQuizFacade からのみ使用するストア書き込みAPI */
-export const statsSortingQuizStoreWriter = {
+/** Facade からのみ使用するストア書き込みAPI */
+export const storeWriter = {
   setPokeDataList: (value: PokeData[]) => pokeDataListStore.set(value),
   setIsOpen: (value: boolean) => isOpenStore.set(value),
   setIsLoading: (value: boolean) => isLoadingStore.set(value),

@@ -1,10 +1,10 @@
 /**
- * StatsSortingQuizFacade - ステータス並べ替えクイズの全操作コマンドの唯一の入り口
+ * ステータス並べ替えクイズの全操作コマンドの唯一の入り口
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
- * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存
- * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存（Svelte/DOM/UIライブラリ）
+ * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存、アプリ層 Port への依存
+ * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
 import type { PokeData } from "$lib/domain/models/PokeData";
@@ -12,10 +12,10 @@ import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
-import { statsSortingQuizStoreWriter } from "./statsSortingQuizStore";
+import { storeWriter } from "./store";
 
-/** 比較モードの定義 */
-export interface CompareMode {
+// 比較モードの定義
+interface CompareMode {
   readonly name: string;
   readonly getValue: (data: PokeData) => number;
   readonly formatValue: (data: PokeData) => string;
@@ -67,10 +67,6 @@ export const COMPARE_MODES: Record<CompareModeName, CompareMode> = {
   },
 };
 
-/** ポケモン数の選択肢（最小・最大） */
-export const POKE_COUNT_MIN = 3;
-export const POKE_COUNT_MAX = 6;
-
 /**
  * ステータス並べ替えクイズのゲーム操作を提供する Facade
  *
@@ -82,13 +78,13 @@ export class StatsSortingQuizFacade {
 
   /** ランダムにポケモンを選出してストアを更新する */
   async pickPokemons(fetchFn: typeof fetch, count: number): Promise<FacadeResult> {
-    statsSortingQuizStoreWriter.setIsOpen(false);
-    statsSortingQuizStoreWriter.setResult(null);
+    storeWriter.setIsOpen(false);
+    storeWriter.setResult(null);
     return withLoadingGuard(
       () => selectRandomPokemons(this.repository, fetchFn, count),
-      (v) => statsSortingQuizStoreWriter.setIsLoading(v),
-      (pokeDataList) => statsSortingQuizStoreWriter.setPokeDataList(pokeDataList),
-      () => statsSortingQuizStoreWriter.setPokeDataList([]),
+      (v) => storeWriter.setIsLoading(v),
+      (pokeDataList) => storeWriter.setPokeDataList(pokeDataList),
+      () => storeWriter.setPokeDataList([]),
     );
   }
 
@@ -109,13 +105,13 @@ export class StatsSortingQuizFacade {
       6: "ポケモンマスター！！！！",
     };
     const message = isCorrect ? (successMessages[orderedPokeData.length] ?? "せいかい！") : "ざんねん...";
-    statsSortingQuizStoreWriter.setResult(message);
-    statsSortingQuizStoreWriter.setIsOpen(true);
+    storeWriter.setResult(message);
+    storeWriter.setIsOpen(true);
   }
 
   /** ゲーム状態をリセットする */
   reset(): void {
-    statsSortingQuizStoreWriter.setIsOpen(false);
-    statsSortingQuizStoreWriter.setResult(null);
+    storeWriter.setIsOpen(false);
+    storeWriter.setResult(null);
   }
 }

@@ -5,23 +5,14 @@
   import type { DndEvent } from "svelte-dnd-action";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import {
-    StatsSortingQuizFacade,
-    COMPARE_MODES,
-    POKE_COUNT_MIN,
-    POKE_COUNT_MAX,
-  } from "$lib/application/usecases/statsSortingQuiz/StatsSortingQuizFacade";
-  import type { CompareModeName } from "$lib/application/usecases/statsSortingQuiz/StatsSortingQuizFacade";
-  import {
-    pokeDataList,
-    isOpen,
-    isLoading,
-    result,
-  } from "$lib/application/usecases/statsSortingQuiz/statsSortingQuizStore";
+  import { StatsSortingQuiz } from "$lib/application/usecases/StatsSortingQuiz";
+  import type { CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
   import type { PokeData } from "$lib/domain/models/PokeData";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
 
-  const facade = new StatsSortingQuizFacade(getPokeRepository());
+  const facade = new StatsSortingQuiz.Facade(getPokeRepository());
+  const { COMPARE_MODES, POKE_COUNT_MIN, POKE_COUNT_MAX } = StatsSortingQuiz;
+  const { pokeDataList, isOpen, isLoading, result } = StatsSortingQuiz.Store;
 
   // ゲーム設定
   let compareMode = $state<CompareModeName>("height");
