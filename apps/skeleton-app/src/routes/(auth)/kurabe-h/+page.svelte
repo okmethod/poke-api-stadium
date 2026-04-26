@@ -2,13 +2,12 @@
   import { get } from "svelte/store";
   import { onMount, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
-  import { dndzone } from "svelte-dnd-action";
-  import type { DndEvent } from "svelte-dnd-action";
+  import { dndzone, type DndEvent } from "svelte-dnd-action";
+  import type { PokeData } from "$lib/domain/models/PokeData";
+  import { HeightComparison } from "$lib/application/usecases/HeightComparison";
   import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { HeightComparison } from "$lib/application/usecases/HeightComparison";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import type { PokeData } from "$lib/domain/models/PokeData";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
 

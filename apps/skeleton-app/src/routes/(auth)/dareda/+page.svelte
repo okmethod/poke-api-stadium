@@ -1,9 +1,9 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { showSuccessToast, showErrorToast } from "$lib/presentation/utils/toaster";
-  import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { SilhouetteQuiz } from "$lib/application/usecases/SilhouetteQuiz";
+  import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+  import { getAudioOn } from "$lib/presentation/stores/audioStore";
+  import { showSuccessToast, showErrorToast } from "$lib/presentation/utils/toaster";
   import PokeSilhouette from "./_components/PokeSilhouette.svelte";
 
   const facade = new SilhouetteQuiz.Facade(getPokeRepository());

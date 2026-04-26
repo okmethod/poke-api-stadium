@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
+  import { PairCollisionDetection } from "$lib/application/usecases/PairCollisionDetection";
   import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { PairCollisionDetection } from "$lib/application/usecases/PairCollisionDetection";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";

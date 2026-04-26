@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
+  import { WeightComparison } from "$lib/application/usecases/WeightComparison";
   import { getMatterJsSeesawAdapter } from "$lib/infrastructure/adapters/MatterJsSeesawAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { WeightComparison } from "$lib/application/usecases/WeightComparison";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import SeesawCanvas from "$lib/presentation/components/physics/SeesawCanvas.svelte";
 

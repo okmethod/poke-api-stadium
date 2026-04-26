@@ -1,13 +1,11 @@
 <script lang="ts">
   import { get } from "svelte/store";
   import Icon from "@iconify/svelte";
-  import { dndzone } from "svelte-dnd-action";
-  import type { DndEvent } from "svelte-dnd-action";
+  import { dndzone, type DndEvent } from "svelte-dnd-action";
+  import type { PokeData } from "$lib/domain/models/PokeData";
+  import { StatsSortingQuiz, type CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import { StatsSortingQuiz } from "$lib/application/usecases/StatsSortingQuiz";
-  import type { CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
-  import type { PokeData } from "$lib/domain/models/PokeData";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
 
   const facade = new StatsSortingQuiz.Facade(getPokeRepository());
