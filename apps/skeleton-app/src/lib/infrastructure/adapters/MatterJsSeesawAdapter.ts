@@ -17,12 +17,10 @@ import type {
   SeesawState,
 } from "$lib/application/ports/ISeesawPhysicsEngine";
 import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
-import type * as MatterType from "matter-js";
+import { AbstractMatterJsAdapter, COLLISION_SCALE } from "./AbstractMatterJsAdapter";
 
 // 描画用の半径（画像の表示サイズ）
 const POKE_VISUAL_RADIUS = 40;
-// 輪郭ポリゴンをさらに縮小して当たり判定を引き締める
-const COLLISION_SCALE = 0.6;
 // 物理ボディの半径（当たり判定）
 const POKE_COLLISION_RADIUS = Math.round(POKE_VISUAL_RADIUS * COLLISION_SCALE);
 
@@ -36,28 +34,18 @@ const ARM_MARGIN = POKE_VISUAL_RADIUS * 1.5;
 const SPAWN_Y_GAP = 40;
 const SPAWN_Y_OFFSET = PLANK_THICKNESS / 2 + POKE_VISUAL_RADIUS + SPAWN_Y_GAP;
 const PIVOT_Y_RATIO = 0.68;
-const WALL_THICKNESS = 100;
 
-class MatterJsSeesawAdapter implements ISeesawPhysicsEngine {
-  private M!: typeof MatterType;
-  private engine!: MatterType.Engine;
-  private runner!: MatterType.Runner;
-  private plank!: MatterType.Body;
+class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPhysicsEngine {
+  private plank!: import("matter-js").Body;
   private pivotX!: number;
   private pivotY!: number;
   private plankWidth!: number;
 
-  private pokeBodyById = new Map<string, MatterType.Body>();
+  private pokeBodyById = new Map<string, import("matter-js").Body>();
   private pokeConfigById = new Map<string, SeesawPokeBodyConfig>();
 
   async initialize(config: PhysicsWorld2dConfig): Promise<void> {
-    this.M = await import("matter-js");
-
-    this.engine = this.M.Engine.create({ enableSleeping: false });
-    this.engine.gravity.y = config.gravity ?? 1;
-
-    this.runner = this.M.Runner.create();
-    this.M.Runner.run(this.runner, this.engine);
+    await this.initializeMatterJs(config, { enableSleeping: false });
 
     this.pivotX = config.width / 2;
     this.pivotY = config.height * PIVOT_Y_RATIO;
@@ -82,14 +70,11 @@ class MatterJsSeesawAdapter implements ISeesawPhysicsEngine {
     });
 
     this.M.Composite.add(this.engine.world, [this.plank, pivotConstraint]);
-    this.addWalls(config.width, config.height);
+    this.addWalls(config.width, config.height, { friction: 0.3 });
   }
 
   dispose(): void {
-    if (!this.M) return;
-    this.M.Runner.stop(this.runner);
-    this.M.Composite.clear(this.engine.world, false);
-    this.M.Engine.clear(this.engine);
+    this.disposeMatterJs();
     this.pokeBodyById.clear();
     this.pokeConfigById.clear();
   }
@@ -170,17 +155,6 @@ class MatterJsSeesawAdapter implements ISeesawPhysicsEngine {
       pivotPoint: { x: this.pivotX, y: this.pivotY },
       pokeBodies,
     };
-  }
-
-  private addWalls(width: number, height: number): void {
-    const t = WALL_THICKNESS;
-    const walls = [
-      this.M.Bodies.rectangle(width / 2, height + t / 2, width + t * 2, t, { isStatic: true, friction: 0.3 }), // 下
-      this.M.Bodies.rectangle(-t / 2, height / 2, t, height + t * 2, { isStatic: true, friction: 0.3 }), // 左
-      this.M.Bodies.rectangle(width + t / 2, height / 2, t, height + t * 2, { isStatic: true, friction: 0.3 }), // 右
-      this.M.Bodies.rectangle(width / 2, -t / 2, width + t * 2, t, { isStatic: true, friction: 0.3 }), // 上
-    ];
-    this.M.Composite.add(this.engine.world, walls);
   }
 }
 

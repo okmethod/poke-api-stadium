@@ -20,19 +20,13 @@ import type {
   Point2d,
 } from "$lib/domain/models/2dPhysics";
 import type * as MatterType from "matter-js";
+import { AbstractMatterJsAdapter, COLLISION_SCALE } from "./AbstractMatterJsAdapter";
 import { extractNormalizedVertices } from "./imageVertexExtractor";
 
 // 壁ボディはボディマップに登録しないことで衝突ハンドラのフィルタを実現する
-const WALL_THICKNESS = 100;
-// 輪郭ポリゴンをさらに縮小して当たり判定を引き締める
-const COLLISION_SCALE = 0.6;
 
 /** matter.js による 2D物理エンジン実装 */
-class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
-  // dynamic import で取得した matter.js モジュール
-  private M!: typeof MatterType;
-  private engine!: MatterType.Engine;
-  private runner!: MatterType.Runner;
+class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhysicsEngine {
   private dragConstraint: MatterType.Constraint | null = null;
 
   /** 管理ボディマップ: 独自ID → matter.js Body */
@@ -41,26 +35,16 @@ class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
   private configByMatterId = new Map<number, PhysicsBody2dConfig>();
 
   async initialize(config: PhysicsWorld2dConfig): Promise<void> {
-    this.M = await import("matter-js");
-
-    this.engine = this.M.Engine.create({
+    await this.initializeMatterJs(config, {
       enableSleeping: true,
       positionIterations: 6,
       velocityIterations: 4,
     });
-    this.engine.gravity.y = config.gravity ?? 1;
-
-    this.runner = this.M.Runner.create();
-    this.M.Runner.run(this.runner, this.engine);
-
     this.addWalls(config.width, config.height);
   }
 
   dispose(): void {
-    if (!this.M) return;
-    this.M.Runner.stop(this.runner);
-    this.M.Composite.clear(this.engine.world, false);
-    this.M.Engine.clear(this.engine);
+    this.disposeMatterJs();
     this.bodyById.clear();
     this.configByMatterId.clear();
     this.dragConstraint = null;
@@ -178,17 +162,6 @@ class MatterJs2dPhysicsAdapter implements I2dPhysicsEngine {
 
     // フォールバック: 円ボディ
     return this.M.Bodies.circle(x, y, config.radius * COLLISION_SCALE, bodyOptions);
-  }
-
-  private addWalls(width: number, height: number): void {
-    const t = WALL_THICKNESS;
-    const walls = [
-      this.M.Bodies.rectangle(width / 2, -t / 2, width + t * 2, t, { isStatic: true }), // 上
-      this.M.Bodies.rectangle(width / 2, height + t / 2, width + t * 2, t, { isStatic: true }), // 下
-      this.M.Bodies.rectangle(-t / 2, height / 2, t, height + t * 2, { isStatic: true }), // 左
-      this.M.Bodies.rectangle(width + t / 2, height / 2, t, height + t * 2, { isStatic: true }), // 右
-    ];
-    this.M.Composite.add(this.engine.world, walls);
   }
 
   private toState(body: MatterType.Body, config: PhysicsBody2dConfig): PhysicsBody2dState {
