@@ -72,8 +72,16 @@
   <!-- シルエット表示 -->
   <PokeSilhouette pokeData={$pokeData} isOpen={$isOpen} />
 
-  <!-- こたえをみるボタン -->
-  <button type="button" class="btn preset-filled btn-lg" onclick={handleToggle} disabled={$pokeData === null}>
-    {$isOpen ? "かくす" : "こたえをみる"}
-  </button>
+  <!-- こたえをみる or もう一度ボタン -->
+  {#if $isOpen}
+    <button type="button" class="btn preset-tonal" onclick={handlePick}>
+      <Icon icon="mdi:restart" class="size-5" />
+      もう一度
+    </button>
+  {:else}
+    <button type="button" class="btn preset-tonal" onclick={handleToggle} disabled={$pokeData === null}>
+      <Icon icon="mdi:eye-outline" class="size-5" />
+      こたえをみる
+    </button>
+  {/if}
 </div>

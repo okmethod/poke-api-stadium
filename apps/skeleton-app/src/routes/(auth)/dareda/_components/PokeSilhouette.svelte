@@ -16,7 +16,7 @@
   {#if pokeData === null || imageUrl === null}
     <!-- プレースホルダー -->
     <div class="text-surface-400 border-surface-300 flex size-48 items-center justify-center rounded-xl text-4xl"></div>
-    <p class="text-surface-400 text-2xl font-bold">？？？</p>
+    <p class="text-surface-400 h-16 text-2xl font-bold">？？？</p>
   {:else}
     <img
       src={imageUrl}
@@ -25,7 +25,7 @@
       style={isOpen ? "" : "filter: brightness(0);"}
     />
     {#if isOpen}
-      <div class="space-y-1 text-center">
+      <div class="h-16 space-y-1 text-center">
         <p class="text-2xl font-bold">No.{pokeData.id} {pokeData.jaName}</p>
         <div class="flex justify-center gap-2">
           <PokeTypeBadge type={pokeData.type1} />
@@ -35,7 +35,7 @@
         </div>
       </div>
     {:else}
-      <p class="text-surface-400 text-2xl font-bold">？？？</p>
+      <p class="text-surface-400 h-16 text-2xl font-bold">？？？</p>
     {/if}
   {/if}
 </div>
