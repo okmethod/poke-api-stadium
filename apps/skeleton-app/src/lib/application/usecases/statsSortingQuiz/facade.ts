@@ -104,7 +104,7 @@ export class StatsSortingQuizFacade {
       6: "ポケモンマスター！！！！",
     };
     const message = isCorrect ? (successMessages[orderedPokeData.length] ?? "せいかい！") : "ざんねん...";
-    storeWriter.setResult(message);
+    storeWriter.setResult({ isCorrect, message });
     storeWriter.setIsOpen(true);
   }
 

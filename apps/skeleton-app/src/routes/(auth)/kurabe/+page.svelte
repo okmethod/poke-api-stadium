@@ -5,6 +5,7 @@
   import type { PokeData } from "$lib/domain/models/PokeData";
   import { StatsSortingQuiz, type CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+  import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
 
@@ -41,6 +42,20 @@
   function handlePokeCountChange(): void {
     facade.reset();
   }
+
+  // $effect は初回マウント時にも実行されるため、初回はスキップして変化時のみ SE を鳴らす
+  let seEffectReady = false;
+  $effect(() => {
+    const currentResult = $result;
+    if (!seEffectReady) {
+      seEffectReady = true;
+      return;
+    }
+    if (currentResult !== null) {
+      if (currentResult.isCorrect) playSE.correct();
+      else playSE.incorrect();
+    }
+  });
 
   // ドラッグ中の仮並び順を反映（確定前）
   function handleConsider(event: CustomEvent<DndEvent<PokeData>>): void {
@@ -117,15 +132,16 @@
       {/each}
     </div>
 
-    <!-- こたえあわせボタン -->
+    <!-- 回答ボタン -->
     <div class="flex flex-col items-center gap-3">
-      <button type="button" class="btn preset-filled btn-lg" onclick={handleReveal} disabled={$isOpen}>
-        こたえあわせ
+      <button type="button" class="btn preset-tonal" onclick={handleReveal} disabled={$isOpen}>
+        <Icon icon="mdi:eye-outline" class="size-5" />
+        こたえをみる
       </button>
 
       <!-- 結果メッセージ -->
       {#if $result !== null}
-        <p class="text-xl font-bold">{$result}</p>
+        <p class="text-xl font-bold">{$result.message}</p>
       {/if}
     </div>
   {:else}

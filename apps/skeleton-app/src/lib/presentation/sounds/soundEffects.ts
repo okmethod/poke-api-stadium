@@ -149,6 +149,8 @@ const SE_ASSIGNMENTS = {
   confirm: { sound: SE.triangle["SHORT"]!, desc: "決定: ピッ" },
   cancel: { sound: SE.triangle["DESCEND"]!, desc: "キャンセル: ポッ" },
   error: { sound: SE.sawtooth["DISCORD"]!, desc: "エラー: ブブッ" },
+  correct: { sound: SE.square["FALL"]!, desc: "正解: ピンポン" },
+  incorrect: { sound: SE.square["DISCORD"]!, desc: "不正解: デロン" },
 } as const;
 
 /** アプリ用SE一覧（イテレート・一覧表示用） */

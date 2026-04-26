@@ -7,14 +7,14 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
+import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { storeWriter } from "./store";
-import type { PokeData } from "$lib/domain/models/PokeData";
 
 const SPAWN_Y = 50;
 
@@ -75,13 +75,13 @@ export class HeightComparisonFacade {
    */
   async reveal(orderedPokeData: PokeData[]): Promise<FacadeResult> {
     if (!this.worldConfig || orderedPokeData.length === 0) {
-      return { success: false, error: "ポケモンが選出されていない" };
+      return { success: false, error: "ポケモンがよびだされていない" };
     }
 
     // 高さ降順の正解と比較（同値は正解扱い）
     const sorted = [...orderedPokeData].sort((a, b) => b.height - a.height);
     const isCorrect = orderedPokeData.every((poke, i) => poke.height === sorted[i]!.height);
-    storeWriter.setResult(isCorrect ? "せいかい！" : "ざんねん...");
+    storeWriter.setResult({ isCorrect, message: isCorrect ? "せいかい！" : "ざんねん..." });
     storeWriter.setIsRevealed(true);
 
     // dnd の並び順で物理ボディを配置
@@ -103,7 +103,7 @@ export class HeightComparisonFacade {
       await Promise.all(addBodyPromises);
       return { success: true };
     } catch {
-      return { success: false, error: "ポケモンをひょうじできなかった" };
+      return { success: false, error: "ポケモンを表示できなかった" };
     }
   }
 }

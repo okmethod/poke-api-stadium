@@ -92,8 +92,11 @@
     {/if}
   </div>
 
-  <!-- こたえをみるボタン（選出後・公開前のみ） -->
+  <!-- 回答ボタン（選出後・公開前のみ） -->
   {#if $pokeDataList.length > 0 && !$isRevealed}
-    <button type="button" class="btn preset-filled btn-lg" onclick={handleReveal}> こたえをみる </button>
+    <button type="button" class="btn preset-tonal" onclick={handleReveal}>
+      <Icon icon="mdi:eye-outline" class="size-5" />
+      こたえをみる
+    </button>
   {/if}
 </div>

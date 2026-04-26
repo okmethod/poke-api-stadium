@@ -9,11 +9,12 @@
 
 import { writable, readonly } from "svelte/store";
 import type { PokeData } from "$lib/domain/models/PokeData";
+import type { GameResult } from "$lib/application/usecases/facadeTypes";
 
 const pokeDataListStore = writable<PokeData[]>([]);
 const isOpenStore = writable<boolean>(false);
 const isLoadingStore = writable<boolean>(false);
-const resultStore = writable<string | null>(null);
+const resultStore = writable<GameResult | null>(null);
 
 /** 選出されたポケモンリスト（読み取り専用） */
 export const pokeDataList = readonly(pokeDataListStore);
@@ -24,7 +25,7 @@ export const isOpen = readonly(isOpenStore);
 /** ローディング中かどうか（読み取り専用） */
 export const isLoading = readonly(isLoadingStore);
 
-/** 正解/不正解メッセージ（null のとき非表示）（読み取り専用） */
+/** 正誤判定結果（null のとき非表示）（読み取り専用） */
 export const result = readonly(resultStore);
 
 /** Facade からのみ使用するストア書き込みAPI */
@@ -38,5 +39,5 @@ export const storeWriter = {
   setPokeDataList: (value: PokeData[]) => pokeDataListStore.set(value),
   setIsOpen: (value: boolean) => isOpenStore.set(value),
   setIsLoading: (value: boolean) => isLoadingStore.set(value),
-  setResult: (value: string | null) => resultStore.set(value),
+  setResult: (value: GameResult | null) => resultStore.set(value),
 };

@@ -8,3 +8,9 @@
 
 /** Facade のコマンド結果型（プレゼン層への公開用） */
 export type FacadeResult = { readonly success: boolean; readonly error?: string };
+
+/** クイズの正誤判定＋メッセージ */
+export interface GameResult {
+  readonly isCorrect: boolean;
+  readonly message: string;
+}

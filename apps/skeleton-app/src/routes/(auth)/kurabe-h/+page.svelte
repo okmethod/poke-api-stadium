@@ -7,12 +7,13 @@
   import { HeightComparison } from "$lib/application/usecases/HeightComparison";
   import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+  import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
 
   const CANVAS_WIDTH = 400;
-  const CANVAS_HEIGHT = 200;
+  const CANVAS_HEIGHT = 160;
   const POKE_COUNT = 3;
 
   const engine = getMatterJs2dPhysicsAdapter();
@@ -50,6 +51,20 @@
       showErrorToast(result.error);
     }
   }
+
+  // $effect は初回マウント時にも実行されるため、初回はスキップして変化時のみ SE を鳴らす
+  let seEffectReady = false;
+  $effect(() => {
+    const currentResult = $result;
+    if (!seEffectReady) {
+      seEffectReady = true;
+      return;
+    }
+    if (currentResult !== null) {
+      if (currentResult.isCorrect) playSE.correct();
+      else playSE.incorrect();
+    }
+  });
 
   // ドラッグ中の仮並び順を反映（確定前）
   function handleConsider(event: CustomEvent<DndEvent<PokeData>>): void {
@@ -102,11 +117,12 @@
       {/each}
     </div>
 
-    <!-- こたえあわせボタン -->
-    <button type="button" class="btn preset-filled btn-lg" onclick={handleReveal} disabled={isRevealing}>
+    <!-- 回答ボタン -->
+    <button type="button" class="btn preset-tonal" onclick={handleReveal} disabled={isRevealing}>
       {#if isRevealing}
         <Icon icon="mdi:loading" class="size-5 animate-spin" />
       {/if}
+      <Icon icon="mdi:eye-outline" class="size-5" />
       こたえをみる
     </button>
   {:else if !$isRevealed && !$isLoading}
@@ -132,11 +148,11 @@
     {/if}
 
     <!-- たかさ一覧（dnd 順） -->
-    <div class="flex flex-wrap justify-center gap-6">
+    <div class="flex flex-wrap justify-center gap-2">
       {#each orderedList as pokeData, index (pokeData.id)}
         <div class="flex flex-col items-center gap-0.5 text-center">
           <span class="text-base font-bold">{pokeData.jaName}</span>
-          <span class="text-xl font-bold">{pokeData.height.toFixed(1)}m</span>
+          <span class="text-base font-bold">{pokeData.height.toFixed(1)}m</span>
           <span class="text-surface-500 text-sm">{index + 1} ばんめ</span>
         </div>
       {/each}
@@ -144,7 +160,7 @@
 
     <!-- 結果メッセージ -->
     {#if $result !== null}
-      <p class="text-xl font-bold">{$result}</p>
+      <p class="text-xl font-bold">{$result.message}</p>
     {/if}
   {/if}
 </div>
