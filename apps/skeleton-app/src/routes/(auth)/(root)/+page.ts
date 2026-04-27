@@ -17,7 +17,7 @@ const menuItems: MenuItem[] = [
   { label: "たかさくらべ 改", ballKey: "ultra-ball", action: "navigate", target: "/kurabe-h" },
   { label: "おもさくらべ 改", ballKey: "heavy-ball", action: "navigate", target: "/kurabe-w" },
   // { label: "ポケモンタイプじゃんけん", ballKey: "fast-ball", action: "navigate", target: "/zukan" },
-  // { label: "ポケモンしりとり", ballKey: "heal-ball", action: "navigate", target: "/zukan" },
+  { label: "ポケモンしりとり", ballKey: "heal-ball", action: "navigate", target: "/shiritori" },
   { label: "ポケモンだ〜れだ？", ballKey: "dusk-ball", action: "navigate", target: "/dareda" },
   { label: "ポケモンだ〜れだ？改", ballKey: "luxury-ball", action: "navigate", target: "/dareda-kai" },
   // { label: "ポケモンとりほうだい", ballKey: "safari-ball", action: "navigate", target: "/zukan" },
