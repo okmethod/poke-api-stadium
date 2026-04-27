@@ -55,11 +55,13 @@
     <Listbox.Content>
       {#each collection.items as item (item.value)}
         <Listbox.Item {item} class="data-[selected]:preset-tonal-primary">
-          <Listbox.ItemText>
-            <span class="font-bold">{item.label}</span>
-            <span class="ml-2 text-xs opacity-60">{item.titles}</span>
+          <Listbox.ItemText class="flex h-4 min-w-0 flex-1 items-center gap-1 sm:h-6">
+            <span class="shrink-0 text-sm font-bold">{item.label}</span>
+            <span class="min-w-0 truncate text-xs opacity-60">{item.titles}</span>
           </Listbox.ItemText>
-          <Listbox.ItemIndicator />
+          <span class="flex w-5 shrink-0 items-center justify-center">
+            <Listbox.ItemIndicator />
+          </span>
         </Listbox.Item>
       {/each}
     </Listbox.Content>
