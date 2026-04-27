@@ -14,15 +14,20 @@
   let { name, imageUrl, onclick, closed = false, closedClass = "bg-gray-100" }: Props = $props();
 
   let isImageLoaded = $state(false);
+  let imgEl: HTMLImageElement | undefined = $state();
+
   $effect(() => {
-    // 画像URLが変わったらローディング状態をリセット
-    if (imageUrl) isImageLoaded = false;
+    if (!imageUrl) return;
+    isImageLoaded = false;
+    // キャッシュ済み画像は onload 発火前に $effect が上書きするため complete で補完
+    if (imgEl?.complete) isImageLoaded = true;
   });
 </script>
 
 {#snippet content()}
   {#if imageUrl !== null}
     <img
+      bind:this={imgEl}
       src={imageUrl}
       alt={name}
       class="h-14 w-14 object-contain transition-opacity duration-300"

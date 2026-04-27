@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { FloatingPanel, Portal } from "@skeletonlabs/skeleton-svelte";
+  import { FloatingPanel, Carousel, Portal } from "@skeletonlabs/skeleton-svelte";
   import { WordChain, type ShiritoriPokeItem } from "$lib/application/usecases/WordChain";
   import { generationStore } from "$lib/application/stores/generationStore";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
@@ -9,9 +9,16 @@
   import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
   const facade = new WordChain.Facade(getPokeRepository());
-  const { isLoading, pickedPokeItems, pushedPokeItems, usedids, message, chainDisplay } = WordChain.Store;
+  const { isLoading, pickedPokeItems, pushedPokeItems, usedids, message } = WordChain.Store;
 
   let showList = $state(false);
+  let carouselPage = $state(0);
+
+  // チェーンが伸びたら末尾ページへ自動スクロール
+  $effect(() => {
+    const total = $pushedPokeItems.length + 1;
+    carouselPage = Math.max(0, Math.ceil(total / 3) - 1);
+  });
 
   // 世代変更時および初回マウント時に再初期化
   $effect(() => {
@@ -96,23 +103,44 @@
       </button>
     {/if}
 
-    <!-- しりとりチェーン表示（最後の2体 + ？） -->
+    <!-- しりとりチェーン表示（Carousel） -->
     {#if $pushedPokeItems.length > 0}
-      <div class="flex items-center gap-3 rounded-xl border bg-white p-4">
-        {#each $chainDisplay as item, i (item?.id ?? i)}
-          {#if item}
-            <PokeChip name={item.jaName} imageUrl={item.imageUrl} />
-          {:else}
-            <div class="h-24 w-24 rounded-2xl bg-gray-100"></div>
-          {/if}
-          {#if i < $chainDisplay.length - 1}
-            <Icon icon="mdi:arrow-right" class="text-surface-400 size-5" />
-          {/if}
-        {/each}
-        <Icon icon="mdi:arrow-right" class="text-surface-400 size-5" />
-        <div class="border-surface-300 flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-dashed">
-          <span class="text-surface-400 text-2xl">？</span>
-        </div>
+      {@const totalSlides = $pushedPokeItems.length + 1}
+      <div class="w-full max-w-sm">
+        <Carousel
+          slideCount={totalSlides}
+          slidesPerPage={3}
+          spacing="8px"
+          allowMouseDrag
+          page={carouselPage}
+          onPageChange={(e) => (carouselPage = e.page)}
+        >
+          <div class="rounded-xl border bg-white p-4">
+            <Carousel.ItemGroup>
+              {#each $pushedPokeItems as item, i (item.id)}
+                <Carousel.Item index={i} class="flex items-center justify-center">
+                  <PokeChip name={item.jaName} imageUrl={item.imageUrl} />
+                </Carousel.Item>
+              {/each}
+              <Carousel.Item index={totalSlides - 1} class="flex items-center justify-center">
+                <div
+                  class="border-surface-300 flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-dashed"
+                >
+                  <span class="text-surface-400 text-2xl">？</span>
+                </div>
+              </Carousel.Item>
+            </Carousel.ItemGroup>
+          </div>
+          <Carousel.Control class="mt-2 flex items-center justify-center gap-4">
+            <Carousel.PrevTrigger class="btn btn-sm preset-tonal">
+              <Icon icon="mdi:chevron-left" class="size-5" />
+            </Carousel.PrevTrigger>
+            <Carousel.ProgressText class="text-surface-500 text-sm" />
+            <Carousel.NextTrigger class="btn btn-sm preset-tonal">
+              <Icon icon="mdi:chevron-right" class="size-5" />
+            </Carousel.NextTrigger>
+          </Carousel.Control>
+        </Carousel>
       </div>
     {/if}
 
