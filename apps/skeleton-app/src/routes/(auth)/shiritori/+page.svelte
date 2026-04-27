@@ -1,13 +1,12 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { FloatingPanel, Portal } from "@skeletonlabs/skeleton-svelte";
-  import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
-  import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
-  import { WordChain } from "$lib/application/usecases/WordChain";
-  import type { ShiritoriPokeItem } from "$lib/application/usecases/WordChain";
+  import { WordChain, type ShiritoriPokeItem } from "$lib/application/usecases/WordChain";
   import { generationStore } from "$lib/application/stores/generationStore";
+  import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
   const facade = new WordChain.Facade(getPokeRepository());
   const { isLoading, pickedPokeItems, pushedPokeItems, usedids, message, chainDisplay } = WordChain.Store;
@@ -79,11 +78,12 @@
     {#if $pickedPokeItems.length > 0}
       <div class="flex flex-wrap justify-center gap-2 rounded-xl border bg-white p-3">
         {#each $pickedPokeItems as item (item.id)}
-          {#if $usedids.has(item.id)}
-            <div class="h-24 w-24 rounded-2xl bg-gray-100"></div>
-          {:else}
-            <PokeChip name={item.jaName} imageUrl={item.imageUrl} onclick={() => handleChallenge(item)} />
-          {/if}
+          <PokeChip
+            name={item.jaName}
+            imageUrl={item.imageUrl}
+            closed={$usedids.has(item.id)}
+            onclick={() => handleChallenge(item)}
+          />
         {/each}
       </div>
     {/if}
