@@ -23,7 +23,7 @@
 
   let openState = $state(false);
   // 世代フィルターをデフォルトで展開
-  let accordionValue = $state(["generation"]);
+  let accordionValue = $state<string[]>(["generation"]);
 </script>
 
 <Dialog open={openState} onOpenChange={(e) => (openState = e.open)}>
@@ -41,10 +41,15 @@
           </button>
         </div>
 
-        <Accordion value={accordionValue} onValueChange={(e) => (accordionValue = e.value)}>
+        <Accordion
+          value={accordionValue}
+          onValueChange={(e) => (accordionValue = e.value)}
+          collapsible={true}
+          multiple={false}
+        >
           {#each Object.entries(accordionItems) as [key, item] (key)}
-            <Accordion.Item value={key}>
-              <Accordion.ItemTrigger class="px-4 py-3 text-sm font-semibold">
+            <Accordion.Item value={key} class="rounded-lg border">
+              <Accordion.ItemTrigger class="flex w-full items-center justify-between px-4 py-3 text-sm font-semibold">
                 <span>{item.label}</span>
                 <Accordion.ItemIndicator>
                   <Icon icon="mdi:chevron-down" class="size-4" />
