@@ -1,10 +1,5 @@
 /**
- * PokeTypeName / PokeTypeData - ポケモンのタイプ情報
- *
- * @architecture レイヤー間依存ルール - ドメイン層
- * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
- * - ALLOWED: なし（依存ゼロ）
- * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
+ * ポケモンのタイプ情報
  */
 
 /** 18 種類のポケモンタイプ名（PokeAPI の英語名に準拠） */

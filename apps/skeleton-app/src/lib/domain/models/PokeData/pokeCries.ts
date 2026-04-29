@@ -1,5 +1,5 @@
 /**
- * PokeCryUrls - ポケモン鳴き声URLの集約モデル
+ * ポケモン鳴き声URLの集約モデル
  */
 
 export interface PokeCryUrls {

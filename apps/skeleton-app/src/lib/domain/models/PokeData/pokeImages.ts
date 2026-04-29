@@ -1,5 +1,5 @@
 /**
- * PokeImageUrls - ポケモン画像URLの集約モデル
+ * ポケモン画像URLの集約モデル
  */
 
 export interface PokeImageUrls {

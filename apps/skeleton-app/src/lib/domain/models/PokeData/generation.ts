@@ -1,10 +1,5 @@
 /**
- * GenerationData - ポケモンの世代情報
- *
- * @architecture レイヤー間依存ルール - ドメイン層
- * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
- * - ALLOWED: なし（依存ゼロ）
- * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
+ * ポケモンの世代情報
  */
 
 /** 世代番号（1〜9）。PokeAPI の generation-i 等と対応 */
