@@ -15,9 +15,12 @@ import { generationData } from "./generation";
 import type { PokeImageUrls } from "./pokeImages";
 import type { PokeCryUrls } from "./pokeCries";
 import { resolvedCryUrl } from "./pokeCries";
+import type { FlavorText } from "./flavorText";
+import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
 
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
+export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
 export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl };
 
 /**
@@ -52,4 +55,25 @@ export interface PokeData {
 
   /** 初登場世代（不明な場合は null） */
   readonly generationData: GenerationData | null;
+
+  /** 分類（例: "ねずみポケモン"） */
+  readonly genus: string;
+
+  /** 伝説のポケモンかどうか */
+  readonly isLegendary: boolean;
+
+  /** 幻のポケモンかどうか */
+  readonly isMythical: boolean;
+
+  /** 図鑑テキスト（日本語・バージョン別・重複除去済み） */
+  readonly flavorTexts: readonly FlavorText[];
+
+  /** 特性参照リスト（詳細は /ability/{id} で別途取得） */
+  readonly abilities: readonly AbilityRef[];
+
+  /** 進化チェーン参照 */
+  readonly evolutionChainRef: EvolutionChainRef;
+
+  /** バリエーション（フォーム）参照リスト */
+  readonly varieties: readonly VarietyRef[];
 }

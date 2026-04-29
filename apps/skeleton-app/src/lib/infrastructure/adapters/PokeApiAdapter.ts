@@ -14,9 +14,19 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import type { PokeData, PokeTypeData, PokeTypeName, PokeImageUrls, PokeCryUrls } from "$lib/domain/models/PokeData";
+import type {
+  PokeData,
+  PokeTypeData,
+  PokeTypeName,
+  PokeImageUrls,
+  PokeCryUrls,
+  PokeStats,
+  AbilityRef,
+  EvolutionChainRef,
+  VarietyRef,
+  FlavorText,
+} from "$lib/domain/models/PokeData";
 import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
-import type { PokeStats } from "$lib/domain/models/PokeData";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
@@ -66,12 +76,43 @@ function extractImageUrls(obj: unknown): string[] {
   return [];
 }
 
+// バージョンごとに ja > ja-hrkt 優先で1件選択し、テキスト重複を除去
+function resolveFlavorTexts(entries: PokemonSpeciesResponse["flavor_text_entries"]): FlavorText[] {
+  const byVersion = new Map<string, string>();
+  for (const lang of ["ja", "ja-hrkt"]) {
+    for (const entry of entries) {
+      if (entry.language.name === lang && !byVersion.has(entry.version.name)) {
+        byVersion.set(entry.version.name, entry.flavor_text);
+      }
+    }
+  }
+  const seenTexts = new Set<string>();
+  const result: FlavorText[] = [];
+  for (const [version, rawText] of byVersion) {
+    const text = rawText
+      .replace(/[\n\f\r]+/g, " ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+    if (!seenTexts.has(text)) {
+      seenTexts.add(text);
+      result.push({ text, version });
+    }
+  }
+  return result;
+}
+
 function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResponse): PokeData {
-  // 日本語名: "ja" (漢字あり) を優先し、なければ "ja-Hrkt" (カナ) を使用
+  // 日本語名: "ja" (漢字あり) を優先し、なければ "ja-hrkt" (カナ) を使用
   const jaName =
     species.names.find((n) => n.language.name === "ja")?.name ??
-    species.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
+    species.names.find((n) => n.language.name === "ja-hrkt")?.name ??
     pokemon.name;
+
+  // 分類: "ja" を優先し、なければ "ja-hrkt" を使用
+  const genus =
+    species.genera.find((g) => g.language.name === "ja")?.genus ??
+    species.genera.find((g) => g.language.name === "ja-hrkt")?.genus ??
+    "";
 
   const type1 = pokemon.types.find((t) => t.slot === 1)?.type.name as PokeTypeName;
   const type2 = (pokemon.types.find((t) => t.slot === 2)?.type.name as PokeTypeName) ?? null;
@@ -107,21 +148,44 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     legacy: pokemon.cries.legacy ?? null,
   };
 
+  const abilities: AbilityRef[] = pokemon.abilities.map((a) => ({
+    name: a.ability.name,
+    url: a.ability.url,
+    isHidden: a.is_hidden,
+  }));
+
+  const evolutionChainRef: EvolutionChainRef = {
+    url: species.evolution_chain.url,
+  };
+
+  const varieties: VarietyRef[] = species.varieties.map((v) => ({
+    name: v.pokemon.name,
+    url: v.pokemon.url,
+    isDefault: v.is_default,
+  }));
+
   const generationNumber = GENERATION_NAME_MAP[species.generation.name] ?? 0;
 
   return {
     id: pokemon.id,
     enName: pokemon.name,
     jaName,
-    type1,
-    type2,
+    genus,
     // PokeAPI は height をデシメートル、weight をヘクトグラムで返すため変換
     height: pokemon.height / 10,
     weight: pokemon.weight / 10,
+    type1,
+    type2,
     stats: convertToStats(pokemon.stats),
     imageUrls,
     cryUrls,
     generationData: generationData(generationNumber),
+    isLegendary: species.is_legendary,
+    isMythical: species.is_mythical,
+    flavorTexts: resolveFlavorTexts(species.flavor_text_entries),
+    abilities,
+    evolutionChainRef,
+    varieties,
   };
 }
 

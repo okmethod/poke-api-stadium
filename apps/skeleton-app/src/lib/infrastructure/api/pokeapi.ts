@@ -28,6 +28,14 @@ export const PokemonResponseSchema = z.object({
   name: z.string(),
   height: z.number(),
   weight: z.number(),
+  base_experience: z.number().nullable(),
+  abilities: z.array(
+    z.object({
+      ability: NamedResourceSchema,
+      is_hidden: z.boolean(),
+      slot: z.number(),
+    }),
+  ),
   types: z.array(
     z.object({
       slot: z.number(),
@@ -42,10 +50,13 @@ export const PokemonResponseSchema = z.object({
   ),
   sprites: z.looseObject({
     front_default: z.string().nullish(),
+    front_shiny: z.string().nullish(),
     back_default: z.string().nullish(),
+    back_shiny: z.string().nullish(),
     other: z.looseObject({
       "official-artwork": z.looseObject({
         front_default: z.string().nullable(),
+        front_shiny: z.string().nullish(),
         // PokeAPI は official-artwork に back_default を含まない場合がある
         back_default: z.string().nullish(),
       }),
@@ -71,6 +82,31 @@ export const PokemonSpeciesResponseSchema = z.object({
     z.object({
       language: NamedResourceSchema,
       name: z.string(),
+    }),
+  ),
+  genera: z.array(
+    z.object({
+      genus: z.string(),
+      language: NamedResourceSchema,
+    }),
+  ),
+  gender_rate: z.number(),
+  capture_rate: z.number(),
+  is_legendary: z.boolean(),
+  is_mythical: z.boolean(),
+  is_baby: z.boolean(),
+  flavor_text_entries: z.array(
+    z.object({
+      flavor_text: z.string(),
+      language: NamedResourceSchema,
+      version: NamedResourceSchema,
+    }),
+  ),
+  evolution_chain: z.object({ url: z.string() }),
+  varieties: z.array(
+    z.object({
+      is_default: z.boolean(),
+      pokemon: NamedResourceSchema,
     }),
   ),
   generation: NamedResourceSchema,
