@@ -1,9 +1,10 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { resolvedCryUrl, type PokeData } from "$lib/domain/models/PokeData";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+  import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import type { PokeData } from "$lib/domain/models/PokeData";
-  import PokeCard from "./_components/PokeCard.svelte";
+  import PokeDexCard from "./_components/PokeDexCard.svelte";
 
   let pokeIdInput = $state("1");
   let pokeData = $state<PokeData | null>(null);
@@ -20,6 +21,15 @@
       pokeData = null;
     } finally {
       isLoading = false;
+    }
+    playCry();
+  }
+
+  function playCry() {
+    if (!pokeData || !getAudioOn()) return;
+    const cryUrl = resolvedCryUrl(pokeData.cryUrls);
+    if (cryUrl) {
+      new Audio(cryUrl).play();
     }
   }
 </script>
@@ -39,11 +49,11 @@
       onkeydown={(e) => e.key === "Enter" && fetchPokeData()}
       class="w-24 rounded border px-3 py-1 text-center"
     />
-    <button type="button" class="btn preset-filled-surface-500 btn-sm" onclick={fetchPokeData} disabled={isLoading}>
+    <button type="button" class="btn preset-tonal btn-sm" onclick={fetchPokeData} disabled={isLoading}>
       <Icon icon="mdi:search" class="size-5" />
     </button>
   </div>
 
   <!-- ポケモンデータカード -->
-  <PokeCard {pokeData} />
+  <PokeDexCard {pokeData} />
 </div>
