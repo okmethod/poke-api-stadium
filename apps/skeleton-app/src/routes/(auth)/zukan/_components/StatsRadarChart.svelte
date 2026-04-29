@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PokeStats } from "$lib/domain/models/PokeData";
+  import { pokeStatJaName } from "$lib/domain/models/PokeData";
 
   interface StatsRadarChartProps {
     stats: PokeStats | null;
@@ -10,13 +11,13 @@
   const CX = SIZE / 2;
   const CY = SIZE / 2;
   const MAX_R = SIZE / 2 - 28;
-  const STAT_LABELS = ["HP", "こうげき", "ぼうぎょ", "すばやさ", "とくぼう", "とくこう"];
-  const ANGLES = STAT_LABELS.map((_, i) => (i / STAT_LABELS.length) * 2 * Math.PI - Math.PI / 2);
+  // レーダーチャート用の表示順（6角形を時計回りに均等配置）
+  const STAT_KEYS: (keyof PokeStats)[] = ["hp", "attack", "defense", "speed", "spDef", "spAtk"];
+  const STAT_LABELS = STAT_KEYS.map((k) => pokeStatJaName(k));
+  const ANGLES = STAT_KEYS.map((_, i) => (i / STAT_KEYS.length) * 2 * Math.PI - Math.PI / 2);
   const MAX_STAT = 200;
 
-  const statsArr = $derived(
-    stats ? [stats.hp, stats.attack, stats.defense, stats.speed, stats.spDef, stats.spAtk] : [0, 0, 0, 0, 0, 0],
-  );
+  const statsArr = $derived(stats ? STAT_KEYS.map((k) => stats[k]) : [0, 0, 0, 0, 0, 0]);
 
   const dataPoints = $derived(
     statsArr.map((v, i) => {

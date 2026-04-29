@@ -10,6 +10,7 @@
 import type { PokeTypeName, PokeTypeData } from "./pokeType";
 import { pokeTypeColor, pokeTypeJaName } from "./pokeType";
 import type { PokeStats } from "./pokeStats";
+import { pokeStatJaName } from "./pokeStats";
 import type { GenerationData } from "./generation";
 import { generationData } from "./generation";
 import type { PokeImageUrls } from "./pokeImages";
@@ -21,7 +22,7 @@ import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
 export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
-export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl };
+export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl, pokeStatJaName };
 
 /**
  * アプリ内部のポケモン統合モデル
