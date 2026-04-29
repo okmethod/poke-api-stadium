@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import Icon from "@iconify/svelte";
   import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/EvolutionChain";
   import { describeCondition } from "$lib/domain/models/EvolutionChain";
@@ -8,6 +10,13 @@
     currentPokemonId: number | null;
   }
   let { evolutionChain, currentPokemonId }: Props = $props();
+
+  function navigateToPokemon(speciesId: number) {
+    if (speciesId === currentPokemonId) return;
+    const url = new URL(page.url);
+    url.searchParams.set("id", String(speciesId));
+    goto(url.toString());
+  }
 </script>
 
 {#if !evolutionChain}
@@ -15,16 +24,18 @@
 {:else}
   {#snippet chainNode(node: EvolutionNode)}
     <div class="flex flex-col items-center justify-center gap-1 sm:flex-row">
-      <div
+      <button
+        type="button"
+        onclick={() => navigateToPokemon(node.speciesId)}
         class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === currentPokemonId
           ? 'bg-primary-500/20'
-          : ''}"
+          : 'hover:bg-surface-200-800 cursor-pointer'}"
       >
         <img src={node.imageUrl} alt={node.jaName} class="size-12 object-contain" />
         <span class="text-xs {node.speciesId === currentPokemonId ? 'text-primary-500 font-bold' : ''}">
           {node.jaName}
         </span>
-      </div>
+      </button>
       {#if node.evolvesTo.length > 0}
         <div class="flex flex-col items-center gap-2">
           {#each node.evolvesTo as step (step.next.speciesName)}
