@@ -1,9 +1,11 @@
 <script lang="ts">
   import type { Component } from "svelte";
   import { Tabs } from "@skeletonlabs/skeleton-svelte";
+  import { navigating } from "$app/state";
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/domain/models/PokeData";
   import { pokeTypeColor, resolvedCryUrl } from "$lib/domain/models/PokeData";
+  import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import DexBasicTab from "./DexBasicTab.svelte";
   import DexStatusTab from "./DexStatusTab.svelte";
@@ -12,19 +14,19 @@
 
   interface PokeDexCardProps {
     pokeData: PokeData | null;
+    evolutionChain: EvolutionChain | null;
+    activeTab: string;
+    ontabchange: (tab: string) => void;
   }
-  let { pokeData }: PokeDexCardProps = $props();
+  let { pokeData, evolutionChain, activeTab, ontabchange }: PokeDexCardProps = $props();
 
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
 
-  // pokeData が切り替わったらインデックスと activeTab をリセット
   let imageIndex = $state(0);
-  let activeTab = $state("basic");
   $effect(() => {
     void pokeData;
     imageIndex = 0;
-    activeTab = "basic";
   });
 
   const currentImageUrl = $derived(
@@ -43,22 +45,25 @@
   function playCry() {
     if (!pokeData || !getAudioOn()) return;
     const cryUrl = resolvedCryUrl(pokeData.cryUrls);
-    if (cryUrl) {
-      new Audio(cryUrl).play();
-    }
+    if (cryUrl) new Audio(cryUrl).play();
   }
+
+  // evolutionタブへのナビゲーション中はスピナーを表示する
+  const isLoadingEvolution = $derived(
+    navigating.to !== null && navigating.to.url.searchParams.get("tab") === "evolution",
+  );
 
   interface TabDef {
     value: string;
     label: string;
     icon: string;
-    component: Component<{ pokeData: PokeData | null }>;
+    component?: Component<{ pokeData: PokeData | null }>;
   }
   const tabs: TabDef[] = [
     { value: "basic", label: "基本", icon: "mdi:information-slab-circle-outline", component: DexBasicTab },
     { value: "status", label: "ステータス", icon: "mdi:chart-bar", component: DexStatusTab },
     { value: "flavor", label: "図鑑", icon: "mdi:book-open-outline", component: DexFlavorTab },
-    { value: "evolution", label: "しんか", icon: "mdi:arrow-decision-outline", component: DexEvolutionTab },
+    { value: "evolution", label: "しんか", icon: "mdi:arrow-decision-outline" },
   ];
 </script>
 
@@ -128,41 +133,42 @@
       </div>
     </div>
 
-    <!-- タブセクション: pokeData が切り替わるたびに基本タブへリセット -->
-    {#key pokeData?.id}
-      <div class="w-full min-w-0 flex-1">
-        <Tabs
-          defaultValue="basic"
-          onValueChange={(e) => {
-            activeTab = e.value;
-          }}
-        >
-          <Tabs.List class="flex">
-            {#each tabs as tab (tab.value)}
-              <Tabs.Trigger
-                value={tab.value}
-                class="data-[selected]:border-primary-500 px-3 py-1 text-sm data-[selected]:font-bold"
-              >
-                <Icon icon={tab.icon} class="inline size-4 sm:hidden" />
-                <span class="hidden sm:inline">{tab.label}</span>
-              </Tabs.Trigger>
-            {/each}
-            <Tabs.Indicator />
-          </Tabs.List>
-
+    <!-- タブセクション -->
+    <div class="w-full min-w-0 flex-1">
+      <Tabs value={activeTab} onValueChange={(e) => ontabchange(e.value)}>
+        <Tabs.List class="flex">
           {#each tabs as tab (tab.value)}
-            <Tabs.Content value={tab.value}>
-              {#if tab.value !== "evolution" || activeTab === "evolution"}
-                {@const Comp = tab.component}
-                <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0"><Comp {pokeData} /></div>
-              {:else}
-                <div class="h-full sm:h-64"></div>
-              {/if}
-            </Tabs.Content>
+            <Tabs.Trigger
+              value={tab.value}
+              class="data-[selected]:border-primary-500 px-3 py-1 text-sm data-[selected]:font-bold"
+            >
+              <Icon icon={tab.icon} class="inline size-4 sm:hidden" />
+              <span class="hidden sm:inline">{tab.label}</span>
+            </Tabs.Trigger>
           {/each}
-        </Tabs>
-      </div>
-    {/key}
+          <Tabs.Indicator />
+        </Tabs.List>
+
+        {#each tabs as tab (tab.value)}
+          <Tabs.Content value={tab.value}>
+            {#if tab.value === "evolution"}
+              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">
+                {#if isLoadingEvolution}
+                  <div class="flex h-full items-center justify-center p-4">
+                    <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
+                  </div>
+                {:else}
+                  <DexEvolutionTab {evolutionChain} currentPokemonId={pokeData?.id ?? null} />
+                {/if}
+              </div>
+            {:else if tab.component}
+              {@const Comp = tab.component}
+              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0"><Comp {pokeData} /></div>
+            {/if}
+          </Tabs.Content>
+        {/each}
+      </Tabs>
+    </div>
   </div>
 
   <footer class="h-4" style="background-color: {footerColor};"></footer>

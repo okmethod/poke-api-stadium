@@ -1,71 +1,27 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { PokeData } from "$lib/domain/models/PokeData";
   import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/EvolutionChain";
   import { describeCondition } from "$lib/domain/models/EvolutionChain";
-  import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
 
   interface Props {
-    pokeData: PokeData | null;
+    evolutionChain: EvolutionChain | null;
+    currentPokemonId: number | null;
   }
-  let { pokeData }: Props = $props();
-
-  let evolutionChain = $state<EvolutionChain | null>(null);
-  let isLoading = $state(false);
-  let fetchError = $state<string | null>(null);
-
-  $effect(() => {
-    if (!pokeData) {
-      evolutionChain = null;
-      return;
-    }
-
-    const chainUrl = pokeData.evolutionChainRef.url;
-    let cancelled = false;
-
-    isLoading = true;
-    fetchError = null;
-    evolutionChain = null;
-
-    getPokeRepository()
-      .getEvolutionChain(fetch, chainUrl)
-      .then((data) => {
-        if (!cancelled) evolutionChain = data;
-      })
-      .catch((err) => {
-        if (!cancelled) {
-          fetchError = "進化データを取得できませんでした";
-          console.error("Failed to fetch evolution chain:", err);
-        }
-      })
-      .finally(() => {
-        if (!cancelled) isLoading = false;
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  });
+  let { evolutionChain, currentPokemonId }: Props = $props();
 </script>
 
-{#if !pokeData}
+{#if !evolutionChain}
   <p class="text-surface-400 p-2 text-sm">???</p>
-{:else if isLoading}
-  <div class="flex h-full items-center justify-center p-4">
-    <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
-  </div>
-{:else if fetchError}
-  <p class="text-error-500 p-2 text-sm">{fetchError}</p>
-{:else if evolutionChain}
+{:else}
   {#snippet chainNode(node: EvolutionNode)}
     <div class="flex flex-col items-center justify-center gap-1 sm:flex-row">
       <div
-        class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === pokeData?.id
+        class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === currentPokemonId
           ? 'bg-primary-500/20'
           : ''}"
       >
         <img src={node.imageUrl} alt={node.jaName} class="size-12 object-contain" />
-        <span class="text-xs {node.speciesId === pokeData?.id ? 'text-primary-500 font-bold' : ''}">
+        <span class="text-xs {node.speciesId === currentPokemonId ? 'text-primary-500 font-bold' : ''}">
           {node.jaName}
         </span>
       </div>
