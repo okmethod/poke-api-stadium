@@ -112,6 +112,37 @@ export const PokemonSpeciesResponseSchema = z.object({
   generation: NamedResourceSchema,
 });
 
+// --- Evolution Chain スキーマ（再帰構造） ---
+
+const EvolutionDetailSchema = z.object({
+  trigger: NamedResourceSchema,
+  min_level: z.number().nullable(),
+  item: NamedResourceSchema.nullable(),
+  min_happiness: z.number().nullable(),
+  time_of_day: z.string(),
+  held_item: NamedResourceSchema.nullable(),
+  known_move: NamedResourceSchema.nullable(),
+});
+
+type EvolutionChainNodeType = {
+  species: { name: string; url: string };
+  evolution_details: z.infer<typeof EvolutionDetailSchema>[];
+  evolves_to: EvolutionChainNodeType[];
+};
+
+const EvolutionChainNodeSchema: z.ZodType<EvolutionChainNodeType> = z.lazy(() =>
+  z.object({
+    species: NamedResourceSchema,
+    evolution_details: z.array(EvolutionDetailSchema),
+    evolves_to: z.array(EvolutionChainNodeSchema),
+  }),
+);
+
+export const EvolutionChainResponseSchema = z.object({
+  id: z.number(),
+  chain: EvolutionChainNodeSchema,
+});
+
 export const TypeResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -136,6 +167,7 @@ export const TypeResponseSchema = z.object({
 export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
+export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema>;
 
 // --- メモリキャッシュ ---
 
@@ -148,12 +180,14 @@ export type TypeResponse = z.infer<typeof TypeResponseSchema>;
 const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
 const typeCache = new Map<string, TypeResponse>();
+const evolutionChainCache = new Map<string, EvolutionChainResponse>();
 
 /** キャッシュをすべてクリアする（テスト用） */
 export function clearCache(): void {
   pokemonCache.clear();
   speciesCache.clear();
   typeCache.clear();
+  evolutionChainCache.clear();
 }
 
 // --- API 呼び出し関数 ---
@@ -200,5 +234,21 @@ export async function fetchType(fetchFunction: typeof fetch, idOrName: number | 
   });
   const data = TypeResponseSchema.parse(await response.json());
   typeCache.set(key, data);
+  return data;
+}
+
+/** /evolution-chain/{id} または絶対 URL を取得 */
+export async function fetchEvolutionChain(
+  fetchFunction: typeof fetch,
+  idOrUrl: number | string,
+): Promise<EvolutionChainResponse> {
+  const key = String(idOrUrl);
+  const cached = evolutionChainCache.get(key);
+  if (cached) return cached;
+
+  const url = typeof idOrUrl === "number" ? `${BASE_URL}/evolution-chain/${idOrUrl}` : idOrUrl;
+  const response = await fetchApi(fetchFunction, url, { method: "GET" });
+  const data = EvolutionChainResponseSchema.parse(await response.json());
+  evolutionChainCache.set(key, data);
   return data;
 }

@@ -21,6 +21,7 @@
 
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
+import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {
@@ -39,4 +40,7 @@ export interface IPokeRepository {
 
   /** 複数のタイプ名からタイプ辞書を取得 */
   getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, PokeTypeData>>;
+
+  /** 進化チェーン参照 URL から進化チェーンデータを取得 */
+  getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain>;
 }

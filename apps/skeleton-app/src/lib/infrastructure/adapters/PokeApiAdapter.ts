@@ -27,14 +27,17 @@ import type {
   FlavorText,
 } from "$lib/domain/models/PokeData";
 import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
+import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
   fetchPokemonSpecies,
   fetchType,
+  fetchEvolutionChain,
   type PokemonResponse,
   type PokemonSpeciesResponse,
   type TypeResponse,
+  type EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
 
 // 世代名（ローマ数字）→ 世代番号 の対応表
@@ -189,6 +192,76 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
   };
 }
 
+function extractSpeciesId(url: string): number {
+  const match = url.match(/\/(\d+)\/?$/);
+  return match ? Number(match[1]) : 0;
+}
+
+function convertToEvolutionCondition(
+  detail: EvolutionChainResponse["chain"]["evolution_details"][number] | undefined,
+): EvolutionCondition {
+  if (!detail) {
+    return {
+      trigger: "",
+      minLevel: null,
+      item: null,
+      minHappiness: null,
+      timeOfDay: "",
+      heldItem: null,
+      knownMove: null,
+    };
+  }
+  return {
+    trigger: detail.trigger.name,
+    minLevel: detail.min_level,
+    item: detail.item?.name ?? null,
+    minHappiness: detail.min_happiness,
+    timeOfDay: detail.time_of_day,
+    heldItem: detail.held_item?.name ?? null,
+    knownMove: detail.known_move?.name ?? null,
+  };
+}
+
+function collectSpeciesNames(node: EvolutionChainResponse["chain"]): string[] {
+  return [node.species.name, ...node.evolves_to.flatMap((child) => collectSpeciesNames(child))];
+}
+
+async function enrichEvolutionChain(
+  fetchFunction: typeof fetch,
+  response: EvolutionChainResponse,
+): Promise<EvolutionChain> {
+  const allNames = collectSpeciesNames(response.chain);
+
+  const jaNameMap = new Map<string, string>();
+  await Promise.all(
+    allNames.map(async (name) => {
+      const species = await fetchPokemonSpecies(fetchFunction, name);
+      const jaName =
+        species.names.find((n) => n.language.name === "ja")?.name ??
+        species.names.find((n) => n.language.name === "ja-hrkt")?.name ??
+        name;
+      jaNameMap.set(name, jaName);
+    }),
+  );
+
+  function buildNode(node: EvolutionChainResponse["chain"]): EvolutionNode {
+    const speciesId = extractSpeciesId(node.species.url);
+    return {
+      speciesId,
+      speciesName: node.species.name,
+      jaName: jaNameMap.get(node.species.name) ?? node.species.name,
+      // pokemon-species エンドポイントに画像URLはないため、IDからURLを構築して使用
+      imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${speciesId}.png`,
+      evolvesTo: node.evolves_to.map((child) => ({
+        condition: convertToEvolutionCondition(child.evolution_details[0]),
+        next: buildNode(child),
+      })),
+    };
+  }
+
+  return { id: response.id, root: buildNode(response.chain) };
+}
+
 function convertToTypeData(raw: TypeResponse): PokeTypeData {
   const toTypeNames = (list: { name: string }[]): PokeTypeName[] => list.map((t) => t.name as PokeTypeName);
   const name = raw.name as PokeTypeName;
@@ -260,6 +333,12 @@ class PokeApiAdapter implements IPokeRepository {
       }),
     );
     return result;
+  }
+
+  /** 進化チェーン参照 URL から進化チェーンデータを取得 */
+  async getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain> {
+    const raw = await fetchEvolutionChain(fetchFunction, url);
+    return enrichEvolutionChain(fetchFunction, raw);
   }
 }
 

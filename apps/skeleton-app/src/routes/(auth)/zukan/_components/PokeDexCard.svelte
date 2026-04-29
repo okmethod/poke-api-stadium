@@ -8,6 +8,7 @@
   import DexBasicTab from "./DexBasicTab.svelte";
   import DexStatusTab from "./DexStatusTab.svelte";
   import DexFlavorTab from "./DexFlavorTab.svelte";
+  import DexEvolutionTab from "./DexEvolutionTab.svelte";
 
   interface PokeDexCardProps {
     pokeData: PokeData | null;
@@ -17,11 +18,13 @@
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
 
-  // pokeData が切り替わったらインデックスをリセット
+  // pokeData が切り替わったらインデックスと activeTab をリセット
   let imageIndex = $state(0);
+  let activeTab = $state("basic");
   $effect(() => {
     void pokeData;
     imageIndex = 0;
+    activeTab = "basic";
   });
 
   const currentImageUrl = $derived(
@@ -55,6 +58,7 @@
     { value: "basic", label: "基本", icon: "mdi:information-slab-circle-outline", component: DexBasicTab },
     { value: "status", label: "ステータス", icon: "mdi:chart-bar", component: DexStatusTab },
     { value: "flavor", label: "図鑑", icon: "mdi:book-open-outline", component: DexFlavorTab },
+    { value: "evolution", label: "しんか", icon: "mdi:arrow-decision-outline", component: DexEvolutionTab },
   ];
 </script>
 
@@ -127,7 +131,12 @@
     <!-- タブセクション: pokeData が切り替わるたびに基本タブへリセット -->
     {#key pokeData?.id}
       <div class="w-full min-w-0 flex-1">
-        <Tabs defaultValue="basic">
+        <Tabs
+          defaultValue="basic"
+          onValueChange={(e) => {
+            activeTab = e.value;
+          }}
+        >
           <Tabs.List class="flex">
             {#each tabs as tab (tab.value)}
               <Tabs.Trigger
@@ -143,8 +152,12 @@
 
           {#each tabs as tab (tab.value)}
             <Tabs.Content value={tab.value}>
-              {@const Comp = tab.component}
-              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0"><Comp {pokeData} /></div>
+              {#if tab.value !== "evolution" || activeTab === "evolution"}
+                {@const Comp = tab.component}
+                <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0"><Comp {pokeData} /></div>
+              {:else}
+                <div class="h-full sm:h-64"></div>
+              {/if}
             </Tabs.Content>
           {/each}
         </Tabs>
