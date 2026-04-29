@@ -48,12 +48,13 @@
   interface TabDef {
     value: string;
     label: string;
+    icon: string;
     component: Component<{ pokeData: PokeData | null }>;
   }
   const tabs: TabDef[] = [
-    { value: "basic", label: "基本", component: DexBasicTab },
-    { value: "status", label: "ステータス", component: DexStatusTab },
-    { value: "flavor", label: "図鑑", component: DexFlavorTab },
+    { value: "basic", label: "基本", icon: "mdi:information-slab-circle-outline", component: DexBasicTab },
+    { value: "status", label: "ステータス", icon: "mdi:chart-bar", component: DexStatusTab },
+    { value: "flavor", label: "図鑑", icon: "mdi:book-open-outline", component: DexFlavorTab },
   ];
 </script>
 
@@ -61,10 +62,10 @@
   <header class="h-4" style="background-color: {headerColor};"></header>
 
   <!-- タイトル部 -->
-  <div class="px-4 pt-4 pb-2 text-center">
+  <div class="px-4 pt-2 pb-2 text-center">
     {#if pokeData}
-      <h2 class="flex flex-col items-center gap-1 font-bold sm:flex-row sm:justify-between">
-        <span class="text-surface-400">No. {pokeData.id}</span>
+      <h2 class="flex h-16 flex-col items-center gap-1 font-bold sm:h-10 sm:flex-row sm:justify-between">
+        <span class="text-surface-400 hidden sm:block">No. {pokeData.id}</span>
         <div class="flex items-center justify-center gap-2">
           <span class="text-2xl"> {pokeData.jaName} </span>
           {#if pokeData}
@@ -79,7 +80,11 @@
         <span class="text-surface-400">{pokeData.genus}</span>
       </h2>
     {:else}
-      <span class="text-surface-400">???</span>
+      <h2 class="flex h-16 items-center justify-center sm:h-10 sm:justify-between">
+        <span class="text-surface-400 hidden sm:block">No. ?</span>
+        <span class="text-surface-400">???</span>
+        <span class="text-surface-400 hidden sm:block">??????</span>
+      </h2>
     {/if}
     <hr class="hr" />
   </div>
@@ -123,13 +128,14 @@
     {#key pokeData?.id}
       <div class="w-full min-w-0 flex-1">
         <Tabs defaultValue="basic">
-          <Tabs.List class="border-surface-200-800 flex border-b">
+          <Tabs.List class="flex">
             {#each tabs as tab (tab.value)}
               <Tabs.Trigger
                 value={tab.value}
                 class="data-[selected]:border-primary-500 px-3 py-1 text-sm data-[selected]:font-bold"
               >
-                {tab.label}
+                <Icon icon={tab.icon} class="inline size-4 sm:hidden" />
+                <span class="hidden sm:inline">{tab.label}</span>
               </Tabs.Trigger>
             {/each}
             <Tabs.Indicator />
@@ -138,7 +144,7 @@
           {#each tabs as tab (tab.value)}
             <Tabs.Content value={tab.value}>
               {@const Comp = tab.component}
-              <div class="h-64 overflow-y-auto"><Comp {pokeData} /></div>
+              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0"><Comp {pokeData} /></div>
             </Tabs.Content>
           {/each}
         </Tabs>
