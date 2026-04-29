@@ -18,11 +18,14 @@ import type { PokeCryUrls } from "./pokeCries";
 import { resolvedCryUrl } from "./pokeCries";
 import type { FlavorText } from "./flavorText";
 import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
+import type { VersionName } from "./version";
+import { versionJaLabel } from "./version";
 
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
 export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
-export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl, pokeStatJaName };
+export type { VersionName };
+export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl, pokeStatJaName, versionJaLabel };
 
 /**
  * アプリ内部のポケモン統合モデル
