@@ -20,7 +20,8 @@ export interface ShiritoriPokeItem {
   readonly type2: PokeTypeName | null;
 }
 
-// ベースデータ
+// --- ストア定義（書き込みはすべて storeWriter 経由） ---
+
 const isLoadingStore = writable<boolean>(false);
 const pokeDictStore = writable<Record<number, ShiritoriPokeItem>>({});
 const groupByHeadCharDictStore = writable<Record<string, number[]>>({});

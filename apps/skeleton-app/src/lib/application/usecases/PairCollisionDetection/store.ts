@@ -9,15 +9,10 @@
 
 import { writable, readonly } from "svelte/store";
 
+// --- ストア定義（書き込みはすべて storeWriter 経由） ---
+
 const matchedCountStore = writable<number>(0);
 const activeBodyCountStore = writable<number>(0);
-
-/**
- * マッチ成立時に更新されるポケモン名・鳴き声URL
- *
- * プレゼン層が購読して音声再生する。matchedCount の変化をトリガーとして使うため、
- * null リセットは不要（matchedCount が増えるたびに上書きされる）。
- */
 const lastMatchJaNameStore = writable<string | null>(null);
 const lastMatchCryUrlStore = writable<string | null>(null);
 

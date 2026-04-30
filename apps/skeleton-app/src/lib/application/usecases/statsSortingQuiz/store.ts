@@ -11,6 +11,8 @@ import { writable, readonly } from "svelte/store";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { GameResult } from "$lib/application/usecases/facadeTypes";
 
+// --- ストア定義（書き込みはすべて storeWriter 経由） ---
+
 const pokeDataListStore = writable<PokeData[]>([]);
 const isOpenStore = writable<boolean>(false);
 const isLoadingStore = writable<boolean>(false);

@@ -10,6 +10,8 @@
 import { writable, readonly } from "svelte/store";
 import type { PokeData } from "$lib/domain/models/PokeData";
 
+// --- ストア定義（書き込みはすべて storeWriter 経由） ---
+
 const pokeDataListStore = writable<PokeData[]>([]);
 const isRevealedStore = writable<boolean>(false);
 const isLoadingStore = writable<boolean>(false);

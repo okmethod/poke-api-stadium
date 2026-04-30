@@ -13,6 +13,8 @@ import type { ChatMessage } from "$lib/application/ports/ILLMServiceRepository";
 /** ゲームの進行状態 */
 export type GameStatus = "init" | "playing" | "finished";
 
+// --- ストア定義（書き込みはすべて storeWriter 経由） ---
+
 const gameStatusStore = writable<GameStatus>("init");
 const currentPokeNameStore = writable<string | null>(null);
 const pokeImageUrlStore = writable<string>("");
