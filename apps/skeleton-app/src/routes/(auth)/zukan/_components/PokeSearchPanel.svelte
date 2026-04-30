@@ -42,7 +42,7 @@
     selectedGenerations = [];
   }
 
-  const PAGE_SIZE = 20;
+  const PAGE_SIZE = 24;
   const LIMIT_SIZE = 100;
 
   async function handleSearch() {
