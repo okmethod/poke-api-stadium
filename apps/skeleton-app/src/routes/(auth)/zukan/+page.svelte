@@ -38,6 +38,22 @@
     await goto(url.toString());
   }
 
+  async function navigatePrev() {
+    const currentId = data.pokeData?.id ?? parseInt(pokeIdInput, 10);
+    if (isNaN(currentId) || currentId <= 1) return;
+    const url = new URL(page.url);
+    url.searchParams.set("id", String(currentId - 1));
+    await goto(url.toString());
+  }
+
+  async function navigateNext() {
+    const currentId = data.pokeData?.id ?? parseInt(pokeIdInput, 10);
+    if (isNaN(currentId)) return;
+    const url = new URL(page.url);
+    url.searchParams.set("id", String(currentId + 1));
+    await goto(url.toString());
+  }
+
   function handleTabChange(tab: string) {
     const url = new URL(page.url);
     url.searchParams.set("tab", tab);
@@ -54,8 +70,18 @@
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンずかん</h1>
 
-  <!-- 検索フォーム -->
   <div class="flex items-center gap-2">
+    <!-- 左向き矢印 -->
+    <button
+      type="button"
+      class="btn preset-tonal btn-sm"
+      onclick={navigatePrev}
+      disabled={navigating.to !== null || !data.pokeData || data.pokeData.id <= 1}
+    >
+      <Icon icon="mdi:chevron-left" class="size-5" />
+    </button>
+
+    <!-- 番号指定 -->
     <label for="pokeId" class="font-semibold">No:</label>
     <input
       id="pokeId"
@@ -68,6 +94,16 @@
     />
     <button type="button" class="btn preset-tonal btn-sm" onclick={handleSearch} disabled={navigating.to !== null}>
       <Icon icon="mdi:search" class="size-5" />
+    </button>
+
+    <!-- 右向き矢印 -->
+    <button
+      type="button"
+      class="btn preset-tonal btn-sm"
+      onclick={navigateNext}
+      disabled={navigating.to !== null || !data.pokeData}
+    >
+      <Icon icon="mdi:chevron-right" class="size-5" />
     </button>
   </div>
 
