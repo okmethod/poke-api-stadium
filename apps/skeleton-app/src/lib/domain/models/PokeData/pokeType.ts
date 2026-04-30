@@ -48,6 +48,9 @@ const TYPE_COLORS: Record<PokeTypeName, string> = {
   fairy: "#ee99ac",
 };
 
+/** 全タイプ名の配列（UI でのイテレーション用） */
+export const ALL_TYPE_NAMES: PokeTypeName[] = Object.keys(TYPE_JA) as PokeTypeName[];
+
 /** タイプ名に対応する日本語名（APIを使わない静的ルックアップ用） */
 export const pokeTypeJaName = (name: PokeTypeName): string => TYPE_JA[name];
 

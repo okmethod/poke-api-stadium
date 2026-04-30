@@ -8,7 +8,7 @@
  */
 
 import type { PokeTypeName, PokeTypeData } from "./pokeType";
-import { pokeTypeColor, pokeTypeJaName, parsePokeTypeName } from "./pokeType";
+import { ALL_TYPE_NAMES, pokeTypeColor, pokeTypeJaName, parsePokeTypeName } from "./pokeType";
 import type { PokeStats } from "./pokeStats";
 import { pokeStatJaName } from "./pokeStats";
 import type { GenerationData } from "./generation";
@@ -26,6 +26,7 @@ export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUr
 export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
 export type { VersionName };
 export {
+  ALL_TYPE_NAMES,
   pokeTypeColor,
   pokeTypeJaName,
   parsePokeTypeName,

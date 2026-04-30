@@ -6,6 +6,7 @@
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PokeDexCard from "./_components/PokeDexCard.svelte";
+  import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
 
   let { data } = $props();
 
@@ -114,4 +115,7 @@
     activeTab={data.tab}
     ontabchange={handleTabChange}
   />
+
+  <!-- ポケモン検索パネル -->
+  <PokeSearchPanel />
 </div>
