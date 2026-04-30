@@ -12,6 +12,8 @@ globs: "apps/skeleton-app/**/*.svelte"
 
 ## 開発規約
 
+- 4層 Clean Architecture のレイヤー間依存ルールに従う（`docs/architecture/overview.md` を参照）
+- ミニゲーム実装の際は、ゲーム型分類に応じた Facade / Store / page.svelte テンプレートを参照し、一貫性のある実装を行う（`docs/architecture/mini-game.md` を参照）
 - Runes 記法に統一する（旧 `let`/`$:` 記法は使わない）
   - リアクティブ変数: `let x = $state(0)`
   - 算出値: `const y = $derived(...)`
