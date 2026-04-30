@@ -9,25 +9,8 @@
 
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 
-export type EvolutionTrigger =
-  | "level-up"
-  | "trade"
-  | "use-item"
-  | "use-move"
-  | "agile-style-move"
-  | "strong-style-move"
-  | "shed"
-  | "spin"
-  | "tower-of-darkness"
-  | "tower-of-waters"
-  | "three-critical-hits"
-  | "take-damage"
-  | "recoil-damage"
-  | "three-defeated-bisharp"
-  | "gimmmighoul-coins"
-  | "other";
-
-const TRIGGER_JA: Record<EvolutionTrigger, string> = {
+// TRIGGER_JA を SSoT とし、キーから EvolutionTrigger を派生させる
+const TRIGGER_JA = {
   "level-up": "レベルアップ",
   trade: "通信交換",
   "use-item": "どうぐ使用",
@@ -44,11 +27,22 @@ const TRIGGER_JA: Record<EvolutionTrigger, string> = {
   "three-defeated-bisharp": "キリキザン3体撃破", // キリキザン -> ドドゲザン
   "gimmmighoul-coins": "コレクレーのコイン", // コレクレー -> サーフゴー
   other: "その他",
-};
+} as const;
+
+export type EvolutionTrigger = keyof typeof TRIGGER_JA;
 
 /** 進化トリガーに対応する日本語ラベルを返す */
 export function triggerJaLabel(trigger: EvolutionTrigger): string {
   return TRIGGER_JA[trigger];
+}
+
+/**
+ * 文字列を EvolutionTrigger に変換する（未知の値は "other" にフォールバック）
+ *
+ * `as` アサーションの代替として、バウンダリで一度だけ検証するために使う。
+ */
+export function parseEvolutionTrigger(name: string): EvolutionTrigger {
+  return name in TRIGGER_JA ? (name as EvolutionTrigger) : "other";
 }
 
 interface LevelUpCondition {

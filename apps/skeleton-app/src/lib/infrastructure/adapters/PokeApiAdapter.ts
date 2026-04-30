@@ -26,13 +26,9 @@ import type {
   VarietyRef,
   FlavorText,
 } from "$lib/domain/models/PokeData";
-import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
-import type {
-  EvolutionChain,
-  EvolutionCondition,
-  EvolutionNode,
-  EvolutionTrigger,
-} from "$lib/domain/models/EvolutionChain";
+import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/models/PokeData";
+import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
+import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
@@ -125,8 +121,9 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     species.genera.find((g) => g.language.name === "ja-hrkt")?.genus ??
     "";
 
-  const type1 = pokemon.types.find((t) => t.slot === 1)?.type.name as PokeTypeName;
-  const type2 = (pokemon.types.find((t) => t.slot === 2)?.type.name as PokeTypeName) ?? null;
+  const type1 = parsePokeTypeName(pokemon.types.find((t) => t.slot === 1)?.type.name ?? "");
+  const type2Name = pokemon.types.find((t) => t.slot === 2)?.type.name;
+  const type2 = type2Name != null ? parsePokeTypeName(type2Name) : null;
 
   const artworkFront =
     pokemon.sprites.other["official-artwork"].front_default ??
@@ -224,7 +221,7 @@ function convertToEvolutionCondition(
 ): EvolutionCondition {
   if (!detail) return { trigger: "other" };
 
-  const trigger = detail.trigger.name as EvolutionTrigger;
+  const trigger = parseEvolutionTrigger(detail.trigger.name);
   switch (trigger) {
     case "level-up":
       return {
@@ -309,8 +306,8 @@ async function enrichEvolutionChain(
 }
 
 function convertToTypeData(raw: TypeResponse): PokeTypeData {
-  const toTypeNames = (list: { name: string }[]): PokeTypeName[] => list.map((t) => t.name as PokeTypeName);
-  const name = raw.name as PokeTypeName;
+  const toTypeNames = (list: { name: string }[]): PokeTypeName[] => list.map((t) => parsePokeTypeName(t.name));
+  const name = parsePokeTypeName(raw.name);
   // "ja" (漢字あり) を優先し、なければ "ja-Hrkt" (カナ) を使用
   const jaName =
     raw.names.find((n) => n.language.name === "ja")?.name ??

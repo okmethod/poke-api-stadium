@@ -2,53 +2,8 @@
  * ポケモンのバージョン情報
  */
 
-/** PokeAPI に登録されているゲームバージョン名（英語スラッグ） */
-export type VersionName =
-  | "red"
-  | "blue"
-  | "yellow"
-  | "gold"
-  | "silver"
-  | "crystal"
-  | "ruby"
-  | "sapphire"
-  | "emerald"
-  | "firered"
-  | "leafgreen"
-  | "diamond"
-  | "pearl"
-  | "platinum"
-  | "heartgold"
-  | "soulsilver"
-  | "black"
-  | "white"
-  | "black-2"
-  | "white-2"
-  | "colosseum"
-  | "xd"
-  | "x"
-  | "y"
-  | "omega-ruby"
-  | "alpha-sapphire"
-  | "sun"
-  | "moon"
-  | "ultra-sun"
-  | "ultra-moon"
-  | "lets-go-pikachu"
-  | "lets-go-eevee"
-  | "sword"
-  | "shield"
-  | "the-isle-of-armor"
-  | "the-crown-tundra"
-  | "brilliant-diamond"
-  | "shining-pearl"
-  | "legends-arceus"
-  | "scarlet"
-  | "violet"
-  | "the-teal-mask"
-  | "the-indigo-disk";
-
-const VERSION_JA: Record<VersionName, string> = {
+// VERSION_JA を SSoT とし、キーから VersionName を派生させる
+const VERSION_JA = {
   red: "赤",
   blue: "青",
   yellow: "黄",
@@ -92,9 +47,12 @@ const VERSION_JA: Record<VersionName, string> = {
   violet: "バイオレット",
   "the-teal-mask": "碧の仮面",
   "the-indigo-disk": "藍の円盤",
-};
+} as const;
+
+/** PokeAPI に登録されているゲームバージョン名（英語スラッグ） */
+export type VersionName = keyof typeof VERSION_JA;
 
 /** バージョン名に対応する日本語ラベルを返す。未登録の場合は null（APIを使わない静的ルックアップ用） */
 export function versionJaLabel(name: string): string | null {
-  return VERSION_JA[name as VersionName] ?? null;
+  return name in VERSION_JA ? VERSION_JA[name as VersionName] : null;
 }

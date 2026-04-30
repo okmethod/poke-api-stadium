@@ -8,7 +8,7 @@
  */
 
 import type { PokeTypeName, PokeTypeData } from "./pokeType";
-import { pokeTypeColor, pokeTypeJaName } from "./pokeType";
+import { pokeTypeColor, pokeTypeJaName, parsePokeTypeName } from "./pokeType";
 import type { PokeStats } from "./pokeStats";
 import { pokeStatJaName } from "./pokeStats";
 import type { GenerationData } from "./generation";
@@ -25,7 +25,15 @@ import { versionJaLabel } from "./version";
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
 export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
 export type { VersionName };
-export { pokeTypeColor, pokeTypeJaName, generationData, resolvedCryUrl, pokeStatJaName, versionJaLabel };
+export {
+  pokeTypeColor,
+  pokeTypeJaName,
+  parsePokeTypeName,
+  generationData,
+  resolvedCryUrl,
+  pokeStatJaName,
+  versionJaLabel,
+};
 
 /**
  * アプリ内部のポケモン統合モデル
