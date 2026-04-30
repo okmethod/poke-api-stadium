@@ -7,19 +7,79 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
-/** 進化の条件 */
-export interface EvolutionCondition {
-  readonly trigger: string;
+import type { PokeItem } from "$lib/domain/models/PokeItem";
+
+export type EvolutionTrigger =
+  | "level-up"
+  | "trade"
+  | "use-item"
+  | "use-move"
+  | "agile-style-move"
+  | "strong-style-move"
+  | "shed"
+  | "spin"
+  | "tower-of-darkness"
+  | "tower-of-waters"
+  | "three-critical-hits"
+  | "take-damage"
+  | "recoil-damage"
+  | "three-defeated-bisharp"
+  | "gimmmighoul-coins"
+  | "other";
+
+const TRIGGER_JA: Record<EvolutionTrigger, string> = {
+  "level-up": "レベルアップ",
+  trade: "通信交換",
+  "use-item": "どうぐ使用",
+  "use-move": "技を使う",
+  "agile-style-move": "ハヤワザを使う",
+  "strong-style-move": "チカラワザを使う",
+  shed: "脱皮", // ツチニン -> テッカニン
+  spin: "クルクル回る", // マホミル -> マホイップ
+  "tower-of-darkness": "あくの塔", // ダクマ -> ウーラオス（いちげきのかた）
+  "tower-of-waters": "みずの塔", // ダクマ -> ウーラオス（れんげきのかた）
+  "three-critical-hits": "急所3回", // ガラルカモネギ -> ネギガナイト
+  "take-damage": "ダメージ", // ガラルデスマス -> デスバーン
+  "recoil-damage": "反動ダメージ", // バスラオ -> ダイトウ
+  "three-defeated-bisharp": "キリキザン3体撃破", // キリキザン -> ドドゲザン
+  "gimmmighoul-coins": "コレクレーのコイン", // コレクレー -> サーフゴー
+  other: "その他",
+};
+
+/** 進化トリガーに対応する日本語ラベルを返す */
+export function triggerJaLabel(trigger: EvolutionTrigger): string {
+  return TRIGGER_JA[trigger];
+}
+
+interface LevelUpCondition {
+  readonly trigger: "level-up";
   readonly minLevel: number | null;
-  /** use-item の場合のアイテム名 */
-  readonly item: string | null; // TODO: 日本語名にする
   readonly minHappiness: number | null;
   /** "" | "day" | "night" */
   readonly timeOfDay: string;
-  /** trade 時の持ちもの名 */
-  readonly heldItem: string | null;
   readonly knownMove: string | null;
 }
+
+interface UseItemCondition {
+  readonly trigger: "use-item";
+  /** アイテムマップ未登録の場合 null */
+  readonly useItem: PokeItem | null;
+}
+
+interface TradeCondition {
+  readonly trigger: "trade";
+  /** 持ちものなし交換の場合 null */
+  readonly heldItem: PokeItem | null;
+}
+
+type SimpleConditionTrigger = Exclude<EvolutionTrigger, "level-up" | "use-item" | "trade">;
+
+interface SimpleCondition {
+  readonly trigger: SimpleConditionTrigger;
+}
+
+/** 進化の条件（判別共用体） */
+export type EvolutionCondition = LevelUpCondition | UseItemCondition | TradeCondition | SimpleCondition;
 
 /** 進化ツリーの1ノード（1種族） */
 export interface EvolutionNode {
@@ -44,20 +104,24 @@ export interface EvolutionChain {
 }
 
 /** 進化条件を日本語の短いラベルに変換する */
-export function describeCondition(condition: EvolutionCondition): string {
+export const conditionDescription = (condition: EvolutionCondition): string => {
   switch (condition.trigger) {
     case "level-up":
       if (condition.minLevel) return `Lv.${condition.minLevel}`;
-      if (condition.minHappiness) return "なつき度";
-      if (condition.knownMove) return `${condition.knownMove}を覚える`;
-      if (condition.timeOfDay === "day") return "昼レベルアップ";
-      if (condition.timeOfDay === "night") return "夜レベルアップ";
-      return "レベルアップ";
+      if (condition.minHappiness) {
+        if (condition.timeOfDay === "day") return "なつき（昼）";
+        if (condition.timeOfDay === "night") return "なつき（夜）";
+        return "なつき";
+      }
+      if (condition.knownMove) return `${condition.knownMove} 習得`;
+      if (condition.timeOfDay === "day") return "LvUp（昼）";
+      if (condition.timeOfDay === "night") return "LvUp（夜）";
+      return "LvUp";
     case "use-item":
-      return condition.item ?? "どうぐ使用";
+      return condition.useItem?.jaName ?? TRIGGER_JA["use-item"];
     case "trade":
-      return condition.heldItem ? `こうかん（${condition.heldItem}）` : "こうかん";
+      return condition.heldItem ? `通信交換（${condition.heldItem.jaName}）` : TRIGGER_JA["trade"];
     default:
-      return condition.trigger;
+      return TRIGGER_JA[condition.trigger];
   }
-}
+};

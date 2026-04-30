@@ -143,6 +143,20 @@ export const EvolutionChainResponseSchema = z.object({
   chain: EvolutionChainNodeSchema,
 });
 
+export const ItemResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
+  sprites: z.object({
+    default: z.string().nullable(),
+  }),
+});
+
 export const TypeResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -166,6 +180,7 @@ export const TypeResponseSchema = z.object({
 
 export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
+export type ItemResponse = z.infer<typeof ItemResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
 export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema>;
 
@@ -179,6 +194,7 @@ export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema
  */
 const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
+const itemCache = new Map<string, ItemResponse>();
 const typeCache = new Map<string, TypeResponse>();
 const evolutionChainCache = new Map<string, EvolutionChainResponse>();
 
@@ -186,6 +202,7 @@ const evolutionChainCache = new Map<string, EvolutionChainResponse>();
 export function clearCache(): void {
   pokemonCache.clear();
   speciesCache.clear();
+  itemCache.clear();
   typeCache.clear();
   evolutionChainCache.clear();
 }
@@ -220,6 +237,18 @@ export async function fetchPokemonSpecies(
   });
   const data = PokemonSpeciesResponseSchema.parse(await response.json());
   speciesCache.set(key, data);
+  return data;
+}
+
+/** /item/{idOrName} を取得 */
+export async function fetchItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<ItemResponse> {
+  const key = String(idOrName);
+  const cached = itemCache.get(key);
+  if (cached) return cached;
+
+  const response = await fetchApi(fetchFunction, `${BASE_URL}/item/${idOrName}`, { method: "GET" });
+  const data = ItemResponseSchema.parse(await response.json());
+  itemCache.set(key, data);
   return data;
 }
 

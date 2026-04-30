@@ -22,14 +22,12 @@
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
 import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
+import type { PokeItem } from "$lib/domain/models/PokeItem";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {
   /** 図鑑番号または英語名でポケモンデータを取得 */
   getPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeData>;
-
-  /** 番号またはタイプ名でタイプデータを取得 */
-  getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData>;
 
   /**
    * 複数の図鑑番号からポケモン辞書を取得
@@ -38,9 +36,15 @@ export interface IPokeRepository {
    */
   getPokemons(fetchFunction: typeof fetch, ids: number[]): Promise<Record<string, PokeData>>;
 
+  /** 番号またはタイプ名でタイプデータを取得 */
+  getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData>;
+
   /** 複数のタイプ名からタイプ辞書を取得 */
   getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, PokeTypeData>>;
 
   /** 進化チェーン参照 URL から進化チェーンデータを取得 */
   getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain>;
+
+  /** 番号または英語名でアイテムデータを取得 */
+  getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem>;
 }

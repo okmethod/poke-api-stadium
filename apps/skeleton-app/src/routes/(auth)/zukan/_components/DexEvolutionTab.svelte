@@ -3,7 +3,7 @@
   import { page } from "$app/state";
   import Icon from "@iconify/svelte";
   import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/EvolutionChain";
-  import { describeCondition } from "$lib/domain/models/EvolutionChain";
+  import { conditionDescription } from "$lib/domain/models/EvolutionChain";
 
   interface Props {
     evolutionChain: EvolutionChain | null;
@@ -43,7 +43,7 @@
               <div class="flex flex-col items-center gap-0.5">
                 <Icon icon="mdi:arrow-down-thin" class="text-surface-400 size-4 sm:hidden" />
                 <Icon icon="mdi:arrow-right-thin" class="text-surface-400 hidden size-4 sm:block" />
-                <span class="text-surface-500 text-xs">{describeCondition(step.condition)}</span>
+                <span class="text-surface-500 text-xs">{conditionDescription(step.condition)}</span>
               </div>
               {@render chainNode(step.next)}
             </div>

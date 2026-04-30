@@ -27,15 +27,23 @@ import type {
   FlavorText,
 } from "$lib/domain/models/PokeData";
 import { pokeTypeColor, generationData } from "$lib/domain/models/PokeData";
-import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
+import type {
+  EvolutionChain,
+  EvolutionCondition,
+  EvolutionNode,
+  EvolutionTrigger,
+} from "$lib/domain/models/EvolutionChain";
+import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
   fetchPokemonSpecies,
+  fetchItem,
   fetchType,
   fetchEvolutionChain,
   type PokemonResponse,
   type PokemonSpeciesResponse,
+  type ItemResponse,
   type TypeResponse,
   type EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
@@ -197,44 +205,78 @@ function extractSpeciesId(url: string): number {
   return match ? Number(match[1]) : 0;
 }
 
+function convertToPokeItem(raw: ItemResponse): PokeItem {
+  const jaName =
+    raw.names.find((n) => n.language.name === "ja")?.name ??
+    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
+    raw.name;
+  return {
+    id: raw.id,
+    enName: raw.name,
+    jaName,
+    imageUrl: raw.sprites.default,
+  };
+}
+
 function convertToEvolutionCondition(
   detail: EvolutionChainResponse["chain"]["evolution_details"][number] | undefined,
+  itemMap: Map<string, PokeItem>,
 ): EvolutionCondition {
-  if (!detail) {
-    return {
-      trigger: "",
-      minLevel: null,
-      item: null,
-      minHappiness: null,
-      timeOfDay: "",
-      heldItem: null,
-      knownMove: null,
-    };
+  if (!detail) return { trigger: "other" };
+
+  const trigger = detail.trigger.name as EvolutionTrigger;
+  switch (trigger) {
+    case "level-up":
+      return {
+        trigger,
+        minLevel: detail.min_level,
+        minHappiness: detail.min_happiness,
+        timeOfDay: detail.time_of_day,
+        knownMove: detail.known_move?.name ?? null,
+      };
+    case "use-item":
+      return {
+        trigger,
+        useItem: detail.item ? (itemMap.get(detail.item.name) ?? null) : null,
+      };
+    case "trade":
+      return {
+        trigger,
+        heldItem: detail.held_item ? (itemMap.get(detail.held_item.name) ?? null) : null,
+      };
+    default:
+      return { trigger };
   }
-  return {
-    trigger: detail.trigger.name,
-    minLevel: detail.min_level,
-    item: detail.item?.name ?? null,
-    minHappiness: detail.min_happiness,
-    timeOfDay: detail.time_of_day,
-    heldItem: detail.held_item?.name ?? null,
-    knownMove: detail.known_move?.name ?? null,
-  };
 }
 
 function collectSpeciesNames(node: EvolutionChainResponse["chain"]): string[] {
   return [node.species.name, ...node.evolves_to.flatMap((child) => collectSpeciesNames(child))];
 }
 
+function collectItemNames(node: EvolutionChainResponse["chain"]): string[] {
+  const names: string[] = [];
+  for (const child of node.evolves_to) {
+    for (const detail of child.evolution_details) {
+      if (detail.item?.name) names.push(detail.item.name);
+      if (detail.held_item?.name) names.push(detail.held_item.name);
+    }
+    names.push(...collectItemNames(child));
+  }
+  return names;
+}
+
 async function enrichEvolutionChain(
   fetchFunction: typeof fetch,
   response: EvolutionChainResponse,
 ): Promise<EvolutionChain> {
-  const allNames = collectSpeciesNames(response.chain);
+  const allSpeciesNames = collectSpeciesNames(response.chain);
+  const allItemNames = [...new Set(collectItemNames(response.chain))];
 
   const jaNameMap = new Map<string, string>();
-  await Promise.all(
-    allNames.map(async (name) => {
+  const itemMap = new Map<string, PokeItem>();
+
+  await Promise.all([
+    ...allSpeciesNames.map(async (name) => {
       const species = await fetchPokemonSpecies(fetchFunction, name);
       const jaName =
         species.names.find((n) => n.language.name === "ja")?.name ??
@@ -242,7 +284,11 @@ async function enrichEvolutionChain(
         name;
       jaNameMap.set(name, jaName);
     }),
-  );
+    ...allItemNames.map(async (name) => {
+      const raw = await fetchItem(fetchFunction, name);
+      itemMap.set(name, convertToPokeItem(raw));
+    }),
+  ]);
 
   function buildNode(node: EvolutionChainResponse["chain"]): EvolutionNode {
     const speciesId = extractSpeciesId(node.species.url);
@@ -253,7 +299,7 @@ async function enrichEvolutionChain(
       // pokemon-species エンドポイントに画像URLはないため、IDからURLを構築して使用
       imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${speciesId}.png`,
       evolvesTo: node.evolves_to.map((child) => ({
-        condition: convertToEvolutionCondition(child.evolution_details[0]),
+        condition: convertToEvolutionCondition(child.evolution_details[0], itemMap),
         next: buildNode(child),
       })),
     };
@@ -297,12 +343,6 @@ class PokeApiAdapter implements IPokeRepository {
     return convertToPokeData(pokemon, species);
   }
 
-  /** 番号またはタイプ名でタイプデータを取得 */
-  async getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData> {
-    const raw = await fetchType(fetchFunction, idOrName);
-    return convertToTypeData(raw);
-  }
-
   /**
    * 複数の図鑑番号からポケモン辞書を取得（失敗したIDはスキップ）
    *
@@ -324,6 +364,12 @@ class PokeApiAdapter implements IPokeRepository {
     return result;
   }
 
+  /** 番号またはタイプ名でタイプデータを取得 */
+  async getType(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeTypeData> {
+    const raw = await fetchType(fetchFunction, idOrName);
+    return convertToTypeData(raw);
+  }
+
   /** 複数のタイプ名からタイプ辞書を取得 */
   async getTypes(fetchFunction: typeof fetch, names: string[]): Promise<Record<string, PokeTypeData>> {
     const result: Record<string, PokeTypeData> = {};
@@ -339,6 +385,12 @@ class PokeApiAdapter implements IPokeRepository {
   async getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain> {
     const raw = await fetchEvolutionChain(fetchFunction, url);
     return enrichEvolutionChain(fetchFunction, raw);
+  }
+
+  /** 番号または英語名でアイテムデータを取得 */
+  async getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem> {
+    const raw = await fetchItem(fetchFunction, idOrName);
+    return convertToPokeItem(raw);
   }
 }
 
