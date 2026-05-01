@@ -5,6 +5,7 @@
   import Icon from "@iconify/svelte";
   import { applyTheme } from "$lib/presentation/stores/themeStore";
   import { toaster } from "$lib/presentation/utils/toaster";
+  import { navigateTo } from "$lib/presentation/utils/navigation";
   import { starterIconUrlStore } from "$lib/application/stores/generationStore";
   import AudioToggle from "$lib/presentation/components/buttons/AudioToggle.svelte";
   import SettingsModal from "$lib/presentation/components/modals/SettingsModal.svelte";
@@ -48,10 +49,13 @@
         <nav>
           <ul class="flex items-center justify-center space-x-4">
             <li>
-              <a class="btn preset-filled flex h-10 w-28 items-center gap-1 rounded-xl" href="./">
+              <button
+                class="btn preset-filled flex h-10 w-28 items-center gap-1 rounded-xl"
+                onclick={() => navigateTo("/")}
+              >
                 <Icon icon="mdi:home-outline" class="size-5" />
                 <span>Home</span>
-              </a>
+              </button>
             </li>
             <li>
               <AudioToggle />
