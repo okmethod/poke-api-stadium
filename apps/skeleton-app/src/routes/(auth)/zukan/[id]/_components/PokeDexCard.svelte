@@ -6,20 +6,23 @@
   import type { PokeData } from "$lib/domain/models/PokeData";
   import { pokeTypeColor, resolvedCryUrl } from "$lib/domain/models/PokeData";
   import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
+  import type { FormVariant } from "$lib/domain/models/FormVariant";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import DexBasicTab from "./DexBasicTab.svelte";
   import DexStatusTab from "./DexStatusTab.svelte";
   import DexFlavorTab from "./DexFlavorTab.svelte";
   import DexEvolutionTab from "./DexEvolutionTab.svelte";
+  import DexFormTab from "./DexFormTab.svelte";
 
   interface PokeDexCardProps {
     pokeData: PokeData | null;
     evolutionChain: EvolutionChain | null;
+    formVariants: readonly FormVariant[] | null;
     activeTab: string;
     ontabchange: (tab: string) => void;
     onpokeselect: (id: number) => void;
   }
-  let { pokeData, evolutionChain, activeTab, ontabchange, onpokeselect }: PokeDexCardProps = $props();
+  let { pokeData, evolutionChain, formVariants, activeTab, ontabchange, onpokeselect }: PokeDexCardProps = $props();
 
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
@@ -49,10 +52,10 @@
     if (cryUrl) new Audio(cryUrl).play();
   }
 
-  // evolutionタブへのナビゲーション中はスピナーを表示する
-  const isLoadingEvolution = $derived(
-    navigating.to !== null && navigating.to.url.searchParams.get("tab") === "evolution",
-  );
+  // 遅延ロードタブへのナビゲーション中はスピナーを表示する
+  const navigatingTab = $derived(navigating.to?.url.searchParams.get("tab") ?? null);
+  const isLoadingEvolution = $derived(navigating.to !== null && navigatingTab === "evolution");
+  const isLoadingForm = $derived(navigating.to !== null && navigatingTab === "form");
 
   interface TabDef {
     value: string;
@@ -65,6 +68,7 @@
     { value: "status", label: "ステータス", icon: "mdi:chart-bar", component: DexStatusTab },
     { value: "flavor", label: "図鑑", icon: "mdi:book-open-outline", component: DexFlavorTab },
     { value: "evolution", label: "しんか", icon: "mdi:arrow-decision-outline" },
+    { value: "form", label: "すがた", icon: "mdi:shape-outline" },
   ];
 </script>
 
@@ -160,6 +164,16 @@
                   </div>
                 {:else}
                   <DexEvolutionTab {evolutionChain} currentPokemonId={pokeData?.id ?? null} {onpokeselect} />
+                {/if}
+              </div>
+            {:else if tab.value === "form"}
+              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">
+                {#if isLoadingForm}
+                  <div class="flex h-full items-center justify-center p-4">
+                    <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
+                  </div>
+                {:else}
+                  <DexFormTab {formVariants} />
                 {/if}
               </div>
             {:else if tab.component}

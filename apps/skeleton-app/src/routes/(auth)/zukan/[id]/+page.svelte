@@ -89,6 +89,7 @@
   <PokeDexCard
     pokeData={data.pokeData}
     evolutionChain={data.evolutionChain}
+    formVariants={data.formVariants ?? null}
     activeTab={data.tab}
     ontabchange={handleTabChange}
     onpokeselect={gotoId}

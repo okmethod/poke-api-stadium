@@ -19,9 +19,10 @@
  * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
  */
 
-import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PokeData, VarietyRef } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
 import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
+import type { FormVariant } from "$lib/domain/models/FormVariant";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 
 /** PokeAPI データ取得の抽象インターフェース */
@@ -44,6 +45,17 @@ export interface IPokeRepository {
 
   /** 進化チェーン参照 URL から進化チェーンデータを取得 */
   getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain>;
+
+  /**
+   * バリエーション参照リストからフォーム詳細を取得
+   *
+   * @param defaultJaName デフォルトフォームの日本語名（form_names が空の場合のフォールバック）
+   */
+  getFormVariants(
+    fetchFunction: typeof fetch,
+    varieties: readonly VarietyRef[],
+    defaultJaName: string,
+  ): Promise<readonly FormVariant[]>;
 
   /** 番号または英語名でアイテムデータを取得 */
   getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem>;

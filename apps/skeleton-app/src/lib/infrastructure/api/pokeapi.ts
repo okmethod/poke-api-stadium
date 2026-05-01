@@ -157,6 +157,32 @@ export const ItemResponseSchema = z.object({
   }),
 });
 
+export const PokemonFormResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  form_name: z.string(),
+  is_default: z.boolean(),
+  is_battle_only: z.boolean(),
+  is_mega: z.boolean(),
+  form_names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
+  types: z.array(
+    z.object({
+      slot: z.number(),
+      type: NamedResourceSchema,
+    }),
+  ),
+  sprites: z.looseObject({
+    front_default: z.string().nullish(),
+    back_default: z.string().nullish(),
+  }),
+  pokemon: NamedResourceSchema,
+});
+
 export const TypeResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -180,6 +206,7 @@ export const TypeResponseSchema = z.object({
 
 export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
+export type PokemonFormResponse = z.infer<typeof PokemonFormResponseSchema>;
 export type ItemResponse = z.infer<typeof ItemResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
 export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema>;
@@ -194,6 +221,7 @@ export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema
  */
 const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
+const pokemonFormCache = new Map<string, PokemonFormResponse>();
 const itemCache = new Map<string, ItemResponse>();
 const typeCache = new Map<string, TypeResponse>();
 const evolutionChainCache = new Map<string, EvolutionChainResponse>();
@@ -202,6 +230,7 @@ const evolutionChainCache = new Map<string, EvolutionChainResponse>();
 export function clearCache(): void {
   pokemonCache.clear();
   speciesCache.clear();
+  pokemonFormCache.clear();
   itemCache.clear();
   typeCache.clear();
   evolutionChainCache.clear();
@@ -237,6 +266,17 @@ export async function fetchPokemonSpecies(
   });
   const data = PokemonSpeciesResponseSchema.parse(await response.json());
   speciesCache.set(key, data);
+  return data;
+}
+
+/** /pokemon-form/{name} を取得 */
+export async function fetchPokemonForm(fetchFunction: typeof fetch, name: string): Promise<PokemonFormResponse> {
+  const cached = pokemonFormCache.get(name);
+  if (cached) return cached;
+
+  const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon-form/${name}`, { method: "GET" });
+  const data = PokemonFormResponseSchema.parse(await response.json());
+  pokemonFormCache.set(name, data);
   return data;
 }
 

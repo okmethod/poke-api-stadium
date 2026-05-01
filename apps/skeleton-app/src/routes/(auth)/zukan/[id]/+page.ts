@@ -26,5 +26,14 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
     }
   }
 
-  return { pokeData, evolutionChain, tab, fetchError: null };
+  let formVariants = null;
+  if (tab === "form") {
+    try {
+      formVariants = await getPokeRepository().getFormVariants(fetch, pokeData.varieties, pokeData.jaName);
+    } catch (err) {
+      console.error("Failed to fetch form variants:", err);
+    }
+  }
+
+  return { pokeData, evolutionChain, formVariants, tab, fetchError: null };
 };

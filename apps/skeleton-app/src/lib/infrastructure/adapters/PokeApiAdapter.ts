@@ -29,11 +29,13 @@ import type {
 import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/models/PokeData";
 import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
 import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
+import type { FormVariant } from "$lib/domain/models/FormVariant";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
   fetchPokemonSpecies,
+  fetchPokemonForm,
   fetchItem,
   fetchType,
   fetchEvolutionChain,
@@ -381,6 +383,43 @@ class PokeApiAdapter implements IPokeRepository {
   async getEvolutionChain(fetchFunction: typeof fetch, url: string): Promise<EvolutionChain> {
     const raw = await fetchEvolutionChain(fetchFunction, url);
     return enrichEvolutionChain(fetchFunction, raw);
+  }
+
+  /** バリエーション参照リストからフォーム詳細を並列取得 */
+  async getFormVariants(
+    fetchFunction: typeof fetch,
+    varieties: readonly VarietyRef[],
+    defaultJaName: string,
+  ): Promise<readonly FormVariant[]> {
+    return Promise.all(
+      varieties.map(async (variety): Promise<FormVariant> => {
+        const form = await fetchPokemonForm(fetchFunction, variety.name);
+
+        const jaName =
+          form.form_names.find((n) => n.language.name === "ja")?.name ??
+          form.form_names.find((n) => n.language.name === "ja-hrkt")?.name ??
+          defaultJaName;
+
+        const type1 = parsePokeTypeName(form.types.find((t) => t.slot === 1)?.type.name ?? "");
+        const type2Name = form.types.find((t) => t.slot === 2)?.type.name;
+        const type2 = type2Name != null ? parsePokeTypeName(type2Name) : null;
+
+        // variety.url (pokemon エンドポイント) から ID を取得し、アートワークURLを優先する
+        const pokemonId = extractSpeciesId(variety.url);
+        const imageUrl = pokemonId > 0 ? pokeArtworkUrl(pokemonId) : (form.sprites.front_default ?? null);
+
+        return {
+          enName: variety.name,
+          jaName,
+          isDefault: variety.isDefault,
+          isMega: form.is_mega,
+          isBattleOnly: form.is_battle_only,
+          type1,
+          type2,
+          imageUrl,
+        };
+      }),
+    );
   }
 
   /** 番号または英語名でアイテムデータを取得 */
