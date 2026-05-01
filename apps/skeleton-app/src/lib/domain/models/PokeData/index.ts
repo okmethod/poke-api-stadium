@@ -20,11 +20,13 @@ import type { FlavorText } from "./flavorText";
 import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
 import type { VersionName } from "./version";
 import { versionJaLabel } from "./version";
+import type { MoveLearnDetail } from "$lib/domain/models/Move";
 
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
 export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
 export type { VersionName };
+export type { MoveLearnDetail };
 export {
   ALL_TYPE_NAMES,
   pokeTypeColor,
@@ -89,4 +91,7 @@ export interface PokeData {
 
   /** バリエーション（フォーム）参照リスト */
   readonly varieties: readonly VarietyRef[];
+
+  /** 習得可能なわざ参照リスト（詳細は /move/{id} で別途取得） */
+  readonly moveLearnDetails: readonly MoveLearnDetail[];
 }

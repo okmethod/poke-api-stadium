@@ -13,6 +13,7 @@
   import DexFlavorTab from "./DexFlavorTab.svelte";
   import DexEvolutionTab from "./DexEvolutionTab.svelte";
   import DexFormTab from "./DexFormTab.svelte";
+  import DexMovesTab from "./DexMovesTab.svelte";
 
   interface PokeDexCardProps {
     pokeData: PokeData | null;
@@ -57,6 +58,8 @@
   const isLoadingEvolution = $derived(navigating.to !== null && navigatingTab === "evolution");
   const isLoadingForm = $derived(navigating.to !== null && navigatingTab === "form");
 
+  const moveLearnDetails = $derived(pokeData?.moveLearnDetails ?? []);
+
   interface TabDef {
     value: string;
     label: string;
@@ -67,6 +70,7 @@
     { value: "basic", label: "基本", icon: "mdi:information-slab-circle-outline", component: DexBasicTab },
     { value: "status", label: "ステータス", icon: "mdi:chart-bar", component: DexStatusTab },
     { value: "flavor", label: "図鑑", icon: "mdi:book-open-outline", component: DexFlavorTab },
+    { value: "moves", label: "わざ", icon: "mdi:lightning-bolt-outline" },
     { value: "evolution", label: "しんか", icon: "mdi:arrow-decision-outline" },
     { value: "form", label: "すがた", icon: "mdi:shape-outline" },
   ];
@@ -145,7 +149,7 @@
           {#each tabs as tab (tab.value)}
             <Tabs.Trigger
               value={tab.value}
-              class="data-[selected]:border-primary-500 px-3 py-1 text-sm data-[selected]:font-bold"
+              class="data-[selected]:border-primary-500 px-2 py-1 text-sm data-[selected]:font-bold"
             >
               <Icon icon={tab.icon} class="inline size-4 sm:hidden" />
               <span class="hidden sm:inline">{tab.label}</span>
@@ -156,7 +160,11 @@
 
         {#each tabs as tab (tab.value)}
           <Tabs.Content value={tab.value}>
-            {#if tab.value === "evolution"}
+            {#if tab.value === "moves"}
+              <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">
+                <DexMovesTab {moveLearnDetails} />
+              </div>
+            {:else if tab.value === "evolution"}
               <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">
                 {#if isLoadingEvolution}
                   <div class="flex h-full items-center justify-center p-4">

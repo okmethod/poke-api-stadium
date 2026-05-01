@@ -30,6 +30,7 @@ import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/mo
 import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
 import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
+import type { Move, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/Move";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
@@ -37,15 +38,59 @@ import {
   fetchPokemonSpecies,
   fetchPokemonForm,
   fetchItem,
+  fetchMove,
   fetchType,
   fetchEvolutionChain,
   type PokemonResponse,
   type PokemonSpeciesResponse,
   type ItemResponse,
+  type MoveResponse,
   type TypeResponse,
   type EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
 import { pokeSpriteUrl, pokeArtworkUrl } from "$lib/infrastructure/api/pokeSprites";
+
+// 最新バージョングループ（わざ一覧のフィルタ基準）
+const LATEST_VERSION_GROUP = "scarlet-violet";
+
+// 既知の習得方法名（それ以外は "level-up" にフォールバック）
+const KNOWN_LEARN_METHODS = new Set<MoveLearnMethodName>(["level-up", "machine", "tutor", "egg"]);
+
+function parseMoveLearnMethod(name: string): MoveLearnMethodName {
+  return KNOWN_LEARN_METHODS.has(name as MoveLearnMethodName) ? (name as MoveLearnMethodName) : "level-up";
+}
+
+function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDetail[] {
+  const result: MoveLearnDetail[] = [];
+  for (const entry of moves) {
+    const svDetail = entry.version_group_details.find((d) => d.version_group.name === LATEST_VERSION_GROUP);
+    if (!svDetail) continue;
+    result.push({
+      enName: entry.move.name,
+      url: entry.move.url,
+      levelLearnedAt: svDetail.level_learned_at,
+      learnMethod: parseMoveLearnMethod(svDetail.move_learn_method.name),
+    });
+  }
+  return result;
+}
+
+function convertToMove(raw: MoveResponse): Move {
+  const jaName =
+    raw.names.find((n) => n.language.name === "ja")?.name ??
+    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
+    raw.name;
+  return {
+    id: raw.id,
+    enName: raw.name,
+    jaName,
+    type: parsePokeTypeName(raw.type.name),
+    category: raw.damage_class.name as MoveCategory,
+    power: raw.power,
+    accuracy: raw.accuracy,
+    pp: raw.pp,
+  };
+}
 
 // 世代名（ローマ数字）→ 世代番号 の対応表
 const GENERATION_NAME_MAP: Record<string, number> = {
@@ -195,6 +240,7 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
     abilities,
     evolutionChainRef,
     varieties,
+    moveLearnDetails: extractMoveLearnDetails(pokemon.moves),
   };
 }
 
@@ -418,6 +464,16 @@ class PokeApiAdapter implements IPokeRepository {
           type2,
           imageUrl,
         };
+      }),
+    );
+  }
+
+  /** 習得可能わざ参照リストのスライスからわざ詳細を並列取得 */
+  async getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly Move[]> {
+    return Promise.all(
+      details.map(async (detail) => {
+        const raw = await fetchMove(fetchFunction, detail.enName);
+        return convertToMove(raw);
       }),
     );
   }
