@@ -8,7 +8,11 @@ interface MenuItem {
   readonly target: AppPathname;
 }
 
-const menuItems: MenuItem[] = [{ label: "ポケモンずかん", ballKey: "poke-ball", target: "/zukan/detail" }];
+const menuItems: MenuItem[] = [
+  { label: "ポケモンえあわせ", ballKey: "repeat-ball", target: "/puzzle/eawase" },
+  { label: "ポケモンめくり", ballKey: "timer-ball", target: "/puzzle/mekuri" },
+  { label: "ポケモンしりとり", ballKey: "heal-ball", target: "/puzzle/shiritori" },
+];
 
 export interface MenuButtonConfig {
   readonly label: string;

@@ -8,7 +8,13 @@ interface MenuItem {
   readonly target: AppPathname;
 }
 
-const menuItems: MenuItem[] = [{ label: "ポケモンずかん", ballKey: "poke-ball", target: "/zukan/detail" }];
+const menuItems: MenuItem[] = [
+  { label: "ポケモンだ〜れだ？", ballKey: "dusk-ball", target: "/quiz/dareda" },
+  { label: "ポケモンだ〜れだ？改", ballKey: "luxury-ball", target: "/quiz/dareda-kai" },
+  { label: "たかさくらべ 改", ballKey: "ultra-ball", target: "/quiz/kurabe-h" },
+  { label: "おもさくらべ 改", ballKey: "heavy-ball", target: "/quiz/kurabe-w" },
+  { label: "ポケモンXXくらべ", ballKey: "great-ball", target: "/quiz/kurabe" },
+];
 
 export interface MenuButtonConfig {
   readonly label: string;

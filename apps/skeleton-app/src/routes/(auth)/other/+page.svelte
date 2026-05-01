@@ -11,7 +11,7 @@
 </script>
 
 <div class="flex flex-col items-center p-4">
-  <h2 class="h3 sm:h2 my-4">ポケモンずかん</h2>
+  <h2 class="h3 sm:h2 my-4">その他</h2>
 
   <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
     {#each data.menuItems as item (item.label)}
