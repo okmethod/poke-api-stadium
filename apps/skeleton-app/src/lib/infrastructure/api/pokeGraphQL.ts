@@ -18,10 +18,9 @@ import { z } from "zod";
 import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeData/pokeType";
 import { ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeData/generation";
 import type { SearchQuery } from "$lib/application/ports/IPokeSearchRepository";
+import { pokeSpriteUrl } from "./pokeSprites";
 
 const GRAPHQL_ENDPOINT = "https://beta.pokeapi.co/graphql/v1beta";
-
-const SPRITE_BASE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 
 // ポケモン種族名（日本語）・タイプを取得するクエリ。
 // スプライトは JSON フィールドのパースを避けるため ID から URL を直接構築する。
@@ -131,5 +130,5 @@ export async function fetchGraphQLSearch(
 
 /** GraphQL レスポンスから種族 ID に対応するスプライト URL を構築する */
 export function buildThumbnailUrl(speciesId: number): string {
-  return `${SPRITE_BASE_URL}/${speciesId}.png`;
+  return pokeSpriteUrl(speciesId);
 }

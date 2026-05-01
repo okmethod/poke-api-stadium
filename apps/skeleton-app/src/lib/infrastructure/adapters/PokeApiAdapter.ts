@@ -43,6 +43,7 @@ import {
   type TypeResponse,
   type EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
+import { pokeSpriteUrl, pokeArtworkUrl } from "$lib/infrastructure/api/pokeSprites";
 
 // 世代名（ローマ数字）→ 世代番号 の対応表
 const GENERATION_NAME_MAP: Record<string, number> = {
@@ -125,9 +126,7 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
   const type2Name = pokemon.types.find((t) => t.slot === 2)?.type.name;
   const type2 = type2Name != null ? parsePokeTypeName(type2Name) : null;
 
-  const artworkFront =
-    pokemon.sprites.other["official-artwork"].front_default ??
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+  const artworkFront = pokemon.sprites.other["official-artwork"].front_default ?? pokeSpriteUrl(pokemon.id);
 
   // artwork.front を先頭に固定し、sprites 全体から重複なく全画像URLを収集
   const allImageUrls: string[] = [
@@ -294,7 +293,7 @@ async function enrichEvolutionChain(
       speciesName: node.species.name,
       jaName: jaNameMap.get(node.species.name) ?? node.species.name,
       // pokemon-species エンドポイントに画像URLはないため、IDからURLを構築して使用
-      imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${speciesId}.png`,
+      imageUrl: pokeArtworkUrl(speciesId),
       evolvesTo: node.evolves_to.map((child) => ({
         condition: convertToEvolutionCondition(child.evolution_details[0], itemMap),
         next: buildNode(child),
