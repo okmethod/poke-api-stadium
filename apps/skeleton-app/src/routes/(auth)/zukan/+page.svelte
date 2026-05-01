@@ -1,7 +1,11 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { navigateTo } from "$lib/presentation/utils/navigation";
+  import { generationData, ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeData/generation";
   import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
+
+  // 最新世代の最後のポケモンIDを取得
+  const POKEMON_MAX_ID = generationData(ALL_GENERATION_NUMBERS.at(-1)!)?.lastPokeId ?? 1025;
 
   let idInputEl: HTMLInputElement | null = $state(null);
 
@@ -10,10 +14,32 @@
     if (isNaN(id) || id < 1) return;
     navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
   }
+
+  // 日付文字列から決定的なハッシュ値を生成し、ポケモンIDに変換する
+  function getTodaysPokemonId(): number {
+    const now = new Date();
+    const seed = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    let hash = 0;
+    for (const char of seed) {
+      hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+    }
+    return hash % POKEMON_MAX_ID;
+  }
+
+  function handleTodaysPokemon() {
+    const id = getTodaysPokemonId();
+    navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
+  }
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンずかん</h1>
+
+  <!-- 今日のポケモン -->
+  <button type="button" class="btn preset-filled btn-sm" onclick={handleTodaysPokemon}>
+    <Icon icon="mdi:calendar-today" class="size-5" />
+    今日のポケモン
+  </button>
 
   <!-- No.指定 -->
   <div class="flex items-center gap-2">
@@ -23,7 +49,7 @@
       id="pokeId"
       type="number"
       min="1"
-      max="9999"
+      max={POKEMON_MAX_ID}
       onkeydown={(e) => e.key === "Enter" && handleIdSearch()}
       class="w-32 rounded border px-3 py-1 text-center text-sm"
     />
