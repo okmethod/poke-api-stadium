@@ -30,7 +30,7 @@
   <Accordion {value} onValueChange={(e) => (value = e.value)} multiple>
     <!-- 各波形セクションをループで生成 -->
     {#each waveSections as { id, label, icon, effects } (id)}
-      <Accordion.Item value={id}>
+      <Accordion.Item value={id} class="border-surface-200 w-full rounded-lg border">
         <Accordion.ItemTrigger>
           <span class="flex items-center gap-2">
             <Icon {icon} class="size-4" />
@@ -38,9 +38,9 @@
           </span>
         </Accordion.ItemTrigger>
         <Accordion.ItemContent>
-          <div class="grid grid-cols-8 gap-4">
+          <div class="grid grid-cols-4 gap-1 sm:grid-cols-8 sm:gap-4">
             {#each effects as { name, play } (name)}
-              <button class="btn preset-tonal-primary flex flex-col items-start rounded-lg p-3 shadow" onclick={play}>
+              <button class="btn preset-tonal-primary flex flex-col items-start rounded-lg p-2 shadow" onclick={play}>
                 <span class="font-mono text-xs opacity-75">{name.split("_").slice(1).join("_") || name}</span>
               </button>
             {/each}
@@ -50,7 +50,7 @@
     {/each}
 
     <!-- アプリ用SEセクション -->
-    <Accordion.Item value="app">
+    <Accordion.Item value="app" class="border-surface-200 w-full rounded-lg border">
       <Accordion.ItemTrigger>
         <span class="flex items-center gap-2">
           <Icon icon="mdi:music-note" class="size-4" />
@@ -58,7 +58,7 @@
         </span>
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <div class="mx-auto grid max-w-4xl grid-cols-3 gap-4">
+        <div class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
           {#each appSoundEffects as { name, description, play } (name)}
             <button
               class="btn preset-tonal-primary flex flex-col items-start rounded-lg p-4 text-left shadow"
@@ -73,7 +73,7 @@
     </Accordion.Item>
 
     <!-- キーボードセクション -->
-    <Accordion.Item value="keyboard">
+    <Accordion.Item value="keyboard" class="border-surface-200 w-full rounded-lg border">
       <Accordion.ItemTrigger>
         <span class="flex items-center gap-2">
           <Icon icon="mdi:keyboard" class="size-4" />
@@ -86,7 +86,7 @@
     </Accordion.Item>
 
     <!-- メロディメーカーセクション -->
-    <Accordion.Item value="melody-maker">
+    <Accordion.Item value="melody-maker" class="border-surface-200 w-full rounded-lg border">
       <Accordion.ItemTrigger>
         <span class="flex items-center gap-2">
           <Icon icon="mdi:music" class="size-4" />
