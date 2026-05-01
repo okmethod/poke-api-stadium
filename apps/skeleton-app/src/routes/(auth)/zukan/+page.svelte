@@ -35,32 +35,46 @@
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンずかん</h1>
 
-  <!-- 今日のポケモン -->
-  <button type="button" class="btn preset-filled btn-sm" onclick={handleTodaysPokemon}>
-    <Icon icon="mdi:calendar-today" class="size-5" />
-    今日のポケモン
-  </button>
+  <div class="grid w-full max-w-xl grid-cols-1 gap-6 sm:grid-cols-2">
+    <!-- No.指定 -->
+    <div class="flex items-center justify-between gap-2 rounded p-4 shadow">
+      <span class="flex items-center gap-1 text-sm font-semibold">
+        <Icon icon="mdi:notebook" class="size-5" />
+        No.検索
+      </span>
+      <input
+        bind:this={idInputEl}
+        id="pokeId"
+        type="number"
+        value="1"
+        min="1"
+        max={POKEMON_MAX_ID}
+        onkeydown={(e) => e.key === "Enter" && handleIdSearch()}
+        class="w-20 rounded border px-3 py-1 text-center text-sm"
+      />
+      <button type="button" class="btn preset-filled btn-sm" onclick={handleIdSearch}>
+        <Icon icon="mdi:magnify" class="size-5" />
+      </button>
+    </div>
 
-  <!-- No.指定 -->
-  <div class="flex items-center gap-2">
-    <label for="pokeId" class="shrink-0 font-semibold">No:</label>
-    <input
-      bind:this={idInputEl}
-      id="pokeId"
-      type="number"
-      min="1"
-      max={POKEMON_MAX_ID}
-      onkeydown={(e) => e.key === "Enter" && handleIdSearch()}
-      class="w-32 rounded border px-3 py-1 text-center text-sm"
-    />
-    <button type="button" class="btn preset-tonal btn-sm" onclick={handleIdSearch}>
-      で検索
-      <Icon icon="mdi:magnify" class="size-5" />
-    </button>
+    <!-- 今日のポケモン -->
+    <div class="flex items-center justify-between gap-1 rounded p-4 shadow">
+      <span class="flex items-center gap-1 text-sm font-semibold">
+        <Icon icon="mdi:calendar-today" class="size-5" />
+        今日のポケモン
+      </span>
+      <button type="button" class="btn preset-filled btn-sm" onclick={handleTodaysPokemon}>
+        <Icon icon="mdi:magnify" class="size-5" />
+      </button>
+    </div>
   </div>
 
+  <!-- 条件検索 -->
   <div class="flex w-full max-w-xl flex-col space-y-3 rounded p-4 shadow">
-    <span>条件で検索</span>
+    <span class="flex items-center gap-1 text-sm font-semibold">
+      <Icon icon="mdi:database" class="size-5" />
+      条件検索
+    </span>
 
     <PokeSearchPanel />
   </div>
