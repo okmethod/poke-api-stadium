@@ -1,20 +1,41 @@
 <script lang="ts">
-  import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
+  import Icon from "@iconify/svelte";
+  import { navigateTo } from "$lib/presentation/utils/navigation";
+  import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
 
-  const { menuItems } = buildMenuLoad([
-    { label: "ポケモンずかん", iconItemKey: "poke-ball", action: "navigate", target: "/zukan/detail" },
-  ]);
+  let idInputEl: HTMLInputElement | null = $state(null);
+
+  function handleIdSearch() {
+    const id = parseInt(idInputEl?.value ?? "", 10);
+    if (isNaN(id) || id < 1) return;
+    navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
+  }
 </script>
 
-<div class="flex flex-col items-center p-4">
-  <h2 class="h3 sm:h2 my-4">ポケモンずかん</h2>
+<div class="container mx-auto flex flex-col items-center gap-6 p-4">
+  <h1 class="h3 sm:h2">ポケモンずかん</h1>
 
-  <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
-    {#each menuItems as item (item.label)}
-      <button onclick={item.onClick} class="btn preset-tonal flex items-center justify-start gap-2 border">
-        <img src={item.iconItemKey} alt="" class="h-6 w-6 object-contain" />
-        <span class="text-lg">{item.label}</span>
-      </button>
-    {/each}
+  <!-- No.指定 -->
+  <div class="flex items-center gap-2">
+    <label for="pokeId" class="shrink-0 font-semibold">No:</label>
+    <input
+      bind:this={idInputEl}
+      id="pokeId"
+      type="number"
+      min="1"
+      max="9999"
+      onkeydown={(e) => e.key === "Enter" && handleIdSearch()}
+      class="w-32 rounded border px-3 py-1 text-center text-sm"
+    />
+    <button type="button" class="btn preset-tonal btn-sm" onclick={handleIdSearch}>
+      で検索
+      <Icon icon="mdi:magnify" class="size-5" />
+    </button>
+  </div>
+
+  <div class="flex w-full max-w-xl flex-col space-y-3 rounded p-4 shadow">
+    <span>条件で検索</span>
+
+    <PokeSearchPanel />
   </div>
 </div>

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
-  import { page } from "$app/state";
   import Icon from "@iconify/svelte";
   import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/EvolutionChain";
   import { conditionDescription } from "$lib/domain/models/EvolutionChain";
@@ -8,15 +6,9 @@
   interface Props {
     evolutionChain: EvolutionChain | null;
     currentPokemonId: number | null;
+    onpokeselect: (id: number) => void;
   }
-  let { evolutionChain, currentPokemonId }: Props = $props();
-
-  function navigateToPokemon(speciesId: number) {
-    if (speciesId === currentPokemonId) return;
-    const url = new URL(page.url);
-    url.searchParams.set("id", String(speciesId));
-    goto(url.toString());
-  }
+  let { evolutionChain, currentPokemonId, onpokeselect }: Props = $props();
 </script>
 
 {#if !evolutionChain}
@@ -26,7 +18,7 @@
     <div class="flex flex-col items-center justify-center gap-1 sm:flex-row">
       <button
         type="button"
-        onclick={() => navigateToPokemon(node.speciesId)}
+        onclick={() => node.speciesId !== currentPokemonId && onpokeselect(node.speciesId)}
         class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === currentPokemonId
           ? 'bg-primary-500/20'
           : 'hover:bg-surface-200-800 cursor-pointer'}"

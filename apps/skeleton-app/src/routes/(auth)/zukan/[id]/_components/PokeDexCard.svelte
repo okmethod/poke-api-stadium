@@ -17,8 +17,9 @@
     evolutionChain: EvolutionChain | null;
     activeTab: string;
     ontabchange: (tab: string) => void;
+    onpokeselect: (id: number) => void;
   }
-  let { pokeData, evolutionChain, activeTab, ontabchange }: PokeDexCardProps = $props();
+  let { pokeData, evolutionChain, activeTab, ontabchange, onpokeselect }: PokeDexCardProps = $props();
 
   const headerColor = $derived(pokeData ? pokeTypeColor(pokeData.type1) : "#ccc");
   const footerColor = $derived(pokeData ? pokeTypeColor(pokeData.type2 ?? pokeData.type1) : "#ccc");
@@ -158,7 +159,7 @@
                     <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
                   </div>
                 {:else}
-                  <DexEvolutionTab {evolutionChain} currentPokemonId={pokeData?.id ?? null} />
+                  <DexEvolutionTab {evolutionChain} currentPokemonId={pokeData?.id ?? null} {onpokeselect} />
                 {/if}
               </div>
             {:else if tab.component}

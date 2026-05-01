@@ -1,13 +1,13 @@
 import type { PageLoad } from "./$types";
 import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+import { error } from "@sveltejs/kit";
 
-export const load: PageLoad = async ({ url, fetch }) => {
-  const idParam = url.searchParams.get("id");
+export const load: PageLoad = async ({ params, url, fetch }) => {
+  const id = parseInt(params.id, 10);
   const tab = url.searchParams.get("tab") ?? "basic";
-  const id = idParam ? parseInt(idParam, 10) : null;
 
-  if (!id || isNaN(id) || id < 1) {
-    return { pokeData: null, evolutionChain: null, tab, fetchError: null };
+  if (isNaN(id) || id < 1) {
+    error(404, "みはっけんのポケモン");
   }
 
   let pokeData = null;
