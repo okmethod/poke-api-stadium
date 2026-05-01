@@ -17,10 +17,12 @@
   let hasSearched = $state(false);
   let currentPage = $state(1);
 
+  const MAX_TYPES = 2;
+
   function toggleType(type: PokeTypeName) {
     if (selectedTypes.includes(type)) {
       selectedTypes = selectedTypes.filter((t) => t !== type);
-    } else {
+    } else if (selectedTypes.length < MAX_TYPES) {
       selectedTypes = [...selectedTypes, type];
     }
   }
@@ -88,14 +90,16 @@
 
   <!-- タイプフィルター -->
   <div>
-    <p class="mb-1 text-xs font-semibold opacity-60">タイプ（未選択=すべて）</p>
+    <p class="mb-1 text-xs font-semibold opacity-60">タイプ（最大2つ・AND検索、未選択=すべて）</p>
     <div class="flex flex-wrap gap-1">
       {#each ALL_TYPE_NAMES as type (type)}
         {@const isSelected = selectedTypes.includes(type)}
         {@const isDimmed = !isSelected && selectedTypes.length > 0}
+        {@const isDisabled = !isSelected && selectedTypes.length >= MAX_TYPES}
         <button
           type="button"
           onclick={() => toggleType(type)}
+          disabled={isDisabled}
           class="rounded-full px-2 py-0.5 text-xs text-white transition-opacity"
           class:opacity-30={isDimmed}
           style="background-color: {pokeTypeColor(type)};"

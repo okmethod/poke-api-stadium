@@ -5,7 +5,7 @@
  * 検索条件が未指定の変数には「全件マッチ」のデフォルト値を渡すことで、
  * 単一の静的クエリで全フィルターパターンに対応する。
  * - nameFilter: "%%" → 全件マッチ
- * - typeNames: 全18タイプ → 全件マッチ
+ * - typeNames1/typeNames2: 全18タイプ → 全件マッチ（2変数の AND 条件でタイプ絞り込み）
  * - generationIds: [1..9] → 全件マッチ
  *
  * @architecture レイヤー間依存ルール - インフラ層
@@ -27,7 +27,8 @@ const GRAPHQL_ENDPOINT = "https://beta.pokeapi.co/graphql/v1beta";
 const SEARCH_QUERY = `
   query SearchPokemon(
     $nameFilter: String!
-    $typeNames: [String!]!
+    $typeNames1: [String!]!
+    $typeNames2: [String!]!
     $generationIds: [Int!]!
     $limit: Int!
     $offset: Int!
@@ -45,7 +46,15 @@ const SEARCH_QUERY = `
             pokemon_v2_pokemons: {
               is_default: { _eq: true }
               pokemon_v2_pokemontypes: {
-                pokemon_v2_type: { name: { _in: $typeNames } }
+                pokemon_v2_type: { name: { _in: $typeNames1 } }
+              }
+            }
+          }
+          {
+            pokemon_v2_pokemons: {
+              is_default: { _eq: true }
+              pokemon_v2_pokemontypes: {
+                pokemon_v2_type: { name: { _in: $typeNames2 } }
               }
             }
           }
@@ -106,9 +115,17 @@ export async function fetchGraphQLSearch(
   fetchFunction: typeof fetch,
   query: SearchQuery,
 ): Promise<GraphQLSearchResponse> {
+  const allTypeNames = [...ALL_TYPE_NAMES];
+  // 0タイプ: 両変数に全タイプ → 全件マッチ
+  // 1タイプ: typeNames1 に指定タイプ、typeNames2 に全タイプ → 1タイプ絞り込み
+  // 2タイプ: 各変数に1タイプずつ → AND絞り込み
+  const typeNames1 = query.types.length > 0 ? [query.types[0]] : allTypeNames;
+  const typeNames2 = query.types.length > 1 ? [query.types[1]] : allTypeNames;
+
   const variables = {
     nameFilter: query.nameQuery.trim() ? `%${query.nameQuery.trim()}%` : "%%",
-    typeNames: query.types.length > 0 ? [...query.types] : [...ALL_TYPE_NAMES],
+    typeNames1,
+    typeNames2,
     generationIds: query.generationIds.length > 0 ? [...query.generationIds] : [...ALL_GENERATION_NUMBERS],
     limit: query.limit,
     offset: query.offset,
