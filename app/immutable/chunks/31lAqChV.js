@@ -1,0 +1,1 @@
+import{g as m}from"./BlQVLwlm.js";import{g as r,p as d}from"./DPZ9ndOh.js";async function g(t,e){const o=m(),n=o[r(o.length)];return t.getPokemon(e,n)}async function p(t,e,o){const n=m(),a=d(n,o),c=await t.getPokemons(e,a);return a.map(s=>c[s.toString()]).filter(s=>s!==void 0)}export{g as a,p as s};
