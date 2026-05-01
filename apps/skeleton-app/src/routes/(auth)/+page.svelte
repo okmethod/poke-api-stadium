@@ -1,13 +1,36 @@
 <script lang="ts">
-  import type { CategoryCardConfig } from "./+page.js";
+  import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
 
-  interface PageProps {
-    data: {
-      categories: CategoryCardConfig[];
-    };
-  }
-
-  let { data }: PageProps = $props();
+  const { menuItems } = buildMenuLoad([
+    {
+      label: "ずかん",
+      description: "さがす・しらべる",
+      iconItemKey: "poke-ball",
+      action: "navigate",
+      target: "/zukan",
+    },
+    {
+      label: "クイズ",
+      description: "くらべる・あてる",
+      iconItemKey: "great-ball",
+      action: "navigate",
+      target: "/quiz",
+    },
+    {
+      label: "パズル",
+      description: "カード・ことば",
+      iconItemKey: "ultra-ball",
+      action: "navigate",
+      target: "/puzzle",
+    },
+    {
+      label: "その他",
+      description: "サウンド・ソースコード",
+      iconItemKey: "master-ball",
+      action: "navigate",
+      target: "/other",
+    },
+  ]);
 </script>
 
 <div class="flex flex-col items-center p-4">
@@ -17,13 +40,13 @@
   </h2>
 
   <div class="grid w-full max-w-sm grid-cols-2 gap-4 sm:max-w-xl">
-    {#each data.categories as category (category.label)}
-      <button onclick={category.onClick} class="btn preset-tonal flex h-auto flex-col items-center gap-3 border py-6">
+    {#each menuItems as menuItem (menuItem.label)}
+      <button onclick={menuItem.onClick} class="btn preset-tonal flex h-auto flex-col items-center gap-3 border py-6">
         <div class="flex items-center gap-1">
-          <img src={category.ballImageUrl} alt="" class="h-12 w-12 object-contain" />
-          <span class="text-xl font-semibold">{category.label}</span>
+          <img src={menuItem.iconItemKey} alt="" class="h-12 w-12 object-contain" />
+          <span class="text-xl font-semibold">{menuItem.label}</span>
         </div>
-        <span class="text-xs opacity-70 sm:text-sm">{category.description}</span>
+        <span class="text-xs opacity-70 sm:text-sm">{menuItem.description}</span>
       </button>
     {/each}
   </div>
