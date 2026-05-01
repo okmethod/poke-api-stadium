@@ -1,0 +1,1 @@
+function c(){return{credentials:"same-origin"}}async function o(t,e,r){try{return await t(e,r)}catch(n){throw console.error("API error:",n),new Error(`Failed to fetch: ${r.method} ${e}`)}}export{c,o as f};
