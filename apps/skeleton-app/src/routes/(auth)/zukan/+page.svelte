@@ -1,81 +1,20 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
-  import { navigateTo } from "$lib/presentation/utils/navigation";
-  import { generationData, ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeData/generation";
-  import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
+  import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
 
-  // 最新世代の最後のポケモンIDを取得
-  const POKEMON_MAX_ID = generationData(ALL_GENERATION_NUMBERS.at(-1)!)?.lastPokeId ?? 1025;
-
-  let idInputEl: HTMLInputElement | null = $state(null);
-
-  function handleIdSearch() {
-    const id = parseInt(idInputEl?.value ?? "", 10);
-    if (isNaN(id) || id < 1) return;
-    navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
-  }
-
-  // 日付文字列から決定的なハッシュ値を生成し、ポケモンIDに変換する
-  function getTodaysPokemonId(): number {
-    const now = new Date();
-    const seed = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
-    let hash = 0;
-    for (const char of seed) {
-      hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
-    }
-    return hash % POKEMON_MAX_ID;
-  }
-
-  function handleTodaysPokemon() {
-    const id = getTodaysPokemonId();
-    navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
-  }
+  const { menuItems } = buildMenuLoad([
+    { label: "ポケモンずかん", iconItemKey: "poke-ball", action: "navigate", target: "/zukan/poke" },
+  ]);
 </script>
 
-<div class="container mx-auto flex flex-col items-center gap-6 p-4">
-  <h1 class="h3 sm:h2">ポケモンずかん</h1>
+<div class="flex flex-col items-center p-4">
+  <h2 class="h3 sm:h2 my-4">ずかんメニュー</h2>
 
-  <div class="grid w-full max-w-xl grid-cols-1 gap-6 sm:grid-cols-2">
-    <!-- No.指定 -->
-    <div class="flex items-center justify-between gap-2 rounded p-4 shadow">
-      <span class="flex items-center gap-1 text-sm font-semibold">
-        <Icon icon="mdi:notebook" class="size-5" />
-        No.検索
-      </span>
-      <input
-        bind:this={idInputEl}
-        id="pokeId"
-        type="number"
-        value="1"
-        min="1"
-        max={POKEMON_MAX_ID}
-        onkeydown={(e) => e.key === "Enter" && handleIdSearch()}
-        class="w-20 rounded border px-3 py-1 text-center text-sm"
-      />
-      <button type="button" class="btn preset-filled btn-sm" onclick={handleIdSearch}>
-        <Icon icon="mdi:magnify" class="size-5" />
+  <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
+    {#each menuItems as item (item.label)}
+      <button onclick={item.onClick} class="btn preset-tonal flex items-center justify-start gap-2 border">
+        <img src={item.iconItemKey} alt="" class="h-6 w-6 object-contain" />
+        <span class="text-lg">{item.label}</span>
       </button>
-    </div>
-
-    <!-- 今日のポケモン -->
-    <div class="flex items-center justify-between gap-1 rounded p-4 shadow">
-      <span class="flex items-center gap-1 text-sm font-semibold">
-        <Icon icon="mdi:calendar-today" class="size-5" />
-        今日のポケモン
-      </span>
-      <button type="button" class="btn preset-filled btn-sm" onclick={handleTodaysPokemon}>
-        <Icon icon="mdi:magnify" class="size-5" />
-      </button>
-    </div>
-  </div>
-
-  <!-- 条件検索 -->
-  <div class="flex w-full max-w-xl flex-col space-y-3 rounded p-4 shadow">
-    <span class="flex items-center gap-1 text-sm font-semibold">
-      <Icon icon="mdi:database" class="size-5" />
-      条件検索
-    </span>
-
-    <PokeSearchPanel />
+    {/each}
   </div>
 </div>

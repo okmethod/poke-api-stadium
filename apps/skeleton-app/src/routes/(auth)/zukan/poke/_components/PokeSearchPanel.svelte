@@ -7,8 +7,12 @@
   import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
   import type { PokemonSearchResult } from "$lib/application/ports/IPokeSearchRepository";
   import { getPokeSearchRepository } from "$lib/infrastructure/adapters/PokeGraphQLAdapter";
-  import { navigateTo } from "$lib/presentation/utils/navigation";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
+
+  interface PokeSearchPanelProps {
+    onpokeselect: (id: number) => void;
+  }
+  let { onpokeselect }: PokeSearchPanelProps = $props();
 
   let nameQuery = $state("");
   let selectedTypes = $state<PokeTypeName[]>([]);
@@ -66,7 +70,7 @@
   }
 
   function selectPokemon(id: number) {
-    navigateTo(`/zukan/${id}` as Parameters<typeof navigateTo>[0]);
+    onpokeselect(id);
   }
 
   const paginatedResults = $derived(results.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE));

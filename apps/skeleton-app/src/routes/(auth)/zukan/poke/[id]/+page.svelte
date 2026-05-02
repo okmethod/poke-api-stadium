@@ -7,7 +7,9 @@
   function gotoId(id: number) {
     const tab = page.url.searchParams.get("tab");
     const query = tab ? `?tab=${tab}` : "";
-    return goto(resolve(`/zukan/${id}`) + query);
+    const segments = page.url.pathname.split("/");
+    segments[segments.length - 1] = String(id);
+    return goto(segments.join("/") + query);
   }
   import Icon from "@iconify/svelte";
   import { resolvedCryUrl } from "$lib/domain/models/PokeData";
