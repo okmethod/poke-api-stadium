@@ -69,6 +69,12 @@ export interface IPokeRepository {
    */
   getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly PokeMove[]>;
 
+  /** 番号または英語名でわざデータを取得 */
+  getMove(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeMove>;
+
+  /** タイプ名でそのタイプのわざ英語名一覧を取得 */
+  getMoveNamesByType(fetchFunction: typeof fetch, typeName: string): Promise<string[]>;
+
   /** 番号または英語名でアイテムデータを取得 */
   getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem>;
 

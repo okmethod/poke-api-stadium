@@ -16,9 +16,9 @@
 </script>
 
 <span
-  class="inline-flex h-5 items-center gap-0.5 rounded px-1.5 py-0.5 text-xs text-white"
+  class="flex h-5 items-center justify-center gap-0.5 rounded px-1.5 py-0.5 text-xs text-white"
   style="background-color: {BADGE_CONFIG[category].bg};"
 >
   <Icon icon={BADGE_CONFIG[category].icon} class="size-3" />
-  {MOVE_CATEGORY_JA[category]}
+  <span class="mr-1">{MOVE_CATEGORY_JA[category]}</span>
 </span>

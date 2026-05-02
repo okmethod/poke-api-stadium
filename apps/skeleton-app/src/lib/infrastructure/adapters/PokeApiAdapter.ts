@@ -610,6 +610,18 @@ class PokeApiAdapter implements IPokeRepository {
     );
   }
 
+  /** 番号または英語名でわざデータを取得 */
+  async getMove(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeMove> {
+    const raw = await fetchMove(fetchFunction, idOrName);
+    return convertToMove(raw);
+  }
+
+  /** タイプ名でそのタイプのわざ英語名一覧を取得 */
+  async getMoveNamesByType(fetchFunction: typeof fetch, typeName: string): Promise<string[]> {
+    const type = await fetchType(fetchFunction, typeName);
+    return type.moves.map((m) => m.name);
+  }
+
   /** 番号または英語名でアイテムデータを取得 */
   async getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem> {
     const raw = await fetchItem(fetchFunction, idOrName);

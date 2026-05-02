@@ -289,6 +289,7 @@ export const TypeResponseSchema = z.object({
     half_damage_from: z.array(NamedResourceSchema),
     double_damage_from: z.array(NamedResourceSchema),
   }),
+  moves: z.array(NamedResourceSchema),
 });
 
 // --- 推論型エクスポート ---
