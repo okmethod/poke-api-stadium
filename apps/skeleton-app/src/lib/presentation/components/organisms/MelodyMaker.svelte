@@ -5,7 +5,7 @@
   import { sampleMelody, type MelodyNote } from "$lib/presentation/sounds/melody";
   import MelodyButton from "$lib/presentation/components/buttons/MelodyButton.svelte";
 
-  let selectedWaveType: OscillatorType = "square";
+  let selectedWaveType: OscillatorType = "triangle";
   let editableMelody: (MelodyNote | null)[] = [...sampleMelody.melodyNotes];
 
   const waveTypes = WAVE_TYPES;
@@ -44,9 +44,9 @@
 {/snippet}
 
 {#snippet melodyList()}
-  <ul class="w-full space-y-2">
+  <ul class="w-sm space-y-2">
     {#each editableMelody as note, index (index)}
-      <li class="grid h-12 grid-cols-8 place-items-center gap-2 rounded bg-white p-1 shadow dark:bg-gray-700">
+      <li class="grid h-12 grid-cols-4 place-items-center gap-2 rounded bg-white p-1 shadow dark:bg-gray-700">
         <span class="col-span-1">
           {index + 1}.
         </span>
@@ -58,12 +58,12 @@
           </button>
         </div>
 
-        <div class="col-span-6 flex items-center space-x-2">
+        <div class="col-span-2 flex items-center space-x-2">
           {#if note}
             <!-- 音名 -->
             <input
               type="text"
-              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
+              class="w-12 rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.name}
               oninput={(e: Event) => updateNote(index, "name", (e.target as HTMLInputElement).value)}
             />
@@ -71,7 +71,7 @@
             <!-- オクターブ -->
             <input
               type="number"
-              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
+              class="w-12 rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.octave}
               oninput={(e: Event) => updateNote(index, "octave", parseInt((e.target as HTMLInputElement).value))}
             />
@@ -79,7 +79,7 @@
             <!-- 拍数 -->
             <input
               type="number"
-              class="rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
+              class="w-12 rounded border p-1 dark:bg-gray-600 dark:text-gray-200"
               bind:value={note.duration}
               oninput={(e: Event) => updateNote(index, "duration", parseFloat((e.target as HTMLInputElement).value))}
             />

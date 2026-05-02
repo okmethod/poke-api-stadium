@@ -2,7 +2,7 @@
   import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
 
   const { menuItems } = buildMenuLoad([
-    { label: "サウンドテスト", iconItemKey: "cherish-ball", action: "navigate", target: "/other/sound-test" },
+    { label: "サウンドテスト", iconItemKey: "premier-ball", action: "navigate", target: "/other/sound-test" },
     {
       label: "ソースコード",
       iconItemKey: "master-ball",
