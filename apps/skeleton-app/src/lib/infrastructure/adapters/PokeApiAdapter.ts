@@ -56,6 +56,14 @@ const LATEST_VERSION_GROUP = "scarlet-violet";
 // 既知の習得方法名（それ以外は "level-up" にフォールバック）
 const KNOWN_LEARN_METHODS = new Set<MoveLearnMethodName>(["level-up", "machine", "tutor", "egg"]);
 
+// わざ一覧の習得方法表示順
+const LEARN_METHOD_ORDER: Record<MoveLearnMethodName, number> = {
+  "level-up": 0,
+  machine: 1,
+  tutor: 2,
+  egg: 3,
+};
+
 function parseMoveLearnMethod(name: string): MoveLearnMethodName {
   return KNOWN_LEARN_METHODS.has(name as MoveLearnMethodName) ? (name as MoveLearnMethodName) : "level-up";
 }
@@ -72,7 +80,12 @@ function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDeta
       learnMethod: parseMoveLearnMethod(svDetail.move_learn_method.name),
     });
   }
-  return result;
+  return result.sort((a, b) => {
+    const methodDiff = LEARN_METHOD_ORDER[a.learnMethod] - LEARN_METHOD_ORDER[b.learnMethod];
+    if (methodDiff !== 0) return methodDiff;
+    // level-up 内はレベル昇順（0 = 進化わざは先頭）
+    return a.levelLearnedAt - b.levelLearnedAt;
+  });
 }
 
 // バージョングループの優先順位
