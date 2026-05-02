@@ -120,7 +120,7 @@
       onconsider={handleConsider}
       onfinalize={handleFinalize}
     >
-      {#each orderedList as pokeData, index (pokeData.id)}
+      {#each orderedList as pokeData, index (pokeData.speciesId)}
         {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
         <div class="flex size-64 cursor-grab flex-col items-center justify-center gap-1 select-none">
           <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />

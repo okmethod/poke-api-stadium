@@ -83,7 +83,7 @@
   <div class="px-4 pt-2 pb-2 text-center">
     {#if pokeData}
       <h2 class="flex h-16 flex-col items-center gap-1 font-bold sm:h-10 sm:flex-row sm:justify-between">
-        <span class="text-surface-400 hidden sm:block">No. {pokeData.id}</span>
+        <span class="text-surface-400 hidden sm:block">No. {pokeData.speciesId}</span>
         <div class="flex items-center justify-center gap-2">
           <span class="text-2xl"> {pokeData.jaName} </span>
           {#if pokeData}
@@ -171,7 +171,7 @@
                     <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
                   </div>
                 {:else}
-                  <DexEvolutionTab {evolutionChain} currentPokemonId={pokeData?.id ?? null} {onpokeselect} />
+                  <DexEvolutionTab {evolutionChain} currentSpeciesId={pokeData?.speciesId ?? null} {onpokeselect} />
                 {/if}
               </div>
             {:else if tab.value === "form"}
@@ -181,7 +181,7 @@
                     <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
                   </div>
                 {:else}
-                  <DexFormTab {formVariants} currentPokemonId={pokeData?.id ?? null} {onpokeselect} />
+                  <DexFormTab {formVariants} currentPokeId={pokeData?.pokeId ?? null} {onpokeselect} />
                 {/if}
               </div>
             {:else if tab.component}

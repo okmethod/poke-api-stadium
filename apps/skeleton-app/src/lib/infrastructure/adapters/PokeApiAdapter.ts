@@ -278,10 +278,12 @@ function convertToPokeData(
   const generationNumber = GENERATION_NAME_MAP[species.generation.name] ?? 0;
 
   return {
-    // リージョンフォーム等では pokemon.id（例:10100）ではなく species.id（例:26）を図鑑番号として使用
-    id: species.id,
+    speciesId: species.id,
+    pokeId: pokemon.id,
     enName: pokemon.name,
+    speciesEnName: species.name,
     jaName,
+    speciesJaName: baseJaName,
     genus,
     // PokeAPI は height をデシメートル、weight をヘクトグラムで返すため変換
     height: pokemon.height / 10,
@@ -302,7 +304,7 @@ function convertToPokeData(
   };
 }
 
-function extractSpeciesId(url: string): number {
+function extractIdFromUrl(url: string): number {
   const match = url.match(/\/(\d+)\/?$/);
   return match ? Number(match[1]) : 0;
 }
@@ -393,7 +395,7 @@ async function enrichEvolutionChain(
   ]);
 
   function buildNode(node: EvolutionChainResponse["chain"]): EvolutionNode {
-    const speciesId = extractSpeciesId(node.species.url);
+    const speciesId = extractIdFromUrl(node.species.url);
     return {
       speciesId,
       speciesName: node.species.name,
@@ -524,11 +526,11 @@ class PokeApiAdapter implements IPokeRepository {
         const type2 = type2Name != null ? parsePokeTypeName(type2Name) : null;
 
         // variety.url (pokemon エンドポイント) から ID を取得し、アートワークURLを優先する
-        const pokemonId = extractSpeciesId(variety.url);
-        const imageUrl = pokemonId > 0 ? pokeArtworkUrl(pokemonId) : (form.sprites.front_default ?? null);
+        const pokeId = extractIdFromUrl(variety.url);
+        const imageUrl = pokeId > 0 ? pokeArtworkUrl(pokeId) : (form.sprites.front_default ?? null);
 
         return {
-          pokemonId,
+          pokeId,
           enName: variety.name,
           jaName,
           isDefault: variety.isDefault,

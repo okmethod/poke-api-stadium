@@ -26,7 +26,7 @@
     />
     {#if isOpen}
       <div class="h-16 space-y-1 text-center">
-        <p class="text-2xl font-bold">No.{pokeData.id} {pokeData.jaName}</p>
+        <p class="text-2xl font-bold">No.{pokeData.speciesId} {pokeData.jaName}</p>
         <div class="flex justify-center gap-2">
           <PokeTypeBadge type={pokeData.type1} />
           {#if pokeData.type2}

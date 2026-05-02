@@ -107,7 +107,7 @@
       onconsider={handleConsider}
       onfinalize={handleFinalize}
     >
-      {#each orderedList as pokeData, index (pokeData.id)}
+      {#each orderedList as pokeData, index (pokeData.speciesId)}
         {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
         <div class="flex size-64 cursor-grab flex-col items-center justify-center gap-1 select-none">
           <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
@@ -149,7 +149,7 @@
 
     <!-- たかさ一覧（dnd 順） -->
     <div class="flex flex-wrap justify-center gap-2">
-      {#each orderedList as pokeData, index (pokeData.id)}
+      {#each orderedList as pokeData, index (pokeData.speciesId)}
         <div class="flex flex-col items-center gap-0.5 text-center">
           <span class="text-base font-bold">{pokeData.jaName}</span>
           <span class="text-base font-bold">{pokeData.height.toFixed(1)}m</span>

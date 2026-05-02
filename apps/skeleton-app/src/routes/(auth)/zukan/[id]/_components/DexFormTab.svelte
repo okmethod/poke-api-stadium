@@ -5,10 +5,10 @@
 
   interface Props {
     formVariants: readonly FormVariant[] | null;
-    currentPokemonId: number | null;
+    currentPokeId: number | null;
     onpokeselect: (id: number) => void;
   }
-  let { formVariants, currentPokemonId, onpokeselect }: Props = $props();
+  let { formVariants, currentPokeId, onpokeselect }: Props = $props();
 </script>
 
 {#if !formVariants}
@@ -16,10 +16,10 @@
 {:else}
   <div class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-3">
     {#each formVariants as form (form.enName)}
-      {@const isCurrent = form.pokemonId === currentPokemonId}
+      {@const isCurrent = form.pokeId === currentPokeId}
       <button
         type="button"
-        onclick={() => !isCurrent && onpokeselect(form.pokemonId)}
+        onclick={() => !isCurrent && onpokeselect(form.pokeId)}
         class="border-surface-200-800 flex flex-col items-center gap-1 rounded-lg border p-2 {isCurrent
           ? 'bg-primary-500/10'
           : 'hover:bg-surface-200-800 cursor-pointer'}"

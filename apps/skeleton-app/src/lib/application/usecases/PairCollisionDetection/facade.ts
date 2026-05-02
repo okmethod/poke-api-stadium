@@ -67,7 +67,7 @@ export class PairCollisionDetectionFacade {
       // 画像解析を並列実行するために Promise を収集してから一括 await する
       const addBodyPromises: Promise<void>[] = [];
       for (const poke of pokemons) {
-        const category = poke.id + POKEMON_CATEGORY_OFFSET;
+        const category = poke.speciesId + POKEMON_CATEGORY_OFFSET;
         this.categoryToName.set(category, poke.jaName);
         this.categoryToCryUrl.set(category, resolvedCryUrl(poke.cryUrls));
 

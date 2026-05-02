@@ -5,10 +5,10 @@
 
   interface Props {
     evolutionChain: EvolutionChain | null;
-    currentPokemonId: number | null;
+    currentSpeciesId: number | null;
     onpokeselect: (id: number) => void;
   }
-  let { evolutionChain, currentPokemonId, onpokeselect }: Props = $props();
+  let { evolutionChain, currentSpeciesId, onpokeselect }: Props = $props();
 </script>
 
 {#if !evolutionChain}
@@ -18,13 +18,13 @@
     <div class="flex flex-col items-center justify-center gap-1 sm:flex-row">
       <button
         type="button"
-        onclick={() => node.speciesId !== currentPokemonId && onpokeselect(node.speciesId)}
-        class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === currentPokemonId
+        onclick={() => node.speciesId !== currentSpeciesId && onpokeselect(node.speciesId)}
+        class="flex flex-col items-center gap-0.5 rounded-lg p-1 {node.speciesId === currentSpeciesId
           ? 'bg-primary-500/20'
           : 'hover:bg-surface-200-800 cursor-pointer'}"
       >
         <img src={node.imageUrl} alt={node.jaName} class="size-12 object-contain" />
-        <span class="text-xs {node.speciesId === currentPokemonId ? 'text-primary-500 font-bold' : ''}">
+        <span class="text-xs {node.speciesId === currentSpeciesId ? 'text-primary-500 font-bold' : ''}">
           {node.jaName}
         </span>
       </button>

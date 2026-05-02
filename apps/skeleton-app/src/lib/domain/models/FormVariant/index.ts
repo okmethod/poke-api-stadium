@@ -11,7 +11,7 @@ import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
 
 /** ポケモン1フォームのデータ */
 export interface FormVariant {
-  readonly pokemonId: number;
+  readonly pokeId: number;
   readonly enName: string;
   readonly jaName: string;
   readonly isDefault: boolean;

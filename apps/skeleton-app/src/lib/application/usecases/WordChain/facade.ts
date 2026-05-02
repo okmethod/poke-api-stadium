@@ -33,8 +33,8 @@ export class WordChainFacade {
 
       const dict: Record<number, ShiritoriPokeItem> = {};
       for (const poke of Object.values(rawDict)) {
-        dict[poke.id] = {
-          id: poke.id,
+        dict[poke.speciesId] = {
+          id: poke.speciesId,
           jaName: poke.jaName,
           imageUrl: poke.imageUrls.pixel.front ?? poke.imageUrls.artwork.front,
           cryUrl: resolvedCryUrl(poke.cryUrls),

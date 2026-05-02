@@ -43,11 +43,25 @@ export {
  *
  * PokeAPI の複数エンドポイント（/pokemon, /pokemon-species）を統合した表現。
  * PokeAPI レスポンス型（外部）とは明確に区別する。
+ *
+ * @remarks
+ * - `pokeId`:  フォーム（すがた）を一意に識別（例: アローラライチュウ=10100）
+ * - `speciesId`: 図鑑番号に対応。リージョンフォームも基本種族と同値（例: アローラライチュウ=26）
  */
 export interface PokeData {
-  readonly id: number;
+  /** フォーム固有ID（基本フォームは speciesId と一致する） */
+  readonly pokeId: number;
+
+  /** 図鑑番号 */
+  readonly speciesId: number;
+
+  /** フォーム固有名（例: "raichu-alola" / "アローラライチュウ"） */
   readonly enName: string;
   readonly jaName: string;
+
+  /** 種族名（例: "raichu" / "ライチュウ"） */
+  readonly speciesEnName: string;
+  readonly speciesJaName: string;
 
   /** たかさ（m） */
   readonly height: number;

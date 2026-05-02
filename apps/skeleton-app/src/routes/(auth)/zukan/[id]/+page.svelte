@@ -21,23 +21,24 @@
     if (data.fetchError) showErrorToast(data.fetchError);
   });
 
-  // ポケモンが切り替わったときだけ鳴き声を再生
-  let prevPokeDataId = $state<number | null>(null);
+  // フォームが切り替わったときだけ鳴き声を再生（リージョンフォームも個別に検知するため pokeId を使用）
+  let prevPokeId = $state<number | null>(null);
   $effect(() => {
-    if (data.pokeData && data.pokeData.id !== prevPokeDataId) {
-      prevPokeDataId = data.pokeData.id;
+    if (data.pokeData && data.pokeData.pokeId !== prevPokeId) {
+      prevPokeId = data.pokeData.pokeId;
       playCry();
     }
   });
 
   async function navigatePrev() {
-    const currentId = data.pokeData?.id ?? parseInt(page.params.id ?? "", 10);
+    // 前後ナビゲーションは図鑑番号（speciesId）基準
+    const currentId = data.pokeData?.speciesId ?? parseInt(page.params.id ?? "", 10);
     if (isNaN(currentId) || currentId <= 1) return;
     await gotoId(currentId - 1);
   }
 
   async function navigateNext() {
-    const currentId = data.pokeData?.id ?? parseInt(page.params.id ?? "", 10);
+    const currentId = data.pokeData?.speciesId ?? parseInt(page.params.id ?? "", 10);
     if (isNaN(currentId)) return;
     await gotoId(currentId + 1);
   }
@@ -64,7 +65,7 @@
       type="button"
       class="btn preset-tonal btn-sm"
       onclick={navigatePrev}
-      disabled={navigating.to !== null || !data.pokeData || data.pokeData.id <= 1}
+      disabled={navigating.to !== null || !data.pokeData || data.pokeData.speciesId <= 1}
     >
       <Icon icon="mdi:chevron-left" class="size-5" />
     </button>

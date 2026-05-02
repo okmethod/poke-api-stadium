@@ -92,6 +92,7 @@ export const PokemonResponseSchema = z.object({
 
 export const PokemonSpeciesResponseSchema = z.object({
   id: z.number(),
+  name: z.string(),
   names: z.array(
     z.object({
       language: NamedResourceSchema,
