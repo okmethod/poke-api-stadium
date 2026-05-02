@@ -181,7 +181,7 @@
                     <Icon icon="mdi:loading" class="text-surface-400 size-6 animate-spin" />
                   </div>
                 {:else}
-                  <DexFormTab {formVariants} />
+                  <DexFormTab {formVariants} currentPokemonId={pokeData?.id ?? null} {onpokeselect} />
                 {/if}
               </div>
             {:else if tab.component}

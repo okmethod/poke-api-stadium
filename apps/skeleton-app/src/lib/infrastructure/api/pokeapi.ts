@@ -87,6 +87,7 @@ export const PokemonResponseSchema = z.object({
     // 新世代 Pokemon は legacy cry がない場合がある
     legacy: z.string().nullish(),
   }),
+  species: NamedResourceSchema,
 });
 
 export const PokemonSpeciesResponseSchema = z.object({
@@ -305,6 +306,20 @@ export async function fetchPokemonSpecies(
   });
   const data = PokemonSpeciesResponseSchema.parse(await response.json());
   speciesCache.set(key, data);
+  return data;
+}
+
+/** /pokemon-species をURLで直接取得（リージョンフォームなど species ID ≠ pokemon ID の場合に使用） */
+export async function fetchPokemonSpeciesByUrl(
+  fetchFunction: typeof fetch,
+  url: string,
+): Promise<PokemonSpeciesResponse> {
+  const cached = speciesCache.get(url);
+  if (cached) return cached;
+
+  const response = await fetchApi(fetchFunction, url, { method: "GET" });
+  const data = PokemonSpeciesResponseSchema.parse(await response.json());
+  speciesCache.set(url, data);
   return data;
 }
 

@@ -36,6 +36,7 @@ import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
   fetchPokemon,
   fetchPokemonSpecies,
+  fetchPokemonSpeciesByUrl,
   fetchPokemonForm,
   fetchItem,
   fetchMove,
@@ -207,12 +208,17 @@ function resolveFlavorTexts(entries: PokemonSpeciesResponse["flavor_text_entries
   return result;
 }
 
-function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResponse): PokeData {
-  // 日本語名: "ja" (漢字あり) を優先し、なければ "ja-hrkt" (カナ) を使用
-  const jaName =
+function convertToPokeData(
+  pokemon: PokemonResponse,
+  species: PokemonSpeciesResponse,
+  formJaName: string | null = null,
+): PokeData {
+  // 日本語名: フォーム名があればそれを優先（リージョンフォーム等）、なければ species 名を使用
+  const baseJaName =
     species.names.find((n) => n.language.name === "ja")?.name ??
     species.names.find((n) => n.language.name === "ja-hrkt")?.name ??
     pokemon.name;
+  const jaName = formJaName ?? baseJaName;
 
   // 分類: "ja" を優先し、なければ "ja-hrkt" を使用
   const genus =
@@ -272,7 +278,8 @@ function convertToPokeData(pokemon: PokemonResponse, species: PokemonSpeciesResp
   const generationNumber = GENERATION_NAME_MAP[species.generation.name] ?? 0;
 
   return {
-    id: pokemon.id,
+    // リージョンフォーム等では pokemon.id（例:10100）ではなく species.id（例:26）を図鑑番号として使用
+    id: species.id,
     enName: pokemon.name,
     jaName,
     genus,
@@ -431,11 +438,26 @@ function convertToTypeData(raw: TypeResponse): PokeTypeData {
 class PokeApiAdapter implements IPokeRepository {
   /** 図鑑番号または英語名でポケモンデータを取得 */
   async getPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeData> {
-    const [pokemon, species] = await Promise.all([
-      fetchPokemon(fetchFunction, idOrName),
-      fetchPokemonSpecies(fetchFunction, idOrName),
-    ]);
-    return convertToPokeData(pokemon, species);
+    // リージョンフォーム（ID ≥ 10000）は pokemon-species/{id} が存在しないため、
+    // pokemon レスポンスの species.url を使って species を取得する
+    const pokemon = await fetchPokemon(fetchFunction, idOrName);
+    const species = await fetchPokemonSpeciesByUrl(fetchFunction, pokemon.species.url);
+
+    // pokemon.id と species.id が異なる場合はフォームデータからフォーム名を取得
+    let formJaName: string | null = null;
+    if (pokemon.id !== species.id) {
+      try {
+        const form = await fetchPokemonForm(fetchFunction, pokemon.name);
+        formJaName =
+          form.form_names.find((n) => n.language.name === "ja")?.name ??
+          form.form_names.find((n) => n.language.name === "ja-hrkt")?.name ??
+          null;
+      } catch {
+        // フォームデータが取得できない場合は species 名にフォールバック
+      }
+    }
+
+    return convertToPokeData(pokemon, species, formJaName);
   }
 
   /**
@@ -506,6 +528,7 @@ class PokeApiAdapter implements IPokeRepository {
         const imageUrl = pokemonId > 0 ? pokeArtworkUrl(pokemonId) : (form.sprites.front_default ?? null);
 
         return {
+          pokemonId,
           enName: variety.name,
           jaName,
           isDefault: variety.isDefault,
