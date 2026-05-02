@@ -33,12 +33,13 @@ import type { FormVariant } from "$lib/domain/models/FormVariant";
 import type { PokeAbility } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
 import { MOVE_LEARN_METHODS, MOVE_LEARN_METHOD_ORDER } from "$lib/domain/models/PokeMove";
-import type { PokeItem } from "$lib/domain/models/PokeItem";
+import type { PokeItem, PokeItemCategory, PokeItemCategoryMeta } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type {
   PokemonResponse,
   PokemonSpeciesResponse,
   ItemResponse,
+  ItemCategoryResponse,
   AbilityResponse,
   MoveResponse,
   TypeResponse,
@@ -51,6 +52,8 @@ import {
   fetchPokemonForm,
   fetchAbility,
   fetchItem,
+  fetchItemPocket,
+  fetchItemCategory,
   fetchMove,
   fetchType,
   fetchEvolutionChain,
@@ -331,6 +334,28 @@ function extractIdFromUrl(url: string): number {
   return match ? Number(match[1]) : 0;
 }
 
+function resolveItemFlavorText(entries: ItemResponse["flavor_text_entries"]): string {
+  const jaEntries = entries.filter((e) => e.language.name === "ja" || e.language.name === "ja-Hrkt");
+  for (const vg of VERSION_GROUP_PRIORITY) {
+    const entry =
+      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja") ??
+      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja-Hrkt");
+    if (entry) {
+      return entry.text
+        .replace(/[\n\f\r]+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+    }
+  }
+  const fallback = jaEntries[0];
+  return fallback
+    ? fallback.text
+        .replace(/[\n\f\r]+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim()
+    : "";
+}
+
 function convertToPokeItem(raw: ItemResponse): PokeItem {
   const jaName = resolveJaName(raw.names, raw.name);
   return {
@@ -338,6 +363,20 @@ function convertToPokeItem(raw: ItemResponse): PokeItem {
     enName: raw.name,
     jaName,
     imageUrl: raw.sprites.default,
+    category: raw.category.name,
+    flavorText: resolveItemFlavorText(raw.flavor_text_entries),
+  };
+}
+
+function convertToPokeItemCategoryMeta(raw: ItemCategoryResponse): PokeItemCategoryMeta {
+  const jaName = resolveJaName(raw.names) ?? raw.name;
+  return { id: raw.id, enName: raw.name, jaName };
+}
+
+function convertToPokeItemCategory(raw: ItemCategoryResponse): PokeItemCategory {
+  return {
+    ...convertToPokeItemCategoryMeta(raw),
+    items: raw.items.map((r) => r.name),
   };
 }
 
@@ -575,6 +614,19 @@ class PokeApiAdapter implements IPokeRepository {
   async getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem> {
     const raw = await fetchItem(fetchFunction, idOrName);
     return convertToPokeItem(raw);
+  }
+
+  /** ポケット名でそのポケット内のカテゴリ一覧（アイテム名一覧付き）を取得 */
+  async getItemPocketCategories(fetchFunction: typeof fetch, pocketName: string): Promise<PokeItemCategory[]> {
+    const pocket = await fetchItemPocket(fetchFunction, pocketName);
+    const categories = await Promise.all(pocket.categories.map((r) => fetchItemCategory(fetchFunction, r.name)));
+    return categories.map(convertToPokeItemCategory);
+  }
+
+  /** 番号または英語名でアイテムカテゴリ（アイテム名一覧付き）を取得 */
+  async getItemCategory(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItemCategory> {
+    const raw = await fetchItemCategory(fetchFunction, idOrName);
+    return convertToPokeItemCategory(raw);
   }
 }
 

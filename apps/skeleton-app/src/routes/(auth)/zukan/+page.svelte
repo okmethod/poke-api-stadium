@@ -3,6 +3,7 @@
 
   const { menuItems } = buildMenuLoad([
     { label: "ポケモンずかん", iconItemKey: "poke-ball", action: "navigate", target: "/zukan/poke" },
+    { label: "アイテムずかん", iconItemKey: "super-rod", action: "navigate", target: "/zukan/item" },
   ]);
 </script>
 

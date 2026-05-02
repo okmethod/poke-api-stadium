@@ -170,6 +170,39 @@ export const ItemResponseSchema = z.object({
   sprites: z.object({
     default: z.string().nullable(),
   }),
+  category: NamedResourceSchema,
+  flavor_text_entries: z.array(
+    z.object({
+      text: z.string(),
+      language: NamedResourceSchema,
+      version_group: NamedResourceSchema,
+    }),
+  ),
+});
+
+export const ItemPocketResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  categories: z.array(NamedResourceSchema),
+  names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
+});
+
+export const ItemCategoryResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
+  items: z.array(NamedResourceSchema),
+  pocket: NamedResourceSchema,
 });
 
 export const PokemonFormResponseSchema = z.object({
@@ -264,6 +297,8 @@ export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
 export type PokemonFormResponse = z.infer<typeof PokemonFormResponseSchema>;
 export type ItemResponse = z.infer<typeof ItemResponseSchema>;
+export type ItemPocketResponse = z.infer<typeof ItemPocketResponseSchema>;
+export type ItemCategoryResponse = z.infer<typeof ItemCategoryResponseSchema>;
 export type AbilityResponse = z.infer<typeof AbilityResponseSchema>;
 export type MoveResponse = z.infer<typeof MoveResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
@@ -276,6 +311,8 @@ const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
 const pokemonFormCache = new Map<string, PokemonFormResponse>();
 const itemCache = new Map<string, ItemResponse>();
+const itemCategoryCache = new Map<string, ItemCategoryResponse>();
+const itemPocketCache = new Map<string, ItemPocketResponse>();
 const abilityCache = new Map<string, AbilityResponse>();
 const moveCache = new Map<string, MoveResponse>();
 const typeCache = new Map<string, TypeResponse>();
@@ -287,6 +324,8 @@ export function clearCache(): void {
   speciesCache.clear();
   pokemonFormCache.clear();
   itemCache.clear();
+  itemCategoryCache.clear();
+  itemPocketCache.clear();
   abilityCache.clear();
   moveCache.clear();
   typeCache.clear();
@@ -343,6 +382,21 @@ export function fetchMove(fetchFn: typeof fetch, idOrName: number | string): Pro
 /** /item/{idOrName} を取得 */
 export function fetchItem(fetchFn: typeof fetch, idOrName: number | string): Promise<ItemResponse> {
   return fetchWithCache(itemCache, fetchFn, `${BASE_URL}/item/${idOrName}`, ItemResponseSchema);
+}
+
+/** /item-pocket/{name} を取得 */
+export function fetchItemPocket(fetchFn: typeof fetch, name: string): Promise<ItemPocketResponse> {
+  return fetchWithCache(itemPocketCache, fetchFn, `${BASE_URL}/item-pocket/${name}`, ItemPocketResponseSchema);
+}
+
+/** /item-category/{idOrName} を取得 */
+export function fetchItemCategory(fetchFn: typeof fetch, idOrName: number | string): Promise<ItemCategoryResponse> {
+  return fetchWithCache(
+    itemCategoryCache,
+    fetchFn,
+    `${BASE_URL}/item-category/${idOrName}`,
+    ItemCategoryResponseSchema,
+  );
 }
 
 /** /type/{idOrName} を取得 */

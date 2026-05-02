@@ -25,7 +25,7 @@ import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
 import type { PokeAbility } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveLearnDetail } from "$lib/domain/models/PokeMove";
-import type { PokeItem } from "$lib/domain/models/PokeItem";
+import type { PokeItem, PokeItemCategory } from "$lib/domain/models/PokeItem";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {
@@ -71,4 +71,10 @@ export interface IPokeRepository {
 
   /** 番号または英語名でアイテムデータを取得 */
   getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem>;
+
+  /** ポケット名でそのポケット内のカテゴリ一覧（アイテム名一覧付き）を取得 */
+  getItemPocketCategories(fetchFunction: typeof fetch, pocketName: string): Promise<PokeItemCategory[]>;
+
+  /** 番号または英語名でアイテムカテゴリ（アイテム名一覧付き）を取得 */
+  getItemCategory(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItemCategory>;
 }
