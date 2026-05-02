@@ -44,7 +44,7 @@
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-4 p-4">
-  <h1 class="h3 sm:h2">アイテムずかん</h1>
+  <h1 class="h3 sm:h2">アイテム図鑑</h1>
 
   <div class="flex w-full max-w-4xl items-center gap-3">
     <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateTo("/zukan/item")}>

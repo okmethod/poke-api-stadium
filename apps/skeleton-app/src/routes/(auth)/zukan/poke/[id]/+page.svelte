@@ -59,7 +59,7 @@
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
-  <h1 class="h3 sm:h2">ポケモンずかん</h1>
+  <h1 class="h3 sm:h2">ポケモン図鑑</h1>
 
   <div class="flex items-center justify-between gap-4">
     <!-- 左向き矢印 -->

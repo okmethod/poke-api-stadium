@@ -2,8 +2,8 @@
   import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
 
   const { menuItems } = buildMenuLoad([
-    { label: "ポケモンずかん", iconItemKey: "poke-ball", action: "navigate", target: "/zukan/poke" },
-    { label: "アイテムずかん", iconItemKey: "super-rod", action: "navigate", target: "/zukan/item" },
+    { label: "ポケモン図鑑", iconItemKey: "poke-ball", action: "navigate", target: "/zukan/poke" },
+    { label: "アイテム図鑑", iconItemKey: "super-rod", action: "navigate", target: "/zukan/item" },
   ]);
 </script>
 

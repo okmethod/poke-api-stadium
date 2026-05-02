@@ -6,7 +6,7 @@
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
-  <h1 class="h3 sm:h2">アイテムずかん</h1>
+  <h1 class="h3 sm:h2">アイテム図鑑</h1>
 
   <div class="grid w-full max-w-2xl grid-cols-2 gap-3">
     {#each ITEM_POCKETS as pocket (pocket.enName)}
