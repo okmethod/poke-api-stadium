@@ -198,6 +198,24 @@ export const PokemonFormResponseSchema = z.object({
   pokemon: NamedResourceSchema,
 });
 
+export const AbilityResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  names: z.array(
+    z.object({
+      language: NamedResourceSchema,
+      name: z.string(),
+    }),
+  ),
+  flavor_text_entries: z.array(
+    z.object({
+      flavor_text: z.string(),
+      language: NamedResourceSchema,
+      version_group: NamedResourceSchema,
+    }),
+  ),
+});
+
 export const MoveResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -246,6 +264,7 @@ export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
 export type PokemonFormResponse = z.infer<typeof PokemonFormResponseSchema>;
 export type ItemResponse = z.infer<typeof ItemResponseSchema>;
+export type AbilityResponse = z.infer<typeof AbilityResponseSchema>;
 export type MoveResponse = z.infer<typeof MoveResponseSchema>;
 export type TypeResponse = z.infer<typeof TypeResponseSchema>;
 export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema>;
@@ -262,6 +281,7 @@ const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
 const pokemonFormCache = new Map<string, PokemonFormResponse>();
 const itemCache = new Map<string, ItemResponse>();
+const abilityCache = new Map<string, AbilityResponse>();
 const moveCache = new Map<string, MoveResponse>();
 const typeCache = new Map<string, TypeResponse>();
 const evolutionChainCache = new Map<string, EvolutionChainResponse>();
@@ -272,6 +292,7 @@ export function clearCache(): void {
   speciesCache.clear();
   pokemonFormCache.clear();
   itemCache.clear();
+  abilityCache.clear();
   moveCache.clear();
   typeCache.clear();
   evolutionChainCache.clear();
@@ -332,6 +353,18 @@ export async function fetchPokemonForm(fetchFunction: typeof fetch, name: string
   const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon-form/${name}`, { method: "GET" });
   const data = PokemonFormResponseSchema.parse(await response.json());
   pokemonFormCache.set(name, data);
+  return data;
+}
+
+/** /ability/{idOrName} を取得 */
+export async function fetchAbility(fetchFunction: typeof fetch, idOrName: number | string): Promise<AbilityResponse> {
+  const key = String(idOrName);
+  const cached = abilityCache.get(key);
+  if (cached) return cached;
+
+  const response = await fetchApi(fetchFunction, `${BASE_URL}/ability/${idOrName}`, { method: "GET" });
+  const data = AbilityResponseSchema.parse(await response.json());
+  abilityCache.set(key, data);
   return data;
 }
 

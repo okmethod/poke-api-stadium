@@ -19,10 +19,11 @@
  * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
  */
 
-import type { PokeData, VarietyRef } from "$lib/domain/models/PokeData";
+import type { PokeData, VarietyRef, AbilityRef } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
 import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
+import type { PokeAbility } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveLearnDetail } from "$lib/domain/models/PokeMove";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 
@@ -57,6 +58,9 @@ export interface IPokeRepository {
     varieties: readonly VarietyRef[],
     defaultJaName: string,
   ): Promise<readonly FormVariant[]>;
+
+  /** 特性参照リストから特性詳細を一括取得 */
+  getAbilities(fetchFunction: typeof fetch, abilityRefs: readonly AbilityRef[]): Promise<readonly PokeAbility[]>;
 
   /**
    * 習得可能わざ参照リストのスライスからわざ詳細を取得

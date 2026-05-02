@@ -30,6 +30,7 @@ import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/mo
 import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
 import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
+import type { PokeAbility } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
@@ -38,6 +39,7 @@ import {
   fetchPokemonSpecies,
   fetchPokemonSpeciesByUrl,
   fetchPokemonForm,
+  fetchAbility,
   fetchItem,
   fetchMove,
   fetchType,
@@ -45,6 +47,7 @@ import {
   type PokemonResponse,
   type PokemonSpeciesResponse,
   type ItemResponse,
+  type AbilityResponse,
   type MoveResponse,
   type TypeResponse,
   type EvolutionChainResponse,
@@ -124,6 +127,30 @@ function resolveMoveFlavorText(entries: MoveResponse["flavor_text_entries"]): st
         .replace(/\s{2,}/g, " ")
         .trim()
     : null;
+}
+
+function convertToAbility(raw: AbilityResponse, isHidden: boolean): PokeAbility {
+  const jaName =
+    raw.names.find((n) => n.language.name === "ja")?.name ??
+    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
+    raw.name;
+  // ja > ja-Hrkt の優先順で最初に見つかった説明文を採用
+  const flavorText =
+    raw.flavor_text_entries.find((e) => e.language.name === "ja")?.flavor_text ??
+    raw.flavor_text_entries.find((e) => e.language.name === "ja-Hrkt")?.flavor_text ??
+    null;
+  return {
+    id: raw.id,
+    enName: raw.name,
+    jaName,
+    isHidden,
+    flavorText: flavorText
+      ? flavorText
+          .replace(/[\n\f\r]+/g, " ")
+          .replace(/\s{2,}/g, " ")
+          .trim()
+      : null,
+  };
 }
 
 function convertToMove(raw: MoveResponse): PokeMove {
@@ -540,6 +567,16 @@ class PokeApiAdapter implements IPokeRepository {
           type2,
           imageUrl,
         };
+      }),
+    );
+  }
+
+  /** 特性参照リストから特性詳細を並列取得 */
+  async getAbilities(fetchFunction: typeof fetch, abilityRefs: readonly AbilityRef[]): Promise<readonly PokeAbility[]> {
+    return Promise.all(
+      abilityRefs.map(async (ref) => {
+        const raw = await fetchAbility(fetchFunction, ref.name);
+        return convertToAbility(raw, ref.isHidden);
       }),
     );
   }
