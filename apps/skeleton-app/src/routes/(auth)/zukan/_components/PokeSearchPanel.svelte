@@ -1,13 +1,14 @@
 <script lang="ts">
   import { Pagination } from "@skeletonlabs/skeleton-svelte";
   import Icon from "@iconify/svelte";
-  import { ALL_TYPE_NAMES, pokeTypeJaName, pokeTypeColor } from "$lib/domain/models/PokeData/pokeType";
+  import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeData/pokeType";
   import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
   import { ALL_GENERATION_NUMBERS, generationData } from "$lib/domain/models/PokeData/generation";
   import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
   import type { PokemonSearchResult } from "$lib/application/ports/IPokeSearchRepository";
   import { getPokeSearchRepository } from "$lib/infrastructure/adapters/PokeGraphQLAdapter";
   import { navigateTo } from "$lib/presentation/utils/navigation";
+  import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
 
   let nameQuery = $state("");
   let selectedTypes = $state<PokeTypeName[]>([]);
@@ -91,20 +92,13 @@
   <!-- タイプフィルター -->
   <div>
     <p class="mb-1 text-xs font-semibold opacity-60">タイプ（最大2つ・AND検索、未選択=すべて）</p>
-    <div class="flex flex-wrap gap-1">
+    <div class="flex flex-wrap gap-2">
       {#each ALL_TYPE_NAMES as type (type)}
         {@const isSelected = selectedTypes.includes(type)}
         {@const isDimmed = !isSelected && selectedTypes.length > 0}
         {@const isDisabled = !isSelected && selectedTypes.length >= MAX_TYPES}
-        <button
-          type="button"
-          onclick={() => toggleType(type)}
-          disabled={isDisabled}
-          class="rounded-full px-2 py-0.5 text-xs text-white transition-opacity"
-          class:opacity-30={isDimmed}
-          style="background-color: {pokeTypeColor(type)};"
-        >
-          {pokeTypeJaName(type)}
+        <button type="button" onclick={() => toggleType(type)} disabled={isDisabled} class:opacity-30={isDimmed}>
+          <PokeTypeBadge {type} size="xs" />
         </button>
       {/each}
     </div>
@@ -113,7 +107,7 @@
   <!-- 世代フィルター -->
   <div>
     <p class="mb-1 text-xs font-semibold opacity-60">世代（未選択=すべて）</p>
-    <div class="flex flex-wrap gap-1">
+    <div class="flex flex-wrap gap-2">
       {#each ALL_GENERATION_NUMBERS as gen (gen)}
         {@const isSelected = selectedGenerations.includes(gen)}
         {@const isDimmed = !isSelected && selectedGenerations.length > 0}
