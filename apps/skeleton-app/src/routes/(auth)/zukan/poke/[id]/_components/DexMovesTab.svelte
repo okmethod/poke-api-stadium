@@ -85,7 +85,7 @@
   {#if moveLearnDetails.length === 0}
     <p class="text-surface-400 p-4 text-sm">習得可能なわざなし</p>
   {:else}
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto px-3">
       <table class="w-full text-xs sm:text-sm">
         <thead>
           <tr class="border-surface-300-700 border-b text-left">
@@ -117,7 +117,7 @@
               <td class="px-1 py-1 text-center">
                 <PokeTypeBadge type={row.move.type} size="xs" />
               </td>
-              <td class="px-1 py-1 text-center">
+              <td class="w-16 px-1 py-1 text-center">
                 <MoveCategoryBadge category={row.move.category} />
               </td>
             </tr>
