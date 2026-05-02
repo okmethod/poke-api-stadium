@@ -1,1 +1,0 @@
-import{g as r}from"./8xlynMNR.js";import{r as t}from"./BfyBazBi.js";function a(n,o){return r(t(n),o)}function g(n){return n.action==="navigate"?()=>a(n.target):()=>window.open(n.target,"_blank")}export{g as b,a as n};
