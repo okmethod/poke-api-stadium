@@ -28,6 +28,17 @@ export const MOVE_LEARN_METHOD_JA: Record<MoveLearnMethodName, string> = {
   egg: "タマゴわざ",
 };
 
+/** MoveLearnMethodName の有効値セット（バリデーション用） */
+export const MOVE_LEARN_METHODS = new Set<MoveLearnMethodName>(["level-up", "machine", "tutor", "egg"]);
+
+/** 習得方法の正規ソート順 */
+export const MOVE_LEARN_METHOD_ORDER: Record<MoveLearnMethodName, number> = {
+  "level-up": 0,
+  machine: 1,
+  tutor: 2,
+  egg: 3,
+};
+
 /**
  * PokeData が保持する習得わざ参照
  *

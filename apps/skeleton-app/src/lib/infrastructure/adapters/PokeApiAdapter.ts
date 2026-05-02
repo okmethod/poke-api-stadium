@@ -32,8 +32,18 @@ import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
 import type { PokeAbility } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
+import { MOVE_LEARN_METHODS, MOVE_LEARN_METHOD_ORDER } from "$lib/domain/models/PokeMove";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type {
+  PokemonResponse,
+  PokemonSpeciesResponse,
+  ItemResponse,
+  AbilityResponse,
+  MoveResponse,
+  TypeResponse,
+  EvolutionChainResponse,
+} from "$lib/infrastructure/api/pokeapi";
 import {
   fetchPokemon,
   fetchPokemonSpecies,
@@ -44,32 +54,26 @@ import {
   fetchMove,
   fetchType,
   fetchEvolutionChain,
-  type PokemonResponse,
-  type PokemonSpeciesResponse,
-  type ItemResponse,
-  type AbilityResponse,
-  type MoveResponse,
-  type TypeResponse,
-  type EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
 import { pokeSpriteUrl, pokeArtworkUrl } from "$lib/infrastructure/api/pokeSprites";
 
 // 最新バージョングループ（わざ一覧のフィルタ基準）
 const LATEST_VERSION_GROUP = "scarlet-violet";
 
-// 既知の習得方法名（それ以外は "level-up" にフォールバック）
-const KNOWN_LEARN_METHODS = new Set<MoveLearnMethodName>(["level-up", "machine", "tutor", "egg"]);
-
-// わざ一覧の習得方法表示順
-const LEARN_METHOD_ORDER: Record<MoveLearnMethodName, number> = {
-  "level-up": 0,
-  machine: 1,
-  tutor: 2,
-  egg: 3,
-};
-
 function parseMoveLearnMethod(name: string): MoveLearnMethodName {
-  return KNOWN_LEARN_METHODS.has(name as MoveLearnMethodName) ? (name as MoveLearnMethodName) : "level-up";
+  return MOVE_LEARN_METHODS.has(name as MoveLearnMethodName) ? (name as MoveLearnMethodName) : "level-up";
+}
+
+// PokeAPI は endpoint によって "ja-Hrkt" / "ja-hrkt" のどちらを返すか不定のため両方を許容する
+function resolveJaName(entries: { language: { name: string }; name: string }[], fallback: string): string;
+function resolveJaName(entries: { language: { name: string }; name: string }[]): string | null;
+function resolveJaName(entries: { language: { name: string }; name: string }[], fallback?: string): string | null {
+  return (
+    entries.find((n) => n.language.name === "ja")?.name ??
+    entries.find((n) => n.language.name === "ja-Hrkt" || n.language.name === "ja-hrkt")?.name ??
+    fallback ??
+    null
+  );
 }
 
 function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDetail[] {
@@ -85,7 +89,7 @@ function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDeta
     });
   }
   return result.sort((a, b) => {
-    const methodDiff = LEARN_METHOD_ORDER[a.learnMethod] - LEARN_METHOD_ORDER[b.learnMethod];
+    const methodDiff = MOVE_LEARN_METHOD_ORDER[a.learnMethod] - MOVE_LEARN_METHOD_ORDER[b.learnMethod];
     if (methodDiff !== 0) return methodDiff;
     // level-up 内はレベル昇順（0 = 進化わざは先頭）
     return a.levelLearnedAt - b.levelLearnedAt;
@@ -130,14 +134,11 @@ function resolveMoveFlavorText(entries: MoveResponse["flavor_text_entries"]): st
 }
 
 function convertToAbility(raw: AbilityResponse, isHidden: boolean): PokeAbility {
-  const jaName =
-    raw.names.find((n) => n.language.name === "ja")?.name ??
-    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
-    raw.name;
+  const jaName = resolveJaName(raw.names, raw.name);
   // ja > ja-Hrkt の優先順で最初に見つかった説明文を採用
   const flavorText =
     raw.flavor_text_entries.find((e) => e.language.name === "ja")?.flavor_text ??
-    raw.flavor_text_entries.find((e) => e.language.name === "ja-Hrkt")?.flavor_text ??
+    raw.flavor_text_entries.find((e) => e.language.name === "ja-Hrkt" || e.language.name === "ja-hrkt")?.flavor_text ??
     null;
   return {
     id: raw.id,
@@ -154,10 +155,7 @@ function convertToAbility(raw: AbilityResponse, isHidden: boolean): PokeAbility 
 }
 
 function convertToMove(raw: MoveResponse): PokeMove {
-  const jaName =
-    raw.names.find((n) => n.language.name === "ja")?.name ??
-    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
-    raw.name;
+  const jaName = resolveJaName(raw.names, raw.name);
   return {
     id: raw.id,
     enName: raw.name,
@@ -241,16 +239,13 @@ function convertToPokeData(
   formJaName: string | null = null,
 ): PokeData {
   // 日本語名: フォーム名があればそれを優先（リージョンフォーム等）、なければ species 名を使用
-  const baseJaName =
-    species.names.find((n) => n.language.name === "ja")?.name ??
-    species.names.find((n) => n.language.name === "ja-hrkt")?.name ??
-    pokemon.name;
+  const baseJaName = resolveJaName(species.names, pokemon.name);
   const jaName = formJaName ?? baseJaName;
 
   // 分類: "ja" を優先し、なければ "ja-hrkt" を使用
   const genus =
     species.genera.find((g) => g.language.name === "ja")?.genus ??
-    species.genera.find((g) => g.language.name === "ja-hrkt")?.genus ??
+    species.genera.find((g) => g.language.name === "ja-Hrkt" || g.language.name === "ja-hrkt")?.genus ??
     "";
 
   const type1 = parsePokeTypeName(pokemon.types.find((t) => t.slot === 1)?.type.name ?? "");
@@ -337,10 +332,7 @@ function extractIdFromUrl(url: string): number {
 }
 
 function convertToPokeItem(raw: ItemResponse): PokeItem {
-  const jaName =
-    raw.names.find((n) => n.language.name === "ja")?.name ??
-    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
-    raw.name;
+  const jaName = resolveJaName(raw.names, raw.name);
   return {
     id: raw.id,
     enName: raw.name,
@@ -409,10 +401,7 @@ async function enrichEvolutionChain(
   await Promise.all([
     ...allSpeciesNames.map(async (name) => {
       const species = await fetchPokemonSpecies(fetchFunction, name);
-      const jaName =
-        species.names.find((n) => n.language.name === "ja")?.name ??
-        species.names.find((n) => n.language.name === "ja-hrkt")?.name ??
-        name;
+      const jaName = resolveJaName(species.names, name);
       jaNameMap.set(name, jaName);
     }),
     ...allItemNames.map(async (name) => {
@@ -443,10 +432,7 @@ function convertToTypeData(raw: TypeResponse): PokeTypeData {
   const toTypeNames = (list: { name: string }[]): PokeTypeName[] => list.map((t) => parsePokeTypeName(t.name));
   const name = parsePokeTypeName(raw.name);
   // "ja" (漢字あり) を優先し、なければ "ja-Hrkt" (カナ) を使用
-  const jaName =
-    raw.names.find((n) => n.language.name === "ja")?.name ??
-    raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
-    name;
+  const jaName = resolveJaName(raw.names, name);
 
   return {
     name,
@@ -477,10 +463,7 @@ class PokeApiAdapter implements IPokeRepository {
     if (pokemon.id !== species.id) {
       try {
         const form = await fetchPokemonForm(fetchFunction, pokemon.name);
-        formJaName =
-          form.form_names.find((n) => n.language.name === "ja")?.name ??
-          form.form_names.find((n) => n.language.name === "ja-hrkt")?.name ??
-          null;
+        formJaName = resolveJaName(form.form_names);
       } catch {
         // フォームデータが取得できない場合は species 名にフォールバック
       }
@@ -543,10 +526,7 @@ class PokeApiAdapter implements IPokeRepository {
       varieties.map(async (variety): Promise<FormVariant> => {
         const form = await fetchPokemonForm(fetchFunction, variety.name);
 
-        const jaName =
-          form.form_names.find((n) => n.language.name === "ja")?.name ??
-          form.form_names.find((n) => n.language.name === "ja-hrkt")?.name ??
-          defaultJaName;
+        const jaName = resolveJaName(form.form_names, defaultJaName);
 
         const type1 = parsePokeTypeName(form.types.find((t) => t.slot === 1)?.type.name ?? "");
         const type2Name = form.types.find((t) => t.slot === 2)?.type.name;
