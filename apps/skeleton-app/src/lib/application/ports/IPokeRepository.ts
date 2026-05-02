@@ -23,7 +23,7 @@ import type { PokeData, VarietyRef } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
 import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
-import type { Move, MoveLearnDetail } from "$lib/domain/models/Move";
+import type { PokeMove, MoveLearnDetail } from "$lib/domain/models/PokeMove";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 
 /** PokeAPI データ取得の抽象インターフェース */
@@ -63,7 +63,7 @@ export interface IPokeRepository {
    *
    * ページネーション用途を想定し、呼び出し元でスライスしてから渡す。
    */
-  getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly Move[]>;
+  getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly PokeMove[]>;
 
   /** 番号または英語名でアイテムデータを取得 */
   getItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItem>;

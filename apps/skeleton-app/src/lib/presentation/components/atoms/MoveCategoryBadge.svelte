@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { MoveCategory } from "$lib/domain/models/Move";
-  import { MOVE_CATEGORY_JA } from "$lib/domain/models/Move";
+  import type { MoveCategory } from "$lib/domain/models/PokeMove";
+  import { MOVE_CATEGORY_JA } from "$lib/domain/models/PokeMove";
 
   const BADGE_CONFIG: Record<MoveCategory, { icon: string; bg: string }> = {
     physical: { icon: "mdi:octagram-outline", bg: "#C92112" },

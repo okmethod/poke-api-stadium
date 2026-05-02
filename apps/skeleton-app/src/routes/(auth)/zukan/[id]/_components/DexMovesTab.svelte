@@ -2,9 +2,9 @@
   import { untrack } from "svelte";
   import Icon from "@iconify/svelte";
   import { FloatingPanel, Portal } from "@skeletonlabs/skeleton-svelte";
-  import type { MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/Move";
-  import type { Move } from "$lib/domain/models/Move";
-  import { MOVE_LEARN_METHOD_JA } from "$lib/domain/models/Move";
+  import type { MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
+  import type { PokeMove } from "$lib/domain/models/PokeMove";
+  import { MOVE_LEARN_METHOD_JA } from "$lib/domain/models/PokeMove";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
   import MoveCategoryBadge from "$lib/presentation/components/atoms/MoveCategoryBadge.svelte";
@@ -25,7 +25,7 @@
 
   interface MoveRow {
     detail: MoveLearnDetail;
-    move: Move;
+    move: PokeMove;
   }
 
   let loadedRows = $state<MoveRow[]>([]);

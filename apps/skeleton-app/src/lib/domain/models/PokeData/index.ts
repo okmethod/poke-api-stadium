@@ -20,7 +20,7 @@ import type { FlavorText } from "./flavorText";
 import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
 import type { VersionName } from "./version";
 import { versionJaLabel } from "./version";
-import type { MoveLearnDetail } from "$lib/domain/models/Move";
+import type { MoveLearnDetail } from "$lib/domain/models/PokeMove";
 
 // 各ドメインモデルを再エクスポート
 export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };

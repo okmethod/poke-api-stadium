@@ -46,7 +46,7 @@ export interface MoveLearnDetail {
  *
  * PokeAPI /move/{id} から取得し、Adapter で変換する。
  */
-export interface Move {
+export interface PokeMove {
   readonly id: number;
   readonly enName: string;
   readonly jaName: string;

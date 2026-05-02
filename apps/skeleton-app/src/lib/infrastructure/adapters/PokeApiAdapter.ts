@@ -30,7 +30,7 @@ import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/mo
 import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
 import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
 import type { FormVariant } from "$lib/domain/models/FormVariant";
-import type { Move, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/Move";
+import type { PokeMove, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import {
@@ -126,7 +126,7 @@ function resolveMoveFlavorText(entries: MoveResponse["flavor_text_entries"]): st
     : null;
 }
 
-function convertToMove(raw: MoveResponse): Move {
+function convertToMove(raw: MoveResponse): PokeMove {
   const jaName =
     raw.names.find((n) => n.language.name === "ja")?.name ??
     raw.names.find((n) => n.language.name === "ja-Hrkt")?.name ??
@@ -545,7 +545,7 @@ class PokeApiAdapter implements IPokeRepository {
   }
 
   /** 習得可能わざ参照リストのスライスからわざ詳細を並列取得 */
-  async getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly Move[]> {
+  async getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly PokeMove[]> {
     return Promise.all(
       details.map(async (detail) => {
         const raw = await fetchMove(fetchFunction, detail.enName);
