@@ -271,12 +271,7 @@ export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema
 
 // --- メモリキャッシュ ---
 
-/**
- * エンドポイント別レスポンスのメモリキャッシュ
- *
- * ライフサイクル: ページリロードまで（メモリ上のみ）
- * キー: idOrName を文字列化したもの（数値・文字列の両方を統一）
- */
+/** ライフサイクル: ページリロードまで（メモリ上のみ）。キー: リクエスト URL */
 const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
 const pokemonFormCache = new Map<string, PokemonFormResponse>();
@@ -298,126 +293,65 @@ export function clearCache(): void {
   evolutionChainCache.clear();
 }
 
+// --- 汎用フェッチヘルパー ---
+
+async function fetchWithCache<T>(
+  cache: Map<string, T>,
+  fetchFn: typeof fetch,
+  url: string,
+  schema: z.ZodType<T>,
+): Promise<T> {
+  const cached = cache.get(url);
+  if (cached) return cached;
+  const data = schema.parse(await (await fetchApi(fetchFn, url, { method: "GET" })).json());
+  cache.set(url, data);
+  return data;
+}
+
 // --- API 呼び出し関数 ---
 
 /** /pokemon/{idOrName} を取得 */
-export async function fetchPokemon(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokemonResponse> {
-  const key = String(idOrName);
-  const cached = pokemonCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon/${idOrName}`, {
-    method: "GET",
-  });
-  const data = PokemonResponseSchema.parse(await response.json());
-  pokemonCache.set(key, data);
-  return data;
+export function fetchPokemon(fetchFn: typeof fetch, idOrName: number | string): Promise<PokemonResponse> {
+  return fetchWithCache(pokemonCache, fetchFn, `${BASE_URL}/pokemon/${idOrName}`, PokemonResponseSchema);
 }
 
 /** /pokemon-species/{idOrName} を取得 */
-export async function fetchPokemonSpecies(
-  fetchFunction: typeof fetch,
-  idOrName: number | string,
-): Promise<PokemonSpeciesResponse> {
-  const key = String(idOrName);
-  const cached = speciesCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon-species/${idOrName}`, {
-    method: "GET",
-  });
-  const data = PokemonSpeciesResponseSchema.parse(await response.json());
-  speciesCache.set(key, data);
-  return data;
+export function fetchPokemonSpecies(fetchFn: typeof fetch, idOrName: number | string): Promise<PokemonSpeciesResponse> {
+  return fetchWithCache(speciesCache, fetchFn, `${BASE_URL}/pokemon-species/${idOrName}`, PokemonSpeciesResponseSchema);
 }
 
-/** /pokemon-species をURLで直接取得（リージョンフォームなど species ID ≠ pokemon ID の場合に使用） */
-export async function fetchPokemonSpeciesByUrl(
-  fetchFunction: typeof fetch,
-  url: string,
-): Promise<PokemonSpeciesResponse> {
-  const cached = speciesCache.get(url);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, url, { method: "GET" });
-  const data = PokemonSpeciesResponseSchema.parse(await response.json());
-  speciesCache.set(url, data);
-  return data;
+/** /pokemon-species を URL で直接取得（リージョンフォームなど species ID ≠ pokemon ID の場合に使用） */
+export function fetchPokemonSpeciesByUrl(fetchFn: typeof fetch, url: string): Promise<PokemonSpeciesResponse> {
+  return fetchWithCache(speciesCache, fetchFn, url, PokemonSpeciesResponseSchema);
 }
 
 /** /pokemon-form/{name} を取得 */
-export async function fetchPokemonForm(fetchFunction: typeof fetch, name: string): Promise<PokemonFormResponse> {
-  const cached = pokemonFormCache.get(name);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/pokemon-form/${name}`, { method: "GET" });
-  const data = PokemonFormResponseSchema.parse(await response.json());
-  pokemonFormCache.set(name, data);
-  return data;
+export function fetchPokemonForm(fetchFn: typeof fetch, name: string): Promise<PokemonFormResponse> {
+  return fetchWithCache(pokemonFormCache, fetchFn, `${BASE_URL}/pokemon-form/${name}`, PokemonFormResponseSchema);
 }
 
 /** /ability/{idOrName} を取得 */
-export async function fetchAbility(fetchFunction: typeof fetch, idOrName: number | string): Promise<AbilityResponse> {
-  const key = String(idOrName);
-  const cached = abilityCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/ability/${idOrName}`, { method: "GET" });
-  const data = AbilityResponseSchema.parse(await response.json());
-  abilityCache.set(key, data);
-  return data;
+export function fetchAbility(fetchFn: typeof fetch, idOrName: number | string): Promise<AbilityResponse> {
+  return fetchWithCache(abilityCache, fetchFn, `${BASE_URL}/ability/${idOrName}`, AbilityResponseSchema);
 }
 
 /** /move/{idOrName} を取得 */
-export async function fetchMove(fetchFunction: typeof fetch, idOrName: number | string): Promise<MoveResponse> {
-  const key = String(idOrName);
-  const cached = moveCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/move/${idOrName}`, { method: "GET" });
-  const data = MoveResponseSchema.parse(await response.json());
-  moveCache.set(key, data);
-  return data;
+export function fetchMove(fetchFn: typeof fetch, idOrName: number | string): Promise<MoveResponse> {
+  return fetchWithCache(moveCache, fetchFn, `${BASE_URL}/move/${idOrName}`, MoveResponseSchema);
 }
 
 /** /item/{idOrName} を取得 */
-export async function fetchItem(fetchFunction: typeof fetch, idOrName: number | string): Promise<ItemResponse> {
-  const key = String(idOrName);
-  const cached = itemCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/item/${idOrName}`, { method: "GET" });
-  const data = ItemResponseSchema.parse(await response.json());
-  itemCache.set(key, data);
-  return data;
+export function fetchItem(fetchFn: typeof fetch, idOrName: number | string): Promise<ItemResponse> {
+  return fetchWithCache(itemCache, fetchFn, `${BASE_URL}/item/${idOrName}`, ItemResponseSchema);
 }
 
 /** /type/{idOrName} を取得 */
-export async function fetchType(fetchFunction: typeof fetch, idOrName: number | string): Promise<TypeResponse> {
-  const key = String(idOrName);
-  const cached = typeCache.get(key);
-  if (cached) return cached;
-
-  const response = await fetchApi(fetchFunction, `${BASE_URL}/type/${idOrName}`, {
-    method: "GET",
-  });
-  const data = TypeResponseSchema.parse(await response.json());
-  typeCache.set(key, data);
-  return data;
+export function fetchType(fetchFn: typeof fetch, idOrName: number | string): Promise<TypeResponse> {
+  return fetchWithCache(typeCache, fetchFn, `${BASE_URL}/type/${idOrName}`, TypeResponseSchema);
 }
 
 /** /evolution-chain/{id} または絶対 URL を取得 */
-export async function fetchEvolutionChain(
-  fetchFunction: typeof fetch,
-  idOrUrl: number | string,
-): Promise<EvolutionChainResponse> {
-  const key = String(idOrUrl);
-  const cached = evolutionChainCache.get(key);
-  if (cached) return cached;
-
+export function fetchEvolutionChain(fetchFn: typeof fetch, idOrUrl: number | string): Promise<EvolutionChainResponse> {
   const url = typeof idOrUrl === "number" ? `${BASE_URL}/evolution-chain/${idOrUrl}` : idOrUrl;
-  const response = await fetchApi(fetchFunction, url, { method: "GET" });
-  const data = EvolutionChainResponseSchema.parse(await response.json());
-  evolutionChainCache.set(key, data);
-  return data;
+  return fetchWithCache(evolutionChainCache, fetchFn, url, EvolutionChainResponseSchema);
 }
