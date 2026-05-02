@@ -210,6 +210,13 @@ export const MoveResponseSchema = z.object({
   power: z.number().nullable(),
   accuracy: z.number().nullable(),
   pp: z.number(),
+  flavor_text_entries: z.array(
+    z.object({
+      flavor_text: z.string(),
+      language: NamedResourceSchema,
+      version_group: NamedResourceSchema,
+    }),
+  ),
 });
 
 export const TypeResponseSchema = z.object({

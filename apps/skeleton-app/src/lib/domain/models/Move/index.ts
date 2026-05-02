@@ -55,4 +55,5 @@ export interface Move {
   readonly power: number | null;
   readonly accuracy: number | null;
   readonly pp: number;
+  readonly flavorText: string | null;
 }

@@ -75,6 +75,43 @@ function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDeta
   return result;
 }
 
+// バージョングループの優先順位
+const VERSION_GROUP_PRIORITY = [
+  "scarlet-violet",
+  "sword-shield",
+  "sun-moon",
+  "ultra-sun-ultra-moon",
+  "x-y",
+  "omega-ruby-alpha-sapphire",
+  "black-2-white-2",
+  "black-white",
+];
+
+function resolveMoveFlavorText(entries: MoveResponse["flavor_text_entries"]): string | null {
+  const jaEntries = entries.filter((e) => e.language.name === "ja" || e.language.name === "ja-Hrkt");
+  // 優先バージョングループ順に探す
+  for (const vg of VERSION_GROUP_PRIORITY) {
+    // "ja" を優先し、なければ "ja-Hrkt"
+    const entry =
+      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja") ??
+      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja-Hrkt");
+    if (entry) {
+      return entry.flavor_text
+        .replace(/[\n\f\r]+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+    }
+  }
+  // 優先リストになければ最初の日本語エントリ
+  const fallback = jaEntries[0];
+  return fallback
+    ? fallback.flavor_text
+        .replace(/[\n\f\r]+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim()
+    : null;
+}
+
 function convertToMove(raw: MoveResponse): Move {
   const jaName =
     raw.names.find((n) => n.language.name === "ja")?.name ??
@@ -89,6 +126,7 @@ function convertToMove(raw: MoveResponse): Move {
     power: raw.power,
     accuracy: raw.accuracy,
     pp: raw.pp,
+    flavorText: resolveMoveFlavorText(raw.flavor_text_entries),
   };
 }
 

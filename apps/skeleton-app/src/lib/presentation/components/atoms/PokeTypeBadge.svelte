@@ -4,10 +4,15 @@
 
   interface Props {
     type: PokeTypeName;
+    size?: "sm" | "xs";
   }
-  let { type }: Props = $props();
+  let { type, size = "sm" }: Props = $props();
+
+  const badgeClass = $derived(
+    size === "xs" ? "h-5 rounded px-1.5 py-0.5 text-xs" : "h-6 rounded-full px-3 py-1 text-sm",
+  );
 </script>
 
-<span class="badge rounded-full px-3 py-1 text-sm text-white" style="background-color: {pokeTypeColor(type)};">
+<span class="badge {badgeClass} text-white" style="background-color: {pokeTypeColor(type)};">
   {pokeTypeJaName(type)}
 </span>
