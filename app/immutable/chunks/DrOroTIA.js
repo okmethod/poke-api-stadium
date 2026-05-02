@@ -1,0 +1,1 @@
+const r="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites";function e(t){return`${r}/pokemon/${t}.png`}function o(t){return`${r}/pokemon/other/official-artwork/${t}.png`}function n(t){return`${r}/items/${t}.png`}export{e as a,n as i,o as p};

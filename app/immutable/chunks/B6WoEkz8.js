@@ -1,0 +1,1 @@
+import{b as e}from"./CahTFlPV.js";import{i as n}from"./DrOroTIA.js";function t(o){return{menuItems:o.map(i=>({label:i.label,...i.description!==void 0&&{description:i.description},iconItemKey:n(i.iconItemKey),onClick:e(i)}))}}export{t as b};
