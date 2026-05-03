@@ -29,7 +29,7 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
   let formVariants = null;
   if (tab === "form") {
     try {
-      formVariants = await getPokeRepository().getFormVariants(fetch, pokeData.varieties, pokeData.speciesJaName);
+      formVariants = await getPokeRepository().getFormVariants(fetch, pokeData.varietyRefs, pokeData.speciesJaName);
     } catch (err) {
       console.error("Failed to fetch form variants:", err);
     }

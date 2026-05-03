@@ -14,24 +14,20 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
+import type { PokeTypeData, PokeTypeName } from "$lib/domain/models/PokeType";
+import type { PokeData, PokeImageUrls, PokeCryUrls, PokeStats, FlavorText } from "$lib/domain/models/PokeData";
+import { generationData } from "$lib/domain/models/PokeGeneration";
+import { pokeTypeColor, parsePokeTypeName } from "$lib/domain/models/PokeType";
+import type { PokeAbility, AbilityRef } from "$lib/domain/models/PokeAbility";
+import type { FormVariant, VarietyRef } from "$lib/domain/models/PokeForm";
 import type {
-  PokeData,
-  PokeTypeData,
-  PokeTypeName,
-  PokeImageUrls,
-  PokeCryUrls,
-  PokeStats,
-  AbilityRef,
+  EvolutionChain,
+  EvolutionCondition,
+  EvolutionNode,
   EvolutionChainRef,
-  VarietyRef,
-  FlavorText,
-} from "$lib/domain/models/PokeData";
-import { pokeTypeColor, generationData, parsePokeTypeName } from "$lib/domain/models/PokeData";
-import type { EvolutionChain, EvolutionCondition, EvolutionNode } from "$lib/domain/models/EvolutionChain";
-import { parseEvolutionTrigger } from "$lib/domain/models/EvolutionChain";
-import type { FormVariant } from "$lib/domain/models/FormVariant";
-import type { PokeAbility } from "$lib/domain/models/PokeAbility";
-import type { PokeMove, MoveCategory, MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
+} from "$lib/domain/models/PokeEvolution";
+import { parseEvolutionTrigger } from "$lib/domain/models/PokeEvolution";
+import type { PokeMove, MoveCategory, MoveLearnRef, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
 import { MOVE_LEARN_METHODS, MOVE_LEARN_METHOD_ORDER } from "$lib/domain/models/PokeMove";
 import type { PokeItem, PokeItemCategory, PokeItemCategoryMeta } from "$lib/domain/models/PokeItem";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
@@ -79,8 +75,8 @@ function resolveJaName(entries: { language: { name: string }; name: string }[], 
   );
 }
 
-function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnDetail[] {
-  const result: MoveLearnDetail[] = [];
+function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnRef[] {
+  const result: MoveLearnRef[] = [];
   for (const entry of moves) {
     const svDetail = entry.version_group_details.find((d) => d.version_group.name === LATEST_VERSION_GROUP);
     if (!svDetail) continue;
@@ -284,7 +280,7 @@ function convertToPokeData(
     legacy: pokemon.cries.legacy ?? null,
   };
 
-  const abilities: AbilityRef[] = pokemon.abilities.map((a) => ({
+  const abilityRefs: AbilityRef[] = pokemon.abilities.map((a) => ({
     name: a.ability.name,
     url: a.ability.url,
     isHidden: a.is_hidden,
@@ -294,7 +290,7 @@ function convertToPokeData(
     url: species.evolution_chain.url,
   };
 
-  const varieties: VarietyRef[] = species.varieties.map((v) => ({
+  const varietyRefs: VarietyRef[] = species.varieties.map((v) => ({
     name: v.pokemon.name,
     url: v.pokemon.url,
     isDefault: v.is_default,
@@ -322,10 +318,10 @@ function convertToPokeData(
     isLegendary: species.is_legendary,
     isMythical: species.is_mythical,
     flavorTexts: resolveFlavorTexts(species.flavor_text_entries),
-    abilities,
+    abilityRefs,
     evolutionChainRef,
-    varieties,
-    moveLearnDetails: extractMoveLearnDetails(pokemon.moves),
+    varietyRefs,
+    learnableMoveRefs: extractMoveLearnDetails(pokemon.moves),
   };
 }
 
@@ -601,7 +597,7 @@ class PokeApiAdapter implements IPokeRepository {
   }
 
   /** 習得可能わざ参照リストのスライスからわざ詳細を並列取得 */
-  async getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly PokeMove[]> {
+  async getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnRef[]): Promise<readonly PokeMove[]> {
     return Promise.all(
       details.map(async (detail) => {
         const raw = await fetchMove(fetchFunction, detail.enName);

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { FormVariant } from "$lib/domain/models/FormVariant";
+  import type { FormVariant } from "$lib/domain/models/PokeForm";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
 
   interface Props {

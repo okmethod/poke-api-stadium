@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { versionJaLabel, type PokeData } from "$lib/domain/models/PokeData";
+  import type { PokeData } from "$lib/domain/models/PokeData";
+  import { versionJaLabel } from "$lib/domain/models/PokeVersion";
 
   interface Props {
     pokeData: PokeData | null;

@@ -19,12 +19,12 @@
  * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
  */
 
-import type { PokeData, VarietyRef, AbilityRef } from "$lib/domain/models/PokeData";
-import type { PokeTypeData } from "$lib/domain/models/PokeData/pokeType";
-import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
-import type { FormVariant } from "$lib/domain/models/FormVariant";
-import type { PokeAbility } from "$lib/domain/models/PokeAbility";
-import type { PokeMove, MoveLearnDetail } from "$lib/domain/models/PokeMove";
+import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PokeTypeData } from "$lib/domain/models/PokeType";
+import type { EvolutionChain } from "$lib/domain/models/PokeEvolution";
+import type { FormVariant, VarietyRef } from "$lib/domain/models/PokeForm";
+import type { PokeAbility, AbilityRef } from "$lib/domain/models/PokeAbility";
+import type { PokeMove, MoveLearnRef } from "$lib/domain/models/PokeMove";
 import type { PokeItem, PokeItemCategory } from "$lib/domain/models/PokeItem";
 
 /** PokeAPI データ取得の抽象インターフェース */
@@ -67,7 +67,7 @@ export interface IPokeRepository {
    *
    * ページネーション用途を想定し、呼び出し元でスライスしてから渡す。
    */
-  getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnDetail[]): Promise<readonly PokeMove[]>;
+  getMoves(fetchFunction: typeof fetch, details: readonly MoveLearnRef[]): Promise<readonly PokeMove[]>;
 
   /** 番号または英語名でわざデータを取得 */
   getMove(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeMove>;

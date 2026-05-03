@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/EvolutionChain";
-  import { conditionDescription } from "$lib/domain/models/EvolutionChain";
+  import type { EvolutionChain, EvolutionNode } from "$lib/domain/models/PokeEvolution";
+  import { conditionDescription } from "$lib/domain/models/PokeEvolution";
 
   interface Props {
     evolutionChain: EvolutionChain | null;

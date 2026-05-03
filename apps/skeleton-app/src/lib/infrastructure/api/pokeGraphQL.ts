@@ -15,8 +15,8 @@
  */
 
 import { z } from "zod";
-import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeData/pokeType";
-import { ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeData/generation";
+import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeType";
+import { ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeGeneration";
 import type { SearchQuery } from "$lib/application/ports/IPokeSearchRepository";
 import { pokeSpriteUrl } from "./pokeSprites";
 

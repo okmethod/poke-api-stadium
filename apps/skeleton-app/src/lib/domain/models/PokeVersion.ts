@@ -1,5 +1,10 @@
 /**
- * ポケモンのバージョン情報
+ * PokeVersion - アプリ内部のポケモンバージョン1表現
+ *
+ * @architecture レイヤー間依存ルール - ドメイン層
+ * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
+ * - ALLOWED: 同ドメイン層モデルへの依存
+ * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
 // VERSION_JA を SSoT とし、キーから VersionName を派生させる

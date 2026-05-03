@@ -11,8 +11,8 @@
  * - FORBIDDEN: インフラ層への依存
  */
 
-import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
-import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
+import type { GenerationNumber } from "$lib/domain/models/PokeGeneration";
 
 /** ポケモン検索条件 */
 export interface SearchQuery {

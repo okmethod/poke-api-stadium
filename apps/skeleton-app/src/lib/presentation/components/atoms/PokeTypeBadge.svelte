@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { PokeTypeName } from "$lib/domain/models/PokeData";
-  import { pokeTypeJaName, pokeTypeColor } from "$lib/domain/models/PokeData";
+  import type { PokeTypeName } from "$lib/domain/models/PokeType";
+  import { pokeTypeJaName, pokeTypeColor } from "$lib/domain/models/PokeType";
 
   interface Props {
     type: PokeTypeName;

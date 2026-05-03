@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Listbox, useListCollection } from "@skeletonlabs/skeleton-svelte";
-  import { ALL_GENERATION_NUMBERS, generationData } from "$lib/domain/models/PokeData/generation";
-  import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
+  import { ALL_GENERATION_NUMBERS, generationData } from "$lib/domain/models/PokeGeneration";
+  import type { GenerationNumber } from "$lib/domain/models/PokeGeneration";
   import { generationStore, setSelectedGenerations } from "$lib/application/stores/generationStore";
 
   const items = ALL_GENERATION_NUMBERS.map((gen) => ({

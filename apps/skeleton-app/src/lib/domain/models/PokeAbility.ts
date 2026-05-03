@@ -7,6 +7,13 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
+/** 特性参照（詳細は /ability/{id} で別途取得） */
+export interface AbilityRef {
+  readonly name: string;
+  readonly url: string;
+  readonly isHidden: boolean;
+}
+
 /** 特性詳細モデル（遅延ロード対象） */
 export interface PokeAbility {
   readonly id: number;

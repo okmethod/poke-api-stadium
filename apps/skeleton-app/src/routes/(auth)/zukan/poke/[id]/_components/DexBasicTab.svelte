@@ -24,7 +24,7 @@
   }
 
   $effect(() => {
-    const refs = pokeData?.abilities;
+    const refs = pokeData?.abilityRefs;
     untrack(() => {
       loadedAbilities = [];
       panelOpen = false;

@@ -1,5 +1,5 @@
 /**
- * Move - アプリ内部のわざ表現
+ * PokeMove - アプリ内部のわざ表現
  *
  * @architecture レイヤー間依存ルール - ドメイン層
  * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
@@ -7,7 +7,7 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
-import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
 
 /** わざ分類 */
 export type MoveCategory = "physical" | "special" | "status";
@@ -44,7 +44,7 @@ export const MOVE_LEARN_METHOD_ORDER: Record<MoveLearnMethodName, number> = {
  *
  * 詳細（日本語名・タイプ・威力等）は /move/{id} で別途取得する。
  */
-export interface MoveLearnDetail {
+export interface MoveLearnRef {
   readonly enName: string;
   readonly url: string;
   /** 習得レベル（レベルアップ以外は 0） */
@@ -53,7 +53,7 @@ export interface MoveLearnDetail {
 }
 
 /**
- * わざ詳細モデル（遅延ロード対象）
+ * わざモデル（遅延ロード対象）
  *
  * PokeAPI /move/{id} から取得し、Adapter で変換する。
  */

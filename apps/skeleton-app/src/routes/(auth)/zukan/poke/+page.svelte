@@ -2,7 +2,7 @@
   import Icon from "@iconify/svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
-  import { generationData, ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeData/generation";
+  import { generationData, ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeGeneration";
   import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
 
   // 最新世代の最後のポケモンIDを取得

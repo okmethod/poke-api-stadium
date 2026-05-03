@@ -8,7 +8,7 @@
  */
 
 import { writable, readonly, derived } from "svelte/store";
-import type { PokeTypeName } from "$lib/domain/models/PokeData";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
 
 /** しりとりゲーム内で使うポケモンデータ */
 export interface ShiritoriPokeItem {

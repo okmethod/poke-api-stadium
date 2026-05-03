@@ -1,5 +1,5 @@
 /**
- * FormVariant - アプリ内部のポケモンフォーム（すがた）表現
+ * PokeForm - アプリ内部のポケモンフォーム（すがた）表現
  *
  * @architecture レイヤー間依存ルール - ドメイン層
  * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
@@ -7,7 +7,14 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
-import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
+
+/** バリエーション（フォーム）参照 */
+export interface VarietyRef {
+  readonly name: string;
+  readonly url: string;
+  readonly isDefault: boolean;
+}
 
 /** ポケモン1フォームのデータ */
 export interface FormVariant {

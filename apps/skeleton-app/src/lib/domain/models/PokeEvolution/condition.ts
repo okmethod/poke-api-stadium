@@ -1,15 +1,10 @@
 /**
- * EvolutionChain - アプリ内部の進化チェーン表現
- *
- * @architecture レイヤー間依存ルール - ドメイン層
- * - ROLE: 外部に依存しない静的データモデル（Pure TypeScript）
- * - ALLOWED: 同ドメイン層モデルへの依存
- * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
+ * 進化トリガーごとの進化条件
  */
 
 import type { PokeItem } from "$lib/domain/models/PokeItem";
 
-// TRIGGER_JA を SSoT とし、キーから EvolutionTrigger を派生させる
+// SSoT: TRIGGER_JA のキーから EvolutionTrigger を派生させる
 const TRIGGER_JA = {
   "level-up": "レベルアップ",
   trade: "通信交換",
@@ -75,28 +70,6 @@ interface SimpleCondition {
 /** 進化の条件（判別共用体） */
 export type EvolutionCondition = LevelUpCondition | UseItemCondition | TradeCondition | SimpleCondition;
 
-/** 進化ツリーの1ノード（1種族） */
-export interface EvolutionNode {
-  readonly speciesId: number;
-  /** PokeAPI 英語名 */
-  readonly speciesName: string;
-  readonly jaName: string;
-  readonly imageUrl: string;
-  readonly evolvesTo: readonly EvolutionStep[];
-}
-
-/** 進化ステップ（親→子の条件とノード） */
-export interface EvolutionStep {
-  readonly condition: EvolutionCondition;
-  readonly next: EvolutionNode;
-}
-
-/** 進化チェーン全体 */
-export interface EvolutionChain {
-  readonly id: number;
-  readonly root: EvolutionNode;
-}
-
 /** 進化条件を日本語の短いラベルに変換する */
 export const conditionDescription = (condition: EvolutionCondition): string => {
   switch (condition.trigger) {
@@ -112,10 +85,10 @@ export const conditionDescription = (condition: EvolutionCondition): string => {
       if (condition.timeOfDay === "night") return "LvUp（夜）";
       return "LvUp";
     case "use-item":
-      return condition.useItem?.jaName ?? TRIGGER_JA["use-item"];
+      return condition.useItem?.jaName ?? triggerJaLabel("use-item");
     case "trade":
-      return condition.heldItem ? `通信交換（${condition.heldItem.jaName}）` : TRIGGER_JA["trade"];
+      return condition.heldItem ? `通信交換（${condition.heldItem.jaName}）` : triggerJaLabel("trade");
     default:
-      return TRIGGER_JA[condition.trigger];
+      return triggerJaLabel(condition.trigger);
   }
 };

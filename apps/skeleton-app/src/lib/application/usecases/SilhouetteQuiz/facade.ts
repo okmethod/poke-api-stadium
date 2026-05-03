@@ -9,13 +9,13 @@
 
 import { get } from "svelte/store";
 import type { PokeData } from "$lib/domain/models/PokeData";
-import { pokeTypeJaName } from "$lib/domain/models/PokeData";
+import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+import { pokeTypeJaName } from "$lib/domain/models/PokeType";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import { getRandomNumber } from "$lib/shared/utils/randomUtils";
-import { resolvedCryUrl } from "$lib/domain/models/PokeData";
-import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
+import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
+import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 import { storeWriter, pokeData, isOpen } from "./store";
 
 /** toggleAnswer の戻り値（鳴き声URLの再生判断はプレゼン層で行う） */

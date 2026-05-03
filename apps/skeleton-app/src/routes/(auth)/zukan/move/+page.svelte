@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeData/pokeType";
+  import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeType";
   import { navigateTo } from "$lib/presentation/utils/navigation";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
 </script>

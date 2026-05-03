@@ -61,3 +61,13 @@ export interface PokeItemCategory extends PokeItemCategoryMeta {
   /** カテゴリに属するアイテムの英語名一覧 */
   readonly items: readonly string[];
 }
+
+/** アプリ内部のアイテムモデル */
+export interface PokeItem {
+  readonly id: number;
+  readonly enName: string;
+  readonly jaName: string;
+  readonly imageUrl: string | null;
+  readonly category: string;
+  readonly flavorText: string | null;
+}

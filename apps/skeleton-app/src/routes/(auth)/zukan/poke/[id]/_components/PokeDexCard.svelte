@@ -4,9 +4,10 @@
   import { navigating } from "$app/state";
   import Icon from "@iconify/svelte";
   import type { PokeData } from "$lib/domain/models/PokeData";
-  import { pokeTypeColor, resolvedCryUrl } from "$lib/domain/models/PokeData";
-  import type { EvolutionChain } from "$lib/domain/models/EvolutionChain";
-  import type { FormVariant } from "$lib/domain/models/FormVariant";
+  import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+  import { pokeTypeColor } from "$lib/domain/models/PokeType";
+  import type { EvolutionChain } from "$lib/domain/models/PokeEvolution";
+  import type { FormVariant } from "$lib/domain/models/PokeForm";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import DexBasicTab from "./DexBasicTab.svelte";
   import DexStatusTab from "./DexStatusTab.svelte";
@@ -58,7 +59,7 @@
   const isLoadingEvolution = $derived(navigating.to !== null && navigatingTab === "evolution");
   const isLoadingForm = $derived(navigating.to !== null && navigatingTab === "form");
 
-  const moveLearnDetails = $derived(pokeData?.moveLearnDetails ?? []);
+  const learnableMoveRefs = $derived(pokeData?.learnableMoveRefs ?? []);
 
   interface TabDef {
     value: string;
@@ -162,7 +163,7 @@
           <Tabs.Content value={tab.value}>
             {#if tab.value === "moves"}
               <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">
-                <DexMovesTab {moveLearnDetails} />
+                <DexMovesTab {learnableMoveRefs} />
               </div>
             {:else if tab.value === "evolution"}
               <div class="h-full overflow-y-auto pb-4 sm:h-64 sm:pb-0">

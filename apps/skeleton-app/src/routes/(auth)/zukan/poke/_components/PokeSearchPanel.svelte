@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Pagination } from "@skeletonlabs/skeleton-svelte";
   import Icon from "@iconify/svelte";
-  import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeData/pokeType";
-  import type { PokeTypeName } from "$lib/domain/models/PokeData/pokeType";
-  import { ALL_GENERATION_NUMBERS, generationData } from "$lib/domain/models/PokeData/generation";
-  import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
+  import { ALL_TYPE_NAMES } from "$lib/domain/models/PokeType";
+  import type { PokeTypeName } from "$lib/domain/models/PokeType";
+  import { ALL_GENERATION_NUMBERS, generationData } from "$lib/domain/models/PokeGeneration";
+  import type { GenerationNumber } from "$lib/domain/models/PokeGeneration";
   import type { PokemonSearchResult } from "$lib/application/ports/IPokeSearchRepository";
   import { getPokeSearchRepository } from "$lib/infrastructure/adapters/PokeGraphQLAdapter";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";

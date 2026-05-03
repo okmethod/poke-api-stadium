@@ -7,36 +7,16 @@
  * - FORBIDDEN: Svelte / DOM / 外部ライブラリへの依存
  */
 
-import type { PokeTypeName, PokeTypeData } from "./pokeType";
-import { ALL_TYPE_NAMES, pokeTypeColor, pokeTypeJaName, parsePokeTypeName } from "./pokeType";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
+import type { GenerationData } from "$lib/domain/models/PokeGeneration";
+import type { AbilityRef } from "$lib/domain/models/PokeAbility";
+import type { EvolutionChainRef } from "$lib/domain/models/PokeEvolution";
+import type { VarietyRef } from "$lib/domain/models/PokeForm";
+import type { MoveLearnRef } from "$lib/domain/models/PokeMove";
 import type { PokeStats } from "./pokeStats";
-import { pokeStatJaName } from "./pokeStats";
-import type { GenerationData } from "./generation";
-import { generationData } from "./generation";
 import type { PokeImageUrls } from "./pokeImages";
 import type { PokeCryUrls } from "./pokeCries";
-import { resolvedCryUrl } from "./pokeCries";
 import type { FlavorText } from "./flavorText";
-import type { AbilityRef, EvolutionChainRef, VarietyRef } from "./pokeRefs";
-import type { VersionName } from "./version";
-import { versionJaLabel } from "./version";
-import type { MoveLearnDetail } from "$lib/domain/models/PokeMove";
-
-// 各ドメインモデルを再エクスポート
-export type { PokeTypeName, PokeTypeData, PokeStats, GenerationData, PokeImageUrls, PokeCryUrls };
-export type { AbilityRef, EvolutionChainRef, VarietyRef, FlavorText };
-export type { VersionName };
-export type { MoveLearnDetail };
-export {
-  ALL_TYPE_NAMES,
-  pokeTypeColor,
-  pokeTypeJaName,
-  parsePokeTypeName,
-  generationData,
-  resolvedCryUrl,
-  pokeStatJaName,
-  versionJaLabel,
-};
 
 /**
  * アプリ内部のポケモン統合モデル
@@ -98,14 +78,19 @@ export interface PokeData {
   readonly flavorTexts: readonly FlavorText[];
 
   /** 特性参照リスト（詳細は /ability/{id} で別途取得） */
-  readonly abilities: readonly AbilityRef[];
+  readonly abilityRefs: readonly AbilityRef[];
 
   /** 進化チェーン参照 */
   readonly evolutionChainRef: EvolutionChainRef;
 
   /** バリエーション（フォーム）参照リスト */
-  readonly varieties: readonly VarietyRef[];
+  readonly varietyRefs: readonly VarietyRef[];
 
   /** 習得可能なわざ参照リスト（詳細は /move/{id} で別途取得） */
-  readonly moveLearnDetails: readonly MoveLearnDetail[];
+  readonly learnableMoveRefs: readonly MoveLearnRef[];
 }
+
+// 各ドメインモデルを再エクスポート
+export type { PokeStats, PokeImageUrls, PokeCryUrls, FlavorText };
+export { pokeStatJaName } from "./pokeStats";
+export { resolvedCryUrl } from "./pokeCries";

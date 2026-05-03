@@ -2,7 +2,7 @@
   import { untrack } from "svelte";
   import Icon from "@iconify/svelte";
   import { FloatingPanel, Portal } from "@skeletonlabs/skeleton-svelte";
-  import type { MoveLearnDetail, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
+  import type { MoveLearnRef, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
   import type { PokeMove } from "$lib/domain/models/PokeMove";
   import { MOVE_LEARN_METHOD_JA } from "$lib/domain/models/PokeMove";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
@@ -17,14 +17,14 @@
   };
 
   interface DexMovesTabProps {
-    moveLearnDetails: readonly MoveLearnDetail[];
+    learnableMoveRefs: readonly MoveLearnRef[];
   }
-  let { moveLearnDetails }: DexMovesTabProps = $props();
+  let { learnableMoveRefs }: DexMovesTabProps = $props();
 
   const PAGE_SIZE = 20;
 
   interface MoveRow {
-    detail: MoveLearnDetail;
+    ref: MoveLearnRef;
     move: PokeMove;
   }
 
@@ -43,12 +43,12 @@
   async function loadNextPage() {
     if (isLoading) return;
     isLoading = true;
-    const slice = moveLearnDetails.slice(loadedCount, loadedCount + PAGE_SIZE);
+    const slice = learnableMoveRefs.slice(loadedCount, loadedCount + PAGE_SIZE);
     try {
       const moves = await getPokeRepository().getMoves(fetch, slice);
-      const newRows = slice.flatMap((detail, i) => {
+      const newRows = slice.flatMap((ref, i) => {
         const move = moves[i];
-        return move ? [{ detail, move }] : [];
+        return move ? [{ ref, move }] : [];
       });
       loadedRows = [...loadedRows, ...newRows];
       loadedCount += slice.length;
@@ -60,29 +60,29 @@
   }
 
   $effect(() => {
-    // moveLearnDetails のみを追跡し、内部の state 読み取りは untrack で遮断
-    const details = moveLearnDetails;
+    // learnableMoveRefs のみを追跡し、内部の state 読み取りは untrack で遮断
+    const moveRefs = learnableMoveRefs;
     untrack(() => {
       loadedRows = [];
       loadedCount = 0;
       panelOpen = false;
       selectedRow = null;
-      if (details.length > 0) {
+      if (moveRefs.length > 0) {
         loadNextPage();
       }
     });
   });
 
-  const hasMore = $derived(loadedCount < moveLearnDetails.length);
+  const hasMore = $derived(loadedCount < learnableMoveRefs.length);
 
   function levelLabel(row: MoveRow): string {
-    if (row.detail.learnMethod !== "level-up") return "—";
-    return row.detail.levelLearnedAt === 0 ? "しんか" : "Lv." + String(row.detail.levelLearnedAt);
+    if (row.ref.learnMethod !== "level-up") return "—";
+    return row.ref.levelLearnedAt === 0 ? "しんか" : "Lv." + String(row.ref.levelLearnedAt);
   }
 </script>
 
 <FloatingPanel open={panelOpen} onOpenChange={(e) => (panelOpen = e.open)}>
-  {#if moveLearnDetails.length === 0}
+  {#if learnableMoveRefs.length === 0}
     <p class="text-surface-400 p-4 text-sm">習得可能なわざなし</p>
   {:else}
     <div class="overflow-x-auto px-3">
@@ -96,20 +96,20 @@
           </tr>
         </thead>
         <tbody>
-          {#each loadedRows as row (row.detail.enName)}
+          {#each loadedRows as row (row.ref.enName)}
             <tr
               class="border-surface-200-800 hover:bg-surface-100-900 cursor-pointer border-b"
               onclick={() => openPanel(row)}
             >
               <td class="px-1 py-1 text-center">
                 <span
-                  title={MOVE_LEARN_METHOD_JA[row.detail.learnMethod]}
+                  title={MOVE_LEARN_METHOD_JA[row.ref.learnMethod]}
                   class="flex items-center justify-center gap-1 text-xs"
                 >
-                  {#if row.detail.learnMethod === "level-up"}
+                  {#if row.ref.learnMethod === "level-up"}
                     {levelLabel(row)}
                   {:else}
-                    <Icon icon={MOVE_LEARN_METHOD_ICON[row.detail.learnMethod]} class="size-4" />
+                    <Icon icon={MOVE_LEARN_METHOD_ICON[row.ref.learnMethod]} class="size-4" />
                   {/if}
                 </span>
               </td>
@@ -133,11 +133,11 @@
     {:else if hasMore}
       <div class="flex justify-center p-2">
         <button type="button" class="btn preset-tonal btn-sm text-xs" onclick={loadNextPage}>
-          さらに読み込む ({loadedCount}/{moveLearnDetails.length})
+          さらに読み込む ({loadedCount}/{learnableMoveRefs.length})
         </button>
       </div>
     {:else}
-      <p class="text-surface-400 p-2 text-center text-xs">{moveLearnDetails.length} 件</p>
+      <p class="text-surface-400 p-2 text-center text-xs">{learnableMoveRefs.length} 件</p>
     {/if}
   {/if}
 
@@ -166,11 +166,11 @@
 
               <!-- 習得方法 -->
               <span class="badge items-center gap-1 text-xs">
-                <Icon icon={MOVE_LEARN_METHOD_ICON[row.detail.learnMethod]} class="size-3.5" />
-                {#if row.detail.learnMethod === "level-up"}
+                <Icon icon={MOVE_LEARN_METHOD_ICON[row.ref.learnMethod]} class="size-3.5" />
+                {#if row.ref.learnMethod === "level-up"}
                   {levelLabel(row)}
                 {:else}
-                  {MOVE_LEARN_METHOD_JA[row.detail.learnMethod]}
+                  {MOVE_LEARN_METHOD_JA[row.ref.learnMethod]}
                 {/if}
               </span>
             </div>

@@ -7,7 +7,7 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import { parsePokeTypeName } from "$lib/domain/models/PokeData/pokeType";
+import { parsePokeTypeName } from "$lib/domain/models/PokeType";
 import type {
   IPokeSearchRepository,
   SearchQuery,

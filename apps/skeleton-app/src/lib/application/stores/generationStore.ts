@@ -12,8 +12,8 @@
 
 import { writable, get } from "svelte/store";
 import { browser } from "$app/environment";
-import { ALL_GENERATION_NUMBERS, generationData, getPokeIdRanges } from "$lib/domain/models/PokeData/generation";
-import type { GenerationNumber } from "$lib/domain/models/PokeData/generation";
+import { ALL_GENERATION_NUMBERS, generationData, getPokeIdRanges } from "$lib/domain/models/PokeGeneration";
+import type { GenerationNumber } from "$lib/domain/models/PokeGeneration";
 
 const SPRITE_BASE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 
