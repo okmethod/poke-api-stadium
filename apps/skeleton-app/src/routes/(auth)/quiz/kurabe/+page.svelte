@@ -2,7 +2,7 @@
   import { get } from "svelte/store";
   import Icon from "@iconify/svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
-  import type { PokeData } from "$lib/domain/models/PokeData";
+  import { type DndPokeData, toDndItems } from "$lib/presentation/utils/dnd";
   import { StatsSortingQuiz, type CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
@@ -17,15 +17,14 @@
   let compareMode = $state<CompareModeName>("height");
   let pokeCount = $state<number>(3);
 
-  // svelte-dnd-action は id フィールドを必要とするため PokeData（id あり）をそのまま利用
-  let orderedList = $state<PokeData[]>([]);
+  let orderedList = $state<DndPokeData[]>([]);
 
   async function handlePick(): Promise<void> {
     const facadeResult = await facade.pickPokemons(fetch, pokeCount);
     if (!facadeResult.success && facadeResult.error) {
       showErrorToast(facadeResult.error);
     } else {
-      orderedList = [...get(pokeDataList)];
+      orderedList = toDndItems(get(pokeDataList));
     }
   }
 
@@ -36,7 +35,7 @@
   function handleCompareModeChange(): void {
     // 比較モード変更時はリセットして、既存リストの並び順も元に戻す
     facade.reset();
-    orderedList = [...get(pokeDataList)];
+    orderedList = toDndItems(get(pokeDataList));
   }
 
   function handlePokeCountChange(): void {
@@ -58,12 +57,12 @@
   });
 
   // ドラッグ中の仮並び順を反映（確定前）
-  function handleConsider(event: CustomEvent<DndEvent<PokeData>>): void {
+  function handleConsider(event: CustomEvent<DndEvent<DndPokeData>>): void {
     orderedList = event.detail.items;
   }
 
   // ドロップ確定時に並び順を確定
-  function handleFinalize(event: CustomEvent<DndEvent<PokeData>>): void {
+  function handleFinalize(event: CustomEvent<DndEvent<DndPokeData>>): void {
     orderedList = event.detail.items;
   }
 </script>
@@ -120,7 +119,7 @@
       onconsider={handleConsider}
       onfinalize={handleFinalize}
     >
-      {#each orderedList as pokeData, index (pokeData.speciesId)}
+      {#each orderedList as pokeData, index (pokeData.id)}
         {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
         <div class="flex size-64 cursor-grab flex-col items-center justify-center gap-1 select-none">
           <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
