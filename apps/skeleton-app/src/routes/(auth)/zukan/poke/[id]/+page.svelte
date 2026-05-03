@@ -1,16 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { resolve } from "$app/paths";
   import { page, navigating } from "$app/state";
-
-  // 現在のタブを保持したまま指定 ID のページへ遷移する
-  function gotoId(id: number) {
-    const tab = page.url.searchParams.get("tab");
-    const query = tab ? `?tab=${tab}` : "";
-    const segments = page.url.pathname.split("/");
-    segments[segments.length - 1] = String(id);
-    return goto(segments.join("/") + query);
-  }
   import Icon from "@iconify/svelte";
   import { resolvedCryUrl } from "$lib/domain/models/PokeData";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
@@ -18,6 +8,20 @@
   import PokeDexCard from "./_components/PokeDexCard.svelte";
 
   let { data } = $props();
+
+  // 現在のタブを保持したまま、指定 ID ポケモンページへ遷移する
+  // ID 省略時は [id] セグメントを除いた親パスへ戻る
+  function gotoPokeZukanbyId(id?: number) {
+    const segments = page.url.pathname.split("/");
+    if (id === undefined) {
+      segments.pop();
+      return goto(segments.join("/"));
+    }
+    const tab = page.url.searchParams.get("tab");
+    const query = tab ? `?tab=${tab}` : "";
+    segments[segments.length - 1] = String(id);
+    return goto(segments.join("/") + query);
+  }
 
   $effect(() => {
     if (data.fetchError) showErrorToast(data.fetchError);
@@ -36,13 +40,13 @@
     // 前後ナビゲーションは図鑑番号（speciesId）基準
     const currentId = data.pokeData?.speciesId ?? parseInt(page.params.id ?? "", 10);
     if (isNaN(currentId) || currentId <= 1) return;
-    await gotoId(currentId - 1);
+    await gotoPokeZukanbyId(currentId - 1);
   }
 
   async function navigateNext() {
     const currentId = data.pokeData?.speciesId ?? parseInt(page.params.id ?? "", 10);
     if (isNaN(currentId)) return;
-    await gotoId(currentId + 1);
+    await gotoPokeZukanbyId(currentId + 1);
   }
 
   function handleTabChange(tab: string) {
@@ -72,7 +76,7 @@
       <Icon icon="mdi:chevron-left" class="size-5" />
     </button>
 
-    <button type="button" class="btn preset-tonal btn-sm" onclick={() => goto(resolve("/zukan"))}>
+    <button type="button" class="btn preset-tonal btn-sm" onclick={() => gotoPokeZukanbyId()}>
       <Icon icon="mdi:magnify" class="size-5" />
       検索
     </button>
@@ -95,6 +99,6 @@
     formVariants={data.formVariants ?? null}
     activeTab={data.tab}
     ontabchange={handleTabChange}
-    onpokeselect={gotoId}
+    onpokeselect={gotoPokeZukanbyId}
   />
 </div>

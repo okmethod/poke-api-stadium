@@ -1,5 +1,6 @@
 import { goto } from "$app/navigation";
 import { resolve } from "$app/paths";
+import { page } from "$app/state";
 import type { AppTypes } from "$app/types";
 
 type GotoOptions = Parameters<typeof goto>[1];
@@ -10,6 +11,12 @@ export type AppPathname = ReturnType<AppTypes["Pathname"]>;
 /** base path を考慮したナビゲーション */
 export function navigateTo(path: AppPathname, options?: GotoOptions): Promise<void> {
   return goto(resolve(path), options);
+}
+
+/** 現在のURLの最後のセグメントを除いた親パスへ遷移する */
+export function navigateToParent(options?: GotoOptions): Promise<void> {
+  const parentPath = page.url.pathname.split("/").slice(0, -1).join("/");
+  return goto(parentPath, options);
 }
 
 /** クリック時のナビゲーション先（アプリ内遷移 or 新タブ外部リンク） */

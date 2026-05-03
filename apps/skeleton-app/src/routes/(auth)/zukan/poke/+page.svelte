@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { generationData, ALL_GENERATION_NUMBERS } from "$lib/domain/models/PokeGeneration";
+  import { navigateToParent } from "$lib/presentation/utils/navigation";
   import PokeSearchPanel from "./_components/PokeSearchPanel.svelte";
 
   // 最新世代の最後のポケモンIDを取得
@@ -39,6 +40,11 @@
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモン図鑑</h1>
+
+  <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateToParent()}>
+    <Icon icon="mdi:arrow-left" class="size-4" />
+    図鑑メニュー
+  </button>
 
   <div class="grid w-full max-w-xl grid-cols-1 gap-6 sm:grid-cols-2">
     <!-- No.指定 -->

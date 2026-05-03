@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
-  import { navigateTo } from "$lib/presentation/utils/navigation";
+  import { navigateToParent } from "$lib/presentation/utils/navigation";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import type { PokeMove } from "$lib/domain/models/PokeMove";
   import PokeTypeBadge from "$lib/presentation/components/atoms/PokeTypeBadge.svelte";
@@ -41,7 +41,7 @@
   <h1 class="h3 sm:h2">わざ図鑑</h1>
 
   <div class="flex w-full max-w-4xl items-center gap-3">
-    <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateTo("/zukan/move")}>
+    <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateToParent()}>
       <Icon icon="mdi:arrow-left" class="size-4" />
       タイプ一覧
     </button>

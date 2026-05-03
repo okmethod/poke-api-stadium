@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { navigateTo } from "$lib/presentation/utils/navigation";
+  import { navigateToParent } from "$lib/presentation/utils/navigation";
   import type { PokeItem } from "$lib/domain/models/PokeItem";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
 
@@ -47,7 +47,7 @@
   <h1 class="h3 sm:h2">アイテム図鑑</h1>
 
   <div class="flex w-full max-w-4xl items-center gap-3">
-    <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateTo("/zukan/item")}>
+    <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateToParent()}>
       <Icon icon="mdi:arrow-left" class="size-4" />
       ポケット一覧
     </button>
