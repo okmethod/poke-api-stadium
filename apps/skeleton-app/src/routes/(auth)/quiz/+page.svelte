@@ -4,9 +4,10 @@
   const { menuItems } = buildMenuLoad([
     { label: "ポケモンだ〜れだ？", iconItemKey: "dusk-ball", action: "navigate", target: "/quiz/dareda" },
     { label: "ポケモンだ〜れだ？改", iconItemKey: "luxury-ball", action: "navigate", target: "/quiz/dareda-kai" },
+    { label: "なきごえならべ", iconItemKey: "dream-ball", action: "navigate", target: "/quiz/nakigoe" },
+    { label: "ポケモンXXくらべ", iconItemKey: "great-ball", action: "navigate", target: "/quiz/kurabe" },
     { label: "たかさくらべ 改", iconItemKey: "ultra-ball", action: "navigate", target: "/quiz/kurabe-h" },
     { label: "おもさくらべ 改", iconItemKey: "heavy-ball", action: "navigate", target: "/quiz/kurabe-w" },
-    { label: "ポケモンXXくらべ", iconItemKey: "great-ball", action: "navigate", target: "/quiz/kurabe" },
   ]);
 </script>
 
