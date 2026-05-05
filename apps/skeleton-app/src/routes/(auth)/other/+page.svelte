@@ -1,8 +1,14 @@
 <script lang="ts">
   import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
+  import MenuCard from "$lib/presentation/components/atoms/MenuCard.svelte";
 
   const { menuItems } = buildMenuLoad([
-    { label: "サウンドテスト", iconItemKey: "premier-ball", action: "navigate", target: "/other/sound-test" },
+    {
+      label: "サウンドテスト",
+      iconItemKey: "premier-ball",
+      action: "navigate",
+      target: "/other/sound-test",
+    },
     {
       label: "ソースコード",
       iconItemKey: "master-ball",
@@ -17,10 +23,7 @@
 
   <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
     {#each menuItems as item (item.label)}
-      <button onclick={item.onClick} class="btn preset-tonal flex items-center justify-start gap-2 border">
-        <img src={item.iconItemKey} alt="" class="h-6 w-6 object-contain" />
-        <span class="text-lg">{item.label}</span>
-      </button>
+      <MenuCard label={item.label} iconSrc={item.iconItemKey} onclick={item.onClick} />
     {/each}
   </div>
 </div>

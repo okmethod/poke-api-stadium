@@ -1,10 +1,29 @@
 <script lang="ts">
   import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
+  import MenuCard from "$lib/presentation/components/atoms/MenuCard.svelte";
 
   const { menuItems } = buildMenuLoad([
-    { label: "ポケモンえあわせ", iconItemKey: "repeat-ball", action: "navigate", target: "/puzzle/eawase" },
-    { label: "ポケモンめくり", iconItemKey: "timer-ball", action: "navigate", target: "/puzzle/mekuri" },
-    { label: "ポケモンしりとり", iconItemKey: "heal-ball", action: "navigate", target: "/puzzle/shiritori" },
+    {
+      label: "ポケモンえあわせ",
+      description: "ポケモンのペアをくっつけて消そう",
+      iconItemKey: "repeat-ball",
+      action: "navigate",
+      target: "/puzzle/eawase",
+    },
+    {
+      label: "ポケモンめくり",
+      description: "同じポケモンのカードをめくって揃えよう",
+      iconItemKey: "timer-ball",
+      action: "navigate",
+      target: "/puzzle/mekuri",
+    },
+    {
+      label: "ポケモンしりとり",
+      description: "ポケモンの名前でしりとりしよう",
+      iconItemKey: "heal-ball",
+      action: "navigate",
+      target: "/puzzle/shiritori",
+    },
   ]);
 </script>
 
@@ -13,10 +32,7 @@
 
   <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
     {#each menuItems as item (item.label)}
-      <button onclick={item.onClick} class="btn preset-tonal flex items-center justify-start gap-2 border">
-        <img src={item.iconItemKey} alt="" class="h-6 w-6 object-contain" />
-        <span class="text-lg">{item.label}</span>
-      </button>
+      <MenuCard label={item.label} description={item.description} iconSrc={item.iconItemKey} onclick={item.onClick} />
     {/each}
   </div>
 </div>

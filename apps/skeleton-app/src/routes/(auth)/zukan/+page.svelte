@@ -1,5 +1,6 @@
 <script lang="ts">
   import { buildMenuLoad } from "$lib/presentation/utils/menuLoad";
+  import MenuCard from "$lib/presentation/components/atoms/MenuCard.svelte";
 
   const { menuItems } = buildMenuLoad([
     {
@@ -31,13 +32,7 @@
 
   <div class="grid w-full max-w-xl grid-cols-1 gap-4">
     {#each menuItems as item (item.label)}
-      <button onclick={item.onClick} class="btn preset-tonal h-auto flex-col items-center justify-start gap-2 border">
-        <div class="flex items-center gap-1">
-          <img src={item.iconItemKey} alt="" class="h-6 w-6 object-contain" />
-          <span class="text-lg">{item.label}</span>
-        </div>
-        <span class="text-xs opacity-70 sm:text-sm">{item.description}</span>
-      </button>
+      <MenuCard label={item.label} description={item.description} iconSrc={item.iconItemKey} onclick={item.onClick} />
     {/each}
   </div>
 </div>
