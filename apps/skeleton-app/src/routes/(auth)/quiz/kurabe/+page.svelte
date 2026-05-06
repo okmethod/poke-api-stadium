@@ -2,6 +2,7 @@
   import { get } from "svelte/store";
   import Icon from "@iconify/svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
+  import { resolveImageUrl } from "$lib/domain/models/PokeData";
   import { type DndPokeData, toDndItems } from "$lib/presentation/utils/dnd";
   import { StatsSortingQuiz, type CompareModeName } from "$lib/application/usecases/StatsSortingQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
@@ -107,7 +108,7 @@
       onfinalize={handleFinalize}
     >
       {#each orderedList as pokeData, index (pokeData.id)}
-        {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
+        {@const imageUrl = resolveImageUrl(pokeData.imageUrls)}
         <div class="flex size-64 cursor-grab flex-col items-center justify-center gap-1 select-none">
           <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
           <p class="min-h-5 text-center font-bold">

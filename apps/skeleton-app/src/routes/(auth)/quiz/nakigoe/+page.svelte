@@ -3,7 +3,7 @@
   import Icon from "@iconify/svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import type { PokeData } from "$lib/domain/models/PokeData";
-  import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+  import { resolvedCryUrl, resolveImageUrl } from "$lib/domain/models/PokeData";
   import { type DndPokeData, toDndItems } from "$lib/presentation/utils/dnd";
   import { CryOrderQuiz } from "$lib/application/usecases/CryOrderQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
@@ -134,7 +134,7 @@
       onfinalize={handleFinalize}
     >
       {#each orderedList as pokeData, index (pokeData.id)}
-        {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
+        {@const imageUrl = resolveImageUrl(pokeData.imageUrls)}
         <div class="flex size-48 cursor-grab flex-col items-center justify-center gap-1 select-none sm:size-56">
           <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
           <p class="text-surface-500 text-center text-sm">{index + 1} ばんめ</p>
@@ -171,7 +171,7 @@
           <p class="text-surface-500 text-sm">正解のじゅんばん</p>
           <div class="flex gap-3">
             {#each correctOrder() as pokeData, index (pokeData.speciesId)}
-              {@const imageUrl = pokeData.imageUrls.pixel.front ?? pokeData.imageUrls.artwork.front ?? null}
+              {@const imageUrl = resolveImageUrl(pokeData.imageUrls)}
               {@const isUserCorrect = orderedList[index]?.speciesId === pokeData.speciesId}
               <div class="flex flex-col items-center gap-1">
                 <div

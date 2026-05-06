@@ -93,4 +93,5 @@ export interface PokeData {
 // 各ドメインモデルを再エクスポート
 export type { PokeStats, PokeImageUrls, PokeCryUrls, FlavorText };
 export { pokeStatJaName } from "./pokeStats";
+export { resolveImageUrl } from "./pokeImages";
 export { resolvedCryUrl } from "./pokeCries";

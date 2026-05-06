@@ -24,3 +24,8 @@ export interface PokeImageUrls {
   /** 利用可能な全画像URLリスト（artwork.front を先頭に、null を除外済み） */
   readonly all: readonly string[];
 }
+
+/** 画像URLを解決する（pixel.front 優先、なければ artwork.front） */
+export const resolveImageUrl = (imageUrls: PokeImageUrls): string | null => {
+  return imageUrls.pixel.front ?? imageUrls.artwork.front ?? null;
+};
