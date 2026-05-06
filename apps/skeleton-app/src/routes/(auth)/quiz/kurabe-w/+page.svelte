@@ -5,6 +5,7 @@
   import { getMatterJsSeesawAdapter } from "$lib/infrastructure/adapters/MatterJsSeesawAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import SeesawCanvas from "$lib/presentation/components/physics/SeesawCanvas.svelte";
 
   const CANVAS_WIDTH = 400;
@@ -42,20 +43,7 @@
 
   <!-- よびだすボタン -->
   <div class="flex flex-wrap items-center justify-center gap-4">
-    <button
-      type="button"
-      class="btn preset-tonal btn-sm"
-      onclick={handlePick}
-      disabled={$isLoading}
-      title="ポケモンをよびだす"
-    >
-      {#if $isLoading}
-        <Icon icon="mdi:loading" class="size-5 animate-spin" />
-      {:else}
-        <Icon icon="mdi:pokeball" class="size-5" />
-      {/if}
-      よびだす
-    </button>
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
   </div>
 
   <!-- ポケモン情報（左右） + シーソーキャンバス -->
@@ -74,8 +62,8 @@
   </div>
 
   <!-- ポケモン名（左右） -->
-  <div class="flex w-72 justify-between px-4">
-    {#if $pokeDataList.length === 2}
+  {#if $pokeDataList.length === 2}
+    <div class="flex w-72 justify-between px-4">
       {#each $pokeDataList as pokeData, key (key)}
         <div class="flex flex-col items-center gap-1">
           {#if $isRevealed}
@@ -86,11 +74,14 @@
           {/if}
         </div>
       {/each}
-    {:else}
-      <!-- 未選出プレースホルダー -->
-      <span class="text-surface-400 w-full text-lg">よびだすボタン を おしてね</span>
-    {/if}
-  </div>
+    </div>
+  {:else}
+    <div
+      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
+    >
+      <p class="text-sm">よびだすボタン を おしてね</p>
+    </div>
+  {/if}
 
   <!-- 回答ボタン（選出後・公開前のみ） -->
   {#if $pokeDataList.length > 0 && !$isRevealed}

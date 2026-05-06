@@ -2,10 +2,10 @@
   import Icon from "@iconify/svelte";
   import { FloatingPanel, Carousel, Portal } from "@skeletonlabs/skeleton-svelte";
   import { WordChain, type ShiritoriPokeItem } from "$lib/application/usecases/WordChain";
-  import { generationStore } from "$lib/application/stores/generationStore";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
   const facade = new WordChain.Facade(getPokeRepository());
@@ -20,17 +20,13 @@
     carouselPage = Math.max(0, Math.ceil(total / 3) - 1);
   });
 
-  // 世代変更時および初回マウント時に再初期化
-  $effect(() => {
-    const _ = $generationStore;
-    void handleInitialize();
-  });
-
-  async function handleInitialize(): Promise<void> {
-    const result = await facade.initialize(fetch);
-    if (!result.success && result.error) {
-      showErrorToast(result.error);
-      return;
+  async function handleSpawn(): Promise<void> {
+    if ($pickedPokeItems.length === 0) {
+      const result = await facade.initialize(fetch);
+      if (!result.success && result.error) {
+        showErrorToast(result.error);
+        return;
+      }
     }
     handleStartNewGame();
   }
@@ -57,23 +53,12 @@
 
     <!-- ヘッダー操作 -->
     <div class="flex flex-wrap items-center justify-center gap-3">
-      <button
-        type="button"
-        class="btn preset-tonal btn-sm"
-        onclick={$pickedPokeItems.length === 0 ? handleInitialize : handleStartNewGame}
-        disabled={$isLoading}
-      >
-        {#if $isLoading}
-          <Icon icon="mdi:loading" class="size-5 animate-spin" />
-          よみこみ中...
-        {:else if $pickedPokeItems.length === 0}
-          <Icon icon="mdi:pokeball" class="size-5" />
-          スタート
-        {:else}
-          <Icon icon="mdi:restart" class="size-5" />
-          リセット
-        {/if}
-      </button>
+      <SpawnButton
+        onclick={handleSpawn}
+        isLoading={$isLoading}
+        label={$pickedPokeItems.length === 0 ? "スタート" : "リセット"}
+        icon={$pickedPokeItems.length === 0 ? "mdi:pokeball" : "mdi:restart"}
+      />
       <span class="text-sm">{$pushedPokeItems.length} 体</span>
       <FloatingPanel.Trigger class="btn preset-tonal btn-sm" disabled={$pushedPokeItems.length === 0}>
         <Icon icon="mdi:format-list-numbered" class="size-5" />
@@ -92,6 +77,12 @@
             onclick={() => handleChallenge(item)}
           />
         {/each}
+      </div>
+    {:else}
+      <div
+        class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
+      >
+        <p class="text-sm">スタートボタンを押してね</p>
       </div>
     {/if}
 

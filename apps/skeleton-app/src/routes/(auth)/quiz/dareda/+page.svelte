@@ -5,6 +5,7 @@
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showSuccessToast, showErrorToast } from "$lib/presentation/utils/toaster";
   import PokeSilhouette from "./_components/PokeSilhouette.svelte";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
 
   const facade = new SilhouetteQuiz.Facade(getPokeRepository());
   const { pokeData, isOpen, isLoading, hintText } = SilhouetteQuiz.Store;
@@ -36,20 +37,7 @@
 
   <!-- 操作ボタン -->
   <div class="flex items-center gap-4">
-    <button
-      type="button"
-      class="btn preset-tonal btn-sm"
-      onclick={handlePick}
-      disabled={$isLoading}
-      title="ポケモンをよびだす"
-    >
-      {#if $isLoading}
-        <Icon icon="mdi:loading" class="size-5 animate-spin" />
-      {:else}
-        <Icon icon="mdi:pokeball" class="size-5" />
-      {/if}
-      よびだす
-    </button>
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
     <button
       type="button"
       class="btn preset-tonal btn-sm"

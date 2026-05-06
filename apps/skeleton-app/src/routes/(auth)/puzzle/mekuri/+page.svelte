@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
   import { MemoryGame } from "$lib/application/usecases/MemoryGame";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import MemoryCardGrid from "./_components/MemoryCardGrid.svelte";
 
   const facade = new MemoryGame.Facade(getPokeRepository());
@@ -36,27 +36,26 @@
   <h1 class="h3 sm:h2">ポケモンめくり</h1>
 
   <!-- スタートボタン -->
-  <button type="button" class="btn preset-tonal btn-sm" onclick={handleStart} disabled={$isLoading || $isChecking}>
-    {#if $isLoading}
-      <Icon icon="mdi:loading" class="size-5 animate-spin" />
-      よみこみ中...
-    {:else if $cards.length > 0}
-      <Icon icon="mdi:restart" class="size-5" />
-      もう一度
-    {:else}
-      <Icon icon="mdi:pokeball" class="size-5" />
-      スタート
-    {/if}
-  </button>
+  <SpawnButton
+    onclick={handleStart}
+    isLoading={$isLoading}
+    disabled={$isChecking}
+    label={$cards.length > 0 ? "もう一度" : "スタート"}
+    icon={$cards.length > 0 ? "mdi:restart" : "mdi:pokeball"}
+  />
 
   <!-- カードグリッド -->
-  <div class="h-full w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow sm:max-w-md">
-    {#if $cards.length > 0}
+  {#if $cards.length > 0}
+    <div class="h-full w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow sm:max-w-md">
       <MemoryCardGrid cards={$cards} onSelectCard={handleSelectCard} />
-    {:else}
-      <p class="text-center text-gray-500">スタートボタンを押してね</p>
-    {/if}
-  </div>
+    </div>
+  {:else}
+    <div
+      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
+    >
+      <p class="text-sm">スタートボタンを押してね</p>
+    </div>
+  {/if}
 
   <!-- スコア表示 -->
   {#if $cards.length > 0}

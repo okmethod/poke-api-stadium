@@ -10,6 +10,7 @@
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
 
   const facade = new CryOrderQuiz.Facade(getPokeRepository());
@@ -108,20 +109,7 @@
 
   <!-- 操作ボタン -->
   <div class="flex flex-wrap items-center justify-center gap-3">
-    <button
-      type="button"
-      class="btn preset-tonal btn-sm"
-      onclick={handlePick}
-      disabled={$isLoading || isPlaying}
-      title="ポケモンをよびだす"
-    >
-      {#if $isLoading}
-        <Icon icon="mdi:loading" class="size-5 animate-spin" />
-      {:else}
-        <Icon icon="mdi:pokeball" class="size-5" />
-      {/if}
-      よびだす
-    </button>
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} disabled={isPlaying} />
 
     {#if orderedList.length > 0}
       <button
@@ -204,11 +192,10 @@
       </div>
     {/if}
   {:else if !$isLoading}
-    <!-- 未選出状態のプレースホルダー -->
     <div
       class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
     >
-      <p class="text-sm">「よびだす」を押してポケモンをよびだそう</p>
+      <p class="text-sm">よびだすボタン を おしてね</p>
     </div>
   {/if}
 </div>

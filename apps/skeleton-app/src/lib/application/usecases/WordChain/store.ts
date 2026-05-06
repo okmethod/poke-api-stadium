@@ -39,7 +39,7 @@ export const groupByHeadCharDict = readonly(groupByHeadCharDictStore);
 const usedidsStore = writable<Set<number>>(new Set());
 const pickedPokeItemsStore = writable<ShiritoriPokeItem[]>([]);
 const pushedPokeItemsStore = writable<ShiritoriPokeItem[]>([]);
-const messageStore = writable<string>("しりとり スタート");
+const messageStore = writable<string>("");
 
 /** 使用済みポケモンIDセット（読み取り専用） */
 export const usedids = readonly(usedidsStore);
@@ -69,13 +69,13 @@ export const storeWriter = {
     usedidsStore.set(new Set());
     pickedPokeItemsStore.set([]);
     pushedPokeItemsStore.set([]);
-    messageStore.set("しりとり スタート");
+    messageStore.set("");
   },
   resetSession: () => {
     usedidsStore.set(new Set());
     pickedPokeItemsStore.set([]);
     pushedPokeItemsStore.set([]);
-    messageStore.set("しりとり スタート");
+    messageStore.set("");
   },
   setIsLoading: (v: boolean) => isLoadingStore.set(v),
   setPokeDict: (v: Record<number, ShiritoriPokeItem>) => pokeDictStore.set(v),

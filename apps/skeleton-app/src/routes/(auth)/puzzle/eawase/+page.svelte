@@ -7,6 +7,7 @@
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
+  import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
 
   const CANVAS_WIDTH = 360;
   const CANVAS_HEIGHT = 360;
@@ -56,20 +57,7 @@
 
   <!-- 操作ボタン -->
   <div class="flex items-center gap-4">
-    <button
-      type="button"
-      class="btn preset-tonal btn-sm"
-      onclick={handleSpawn}
-      disabled={!isReady || isSpawning}
-      title="ポケモンをよびだす"
-    >
-      {#if isSpawning}
-        <Icon icon="mdi:loading" class="size-5 animate-spin" />
-      {:else}
-        <Icon icon="mdi:pokeball" class="size-5" />
-      {/if}
-      よびだす
-    </button>
+    <SpawnButton onclick={handleSpawn} isLoading={isSpawning} disabled={!isReady} />
   </div>
 
   <!-- スコア -->
