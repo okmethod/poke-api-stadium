@@ -5,73 +5,46 @@
  * 実際のAPIは呼び出さず、fetchのモックを使用する。
  */
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { fetchPokemon, fetchPokemonSpecies, fetchType } from "$lib/infrastructure/api/pokeapi";
-
-// --- モックフィクスチャ（PokeAPI レスポンス形式） ---
-
-const mockPikachu = {
-  id: 25,
-  name: "pikachu",
-  types: [{ slot: 1, type: { name: "electric", url: "https://pokeapi.co/api/v2/type/13/" } }],
-  stats: [
-    { base_stat: 35, stat: { name: "hp", url: "https://pokeapi.co/api/v2/stat/1/" } },
-    { base_stat: 55, stat: { name: "attack", url: "https://pokeapi.co/api/v2/stat/2/" } },
-  ],
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default:
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      },
-    },
-  },
-};
-
-const mockPikachuSpecies = {
-  id: 25,
-  names: [
-    { language: { name: "ja", url: "https://pokeapi.co/api/v2/language/11/" }, name: "ピカチュウ" },
-    { language: { name: "en", url: "https://pokeapi.co/api/v2/language/9/" }, name: "Pikachu" },
-  ],
-  generation: { name: "generation-i", url: "https://pokeapi.co/api/v2/generation/1/" },
-};
-
-const mockElectricType = {
-  id: 13,
-  name: "electric",
-  damage_relations: {
-    no_damage_to: [{ name: "ground", url: "https://pokeapi.co/api/v2/type/5/" }],
-    half_damage_to: [
-      { name: "electric", url: "https://pokeapi.co/api/v2/type/13/" },
-      { name: "grass", url: "https://pokeapi.co/api/v2/type/12/" },
-      { name: "dragon", url: "https://pokeapi.co/api/v2/type/16/" },
-    ],
-    double_damage_to: [
-      { name: "flying", url: "https://pokeapi.co/api/v2/type/3/" },
-      { name: "water", url: "https://pokeapi.co/api/v2/type/11/" },
-    ],
-    no_damage_from: [],
-    half_damage_from: [
-      { name: "electric", url: "https://pokeapi.co/api/v2/type/13/" },
-      { name: "flying", url: "https://pokeapi.co/api/v2/type/3/" },
-      { name: "steel", url: "https://pokeapi.co/api/v2/type/9/" },
-    ],
-    double_damage_from: [{ name: "ground", url: "https://pokeapi.co/api/v2/type/5/" }],
-  },
-};
+import {
+  fetchPokemon,
+  fetchPokemonSpecies,
+  fetchPokemonSpeciesByUrl,
+  fetchPokemonForm,
+  fetchAbility,
+  fetchMove,
+  fetchItem,
+  fetchItemPocket,
+  fetchItemCategory,
+  fetchType,
+  fetchEvolutionChain,
+  clearCache,
+} from "$lib/infrastructure/api/pokeapi";
+import {
+  createOkMockFetch,
+  createNetworkErrorMockFetch,
+  createNotFoundMockFetch,
+} from "../../../__testUtils__/mockFetch";
+import samplePokemon25 from "../../../data/sample_pokemon_25.json";
+import sampleSpecies25 from "../../../data/sample_species_25.json";
+import samplePokemonFormPikachu from "../../../data/sample_pokemon_form_pikachu.json";
+import sampleAbility9 from "../../../data/sample_ability_9.json";
+import sampleMove84 from "../../../data/sample_move_84.json";
+import sampleItem4 from "../../../data/sample_item_4.json";
+import sampleItemPocket1 from "../../../data/sample_item_pocket_1.json";
+import sampleItemCategory34 from "../../../data/sample_item_category_34.json";
+import sampleType13 from "../../../data/sample_type_13.json";
+import sampleEvolutionChain10 from "../../../data/sample_evolution_chain_10.json";
 
 // --- テスト ---
 
 afterEach(() => {
   vi.restoreAllMocks();
+  clearCache();
 });
 
 describe("fetchPokemon", () => {
   it("IDでポケモンを取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockPikachu,
-    });
+    const mockFetch = createOkMockFetch(samplePokemon25);
 
     const pokemon = await fetchPokemon(mockFetch, 25);
 
@@ -84,10 +57,7 @@ describe("fetchPokemon", () => {
   });
 
   it("名前でポケモンを取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockPikachu,
-    });
+    const mockFetch = createOkMockFetch(samplePokemon25);
 
     const pokemon = await fetchPokemon(mockFetch, "pikachu");
 
@@ -96,12 +66,9 @@ describe("fetchPokemon", () => {
   });
 
   it("sprites.other.official-artwork が null でも取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        ...mockPikachu,
-        sprites: { other: { "official-artwork": { front_default: null } } },
-      }),
+    const mockFetch = createOkMockFetch({
+      ...samplePokemon25,
+      sprites: { other: { "official-artwork": { front_default: null } } },
     });
 
     const pokemon = await fetchPokemon(mockFetch, 25);
@@ -110,16 +77,13 @@ describe("fetchPokemon", () => {
   });
 
   it("ネットワークエラー時に例外をスローする", async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error("Network Error"));
+    const mockFetch = createNetworkErrorMockFetch();
 
     await expect(fetchPokemon(mockFetch, 25)).rejects.toThrow("Failed to fetch");
   });
 
   it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: "Not Found" }),
-    });
+    const mockFetch = createNotFoundMockFetch();
 
     await expect(fetchPokemon(mockFetch, 9999)).rejects.toThrow();
   });
@@ -127,24 +91,18 @@ describe("fetchPokemon", () => {
 
 describe("fetchPokemonSpecies", () => {
   it("IDでポケモン種族を取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockPikachuSpecies,
-    });
+    const mockFetch = createOkMockFetch(sampleSpecies25);
 
     const species = await fetchPokemonSpecies(mockFetch, 25);
 
     expect(species.id).toBe(25);
-    expect(species.names).toHaveLength(2);
+    expect(species.names.length).toBeGreaterThan(0);
     expect(species.generation.name).toBe("generation-i");
     expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/pokemon-species/25"), expect.any(Object));
   });
 
   it("名前でポケモン種族を取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockPikachuSpecies,
-    });
+    const mockFetch = createOkMockFetch(sampleSpecies25);
 
     const species = await fetchPokemonSpecies(mockFetch, "pikachu");
 
@@ -153,16 +111,13 @@ describe("fetchPokemonSpecies", () => {
   });
 
   it("ネットワークエラー時に例外をスローする", async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error("Network Error"));
+    const mockFetch = createNetworkErrorMockFetch();
 
     await expect(fetchPokemonSpecies(mockFetch, 25)).rejects.toThrow("Failed to fetch");
   });
 
   it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: "Not Found" }),
-    });
+    const mockFetch = createNotFoundMockFetch();
 
     await expect(fetchPokemonSpecies(mockFetch, 9999)).rejects.toThrow();
   });
@@ -170,10 +125,7 @@ describe("fetchPokemonSpecies", () => {
 
 describe("fetchType", () => {
   it("IDでタイプを取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockElectricType,
-    });
+    const mockFetch = createOkMockFetch(sampleType13);
 
     const type = await fetchType(mockFetch, 13);
 
@@ -186,10 +138,7 @@ describe("fetchType", () => {
   });
 
   it("名前でタイプを取得できる", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockElectricType,
-    });
+    const mockFetch = createOkMockFetch(sampleType13);
 
     const type = await fetchType(mockFetch, "electric");
 
@@ -198,10 +147,7 @@ describe("fetchType", () => {
   });
 
   it("damage_relations の全フィールドが含まれている", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockElectricType,
-    });
+    const mockFetch = createOkMockFetch(sampleType13);
 
     const type = await fetchType(mockFetch, 13);
     const dr = type.damage_relations;
@@ -215,17 +161,144 @@ describe("fetchType", () => {
   });
 
   it("ネットワークエラー時に例外をスローする", async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error("Network Error"));
+    const mockFetch = createNetworkErrorMockFetch();
 
     await expect(fetchType(mockFetch, 13)).rejects.toThrow("Failed to fetch");
   });
 
   it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: "Not Found" }),
-    });
+    const mockFetch = createNotFoundMockFetch();
 
     await expect(fetchType(mockFetch, 9999)).rejects.toThrow();
+  });
+});
+
+describe("fetchPokemonSpeciesByUrl", () => {
+  it("絶対URLで種族を取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleSpecies25);
+    const url = "https://pokeapi.co/api/v2/pokemon-species/25/";
+
+    const species = await fetchPokemonSpeciesByUrl(mockFetch, url);
+
+    expect(species.id).toBe(25);
+    expect(mockFetch).toHaveBeenCalledWith(url, expect.any(Object));
+  });
+});
+
+describe("fetchPokemonForm", () => {
+  it("フォーム名でポケモンフォームを取得できる", async () => {
+    const mockFetch = createOkMockFetch(samplePokemonFormPikachu);
+
+    const form = await fetchPokemonForm(mockFetch, "pikachu");
+
+    expect(form.id).toBe(25);
+    expect(form.name).toBe("pikachu");
+    expect(form.is_default).toBe(true);
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/pokemon-form/pikachu"), expect.any(Object));
+  });
+});
+
+describe("fetchAbility", () => {
+  it("IDでとくせいを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleAbility9);
+
+    const ability = await fetchAbility(mockFetch, 9);
+
+    expect(ability.id).toBe(9);
+    expect(ability.name).toBe("static");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/ability/9"), expect.any(Object));
+  });
+});
+
+describe("fetchMove", () => {
+  it("IDでわざを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleMove84);
+
+    const move = await fetchMove(mockFetch, 84);
+
+    expect(move.id).toBe(84);
+    expect(move.name).toBe("thunder-shock");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/move/84"), expect.any(Object));
+  });
+});
+
+describe("fetchItem", () => {
+  it("IDでアイテムを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleItem4);
+
+    const item = await fetchItem(mockFetch, 4);
+
+    expect(item.id).toBe(4);
+    expect(item.name).toBe("poke-ball");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/item/4"), expect.any(Object));
+  });
+});
+
+describe("fetchItemPocket", () => {
+  it("名前でアイテムポケットを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleItemPocket1);
+
+    const pocket = await fetchItemPocket(mockFetch, "misc");
+
+    expect(pocket.id).toBe(1);
+    expect(pocket.name).toBe("misc");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/item-pocket/misc"), expect.any(Object));
+  });
+});
+
+describe("fetchItemCategory", () => {
+  it("IDでアイテムカテゴリを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleItemCategory34);
+
+    const category = await fetchItemCategory(mockFetch, 34);
+
+    expect(category.id).toBe(34);
+    expect(category.name).toBe("standard-balls");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/item-category/34"), expect.any(Object));
+  });
+});
+
+describe("fetchEvolutionChain", () => {
+  it("IDで進化チェーンを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleEvolutionChain10);
+
+    const chain = await fetchEvolutionChain(mockFetch, 10);
+
+    expect(chain.id).toBe(10);
+    expect(chain.chain.species.name).toBe("pichu");
+    expect(chain.chain.evolves_to[0]?.species.name).toBe("pikachu");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/evolution-chain/10"), expect.any(Object));
+  });
+
+  it("絶対URLで進化チェーンを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleEvolutionChain10);
+    const url = "https://pokeapi.co/api/v2/evolution-chain/10/";
+
+    const chain = await fetchEvolutionChain(mockFetch, url);
+
+    expect(chain.id).toBe(10);
+    // 絶対URLがそのまま fetch に渡されることを確認
+    expect(mockFetch).toHaveBeenCalledWith(url, expect.any(Object));
+  });
+});
+
+describe("キャッシュ", () => {
+  it("同一URLへの2回目の呼び出しはfetchを発行しない", async () => {
+    const mockFetch = createOkMockFetch(samplePokemon25);
+
+    await fetchPokemon(mockFetch, 25);
+    await fetchPokemon(mockFetch, 25);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it("clearCache後は再びfetchを発行する", async () => {
+    const mockFetch = createOkMockFetch(samplePokemon25);
+
+    await fetchPokemon(mockFetch, 25);
+    clearCache();
+    await fetchPokemon(mockFetch, 25);
+
+    expect(mockFetch).toHaveBeenCalledTimes(2);
   });
 });
