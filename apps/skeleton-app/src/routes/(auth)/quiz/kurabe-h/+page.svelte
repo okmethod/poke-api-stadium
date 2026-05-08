@@ -71,10 +71,8 @@
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンたかさくらべ 改</h1>
 
-  <!-- よびだすボタン -->
-  <div class="flex flex-wrap items-center justify-center gap-4">
-    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
-  </div>
+  <!-- スタートボタン -->
+  <SpawnButton onclick={handlePick} isLoading={$isLoading} started={$pokeDataList.length > 0} />
 
   <!-- ポケモン並べ替えエリア（公開前のみ表示） -->
   {#if orderedList.length > 0 && !$isRevealed}
@@ -92,7 +90,7 @@
     <div
       class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
     >
-      <p class="text-sm">よびだすボタン を おしてね</p>
+      <p class="text-sm">はじめるボタン を おしてね</p>
     </div>
   {/if}
 

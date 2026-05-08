@@ -25,6 +25,10 @@
   let currentCryIndex = $state<number | null>(null);
 
   async function handlePick(): Promise<void> {
+    // ローカルstate をリセットしてから新しい問題を取得
+    isPlaying = false;
+    currentCryIndex = null;
+    orderedList = [];
     const facadeResult = await facade.pickPokemons(fetch);
     if (!facadeResult.success && facadeResult.error) {
       showErrorToast(facadeResult.error);
@@ -69,13 +73,6 @@
     facade.revealResult(orderedList, get(pokeDataList), get(crySequence));
   }
 
-  function handleReset(): void {
-    facade.reset();
-    orderedList = [];
-    isPlaying = false;
-    currentCryIndex = null;
-  }
-
   // $effect は初回マウント時にも実行されるため、初回はスキップして変化時のみ SE を鳴らす
   let seEffectReady = false;
   $effect(() => {
@@ -103,7 +100,7 @@
 
   <!-- 操作ボタン -->
   <div class="flex flex-wrap items-center justify-center gap-3">
-    <SpawnButton onclick={handlePick} isLoading={$isLoading} disabled={isPlaying} />
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} disabled={isPlaying} started={orderedList.length > 0} />
 
     {#if orderedList.length > 0}
       <button
@@ -165,18 +162,13 @@
             {/each}
           </div>
         </div>
-
-        <button type="button" class="btn preset-tonal" onclick={handleReset}>
-          <Icon icon="mdi:refresh" class="size-5" />
-          もう一度
-        </button>
       </div>
     {/if}
   {:else if !$isLoading}
     <div
       class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
     >
-      <p class="text-sm">よびだすボタン を おしてね</p>
+      <p class="text-sm">はじめるボタン を おしてね</p>
     </div>
   {/if}
 </div>

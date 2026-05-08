@@ -27,7 +27,7 @@
   function handleHint(): void {
     const result = facade.getHint();
     if (!result.success) {
-      showSuccessToast("よびだすボタン を おしてね");
+      showSuccessToast("はじめるボタン を おしてね");
     }
   }
 </script>
@@ -37,7 +37,7 @@
 
   <!-- 操作ボタン -->
   <div class="flex items-center gap-4">
-    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} started={$pokeData !== null} />
     <button
       type="button"
       class="btn preset-tonal btn-sm"
@@ -60,13 +60,8 @@
   <!-- シルエット表示 -->
   <PokeSilhouette pokeData={$pokeData} isOpen={$isOpen} />
 
-  <!-- こたえをみる or もう一度ボタン -->
-  {#if $isOpen}
-    <button type="button" class="btn preset-tonal" onclick={handlePick}>
-      <Icon icon="mdi:restart" class="size-5" />
-      もう一度
-    </button>
-  {:else}
+  <!-- こたえをみるボタン（公開前のみ） -->
+  {#if !$isOpen}
     <button type="button" class="btn preset-tonal" onclick={handleToggle} disabled={$pokeData === null}>
       <Icon icon="mdi:eye-outline" class="size-5" />
       こたえをみる

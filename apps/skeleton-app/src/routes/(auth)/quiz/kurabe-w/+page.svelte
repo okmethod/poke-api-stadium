@@ -41,10 +41,7 @@
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンおもさくらべ 改</h1>
 
-  <!-- よびだすボタン -->
-  <div class="flex flex-wrap items-center justify-center gap-4">
-    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
-  </div>
+  <SpawnButton onclick={handlePick} isLoading={$isLoading} started={$pokeDataList.length > 0} />
 
   <!-- ポケモン情報（左右） + シーソーキャンバス -->
   <div class="flex w-full max-w-2xl flex-col items-center gap-4">
@@ -76,11 +73,7 @@
       {/each}
     </div>
   {:else}
-    <div
-      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
-    >
-      <p class="text-sm">よびだすボタン を おしてね</p>
-    </div>
+    <p class="text-sm">はじめるボタン を おしてね</p>
   {/if}
 
   <!-- 回答ボタン（選出後・公開前のみ） -->

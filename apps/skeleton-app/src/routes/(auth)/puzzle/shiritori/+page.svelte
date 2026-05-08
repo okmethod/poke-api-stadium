@@ -51,14 +51,9 @@
   <div class="container mx-auto flex max-w-2xl flex-col items-center gap-4 p-4">
     <h1 class="h3 sm:h2">ポケモンしりとり</h1>
 
-    <!-- ヘッダー操作 -->
+    <!-- 操作ボタン -->
     <div class="flex flex-wrap items-center justify-center gap-3">
-      <SpawnButton
-        onclick={handleSpawn}
-        isLoading={$isLoading}
-        label={$pickedPokeItems.length === 0 ? "スタート" : "リセット"}
-        icon={$pickedPokeItems.length === 0 ? "mdi:pokeball" : "mdi:restart"}
-      />
+      <SpawnButton onclick={handleSpawn} isLoading={$isLoading} started={$pickedPokeItems.length > 0} />
       <span class="text-sm">{$pushedPokeItems.length} 体</span>
       <FloatingPanel.Trigger class="btn preset-tonal btn-sm" disabled={$pushedPokeItems.length === 0}>
         <Icon icon="mdi:format-list-numbered" class="size-5" />
@@ -82,7 +77,7 @@
       <div
         class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
       >
-        <p class="text-sm">スタートボタンを押してね</p>
+        <p class="text-sm">はじめるボタン を おしてね</p>
       </div>
     {/if}
 

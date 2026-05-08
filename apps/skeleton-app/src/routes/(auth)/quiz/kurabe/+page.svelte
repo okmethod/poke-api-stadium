@@ -65,15 +65,7 @@
   <!-- ゲーム設定 -->
   <div class="flex flex-wrap items-center justify-center gap-4">
     <div class="flex items-center gap-2">
-      <select bind:value={compareMode} onchange={handleCompareModeChange} class="select w-auto px-3 py-1">
-        {#each Object.entries(COMPARE_MODES) as [key, mode] (key)}
-          <option value={key}>{mode.name}</option>
-        {/each}
-      </select>
-      <span class="text-sm">で くらべる</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="text-sm">ポケモン を</span>
+      <span class="text-sm"></span>
       <input
         type="number"
         min={POKE_COUNT_MIN}
@@ -82,10 +74,17 @@
         onchange={handlePokeCountChange}
         class="input w-16 px-2 py-1 text-center"
       />
-      <span class="text-sm">たい よびだす</span>
+      <span class="text-sm">たいの ポケモンを</span>
     </div>
-
-    <SpawnButton onclick={handlePick} isLoading={$isLoading} />
+    <div class="flex items-center gap-2">
+      <select bind:value={compareMode} onchange={handleCompareModeChange} class="select w-auto px-3 py-1">
+        {#each Object.entries(COMPARE_MODES) as [key, mode] (key)}
+          <option value={key}>{mode.name}</option>
+        {/each}
+      </select>
+      <span class="text-sm">で くらべる</span>
+    </div>
+    <SpawnButton onclick={handlePick} isLoading={$isLoading} started={$pokeDataList.length > 0} />
   </div>
 
   <!-- ポケモン並べ替えエリア -->
@@ -103,20 +102,16 @@
         こたえをみる
       </button>
 
-      <!-- 結果メッセージ＋もう一度 -->
+      <!-- 結果メッセージ -->
       {#if $result !== null}
         <p class="text-xl font-bold">{$result.message}</p>
-        <button type="button" class="btn preset-tonal" onclick={handlePick}>
-          <Icon icon="mdi:restart" class="size-5" />
-          もう一度
-        </button>
       {/if}
     </div>
   {:else}
     <div
       class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
     >
-      <p class="text-sm">よびだすボタン を おしてね</p>
+      <p class="text-sm">はじめるボタン を おしてね</p>
     </div>
   {/if}
 </div>

@@ -36,13 +36,7 @@
   <h1 class="h3 sm:h2">ポケモンめくり</h1>
 
   <!-- スタートボタン -->
-  <SpawnButton
-    onclick={handleStart}
-    isLoading={$isLoading}
-    disabled={$isChecking}
-    label={$cards.length > 0 ? "もう一度" : "スタート"}
-    icon={$cards.length > 0 ? "mdi:restart" : "mdi:pokeball"}
-  />
+  <SpawnButton onclick={handleStart} isLoading={$isLoading} disabled={$isChecking} started={$cards.length > 0} />
 
   <!-- カードグリッド -->
   {#if $cards.length > 0}
@@ -53,7 +47,7 @@
     <div
       class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
     >
-      <p class="text-sm">スタートボタンを押してね</p>
+      <p class="text-sm">はじめるボタン を おしてね</p>
     </div>
   {/if}
 

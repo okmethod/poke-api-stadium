@@ -19,6 +19,7 @@
 
   let isReady = $state(false);
   let isSpawning = $state(false);
+  let hasSpawned = $state(false);
 
   // matchedCount が増えるたびに鳴き声を再生する
   let prevMatchedCount = 0;
@@ -48,6 +49,8 @@
     isSpawning = false;
     if (!result.success && result.error) {
       showErrorToast(result.error);
+    } else {
+      hasSpawned = true;
     }
   }
 </script>
@@ -55,10 +58,8 @@
 <div class="container mx-auto flex flex-col items-center gap-4 p-4">
   <h1 class="h3 sm:h2">ポケモンえあわせ</h1>
 
-  <!-- 操作ボタン -->
-  <div class="flex items-center gap-4">
-    <SpawnButton onclick={handleSpawn} isLoading={isSpawning} disabled={!isReady} />
-  </div>
+  <!-- スタートボタン -->
+  <SpawnButton onclick={handleSpawn} isLoading={isSpawning} disabled={!isReady} started={hasSpawned} />
 
   <!-- スコア -->
   <p class="text-surface-600 dark:text-surface-300 flex items-center gap-3 text-sm">
