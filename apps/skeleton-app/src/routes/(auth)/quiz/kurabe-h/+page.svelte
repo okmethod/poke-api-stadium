@@ -2,16 +2,16 @@
   import { get } from "svelte/store";
   import { onMount, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
-  import { dndzone, type DndEvent } from "svelte-dnd-action";
-  import { resolveImageUrl } from "$lib/domain/models/PokeData";
-  import { type DndPokeData, toDndItems } from "$lib/presentation/utils/dnd";
+  import DndSortablePokeTiles, {
+    toDndItems,
+    type DndPokeData,
+  } from "$lib/presentation/components/atoms/DndSortablePokeTiles.svelte";
   import { HeightComparison } from "$lib/application/usecases/HeightComparison";
   import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
-  import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
   import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
 
   const CANVAS_WIDTH = 400;
@@ -66,16 +66,6 @@
       else playSE.incorrect();
     }
   });
-
-  // ドラッグ中の仮並び順を反映（確定前）
-  function handleConsider(event: CustomEvent<DndEvent<DndPokeData>>): void {
-    orderedList = event.detail.items;
-  }
-
-  // ドロップ確定時に並び順を確定
-  function handleFinalize(event: CustomEvent<DndEvent<DndPokeData>>): void {
-    orderedList = event.detail.items;
-  }
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
@@ -88,22 +78,7 @@
 
   <!-- ポケモン並べ替えエリア（公開前のみ表示） -->
   {#if orderedList.length > 0 && !$isRevealed}
-    <!-- dndzone がコンテナを管理するため flex ラッパーとして使用 -->
-    <div
-      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl justify-center gap-4 overflow-x-auto rounded-xl border-2 border-dashed pb-1"
-      use:dndzone={{ items: orderedList, flipDurationMs: 200, dropTargetStyle: {} }}
-      onconsider={handleConsider}
-      onfinalize={handleFinalize}
-    >
-      {#each orderedList as pokeData, index (pokeData.id)}
-        {@const imageUrl = resolveImageUrl(pokeData.imageUrls)}
-        <div class="flex size-64 cursor-grab flex-col items-center justify-center gap-1 select-none">
-          <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
-          <p class="min-h-5 text-center font-bold">???</p>
-          <p class="text-surface-500 text-center">{index + 1} ばんめ</p>
-        </div>
-      {/each}
-    </div>
+    <DndSortablePokeTiles bind:items={orderedList} class="max-w-2xl" />
 
     <!-- 回答ボタン -->
     <button type="button" class="btn preset-tonal" onclick={handleReveal} disabled={isRevealing}>

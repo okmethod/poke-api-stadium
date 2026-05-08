@@ -1,10 +1,12 @@
 <script lang="ts">
   import { get } from "svelte/store";
   import Icon from "@iconify/svelte";
-  import { dndzone, type DndEvent } from "svelte-dnd-action";
   import type { PokeData } from "$lib/domain/models/PokeData";
   import { resolvedCryUrl, resolveImageUrl } from "$lib/domain/models/PokeData";
-  import { type DndPokeData, toDndItems } from "$lib/presentation/utils/dnd";
+  import DndSortablePokeTiles, {
+    toDndItems,
+    type DndPokeData,
+  } from "$lib/presentation/components/atoms/DndSortablePokeTiles.svelte";
   import { CryOrderQuiz } from "$lib/application/usecases/CryOrderQuiz";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
@@ -88,14 +90,6 @@
     }
   });
 
-  function handleConsider(event: CustomEvent<DndEvent<DndPokeData>>): void {
-    orderedList = event.detail.items;
-  }
-
-  function handleFinalize(event: CustomEvent<DndEvent<DndPokeData>>): void {
-    orderedList = event.detail.items;
-  }
-
   /** 答え合わせ後に正解順を返す */
   function correctOrder(): PokeData[] {
     const list = get(pokeDataList);
@@ -127,20 +121,7 @@
 
   <!-- ポケモン並べ替えエリア -->
   {#if orderedList.length > 0}
-    <div
-      class="border-surface-300 text-surface-400 flex min-h-48 w-full justify-center gap-4 overflow-x-auto rounded-xl border-2 border-dashed pb-1"
-      use:dndzone={{ items: orderedList, flipDurationMs: 200, dropTargetStyle: {} }}
-      onconsider={handleConsider}
-      onfinalize={handleFinalize}
-    >
-      {#each orderedList as pokeData, index (pokeData.id)}
-        {@const imageUrl = resolveImageUrl(pokeData.imageUrls)}
-        <div class="flex size-48 cursor-grab flex-col items-center justify-center gap-1 select-none sm:size-56">
-          <PokeTile name={pokeData.jaName} {imageUrl} type1={pokeData.type1} type2={pokeData.type2} />
-          <p class="text-surface-500 text-center text-sm">{index + 1} ばんめ</p>
-        </div>
-      {/each}
-    </div>
+    <DndSortablePokeTiles bind:items={orderedList} itemSize="sm" />
 
     <!-- 再生中インジケーター -->
     {#if isPlaying && currentCryIndex !== null}
