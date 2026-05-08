@@ -9,6 +9,7 @@
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
 
   const facade = new StatsSortingQuiz.Facade(getPokeRepository());
@@ -44,19 +45,7 @@
     facade.reset();
   }
 
-  // $effect は初回マウント時にも実行されるため、初回はスキップして変化時のみ SE を鳴らす
-  let seEffectReady = false;
-  $effect(() => {
-    const currentResult = $result;
-    if (!seEffectReady) {
-      seEffectReady = true;
-      return;
-    }
-    if (currentResult !== null) {
-      if (currentResult.isCorrect) playSE.correct();
-      else playSE.incorrect();
-    }
-  });
+  watchResultSE(() => $result, playSE);
 </script>
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">

@@ -3,22 +3,15 @@
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import MemoryCardGrid from "./_components/MemoryCardGrid.svelte";
 
   const facade = new MemoryGame.Facade(getPokeRepository());
-  const { isLoading, cards, isChecking, matchedPairCount, moveCount, totalPairCount, isGameClear } = MemoryGame.Store;
+  const { isLoading, cards, isChecking, matchedPairCount, moveCount, totalPairCount, isGameClear, lastMatchResult } =
+    MemoryGame.Store;
 
-  // クリア時に正解音を鳴らす（初回マウント時はスキップ）
-  let seEffectReady = false;
-  $effect(() => {
-    const cleared = $isGameClear;
-    if (!seEffectReady) {
-      seEffectReady = true;
-      return;
-    }
-    if (cleared) playSE.correct();
-  });
+  watchResultSE(() => $lastMatchResult, playSE);
 
   async function handleStart(): Promise<void> {
     const result = await facade.startGame(fetch);

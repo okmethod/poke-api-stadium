@@ -29,6 +29,7 @@ const matchedPairCountStore = writable<number>(0);
 const moveCountStore = writable<number>(0);
 const totalPairCountStore = writable<number>(0);
 const isGameClearStore = writable<boolean>(false);
+const lastMatchResultStore = writable<{ isCorrect: boolean } | null>(null);
 
 /** ローディング中かどうか（読み取り専用） */
 export const isLoading = readonly(isLoadingStore);
@@ -54,6 +55,9 @@ export const totalPairCount = readonly(totalPairCountStore);
 /** ゲームクリア済みかどうか（読み取り専用） */
 export const isGameClear = readonly(isGameClearStore);
 
+/** 直近のペア判定結果（null = 未判定）（読み取り専用） */
+export const lastMatchResult = readonly(lastMatchResultStore);
+
 /** Facade からのみ使用するストア書き込み API */
 export const storeWriter = {
   reset: () => {
@@ -65,6 +69,7 @@ export const storeWriter = {
     moveCountStore.set(0);
     totalPairCountStore.set(0);
     isGameClearStore.set(false);
+    lastMatchResultStore.set(null);
   },
   setIsLoading: (v: boolean) => isLoadingStore.set(v),
   setCards: (v: MemoryCard[]) => cardsStore.set(v),
@@ -76,4 +81,5 @@ export const storeWriter = {
   incrementMoveCount: () => moveCountStore.update((n) => n + 1),
   setTotalPairCount: (v: number) => totalPairCountStore.set(v),
   setIsGameClear: (v: boolean) => isGameClearStore.set(v),
+  setLastMatchResult: (v: { isCorrect: boolean } | null) => lastMatchResultStore.set(v),
 };

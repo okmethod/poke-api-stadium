@@ -12,6 +12,7 @@
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
+  import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
   import PokeTile from "$lib/presentation/components/atoms/PokeTile.svelte";
 
@@ -73,19 +74,7 @@
     facade.revealResult(orderedList, get(pokeDataList), get(crySequence));
   }
 
-  // $effect は初回マウント時にも実行されるため、初回はスキップして変化時のみ SE を鳴らす
-  let seEffectReady = false;
-  $effect(() => {
-    const currentResult = $result;
-    if (!seEffectReady) {
-      seEffectReady = true;
-      return;
-    }
-    if (currentResult !== null) {
-      if (currentResult.isCorrect) playSE.correct();
-      else playSE.incorrect();
-    }
-  });
+  watchResultSE(() => $result, playSE);
 
   /** 答え合わせ後に正解順を返す */
   function correctOrder(): PokeData[] {

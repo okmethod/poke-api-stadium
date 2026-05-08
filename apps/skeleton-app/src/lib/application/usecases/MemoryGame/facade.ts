@@ -62,7 +62,8 @@ export class MemoryGameFacade {
     const firstIdx = get(firstSelectedIndex);
 
     if (firstIdx === null) {
-      // 1枚目の選択
+      // 1枚目の選択: 前回の判定結果をリセット
+      storeWriter.setLastMatchResult(null);
       storeWriter.updateCard(index, { isFlipped: true });
       storeWriter.setFirstSelectedIndex(index);
       return;
@@ -81,11 +82,13 @@ export class MemoryGameFacade {
       storeWriter.updateCard(index, { isMatched: true });
       storeWriter.incrementMatchedPairCount();
       storeWriter.setIsChecking(false);
+      storeWriter.setLastMatchResult({ isCorrect: true });
       if (get(matchedPairCount) >= get(totalPairCount)) {
         storeWriter.setIsGameClear(true);
       }
     } else {
-      // 不一致: 一定時間後に裏返す
+      // 不一致: SE を即座に鳴らし、一定時間後に裏返す
+      storeWriter.setLastMatchResult({ isCorrect: false });
       setTimeout(() => {
         storeWriter.updateCard(firstIdx, { isFlipped: false });
         storeWriter.updateCard(index, { isFlipped: false });
