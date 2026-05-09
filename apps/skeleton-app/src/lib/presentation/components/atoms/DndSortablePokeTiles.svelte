@@ -47,7 +47,7 @@
 </script>
 
 <div
-  class="border-surface-300 text-surface-400 flex min-h-48 w-full justify-center gap-4 overflow-x-auto rounded-xl border-2 border-dashed pb-1 {className}"
+  class="border-surface-300 text-surface-400 flex min-h-48 w-full justify-center gap-4 overflow-x-auto rounded-xl border-1 border-dashed pb-1 {className}"
   use:dndzone={{ items, flipDurationMs, dropTargetStyle: {} }}
   onconsider={handleConsider}
   onfinalize={handleFinalize}

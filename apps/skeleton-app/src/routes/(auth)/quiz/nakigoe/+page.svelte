@@ -155,7 +155,7 @@
     {/if}
   {:else if !$isLoading}
     <div
-      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
+      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-1 border-dashed"
     >
       <p class="text-sm">はじめるボタン を おしてね</p>
     </div>

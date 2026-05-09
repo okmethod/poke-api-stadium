@@ -41,6 +41,7 @@
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">ポケモンおもさくらべ 改</h1>
 
+  <!-- スタートボタン -->
   <SpawnButton onclick={handlePick} isLoading={$isLoading} started={$pokeDataList.length > 0} />
 
   <!-- ポケモン情報（左右） + シーソーキャンバス -->

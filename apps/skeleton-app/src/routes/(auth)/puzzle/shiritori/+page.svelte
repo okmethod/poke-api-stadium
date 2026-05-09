@@ -51,19 +51,12 @@
   <div class="container mx-auto flex max-w-2xl flex-col items-center gap-4 p-4">
     <h1 class="h3 sm:h2">ポケモンしりとり</h1>
 
-    <!-- 操作ボタン -->
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      <SpawnButton onclick={handleSpawn} isLoading={$isLoading} started={$pickedPokeItems.length > 0} />
-      <span class="text-sm">{$pushedPokeItems.length} 体</span>
-      <FloatingPanel.Trigger class="btn preset-tonal btn-sm" disabled={$pushedPokeItems.length === 0}>
-        <Icon icon="mdi:format-list-numbered" class="size-5" />
-        リスト
-      </FloatingPanel.Trigger>
-    </div>
+    <!-- スタートボタン -->
+    <SpawnButton onclick={handleSpawn} isLoading={$isLoading} started={$pickedPokeItems.length > 0} />
 
     <!-- 候補ポケモン -->
     {#if $pickedPokeItems.length > 0}
-      <div class="flex flex-wrap justify-center gap-2 rounded-xl border bg-white p-3">
+      <div class="text-surface-400 flex flex-wrap justify-center gap-2 rounded-xl border bg-white p-3">
         {#each $pickedPokeItems as item (item.id)}
           <PokeChip
             name={item.jaName}
@@ -74,19 +67,23 @@
         {/each}
       </div>
     {:else}
-      <div
-        class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
-      >
-        <p class="text-sm">はじめるボタン を おしてね</p>
+      <div class="text-surface-400 h-full w-full max-w-sm rounded-lg border-1 border-dashed bg-white p-4 sm:max-w-md">
+        <p class="text-center text-sm">はじめるボタン を おしてね</p>
       </div>
     {/if}
 
     <!-- いれかえボタン -->
     {#if $pickedPokeItems.length > 0}
-      <button type="button" class="btn preset-tonal btn-sm" onclick={() => facade.refreshCandidates()}>
-        <Icon icon="mdi:shuffle" class="size-5" />
-        ポケモン を いれかえる
-      </button>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button type="button" class="btn preset-tonal btn-sm" onclick={() => facade.refreshCandidates()}>
+          <Icon icon="mdi:shuffle" class="size-5" />
+          ポケモン を いれかえる
+        </button>
+        <FloatingPanel.Trigger class="btn preset-tonal btn-sm" disabled={$pushedPokeItems.length === 0}>
+          <Icon icon="mdi:format-list-numbered" class="size-5" />
+          リスト ({$pushedPokeItems.length}体)
+        </FloatingPanel.Trigger>
+      </div>
     {/if}
 
     <!-- しりとりチェーン表示（Carousel） -->
@@ -101,7 +98,7 @@
           page={carouselPage}
           onPageChange={(e) => (carouselPage = e.page)}
         >
-          <div class="rounded-xl border bg-white p-4">
+          <div class="text-surface-400 rounded-xl border bg-white p-4">
             <Carousel.ItemGroup>
               {#each $pushedPokeItems as item, i (item.id)}
                 <Carousel.Item index={i} class="flex items-center justify-center">

@@ -37,10 +37,8 @@
       <MemoryCardGrid cards={$cards} onSelectCard={handleSelectCard} />
     </div>
   {:else}
-    <div
-      class="text-surface-400 border-surface-300 flex min-h-48 w-full max-w-2xl items-center justify-center rounded-xl border-2 border-dashed"
-    >
-      <p class="text-sm">はじめるボタン を おしてね</p>
+    <div class="text-surface-400 h-full w-full max-w-sm rounded-lg border-1 border-dashed bg-white p-4 sm:max-w-md">
+      <p class="text-center text-sm">はじめるボタン を おしてね</p>
     </div>
   {/if}
 
