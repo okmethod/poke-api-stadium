@@ -11,18 +11,25 @@
       target: "/puzzle/eawase",
     },
     {
-      label: "ポケモンめくり",
-      description: "同じポケモンのカードをめくって揃えよう",
-      iconItemKey: "timer-ball",
-      action: "navigate",
-      target: "/puzzle/mekuri",
-    },
-    {
       label: "ポケモンしりとり",
       description: "ポケモンの名前でしりとりしよう",
       iconItemKey: "heal-ball",
       action: "navigate",
       target: "/puzzle/shiritori",
+    },
+    {
+      label: "ポケモンめくり",
+      description: "カードをめくって同じポケモンを揃えよう",
+      iconItemKey: "nest-ball",
+      action: "navigate",
+      target: "/puzzle/mekuri",
+    },
+    {
+      label: "ポケモンめくり 改",
+      description: "カードをめくって同じタイプのポケモンを揃えよう",
+      iconItemKey: "net-ball",
+      action: "navigate",
+      target: "/puzzle/mekuri-kai",
     },
   ]);
 </script>
