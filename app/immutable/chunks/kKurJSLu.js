@@ -1,0 +1,1 @@
+import{b as e,r as o,g as a}from"./D3MSVHEh.js";import{p as r}from"./BXIyXvAV.js";const i="";function s(...n){return e+i+o(n[0],n[1])}function p(n,t){return a(s(n),t)}function l(n){const t=r.url.pathname.split("/").slice(0,-1).join("/");return a(t,n)}function f(n){return n.action==="navigate"?()=>p(n.target):()=>window.open(n.target,"_blank")}export{p as a,f as b,l as n};
