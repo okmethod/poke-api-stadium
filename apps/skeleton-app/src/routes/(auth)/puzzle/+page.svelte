@@ -31,6 +31,13 @@
       action: "navigate",
       target: "/puzzle/mekuri-kai",
     },
+    {
+      label: "スライドパズル",
+      description: "アートワークを15のピースに分けてスライドで完成させよう",
+      iconItemKey: "timer-ball",
+      action: "navigate",
+      target: "/puzzle/slide",
+    },
   ]);
 </script>
 
