@@ -1,0 +1,1 @@
+import{q as v,j as o,v as y,E as f,x as l,y as m,z as p,A as i,H as T,B as A}from"./DP7-9lkp.js";import{B as E}from"./CLiupA8M.js";function x(d,_,e){var s;o&&(s=A,y());var r=new E(d);v(()=>{var a=_()??null;if(o){var h=l(s),c=h===T,u=a!==null;if(c!==u){var t=m();p(t),r.anchor=t,i(!1),r.ensure(a,a&&(n=>e(n,a))),i(!0);return}}r.ensure(a,a&&(n=>e(n,a)))},f)}export{x as c};
