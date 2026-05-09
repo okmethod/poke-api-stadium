@@ -102,7 +102,7 @@
         {@const isDimmed = !isSelected && selectedTypes.length > 0}
         {@const isDisabled = !isSelected && selectedTypes.length >= MAX_TYPES}
         <button type="button" onclick={() => toggleType(type)} disabled={isDisabled} class:opacity-30={isDimmed}>
-          <PokeTypeBadge {type} size="xs" />
+          <PokeTypeBadge {type} size="md" iconOnly={true} />
         </button>
       {/each}
     </div>

@@ -62,6 +62,30 @@ export const pokeTypeJaName = (name: PokeTypeName): string => TYPE_JA[name];
 /** タイプ名に対応するカラー */
 export const pokeTypeColor = (name: PokeTypeName): string => TYPE_COLORS[name];
 
+const TYPE_IDS: Record<PokeTypeName, number> = {
+  normal: 1,
+  fighting: 2,
+  flying: 3,
+  poison: 4,
+  ground: 5,
+  rock: 6,
+  bug: 7,
+  ghost: 8,
+  steel: 9,
+  fire: 10,
+  water: 11,
+  grass: 12,
+  electric: 13,
+  psychic: 14,
+  ice: 15,
+  dragon: 16,
+  dark: 17,
+  fairy: 18,
+};
+
+/** タイプ名に対応する PokeAPI の数値 ID */
+export const pokeTypeId = (name: PokeTypeName): number => TYPE_IDS[name];
+
 /**
  * 文字列を PokeTypeName に変換する（未知の値は例外を投げる）
  *
