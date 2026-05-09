@@ -1,1 +1,0 @@
-import{d as i,w as e}from"./DP7-9lkp.js";const n=e(!1);function u(){return i(n)}function d(o){n.set(o),t||r()}let t=null;function r(){return t=new window.AudioContext,t}function s(){return!t||!u()?null:t}export{s as a,u as g,d as s};
