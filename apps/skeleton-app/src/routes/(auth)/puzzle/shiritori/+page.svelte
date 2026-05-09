@@ -61,8 +61,8 @@
           <PokeChip
             name={item.jaName}
             imageUrl={item.imageUrl}
-            closed={$usedids.has(item.id)}
-            onclick={() => handleChallenge(item)}
+            face={$usedids.has(item.id) ? "dimmed" : "front"}
+            onclick={$usedids.has(item.id) ? undefined : () => handleChallenge(item)}
           />
         {/each}
       </div>

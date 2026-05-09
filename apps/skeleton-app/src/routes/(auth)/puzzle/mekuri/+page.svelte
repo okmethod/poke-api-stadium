@@ -5,7 +5,7 @@
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
-  import MemoryCardGrid from "./_components/MemoryCardGrid.svelte";
+  import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
   const facade = new MemoryGame.Facade(getPokeRepository());
   const { isLoading, cards, isChecking, matchedPairCount, moveCount, totalPairCount, isGameClear, lastMatchResult } =
@@ -34,7 +34,16 @@
   <!-- カードグリッド -->
   {#if $cards.length > 0}
     <div class="h-full w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow sm:max-w-md">
-      <MemoryCardGrid cards={$cards} onSelectCard={handleSelectCard} />
+      <div class="grid grid-cols-4 gap-2">
+        {#each $cards as card, index (card.cardId)}
+          <PokeChip
+            name={card.pokeData.jaName}
+            imageUrl={card.pokeData.imageUrls.artwork.front}
+            face={card.isMatched ? "dimmed" : card.isFlipped ? "front" : "back"}
+            onclick={!card.isFlipped && !card.isMatched && !$isChecking ? () => handleSelectCard(index) : undefined}
+          />
+        {/each}
+      </div>
     </div>
   {:else}
     <div class="text-surface-400 h-full w-full max-w-sm rounded-lg border-1 border-dashed bg-white p-4 sm:max-w-md">
