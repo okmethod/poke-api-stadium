@@ -24,8 +24,8 @@ globs: "apps/**/*.ts"
 ## よく使うコマンド（apps/skeleton-app/ or apps/hono-server/ 内）
 
 ```bash
-npm run check    # tsc or svelte-check --tsconfig 
-npm run lint     # prettier check + eslint（+ tsc / svelte-check）
-npm run format   # prettier format
-npm run test:run # vitest run
+npm run check  # tsc or svelte-check --tsconfig 
+npm run lint   # prettier check + eslint（+ tsc / svelte-check）
+npm run format # prettier format
+npm run test   # vitest run
 ```

@@ -95,12 +95,12 @@ apps/skeleton-app/src/
 ## 開発コマンド（`apps/skeleton-app/` 内）
 
 ```bash
-npm run dev          # ローカル開発サーバー起動
-npm run lint         # prettier check + eslint + svelte-check
-npm run format       # prettier format
-npm run check        # svelte-check
-npm run test:run     # vitest run
-npm run test:e2e     # playwright test
+npm run dev      # ローカル開発サーバー起動
+npm run lint     # prettier check + eslint + svelte-check
+npm run format   # prettier format
+npm run check    # svelte-check
+npm run test     # vitest run
+npm run test:e2e # playwright test
 ```
 
 ---

@@ -119,11 +119,11 @@ curl -s -X POST http://localhost:8787/api/chat \
 ## 開発コマンド（`apps/hono-server/` 内）
 
 ```bash
-npm run dev      # ローカル開発サーバー起動（wrangler dev）
-npm run lint     # prettier check + eslint + tsc
-npm run format   # prettier format
-npm run check    # tsc --noEmit
-npm run test:run # vitest run
+npm run dev    # ローカル開発サーバー起動（wrangler dev）
+npm run lint   # prettier check + eslint + tsc
+npm run format # prettier format
+npm run check  # tsc --noEmit
+npm run test   # vitest run
 ```
 
 ---

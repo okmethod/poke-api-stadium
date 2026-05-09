@@ -13,8 +13,8 @@
     "check": "tsc --noEmit",
     "format": "prettier --write src tests",
     "lint": "prettier --check src tests && eslint src tests && npm run check",
-    "test": "vitest",
-    "test:run": "vitest run"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "hono": "^4.6.0",
