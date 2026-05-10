@@ -19,6 +19,45 @@ import { storeWriter, pokeDict, groupByHeadCharDict, pushedPokeItems, usedids, t
 const POKE_COUNT = 12;
 const POSSIBLE_POKE_COUNT = 4;
 
+// 特殊文字の変換マップ
+// prettier-ignore
+const NORMALIZE_MAP: Record<string, string> = {
+  'ガ': 'カ', 'ギ': 'キ', 'グ': 'ク', 'ゲ': 'ケ', 'ゴ': 'コ',
+  'ザ': 'サ', 'ジ': 'シ', 'ズ': 'ス', 'ゼ': 'セ', 'ゾ': 'ソ',
+  'ダ': 'タ', 'ヂ': 'チ', 'ヅ': 'ツ', 'デ': 'テ', 'ド': 'ト',
+  'バ': 'ハ', 'ビ': 'ヒ', 'ブ': 'フ', 'ベ': 'ヘ', 'ボ': 'ホ',
+  'パ': 'ハ', 'ピ': 'ヒ', 'プ': 'フ', 'ペ': 'ヘ', 'ポ': 'ホ',
+  'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
+  'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ', 'ッ': 'ツ',
+};
+
+// 無視する末尾文字の定義マップ
+const IGNORE_TAIL_CHARS = ["ー", "♀", "♂", "２", "Ｚ"];
+
+/** 濁点・半濁点・小文字をそれぞれの清音・大文字に正規化して返す */
+function normalizeChar(char: string): string {
+  return NORMALIZE_MAP[char] ?? char;
+}
+
+/** ポケモン名の先頭文字を正規化して返す */
+function getHeadChar(name: string): string {
+  return normalizeChar(name.slice(0, 1));
+}
+
+/** ポケモン名の末尾文字を正規化して返す */
+function getTailChar(name: string): string {
+  let tail = name.slice(-1);
+  if (IGNORE_TAIL_CHARS.includes(tail) && name.length > 1) {
+    tail = name.slice(-2, -1);
+  }
+  return normalizeChar(tail);
+}
+
+/** tailName の末尾文字と nextName の先頭文字が一致するか判定する */
+function solveShiritoriRule(tailName: string, nextName: string): boolean {
+  return getTailChar(tailName) === getHeadChar(nextName);
+}
+
 /** ポケモンしりとりのゲームロジックを担当する Facade */
 export class WordChainFacade {
   constructor(private readonly repository: IPokeRepository) {}
@@ -45,7 +84,7 @@ export class WordChainFacade {
 
       const groupByHeadChar: Record<string, number[]> = {};
       for (const item of Object.values(dict)) {
-        const head = WordChainFacade.getHeadChar(item.jaName);
+        const head = getHeadChar(item.jaName);
         (groupByHeadChar[head] ??= []).push(item.id);
       }
 
@@ -88,7 +127,7 @@ export class WordChainFacade {
     const gbc = get(groupByHeadCharDict);
     const used = get(usedids);
     const lastItem = pushed[pushed.length - 1]!;
-    const tailChar = this.getTailChar(lastItem.jaName);
+    const tailChar = getTailChar(lastItem.jaName);
 
     const allUnused = Object.values(dict).filter((item) => !used.has(item.id));
     const possibleUnused = (gbc[tailChar] ?? [])
@@ -117,8 +156,8 @@ export class WordChainFacade {
     const lastItem = pushed[pushed.length - 1];
     if (!lastItem) return null;
 
-    if (!this.solveShiritoriRule(lastItem.jaName, item.jaName)) {
-      this.updateMessage(pushed, this.getTailChar(lastItem.jaName));
+    if (!solveShiritoriRule(lastItem.jaName, item.jaName)) {
+      this.updateMessage(pushed, getTailChar(lastItem.jaName));
       return null;
     }
 
@@ -129,25 +168,6 @@ export class WordChainFacade {
     this.updateMessage(newPushed);
 
     return item.cryUrl;
-  }
-
-  /**
-   * ポケモン名の末尾文字を正規化して返す
-   *
-   * 「ー」「♀」「♂」「２」「Ｚ」で終わる場合はその手前の文字を使う。
-   */
-  private getTailChar(name: string): string {
-    let tail = name.slice(-1);
-    const ignoreChars = ["ー", "♀", "♂", "２", "Ｚ"];
-    if (ignoreChars.includes(tail) && name.length > 1) {
-      tail = name.slice(-2, -1);
-    }
-    return WordChainFacade.normalizeChar(tail);
-  }
-
-  /** tailName の末尾文字と nextName の先頭文字が一致するか判定する */
-  private solveShiritoriRule(tailName: string, nextName: string): boolean {
-    return this.getTailChar(tailName) === WordChainFacade.getHeadChar(nextName);
   }
 
   // errorTailChar 指定時は「〇から始まるポケモンを選んでね」メッセージを優先し、通常時はチェーン末尾から次の文字を案内する
@@ -163,7 +183,7 @@ export class WordChainFacade {
       return;
     }
 
-    const tailChar = this.getTailChar(tailItem.jaName);
+    const tailChar = getTailChar(tailItem.jaName);
     if (tailChar === "ン") {
       storeWriter.setMessage("ン で おわっちゃった...");
       return;
@@ -175,25 +195,5 @@ export class WordChainFacade {
       const msgs = ["そのちょうし！", "いいぞ！", "がんばれ！", "すごい！", "いけいけ！"];
       storeWriter.setMessage(`${msgs[getRandomNumber(msgs.length)]} つぎは 「${tailChar}」 から！`);
     }
-  }
-
-  /** 濁点・半濁点・小文字をそれぞれの清音・大文字に正規化して返す */
-  private static normalizeChar(char: string): string {
-    // prettier-ignore
-    const map: Record<string, string> = {
-      'ガ': 'カ', 'ギ': 'キ', 'グ': 'ク', 'ゲ': 'ケ', 'ゴ': 'コ',
-      'ザ': 'サ', 'ジ': 'シ', 'ズ': 'ス', 'ゼ': 'セ', 'ゾ': 'ソ',
-      'ダ': 'タ', 'ヂ': 'チ', 'ヅ': 'ツ', 'デ': 'テ', 'ド': 'ト',
-      'バ': 'ハ', 'ビ': 'ヒ', 'ブ': 'フ', 'ベ': 'ヘ', 'ボ': 'ホ',
-      'パ': 'ハ', 'ピ': 'ヒ', 'プ': 'フ', 'ペ': 'ヘ', 'ポ': 'ホ',
-      'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
-      'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ', 'ッ': 'ツ',
-    };
-    return map[char] ?? char;
-  }
-
-  /** ポケモン名の先頭文字を正規化して返す */
-  private static getHeadChar(name: string): string {
-    return WordChainFacade.normalizeChar(name.slice(0, 1));
   }
 }

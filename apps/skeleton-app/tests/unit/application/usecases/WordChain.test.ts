@@ -312,6 +312,105 @@ describe("WordChainFacade", () => {
       facade.challenge(fusigidane);
       expect(get(message)).toContain("ン");
     });
+
+    it("「♂」で終わるポケモン名はその手前の文字を tail として扱う", async () => {
+      // ライコウ♂(tail: ♂ → skip → ウ) → ウパー(head: ウ) が成立
+      const dict = {
+        "243": buildMockPokeData({ speciesId: 243, jaName: "ライコウ♂" }),
+        "186": buildMockPokeData({ speciesId: 186, jaName: "ウパー" }),
+      };
+      vi.mocked(mockRepo.getPokemons).mockResolvedValue(dict);
+      await facade.initialize(mockFetch);
+
+      const { storeWriter } = await import("$lib/application/usecases/WordChain/store");
+      const raikou = {
+        id: 243,
+        jaName: "ライコウ♂",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "electric" as const,
+        type2: null,
+      };
+      storeWriter.setPushedPokeItems([raikou]);
+      storeWriter.setUsedids(new Set([243]));
+
+      const upah = {
+        id: 186,
+        jaName: "ウパー",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "water" as const,
+        type2: null,
+      };
+      facade.challenge(upah);
+      expect(get(pushedPokeItems)).toHaveLength(2);
+    });
+
+    it("「２」で終わるポケモン名はその手前の文字を tail として扱う", async () => {
+      // カモネギ２(tail: ２ → skip → ギ → normalizeChar → キ) → キャタピー(head: キ) が成立
+      const dict = {
+        "83": buildMockPokeData({ speciesId: 83, jaName: "カモネギ２" }),
+        "10": buildMockPokeData({ speciesId: 10, jaName: "キャタピー" }),
+      };
+      vi.mocked(mockRepo.getPokemons).mockResolvedValue(dict);
+      await facade.initialize(mockFetch);
+
+      const { storeWriter } = await import("$lib/application/usecases/WordChain/store");
+      const kamonegi = {
+        id: 83,
+        jaName: "カモネギ２",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "normal" as const,
+        type2: null,
+      };
+      storeWriter.setPushedPokeItems([kamonegi]);
+      storeWriter.setUsedids(new Set([83]));
+
+      const caterpie = {
+        id: 10,
+        jaName: "キャタピー",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "bug" as const,
+        type2: null,
+      };
+      facade.challenge(caterpie);
+      expect(get(pushedPokeItems)).toHaveLength(2);
+    });
+
+    it("「Ｚ」で終わるポケモン名はその手前の文字を tail として扱う", async () => {
+      // ホウオウＺ(tail: Ｚ → skip → ウ) → ウパー(head: ウ) が成立
+      const dict = {
+        "250": buildMockPokeData({ speciesId: 250, jaName: "ホウオウＺ" }),
+        "186": buildMockPokeData({ speciesId: 186, jaName: "ウパー" }),
+      };
+      vi.mocked(mockRepo.getPokemons).mockResolvedValue(dict);
+      await facade.initialize(mockFetch);
+
+      const { storeWriter } = await import("$lib/application/usecases/WordChain/store");
+      const houou = {
+        id: 250,
+        jaName: "ホウオウＺ",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "fire" as const,
+        type2: null,
+      };
+      storeWriter.setPushedPokeItems([houou]);
+      storeWriter.setUsedids(new Set([250]));
+
+      const upah = {
+        id: 186,
+        jaName: "ウパー",
+        imageUrl: null,
+        cryUrl: null,
+        type1: "water" as const,
+        type2: null,
+      };
+      facade.challenge(upah);
+      expect(get(pushedPokeItems)).toHaveLength(2);
+    });
   });
 
   describe("updateMessage（メッセージ更新）", () => {
