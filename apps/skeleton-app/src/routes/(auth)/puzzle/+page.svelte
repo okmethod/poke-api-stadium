@@ -45,6 +45,13 @@
       action: "navigate",
       target: "/puzzle/typing",
     },
+    {
+      label: "ばつぐんラッシュ",
+      description: "出現するポケモンに効果ばつぐんな技を素早く選ぼう",
+      iconItemKey: "lure-ball",
+      action: "navigate",
+      target: "/puzzle/move-rush",
+    },
   ]);
 </script>
 
