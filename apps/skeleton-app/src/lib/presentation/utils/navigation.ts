@@ -10,7 +10,10 @@ export type AppPathname = ReturnType<AppTypes["Pathname"]>;
 
 /** base path を考慮したナビゲーション */
 export function navigateTo(path: AppPathname, options?: GotoOptions): Promise<void> {
-  return goto(resolve(path), options);
+  // resolve() はランタイムで Union 型を受け入れるが、
+  // ジェネリック rest 引数の Union 分配により svelte check で誤検知が発生するため cast する
+  const resolveUrl = resolve as unknown as (path: AppPathname) => string;
+  return goto(resolveUrl(path), options);
 }
 
 /** 現在のURLの最後のセグメントを除いた親パスへ遷移する */
