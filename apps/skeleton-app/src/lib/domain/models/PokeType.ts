@@ -113,3 +113,22 @@ export interface PokeTypeData {
   readonly color: string;
   readonly damageRelations: DamageRelations;
 }
+
+/**
+ * 攻撃タイプの DamageRelations を使って防御側への有効倍率を返す
+ *
+ * 複合タイプの場合は各タイプへの倍率の積を返す（4倍・0倍も正確に反映）。
+ */
+export function calcTypeEffectiveness(
+  damageRelations: DamageRelations,
+  defenderType1: PokeTypeName,
+  defenderType2: PokeTypeName | null,
+): number {
+  const multiplier = (defenderType: PokeTypeName): number => {
+    if (damageRelations.noDamageTo.includes(defenderType)) return 0;
+    if (damageRelations.doubleDamageTo.includes(defenderType)) return 2;
+    if (damageRelations.halfDamageTo.includes(defenderType)) return 0.5;
+    return 1;
+  };
+  return multiplier(defenderType1) * (defenderType2 !== null ? multiplier(defenderType2) : 1);
+}

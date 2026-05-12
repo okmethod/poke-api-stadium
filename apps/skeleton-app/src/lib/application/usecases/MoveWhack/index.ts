@@ -2,7 +2,7 @@
  * MoveWhack の再エクスポート
  */
 
-import { MoveWhackFacade, FIXED_MOVES, isSuperEffective } from "./facade";
+import { MoveWhackFacade, FIXED_MOVES } from "./facade";
 import * as storeFuncs from "./store";
 
 export const MoveWhack = {
@@ -11,5 +11,4 @@ export const MoveWhack = {
     ...storeFuncs,
   },
   FIXED_MOVES,
-  isSuperEffective,
 };

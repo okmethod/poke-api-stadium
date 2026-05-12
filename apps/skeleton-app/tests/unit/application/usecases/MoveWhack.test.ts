@@ -1,9 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { get } from "svelte/store";
-import { MoveWhackFacade, isSuperEffective } from "$lib/application/usecases/MoveWhack/facade";
+import { MoveWhackFacade } from "$lib/application/usecases/MoveWhack/facade";
 import { storeWriter, phase, activeSlots, score, misses, moveResult } from "$lib/application/usecases/MoveWhack/store";
+import { calcTypeEffectiveness } from "$lib/domain/models/PokeType";
+import type { DamageRelations, PokeTypeName } from "$lib/domain/models/PokeType";
 import { buildMockPokeData } from "../../../__testUtils__/mockPokeData";
 import { createMockRepository } from "../../../__testUtils__/mockRepository";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 
 vi.mock("$lib/application/utils/pokeSelectionUtils", () => ({
   selectRandomPokemons: vi.fn(),
@@ -18,37 +21,78 @@ const MOCK_POOL = Array.from({ length: 30 }, (_, i) =>
   buildMockPokeData({ pokeId: i + 10, type1: "normal", type2: null }),
 );
 
-describe("isSuperEffective", () => {
+// テスト用タイプ相性データ（Gen6+ 公式チャートの攻撃側3方向のみ）
+const MOCK_DR: Record<string, DamageRelations> = {
+  fire: {
+    doubleDamageTo: ["grass", "ice", "bug", "steel"],
+    halfDamageTo: ["fire", "water", "rock", "dragon"],
+    noDamageTo: [],
+    noDamageFrom: [],
+    halfDamageFrom: [],
+    doubleDamageFrom: [],
+  },
+  water: {
+    doubleDamageTo: ["fire", "ground", "rock"],
+    halfDamageTo: ["water", "grass", "dragon"],
+    noDamageTo: [],
+    noDamageFrom: [],
+    halfDamageFrom: [],
+    doubleDamageFrom: [],
+  },
+  grass: {
+    doubleDamageTo: ["water", "ground", "rock"],
+    halfDamageTo: ["fire", "grass", "poison", "flying", "bug", "dragon", "steel"],
+    noDamageTo: [],
+    noDamageFrom: [],
+    halfDamageFrom: [],
+    doubleDamageFrom: [],
+  },
+  electric: {
+    doubleDamageTo: ["water", "flying"],
+    halfDamageTo: ["electric", "grass", "dragon"],
+    noDamageTo: ["ground"],
+    noDamageFrom: [],
+    halfDamageFrom: [],
+    doubleDamageFrom: [],
+  },
+};
+
+const MOCK_TYPE_MAP = Object.fromEntries(
+  Object.entries(MOCK_DR).map(([name, dr]) => [
+    name,
+    { name: name as PokeTypeName, jaName: name, color: "#000", damageRelations: dr },
+  ]),
+);
+
+describe("calcTypeEffectiveness", () => {
   it.each([
-    { moveType: "fire" as const, type1: "grass" as const, type2: null, expected: true },
-    { moveType: "fire" as const, type1: "ice" as const, type2: null, expected: true },
-    { moveType: "fire" as const, type1: "bug" as const, type2: null, expected: true },
-    { moveType: "fire" as const, type1: "steel" as const, type2: null, expected: true },
-    { moveType: "fire" as const, type1: "water" as const, type2: null, expected: false },
-    { moveType: "water" as const, type1: "fire" as const, type2: null, expected: true },
-    { moveType: "water" as const, type1: "ground" as const, type2: null, expected: true },
-    { moveType: "water" as const, type1: "rock" as const, type2: null, expected: true },
-    { moveType: "water" as const, type1: "normal" as const, type2: null, expected: false },
-    { moveType: "grass" as const, type1: "water" as const, type2: null, expected: true },
-    { moveType: "electric" as const, type1: "water" as const, type2: null, expected: true },
-    { moveType: "electric" as const, type1: "flying" as const, type2: null, expected: true },
-    { moveType: "electric" as const, type1: "normal" as const, type2: null, expected: false },
-    // タイプ2が弱点の場合
-    { moveType: "fire" as const, type1: "water" as const, type2: "grass" as const, expected: true },
-    { moveType: "electric" as const, type1: "normal" as const, type2: "flying" as const, expected: true },
+    { moveType: "fire" as const, type1: "grass" as const, type2: null, expected: 2 },
+    { moveType: "fire" as const, type1: "ice" as const, type2: null, expected: 2 },
+    { moveType: "fire" as const, type1: "water" as const, type2: null, expected: 0.5 },
+    { moveType: "water" as const, type1: "fire" as const, type2: null, expected: 2 },
+    { moveType: "water" as const, type1: "normal" as const, type2: null, expected: 1 },
+    { moveType: "electric" as const, type1: "water" as const, type2: null, expected: 2 },
+    { moveType: "electric" as const, type1: "flying" as const, type2: null, expected: 2 },
+    { moveType: "electric" as const, type1: "normal" as const, type2: null, expected: 1 },
+    // 複合タイプ: 倍率の積
+    { moveType: "fire" as const, type1: "water" as const, type2: "grass" as const, expected: 1 }, // 0.5 × 2 = 1
+    { moveType: "electric" as const, type1: "normal" as const, type2: "flying" as const, expected: 2 }, // 1 × 2 = 2
+    { moveType: "electric" as const, type1: "ground" as const, type2: null, expected: 0 }, // 無効
   ])("$moveType vs $type1/$type2 → $expected", ({ moveType, type1, type2, expected }) => {
-    const poke = buildMockPokeData({ type1, type2 });
-    expect(isSuperEffective(moveType, poke)).toBe(expected);
+    expect(calcTypeEffectiveness(MOCK_DR[moveType]!, type1, type2)).toBe(expected);
   });
 });
 
 describe("MoveWhackFacade", () => {
   let facade: MoveWhackFacade;
+  let mockRepo: IPokeRepository;
 
   beforeEach(() => {
     vi.useFakeTimers();
     storeWriter.reset();
-    facade = new MoveWhackFacade(createMockRepository());
+    mockRepo = createMockRepository();
+    vi.mocked(mockRepo.getTypes).mockResolvedValue(MOCK_TYPE_MAP);
+    facade = new MoveWhackFacade(mockRepo);
     vi.mocked(selectRandomPokemons).mockResolvedValue([...MOCK_POOL]);
   });
 

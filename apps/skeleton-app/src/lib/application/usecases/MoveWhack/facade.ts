@@ -4,8 +4,6 @@
  * TODO:
  * - わざはかえんほうしゃ、なみのり、はっぱカッター、10まんボルトなど、タイプごとに1つ実在のわざを用意する
  * - 複数タイプのわざから4つ選択できるようにする（現在は固定で4種）
- * - タイプ相性の判定ロジックをドメイン層に移す（現状は Facade 内の静的データで完結させている）
- * - タイプ相性の判定は複合タイプを考慮する
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
@@ -17,7 +15,8 @@ import { get } from "svelte/store";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import type { PokeData } from "$lib/domain/models/PokeData";
-import type { PokeTypeName } from "$lib/domain/models/PokeType";
+import type { DamageRelations } from "$lib/domain/models/PokeType";
+import { calcTypeEffectiveness } from "$lib/domain/models/PokeType";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { storeWriter, phase, activeSlots, GAME_DURATION_MS, MAX_ACTIVE_SLOTS } from "./store";
@@ -28,15 +27,6 @@ const SPAWN_INTERVAL_MS = 1_500;
 const SLOT_DURATION_MS = 3_000;
 const FEEDBACK_DURATION_MS = 800;
 
-// 4種固定わざのタイプ相性（2倍ダメージを与えられる相手タイプ）
-// PokeAPI の damageRelations と同値だが、ゲーム開始時の API 呼び出しを省くため静的に定義する
-const SUPER_EFFECTIVE_AGAINST: Record<FixedMoveType, PokeTypeName[]> = {
-  fire: ["grass", "ice", "bug", "steel"],
-  water: ["fire", "ground", "rock"],
-  grass: ["water", "ground", "rock"],
-  electric: ["water", "flying"],
-};
-
 /** UI に表示する固定わざの定義 */
 export const FIXED_MOVES: { readonly type: FixedMoveType; readonly jaName: string }[] = [
   { type: "fire", jaName: "ほのお" },
@@ -44,12 +34,6 @@ export const FIXED_MOVES: { readonly type: FixedMoveType; readonly jaName: strin
   { type: "grass", jaName: "くさ" },
   { type: "electric", jaName: "でんき" },
 ];
-
-/** わざがポケモンに対して2倍ダメージか判定する */
-export function isSuperEffective(moveType: FixedMoveType, pokeData: PokeData): boolean {
-  const targets = SUPER_EFFECTIVE_AGAINST[moveType];
-  return targets.includes(pokeData.type1) || (pokeData.type2 !== null && targets.includes(pokeData.type2));
-}
 
 /**
  * わざ叩きゲームの全操作を提供する Facade
@@ -60,6 +44,7 @@ export function isSuperEffective(moveType: FixedMoveType, pokeData: PokeData): b
 export class MoveWhackFacade {
   private pool: PokeData[] = [];
   private poolIndex = 0;
+  private damageRelationsMap = new Map<FixedMoveType, DamageRelations>();
   private spawnTimer: ReturnType<typeof setInterval> | null = null;
   private gameEndTimer: ReturnType<typeof setTimeout> | null = null;
   private feedbackTimer: ReturnType<typeof setTimeout> | null = null;
@@ -77,11 +62,19 @@ export class MoveWhackFacade {
     this.dispose();
     storeWriter.reset();
     return withLoadingGuard(
-      () => selectRandomPokemons(this.repository, fetchFn, POKE_POOL_SIZE),
+      () =>
+        Promise.all([
+          selectRandomPokemons(this.repository, fetchFn, POKE_POOL_SIZE),
+          this.repository.getTypes(
+            fetchFn,
+            FIXED_MOVES.map((m) => m.type),
+          ),
+        ]),
       (v) => storeWriter.setIsLoading(v),
-      (pokemons) => {
+      ([pokemons, typeMap]) => {
         this.pool = pokemons;
         this.poolIndex = 0;
+        this.damageRelationsMap = new Map(FIXED_MOVES.map((m) => [m.type, typeMap[m.type]!.damageRelations]));
         const now = Date.now();
         storeWriter.setGameEndMs(now + GAME_DURATION_MS);
         storeWriter.setPhase("playing");
@@ -101,8 +94,10 @@ export class MoveWhackFacade {
   selectMove(moveType: FixedMoveType): void {
     if (get(phase) !== "playing") return;
 
+    const dr = this.damageRelationsMap.get(moveType);
+    if (!dr) return;
     const slots = get(activeSlots);
-    const hitSlot = slots.find((s) => isSuperEffective(moveType, s.pokeData));
+    const hitSlot = slots.find((s) => calcTypeEffectiveness(dr, s.pokeData.type1, s.pokeData.type2) > 1);
 
     if (hitSlot !== undefined) {
       this.removeSlotAt(hitSlot.position);
