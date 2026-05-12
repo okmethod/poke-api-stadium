@@ -48,7 +48,9 @@ interface StarterSet {
 /**
  * 三すくみの勝敗を判定する
  *
- * fire > grass > water > fire の循環関係
+ * fire > grass > water > fire の循環関係。
+ * ドメイン層の calcTypeEffectiveness は「APIから取得した DamageRelations」を前提とするが、
+ * このゲームの三すくみは API 依存を持ち込まず、ゲームロジックとして独立して記述する。
  */
 export function judgeJanken(playerType: StarterType, opponentType: StarterType): "win" | "lose" | "draw" {
   if (playerType === opponentType) return "draw";
