@@ -203,24 +203,25 @@ describe("TypeJankenFacade", () => {
       expect(get(roundCount)).toBe(countAfterFirst);
     });
 
-    it(`${TOTAL_ROUNDS} ラウンド完了後に isGameOver が true になる`, async () => {
+    it(`${TOTAL_ROUNDS} 問正解後に isGameOver が true になる`, async () => {
       await setupGame();
 
       for (let i = 0; i < TOTAL_ROUNDS; i++) {
-        facade.selectType("grass");
+        const correct = get(currentPokemon)!.correctType;
+        facade.selectType(correct);
         if (i < TOTAL_ROUNDS - 1) {
           facade.nextRound();
         }
       }
 
       expect(get(isGameOver)).toBe(true);
-      expect(get(roundCount)).toBe(TOTAL_ROUNDS);
+      expect(get(score)).toBe(TOTAL_ROUNDS);
     });
 
     it("ゲーム終了後は selectType を無視する", async () => {
       await setupGame();
       for (let i = 0; i < TOTAL_ROUNDS; i++) {
-        facade.selectType("grass");
+        facade.selectType(get(currentPokemon)!.correctType);
         if (i < TOTAL_ROUNDS - 1) facade.nextRound();
       }
       const scoreBefore = get(score);
