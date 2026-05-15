@@ -96,6 +96,7 @@ export class TypeJankenFacade {
   private starterSet: StarterSet | null = null;
   private pokemonPool: Map<number, PokeData> = new Map();
   private difficulty: "easy" | "hard" = "hard";
+  private lastPokemonId: number | null = null;
 
   constructor(private readonly repository: IPokeRepository) {}
 
@@ -157,13 +158,23 @@ export class TypeJankenFacade {
   nextRound(): void {
     if (!this.starterSet) return;
 
-    const randomType = STARTER_TYPES[getRandomNumber(3)]!;
-    const randomStage: EvolutionStage = this.difficulty === "easy" ? "stage2" : EVOLUTION_STAGES[getRandomNumber(2)]!;
-    const ids = this.starterSet[randomType];
-    const id = randomStage === "basic" ? ids.basicId : ids.stage2Id;
+    // 同じポケモンが2回連続で出ないよう再抽選（最大5回）
+    let randomType: StarterType;
+    let randomStage: EvolutionStage;
+    let id: number;
+    let attempts = 0;
+    do {
+      randomType = STARTER_TYPES[getRandomNumber(3)]!;
+      randomStage = this.difficulty === "easy" ? "stage2" : EVOLUTION_STAGES[getRandomNumber(2)]!;
+      const ids = this.starterSet[randomType];
+      id = randomStage === "basic" ? ids.basicId : ids.stage2Id;
+      attempts++;
+    } while (id === this.lastPokemonId && attempts < 5);
+
     const pokeData = this.pokemonPool.get(id);
     if (!pokeData) return;
 
+    this.lastPokemonId = id;
     const correctType = getCorrectType(randomType, randomStage);
     storeWriter.setCurrentPokemon({ pokeData, starterType: randomType, stage: randomStage, correctType });
     storeWriter.setRoundResult(null);
@@ -171,6 +182,7 @@ export class TypeJankenFacade {
 
   /** ゲームをリセットして初期状態に戻す */
   resetGame(): void {
+    this.lastPokemonId = null;
     storeWriter.reset();
   }
 
