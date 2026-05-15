@@ -1,10 +1,8 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { ITEM_POCKETS } from "$lib/domain/models/PokeItem";
   import { itemSpriteUrl } from "$lib/infrastructure/api/pokeSprites";
-  import { navigateToParent } from "$lib/presentation/utils/navigation";
 
   /** アイテムポケット enName をキーとするアイコン用アイテムキー辞書 */
   const ITEM_POCKET_ICONS: Record<string, string> = {
@@ -28,11 +26,6 @@
 
 <div class="container mx-auto flex flex-col items-center gap-6 p-4">
   <h1 class="h3 sm:h2">アイテム図鑑</h1>
-
-  <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateToParent()}>
-    <Icon icon="mdi:arrow-left" class="size-4" />
-    図鑑メニュー
-  </button>
 
   <div class="grid w-full max-w-2xl grid-cols-2 gap-3">
     {#each ITEM_POCKETS as pocket (pocket.enName)}

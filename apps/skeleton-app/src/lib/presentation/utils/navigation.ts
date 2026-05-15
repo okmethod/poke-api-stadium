@@ -1,6 +1,5 @@
 import { goto } from "$app/navigation";
 import { resolve } from "$app/paths";
-import { page } from "$app/state";
 import type { AppTypes } from "$app/types";
 
 type GotoOptions = Parameters<typeof goto>[1];
@@ -14,12 +13,6 @@ export function navigateTo(path: AppPathname, options?: GotoOptions): Promise<vo
   // ジェネリック rest 引数の Union 分配により svelte check で誤検知が発生するため cast する
   const resolveUrl = resolve as unknown as (path: AppPathname) => string;
   return goto(resolveUrl(path), options);
-}
-
-/** 現在のURLの最後のセグメントを除いた親パスへ遷移する */
-export function navigateToParent(options?: GotoOptions): Promise<void> {
-  const parentPath = page.url.pathname.split("/").slice(0, -1).join("/");
-  return goto(parentPath, options);
 }
 
 /** クリック時のナビゲーション先（アプリ内遷移 or 新タブ外部リンク） */

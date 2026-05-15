@@ -1,6 +1,5 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { navigateToParent } from "$lib/presentation/utils/navigation";
   import type { PokeItem } from "$lib/domain/models/PokeItem";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
 
@@ -46,13 +45,7 @@
 <div class="container mx-auto flex flex-col items-center gap-4 p-4">
   <h1 class="h3 sm:h2">アイテム図鑑</h1>
 
-  <div class="flex w-full max-w-4xl items-center gap-3">
-    <button type="button" class="btn preset-tonal btn-sm" onclick={() => navigateToParent()}>
-      <Icon icon="mdi:arrow-left" class="size-4" />
-      ポケット一覧
-    </button>
-    <h2 class="text-lg font-bold">{data.pocket.jaName}</h2>
-  </div>
+  <h2 class="w-full max-w-4xl text-lg font-bold">{data.pocket.jaName}</h2>
 
   <div class="flex w-full max-w-4xl flex-col gap-2">
     {#each data.categories as category (category.enName)}

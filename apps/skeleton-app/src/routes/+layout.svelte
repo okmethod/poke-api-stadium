@@ -1,11 +1,12 @@
 <script lang="ts">
   import "../app.css";
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import { Portal, Toast } from "@skeletonlabs/skeleton-svelte";
   import Icon from "@iconify/svelte";
   import { applyTheme } from "$lib/presentation/stores/themeStore";
   import { toaster } from "$lib/presentation/utils/toaster";
-  import { navigateTo } from "$lib/presentation/utils/navigation";
   import { starterIconUrlStore } from "$lib/application/stores/generationStore";
   import AudioToggle from "$lib/presentation/components/buttons/AudioToggle.svelte";
   import SettingsModal from "$lib/presentation/components/modals/SettingsModal.svelte";
@@ -20,6 +21,34 @@
     await Promise.all([applyTheme(), wait(500)]);
     isLoaded = true;
   });
+
+  const ROUTE_LABELS: Record<string, string> = {
+    zukan: "ずかん",
+    quiz: "クイズ",
+    card: "カード",
+    puzzle: "パズル",
+    action: "アクション",
+    other: "その他",
+    poke: "ポケモン図鑑",
+    move: "わざ図鑑",
+    item: "アイテム図鑑",
+  };
+
+  // page.route.id から route グループ "(xxx)" を除いたセグメントを取得（base path 非依存）
+  const routeSegments = $derived((page.route.id ?? "").split("/").filter((s) => s.length > 0 && !/^\(.*\)$/.test(s)));
+
+  const backLabel = $derived(
+    routeSegments.length >= 2 ? (ROUTE_LABELS[routeSegments[routeSegments.length - 2]!] ?? "戻る") : "Home",
+  );
+
+  // 現在の URL pathname からセグメントを除去して戻り先を算出
+  const backPath = $derived(
+    (() => {
+      const parts = page.url.pathname.split("/");
+      const removeCount = routeSegments.length >= 2 ? 1 : routeSegments.length;
+      return parts.slice(0, parts.length - removeCount).join("/") || "/";
+    })(),
+  );
 </script>
 
 <svelte:head>
@@ -50,11 +79,11 @@
           <ul class="flex items-center justify-center space-x-4">
             <li>
               <button
-                class="btn preset-filled flex h-10 w-28 items-center gap-1 rounded-xl"
-                onclick={() => navigateTo("/")}
+                class="btn preset-filled flex h-10 items-center gap-1 rounded-xl px-3"
+                onclick={() => goto(backPath)}
               >
-                <Icon icon="mdi:home-outline" class="size-5" />
-                <span>Home</span>
+                <Icon icon={backLabel === "Home" ? "mdi:home-outline" : "mdi:arrow-left"} class="size-5" />
+                <span>{backLabel}</span>
               </button>
             </li>
             <li>
