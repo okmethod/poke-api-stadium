@@ -6,6 +6,18 @@
   import { itemSpriteUrl } from "$lib/infrastructure/api/pokeSprites";
   import { navigateToParent } from "$lib/presentation/utils/navigation";
 
+  /** アイテムポケット enName をキーとするアイコン用アイテムキー辞書 */
+  const ITEM_POCKET_ICONS: Record<string, string> = {
+    misc: "poke-doll",
+    medicine: "potion",
+    pokeballs: "poke-ball",
+    machines: "tm-normal",
+    berries: "sitrus-berry",
+    mail: "reply-mail",
+    battle: "dire-hit",
+    key: "super-rod",
+  } as const;
+
   // 指定ポケットのアイテムページへ遷移する
   function gotoItemZukanByPocket(pocketEnName: string) {
     const segments = page.url.pathname.split("/");
@@ -28,7 +40,7 @@
         onclick={() => gotoItemZukanByPocket(pocket.enName)}
         class="btn preset-tonal flex items-center justify-start gap-1 border pl-1 sm:pl-4"
       >
-        <img src={itemSpriteUrl(pocket.iconItemKey)} alt="" class="h-6 w-6 object-contain" />
+        <img src={itemSpriteUrl(ITEM_POCKET_ICONS[pocket.enName] ?? "")} alt="" class="h-6 w-6 object-contain" />
         <span class="text-base">{pocket.jaName}</span>
       </button>
     {/each}
