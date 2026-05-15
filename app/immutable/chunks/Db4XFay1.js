@@ -1,0 +1,1 @@
+const e=[{id:1,enName:"misc",jaName:"どうぐ"},{id:2,enName:"medicine",jaName:"かいふく"},{id:3,enName:"pokeballs",jaName:"ボール"},{id:4,enName:"machines",jaName:"わざマシン"},{id:5,enName:"berries",jaName:"きのみ"},{id:6,enName:"mail",jaName:"メール"},{id:7,enName:"battle",jaName:"せんとう"},{id:8,enName:"key",jaName:"たいせつなもの"}];export{e as I};
