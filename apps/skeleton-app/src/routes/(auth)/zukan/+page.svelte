@@ -20,7 +20,7 @@
     {
       label: "アイテム図鑑",
       description: "各ポケットのアイテムの一覧を表示し、情報を確認できます",
-      iconItemKey: "super-rod",
+      iconItemKey: "rare-candy",
       action: "navigate",
       target: "/zukan/item",
     },

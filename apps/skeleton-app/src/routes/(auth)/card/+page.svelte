@@ -4,24 +4,24 @@
 
   const { menuItems } = buildMenuLoad([
     {
-      label: "ポケモンしりとり",
-      description: "ポケモンの名前でしりとりしよう",
-      iconItemKey: "heal-ball",
+      label: "ポケモンめくり",
+      description: "カードをめくって同じポケモンを揃えよう",
+      iconItemKey: "nest-ball",
       action: "navigate",
-      target: "/puzzle/shiritori",
+      target: "/card/mekuri",
     },
     {
-      label: "スライドパズル",
-      description: "アートワークを15のピースに分けてスライドで完成させよう",
-      iconItemKey: "timer-ball",
+      label: "ポケモンめくり 改",
+      description: "カードをめくって同じタイプのポケモンを揃えよう",
+      iconItemKey: "net-ball",
       action: "navigate",
-      target: "/puzzle/slide",
+      target: "/card/mekuri-kai",
     },
   ]);
 </script>
 
 <div class="flex flex-col items-center p-4">
-  <h2 class="h3 sm:h2 my-4">パズルゲーム</h2>
+  <h2 class="h3 sm:h2 my-4">カードゲーム</h2>
 
   <div class="grid w-full max-w-sm grid-cols-1 gap-4 md:max-w-xl md:grid-cols-2">
     {#each menuItems as item (item.label)}

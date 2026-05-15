@@ -14,7 +14,7 @@
     {onclick}
     class="card preset-tonal card-hover flex h-auto w-full flex-col items-center gap-3 border px-4 py-6"
   >
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-0 sm:gap-2">
       <img src={iconSrc} alt="" class="h-10 w-10 object-contain" />
       <span class="text-xl font-semibold">{label}</span>
     </div>
