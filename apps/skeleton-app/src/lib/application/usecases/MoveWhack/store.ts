@@ -9,11 +9,15 @@
 
 import { writable, readonly } from "svelte/store";
 import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PokeTypeName } from "$lib/domain/models/PokeType";
 
 export type GamePhase = "idle" | "playing" | "result";
 
-/** 4種固定のわざタイプ */
-export type FixedMoveType = "fire" | "water" | "grass" | "electric";
+/** ゲームで使用するわざ（タイプ名 + 実在のわざ名） */
+export interface ActiveMove {
+  readonly type: PokeTypeName;
+  readonly moveName: string;
+}
 
 /** ゲームに出現するポケモンスロット（MAX_ACTIVE_SLOTS 個の固定ポジション） */
 export interface ActiveSlot {
@@ -36,6 +40,7 @@ export const MAX_ACTIVE_SLOTS = 4;
 const isLoadingStore = writable<boolean>(false);
 const phaseStore = writable<GamePhase>("idle");
 const activeSlotsStore = writable<ActiveSlot[]>([]);
+const activeMovesStore = writable<ActiveMove[]>([]);
 const scoreStore = writable<number>(0);
 const missesStore = writable<number>(0);
 const gameEndMsStore = writable<number | null>(null);
@@ -47,6 +52,8 @@ export const isLoading = readonly(isLoadingStore);
 export const phase = readonly(phaseStore);
 /** アクティブスロット一覧（読み取り専用） */
 export const activeSlots = readonly(activeSlotsStore);
+/** 今回のゲームで使用するわざ一覧（読み取り専用） */
+export const activeMoves = readonly(activeMovesStore);
 /** スコア（読み取り専用） */
 export const score = readonly(scoreStore);
 /** おてつき回数（読み取り専用） */
@@ -62,6 +69,7 @@ export const storeWriter = {
     isLoadingStore.set(false);
     phaseStore.set("idle");
     activeSlotsStore.set([]);
+    activeMovesStore.set([]);
     scoreStore.set(0);
     missesStore.set(0);
     gameEndMsStore.set(null);
@@ -70,6 +78,7 @@ export const storeWriter = {
   setIsLoading: (value: boolean) => isLoadingStore.set(value),
   setPhase: (value: GamePhase) => phaseStore.set(value),
   setActiveSlots: (value: ActiveSlot[]) => activeSlotsStore.set(value),
+  setActiveMoves: (value: ActiveMove[]) => activeMovesStore.set(value),
   addSlot: (slot: ActiveSlot) => activeSlotsStore.update((slots) => [...slots, slot]),
   removeSlotAt: (position: number) => activeSlotsStore.update((slots) => slots.filter((s) => s.position !== position)),
   incrementScore: () => scoreStore.update((n) => n + 1),

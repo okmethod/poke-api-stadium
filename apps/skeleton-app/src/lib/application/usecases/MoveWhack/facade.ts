@@ -1,10 +1,6 @@
 /**
  * ばつぐんモグラ叩きゲームの全操作コマンドの唯一の入り口
  *
- * TODO:
- * - わざはかえんほうしゃ、なみのり、はっぱカッター、10まんボルトなど、タイプごとに1つ実在のわざを用意する
- * - 複数タイプのわざから4つ選択できるようにする（現在は固定で4種）
- *
  * @architecture レイヤー間依存ルール - アプリ層 (Facade)
  * - ROLE: ゲーム進行制御、プレゼン層へのゲーム操作手段の提供
  * - ALLOWED: ドメイン層への依存、アプリ層ストアへの依存、アプリ層 Port への依存
@@ -15,24 +11,37 @@ import { get } from "svelte/store";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import type { PokeData } from "$lib/domain/models/PokeData";
-import type { DamageRelations } from "$lib/domain/models/PokeType";
+import type { PokeTypeName, DamageRelations } from "$lib/domain/models/PokeType";
 import { calcTypeEffectiveness } from "$lib/domain/models/PokeType";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
 import { storeWriter, phase, activeSlots, GAME_DURATION_MS, MAX_ACTIVE_SLOTS } from "./store";
-import type { FixedMoveType, MoveResult } from "./store";
+import type { ActiveMove, MoveResult } from "./store";
 
 const POKE_POOL_SIZE = 30;
 const SPAWN_INTERVAL_MS = 1_500;
 const SLOT_DURATION_MS = 3_000;
 const FEEDBACK_DURATION_MS = 800;
 
-/** UI に表示する固定わざの定義 */
-export const FIXED_MOVES: { readonly type: FixedMoveType; readonly jaName: string }[] = [
-  { type: "fire", jaName: "ほのお" },
-  { type: "water", jaName: "みず" },
-  { type: "grass", jaName: "くさ" },
-  { type: "electric", jaName: "でんき" },
+/** ゲームで選択可能なわざのプール（ノーマルは抜き技 x2 対象なし のため除外） */
+export const MOVE_POOL: readonly ActiveMove[] = [
+  { type: "fire", moveName: "かえんほうしゃ" },
+  { type: "water", moveName: "なみのり" },
+  { type: "electric", moveName: "10まんボルト" },
+  { type: "grass", moveName: "はっぱカッター" },
+  { type: "ice", moveName: "れいとうビーム" },
+  { type: "fighting", moveName: "かわらわり" },
+  { type: "poison", moveName: "ヘドロばくだん" },
+  { type: "ground", moveName: "じしん" },
+  { type: "flying", moveName: "そらをとぶ" },
+  { type: "psychic", moveName: "サイコキネシス" },
+  { type: "bug", moveName: "むしのさざめき" },
+  { type: "rock", moveName: "いわなだれ" },
+  { type: "ghost", moveName: "シャドーボール" },
+  { type: "dragon", moveName: "りゅうせいぐん" },
+  { type: "dark", moveName: "あくのはどう" },
+  { type: "steel", moveName: "アイアンヘッド" },
+  { type: "fairy", moveName: "ムーンフォース" },
 ];
 
 /**
@@ -44,7 +53,7 @@ export const FIXED_MOVES: { readonly type: FixedMoveType; readonly jaName: strin
 export class MoveWhackFacade {
   private pool: PokeData[] = [];
   private poolIndex = 0;
-  private damageRelationsMap = new Map<FixedMoveType, DamageRelations>();
+  private damageRelationsMap = new Map<PokeTypeName, DamageRelations>();
   private spawnTimer: ReturnType<typeof setInterval> | null = null;
   private gameEndTimer: ReturnType<typeof setTimeout> | null = null;
   private feedbackTimer: ReturnType<typeof setTimeout> | null = null;
@@ -58,23 +67,25 @@ export class MoveWhackFacade {
    *
    * 既存のタイマーを破棄し、ポケモンプールを取得してスポーンを開始する。
    */
-  async startGame(fetchFn: typeof fetch): Promise<FacadeResult> {
+  async startGame(fetchFn: typeof fetch, moves: ActiveMove[]): Promise<FacadeResult> {
     this.dispose();
     storeWriter.reset();
+    const selected = moves;
     return withLoadingGuard(
       () =>
         Promise.all([
           selectRandomPokemons(this.repository, fetchFn, POKE_POOL_SIZE),
           this.repository.getTypes(
             fetchFn,
-            FIXED_MOVES.map((m) => m.type),
+            selected.map((m) => m.type),
           ),
         ]),
       (v) => storeWriter.setIsLoading(v),
       ([pokemons, typeMap]) => {
         this.pool = pokemons;
         this.poolIndex = 0;
-        this.damageRelationsMap = new Map(FIXED_MOVES.map((m) => [m.type, typeMap[m.type]!.damageRelations]));
+        this.damageRelationsMap = new Map(selected.map((m) => [m.type, typeMap[m.type]!.damageRelations]));
+        storeWriter.setActiveMoves(selected);
         const now = Date.now();
         storeWriter.setGameEndMs(now + GAME_DURATION_MS);
         storeWriter.setPhase("playing");
@@ -91,7 +102,7 @@ export class MoveWhackFacade {
    * アクティブスロットに有効なターゲットがあれば自動的に1体倒してスコアを加算する。
    * 有効なターゲットがいない場合はおてつきとなる。
    */
-  selectMove(moveType: FixedMoveType): void {
+  selectMove(moveType: PokeTypeName): void {
     if (get(phase) !== "playing") return;
 
     const dr = this.damageRelationsMap.get(moveType);
@@ -107,6 +118,12 @@ export class MoveWhackFacade {
       storeWriter.incrementMisses();
       this.showFeedback({ isHit: false, message: "おてつき！" });
     }
+  }
+
+  /** ゲームをリセットして idle フェーズに戻す */
+  resetGame(): void {
+    this.dispose();
+    storeWriter.reset();
   }
 
   /** タイマーをすべて解放する（ページ破棄時・ゲーム再開時に呼ぶ） */

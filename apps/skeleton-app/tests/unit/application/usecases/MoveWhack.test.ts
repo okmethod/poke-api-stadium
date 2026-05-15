@@ -64,6 +64,13 @@ const MOCK_TYPE_MAP = Object.fromEntries(
   ]),
 );
 
+const MOCK_MOVES = [
+  { type: "fire" as PokeTypeName, moveName: "かえんほうしゃ" },
+  { type: "water" as PokeTypeName, moveName: "なみのり" },
+  { type: "grass" as PokeTypeName, moveName: "はっぱカッター" },
+  { type: "electric" as PokeTypeName, moveName: "10まんボルト" },
+];
+
 describe("calcTypeEffectiveness", () => {
   it.each([
     { moveType: "fire" as const, type1: "grass" as const, type2: null, expected: 2 },
@@ -103,34 +110,34 @@ describe("MoveWhackFacade", () => {
 
   describe("startGame", () => {
     it("成功時: phase が playing になる", async () => {
-      const result = await facade.startGame(fetch);
+      const result = await facade.startGame(fetch, MOCK_MOVES);
       expect(result.success).toBe(true);
       expect(get(phase)).toBe("playing");
     });
 
     it("成功時: score と misses が 0 にリセットされる", async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       expect(get(score)).toBe(0);
       expect(get(misses)).toBe(0);
     });
 
     it("失敗時: success=false を返す", async () => {
       vi.mocked(selectRandomPokemons).mockRejectedValue(new Error("network error"));
-      const result = await facade.startGame(fetch);
+      const result = await facade.startGame(fetch, MOCK_MOVES);
       expect(result.success).toBe(false);
     });
 
     it("再スタート時: 前の状態がリセットされる", async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       storeWriter.addSlot({ position: 0, pokeData: GRASS_POKE, expiresAt: Date.now() + 10000 });
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       expect(get(activeSlots)).toHaveLength(0);
     });
   });
 
   describe("selectMove", () => {
     beforeEach(async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       // タイマーに頼らず直接スロットを追加して各テストを独立させる
       storeWriter.addSlot({ position: 0, pokeData: GRASS_POKE, expiresAt: Date.now() + 10000 });
     });
@@ -197,7 +204,7 @@ describe("MoveWhackFacade", () => {
   describe("スポーン・タイマー", () => {
     it("SPAWN_INTERVAL_MS 後にポケモンがスポーンする", async () => {
       vi.mocked(selectRandomPokemons).mockResolvedValue([GRASS_POKE, ...MOCK_POOL.slice(1)]);
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       expect(get(activeSlots)).toHaveLength(0);
       vi.advanceTimersByTime(1500);
       expect(get(activeSlots)).toHaveLength(1);
@@ -205,7 +212,7 @@ describe("MoveWhackFacade", () => {
 
     it("スポーンしたポケモンは SLOT_DURATION_MS 後に自動消滅する", async () => {
       vi.mocked(selectRandomPokemons).mockResolvedValue([GRASS_POKE, ...MOCK_POOL.slice(1)]);
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       vi.advanceTimersByTime(1500); // 1回目スポーン
       const slotsBefore = get(activeSlots).length;
       expect(slotsBefore).toBeGreaterThan(0);
@@ -221,13 +228,13 @@ describe("MoveWhackFacade", () => {
 
   describe("ゲーム終了", () => {
     it("GAME_DURATION_MS 後に phase が result になる", async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       vi.advanceTimersByTime(30_000);
       expect(get(phase)).toBe("result");
     });
 
     it("ゲーム終了時にアクティブスロットが空になる", async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       vi.advanceTimersByTime(1500); // スポーン
       vi.advanceTimersByTime(28_500); // 終了
       expect(get(activeSlots)).toHaveLength(0);
@@ -236,7 +243,7 @@ describe("MoveWhackFacade", () => {
 
   describe("dispose", () => {
     it("dispose後はタイマーが止まりスポーンしない", async () => {
-      await facade.startGame(fetch);
+      await facade.startGame(fetch, MOCK_MOVES);
       facade.dispose();
       vi.advanceTimersByTime(10_000);
       // スポーンインターバルが止まっているためスロットは増えない
