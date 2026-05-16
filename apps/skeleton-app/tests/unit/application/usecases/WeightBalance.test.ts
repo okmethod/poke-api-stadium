@@ -47,9 +47,10 @@ function createMockSpringScaleEngine(): ISpringScaleEngine {
   };
 }
 
-// weight=10.0 で目標重量 10kg のときにピッタリになるポケモン
 const poke10kg = buildMockPokeData({ speciesId: 1, jaName: "フシギダネ", weight: 10.0 });
 const poke30kg = buildMockPokeData({ speciesId: 2, jaName: "フシギソウ", weight: 30.0 });
+// weight=100.0 で目標重量 100kg（固定）のときにピッタリになるポケモン
+const poke100kg = buildMockPokeData({ speciesId: 3, jaName: "フシギバナ", weight: 100.0 });
 
 describe("WeightBalanceFacade", () => {
   let facade: WeightBalanceFacade;
@@ -248,9 +249,8 @@ describe("WeightBalanceFacade", () => {
 
   describe("compare", () => {
     it("合計重量が目標の±5%以内で isBalanced = true になる", async () => {
-      // target = 10（Math.random()=0 のとき）
-      vi.spyOn(Math, "random").mockReturnValue(0);
-      vi.mocked(selectRandomPokemon).mockResolvedValue(poke10kg);
+      // target = 100（固定）、poke100kg を乗せると誤差 0% でバランス成立
+      vi.mocked(selectRandomPokemon).mockResolvedValue(poke100kg);
       await facade.startGame(mockFetch);
 
       vi.mocked(selectRandomPokemon).mockResolvedValue(poke10kg);
@@ -263,7 +263,7 @@ describe("WeightBalanceFacade", () => {
     });
 
     it("合計重量が目標から大きく離れると isBalanced = false になる", async () => {
-      vi.spyOn(Math, "random").mockReturnValue(0);
+      // target = 100（固定）、poke30kg を乗せると誤差 70% でバランス不成立
       vi.mocked(selectRandomPokemon).mockResolvedValue(poke30kg);
       await facade.startGame(mockFetch);
 
