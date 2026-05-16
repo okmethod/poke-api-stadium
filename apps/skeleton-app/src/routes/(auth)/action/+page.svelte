@@ -26,6 +26,13 @@
       target: "/action/eawase",
     },
     {
+      label: "サファリゲーム",
+      description: "ボールを弾いてポケモンにあてよう",
+      iconItemKey: "safari-ball",
+      action: "navigate",
+      target: "/action/safari",
+    },
+    {
       label: "タイピングゲーム",
       description: "ポケモンの名前をローマ字でタイピングしよう",
       iconItemKey: "quick-ball",
