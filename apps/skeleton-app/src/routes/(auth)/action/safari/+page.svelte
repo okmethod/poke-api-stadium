@@ -3,21 +3,23 @@
   import Icon from "@iconify/svelte";
   import { CaptureBilliard } from "$lib/application/usecases/CaptureBilliard";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
+  import { getMatterJsBilliardAdapter } from "$lib/infrastructure/adapters/MatterJsBilliardAdapter";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
-  import type { Point2d } from "$lib/domain/models/2dPhysics";
   import BilliardCanvas from "$lib/presentation/components/physics/BilliardCanvas.svelte";
   import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
-  const facade = new CaptureBilliard.Facade(getPokeRepository());
-  const { phase, isLoading, pokemons, ballPosition, ballsRemaining, caughtPokemons, obstacles, aimOrigin, aimTarget } =
-    CaptureBilliard.Store;
+  const facade = new CaptureBilliard.Facade(getPokeRepository(), getMatterJsBilliardAdapter());
+  const { phase, isLoading, pokemons, ballsRemaining, caughtPokemons } = CaptureBilliard.Store;
 
-  const BALL_COUNT = CaptureBilliard.GAME_CONFIG.ballCount;
-  const BALL_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safari-ball.png";
+  const {
+    canvasWidth: W,
+    canvasHeight: H,
+    ballCount: BALL_COUNT,
+    ballSpriteUrl: BALL_URL,
+  } = CaptureBilliard.GAME_CONFIG;
   const ballCountArr = Array.from({ length: BALL_COUNT }, (_, i) => i);
 
-  let rafId = 0;
   let isReady = $state(false);
 
   // フェーズ変化時に SE を鳴らす（初回スキップ）
@@ -32,19 +34,13 @@
     else if (p === "missed") playSE.incorrect();
   });
 
-  function gameLoop(): void {
-    facade.tick();
-    rafId = requestAnimationFrame(gameLoop);
-  }
-
   onMount(async () => {
     isReady = true;
-    rafId = requestAnimationFrame(gameLoop);
     await handleStart();
   });
 
   onDestroy(() => {
-    cancelAnimationFrame(rafId);
+    facade.dispose();
   });
 
   async function handleStart(): Promise<void> {
@@ -60,18 +56,6 @@
 
   function handleGiveUp(): void {
     facade.giveUp();
-  }
-
-  function handlePointerDown(point: Point2d): void {
-    facade.startAim(point);
-  }
-
-  function handlePointerMove(point: Point2d): void {
-    facade.updateAim(point);
-  }
-
-  function handlePointerUp(point: Point2d): void {
-    facade.launch(point);
   }
 </script>
 
@@ -98,18 +82,7 @@
     </div>
   {:else if isReady && $pokemons.length > 0}
     <!-- キャンバス -->
-    <BilliardCanvas
-      phase={$phase}
-      ballSpriteUrl={BALL_URL}
-      ballPosition={$ballPosition}
-      pokemons={$pokemons}
-      obstacles={$obstacles}
-      aimOrigin={$aimOrigin}
-      aimTarget={$aimTarget}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-    />
+    <BilliardCanvas engine={facade} width={W} height={H} />
 
     <!-- 結果・操作ボタン -->
     <div class="h-8">
@@ -144,7 +117,7 @@
     <!-- ロード中プレースホルダー -->
     <div
       class="border-surface-300 flex items-center justify-center rounded-lg border-2 border-dashed"
-      style="width: 380px; height: 520px;"
+      style="width: {W}px; height: {H}px;"
     >
       {#if $isLoading}
         <Icon icon="mdi:loading" class="text-surface-400 size-10 animate-spin" />

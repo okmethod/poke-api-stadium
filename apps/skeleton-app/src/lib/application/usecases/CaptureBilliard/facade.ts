@@ -8,11 +8,19 @@
  */
 
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { IBilliardPhysicsEngine } from "$lib/application/ports/IBilliardPhysicsEngine";
+import type {
+  IBilliardGameEngine,
+  BilliardCanvasState,
+  BilliardCanvasPokemon,
+  BilliardCanvasObstacle,
+  BilliardPhase,
+} from "$lib/application/ports/IBilliardPhysicsEngine";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { Point2d } from "$lib/domain/models/2dPhysics";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
-import { storeWriter, type BilliardObstacle, type BilliardPhase, type BilliardPokemon } from "./store";
+import { storeWriter, type BilliardPokemon } from "./store";
 
 /** プレゼン層からも参照するゲーム固有の寸法定数 */
 export const GAME_CONFIG = {
@@ -24,6 +32,7 @@ export const GAME_CONFIG = {
   ballStartY: 470,
   ballCount: 6,
   pokemonCount: 3,
+  ballSpriteUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safari-ball.png",
 } as const;
 
 const {
@@ -37,46 +46,45 @@ const {
   pokemonCount: POKEMON_COUNT,
 } = GAME_CONFIG;
 
-// --- 物理パラメーター ---
-const FRICTION = 0.998;
-const RESTITUTION = 0.92;
+// --- 発射パラメーター ---
 const SPEED_MULTIPLIER = 0.4;
 const MAX_SPEED = 20;
 const MIN_LAUNCH_DIST = 15;
 const AIM_START_RADIUS = 50;
-// 速度が低すぎる状態が SLOW_TICK_THRESHOLD フレーム続いたら missed にする
+
+// --- 停止判定パラメーター ---
 const SLOW_TICK_THRESHOLD = 120;
 const MIN_SPEED_THRESHOLD = 0.3;
 
 // --- コース生成パラメーター ---
 const OBSTACLE_COUNT = 8;
 const OBS_MARGIN = 40;
-// 長辺・短辺（縦長/横長をランダムに決定）
 const OBS_LONG_MIN = 40;
 const OBS_LONG_MAX = 80;
 const OBS_SHORT_MIN = 12;
 const OBS_SHORT_MAX = 24;
-// 障害物は全域に分布
 const OBSTACLE_ZONE_TOP = 40;
 const OBSTACLE_ZONE_BOTTOM = 450;
-// ポケモンは奥（上部）の障害物の間に分散
 const POKEMON_ZONE_TOP = 50;
 const POKEMON_ZONE_BOTTOM = 280;
 
 /** ポケモンゲットビリヤードのゲーム操作を提供する Facade */
-export class CaptureBilliardFacade {
+export class CaptureBilliardFacade implements IBilliardGameEngine {
   private phase: BilliardPhase = "waiting";
-  private ballX: number = BALL_X0;
-  private ballY: number = BALL_Y0;
-  private ballVX: number = 0;
-  private ballVY: number = 0;
   private slowTickCount = 0;
   private currentPokemons: BilliardPokemon[] = [];
-  private currentObstacles: BilliardObstacle[] = [];
+  private currentObstacles: BilliardCanvasObstacle[] = [];
+  private aimOriginState: Point2d | null = null;
+  private aimTargetState: Point2d | null = null;
   private ballsRemaining = 0;
   private caughtPokemonsData: PokeData[] = [];
+  private engineInitialized = false;
+  private unsubscribePokemonHit: (() => void) | null = null;
 
-  constructor(private readonly repository: IPokeRepository) {}
+  constructor(
+    private readonly repository: IPokeRepository,
+    private readonly engine: IBilliardPhysicsEngine,
+  ) {}
 
   /**
    * ラウンドを開始する
@@ -84,11 +92,27 @@ export class CaptureBilliardFacade {
    * ポケモンを POKEMON_COUNT 体ランダムに選出し、コースを生成してゲームを待機状態にする。
    */
   async startRound(fetchFn: typeof fetch): Promise<FacadeResult> {
-    this.resetBallState();
     storeWriter.reset();
     storeWriter.setIsLoading(true);
 
+    // 前回のポケモン命中ハンドラを解除
+    this.unsubscribePokemonHit?.();
+    this.unsubscribePokemonHit = null;
+
     try {
+      // エンジンは初回のみ初期化（ラウンドをまたいで使い回す）
+      if (!this.engineInitialized) {
+        await this.engine.initialize({
+          width: W,
+          height: H,
+          ballRadius: BALL_R,
+          ballStartPosition: { x: BALL_X0, y: BALL_Y0 },
+        });
+        this.engineInitialized = true;
+      } else {
+        this.engine.resetBall();
+      }
+
       const pokemonsData = await Promise.all(
         Array.from({ length: POKEMON_COUNT }, () => selectRandomPokemon(this.repository, fetchFn)),
       );
@@ -99,11 +123,19 @@ export class CaptureBilliardFacade {
       const course = this.generateCourse(pokemonsData);
       this.currentPokemons = course.pokemons;
       this.currentObstacles = course.obstacles;
+      this.aimOriginState = null;
+      this.aimTargetState = null;
 
-      // ボール位置を先にセットしてからポケモンをセット（canvas 表示タイミング制御）
-      storeWriter.setBallPosition({ x: BALL_X0, y: BALL_Y0 });
+      // コース障害物・ポケモンをエンジンにセット
+      this.engine.setupCourse(
+        course.obstacles.map((obs, i) => ({ id: `obs_${i}`, ...obs })),
+        course.pokemons.map((p) => ({ id: String(p.pokeData.pokeId), x: p.x, y: p.y, radius: POKE_R })),
+      );
+
+      // ポケモン命中ハンドラを登録
+      this.unsubscribePokemonHit = this.engine.onPokemonHit((id) => this.handlePokemonHit(id));
+
       storeWriter.setPokemons(course.pokemons);
-      storeWriter.setObstacles(course.obstacles);
       storeWriter.setBallsRemaining(BALL_COUNT);
       storeWriter.setCaughtPokemons([]);
 
@@ -120,74 +152,36 @@ export class CaptureBilliardFacade {
     }
   }
 
-  /**
-   * エイムを開始する
-   *
-   * ボールの近くをタップした場合のみ有効。
-   */
-  startAim(point: Point2d): void {
-    if (this.phase !== "waiting") return;
-    const dx = point.x - this.ballX;
-    const dy = point.y - this.ballY;
-    if (Math.sqrt(dx * dx + dy * dy) > AIM_START_RADIUS) return;
-
-    this.phase = "aiming";
-    storeWriter.setPhase("aiming");
-    storeWriter.setAimOrigin({ x: this.ballX, y: this.ballY });
-    storeWriter.setAimTarget(point);
+  /** キャンバス描画に必要な全状態を返す（毎フレーム呼ばれる） */
+  getState(): BilliardCanvasState {
+    const ballState = this.engine.getBallState();
+    return {
+      phase: this.phase,
+      ballPosition: ballState.position,
+      ballAngle: ballState.angle,
+      ballSpriteUrl: GAME_CONFIG.ballSpriteUrl,
+      pokemons: this.currentPokemons.map(
+        (p): BilliardCanvasPokemon => ({
+          imageUrl: p.pokeData.imageUrls.artwork.front ?? p.pokeData.imageUrls.pixel.front ?? "",
+          x: p.x,
+          y: p.y,
+          radius: POKE_R,
+          caught: p.caught,
+        }),
+      ),
+      obstacles: this.currentObstacles,
+      aimOrigin: this.aimOriginState,
+      aimTarget: this.aimTargetState,
+    };
   }
 
-  /** エイム方向を更新する */
-  updateAim(point: Point2d): void {
-    if (this.phase !== "aiming") return;
-    storeWriter.setAimTarget(point);
-  }
-
-  /**
-   * ボールを発射する
-   *
-   * ドラッグ方向の逆向きにボールを飛ばす（スリングショット方式）。
-   */
-  launch(point: Point2d): void {
-    if (this.phase !== "aiming") return;
-
-    storeWriter.setAimOrigin(null);
-    storeWriter.setAimTarget(null);
-
-    const dx = this.ballX - point.x;
-    const dy = this.ballY - point.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist < MIN_LAUNCH_DIST) {
-      this.phase = "waiting";
-      storeWriter.setPhase("waiting");
-      return;
-    }
-
-    const speed = Math.min(dist * SPEED_MULTIPLIER, MAX_SPEED);
-    this.ballVX = (dx / dist) * speed;
-    this.ballVY = (dy / dist) * speed;
-    this.slowTickCount = 0;
-    this.phase = "flying";
-    storeWriter.setPhase("flying");
-  }
-
-  /** 物理演算を1ステップ進める（requestAnimationFrame から毎フレーム呼ぶ） */
+  /** 物理状態を1フレーム分ポーリングする（requestAnimationFrame から毎フレーム呼ぶ） */
   tick(): void {
     if (this.phase !== "flying") return;
 
-    this.ballX += this.ballVX;
-    this.ballY += this.ballVY;
-    this.ballVX *= FRICTION;
-    this.ballVY *= FRICTION;
+    const state = this.engine.getBallState();
 
-    this.resolveWalls();
-    this.resolveObstacles();
-
-    if (this.resolvePokemons()) return;
-
-    const speed = Math.sqrt(this.ballVX * this.ballVX + this.ballVY * this.ballVY);
-    if (speed < MIN_SPEED_THRESHOLD) {
+    if (state.speed < MIN_SPEED_THRESHOLD) {
       this.slowTickCount++;
       if (this.slowTickCount >= SLOW_TICK_THRESHOLD) {
         this.ballsRemaining--;
@@ -198,8 +192,60 @@ export class CaptureBilliardFacade {
     } else {
       this.slowTickCount = 0;
     }
+  }
 
-    storeWriter.setBallPosition({ x: this.ballX, y: this.ballY });
+  /**
+   * エイムを開始する
+   *
+   * ボールの近くをタップした場合のみ有効。
+   */
+  startAim(point: Point2d): void {
+    if (this.phase !== "waiting") return;
+    const ballState = this.engine.getBallState();
+    const dx = point.x - ballState.position.x;
+    const dy = point.y - ballState.position.y;
+    if (Math.sqrt(dx * dx + dy * dy) > AIM_START_RADIUS) return;
+
+    this.phase = "aiming";
+    storeWriter.setPhase("aiming");
+    this.aimOriginState = ballState.position;
+    this.aimTargetState = point;
+  }
+
+  /** エイム方向を更新する */
+  updateAim(point: Point2d): void {
+    if (this.phase !== "aiming") return;
+    this.aimTargetState = point;
+  }
+
+  /**
+   * ボールを発射する
+   *
+   * ドラッグ方向の逆向きにボールを飛ばす（スリングショット方式）。
+   */
+  launch(point: Point2d): void {
+    if (this.phase !== "aiming") return;
+
+    this.aimOriginState = null;
+    this.aimTargetState = null;
+
+    const ballState = this.engine.getBallState();
+    const dx = ballState.position.x - point.x;
+    const dy = ballState.position.y - point.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < MIN_LAUNCH_DIST) {
+      this.phase = "waiting";
+      storeWriter.setPhase("waiting");
+      return;
+    }
+
+    const speed = Math.min(dist * SPEED_MULTIPLIER, MAX_SPEED);
+    this.engine.launch({ x: (dx / dist) * speed, y: (dy / dist) * speed });
+
+    this.slowTickCount = 0;
+    this.phase = "flying";
+    storeWriter.setPhase("flying");
   }
 
   /** 転がり中に諦めてボールを消費し missed にする */
@@ -223,99 +269,55 @@ export class CaptureBilliardFacade {
       storeWriter.setPhase("result");
       return;
     }
-    this.resetBallState();
-    storeWriter.setBallPosition({ x: BALL_X0, y: BALL_Y0 });
-    storeWriter.setAimOrigin(null);
-    storeWriter.setAimTarget(null);
+    this.engine.resetBall();
+    this.aimOriginState = null;
+    this.aimTargetState = null;
+    this.slowTickCount = 0;
     this.phase = "waiting";
     storeWriter.setPhase("waiting");
   }
 
+  /** エンジンを停止してリソースを解放する */
+  dispose(): void {
+    this.unsubscribePokemonHit?.();
+    this.engine.dispose();
+  }
+
   // --- private ---
 
-  private resetBallState(): void {
-    this.ballX = BALL_X0;
-    this.ballY = BALL_Y0;
-    this.ballVX = 0;
-    this.ballVY = 0;
-    this.slowTickCount = 0;
+  /** ポケモン命中時の処理（onPokemonHit コールバックから呼ばれる） */
+  private handlePokemonHit(id: string): void {
+    // matter.js Runner は独立タイマーで動くため、ゲット後もボールが動き続けて別ポケモンに衝突する可能性がある
+    if (this.phase !== "flying") return;
+
+    const idx = this.currentPokemons.findIndex((p) => String(p.pokeData.pokeId) === id);
+    if (idx === -1) return;
+
+    const pokemon = this.currentPokemons[idx]!;
+    const updated = this.currentPokemons.map<BilliardPokemon>((p, j) =>
+      j === idx ? { pokeData: p.pokeData, x: p.x, y: p.y, caught: true } : p,
+    );
+    this.currentPokemons = updated;
+    this.caughtPokemonsData = [...this.caughtPokemonsData, pokemon.pokeData];
+    this.ballsRemaining--;
+
+    storeWriter.setPokemons(updated);
+    storeWriter.setCaughtPokemons(this.caughtPokemonsData);
+    storeWriter.setBallsRemaining(this.ballsRemaining);
+
+    this.phase = "caught";
+    storeWriter.setPhase("caught");
   }
 
-  /** ポケモンとの衝突判定。衝突した場合は caught 状態に更新して true を返す */
-  private resolvePokemons(): boolean {
-    for (let i = 0; i < this.currentPokemons.length; i++) {
-      const p = this.currentPokemons[i];
-      if (p === undefined || p.caught) continue;
-      const dx = this.ballX - p.x;
-      const dy = this.ballY - p.y;
-      if (Math.sqrt(dx * dx + dy * dy) >= BALL_R + POKE_R) continue;
+  private generateCourse(pokemonsData: PokeData[]): {
+    pokemons: BilliardPokemon[];
+    obstacles: BilliardCanvasObstacle[];
+  } {
+    const obstacles: BilliardCanvasObstacle[] = [];
 
-      const updated = this.currentPokemons.map<BilliardPokemon>((pokemon, j) =>
-        j === i ? { pokeData: pokemon.pokeData, x: pokemon.x, y: pokemon.y, caught: true } : pokemon,
-      );
-      this.currentPokemons = updated;
-      this.caughtPokemonsData = [...this.caughtPokemonsData, p.pokeData];
-      this.ballsRemaining--;
-
-      storeWriter.setPokemons(updated);
-      storeWriter.setCaughtPokemons(this.caughtPokemonsData);
-      storeWriter.setBallsRemaining(this.ballsRemaining);
-      storeWriter.setBallPosition({ x: this.ballX, y: this.ballY });
-
-      this.phase = "caught";
-      storeWriter.setPhase("caught");
-      return true;
-    }
-    return false;
-  }
-
-  private resolveWalls(): void {
-    if (this.ballX - BALL_R < 0) {
-      this.ballX = BALL_R;
-      this.ballVX = Math.abs(this.ballVX) * RESTITUTION;
-    } else if (this.ballX + BALL_R > W) {
-      this.ballX = W - BALL_R;
-      this.ballVX = -Math.abs(this.ballVX) * RESTITUTION;
-    }
-    if (this.ballY - BALL_R < 0) {
-      this.ballY = BALL_R;
-      this.ballVY = Math.abs(this.ballVY) * RESTITUTION;
-    } else if (this.ballY + BALL_R > H) {
-      this.ballY = H - BALL_R;
-      this.ballVY = -Math.abs(this.ballVY) * RESTITUTION;
-    }
-  }
-
-  /** 障害物との衝突: AABB vs 円の最近接点から押し出しと反射を計算する */
-  private resolveObstacles(): void {
-    for (const obs of this.currentObstacles) {
-      const closestX = Math.max(obs.x, Math.min(this.ballX, obs.x + obs.width));
-      const closestY = Math.max(obs.y, Math.min(this.ballY, obs.y + obs.height));
-      const dx = this.ballX - closestX;
-      const dy = this.ballY - closestY;
-      const distSq = dx * dx + dy * dy;
-      if (distSq >= BALL_R * BALL_R) continue;
-
-      const dist = Math.sqrt(distSq) || 1;
-      const nx = dx / dist;
-      const ny = dy / dist;
-      this.ballX += nx * (BALL_R - dist);
-      this.ballY += ny * (BALL_R - dist);
-      const dot = this.ballVX * nx + this.ballVY * ny;
-      this.ballVX = (this.ballVX - 2 * dot * nx) * RESTITUTION;
-      this.ballVY = (this.ballVY - 2 * dot * ny) * RESTITUTION;
-    }
-  }
-
-  private generateCourse(pokemonsData: PokeData[]): { pokemons: BilliardPokemon[]; obstacles: BilliardObstacle[] } {
-    // 障害物を先に全域生成し、その後ポケモンを隙間に配置する
-    const obstacles: BilliardObstacle[] = [];
-
-    // 中段に中央障害物を1つ置いて直線突破を防ぐ
     const centerObs = this.tryPlaceObstacle(W / 2 - 60, W / 2 + 60 - OBS_LONG_MIN, 180, 300, [], obstacles);
     if (centerObs) obstacles.push(centerObs);
 
-    // ランダム障害物（全域に分散配置）
     for (let i = 0; i < OBSTACLE_COUNT - 1; i++) {
       const obs = this.tryPlaceObstacle(
         OBS_MARGIN,
@@ -328,7 +330,6 @@ export class CaptureBilliardFacade {
       if (obs) obstacles.push(obs);
     }
 
-    // ポケモンは横を等分し、全域から障害物の隙間に配置
     const sectionW = (W - 2 * OBS_MARGIN) / POKEMON_COUNT;
     const pokemons: BilliardPokemon[] = [];
 
@@ -351,7 +352,6 @@ export class CaptureBilliardFacade {
       }
 
       if (!placed) {
-        // グリッド探索（障害物チェックあり）
         outer: for (let gy = POKEMON_ZONE_TOP + POKE_R; gy < POKEMON_ZONE_BOTTOM - POKE_R; gy += 20) {
           for (let gx = xMin; gx < xMax; gx += 20) {
             if (!isClear(gx, gy)) continue;
@@ -363,7 +363,6 @@ export class CaptureBilliardFacade {
       }
 
       if (!placed) {
-        // 最終フォールバック（重複許容）
         pokemons.push({
           pokeData: pokemonsData[i]!,
           x: (xMin + xMax) / 2,
@@ -382,16 +381,15 @@ export class CaptureBilliardFacade {
     yMin: number,
     yMax: number,
     pokemons: BilliardPokemon[],
-    existing: BilliardObstacle[],
-  ): BilliardObstacle | null {
+    existing: BilliardCanvasObstacle[],
+  ): BilliardCanvasObstacle | null {
     for (let i = 0; i < 25; i++) {
       const long = OBS_LONG_MIN + Math.random() * (OBS_LONG_MAX - OBS_LONG_MIN);
       const short = OBS_SHORT_MIN + Math.random() * (OBS_SHORT_MAX - OBS_SHORT_MIN);
-      // 50% で横長、50% で縦長
       const [w, h] = Math.random() < 0.5 ? [long, short] : [short, long];
       const x = xMin + Math.random() * Math.max(0, xMax - xMin);
       const y = yMin + Math.random() * Math.max(0, yMax - yMin);
-      const obs: BilliardObstacle = { x, y, width: w, height: h };
+      const obs: BilliardCanvasObstacle = { x, y, width: w, height: h };
 
       if (this.obsOverlapsBall(obs)) continue;
       if (pokemons.some((p) => this.obsOverlapsPokemon(obs, p.x, p.y))) continue;
@@ -402,19 +400,19 @@ export class CaptureBilliardFacade {
     return null;
   }
 
-  private obsOverlapsBall(obs: BilliardObstacle): boolean {
+  private obsOverlapsBall(obs: BilliardCanvasObstacle): boolean {
     const M = BALL_R + 30;
     return (
       BALL_X0 + M > obs.x && BALL_X0 - M < obs.x + obs.width && BALL_Y0 + M > obs.y && BALL_Y0 - M < obs.y + obs.height
     );
   }
 
-  private obsOverlapsPokemon(obs: BilliardObstacle, px: number, py: number): boolean {
+  private obsOverlapsPokemon(obs: BilliardCanvasObstacle, px: number, py: number): boolean {
     const M = POKE_R + 30;
     return px + M > obs.x && px - M < obs.x + obs.width && py + M > obs.y && py - M < obs.y + obs.height;
   }
 
-  private obsOverlapsObs(a: BilliardObstacle, b: BilliardObstacle): boolean {
+  private obsOverlapsObs(a: BilliardCanvasObstacle, b: BilliardCanvasObstacle): boolean {
     const GAP = 20;
     return (
       a.x - GAP < b.x + b.width && a.x + a.width + GAP > b.x && a.y - GAP < b.y + b.height && a.y + a.height + GAP > b.y
