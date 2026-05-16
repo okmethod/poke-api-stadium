@@ -17,6 +17,13 @@
       action: "navigate",
       target: "/puzzle/slide",
     },
+    {
+      label: "ピッタリ100kg",
+      description: "目標の重さにピッタリ合わせよう",
+      iconItemKey: "heavy-ball",
+      action: "navigate",
+      target: "/puzzle/pittari",
+    },
   ]);
 </script>
 
