@@ -1,1 +1,0 @@
-import{b as e,r,g as a}from"./Bjt9lG89.js";import{p as o}from"./BLX7cPfB.js";const s="";function i(...n){return e+s+r(n[0],n[1])}function l(n,t){return a(i(n),t)}function f(n){const t=o.url.pathname.split("/").slice(0,-1).join("/");return a(t,n)}function g(n){return n.action==="navigate"?()=>l(n.target):()=>window.open(n.target,"_blank")}export{l as a,g as b,f as n};
