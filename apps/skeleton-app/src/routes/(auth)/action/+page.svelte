@@ -39,6 +39,13 @@
       action: "navigate",
       target: "/action/typing",
     },
+    {
+      label: "ポケモンピンボール",
+      description: "モンスターボールでポケモンバンパーをはじこう",
+      iconItemKey: "poke-ball",
+      action: "navigate",
+      target: "/action/pinball",
+    },
   ]);
 </script>
 
