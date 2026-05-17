@@ -71,7 +71,7 @@
         <p class="text-success-500 text-lg font-bold">{$caughtPokemons.length} 体 ゲット！</p>
         <div class="flex flex-wrap justify-center gap-4">
           {#each $caughtPokemons as poke (poke.pokeId)}
-            <PokeChip name={poke.jaName} imageUrl={poke.imageUrls.artwork.front} face="front" />
+            <PokeChip name={poke.jaName} imageUrl={poke.imageUrls.pixel.front} face="front" />
           {/each}
         </div>
       {/if}

@@ -54,6 +54,10 @@ function createMockEngine(): IBilliardPhysicsEngine {
       velY = 0;
       angle = 0;
     }),
+    stopBall: vi.fn(() => {
+      velX = 0;
+      velY = 0;
+    }),
   };
 }
 

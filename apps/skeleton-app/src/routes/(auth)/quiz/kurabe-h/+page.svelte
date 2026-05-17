@@ -13,7 +13,7 @@
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
-  import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
+  import SimpleDragCanvas from "$lib/presentation/components/physics/SimpleDragCanvas.svelte";
 
   const CANVAS_WIDTH = 400;
   const CANVAS_HEIGHT = 160;
@@ -86,7 +86,7 @@
   <!-- 物理キャンバス＋結果一覧（公開後） -->
   {#if $isRevealed}
     {#if isReady}
-      <PhysicsCanvas2d {engine} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
+      <SimpleDragCanvas {engine} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
     {:else}
       <div
         class="border-surface-400 flex items-center justify-center rounded border"

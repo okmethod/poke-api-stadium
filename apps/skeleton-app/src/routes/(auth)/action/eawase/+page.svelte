@@ -6,7 +6,7 @@
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
-  import PhysicsCanvas2d from "$lib/presentation/components/physics/PhysicsCanvas2d.svelte";
+  import SimpleDragCanvas from "$lib/presentation/components/physics/SimpleDragCanvas.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
 
   const CANVAS_WIDTH = 360;
@@ -70,7 +70,7 @@
 
   <!-- Canvas -->
   {#if isReady}
-    <PhysicsCanvas2d {engine} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
+    <SimpleDragCanvas {engine} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
   {:else}
     <div
       class="border-surface-400 flex items-center justify-center rounded border"

@@ -35,6 +35,7 @@ export interface BilliardCanvasState {
   readonly ballPosition: Point2d;
   readonly ballAngle: number;
   readonly ballSpriteUrl: string;
+  readonly ballRadius: number;
   readonly pokemons: readonly BilliardCanvasPokemon[];
   readonly obstacles: readonly BilliardCanvasObstacle[];
   readonly aimOrigin: Point2d | null;
@@ -120,4 +121,7 @@ export interface IBilliardPhysicsEngine {
 
   /** ボールを開始位置に戻し、速度・角度をリセットする */
   resetBall(): void;
+
+  /** ボールの速度をゼロにして静止させる（位置はそのまま） */
+  stopBall(): void;
 }

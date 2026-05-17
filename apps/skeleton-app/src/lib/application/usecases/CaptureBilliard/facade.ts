@@ -160,9 +160,10 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
       ballPosition: ballState.position,
       ballAngle: ballState.angle,
       ballSpriteUrl: GAME_CONFIG.ballSpriteUrl,
+      ballRadius: BALL_R,
       pokemons: this.currentPokemons.map(
         (p): BilliardCanvasPokemon => ({
-          imageUrl: p.pokeData.imageUrls.artwork.front ?? p.pokeData.imageUrls.pixel.front ?? "",
+          imageUrl: p.pokeData.imageUrls.pixel.front ?? "",
           x: p.x,
           y: p.y,
           radius: POKE_R,
@@ -305,6 +306,7 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
     storeWriter.setCaughtPokemons(this.caughtPokemonsData);
     storeWriter.setBallsRemaining(this.ballsRemaining);
 
+    this.engine.stopBall();
     this.phase = "caught";
     storeWriter.setPhase("caught");
   }

@@ -147,6 +147,11 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
     this.M.Body.setAngle(this.ball, 0);
     this.M.Body.setAngularVelocity(this.ball, 0);
   }
+
+  stopBall(): void {
+    this.M.Body.setVelocity(this.ball, { x: 0, y: 0 });
+    this.M.Body.setAngularVelocity(this.ball, 0);
+  }
 }
 
 /** MatterJsBilliardAdapter のファクトリ関数 */
