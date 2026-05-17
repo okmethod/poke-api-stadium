@@ -6,6 +6,9 @@
  */
 import { describe, it, expect, vi, afterEach } from "vitest";
 import {
+  fetchRegion,
+  fetchLocation,
+  fetchLocationArea,
   fetchPokemon,
   fetchPokemonSpecies,
   fetchPokemonSpeciesByUrl,
@@ -34,12 +37,102 @@ import sampleItemPocket1 from "../../../data/sample_item_pocket_1.json";
 import sampleItemCategory34 from "../../../data/sample_item_category_34.json";
 import sampleType13 from "../../../data/sample_type_13.json";
 import sampleEvolutionChain10 from "../../../data/sample_evolution_chain_10.json";
+import sampleRegion1 from "../../../data/sample_region_1.json";
+import sampleLocation1 from "../../../data/sample_location_1.json";
+import sampleLocationArea1 from "../../../data/sample_location_area_1.json";
 
 // --- テスト ---
 
 afterEach(() => {
   vi.restoreAllMocks();
   clearCache();
+});
+
+describe("fetchRegion", () => {
+  it("IDで地方を取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleRegion1);
+
+    const region = await fetchRegion(mockFetch, 1);
+
+    expect(region.id).toBe(1);
+    expect(region.locations).toHaveLength(2);
+    expect(region.locations[0]!.name).toBe("pallet-town");
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/region/1"), expect.any(Object));
+  });
+
+  it("名前で地方を取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleRegion1);
+
+    const region = await fetchRegion(mockFetch, "kanto");
+
+    expect(region.id).toBe(1);
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/region/kanto"), expect.any(Object));
+  });
+
+  it("ネットワークエラー時に例外をスローする", async () => {
+    const mockFetch = createNetworkErrorMockFetch();
+
+    await expect(fetchRegion(mockFetch, 1)).rejects.toThrow("Failed to fetch");
+  });
+
+  it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
+    const mockFetch = createNotFoundMockFetch();
+
+    await expect(fetchRegion(mockFetch, 9999)).rejects.toThrow();
+  });
+});
+
+describe("fetchLocation", () => {
+  it("IDでロケーションを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleLocation1);
+
+    const location = await fetchLocation(mockFetch, 1);
+
+    expect(location.id).toBe(1);
+    expect(location.name).toBe("pallet-town");
+    expect(location.areas).toHaveLength(1);
+    expect(location.areas[0]!.name).toBe("pallet-town-area");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/location/1"), expect.any(Object));
+  });
+
+  it("ネットワークエラー時に例外をスローする", async () => {
+    const mockFetch = createNetworkErrorMockFetch();
+
+    await expect(fetchLocation(mockFetch, 1)).rejects.toThrow("Failed to fetch");
+  });
+
+  it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
+    const mockFetch = createNotFoundMockFetch();
+
+    await expect(fetchLocation(mockFetch, 9999)).rejects.toThrow();
+  });
+});
+
+describe("fetchLocationArea", () => {
+  it("IDでロケーションエリアを取得できる", async () => {
+    const mockFetch = createOkMockFetch(sampleLocationArea1);
+
+    const area = await fetchLocationArea(mockFetch, 1);
+
+    expect(area.id).toBe(1);
+    expect(area.name).toBe("pallet-town-area");
+    expect(area.pokemon_encounters).toHaveLength(2);
+    expect(area.pokemon_encounters[0]!.pokemon.name).toBe("pidgey");
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/location-area/1"), expect.any(Object));
+  });
+
+  it("ネットワークエラー時に例外をスローする", async () => {
+    const mockFetch = createNetworkErrorMockFetch();
+
+    await expect(fetchLocationArea(mockFetch, 1)).rejects.toThrow("Failed to fetch");
+  });
+
+  it("不正なレスポンス形式の場合にZodエラーをスローする", async () => {
+    const mockFetch = createNotFoundMockFetch();
+
+    await expect(fetchLocationArea(mockFetch, 9999)).rejects.toThrow();
+  });
 });
 
 describe("fetchPokemon", () => {
@@ -300,5 +393,32 @@ describe("キャッシュ", () => {
     await fetchPokemon(mockFetch, 25);
 
     expect(mockFetch).toHaveBeenCalledTimes(2);
+  });
+
+  it("fetchRegion の同一URLへの2回目の呼び出しはfetchを発行しない", async () => {
+    const mockFetch = createOkMockFetch(sampleRegion1);
+
+    await fetchRegion(mockFetch, 1);
+    await fetchRegion(mockFetch, 1);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it("fetchLocation の同一URLへの2回目の呼び出しはfetchを発行しない", async () => {
+    const mockFetch = createOkMockFetch(sampleLocation1);
+
+    await fetchLocation(mockFetch, 1);
+    await fetchLocation(mockFetch, 1);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it("fetchLocationArea の同一URLへの2回目の呼び出しはfetchを発行しない", async () => {
+    const mockFetch = createOkMockFetch(sampleLocationArea1);
+
+    await fetchLocationArea(mockFetch, 1);
+    await fetchLocationArea(mockFetch, 1);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
   });
 });

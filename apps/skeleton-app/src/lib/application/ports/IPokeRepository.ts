@@ -26,6 +26,7 @@ import type { FormVariant, VarietyRef } from "$lib/domain/models/PokeForm";
 import type { PokeAbility, AbilityRef } from "$lib/domain/models/PokeAbility";
 import type { PokeMove, MoveLearnRef } from "$lib/domain/models/PokeMove";
 import type { PokeItem, PokeItemCategory } from "$lib/domain/models/PokeItem";
+import type { PokeLocationMeta, PokeLocation, PokeSpeciesMeta } from "$lib/domain/models/PokeRegion";
 
 /** PokeAPI データ取得の抽象インターフェース */
 export interface IPokeRepository {
@@ -83,4 +84,13 @@ export interface IPokeRepository {
 
   /** 番号または英語名でアイテムカテゴリ（アイテム名一覧付き）を取得 */
   getItemCategory(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItemCategory>;
+
+  /** 地方IDでその地方のロケーション一覧を取得 */
+  getRegionLocations(fetchFunction: typeof fetch, regionId: number): Promise<PokeLocationMeta[]>;
+
+  /** IDでロケーション詳細（全エリアのエンカウントポケモン名付き）を取得 */
+  getLocation(fetchFunction: typeof fetch, id: number): Promise<PokeLocation>;
+
+  /** 番号または英語名でポケモン種族のメタ情報（日本語名）を取得 */
+  getPokemonSpeciesMeta(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeSpeciesMeta>;
 }

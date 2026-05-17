@@ -24,6 +24,13 @@
       action: "navigate",
       target: "/zukan/item",
     },
+    {
+      label: "地方図鑑",
+      description: "11地方のロケーションとエンカウントポケモンを確認できます",
+      iconItemKey: "town-map",
+      action: "navigate",
+      target: "/zukan/region",
+    },
   ]);
 </script>
 

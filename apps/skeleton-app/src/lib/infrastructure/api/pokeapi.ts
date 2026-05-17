@@ -272,6 +272,27 @@ export const MoveResponseSchema = z.object({
   ),
 });
 
+export const RegionResponseSchema = z.object({
+  id: z.number(),
+  locations: z.array(NamedResourceSchema),
+});
+
+export const LocationResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  areas: z.array(NamedResourceSchema),
+});
+
+export const LocationAreaResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  pokemon_encounters: z.array(
+    z.object({
+      pokemon: NamedResourceSchema,
+    }),
+  ),
+});
+
 export const TypeResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -294,6 +315,9 @@ export const TypeResponseSchema = z.object({
 
 // --- 推論型エクスポート ---
 
+export type RegionResponse = z.infer<typeof RegionResponseSchema>;
+export type LocationResponse = z.infer<typeof LocationResponseSchema>;
+export type LocationAreaResponse = z.infer<typeof LocationAreaResponseSchema>;
 export type PokemonResponse = z.infer<typeof PokemonResponseSchema>;
 export type PokemonSpeciesResponse = z.infer<typeof PokemonSpeciesResponseSchema>;
 export type PokemonFormResponse = z.infer<typeof PokemonFormResponseSchema>;
@@ -308,6 +332,9 @@ export type EvolutionChainResponse = z.infer<typeof EvolutionChainResponseSchema
 // --- メモリキャッシュ ---
 
 /** ライフサイクル: ページリロードまで（メモリ上のみ）。キー: リクエスト URL */
+const regionCache = new Map<string, RegionResponse>();
+const locationCache = new Map<string, LocationResponse>();
+const locationAreaCache = new Map<string, LocationAreaResponse>();
 const pokemonCache = new Map<string, PokemonResponse>();
 const speciesCache = new Map<string, PokemonSpeciesResponse>();
 const pokemonFormCache = new Map<string, PokemonFormResponse>();
@@ -321,6 +348,9 @@ const evolutionChainCache = new Map<string, EvolutionChainResponse>();
 
 /** キャッシュをすべてクリアする（テスト用） */
 export function clearCache(): void {
+  regionCache.clear();
+  locationCache.clear();
+  locationAreaCache.clear();
   pokemonCache.clear();
   speciesCache.clear();
   pokemonFormCache.clear();
@@ -349,6 +379,21 @@ async function fetchWithCache<T>(
 }
 
 // --- API 呼び出し関数 ---
+
+/** /region/{idOrName} を取得 */
+export function fetchRegion(fetchFn: typeof fetch, idOrName: number | string): Promise<RegionResponse> {
+  return fetchWithCache(regionCache, fetchFn, `${BASE_URL}/region/${idOrName}`, RegionResponseSchema);
+}
+
+/** /location/{id} を取得 */
+export function fetchLocation(fetchFn: typeof fetch, id: number): Promise<LocationResponse> {
+  return fetchWithCache(locationCache, fetchFn, `${BASE_URL}/location/${id}`, LocationResponseSchema);
+}
+
+/** /location-area/{id} を取得 */
+export function fetchLocationArea(fetchFn: typeof fetch, id: number): Promise<LocationAreaResponse> {
+  return fetchWithCache(locationAreaCache, fetchFn, `${BASE_URL}/location-area/${id}`, LocationAreaResponseSchema);
+}
 
 /** /pokemon/{idOrName} を取得 */
 export function fetchPokemon(fetchFn: typeof fetch, idOrName: number | string): Promise<PokemonResponse> {

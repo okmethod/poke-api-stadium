@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "pallet-town-area",
+  "pokemon_encounters": [
+    { "pokemon": { "name": "pidgey", "url": "https://pokeapi.co/api/v2/pokemon/16/" } },
+    { "pokemon": { "name": "rattata", "url": "https://pokeapi.co/api/v2/pokemon/19/" } }
+  ]
+}

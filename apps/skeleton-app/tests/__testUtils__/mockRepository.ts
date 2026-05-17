@@ -21,5 +21,8 @@ export function createMockRepository(): IPokeRepository {
     getItem: vi.fn(),
     getItemPocketCategories: vi.fn(),
     getItemCategory: vi.fn(),
+    getRegionLocations: vi.fn(),
+    getLocation: vi.fn(),
+    getPokemonSpeciesMeta: vi.fn(),
   };
 }

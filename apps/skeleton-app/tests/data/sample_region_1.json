@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "locations": [
+    { "name": "pallet-town", "url": "https://pokeapi.co/api/v2/location/1/" },
+    { "name": "viridian-city", "url": "https://pokeapi.co/api/v2/location/2/" }
+  ]
+}

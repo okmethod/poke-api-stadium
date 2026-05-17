@@ -30,6 +30,7 @@ import { parseEvolutionTrigger } from "$lib/domain/models/PokeEvolution";
 import type { PokeMove, MoveCategory, MoveLearnRef, MoveLearnMethodName } from "$lib/domain/models/PokeMove";
 import { MOVE_LEARN_METHODS, MOVE_LEARN_METHOD_ORDER } from "$lib/domain/models/PokeMove";
 import type { PokeItem, PokeItemCategory, PokeItemCategoryMeta } from "$lib/domain/models/PokeItem";
+import type { PokeLocationMeta, PokeLocation, PokeSpeciesMeta } from "$lib/domain/models/PokeRegion";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type {
   PokemonResponse,
@@ -42,6 +43,9 @@ import type {
   EvolutionChainResponse,
 } from "$lib/infrastructure/api/pokeapi";
 import {
+  fetchRegion,
+  fetchLocation,
+  fetchLocationArea,
   fetchPokemon,
   fetchPokemonSpecies,
   fetchPokemonSpeciesByUrl,
@@ -635,6 +639,37 @@ class PokeApiAdapter implements IPokeRepository {
   async getItemCategory(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeItemCategory> {
     const raw = await fetchItemCategory(fetchFunction, idOrName);
     return convertToPokeItemCategory(raw);
+  }
+
+  /** 地方IDでその地方のロケーション一覧を取得 */
+  async getRegionLocations(fetchFunction: typeof fetch, regionId: number): Promise<PokeLocationMeta[]> {
+    const raw = await fetchRegion(fetchFunction, regionId);
+    return raw.locations.map((loc) => ({
+      id: extractIdFromUrl(loc.url),
+      enName: loc.name,
+    }));
+  }
+
+  /** IDでロケーション詳細（全エリアを並列取得してflatten + 重複排除）を取得 */
+  async getLocation(fetchFunction: typeof fetch, id: number): Promise<PokeLocation> {
+    const raw = await fetchLocation(fetchFunction, id);
+    const areas = await Promise.all(raw.areas.map((a) => fetchLocationArea(fetchFunction, extractIdFromUrl(a.url))));
+    const allNames = areas.flatMap((a) => a.pokemon_encounters.map((e) => e.pokemon.name));
+    const unique = [...new Set(allNames)];
+    return { id: raw.id, enName: raw.name, encounterSpeciesNames: unique };
+  }
+
+  /** 番号または英語名でポケモン種族のメタ情報（日本語名）を取得 */
+  async getPokemonSpeciesMeta(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeSpeciesMeta> {
+    try {
+      const raw = await fetchPokemonSpecies(fetchFunction, idOrName);
+      return { id: raw.id, enName: raw.name, jaName: resolveJaName(raw.names, raw.name) };
+    } catch {
+      // リージョンフォーム等でspecies直取得が失敗する場合は pokemon → species URL 経由で取得
+      const pokemon = await fetchPokemon(fetchFunction, idOrName);
+      const species = await fetchPokemonSpeciesByUrl(fetchFunction, pokemon.species.url);
+      return { id: species.id, enName: species.name, jaName: resolveJaName(species.names, species.name) };
+    }
   }
 }
 

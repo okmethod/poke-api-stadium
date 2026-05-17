@@ -1,0 +1,5 @@
+{
+  "id": 1,
+  "name": "pallet-town",
+  "areas": [{ "name": "pallet-town-area", "url": "https://pokeapi.co/api/v2/location-area/1/" }]
+}
