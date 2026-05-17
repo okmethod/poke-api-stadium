@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import Icon from "@iconify/svelte";
   import { PairCollisionDetection } from "$lib/application/usecases/PairCollisionDetection";
-  import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
+  import { getMatterJsSimpleDragAdapter } from "$lib/infrastructure/adapters/MatterJsSimpleDragAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
@@ -13,7 +13,7 @@
   const CANVAS_HEIGHT = 360;
   const SPAWN_COUNT = 100;
 
-  const engine = getMatterJs2dPhysicsAdapter();
+  const engine = getMatterJsSimpleDragAdapter();
   const facade = new PairCollisionDetection.Facade(engine, getPokeRepository());
   const { matchedCount, activeBodyCount, lastMatchJaName, lastMatchCryUrl } = PairCollisionDetection.Store;
 

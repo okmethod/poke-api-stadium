@@ -1,8 +1,8 @@
 /**
- * MatterJs2dPhysicsAdapter - matter.js による ISimpleDragPhysicsEngine 実装
+ * MatterJsSimpleDragAdapter - matter.js による ISimpleDragPhysicsEngine 実装
  *
  * @remarks
- * - Renderer を使わずヘッドレスで動作（描画は PhysicsCanvas2d.svelte が担う）
+ * - Renderer を使わずヘッドレスで動作（描画は canvas が担う）
  * - ドラッグは Matter.Constraint を直接操作して実現する
  * - 壁ボディをボディマップに登録しないことで衝突ハンドラのフィルタリングを実現する
  *
@@ -23,7 +23,7 @@ import type * as MatterType from "matter-js";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 /** matter.js による 2D物理エンジン実装 */
-class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements ISimpleDragPhysicsEngine {
+class MatterJsSimpleDragAdapter extends AbstractMatterJsAdapter implements ISimpleDragPhysicsEngine {
   private dragConstraint: MatterType.Constraint | null = null;
 
   /** 管理ボディマップ: 独自ID → matter.js Body */
@@ -169,7 +169,7 @@ class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements ISimpl
   }
 }
 
-/** MatterJs2dPhysicsAdapter のファクトリ関数 */
-export function getMatterJs2dPhysicsAdapter(): ISimpleDragPhysicsEngine {
-  return new MatterJs2dPhysicsAdapter();
+/** MatterJsSimpleDragAdapter のファクトリ関数 */
+export function getMatterJsSimpleDragAdapter(): ISimpleDragPhysicsEngine {
+  return new MatterJsSimpleDragAdapter();
 }

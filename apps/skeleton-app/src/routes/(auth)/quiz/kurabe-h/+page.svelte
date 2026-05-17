@@ -7,7 +7,7 @@
     type DndPokeData,
   } from "$lib/presentation/components/atoms/DndSortablePokeTiles.svelte";
   import { HeightComparison } from "$lib/application/usecases/HeightComparison";
-  import { getMatterJs2dPhysicsAdapter } from "$lib/infrastructure/adapters/MatterJs2dPhysicsAdapter";
+  import { getMatterJsSimpleDragAdapter } from "$lib/infrastructure/adapters/MatterJsSimpleDragAdapter";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { playSE } from "$lib/presentation/sounds/soundEffects";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
@@ -19,7 +19,7 @@
   const CANVAS_HEIGHT = 160;
   const POKE_COUNT = 3;
 
-  const engine = getMatterJs2dPhysicsAdapter();
+  const engine = getMatterJsSimpleDragAdapter();
   const facade = new HeightComparison.Facade(engine, getPokeRepository());
   const { pokeDataList, isRevealed, isLoading, result } = HeightComparison.Store;
 
