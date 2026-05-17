@@ -13,7 +13,7 @@ import {
   isLoading,
   isBalanced,
 } from "$lib/application/usecases/WeightBalance/store";
-import type { ISpringScaleEngine } from "$lib/application/ports/ISpringScaleEngine";
+import type { ISpringScalePhysicsEngine } from "$lib/application/ports/ISpringScalePhysicsEngine";
 import { buildMockPokeData } from "../../../__testUtils__/mockPokeData";
 import { createMockRepository } from "../../../__testUtils__/mockRepository";
 
@@ -25,7 +25,7 @@ import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 
 const mockFetch = vi.fn() as unknown as typeof fetch;
 
-function createMockSpringScaleEngine(): ISpringScaleEngine {
+function createMockSpringScaleEngine(): ISpringScalePhysicsEngine {
   return {
     initialize: vi.fn().mockResolvedValue(undefined),
     dispose: vi.fn(),
@@ -54,7 +54,7 @@ const poke100kg = buildMockPokeData({ speciesId: 3, jaName: "フシギバナ", w
 
 describe("WeightBalanceFacade", () => {
   let facade: WeightBalanceFacade;
-  let springEngine: ISpringScaleEngine;
+  let springEngine: ISpringScalePhysicsEngine;
 
   beforeEach(async () => {
     springEngine = createMockSpringScaleEngine();
@@ -169,13 +169,13 @@ describe("WeightBalanceFacade", () => {
       expect(get(placedPokeDataList)[0]!.jaName).toBe("フシギダネ");
     });
 
-    it("engine.addPokeBody が weightKg 付きで呼ばれる", async () => {
+    it("engine.addPokeBody が mass 付きで呼ばれる", async () => {
       vi.mocked(selectRandomPokemon).mockResolvedValue(poke30kg);
 
       await facade.placePokemon(mockFetch);
 
       expect(vi.mocked(springEngine.addPokeBody)).toHaveBeenCalledWith(
-        expect.objectContaining({ weightKg: poke10kg.weight }),
+        expect.objectContaining({ mass: poke10kg.weight }),
       );
     });
 

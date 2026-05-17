@@ -1,5 +1,5 @@
 /**
- * ISpringScaleEngine - バネばかり型物理エンジンの抽象インターフェース（Port）
+ * ISpringScalePhysicsEngine - バネばかり型物理エンジンの抽象インターフェース（Port）
  *
  * @architecture レイヤー間依存ルール - アプリ層 (Port)
  * - ROLE: バネばかり専用インフラ層の契約定義
@@ -8,16 +8,26 @@
  */
 
 import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
+import type { I2dPhysicsEngine } from "./I2dPhysicsEngine";
 
-/** バネばかりに乗せるポケモンボディの設定 */
+/**
+ * バネばかり上のポケモンボディ生成設定
+ *
+ * 質量がバネばかり固有のため、PhysicsBody2dConfig を継承せず独自定義する。
+ * spawnPoint はアダプターがプラットフォーム位置から計算するため、ここでは指定しない。
+ */
 export interface SpringScalePokeBodyConfig {
   readonly id: string;
   readonly imageUrl: string;
-  /** ポケモンの実際の重さ（kg） - エンジン内部で目標重量を基準に正規化される */
-  readonly weightKg: number;
+  /** kg 単位の重さ - エンジン内部で目標重量を基準に正規化される */
+  readonly mass: number;
 }
 
-/** バネばかりの現在状態（毎フレームレンダリングに使う） */
+/**
+ * バネばかりの現在状態（毎フレームレンダリングに使う）
+ *
+ * 形状が特殊なため、 PhysicsBody2dState を継承せず独自定義する。
+ */
 export interface SpringScaleState {
   readonly platformY: number;
   readonly platformWidth: number;
@@ -33,14 +43,13 @@ export interface SpringScaleState {
   readonly isBroken: boolean;
 }
 
-/** バネばかり型物理エンジン抽象インターフェース */
-export interface ISpringScaleEngine {
-  /** ワールドを初期化してエンジンとバネ台を構築する */
-  initialize(config: PhysicsWorld2dConfig): Promise<void>;
-
-  /** エンジンを停止してリソースを解放する */
-  dispose(): void;
-
+/**
+ * バネばかり型物理エンジン抽象インターフェース
+ *
+ * - `reset()`: 台の上のポケモンをすべて除去して初期状態に戻す（基底から継承）
+ * - `getState()`: 現在のバネ台・ポケモン状態を返す（基底から継承）
+ */
+export interface ISpringScalePhysicsEngine extends I2dPhysicsEngine<PhysicsWorld2dConfig, SpringScaleState> {
   /**
    * 目標重量を設定してバネのキャリブレーションを行う
    *
@@ -54,12 +63,6 @@ export interface ISpringScaleEngine {
   /** IDでポケモンボディを削除する */
   removePokeBody(id: string): void;
 
-  /** 台の上のポケモンをすべて除去して初期状態に戻す */
-  reset(): void;
-
   /** バネを破断させる（重量超過時に呼ぶ）。破断後はバネ力が無効になり台が落下する */
   breakSpring(): void;
-
-  /** 現在のバネ台・ポケモン状態を返す（レンダリング用・毎フレーム呼ばれる） */
-  getState(): SpringScaleState;
 }

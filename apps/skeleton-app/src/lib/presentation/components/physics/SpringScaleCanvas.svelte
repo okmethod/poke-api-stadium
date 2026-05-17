@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { ISpringScaleEngine } from "$lib/application/ports/ISpringScaleEngine";
+  import type { ISpringScalePhysicsEngine } from "$lib/application/ports/ISpringScalePhysicsEngine";
   import { createImageLoader, drawBody } from "$lib/presentation/utils/canvasUtils";
   import PhysicsCanvas from "./2dPhysicsBaseCanvas.svelte";
 
   interface Props {
-    engine: ISpringScaleEngine;
+    engine: ISpringScalePhysicsEngine;
     width: number;
     height: number;
   }
@@ -63,7 +63,7 @@
   /** 台と返しを一体のトレー形状として描画する */
   function drawPlatformTray(
     ctx: CanvasRenderingContext2D,
-    state: ReturnType<ISpringScaleEngine["getState"]>,
+    state: ReturnType<ISpringScalePhysicsEngine["getState"]>,
     canvasWidth: number,
   ): void {
     const GUARD_W = 10;
@@ -101,7 +101,7 @@
   /** 右側のゲージ（目標マーカー付き）を描画する */
   function drawGauge(
     ctx: CanvasRenderingContext2D,
-    state: ReturnType<ISpringScaleEngine["getState"]>,
+    state: ReturnType<ISpringScalePhysicsEngine["getState"]>,
     canvasWidth: number,
   ): void {
     const gaugeX = canvasWidth - 18;

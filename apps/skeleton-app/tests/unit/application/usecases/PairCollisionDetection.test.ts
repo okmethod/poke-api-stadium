@@ -11,7 +11,7 @@ import {
   lastMatchJaName,
   lastMatchCryUrl,
 } from "$lib/application/usecases/PairCollisionDetection/store";
-import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
+import type { ISimpleDragPhysicsEngine } from "$lib/application/ports/ISimpleDragPhysicsEngine";
 import type { PhysicsBody2dState } from "$lib/domain/models/2dPhysics";
 import { buildMockPokeData } from "../../../__testUtils__/mockPokeData";
 import { createMockRepository } from "../../../__testUtils__/mockRepository";
@@ -26,7 +26,7 @@ const mockFetch = vi.fn() as unknown as typeof fetch;
 
 const mockConfig = { width: 800, height: 600 };
 
-function createMockPhysics(): I2dPhysicsEngine {
+function createMockPhysics(): ISimpleDragPhysicsEngine {
   let collisionHandler: ((a: PhysicsBody2dState, b: PhysicsBody2dState) => void) | null = null;
   return {
     initialize: vi.fn().mockResolvedValue(undefined),
@@ -47,7 +47,9 @@ function createMockPhysics(): I2dPhysicsEngine {
     _triggerCollision(a: PhysicsBody2dState, b: PhysicsBody2dState) {
       collisionHandler?.(a, b);
     },
-  } as unknown as I2dPhysicsEngine & { _triggerCollision: (a: PhysicsBody2dState, b: PhysicsBody2dState) => void };
+  } as unknown as ISimpleDragPhysicsEngine & {
+    _triggerCollision: (a: PhysicsBody2dState, b: PhysicsBody2dState) => void;
+  };
 }
 
 const pikachu = buildMockPokeData({ speciesId: 25, jaName: "ピカチュウ" });
@@ -59,7 +61,7 @@ describe("PairCollisionDetectionFacade", () => {
 
   beforeEach(async () => {
     physics = createMockPhysics();
-    facade = new PairCollisionDetectionFacade(physics as unknown as I2dPhysicsEngine, createMockRepository());
+    facade = new PairCollisionDetectionFacade(physics as unknown as ISimpleDragPhysicsEngine, createMockRepository());
     await facade.initialize(mockConfig);
     vi.mocked(selectRandomPokemons).mockReset();
   });
@@ -67,7 +69,7 @@ describe("PairCollisionDetectionFacade", () => {
   describe("spawnPokemons", () => {
     it("エンジン未初期化のとき success: false を返す", async () => {
       const freshFacade = new PairCollisionDetectionFacade(
-        physics as unknown as I2dPhysicsEngine,
+        physics as unknown as ISimpleDragPhysicsEngine,
         createMockRepository(),
       );
       const res = await freshFacade.spawnPokemons(mockFetch, 1);
@@ -127,7 +129,7 @@ describe("PairCollisionDetectionFacade", () => {
     it("physics.initialize が設定を渡して呼ばれる", async () => {
       const freshPhysics = createMockPhysics();
       const freshFacade = new PairCollisionDetectionFacade(
-        freshPhysics as unknown as I2dPhysicsEngine,
+        freshPhysics as unknown as ISimpleDragPhysicsEngine,
         createMockRepository(),
       );
       await freshFacade.initialize(mockConfig);
@@ -151,7 +153,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfg2.id,
@@ -159,7 +162,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
 
       (
@@ -184,7 +188,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfg2.id,
@@ -192,7 +197,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
 
       (
@@ -216,7 +222,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfg2.id,
@@ -224,7 +231,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
 
       (
@@ -250,7 +258,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfgFushi.id,
@@ -258,7 +267,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
 
       (
@@ -282,7 +292,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfg2.id,
@@ -290,7 +301,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const triggerCollision = (
         physics as unknown as { _triggerCollision: (a: PhysicsBody2dState, b: PhysicsBody2dState) => void }
@@ -341,7 +353,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 0, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       const bodyB: PhysicsBody2dState = {
         id: cfg2.id,
@@ -349,7 +362,8 @@ describe("PairCollisionDetectionFacade", () => {
         position: { x: 10, y: 0 },
         angle: 0,
         imageUrl: "",
-        radius: 32,
+        renderWidth: 64,
+        renderHeight: 64,
       };
       (
         physics as unknown as { _triggerCollision: (a: PhysicsBody2dState, b: PhysicsBody2dState) => void }

@@ -8,18 +8,28 @@
  */
 
 import type { PhysicsBody2dState, PhysicsWorld2dConfig, Point2d } from "$lib/domain/models/2dPhysics";
+import type { I2dPhysicsEngine } from "./I2dPhysicsEngine";
 
-/** シーソー上のポケモンボディ生成設定 */
+/**
+ * シーソー上のポケモンボディ生成設定
+ *
+ * 左右配置と質量がシーソー固有のため、PhysicsBody2dConfig を継承せず独自定義する
+ * spawnPoint はアダプターが左右配置から計算するため、ここでは指定しない。
+ */
 export interface SeesawPokeBodyConfig {
   readonly id: string;
   readonly imageUrl: string;
   /** シーソーの左右どちらに配置するか */
   readonly side: "left" | "right";
-  /** kg 単位の重さ（リリース後の物理質量に使う） */
+  /** kg 単位の重さ - リリース後の物理質量に使う */
   readonly mass: number;
 }
 
-/** シーソーの現在状態（毎フレーム取得してレンダリングに使う） */
+/**
+ * シーソーの現在状態（毎フレーム取得してレンダリングに使う）
+ *
+ * 形状が特殊なため、 PhysicsBody2dState を継承せず独自定義する
+ */
 export interface SeesawState {
   readonly plankAngle: number;
   readonly plankPosition: Point2d;
@@ -30,14 +40,13 @@ export interface SeesawState {
   readonly pokeBodies: readonly PhysicsBody2dState[];
 }
 
-/** シーソーゲーム専用物理エンジンの抽象インターフェース */
-export interface ISeesawPhysicsEngine {
-  /** ワールドを初期化してエンジンとシーソーを構築する */
-  initialize(config: PhysicsWorld2dConfig): Promise<void>;
-
-  /** エンジンを停止してリソースを解放する */
-  dispose(): void;
-
+/**
+ * シーソーゲーム専用物理エンジンの抽象インターフェース
+ *
+ * - `reset()`: ポケモンボディをすべて除去しシーソーを水平に戻す（基底から継承）
+ * - `getState()`: 現在のシーソー・ポケモン状態を返す（基底から継承）
+ */
+export interface ISeesawPhysicsEngine extends I2dPhysicsEngine<PhysicsWorld2dConfig, SeesawState> {
   /** シーソーの腕にポケモンボディを追加する（初期状態は静止） */
   addPokeBody(config: SeesawPokeBodyConfig): Promise<void>;
 
@@ -46,10 +55,4 @@ export interface ISeesawPhysicsEngine {
 
   /** ポケモンボディを動的化して質量による挙動を開始する */
   release(): void;
-
-  /** ポケモンボディをすべて除去し、シーソーを水平に戻す */
-  resetSeesaw(): void;
-
-  /** 現在のシーソー・ポケモン状態を返す（レンダリング用・毎フレーム呼ばれる） */
-  getState(): SeesawState;
 }

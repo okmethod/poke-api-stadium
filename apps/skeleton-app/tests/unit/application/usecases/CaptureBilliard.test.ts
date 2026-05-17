@@ -5,7 +5,15 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { get } from "svelte/store";
 import { CaptureBilliardFacade, GAME_CONFIG } from "$lib/application/usecases/CaptureBilliard/facade";
-import { phase, isLoading, pokemons, storeWriter } from "$lib/application/usecases/CaptureBilliard/store";
+import {
+  phase,
+  isLoading,
+  pokemons,
+  obstacles,
+  aimOrigin,
+  aimTarget,
+  storeWriter,
+} from "$lib/application/usecases/CaptureBilliard/store";
 import type { IBilliardPhysicsEngine } from "$lib/application/ports/IBilliardPhysicsEngine";
 import { buildMockPokeData } from "../../../__testUtils__/mockPokeData";
 import { createMockRepository } from "../../../__testUtils__/mockRepository";
@@ -37,7 +45,7 @@ function createMockEngine(): IBilliardPhysicsEngine {
       velX = velocity.x;
       velY = velocity.y;
     }),
-    getBallState: vi.fn(() => {
+    getState: vi.fn(() => {
       // launch 後はゆっくり減速するシミュレーション
       posX += velX;
       posY += velY;
@@ -47,7 +55,7 @@ function createMockEngine(): IBilliardPhysicsEngine {
       return { position: { x: posX, y: posY }, angle, speed };
     }),
     onPokemonHit: vi.fn().mockReturnValue(() => {}),
-    resetBall: vi.fn(() => {
+    reset: vi.fn(() => {
       posX = BALL_X0;
       posY = BALL_Y0;
       velX = 0;
@@ -63,9 +71,11 @@ function createMockEngine(): IBilliardPhysicsEngine {
 
 describe("CaptureBilliardFacade", () => {
   let facade: CaptureBilliardFacade;
+  let mockEngine: IBilliardPhysicsEngine;
 
   beforeEach(() => {
-    facade = new CaptureBilliardFacade(createMockRepository(), createMockEngine());
+    mockEngine = createMockEngine();
+    facade = new CaptureBilliardFacade(createMockRepository(), mockEngine);
     storeWriter.reset();
     vi.mocked(selectRandomPokemon).mockReset();
   });
@@ -89,9 +99,9 @@ describe("CaptureBilliardFacade", () => {
 
       const pokemonList = get(pokemons);
       expect(pokemonList.length).toBe(POKEMON_COUNT);
-      expect(pokemonList[0]?.x).toBeGreaterThan(0);
-      expect(pokemonList[0]?.y).toBeGreaterThan(0);
-      expect(facade.getState().obstacles.length).toBeGreaterThan(0);
+      expect(pokemonList[0]?.position.x).toBeGreaterThan(0);
+      expect(pokemonList[0]?.position.y).toBeGreaterThan(0);
+      expect(get(obstacles).length).toBeGreaterThan(0);
     });
 
     it("ボール位置が初期位置にリセットされる", async () => {
@@ -99,7 +109,7 @@ describe("CaptureBilliardFacade", () => {
 
       await facade.startRound(mockFetch);
 
-      const bp = facade.getState().ballPosition;
+      const bp = mockEngine.getState().position;
       expect(bp.x).toBeCloseTo(BALL_X0);
       expect(bp.y).toBeCloseTo(BALL_Y0);
     });
@@ -152,7 +162,7 @@ describe("CaptureBilliardFacade", () => {
     it("aiming 中に updateAim を呼ぶと aimTarget が更新される", () => {
       facade.startAim({ x: BALL_X0, y: BALL_Y0 });
       facade.updateAim({ x: BALL_X0 + 30, y: BALL_Y0 + 40 });
-      const target = facade.getState().aimTarget;
+      const target = get(aimTarget);
       expect(target?.x).toBe(BALL_X0 + 30);
       expect(target?.y).toBe(BALL_Y0 + 40);
     });
@@ -172,8 +182,8 @@ describe("CaptureBilliardFacade", () => {
     it("launch 後に aimOrigin と aimTarget がクリアされる", () => {
       facade.startAim({ x: BALL_X0, y: BALL_Y0 });
       facade.launch({ x: BALL_X0 + 60, y: BALL_Y0 + 60 });
-      expect(facade.getState().aimOrigin).toBeNull();
-      expect(facade.getState().aimTarget).toBeNull();
+      expect(get(aimOrigin)).toBeNull();
+      expect(get(aimTarget)).toBeNull();
     });
   });
 
@@ -186,9 +196,9 @@ describe("CaptureBilliardFacade", () => {
     });
 
     it("flying 状態で tick を呼ぶとボール位置が変化する", () => {
-      const before = { ...facade.getState().ballPosition };
+      const before = { ...mockEngine.getState().position };
       facade.tick();
-      const after = facade.getState().ballPosition;
+      const after = mockEngine.getState().position;
       // モックエンジンが getBallState() 呼び出しごとに位置を変化させる
       expect(after.x !== before.x || after.y !== before.y).toBe(true);
     });
@@ -196,9 +206,10 @@ describe("CaptureBilliardFacade", () => {
     it("waiting 状態では tick を呼んでもボールが動かない", async () => {
       vi.mocked(selectRandomPokemon).mockResolvedValue(pikachu);
       await facade.startRound(mockFetch);
-      const before = { ...facade.getState().ballPosition };
+      // waiting 状態では vel=0 のため getBallState() を繰り返しても位置不変
+      const before = { ...mockEngine.getState().position };
       facade.tick();
-      expect(facade.getState().ballPosition).toEqual(before);
+      expect(mockEngine.getState().position).toEqual(before);
     });
 
     it("速度が落ちて止まると missed になる", () => {
@@ -221,7 +232,7 @@ describe("CaptureBilliardFacade", () => {
 
       facade.nextBall();
 
-      const bp = facade.getState().ballPosition;
+      const bp = mockEngine.getState().position;
       expect(bp.x).toBeCloseTo(BALL_X0);
       expect(bp.y).toBeCloseTo(BALL_Y0);
     });
@@ -241,16 +252,16 @@ describe("CaptureBilliardFacade", () => {
     it("障害物・ポケモン位置は変わらない（同コースで再挑戦）", async () => {
       vi.mocked(selectRandomPokemon).mockResolvedValue(pikachu);
       await facade.startRound(mockFetch);
-      const obsBefore = facade.getState().obstacles;
-      const poksBefore = get(pokemons).map((p) => ({ x: p.x, y: p.y }));
+      const obsBefore = get(obstacles);
+      const poksBefore = get(pokemons).map((p) => p.position);
 
       facade.startAim({ x: BALL_X0, y: BALL_Y0 });
       facade.launch({ x: BALL_X0 + 60, y: BALL_Y0 + 60 });
       facade.giveUp();
       facade.nextBall();
 
-      expect(facade.getState().obstacles).toEqual(obsBefore);
-      const poksAfter = get(pokemons).map((p) => ({ x: p.x, y: p.y }));
+      expect(get(obstacles)).toEqual(obsBefore);
+      const poksAfter = get(pokemons).map((p) => p.position);
       expect(poksAfter).toEqual(poksBefore);
     });
   });

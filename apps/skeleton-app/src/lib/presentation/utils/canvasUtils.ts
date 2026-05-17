@@ -11,10 +11,11 @@ import type { Point2d } from "$lib/domain/models/2dPhysics";
 
 /** canvas に描画できる物理ボディの最小インターフェース */
 export interface DrawableBody {
-  readonly imageUrl: string;
+  readonly imageUrl?: string;
   readonly position: Point2d;
   readonly angle: number;
-  readonly radius: number;
+  readonly renderWidth: number;
+  readonly renderHeight: number;
 }
 
 /** 画像ローダーを生成する。コンポーネントごとに独立したキャッシュを持つ */
@@ -49,10 +50,9 @@ export function drawBody(
   if (!body.imageUrl) return;
   const img = loadImage(body.imageUrl);
   if (!img.complete || img.naturalWidth === 0) return;
-  const size = body.radius * 2;
   ctx.save();
   ctx.translate(body.position.x, body.position.y);
   ctx.rotate(body.angle);
-  ctx.drawImage(img, -size / 2, -size / 2, size, size);
+  ctx.drawImage(img, -body.renderWidth / 2, -body.renderHeight / 2, body.renderWidth, body.renderHeight);
   ctx.restore();
 }

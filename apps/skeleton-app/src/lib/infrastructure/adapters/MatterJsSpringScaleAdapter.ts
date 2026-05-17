@@ -1,5 +1,5 @@
 /**
- * MatterJsSpringScaleAdapter - matter.js によるバネばかり型 ISpringScaleEngine 実装
+ * MatterJsSpringScaleAdapter - matter.js によるバネばかり型 ISpringScalePhysicsEngine 実装
  *
  * @remarks
  * - 台（プラットフォーム）はバネ力で上下にのみ動く動的ボディ
@@ -7,17 +7,17 @@
  * - バネの平衡位置は setTargetWeight() と addPokeBody() で渡された重量比率で外部制御する
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
- * - ROLE: ISpringScaleEngine Port の具象実装
+ * - ROLE: ISpringScalePhysicsEngine Port の具象実装
  * - ALLOWED: アプリ層 Port への依存、ドメイン層モデルへの依存
  * - FORBIDDEN: プレゼン層への依存
  */
 
 import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import type {
-  ISpringScaleEngine,
+  ISpringScalePhysicsEngine,
   SpringScalePokeBodyConfig,
   SpringScaleState,
-} from "$lib/application/ports/ISpringScaleEngine";
+} from "$lib/application/ports/ISpringScalePhysicsEngine";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 // ポケモンボディの描画半径（px）
@@ -49,7 +49,7 @@ const SPAWN_Y_ABOVE = 60;
 // スポーン X の広がり（台幅に対する比率）
 const SPAWN_ZONE_RATIO = 0.6;
 
-class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpringScaleEngine {
+class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpringScalePhysicsEngine {
   private platform!: import("matter-js").Body;
   private pivotX!: number;
   private platformWidth!: number;
@@ -61,7 +61,7 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
   private totalNormalizedMass = 0;
   // addPokeBody / removePokeBody で即時更新される目標質量
   private targetNormalizedMass = 0;
-  private targetWeightKg = 1;
+  private targetMass = 1;
 
   private springBroken = false;
   private guards: import("matter-js").Body[] = [];
@@ -123,11 +123,11 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
   }
 
   setTargetWeight(kg: number): void {
-    this.targetWeightKg = kg;
+    this.targetMass = kg;
   }
 
   async addPokeBody(config: SpringScalePokeBodyConfig): Promise<void> {
-    const normalizedMass = config.weightKg / this.targetWeightKg;
+    const normalizedMass = config.mass / this.targetMass;
 
     // スポーン位置: 台の上方にランダムに配置
     const spawnZoneHalf = (this.platformWidth * SPAWN_ZONE_RATIO) / 2;
@@ -195,7 +195,9 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
   getState(): SpringScaleState {
     const pokeBodies = [];
     for (const [id, body] of this.pokeBodyById) {
-      pokeBodies.push(this.toBodyState(id, body, this.pokeImageUrlById.get(id) ?? "", POKE_VISUAL_RADIUS));
+      pokeBodies.push(
+        this.toBodyState(id, body, this.pokeImageUrlById.get(id), POKE_VISUAL_RADIUS * 2, POKE_VISUAL_RADIUS * 2),
+      );
     }
     return {
       platformY: this.platform.position.y,
@@ -256,6 +258,6 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
 }
 
 /** MatterJsSpringScaleAdapter のファクトリ関数 */
-export function getMatterJsSpringScaleAdapter(): ISpringScaleEngine {
+export function getMatterJsSpringScaleAdapter(): ISpringScalePhysicsEngine {
   return new MatterJsSpringScaleAdapter();
 }

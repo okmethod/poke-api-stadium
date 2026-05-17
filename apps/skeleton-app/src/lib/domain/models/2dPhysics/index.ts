@@ -8,4 +8,11 @@
  */
 
 export type { PhysicsWorld2dConfig } from "./physicsWorld2d";
-export type { Point2d, PhysicsBody2dConfig, PhysicsBody2dState } from "./physicsBody2d";
+export type {
+  Point2d,
+  CircleBody2dConfig,
+  RectBody2dConfig,
+  PolygonBody2dConfig,
+  PhysicsBody2dConfig,
+  PhysicsBody2dState,
+} from "./physicsBody2d";

@@ -7,10 +7,10 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
-import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
-import type { ISpringScaleEngine } from "$lib/application/ports/ISpringScaleEngine";
-import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { ISpringScalePhysicsEngine } from "$lib/application/ports/ISpringScalePhysicsEngine";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
@@ -39,7 +39,7 @@ export class WeightBalanceFacade {
   private nextBodyId: number = 0;
 
   constructor(
-    private readonly springEngine: ISpringScaleEngine,
+    private readonly springEngine: ISpringScalePhysicsEngine,
     private readonly repository: IPokeRepository,
   ) {}
 
@@ -89,7 +89,7 @@ export class WeightBalanceFacade {
     const imageUrl = poke.imageUrls.pixel.front ?? poke.imageUrls.artwork.front ?? "";
 
     this.placedItems.push({ bodyId, poke });
-    await this.springEngine.addPokeBody({ id: bodyId, imageUrl, weightKg: poke.weight });
+    await this.springEngine.addPokeBody({ id: bodyId, imageUrl, mass: poke.weight });
 
     storeWriter.setPlacedPokeDataList(this.placedItems.map((item) => item.poke));
     this.currentPokeData = null;

@@ -7,20 +7,13 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
+import type { PokeData } from "$lib/domain/models/PokeData";
+import type { Point2d, PhysicsBody2dConfig, RectBody2dConfig } from "$lib/domain/models/2dPhysics";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
 import type { IBilliardPhysicsEngine } from "$lib/application/ports/IBilliardPhysicsEngine";
-import type {
-  IBilliardGameEngine,
-  BilliardCanvasState,
-  BilliardCanvasPokemon,
-  BilliardCanvasObstacle,
-  BilliardPhase,
-} from "$lib/application/ports/IBilliardPhysicsEngine";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import type { PokeData } from "$lib/domain/models/PokeData";
-import type { Point2d } from "$lib/domain/models/2dPhysics";
 import { selectRandomPokemon } from "$lib/application/utils/pokeSelectionUtils";
-import { storeWriter, type BilliardPokemon } from "./store";
+import { storeWriter, type BilliardCanvasPokemon, type BilliardPhase } from "./store";
 
 /** プレゼン層からも参照するゲーム固有の寸法定数 */
 export const GAME_CONFIG = {
@@ -69,13 +62,10 @@ const POKEMON_ZONE_TOP = 50;
 const POKEMON_ZONE_BOTTOM = 280;
 
 /** ポケモンゲットビリヤードのゲーム操作を提供する Facade */
-export class CaptureBilliardFacade implements IBilliardGameEngine {
+export class CaptureBilliardFacade {
   private phase: BilliardPhase = "waiting";
   private slowTickCount = 0;
-  private currentPokemons: BilliardPokemon[] = [];
-  private currentObstacles: BilliardCanvasObstacle[] = [];
-  private aimOriginState: Point2d | null = null;
-  private aimTargetState: Point2d | null = null;
+  private currentPokemons: BilliardCanvasPokemon[] = [];
   private ballsRemaining = 0;
   private caughtPokemonsData: PokeData[] = [];
   private engineInitialized = false;
@@ -110,7 +100,7 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
         });
         this.engineInitialized = true;
       } else {
-        this.engine.resetBall();
+        this.engine.reset();
       }
 
       const pokemonsData = await Promise.all(
@@ -122,14 +112,20 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
 
       const course = this.generateCourse(pokemonsData);
       this.currentPokemons = course.pokemons;
-      this.currentObstacles = course.obstacles;
-      this.aimOriginState = null;
-      this.aimTargetState = null;
 
       // コース障害物・ポケモンをエンジンにセット
       this.engine.setupCourse(
-        course.obstacles.map((obs, i) => ({ id: `obs_${i}`, ...obs })),
-        course.pokemons.map((p) => ({ id: String(p.pokeData.pokeId), x: p.x, y: p.y, radius: POKE_R })),
+        course.obstacles,
+        course.pokemons.map(
+          (p): PhysicsBody2dConfig => ({
+            collisionShape: "polygon",
+            id: String(p.pokeData.pokeId),
+            imageUrl: p.pokeData.imageUrls.pixel.front ?? "",
+            category: 0,
+            spawnPoint: p.position,
+            radius: POKE_R,
+          }),
+        ),
       );
 
       // ポケモン命中ハンドラを登録
@@ -138,6 +134,9 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
       storeWriter.setPokemons(course.pokemons);
       storeWriter.setBallsRemaining(BALL_COUNT);
       storeWriter.setCaughtPokemons([]);
+      storeWriter.setObstacles(course.obstacles);
+      storeWriter.setAimOrigin(null);
+      storeWriter.setAimTarget(null);
 
       this.phase = "waiting";
       storeWriter.setPhase("waiting");
@@ -152,35 +151,11 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
     }
   }
 
-  /** キャンバス描画に必要な全状態を返す（毎フレーム呼ばれる） */
-  getState(): BilliardCanvasState {
-    const ballState = this.engine.getBallState();
-    return {
-      phase: this.phase,
-      ballPosition: ballState.position,
-      ballAngle: ballState.angle,
-      ballSpriteUrl: GAME_CONFIG.ballSpriteUrl,
-      ballRadius: BALL_R,
-      pokemons: this.currentPokemons.map(
-        (p): BilliardCanvasPokemon => ({
-          imageUrl: p.pokeData.imageUrls.pixel.front ?? "",
-          x: p.x,
-          y: p.y,
-          radius: POKE_R,
-          caught: p.caught,
-        }),
-      ),
-      obstacles: this.currentObstacles,
-      aimOrigin: this.aimOriginState,
-      aimTarget: this.aimTargetState,
-    };
-  }
-
   /** 物理状態を1フレーム分ポーリングする（requestAnimationFrame から毎フレーム呼ぶ） */
   tick(): void {
     if (this.phase !== "flying") return;
 
-    const state = this.engine.getBallState();
+    const state = this.engine.getState();
 
     if (state.speed < MIN_SPEED_THRESHOLD) {
       this.slowTickCount++;
@@ -202,21 +177,21 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
    */
   startAim(point: Point2d): void {
     if (this.phase !== "waiting") return;
-    const ballState = this.engine.getBallState();
+    const ballState = this.engine.getState();
     const dx = point.x - ballState.position.x;
     const dy = point.y - ballState.position.y;
     if (Math.sqrt(dx * dx + dy * dy) > AIM_START_RADIUS) return;
 
     this.phase = "aiming";
     storeWriter.setPhase("aiming");
-    this.aimOriginState = ballState.position;
-    this.aimTargetState = point;
+    storeWriter.setAimOrigin(ballState.position);
+    storeWriter.setAimTarget(point);
   }
 
   /** エイム方向を更新する */
   updateAim(point: Point2d): void {
     if (this.phase !== "aiming") return;
-    this.aimTargetState = point;
+    storeWriter.setAimTarget(point);
   }
 
   /**
@@ -227,10 +202,10 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
   launch(point: Point2d): void {
     if (this.phase !== "aiming") return;
 
-    this.aimOriginState = null;
-    this.aimTargetState = null;
+    storeWriter.setAimOrigin(null);
+    storeWriter.setAimTarget(null);
 
-    const ballState = this.engine.getBallState();
+    const ballState = this.engine.getState();
     const dx = ballState.position.x - point.x;
     const dy = ballState.position.y - point.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -270,9 +245,9 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
       storeWriter.setPhase("result");
       return;
     }
-    this.engine.resetBall();
-    this.aimOriginState = null;
-    this.aimTargetState = null;
+    this.engine.reset();
+    storeWriter.setAimOrigin(null);
+    storeWriter.setAimTarget(null);
     this.slowTickCount = 0;
     this.phase = "waiting";
     storeWriter.setPhase("waiting");
@@ -295,9 +270,7 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
     if (idx === -1) return;
 
     const pokemon = this.currentPokemons[idx]!;
-    const updated = this.currentPokemons.map<BilliardPokemon>((p, j) =>
-      j === idx ? { pokeData: p.pokeData, x: p.x, y: p.y, caught: true } : p,
-    );
+    const updated = this.currentPokemons.map<BilliardCanvasPokemon>((p, j) => (j === idx ? { ...p, caught: true } : p));
     this.currentPokemons = updated;
     this.caughtPokemonsData = [...this.caughtPokemonsData, pokemon.pokeData];
     this.ballsRemaining--;
@@ -312,16 +285,29 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
   }
 
   private generateCourse(pokemonsData: PokeData[]): {
-    pokemons: BilliardPokemon[];
-    obstacles: BilliardCanvasObstacle[];
+    pokemons: BilliardCanvasPokemon[];
+    obstacles: RectBody2dConfig[];
   } {
-    const obstacles: BilliardCanvasObstacle[] = [];
+    const obstacles: RectBody2dConfig[] = [];
+    let obsIndex = 0;
 
-    const centerObs = this.tryPlaceObstacle(W / 2 - 60, W / 2 + 60 - OBS_LONG_MIN, 180, 300, [], obstacles);
-    if (centerObs) obstacles.push(centerObs);
+    const centerObs = this.tryPlaceObstacle(
+      `obs_${obsIndex}`,
+      W / 2 - 60,
+      W / 2 + 60 - OBS_LONG_MIN,
+      180,
+      300,
+      [],
+      obstacles,
+    );
+    if (centerObs) {
+      obstacles.push(centerObs);
+      obsIndex++;
+    }
 
     for (let i = 0; i < OBSTACLE_COUNT - 1; i++) {
       const obs = this.tryPlaceObstacle(
+        `obs_${obsIndex}`,
         OBS_MARGIN,
         W - OBS_MARGIN - OBS_LONG_MIN,
         OBSTACLE_ZONE_TOP,
@@ -329,11 +315,14 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
         [],
         obstacles,
       );
-      if (obs) obstacles.push(obs);
+      if (obs) {
+        obstacles.push(obs);
+        obsIndex++;
+      }
     }
 
     const sectionW = (W - 2 * OBS_MARGIN) / POKEMON_COUNT;
-    const pokemons: BilliardPokemon[] = [];
+    const pokemons: BilliardCanvasPokemon[] = [];
 
     for (let i = 0; i < pokemonsData.length; i++) {
       const xMin = OBS_MARGIN + POKE_R + i * sectionW;
@@ -341,14 +330,14 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
 
       const isClear = (x: number, y: number) =>
         !obstacles.some((obs) => this.obsOverlapsPokemon(obs, x, y)) &&
-        !pokemons.some((p) => Math.sqrt((p.x - x) ** 2 + (p.y - y) ** 2) < POKE_R * 4);
+        !pokemons.some((p) => Math.sqrt((p.position.x - x) ** 2 + (p.position.y - y) ** 2) < POKE_R * 4);
 
       let placed = false;
       for (let attempt = 0; attempt < 80; attempt++) {
         const x = xMin + Math.random() * Math.max(0, xMax - xMin);
         const y = POKEMON_ZONE_TOP + POKE_R + Math.random() * (POKEMON_ZONE_BOTTOM - POKEMON_ZONE_TOP - POKE_R * 2);
         if (!isClear(x, y)) continue;
-        pokemons.push({ pokeData: pokemonsData[i]!, x, y, caught: false });
+        pokemons.push({ pokeData: pokemonsData[i]!, position: { x, y }, caught: false });
         placed = true;
         break;
       }
@@ -357,7 +346,7 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
         outer: for (let gy = POKEMON_ZONE_TOP + POKE_R; gy < POKEMON_ZONE_BOTTOM - POKE_R; gy += 20) {
           for (let gx = xMin; gx < xMax; gx += 20) {
             if (!isClear(gx, gy)) continue;
-            pokemons.push({ pokeData: pokemonsData[i]!, x: gx, y: gy, caught: false });
+            pokemons.push({ pokeData: pokemonsData[i]!, position: { x: gx, y: gy }, caught: false });
             placed = true;
             break outer;
           }
@@ -367,8 +356,7 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
       if (!placed) {
         pokemons.push({
           pokeData: pokemonsData[i]!,
-          x: (xMin + xMax) / 2,
-          y: POKEMON_ZONE_TOP + POKE_R,
+          position: { x: (xMin + xMax) / 2, y: POKEMON_ZONE_TOP + POKE_R },
           caught: false,
         });
       }
@@ -378,23 +366,31 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
   }
 
   private tryPlaceObstacle(
+    id: string,
     xMin: number,
     xMax: number,
     yMin: number,
     yMax: number,
-    pokemons: BilliardPokemon[],
-    existing: BilliardCanvasObstacle[],
-  ): BilliardCanvasObstacle | null {
+    pokemons: BilliardCanvasPokemon[],
+    existing: RectBody2dConfig[],
+  ): RectBody2dConfig | null {
     for (let i = 0; i < 25; i++) {
       const long = OBS_LONG_MIN + Math.random() * (OBS_LONG_MAX - OBS_LONG_MIN);
       const short = OBS_SHORT_MIN + Math.random() * (OBS_SHORT_MAX - OBS_SHORT_MIN);
       const [w, h] = Math.random() < 0.5 ? [long, short] : [short, long];
-      const x = xMin + Math.random() * Math.max(0, xMax - xMin);
-      const y = yMin + Math.random() * Math.max(0, yMax - yMin);
-      const obs: BilliardCanvasObstacle = { x, y, width: w, height: h };
+      const cx = xMin + w / 2 + Math.random() * Math.max(0, xMax - xMin);
+      const cy = yMin + h / 2 + Math.random() * Math.max(0, yMax - yMin);
+      const obs: RectBody2dConfig = {
+        id,
+        category: 0,
+        collisionShape: "rect",
+        spawnPoint: { x: cx, y: cy },
+        width: w,
+        height: h,
+      };
 
       if (this.obsOverlapsBall(obs)) continue;
-      if (pokemons.some((p) => this.obsOverlapsPokemon(obs, p.x, p.y))) continue;
+      if (pokemons.some((p) => this.obsOverlapsPokemon(obs, p.position.x, p.position.y))) continue;
       if (existing.some((e) => this.obsOverlapsObs(e, obs))) continue;
 
       return obs;
@@ -402,22 +398,33 @@ export class CaptureBilliardFacade implements IBilliardGameEngine {
     return null;
   }
 
-  private obsOverlapsBall(obs: BilliardCanvasObstacle): boolean {
+  private obsOverlapsBall(obs: RectBody2dConfig): boolean {
     const M = BALL_R + 30;
     return (
-      BALL_X0 + M > obs.x && BALL_X0 - M < obs.x + obs.width && BALL_Y0 + M > obs.y && BALL_Y0 - M < obs.y + obs.height
+      BALL_X0 + M > obs.spawnPoint.x - obs.width / 2 &&
+      BALL_X0 - M < obs.spawnPoint.x + obs.width / 2 &&
+      BALL_Y0 + M > obs.spawnPoint.y - obs.height / 2 &&
+      BALL_Y0 - M < obs.spawnPoint.y + obs.height / 2
     );
   }
 
-  private obsOverlapsPokemon(obs: BilliardCanvasObstacle, px: number, py: number): boolean {
+  private obsOverlapsPokemon(obs: RectBody2dConfig, px: number, py: number): boolean {
     const M = POKE_R + 30;
-    return px + M > obs.x && px - M < obs.x + obs.width && py + M > obs.y && py - M < obs.y + obs.height;
+    return (
+      px + M > obs.spawnPoint.x - obs.width / 2 &&
+      px - M < obs.spawnPoint.x + obs.width / 2 &&
+      py + M > obs.spawnPoint.y - obs.height / 2 &&
+      py - M < obs.spawnPoint.y + obs.height / 2
+    );
   }
 
-  private obsOverlapsObs(a: BilliardCanvasObstacle, b: BilliardCanvasObstacle): boolean {
+  private obsOverlapsObs(a: RectBody2dConfig, b: RectBody2dConfig): boolean {
     const GAP = 20;
     return (
-      a.x - GAP < b.x + b.width && a.x + a.width + GAP > b.x && a.y - GAP < b.y + b.height && a.y + a.height + GAP > b.y
+      a.spawnPoint.x - a.width / 2 - GAP < b.spawnPoint.x + b.width / 2 &&
+      a.spawnPoint.x + a.width / 2 + GAP > b.spawnPoint.x - b.width / 2 &&
+      a.spawnPoint.y - a.height / 2 - GAP < b.spawnPoint.y + b.height / 2 &&
+      a.spawnPoint.y + a.height / 2 + GAP > b.spawnPoint.y - b.height / 2
     );
   }
 }

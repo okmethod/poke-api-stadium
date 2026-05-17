@@ -9,7 +9,8 @@
   import BilliardCanvas from "$lib/presentation/components/physics/BilliardCanvas.svelte";
   import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
-  const facade = new CaptureBilliard.Facade(getPokeRepository(), getMatterJsBilliardAdapter());
+  const engine = getMatterJsBilliardAdapter();
+  const facade = new CaptureBilliard.Facade(getPokeRepository(), engine);
   const { phase, isLoading, pokemons, ballsRemaining, caughtPokemons } = CaptureBilliard.Store;
 
   const {
@@ -82,7 +83,15 @@
     </div>
   {:else if isReady && $pokemons.length > 0}
     <!-- キャンバス -->
-    <BilliardCanvas engine={facade} width={W} height={H} />
+    <BilliardCanvas
+      {engine}
+      width={W}
+      height={H}
+      onFrame={() => facade.tick()}
+      onPointerDown={(p) => facade.startAim(p)}
+      onPointerMove={(p) => facade.updateAim(p)}
+      onPointerUp={(p) => facade.launch(p)}
+    />
 
     <!-- 結果・操作ボタン -->
     <div class="h-8">

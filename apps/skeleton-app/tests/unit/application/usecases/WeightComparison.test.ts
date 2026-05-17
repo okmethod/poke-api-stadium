@@ -25,7 +25,7 @@ function createMockSeesawEngine(): ISeesawPhysicsEngine {
     addPokeBody: vi.fn().mockResolvedValue(undefined),
     removePokeBody: vi.fn(),
     release: vi.fn(),
-    resetSeesaw: vi.fn(),
+    reset: vi.fn(),
     getState: vi.fn().mockReturnValue({
       plankAngle: 0,
       plankPosition: { x: 0, y: 0 },
@@ -133,12 +133,12 @@ describe("WeightComparisonFacade", () => {
       expect(get(pokeDataList)).toHaveLength(0);
     });
 
-    it("2回目の呼び出しで前のボディが removePokeBody で除去され resetSeesaw が呼ばれる", async () => {
+    it("2回目の呼び出しで前のボディが removePokeBody で除去され reset が呼ばれる", async () => {
       vi.mocked(selectRandomPokemons).mockResolvedValue([heavyPoke, lightPoke]);
       await facade.pickPokemons(mockFetch);
 
       const removeMock = vi.mocked(seesawEngine.removePokeBody);
-      const resetMock = vi.mocked(seesawEngine.resetSeesaw);
+      const resetMock = vi.mocked(seesawEngine.reset);
       removeMock.mockClear();
       resetMock.mockClear();
 

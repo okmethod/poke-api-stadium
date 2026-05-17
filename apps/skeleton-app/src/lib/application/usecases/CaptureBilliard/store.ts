@@ -8,24 +8,29 @@
  */
 
 import { writable, readonly } from "svelte/store";
+import type { Point2d, RectBody2dConfig } from "$lib/domain/models/2dPhysics";
 import type { PokeData } from "$lib/domain/models/PokeData";
-export type { BilliardPhase } from "$lib/application/ports/IBilliardPhysicsEngine";
 
-/** フィールド上のポケモン1体の状態 */
-export interface BilliardPokemon {
+/** ゲームフェーズ */
+export type BilliardPhase = "waiting" | "aiming" | "flying" | "caught" | "missed" | "result";
+
+/** キャンバス描画用のポケモンの状態 */
+export interface BilliardCanvasPokemon {
   readonly pokeData: PokeData;
-  readonly x: number;
-  readonly y: number;
+  readonly position: Point2d;
   readonly caught: boolean;
 }
 
 // --- ストア定義（書き込みはすべて storeWriter 経由） ---
 
-const phaseStore = writable<import("$lib/application/ports/IBilliardPhysicsEngine").BilliardPhase>("waiting");
+const phaseStore = writable<BilliardPhase>("waiting");
 const isLoadingStore = writable<boolean>(false);
-const pokemonsStore = writable<BilliardPokemon[]>([]);
+const pokemonsStore = writable<BilliardCanvasPokemon[]>([]);
+const obstaclesStore = writable<RectBody2dConfig[]>([]);
 const ballsRemainingStore = writable<number>(0);
 const caughtPokemonsStore = writable<PokeData[]>([]);
+const aimOriginStore = writable<Point2d | null>(null);
+const aimTargetStore = writable<Point2d | null>(null);
 
 /** ゲームフェーズ（読み取り専用） */
 export const phase = readonly(phaseStore);
@@ -36,11 +41,20 @@ export const isLoading = readonly(isLoadingStore);
 /** フィールド上のポケモン一覧（読み取り専用） */
 export const pokemons = readonly(pokemonsStore);
 
+/** フィールド障害物一覧（読み取り専用・`RectBody2dConfig`、`spawnPoint` は center 座標） */
+export const obstacles = readonly(obstaclesStore);
+
 /** 残りボール数（読み取り専用） */
 export const ballsRemaining = readonly(ballsRemainingStore);
 
 /** ゲット済みポケモン一覧（読み取り専用） */
 export const caughtPokemons = readonly(caughtPokemonsStore);
+
+/** エイム開始点（読み取り専用） */
+export const aimOrigin = readonly(aimOriginStore);
+
+/** エイム現在点（読み取り専用） */
+export const aimTarget = readonly(aimTargetStore);
 
 /** Facade からのみ使用するストア書き込み API */
 export const storeWriter = {
@@ -48,12 +62,18 @@ export const storeWriter = {
     phaseStore.set("waiting");
     isLoadingStore.set(false);
     pokemonsStore.set([]);
+    obstaclesStore.set([]);
     ballsRemainingStore.set(0);
     caughtPokemonsStore.set([]);
+    aimOriginStore.set(null);
+    aimTargetStore.set(null);
   },
-  setPhase: (v: import("$lib/application/ports/IBilliardPhysicsEngine").BilliardPhase) => phaseStore.set(v),
+  setPhase: (v: BilliardPhase) => phaseStore.set(v),
   setIsLoading: (v: boolean) => isLoadingStore.set(v),
-  setPokemons: (v: BilliardPokemon[]) => pokemonsStore.set(v),
+  setPokemons: (v: BilliardCanvasPokemon[]) => pokemonsStore.set(v),
+  setObstacles: (v: RectBody2dConfig[]) => obstaclesStore.set(v),
   setBallsRemaining: (v: number) => ballsRemainingStore.set(v),
   setCaughtPokemons: (v: PokeData[]) => caughtPokemonsStore.set(v),
+  setAimOrigin: (v: Point2d | null) => aimOriginStore.set(v),
+  setAimTarget: (v: Point2d | null) => aimTargetStore.set(v),
 };

@@ -13,12 +13,10 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import type { Point2d } from "$lib/domain/models/2dPhysics";
+import type { Point2d, PhysicsBody2dConfig, RectBody2dConfig } from "$lib/domain/models/2dPhysics";
 import type {
   IBilliardPhysicsEngine,
   BilliardBallState,
-  BilliardCoursePokemon,
-  BilliardCourseObstacle,
   BilliardWorldConfig,
 } from "$lib/application/ports/IBilliardPhysicsEngine";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
@@ -66,7 +64,7 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
     this.hitPokemonIds.clear();
   }
 
-  setupCourse(obstacles: BilliardCourseObstacle[], pokemons: BilliardCoursePokemon[]): void {
+  setupCourse(obstacles: RectBody2dConfig[], pokemons: PhysicsBody2dConfig[]): void {
     // 前ラウンドの障害物・ポケモンを除去
     for (const body of this.obstacleBodyById.values()) {
       this.M.Composite.remove(this.engine.world, body);
@@ -78,9 +76,9 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
     this.pokemonBodyById.clear();
     this.hitPokemonIds.clear();
 
-    // 障害物（静的矩形）: Matter.js の rectangle は中心座標を取るため変換する
+    // 障害物（静的矩形）: spawnPoint は center 座標なので変換不要
     for (const obs of obstacles) {
-      const body = this.M.Bodies.rectangle(obs.x + obs.width / 2, obs.y + obs.height / 2, obs.width, obs.height, {
+      const body = this.M.Bodies.rectangle(obs.spawnPoint.x, obs.spawnPoint.y, obs.width, obs.height, {
         isStatic: true,
         restitution: 0,
         friction: 0,
@@ -93,7 +91,11 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
 
     // ポケモンターゲット（センサー円）: 物理応答なしで衝突検出のみ
     for (const poke of pokemons) {
-      const body = this.M.Bodies.circle(poke.x, poke.y, poke.radius, {
+      const radius =
+        poke.collisionShape === "circle" || poke.collisionShape === "polygon"
+          ? poke.radius
+          : Math.min(poke.width, poke.height) / 2;
+      const body = this.M.Bodies.circle(poke.spawnPoint.x, poke.spawnPoint.y, radius, {
         isStatic: true,
         isSensor: true,
         label: poke.id,
@@ -107,7 +109,7 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
     this.M.Body.setVelocity(this.ball, velocity);
   }
 
-  getBallState(): BilliardBallState {
+  getState(): BilliardBallState {
     const v = this.ball.velocity;
     return {
       position: { x: this.ball.position.x, y: this.ball.position.y },
@@ -141,7 +143,7 @@ class MatterJsBilliardAdapter extends AbstractMatterJsAdapter implements IBillia
     return () => this.M.Events.off(this.engine, "collisionStart", listener);
   }
 
-  resetBall(): void {
+  reset(): void {
     this.M.Body.setPosition(this.ball, this.startPosition);
     this.M.Body.setVelocity(this.ball, { x: 0, y: 0 });
     this.M.Body.setAngle(this.ball, 0);

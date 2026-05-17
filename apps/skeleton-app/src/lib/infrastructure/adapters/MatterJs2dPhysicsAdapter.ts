@@ -1,5 +1,5 @@
 /**
- * MatterJs2dPhysicsAdapter - matter.js による I2dPhysicsEngine 実装
+ * MatterJs2dPhysicsAdapter - matter.js による ISimpleDragPhysicsEngine 実装
  *
  * @remarks
  * - Renderer を使わずヘッドレスで動作（描画は PhysicsCanvas2d.svelte が担う）
@@ -7,7 +7,7 @@
  * - 壁ボディをボディマップに登録しないことで衝突ハンドラのフィルタリングを実現する
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
- * - ROLE: I2dPhysicsEngine Port の具象実装
+ * - ROLE: ISimpleDragPhysicsEngine Port の具象実装
  * - ALLOWED: アプリ層 Port への依存、ドメイン層モデルへの依存
  * - FORBIDDEN: プレゼン層への依存
  */
@@ -18,12 +18,12 @@ import type {
   PhysicsWorld2dConfig,
   Point2d,
 } from "$lib/domain/models/2dPhysics";
-import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
+import type { ISimpleDragPhysicsEngine } from "$lib/application/ports/ISimpleDragPhysicsEngine";
 import type * as MatterType from "matter-js";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 /** matter.js による 2D物理エンジン実装 */
-class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhysicsEngine {
+class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements ISimpleDragPhysicsEngine {
   private dragConstraint: MatterType.Constraint | null = null;
 
   /** 管理ボディマップ: 独自ID → matter.js Body */
@@ -38,6 +38,18 @@ class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhy
       velocityIterations: 4,
     });
     this.addWalls(config.width, config.height);
+  }
+
+  reset(): void {
+    for (const body of this.bodyById.values()) {
+      this.M.Composite.remove(this.engine.world, body);
+    }
+    this.bodyById.clear();
+    this.configByMatterId.clear();
+    if (this.dragConstraint) {
+      this.M.Composite.remove(this.engine.world, this.dragConstraint);
+      this.dragConstraint = null;
+    }
   }
 
   dispose(): void {
@@ -65,18 +77,22 @@ class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhy
     this.bodyById.delete(id);
   }
 
-  getBodies(): readonly PhysicsBody2dState[] {
+  getState(): readonly PhysicsBody2dState[] {
     const states: PhysicsBody2dState[] = [];
     for (const [id, body] of this.bodyById) {
       const config = this.configByMatterId.get(body.id);
       if (!config) continue;
+      const isRound = config.collisionShape === "circle" || config.collisionShape === "polygon";
+      const renderWidth = isRound ? config.radius * 2 : config.width;
+      const renderHeight = isRound ? config.radius * 2 : config.height;
       states.push({
         id,
         imageUrl: config.imageUrl,
         category: config.category,
         position: { x: body.position.x, y: body.position.y },
         angle: body.angle,
-        radius: config.radius,
+        renderWidth,
+        renderHeight,
       });
     }
     return states;
@@ -129,18 +145,31 @@ class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhy
   // --- private ---
 
   private async buildBody(config: PhysicsBody2dConfig): Promise<MatterType.Body> {
-    return this.buildBodyFromImage(config.id, config.imageUrl, config.radius, config.spawnPoint, {
-      restitution: 0.2,
-      friction: 0.1,
-    });
+    const opts = { restitution: 0.2, friction: 0.1 };
+    if (config.collisionShape === "polygon") {
+      return this.buildBodyFromImage(config.id, config.imageUrl, config.radius, config.spawnPoint, opts);
+    } else if (config.collisionShape === "circle") {
+      return this.M.Bodies.circle(config.spawnPoint.x, config.spawnPoint.y, config.radius, {
+        label: config.id,
+        ...opts,
+      });
+    } else {
+      return this.M.Bodies.rectangle(config.spawnPoint.x, config.spawnPoint.y, config.width, config.height, {
+        label: config.id,
+        ...opts,
+      });
+    }
   }
 
   private toState(body: MatterType.Body, config: PhysicsBody2dConfig): PhysicsBody2dState {
-    return this.toBodyState(config.id, body, config.imageUrl, config.radius, config.category);
+    const isRound = config.collisionShape === "circle" || config.collisionShape === "polygon";
+    const renderWidth = isRound ? config.radius * 2 : config.width;
+    const renderHeight = isRound ? config.radius * 2 : config.height;
+    return this.toBodyState(config.id, body, config.imageUrl, renderWidth, renderHeight, config.category);
   }
 }
 
 /** MatterJs2dPhysicsAdapter のファクトリ関数 */
-export function getMatterJs2dPhysicsAdapter(): I2dPhysicsEngine {
+export function getMatterJs2dPhysicsAdapter(): ISimpleDragPhysicsEngine {
   return new MatterJs2dPhysicsAdapter();
 }

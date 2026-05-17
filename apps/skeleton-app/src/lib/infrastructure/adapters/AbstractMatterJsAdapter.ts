@@ -8,11 +8,12 @@
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
  * - ROLE: matter.js アダプター群の共通基盤
- * - ALLOWED: ドメイン層モデルへの依存
- * - FORBIDDEN: アプリ層 Port、プレゼン層への依存
+ * - ALLOWED: ドメイン層モデルへの依存、アプリ層の共通基底 Port（I2dPhysicsEngine）への依存
+ * - FORBIDDEN: 個別ゲーム Port（IBilliardPhysicsEngine 等）、プレゼン層への依存
  */
 
 import type { PhysicsBody2dState, PhysicsWorld2dConfig, Point2d } from "$lib/domain/models/2dPhysics";
+import { WALL_BODY_CATEGORY } from "$lib/application/ports/I2dPhysicsEngine";
 import type * as MatterType from "matter-js";
 import { extractNormalizedVertices } from "./imageVertexExtractor";
 
@@ -23,6 +24,9 @@ export const COLLISION_SCALE = 0.6;
 
 /** matter.js アダプター共通基底クラス */
 export abstract class AbstractMatterJsAdapter {
+  // Promiseをキャッシュすることで、複数インスタンスが同時に initialize() しても1回だけロードされる
+  private static matterImport: Promise<typeof MatterType> | null = null;
+
   protected M!: typeof MatterType;
   protected engine!: MatterType.Engine;
   protected runner!: MatterType.Runner;
@@ -32,7 +36,8 @@ export abstract class AbstractMatterJsAdapter {
     config: PhysicsWorld2dConfig,
     engineOptions: MatterType.IEngineDefinition = {},
   ): Promise<void> {
-    this.M = await import("matter-js");
+    AbstractMatterJsAdapter.matterImport ??= import("matter-js");
+    this.M = await AbstractMatterJsAdapter.matterImport;
     this.engine = this.M.Engine.create(engineOptions);
     this.engine.gravity.y = config.gravity ?? 1;
     this.runner = this.M.Runner.create();
@@ -47,13 +52,14 @@ export abstract class AbstractMatterJsAdapter {
     this.M.Engine.clear(this.engine);
   }
 
-  /** matter.js Body からポケモン用の PhysicsBody2dState を生成する */
+  /** matter.js Body から PhysicsBody2dState を生成する */
   protected toBodyState(
     id: string,
     body: MatterType.Body,
-    imageUrl: string,
-    visualRadius: number,
-    category = 1,
+    imageUrl: string | undefined,
+    renderWidth: number,
+    renderHeight: number,
+    category = WALL_BODY_CATEGORY,
   ): PhysicsBody2dState {
     return {
       id,
@@ -61,7 +67,8 @@ export abstract class AbstractMatterJsAdapter {
       category,
       position: { x: body.position.x, y: body.position.y },
       angle: body.angle,
-      radius: visualRadius,
+      renderWidth,
+      renderHeight,
     };
   }
 

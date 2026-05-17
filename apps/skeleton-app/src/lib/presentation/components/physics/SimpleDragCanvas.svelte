@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
+  import type { ISimpleDragPhysicsEngine } from "$lib/application/ports/ISimpleDragPhysicsEngine";
   import { createImageLoader, drawBody } from "$lib/presentation/utils/canvasUtils";
   import PhysicsCanvas from "./2dPhysicsBaseCanvas.svelte";
 
   interface Props {
-    engine: I2dPhysicsEngine;
+    engine: ISimpleDragPhysicsEngine;
     width: number;
     height: number;
   }
@@ -15,7 +15,7 @@
 
   function drawFrame(ctx: CanvasRenderingContext2D): void {
     ctx.clearRect(0, 0, width, height);
-    for (const body of engine.getBodies()) {
+    for (const body of engine.getState()) {
       drawBody(ctx, body, loadImage);
     }
   }

@@ -7,19 +7,19 @@
  * - FORBIDDEN: インフラ層への直接依存、プレゼン層への依存
  */
 
-import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
-import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
-import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
-import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import { resolvedCryUrl } from "$lib/domain/models/PokeData";
+import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
+import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { ISimpleDragPhysicsEngine } from "$lib/application/ports/ISimpleDragPhysicsEngine";
+import { WALL_BODY_CATEGORY } from "$lib/application/ports/I2dPhysicsEngine";
+import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { getRandomNumber } from "$lib/shared/utils/randomUtils";
 import { storeWriter } from "./store";
 
 const SPAWN_Y = 50;
 
-// カテゴリ 1 はアダプター内で壁に使用するため、ポケモンは 2 以降を使う
-const POKEMON_CATEGORY_OFFSET = 2;
+const POKEMON_CATEGORY_OFFSET = WALL_BODY_CATEGORY + 1;
 
 /** ポケモン対消滅のゲーム操作を提供する Facade */
 export class PairCollisionDetectionFacade {
@@ -32,7 +32,7 @@ export class PairCollisionDetectionFacade {
   private categoryToCryUrl = new Map<number, string | null>();
 
   constructor(
-    private readonly physics: I2dPhysicsEngine,
+    private readonly physics: ISimpleDragPhysicsEngine,
     private readonly repository: IPokeRepository,
   ) {}
 
@@ -81,7 +81,9 @@ export class PairCollisionDetectionFacade {
             y: SPAWN_Y,
           };
           this.activeBodyIds.add(id);
-          addBodyPromises.push(this.physics.addBody({ id, imageUrl, category, spawnPoint, radius: 32 }));
+          addBodyPromises.push(
+            this.physics.addBody({ collisionShape: "polygon", id, imageUrl, category, spawnPoint, radius: 32 }),
+          );
         }
       }
       await Promise.all(addBodyPromises);

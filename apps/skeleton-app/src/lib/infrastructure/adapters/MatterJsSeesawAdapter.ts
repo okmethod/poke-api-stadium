@@ -132,7 +132,7 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
     }
   }
 
-  resetSeesaw(): void {
+  reset(): void {
     this.M.Body.setAngle(this.plank, 0);
     this.M.Body.setAngularVelocity(this.plank, 0);
     this.M.Body.setVelocity(this.plank, { x: 0, y: 0 });
@@ -144,7 +144,7 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
     for (const [id, body] of this.pokeBodyById) {
       const config = this.pokeConfigById.get(id);
       if (!config) continue;
-      pokeBodies.push(this.toBodyState(id, body, config.imageUrl, POKE_VISUAL_RADIUS));
+      pokeBodies.push(this.toBodyState(id, body, config.imageUrl, POKE_VISUAL_RADIUS * 2, POKE_VISUAL_RADIUS * 2));
     }
     return {
       plankAngle: this.plank.angle,

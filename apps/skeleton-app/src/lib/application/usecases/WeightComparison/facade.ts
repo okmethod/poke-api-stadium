@@ -8,8 +8,8 @@
  */
 
 import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
-import type { ISeesawPhysicsEngine } from "$lib/application/ports/ISeesawPhysicsEngine";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { ISeesawPhysicsEngine } from "$lib/application/ports/ISeesawPhysicsEngine";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
@@ -49,7 +49,7 @@ export class WeightComparisonFacade {
       this.seesawEngine.removePokeBody(id);
     }
     this.activeBodyIds = [];
-    this.seesawEngine.resetSeesaw();
+    this.seesawEngine.reset();
     storeWriter.setIsRevealed(false);
 
     return withLoadingGuard(

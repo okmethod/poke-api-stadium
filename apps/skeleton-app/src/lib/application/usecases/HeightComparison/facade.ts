@@ -9,8 +9,8 @@
 
 import type { PokeData } from "$lib/domain/models/PokeData";
 import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
-import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
 import type { IPokeRepository } from "$lib/application/ports/IPokeRepository";
+import type { ISimpleDragPhysicsEngine } from "$lib/application/ports/ISimpleDragPhysicsEngine";
 import type { FacadeResult } from "$lib/application/usecases/facadeTypes";
 import { selectRandomPokemons } from "$lib/application/utils/pokeSelectionUtils";
 import { withLoadingGuard } from "$lib/application/usecases/usecaseUtils";
@@ -28,7 +28,7 @@ export class HeightComparisonFacade {
   private activeBodyIds: string[] = [];
 
   constructor(
-    private readonly physics: I2dPhysicsEngine,
+    private readonly physics: ISimpleDragPhysicsEngine,
     private readonly repository: IPokeRepository,
   ) {}
 
@@ -95,7 +95,14 @@ export class HeightComparisonFacade {
 
       this.activeBodyIds.push(id);
       addBodyPromises.push(
-        this.physics.addBody({ id, imageUrl, category: 1, spawnPoint: { x: spawnX, y: SPAWN_Y }, radius }),
+        this.physics.addBody({
+          collisionShape: "polygon",
+          id,
+          imageUrl,
+          category: 1,
+          spawnPoint: { x: spawnX, y: SPAWN_Y },
+          radius: radius,
+        }),
       );
     }
 
