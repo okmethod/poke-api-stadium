@@ -40,8 +40,8 @@ async function loadImage(url: string): Promise<HTMLImageElement> {
   });
 }
 
-// 非透過ピクセルのうち上下左右に透過ピクセルが隣接する輪郭ピクセルを収集する
-function findEdgePixels(data: Uint8ClampedArray, width: number, height: number): Point2d[] {
+/** @internal テスト用エクスポート */
+export function findEdgePixels(data: Uint8ClampedArray, width: number, height: number): Point2d[] {
   const pixels: Point2d[] = [];
   const seen = new Set<number>();
 
@@ -70,8 +70,8 @@ function findEdgePixels(data: Uint8ClampedArray, width: number, height: number):
   return pixels;
 }
 
-// 頂点群を中心 (0,0) に移動し、targetRadius * 2 の正方形に収まるようスケールする
-function normalizeToRadius(vertices: Point2d[], targetRadius: number): Point2d[] {
+/** @internal テスト用エクスポート */
+export function normalizeToRadius(vertices: Point2d[], targetRadius: number): Point2d[] {
   let minX = Infinity,
     maxX = -Infinity,
     minY = Infinity,
