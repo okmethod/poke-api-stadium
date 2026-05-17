@@ -2,9 +2,9 @@
  * MatterJs2dPhysicsAdapter - matter.js による I2dPhysicsEngine 実装
  *
  * @remarks
- * - matter.js はブラウザ専用のため dynamic import で遅延読み込みする
  * - Renderer を使わずヘッドレスで動作（描画は PhysicsCanvas2d.svelte が担う）
  * - ドラッグは Matter.Constraint を直接操作して実現する
+ * - 壁ボディをボディマップに登録しないことで衝突ハンドラのフィルタリングを実現する
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
  * - ROLE: I2dPhysicsEngine Port の具象実装
@@ -12,18 +12,15 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
-import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
 import type {
   PhysicsBody2dConfig,
   PhysicsBody2dState,
   PhysicsWorld2dConfig,
   Point2d,
 } from "$lib/domain/models/2dPhysics";
+import type { I2dPhysicsEngine } from "$lib/application/ports/I2dPhysicsEngine";
 import type * as MatterType from "matter-js";
-import { AbstractMatterJsAdapter, COLLISION_SCALE } from "./AbstractMatterJsAdapter";
-import { extractNormalizedVertices } from "./imageVertexExtractor";
-
-// 壁ボディはボディマップに登録しないことで衝突ハンドラのフィルタを実現する
+import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 /** matter.js による 2D物理エンジン実装 */
 class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhysicsEngine {
@@ -131,48 +128,15 @@ class MatterJs2dPhysicsAdapter extends AbstractMatterJsAdapter implements I2dPhy
 
   // --- private ---
 
-  /**
-   * 画像輪郭からポリゴンボディを生成する。
-   * 画像解析失敗時は円ボディにフォールバックする。
-   *
-   * @remarks
-   * Bodies.fromVertices() は内部で isConvex() チェックを行い浮動小数点誤差で誤判定するため、
-   * Body.create({ vertices }) で直接生成して poly-decomp 警告を回避する。
-   */
   private async buildBody(config: PhysicsBody2dConfig): Promise<MatterType.Body> {
-    const bodyOptions = { restitution: 0.2, friction: 0.1, label: config.id };
-    const { x, y } = config.spawnPoint;
-
-    const normalizedVerts = await extractNormalizedVertices(config.imageUrl, config.radius);
-    if (normalizedVerts && normalizedVerts.length >= 3) {
-      // matter.js の実行時は {x,y} があれば動作するが型定義が Vertex[] を要求するためキャスト
-      const hull = this.M.Vertices.hull(normalizedVerts as unknown as MatterType.Vertex[]);
-      const scaledHull = hull.map((v) => ({ x: v.x * COLLISION_SCALE, y: v.y * COLLISION_SCALE }));
-      try {
-        // Body.create に vertices + position を渡すことで isConvex チェックをバイパスする
-        const body = this.M.Body.create({ ...bodyOptions, vertices: scaledHull, position: { x, y } });
-        console.debug(`[Physics] polygon body: ${hull.length} verts`, config.imageUrl);
-        return body;
-      } catch (e) {
-        console.warn("[Physics] polygon body failed, fallback to circle", config.imageUrl, e);
-      }
-    } else {
-      console.warn("[Physics] vertex extraction failed, fallback to circle", config.imageUrl);
-    }
-
-    // フォールバック: 円ボディ
-    return this.M.Bodies.circle(x, y, config.radius * COLLISION_SCALE, bodyOptions);
+    return this.buildBodyFromImage(config.id, config.imageUrl, config.radius, config.spawnPoint, {
+      restitution: 0.2,
+      friction: 0.1,
+    });
   }
 
   private toState(body: MatterType.Body, config: PhysicsBody2dConfig): PhysicsBody2dState {
-    return {
-      id: config.id,
-      imageUrl: config.imageUrl,
-      category: config.category,
-      position: { x: body.position.x, y: body.position.y },
-      angle: body.angle,
-      radius: config.radius,
-    };
+    return this.toBodyState(config.id, body, config.imageUrl, config.radius, config.category);
   }
 }
 

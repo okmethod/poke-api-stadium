@@ -4,6 +4,7 @@
  * @remarks
  * - シーソー（プランク + ピボット拘束）を matter.js で構築する
  * - ポケモンボディは初期静止、release() 後に質量付き動的ボディになる
+ * - 輪郭ポリゴン衝突形状を使うことで円ボディ特有の異常回転を防ぐ
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
  * - ROLE: ISeesawPhysicsEngine Port の具象実装
@@ -11,18 +12,16 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
+import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import type {
   ISeesawPhysicsEngine,
   SeesawPokeBodyConfig,
   SeesawState,
 } from "$lib/application/ports/ISeesawPhysicsEngine";
-import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
-import { AbstractMatterJsAdapter, COLLISION_SCALE } from "./AbstractMatterJsAdapter";
+import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 // 描画用の半径（画像の表示サイズ）
 const POKE_VISUAL_RADIUS = 40;
-// 物理ボディの半径（当たり判定）
-const POKE_COLLISION_RADIUS = Math.round(POKE_VISUAL_RADIUS * COLLISION_SCALE);
 
 const PLANK_THICKNESS = 12;
 const PLANK_WIDTH_RATIO = 0.78;
@@ -43,6 +42,8 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
 
   private pokeBodyById = new Map<string, import("matter-js").Body>();
   private pokeConfigById = new Map<string, SeesawPokeBodyConfig>();
+  /** release() でのポリゴン再生成に使う凸包頂点キャッシュ */
+  private pokeHullById = new Map<string, { x: number; y: number }[] | null>();
 
   async initialize(config: PhysicsWorld2dConfig): Promise<void> {
     await this.initializeMatterJs(config, { enableSleeping: false });
@@ -77,18 +78,22 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
     this.disposeMatterJs();
     this.pokeBodyById.clear();
     this.pokeConfigById.clear();
+    this.pokeHullById.clear();
   }
 
   async addPokeBody(config: SeesawPokeBodyConfig): Promise<void> {
     const armX = this.plankWidth / 2 - ARM_MARGIN;
     const spawnX = this.pivotX + (config.side === "left" ? -armX : armX);
-    const spawnY = this.pivotY - SPAWN_Y_OFFSET;
+    const position = { x: spawnX, y: this.pivotY - SPAWN_Y_OFFSET };
 
-    const body = this.M.Bodies.circle(spawnX, spawnY, POKE_COLLISION_RADIUS, {
+    // 輪郭頂点を抽出してキャッシュ（release() での動的ボディ再生成に再利用する）
+    const hull = await this.extractHull(config.imageUrl, POKE_VISUAL_RADIUS);
+    this.pokeHullById.set(config.id, hull);
+
+    const body = this.buildBodyFromHull(hull, config.id, position, POKE_VISUAL_RADIUS, {
       isStatic: true,
       restitution: 0.05,
       friction: 0.5,
-      label: config.id,
     });
 
     this.pokeBodyById.set(config.id, body);
@@ -102,6 +107,7 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
     this.M.Composite.remove(this.engine.world, body);
     this.pokeBodyById.delete(id);
     this.pokeConfigById.delete(id);
+    this.pokeHullById.delete(id);
   }
 
   release(): void {
@@ -111,15 +117,15 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
       const config = this.pokeConfigById.get(id);
       if (!config) continue;
 
+      const hull = this.pokeHullById.get(id) ?? null;
       const pos = staticBody.position;
       this.M.Composite.remove(this.engine.world, staticBody);
 
-      const dynamicBody = this.M.Bodies.circle(pos.x, pos.y, POKE_COLLISION_RADIUS, {
+      const dynamicBody = this.buildBodyFromHull(hull, id, pos, POKE_VISUAL_RADIUS, {
         isStatic: false,
         mass: config.mass,
         restitution: 0.1,
         friction: 0.5,
-        label: id,
       });
       this.pokeBodyById.set(id, dynamicBody);
       this.M.Composite.add(this.engine.world, dynamicBody);
@@ -134,18 +140,11 @@ class MatterJsSeesawAdapter extends AbstractMatterJsAdapter implements ISeesawPh
   }
 
   getState(): SeesawState {
-    const pokeBodies: PhysicsBody2dState[] = [];
+    const pokeBodies = [];
     for (const [id, body] of this.pokeBodyById) {
       const config = this.pokeConfigById.get(id);
       if (!config) continue;
-      pokeBodies.push({
-        id,
-        imageUrl: config.imageUrl,
-        category: 1,
-        position: { x: body.position.x, y: body.position.y },
-        angle: body.angle,
-        radius: POKE_VISUAL_RADIUS,
-      });
+      pokeBodies.push(this.toBodyState(id, body, config.imageUrl, POKE_VISUAL_RADIUS));
     }
     return {
       plankAngle: this.plank.angle,

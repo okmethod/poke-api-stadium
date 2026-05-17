@@ -13,6 +13,7 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
+import type { Point2d } from "$lib/domain/models/2dPhysics";
 import type {
   IBilliardPhysicsEngine,
   BilliardBallState,
@@ -20,7 +21,6 @@ import type {
   BilliardCourseObstacle,
   BilliardWorldConfig,
 } from "$lib/application/ports/IBilliardPhysicsEngine";
-import type { Point2d } from "$lib/domain/models/2dPhysics";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 // FRICTION=0.998 相当: frictionAir = 1 - 0.998 = 0.002

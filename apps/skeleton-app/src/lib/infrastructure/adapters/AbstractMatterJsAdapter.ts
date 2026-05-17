@@ -2,7 +2,8 @@
  * AbstractMatterJsAdapter - matter.js アダプター共通基底クラス
  *
  * @remarks
- * Engine/Runner の生成・破棄と壁ボディ追加を共通化する。
+ * matter.js の dynamic import（遅延読み込み）、Engine/Runner の生成・破棄、
+ * 壁ボディ追加、画像輪郭からの凸包抽出、ポリゴンボディ生成を共通化する。
  * 具象クラスは initialize/dispose 内で protected メソッドを呼び出す。
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
@@ -11,8 +12,9 @@
  * - FORBIDDEN: アプリ層 Port、プレゼン層への依存
  */
 
-import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
+import type { PhysicsBody2dState, PhysicsWorld2dConfig, Point2d } from "$lib/domain/models/2dPhysics";
 import type * as MatterType from "matter-js";
+import { extractNormalizedVertices } from "./imageVertexExtractor";
 
 /** 壁ボディの厚さ */
 export const WALL_THICKNESS = 100;
@@ -43,6 +45,80 @@ export abstract class AbstractMatterJsAdapter {
     this.M.Runner.stop(this.runner);
     this.M.Composite.clear(this.engine.world, false);
     this.M.Engine.clear(this.engine);
+  }
+
+  /** matter.js Body からポケモン用の PhysicsBody2dState を生成する */
+  protected toBodyState(
+    id: string,
+    body: MatterType.Body,
+    imageUrl: string,
+    visualRadius: number,
+    category = 1,
+  ): PhysicsBody2dState {
+    return {
+      id,
+      imageUrl,
+      category,
+      position: { x: body.position.x, y: body.position.y },
+      angle: body.angle,
+      radius: visualRadius,
+    };
+  }
+
+  /**
+   * 画像輪郭から COLLISION_SCALE 適用済みの凸包頂点列を生成する
+   *
+   * release() などの同期コンテキストでボディを再生成する場合は、
+   * 戻り値をキャッシュして buildBodyFromHull() に渡す。
+   */
+  protected async extractHull(imageUrl: string, visualRadius: number): Promise<Point2d[] | null> {
+    const normalizedVerts = await extractNormalizedVertices(imageUrl, visualRadius);
+    if (!normalizedVerts || normalizedVerts.length < 3) {
+      console.warn("[Physics] vertex extraction failed, fallback to circle", imageUrl);
+      return null;
+    }
+    return this.M.Vertices.hull(normalizedVerts as unknown as MatterType.Vertex[]).map((v) => ({
+      x: v.x * COLLISION_SCALE,
+      y: v.y * COLLISION_SCALE,
+    }));
+  }
+
+  /**
+   * 凸包頂点からポリゴンボディを生成する（同期・hull が null なら円フォールバック）
+   *
+   * Bodies.fromVertices() は isConvex() の浮動小数点誤差で誤判定するため
+   * Body.create({ vertices }) で直接生成して poly-decomp 警告を回避する。
+   */
+  protected buildBodyFromHull(
+    hull: Point2d[] | null,
+    id: string,
+    position: Point2d,
+    visualRadius: number,
+    extraOptions: MatterType.IChamferableBodyDefinition = {},
+  ): MatterType.Body {
+    const opts = { label: id, ...extraOptions };
+    if (hull) {
+      try {
+        const body = this.M.Body.create({ ...opts, vertices: hull, position });
+        console.debug(`[Physics] polygon body: ${hull.length} verts`, id);
+        return body;
+      } catch (e) {
+        console.warn("[Physics] polygon body failed, fallback to circle", id, e);
+      }
+    }
+    return this.M.Bodies.circle(position.x, position.y, visualRadius * COLLISION_SCALE, opts);
+  }
+
+  /** 画像輪郭から非同期にポリゴンボディを生成する（extractHull + buildBodyFromHull の合成） */
+  protected async buildBodyFromImage(
+    id: string,
+    imageUrl: string,
+    visualRadius: number,
+    position: Point2d,
+    extraOptions: MatterType.IChamferableBodyDefinition = {},
+  ): Promise<MatterType.Body> {
+    const hull = await this.extractHull(imageUrl, visualRadius);
+    return this.buildBodyFromHull(hull, id, position, visualRadius, extraOptions);
   }
 
   /** ワールド境界の壁ボディを4面追加する */

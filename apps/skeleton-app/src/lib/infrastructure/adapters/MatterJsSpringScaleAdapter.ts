@@ -3,8 +3,8 @@
  *
  * @remarks
  * - 台（プラットフォーム）はバネ力で上下にのみ動く動的ボディ
- * - ポケモンボディは台の上に落下して積み重なる（視覚用・質量は無視）
- * - バネの平衡位置は facade から渡された総重量比率で制御する
+ * - ポケモンボディは台の上に落下して積み重なる（物理質量は極小値固定）
+ * - バネの平衡位置は setTargetWeight() と addPokeBody() で渡された重量比率で外部制御する
  *
  * @architecture レイヤー間依存ルール - インフラ層 (Adapter)
  * - ROLE: ISpringScaleEngine Port の具象実装
@@ -12,18 +12,16 @@
  * - FORBIDDEN: プレゼン層への依存
  */
 
+import type { PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import type {
   ISpringScaleEngine,
   SpringScalePokeBodyConfig,
   SpringScaleState,
 } from "$lib/application/ports/ISpringScaleEngine";
-import type { PhysicsBody2dState, PhysicsWorld2dConfig } from "$lib/domain/models/2dPhysics";
 import { AbstractMatterJsAdapter } from "./AbstractMatterJsAdapter";
 
 // ポケモンボディの描画半径（px）
 const POKE_VISUAL_RADIUS = 24;
-// ポケモンの当たり判定半径（視覚より小さくして重なりを許容）
-const POKE_COLLISION_RADIUS = 16;
 // ポケモンボディの物理質量（台の平衡はバネで制御するため極小値にする）
 const POKE_PHYSICS_MASS = 0.01;
 
@@ -136,14 +134,19 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
     const spawnX = this.pivotX + (Math.random() - 0.5) * 2 * spawnZoneHalf;
     const spawnY = this.emptyY - SPAWN_Y_ABOVE;
 
-    const body = this.M.Bodies.circle(spawnX, spawnY, POKE_COLLISION_RADIUS, {
-      isStatic: false,
-      mass: POKE_PHYSICS_MASS,
-      friction: 0.7,
-      frictionAir: 0.08,
-      restitution: 0.0,
-      label: config.id,
-    });
+    const body = await this.buildBodyFromImage(
+      config.id,
+      config.imageUrl,
+      POKE_VISUAL_RADIUS,
+      { x: spawnX, y: spawnY },
+      {
+        isStatic: false,
+        mass: POKE_PHYSICS_MASS,
+        friction: 0.7,
+        frictionAir: 0.08,
+        restitution: 0.0,
+      },
+    );
 
     this.pokeBodyById.set(config.id, body);
     this.pokeWeightById.set(config.id, normalizedMass);
@@ -190,18 +193,10 @@ class MatterJsSpringScaleAdapter extends AbstractMatterJsAdapter implements ISpr
   }
 
   getState(): SpringScaleState {
-    const pokeBodies: PhysicsBody2dState[] = [];
+    const pokeBodies = [];
     for (const [id, body] of this.pokeBodyById) {
-      pokeBodies.push({
-        id,
-        imageUrl: this.pokeImageUrlById.get(id) ?? "",
-        category: 1,
-        position: { x: body.position.x, y: body.position.y },
-        angle: body.angle,
-        radius: POKE_VISUAL_RADIUS,
-      });
+      pokeBodies.push(this.toBodyState(id, body, this.pokeImageUrlById.get(id) ?? "", POKE_VISUAL_RADIUS));
     }
-
     return {
       platformY: this.platform.position.y,
       platformWidth: this.platformWidth,
