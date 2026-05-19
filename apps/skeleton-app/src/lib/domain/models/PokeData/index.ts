@@ -16,7 +16,7 @@ import type { MoveLearnRef } from "$lib/domain/models/PokeMove";
 import type { PokeStats } from "./pokeStats";
 import type { PokeImageUrls } from "./pokeImages";
 import type { PokeCryUrls } from "./pokeCries";
-import type { FlavorText } from "./flavorText";
+import type { FlavorText, FlavorTextPair } from "./flavorText";
 
 /**
  * アプリ内部のポケモン統合モデル
@@ -91,7 +91,7 @@ export interface PokeData {
 }
 
 // 各ドメインモデルを再エクスポート
-export type { PokeStats, PokeImageUrls, PokeCryUrls, FlavorText };
+export type { PokeStats, PokeImageUrls, PokeCryUrls, FlavorText, FlavorTextPair };
 export { pokeStatJaName } from "./pokeStats";
 export { resolveImageUrl } from "./pokeImages";
 export { resolvedCryUrl } from "./pokeCries";

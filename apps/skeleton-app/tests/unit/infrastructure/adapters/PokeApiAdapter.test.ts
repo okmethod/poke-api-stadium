@@ -1,15 +1,20 @@
 /**
- * PokeApiAdapter のテスト（リージョン関連メソッド）
+ * PokeApiAdapter のテスト
  *
- * インフラ層 API 関数はすべてモック化し、URL→ID変換・重複排除・fallback などの
- * 変換ロジックのみを検証する。
+ * アダプター層の変換ロジックを検証する。
+ * URL→ID 変換・重複排除・fallback・フレーバーテキスト解決など、
+ * 生レスポンスからドメインモデルへの変換が正しいかを確認する。
+ * インフラ層 API 関数はモックを使用し、サンプル JSON を一部上書きしてテストケースに適合したデータを返す。
+ *
+ * なお、API 層（データパース）のテストは pokeapi.test.ts が担う。
  */
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
 import * as pokeapi from "$lib/infrastructure/api/pokeapi";
-import type { PokemonSpeciesResponse, PokemonResponse } from "$lib/infrastructure/api/pokeapi";
+import type { PokemonSpeciesResponse, PokemonResponse, MoveResponse } from "$lib/infrastructure/api/pokeapi";
 import sampleSpecies25 from "../../../data/sample_species_25.json";
 import samplePokemon25 from "../../../data/sample_pokemon_25.json";
+import sampleMove84 from "../../../data/sample_move_84.json";
 
 vi.mock("$lib/infrastructure/api/pokeapi");
 
@@ -145,5 +150,247 @@ describe("getPokemonSpeciesMeta", () => {
       mockFetch,
       "https://pokeapi.co/api/v2/pokemon-species/25/",
     );
+  });
+});
+
+// --- フレーバーテキストペア ---
+
+/** PokemonSpeciesResponse の flavor_text_entries 用ミニマルファクトリ */
+function makeSpeciesEntry(flavorText: string, language: string, version: string) {
+  return {
+    flavor_text: flavorText,
+    language: { name: language, url: "" },
+    version: { name: version, url: "" },
+  };
+}
+
+/** MoveResponse の flavor_text_entries 用ミニマルファクトリ */
+function makeMoveEntry(flavorText: string, language: string, versionGroup: string) {
+  return {
+    flavor_text: flavorText,
+    language: { name: language, url: "" },
+    version_group: { name: versionGroup, url: "" },
+  };
+}
+
+describe("getSpeciesFlavorTextPairs", () => {
+  it("IDでポケモン種族フレーバーテキストペアを取得できる", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue(sampleSpecies25 as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(pokeapi.fetchPokemonSpecies).toHaveBeenCalledWith(mockFetch, 25);
+  });
+
+  it("ja と ja-hrkt の両エントリがある場合に FlavorTextPair[] を返す", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [
+        makeSpeciesEntry("ほっぺたに電気袋を持つ。", "ja", "scarlet"),
+        makeSpeciesEntry("ほっぺたにでんきぶくろをもつ。", "ja-hrkt", "scarlet"),
+      ],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result).toHaveLength(1);
+    expect(result[0]!.kanji).toBe("ほっぺたに電気袋を持つ。");
+    expect(result[0]!.kana).toBe("ほっぺたにでんきぶくろをもつ。");
+  });
+
+  it("複数バージョンに両エントリがある場合に全ペアを返す", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [
+        makeSpeciesEntry("古いテキスト（漢字）", "ja", "x"),
+        makeSpeciesEntry("新しいテキスト（漢字）", "ja", "scarlet"),
+        makeSpeciesEntry("古いテキスト（かな）", "ja-hrkt", "x"),
+        makeSpeciesEntry("新しいテキスト（かな）", "ja-hrkt", "scarlet"),
+      ],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result).toHaveLength(2);
+    // scarlet が優先度リストで先に来るため最初に含まれる
+    expect(result[0]!.kanji).toBe("新しいテキスト（漢字）");
+    expect(result[1]!.kanji).toBe("古いテキスト（漢字）");
+  });
+
+  it("同一テキストの重複は除外する", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [
+        makeSpeciesEntry("同じテキスト（漢字）", "ja", "scarlet"),
+        makeSpeciesEntry("同じテキスト（漢字）", "ja", "violet"),
+        makeSpeciesEntry("同じテキスト（かな）", "ja-hrkt", "scarlet"),
+        makeSpeciesEntry("同じテキスト（かな）", "ja-hrkt", "violet"),
+      ],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result).toHaveLength(1);
+  });
+
+  it("テキスト内の改行文字を保持して正規化する", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [
+        makeSpeciesEntry("ほっぺたに\n電気袋を\n持つ。", "ja", "scarlet"),
+        makeSpeciesEntry("ほっぺたに\nでんきぶくろを\nもつ。", "ja-hrkt", "scarlet"),
+      ],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result[0]!.kanji).toBe("ほっぺたに\n電気袋を\n持つ。");
+    expect(result[0]!.kana).toBe("ほっぺたに\nでんきぶくろを\nもつ。");
+  });
+
+  it("ja-hrkt エントリが存在しない場合は空配列を返す", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [makeSpeciesEntry("ほっぺたに電気袋を持つ。", "ja", "scarlet")],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result).toHaveLength(0);
+  });
+
+  it("エントリが空の場合は空配列を返す", async () => {
+    vi.mocked(pokeapi.fetchPokemonSpecies).mockResolvedValue({
+      ...sampleSpecies25,
+      flavor_text_entries: [],
+    } as unknown as PokemonSpeciesResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getSpeciesFlavorTextPairs(mockFetch, 25);
+
+    expect(result).toHaveLength(0);
+  });
+});
+
+describe("getMoveFlavorTextPairs", () => {
+  it("IDでわざフレーバーテキストペアを取得できる", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue(sampleMove84 as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(pokeapi.fetchMove).toHaveBeenCalledWith(mockFetch, 84);
+  });
+
+  it("ja と ja-Hrkt の両エントリがある場合に FlavorTextPair[] を返す", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [
+        makeMoveEntry("電気の刺激を相手に浴びせる。", "ja", "scarlet-violet"),
+        makeMoveEntry("でんきのしげきをあいてにあびせる。", "ja-Hrkt", "scarlet-violet"),
+      ],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(1);
+    expect(result[0]!.kanji).toBe("電気の刺激を相手に浴びせる。");
+    expect(result[0]!.kana).toBe("でんきのしげきをあいてにあびせる。");
+  });
+
+  it("複数バージョングループに両エントリがある場合に全ペアを返す", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [
+        makeMoveEntry("古いテキスト（漢字）", "ja", "x-y"),
+        makeMoveEntry("新しいテキスト（漢字）", "ja", "scarlet-violet"),
+        makeMoveEntry("古いテキスト（かな）", "ja-Hrkt", "x-y"),
+        makeMoveEntry("新しいテキスト（かな）", "ja-Hrkt", "scarlet-violet"),
+      ],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(2);
+    // scarlet-violet が優先度リストで先に来るため最初に含まれる
+    expect(result[0]!.kanji).toBe("新しいテキスト（漢字）");
+    expect(result[1]!.kanji).toBe("古いテキスト（漢字）");
+  });
+
+  it("同一テキストの重複は除外する", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [
+        makeMoveEntry("同じテキスト（漢字）", "ja", "scarlet-violet"),
+        makeMoveEntry("同じテキスト（漢字）", "ja", "sword-shield"),
+        makeMoveEntry("同じテキスト（かな）", "ja-Hrkt", "scarlet-violet"),
+        makeMoveEntry("同じテキスト（かな）", "ja-Hrkt", "sword-shield"),
+      ],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(1);
+  });
+
+  it("テキスト内の改行文字を保持して正規化する", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [
+        makeMoveEntry("電気の\nしげきを\n浴びせる。", "ja", "scarlet-violet"),
+        makeMoveEntry("でんきの\nしげきを\nあびせる。", "ja-Hrkt", "scarlet-violet"),
+      ],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result[0]!.kanji).toBe("電気の\nしげきを\n浴びせる。");
+    expect(result[0]!.kana).toBe("でんきの\nしげきを\nあびせる。");
+  });
+
+  it("ja-Hrkt エントリが存在しない場合は空配列を返す", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [makeMoveEntry("電気の刺激を相手に浴びせる。", "ja", "scarlet-violet")],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(0);
+  });
+
+  it("ja エントリが存在しない場合は空配列を返す", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [makeMoveEntry("でんきのしげきをあいてにあびせる。", "ja-Hrkt", "scarlet-violet")],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(0);
+  });
+
+  it("エントリが空の場合は空配列を返す", async () => {
+    vi.mocked(pokeapi.fetchMove).mockResolvedValue({
+      ...sampleMove84,
+      flavor_text_entries: [],
+    } as unknown as MoveResponse);
+
+    const repo = getPokeRepository();
+    const result = await repo.getMoveFlavorTextPairs(mockFetch, 84);
+
+    expect(result).toHaveLength(0);
   });
 });

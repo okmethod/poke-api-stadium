@@ -19,7 +19,7 @@
  * - ドメインロジックが厚くなった際に DTO 分離を改めて検討する
  */
 
-import type { PokeData } from "$lib/domain/models/PokeData";
+import type { PokeData, FlavorTextPair } from "$lib/domain/models/PokeData";
 import type { PokeTypeData } from "$lib/domain/models/PokeType";
 import type { EvolutionChain } from "$lib/domain/models/PokeEvolution";
 import type { FormVariant, VarietyRef } from "$lib/domain/models/PokeForm";
@@ -93,4 +93,20 @@ export interface IPokeRepository {
 
   /** 番号または英語名でポケモン種族のメタ情報（日本語名）を取得 */
   getPokemonSpeciesMeta(fetchFunction: typeof fetch, idOrName: number | string): Promise<PokeSpeciesMeta>;
+
+  /**
+   * 番号または英語名でポケモン種族の漢字・かなフレーバーテキストペアを全バージョン分取得
+   *
+   * ja と ja-hrkt が両揃うバージョンをすべて返す。重複テキストは除外。
+   * 該当なしの場合は空配列を返す。
+   */
+  getSpeciesFlavorTextPairs(fetchFunction: typeof fetch, idOrName: number | string): Promise<FlavorTextPair[]>;
+
+  /**
+   * 番号または英語名でわざの漢字・かなフレーバーテキストペアを全バージョングループ分取得
+   *
+   * ja と ja-Hrkt が同一バージョングループに揃っているものをすべて返す。重複テキストは除外。
+   * 該当なしの場合は空配列を返す。
+   */
+  getMoveFlavorTextPairs(fetchFunction: typeof fetch, idOrName: number | string): Promise<FlavorTextPair[]>;
 }

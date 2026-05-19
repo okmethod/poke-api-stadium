@@ -1,8 +1,12 @@
 /**
  * pokeapi.ts のテスト
  *
- * Zodバリデーションと各APIアクセス関数の動作をテストする。
- * 実際のAPIは呼び出さず、fetchのモックを使用する。
+ * API 層のデータ取得（パース）ロジックを検証する。
+ * Zod スキーマによるレスポンス検証と、fetch 関数のURL・エラーハンドリングを確認する。
+ * 実際の API は呼び出さず、fetch のモックを使用する。
+ * モックはサンプル JSON を返し、正しく parse できるかを保証する。
+ *
+ * なお、アダプター層（変換ロジック）のテストは PokeApiAdapter.test.ts が担う。
  */
 import { describe, it, expect, vi, afterEach } from "vitest";
 import {
@@ -203,6 +207,17 @@ describe("fetchPokemonSpecies", () => {
     expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/pokemon-species/pikachu"), expect.any(Object));
   });
 
+  it("flavor_text_entries に漢字・かなの日本語エントリが含まれている", async () => {
+    const mockFetch = createOkMockFetch(sampleSpecies25);
+
+    const species = await fetchPokemonSpecies(mockFetch, 25);
+
+    expect(species.flavor_text_entries.some((e) => e.language.name === "ja")).toBe(true);
+    expect(
+      species.flavor_text_entries.some((e) => e.language.name === "ja-hrkt" || e.language.name === "ja-Hrkt"),
+    ).toBe(true);
+  });
+
   it("ネットワークエラー時に例外をスローする", async () => {
     const mockFetch = createNetworkErrorMockFetch();
 
@@ -312,6 +327,17 @@ describe("fetchMove", () => {
     expect(move.id).toBe(84);
     expect(move.name).toBe("thunder-shock");
     expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining("/move/84"), expect.any(Object));
+  });
+
+  it("flavor_text_entries に漢字・かなの日本語エントリが含まれている", async () => {
+    const mockFetch = createOkMockFetch(sampleMove84);
+
+    const move = await fetchMove(mockFetch, 84);
+
+    expect(move.flavor_text_entries.some((e) => e.language.name === "ja")).toBe(true);
+    expect(move.flavor_text_entries.some((e) => e.language.name === "ja-Hrkt" || e.language.name === "ja-hrkt")).toBe(
+      true,
+    );
   });
 });
 

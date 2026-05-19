@@ -24,5 +24,7 @@ export function createMockRepository(): IPokeRepository {
     getRegionLocations: vi.fn(),
     getLocation: vi.fn(),
     getPokemonSpeciesMeta: vi.fn(),
+    getSpeciesFlavorTextPairs: vi.fn(),
+    getMoveFlavorTextPairs: vi.fn(),
   };
 }

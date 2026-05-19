@@ -8,6 +8,7 @@
  */
 
 import type { PokeTypeName } from "$lib/domain/models/PokeType";
+import type { FlavorText } from "$lib/domain/models/FlavorText";
 
 /** わざ分類 */
 export type MoveCategory = "physical" | "special" | "status";
@@ -66,5 +67,6 @@ export interface PokeMove {
   readonly power: number | null;
   readonly accuracy: number | null;
   readonly pp: number;
-  readonly flavorText: string | null;
+  /** わざ説明テキスト（バージョングループ別・重複除去済み） */
+  readonly flavorTexts: readonly FlavorText[];
 }

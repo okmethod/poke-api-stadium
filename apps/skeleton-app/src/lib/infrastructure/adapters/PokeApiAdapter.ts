@@ -15,7 +15,8 @@
  */
 
 import type { PokeTypeData, PokeTypeName } from "$lib/domain/models/PokeType";
-import type { PokeData, PokeImageUrls, PokeCryUrls, PokeStats, FlavorText } from "$lib/domain/models/PokeData";
+import type { PokeData, PokeImageUrls, PokeCryUrls, PokeStats } from "$lib/domain/models/PokeData";
+import type { FlavorText, FlavorTextPair } from "$lib/domain/models/FlavorText";
 import { generationData } from "$lib/domain/models/PokeGeneration";
 import { pokeTypeColor, parsePokeTypeName } from "$lib/domain/models/PokeType";
 import type { PokeAbility, AbilityRef } from "$lib/domain/models/PokeAbility";
@@ -99,6 +100,18 @@ function extractMoveLearnDetails(moves: PokemonResponse["moves"]): MoveLearnRef[
   });
 }
 
+function normalizeJaText(text: string): string {
+  return (
+    text
+      // eslint-disable-next-line no-irregular-whitespace
+      .replace(/　/g, " ") // 全角スペース→半角
+      .replace(/[\f\r]+/g, "\n") // \f, \r → \n に統一
+      .replace(/\n{2,}/g, "\n") // 複数改行 → 単一
+      .replace(/ {2,}/g, " ") // 複数スペース → 単一
+      .trim()
+  );
+}
+
 // バージョングループの優先順位
 const VERSION_GROUP_PRIORITY = [
   "scarlet-violet",
@@ -111,29 +124,143 @@ const VERSION_GROUP_PRIORITY = [
   "black-white",
 ];
 
-function resolveMoveFlavorText(entries: MoveResponse["flavor_text_entries"]): string | null {
-  const jaEntries = entries.filter((e) => e.language.name === "ja" || e.language.name === "ja-Hrkt");
-  // 優先バージョングループ順に探す
-  for (const vg of VERSION_GROUP_PRIORITY) {
-    // "ja" を優先し、なければ "ja-Hrkt"
-    const entry =
-      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja") ??
-      jaEntries.find((e) => e.version_group.name === vg && e.language.name === "ja-Hrkt");
-    if (entry) {
-      return entry.flavor_text
-        .replace(/[\n\f\r]+/g, " ")
-        .replace(/\s{2,}/g, " ")
-        .trim();
+// バージョングループごとに ja > ja-Hrkt 優先で1件選択し、テキスト重複を除去
+function resolveMoveFlavorTexts(entries: MoveResponse["flavor_text_entries"]): FlavorText[] {
+  const byVersionGroup = new Map<string, string>();
+  for (const lang of ["ja", "ja-Hrkt", "ja-hrkt"]) {
+    for (const entry of entries) {
+      if (entry.language.name === lang && !byVersionGroup.has(entry.version_group.name)) {
+        byVersionGroup.set(entry.version_group.name, entry.flavor_text);
+      }
     }
   }
-  // 優先リストになければ最初の日本語エントリ
-  const fallback = jaEntries[0];
-  return fallback
-    ? fallback.flavor_text
-        .replace(/[\n\f\r]+/g, " ")
-        .replace(/\s{2,}/g, " ")
-        .trim()
-    : null;
+  const seenTexts = new Set<string>();
+  const result: FlavorText[] = [];
+  for (const vg of VERSION_GROUP_PRIORITY) {
+    const rawText = byVersionGroup.get(vg);
+    if (rawText) {
+      const text = normalizeJaText(rawText);
+      if (!seenTexts.has(text)) {
+        seenTexts.add(text);
+        result.push({ text, version: vg });
+      }
+    }
+  }
+  // 優先リスト外のバージョングループも追加
+  for (const [vg, rawText] of byVersionGroup) {
+    if (!VERSION_GROUP_PRIORITY.includes(vg)) {
+      const text = normalizeJaText(rawText);
+      if (!seenTexts.has(text)) {
+        seenTexts.add(text);
+        result.push({ text, version: vg });
+      }
+    }
+  }
+  return result;
+}
+
+// ポケモン種族のバージョン優先順位（個別バージョン名）
+const SPECIES_VERSION_PRIORITY = [
+  "scarlet",
+  "violet",
+  "sword",
+  "shield",
+  "sun",
+  "moon",
+  "ultra-sun",
+  "ultra-moon",
+  "x",
+  "y",
+  "omega-ruby",
+  "alpha-sapphire",
+  "black-2",
+  "white-2",
+  "black",
+  "white",
+];
+
+/**
+ * わざの漢字・かなフレーバーテキストペアを全バージョングループ分解決する。
+ *
+ * ja と ja-Hrkt が同一バージョングループに揃っているものを収集し、重複テキストを除外して返す。
+ */
+function resolveAllMoveFlavorTextPairs(entries: MoveResponse["flavor_text_entries"]): FlavorTextPair[] {
+  const jaEntries = entries.filter((e) => e.language.name === "ja");
+  const kanaEntries = entries.filter((e) => e.language.name === "ja-Hrkt" || e.language.name === "ja-hrkt");
+
+  const pairs: FlavorTextPair[] = [];
+  const seenKeys = new Set<string>();
+
+  const addPair = (jaText: string, kanaText: string) => {
+    const key = `${jaText}|${kanaText}`;
+    if (!seenKeys.has(key)) {
+      seenKeys.add(key);
+      pairs.push({ kanji: jaText, kana: kanaText });
+    }
+  };
+
+  // 優先度リスト順に、ja・ja-Hrkt が揃うバージョングループのペアを収集
+  for (const vg of VERSION_GROUP_PRIORITY) {
+    const jaEntry = jaEntries.find((e) => e.version_group.name === vg);
+    const kanaEntry = kanaEntries.find((e) => e.version_group.name === vg);
+    if (jaEntry && kanaEntry) {
+      addPair(normalizeJaText(jaEntry.flavor_text), normalizeJaText(kanaEntry.flavor_text));
+    }
+  }
+
+  // 優先度リスト外のバージョングループも探索（フォールバック）
+  if (pairs.length === 0) {
+    for (const jaEntry of jaEntries) {
+      const kanaEntry = kanaEntries.find((e) => e.version_group.name === jaEntry.version_group.name);
+      if (kanaEntry) {
+        addPair(normalizeJaText(jaEntry.flavor_text), normalizeJaText(kanaEntry.flavor_text));
+      }
+    }
+  }
+
+  return pairs;
+}
+
+/**
+ * ポケモン種族の漢字・かなフレーバーテキストペアを全バージョン分解決する。
+ *
+ * ja と ja-hrkt が同一バージョンに揃っているものを収集し、重複テキストを除外して返す。
+ */
+function resolveAllSpeciesFlavorTextPairs(entries: PokemonSpeciesResponse["flavor_text_entries"]): FlavorTextPair[] {
+  const jaEntries = entries.filter((e) => e.language.name === "ja");
+  const kanaEntries = entries.filter((e) => e.language.name === "ja-hrkt" || e.language.name === "ja-Hrkt");
+
+  const pairs: FlavorTextPair[] = [];
+  const seenKeys = new Set<string>();
+
+  const addPair = (jaText: string, kanaText: string) => {
+    const key = `${jaText}|${kanaText}`;
+    if (!seenKeys.has(key)) {
+      seenKeys.add(key);
+      pairs.push({ kanji: jaText, kana: kanaText });
+    }
+  };
+
+  // 優先度リスト順に、ja・ja-hrkt が揃うバージョンのペアを収集
+  for (const v of SPECIES_VERSION_PRIORITY) {
+    const jaEntry = jaEntries.find((e) => e.version.name === v);
+    const kanaEntry = kanaEntries.find((e) => e.version.name === v);
+    if (jaEntry && kanaEntry) {
+      addPair(normalizeJaText(jaEntry.flavor_text), normalizeJaText(kanaEntry.flavor_text));
+    }
+  }
+
+  // 優先度リスト外のバージョンも探索（フォールバック）
+  if (pairs.length === 0) {
+    for (const jaEntry of jaEntries) {
+      const kanaEntry = kanaEntries.find((e) => e.version.name === jaEntry.version.name);
+      if (kanaEntry) {
+        addPair(normalizeJaText(jaEntry.flavor_text), normalizeJaText(kanaEntry.flavor_text));
+      }
+    }
+  }
+
+  return pairs;
 }
 
 function convertToAbility(raw: AbilityResponse, isHidden: boolean): PokeAbility {
@@ -168,7 +295,7 @@ function convertToMove(raw: MoveResponse): PokeMove {
     power: raw.power,
     accuracy: raw.accuracy,
     pp: raw.pp,
-    flavorText: resolveMoveFlavorText(raw.flavor_text_entries),
+    flavorTexts: resolveMoveFlavorTexts(raw.flavor_text_entries),
   };
 }
 
@@ -670,6 +797,18 @@ class PokeApiAdapter implements IPokeRepository {
       const species = await fetchPokemonSpeciesByUrl(fetchFunction, pokemon.species.url);
       return { id: species.id, enName: species.name, jaName: resolveJaName(species.names, species.name) };
     }
+  }
+
+  /** 番号または英語名でポケモン種族の漢字・かなフレーバーテキストペアを全バージョン分取得 */
+  async getSpeciesFlavorTextPairs(fetchFunction: typeof fetch, idOrName: number | string): Promise<FlavorTextPair[]> {
+    const raw = await fetchPokemonSpecies(fetchFunction, idOrName);
+    return resolveAllSpeciesFlavorTextPairs(raw.flavor_text_entries);
+  }
+
+  /** 番号または英語名でわざの漢字・かなフレーバーテキストペアを全バージョングループ分取得 */
+  async getMoveFlavorTextPairs(fetchFunction: typeof fetch, idOrName: number | string): Promise<FlavorTextPair[]> {
+    const raw = await fetchMove(fetchFunction, idOrName);
+    return resolveAllMoveFlavorTextPairs(raw.flavor_text_entries);
   }
 }
 
