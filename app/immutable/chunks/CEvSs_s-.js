@@ -1,1 +1,0 @@
-import{u as f}from"./_FLt0u6X.js";function o(r,t){let e=!1;f(()=>{const c=r();if(!e){e=!0;return}t(c)})}function i(r,t){o(r,e=>{e!==null&&(e.isCorrect?t.correct():t.incorrect())})}export{o as a,i as w};
