@@ -4,6 +4,20 @@
 
   const { menuItems } = buildMenuLoad([
     {
+      label: "ポケモンめくり",
+      description: "カードをめくって同じポケモンを揃えよう",
+      iconItemKey: "nest-ball",
+      action: "navigate",
+      target: "/puzzle/mekuri",
+    },
+    {
+      label: "ポケモンめくり 改",
+      description: "カードをめくって同じタイプのポケモンを揃えよう",
+      iconItemKey: "net-ball",
+      action: "navigate",
+      target: "/puzzle/mekuri-kai",
+    },
+    {
       label: "ポケモンしりとり",
       description: "ポケモンの名前でしりとりしよう",
       iconItemKey: "heal-ball",
