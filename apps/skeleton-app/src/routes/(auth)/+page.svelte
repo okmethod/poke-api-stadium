@@ -39,6 +39,13 @@
       target: "/action",
     },
     {
+      label: "べんきょう",
+      description: "かんじ・けいさん",
+      iconItemKey: "adventure-rules",
+      action: "navigate",
+      target: "/study",
+    },
+    {
       label: "その他",
       description: "サウンド・ソース",
       iconItemKey: "gb-sounds",

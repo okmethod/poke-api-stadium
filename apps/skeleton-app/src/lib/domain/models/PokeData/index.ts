@@ -16,7 +16,7 @@ import type { MoveLearnRef } from "$lib/domain/models/PokeMove";
 import type { PokeStats } from "./pokeStats";
 import type { PokeImageUrls } from "./pokeImages";
 import type { PokeCryUrls } from "./pokeCries";
-import type { FlavorText, FlavorTextPair } from "./flavorText";
+import type { FlavorText, FlavorTextPair } from "$lib/domain/models/FlavorText";
 
 /**
  * アプリ内部のポケモン統合モデル

@@ -189,9 +189,9 @@
             </dl>
 
             <!-- 説明文 -->
-            {#if row.move.flavorText}
+            {#if row.move.flavorTexts.length > 0}
               <p class="text-surface-600-400 border-surface-200-800 border-t pt-2 text-xs leading-relaxed">
-                {row.move.flavorText}
+                {row.move.flavorTexts[0]!.text}
               </p>
             {/if}
           {/if}

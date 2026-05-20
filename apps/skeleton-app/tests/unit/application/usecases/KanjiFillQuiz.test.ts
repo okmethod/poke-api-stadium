@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { parseFlavorTextPair } from "$lib/domain/models/KanjiQuizItem";
+import { parseFlavorTextPair } from "$lib/application/usecases/KanjiFillQuiz";
 
 describe("parseFlavorTextPair", () => {
   it("後続の非漢字トークンを suffix/kanaSuffix に格納し、下線とこたえを漢字トークンに対応させる", () => {
@@ -143,5 +143,31 @@ describe("parseFlavorTextPair", () => {
     expect(result[0]!.reading).toBe("しられた");
     expect(result[0]!.suffix).toBe("ポケモン");
     expect(result[0]!.kanaSuffix).toBe("ポケモン");
+  });
+
+  it("漢字よりかなのトークン数が少ない場合は空配列を返す（非漢字トークンがかな側に吸収された例）", () => {
+    // 漢字: "とても" と "苦手。" が別トークン（11トークン）
+    // かな: "とてもにがて。" と合算されている（10トークン）→ 正しい読みの対応付けが不能
+    const pair = {
+      kanji: "体が 冷えるのが とても 苦手。\n気温が 下がる 晩には 砂漠の\n砂の 奥深くに 潜っている。",
+      kana: "からだが ひえるのが とてもにがて。\nきおんが さがる ばんには さばくの\nすなの おくふかくに もぐっている。",
+    };
+
+    const result = parseFlavorTextPair(pair);
+
+    expect(result).toHaveLength(0);
+  });
+
+  it("かなのトークン数が漢字より多い場合は空配列を返す（漢字1トークンがかな側で分割された例）", () => {
+    // 漢字: "異次元空間を" が1トークン（7トークン）
+    // かな: "いじげん" と "くうかんを" に分割されている（8トークン）→ 正しい読みの対応付けが不能
+    const pair = {
+      kanji: "異次元空間を 自由に\n移動できるように プログラムを\n修正したが ミスした らしい。",
+      kana: "いじげん くうかんを じゆうに\nいどうできるように プログラムを\nしゅうせいしたが ミスした らしい。",
+    };
+
+    const result = parseFlavorTextPair(pair);
+
+    expect(result).toHaveLength(0);
   });
 });
