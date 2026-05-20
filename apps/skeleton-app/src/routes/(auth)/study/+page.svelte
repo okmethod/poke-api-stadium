@@ -4,11 +4,18 @@
 
   const { menuItems } = buildMenuLoad([
     {
-      label: "ポケモン図鑑漢字ドリル",
+      label: "ポケモン漢字ドリル",
       description: "図鑑テキストの漢字の読み・書きを確認しよう",
       iconItemKey: "master-ball",
       action: "navigate",
       target: "/study/kanji-drill",
+    },
+    {
+      label: "タイピングゲーム",
+      description: "ポケモンの名前をローマ字でタイピングしよう",
+      iconItemKey: "quick-ball",
+      action: "navigate",
+      target: "/study/typing",
     },
   ]);
 </script>

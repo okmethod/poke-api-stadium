@@ -33,13 +33,6 @@
       target: "/action/safari",
     },
     {
-      label: "タイピングゲーム",
-      description: "ポケモンの名前をローマ字でタイピングしよう",
-      iconItemKey: "quick-ball",
-      action: "navigate",
-      target: "/action/typing",
-    },
-    {
       label: "ポケモンピンボール",
       description: "モンスターボールでポケモンバンパーをはじこう",
       iconItemKey: "poke-ball",
