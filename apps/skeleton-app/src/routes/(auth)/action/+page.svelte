@@ -10,7 +10,6 @@
       action: "navigate",
       target: "/action/type-janken",
     },
-
     {
       label: "ばつぐんラッシュ",
       description: "出現するポケモンに効果ばつぐんな技を素早く選ぼう",
@@ -34,8 +33,8 @@
     },
     {
       label: "ポケモンピンボール",
-      description: "モンスターボールでポケモンバンパーをはじこう",
-      iconItemKey: "poke-ball",
+      description: "WIP",
+      iconItemKey: "cherish-ball",
       action: "navigate",
       target: "/action/pinball",
     },

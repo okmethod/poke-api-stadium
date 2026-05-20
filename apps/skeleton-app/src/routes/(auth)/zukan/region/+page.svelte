@@ -14,7 +14,7 @@
     kalos: "mega-bracelet",
     alola: "z-ring",
     galar: "tamato-berry",
-    hisui: "insect-plate",
+    hisui: "lapoke-ball",
     paldea: "rule-book",
     orre: "silver-wing",
   };
