@@ -8,25 +8,18 @@
   let { label, description, iconSrc, onclick }: MenuCardProps = $props();
 </script>
 
-{#if description}
-  <button
-    type="button"
-    {onclick}
-    class="card preset-tonal card-hover flex h-auto w-full flex-col items-center gap-3 border px-4 py-6"
-  >
-    <div class="flex items-center gap-0 sm:gap-2">
-      <img src={iconSrc} alt="" class="h-10 w-10 object-contain" />
-      <span class="text-xl font-semibold">{label}</span>
-    </div>
+<button
+  type="button"
+  {onclick}
+  class="card preset-tonal card-hover flex h-auto w-full {description
+    ? 'flex-col items-center gap-3 border px-2 py-3'
+    : 'items-center justify-start gap-2 border p-3'}"
+>
+  <div class={description ? "flex items-center gap-0 sm:gap-2" : "contents"}>
+    <img src={iconSrc} alt="" class="object-contain {description ? 'h-10 w-10' : 'h-6 w-6'}" />
+    <span class={description ? "text-base font-semibold sm:text-xl" : "text-lg"}>{label}</span>
+  </div>
+  {#if description}
     <p class="text-xs opacity-70 sm:text-sm">{description}</p>
-  </button>
-{:else}
-  <button
-    type="button"
-    {onclick}
-    class="card preset-tonal card-hover flex h-auto w-full items-center justify-start gap-2 border p-3"
-  >
-    <img src={iconSrc} alt="" class="h-6 w-6 object-contain" />
-    <span class="text-lg">{label}</span>
-  </button>
-{/if}
+  {/if}
+</button>
