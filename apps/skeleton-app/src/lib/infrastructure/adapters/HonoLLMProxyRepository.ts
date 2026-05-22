@@ -20,6 +20,7 @@ import type {
 } from "$lib/application/ports/ILLMServiceRepository";
 import { getAppSecret } from "$lib/application/stores/appSecretStore";
 import { constructRequestInit, fetchApi } from "$lib/infrastructure/utils/request";
+import { getStubLLMChatRepository } from "$lib/infrastructure/adapters/StubLLMChatRepository";
 
 // ローカル開発時は Vite プロキシが "/api/*" を転送するため空文字のまま
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
@@ -233,4 +234,13 @@ const LLM_PROVIDERS: readonly LLMProvider[] = ["stub", "gemini", "claude", "groq
 export function getDefaultLLMProvider(): LLMProvider {
   const value = import.meta.env.VITE_DEFAULT_LLM_PROVIDER;
   return LLM_PROVIDERS.includes(value as LLMProvider) ? (value as LLMProvider) : "stub";
+}
+
+/**
+ * デフォルトプロバイダーに応じた ILLMChatRepository を返す
+ *
+ * stub の場合はバックエンド不要の StubLLMChatRepository を返す。
+ */
+export function getDefaultLLMChatRepository(): ILLMChatRepository {
+  return getDefaultLLMProvider() === "stub" ? getStubLLMChatRepository() : getLLMChatRepository();
 }

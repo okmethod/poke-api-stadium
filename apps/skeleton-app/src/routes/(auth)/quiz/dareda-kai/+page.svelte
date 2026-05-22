@@ -2,7 +2,7 @@
   import Icon from "@iconify/svelte";
   import { InterrogationQuiz } from "$lib/application/usecases/InterrogationQuiz";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
-  import { getLLMChatRepository, getDefaultLLMProvider } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
+  import { getDefaultLLMChatRepository, getDefaultLLMProvider } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";
@@ -10,7 +10,7 @@
   import ChatWindow from "./_components/ChatWindow.svelte";
 
   const provider = getDefaultLLMProvider();
-  const facade = new InterrogationQuiz.Facade(getLLMChatRepository(), getPokeRepository());
+  const facade = new InterrogationQuiz.Facade(getDefaultLLMChatRepository(), getPokeRepository());
   const {
     gameStatus,
     currentPokeName,
