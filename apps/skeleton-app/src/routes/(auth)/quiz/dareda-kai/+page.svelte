@@ -2,7 +2,7 @@
   import Icon from "@iconify/svelte";
   import { InterrogationQuiz } from "$lib/application/usecases/InterrogationQuiz";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
-  import { getDefaultLLMChatRepository, getDefaultLLMProvider } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
+  import { getDefaultLLMChatRepository, getDefaultLLMProvider } from "$lib/infrastructure/adapters/LLMProxyRepository";
   import { getPokeRepository } from "$lib/infrastructure/adapters/PokeApiAdapter";
   import { getAudioOn } from "$lib/presentation/stores/audioStore";
   import { showErrorToast } from "$lib/presentation/utils/toaster";

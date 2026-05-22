@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { appSecretStore } from "$lib/application/stores/appSecretStore";
-  import { getAuthCheckRepository } from "$lib/infrastructure/adapters/HonoLLMProxyRepository";
+  import { getAuthCheckRepository } from "$lib/infrastructure/adapters/LLMProxyRepository";
 
   let inputSecret = $state("");
   let errorMessage = $state("");

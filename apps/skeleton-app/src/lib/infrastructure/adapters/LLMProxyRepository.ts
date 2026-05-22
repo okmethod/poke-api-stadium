@@ -1,5 +1,5 @@
 /**
- * HonoLLMProxyRepository - Port/Adapter パターンの Adapter (具象実装)
+ * LLMProxyRepository - Port/Adapter パターンの Adapter (具象実装)
  *
  * LLM プロキシの全エンドポイント（auth / health / chat）との統合を提供する。
  *
@@ -96,7 +96,7 @@ class HealthCheckRepository implements IHealthCheckRepository {
   }
 }
 
-/** ヘルスチェックエンドポイントの具象実装 */
+/** 認証エンドポイントの具象実装 */
 class AuthCheckRepository implements IAuthCheckRepository {
   /** あいことばをサーバーで検証する。通信失敗時は false を返す */
   async verifyAppSecret(fetchFunction: typeof fetch, secret: string): Promise<boolean> {
