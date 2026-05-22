@@ -1,57 +1,16 @@
 services:
   skeleton-app:
-    depends_on:
-      - hono-server
     image: node:24.15.0-slim
     ports:
       - 5173:5173
     working_dir: /app
     environment:
-      LOCAL_API_BASE_URL: "http://hono-server:8787"
+      LOCAL_API_BASE_URL: "https://multi-ai-gateway.okmethod2020.workers.dev"
       VITE_DEFAULT_LLM_PROVIDER: "groq"
     volumes:
       - ./apps/skeleton-app:/app
       - skeleton-app-node-modules:/app/node_modules
     command: /bin/sh -c "npm install && npm run dev"
-  
-  hono-server:
-    image: node:24.15.0-slim
-    working_dir: /app
-    ports:
-      - 8787:8787
-    environment:
-      # ローカル開発専用: シークレットをベタ書き（本番は wrangler secret put で設定）
-      APP_SECRET: "pass"
-      AI_GATEWAY_BASE_URL: "${AI_GATEWAY_BASE_URL}"
-      AI_GATEWAY_TOKEN: "${AI_GATEWAY_TOKEN}"
-      # CORS: ローカルのフロントエンド開発サーバーを許可（カンマ区切り）
-      ALLOWED_ORIGINS: "http://localhost:5173"
-      # 各プロバイダーのモデル名（wrangler.toml の [vars] と揃える）
-      GEMINI_MODEL: "gemini-2.5-flash"
-      CLAUDE_MODEL: "claude-haiku-4-5-20251001"
-      GROQ_MODEL: "meta-llama/llama-4-scout-17b-16e-instruct"
-    volumes:
-      - ./apps/hono-server:/app
-      - hono-server-node-modules:/app/node_modules
-    command:
-      - sh
-      - -c
-      - |
-        set -e
-        apt-get update -qq && apt-get install -y -qq ca-certificates --no-install-recommends && rm -rf /var/lib/apt/lists/*
-        npm install
-        {
-          echo "APP_SECRET=$$APP_SECRET"
-          echo "AI_GATEWAY_BASE_URL=$$AI_GATEWAY_BASE_URL"
-          echo "AI_GATEWAY_TOKEN=$$AI_GATEWAY_TOKEN"
-          echo "ALLOWED_ORIGINS=$$ALLOWED_ORIGINS"
-          echo "GEMINI_MODEL=$$GEMINI_MODEL"
-          echo "CLAUDE_MODEL=$$CLAUDE_MODEL"
-          echo "GROQ_MODEL=$$GROQ_MODEL"
-        } > /app/.dev.vars
-        exec npx wrangler dev --ip 0.0.0.0 --port 8787 --show-interactive-dev-session false
-    tty: true
 
 volumes:
   skeleton-app-node-modules:
-  hono-server-node-modules:
