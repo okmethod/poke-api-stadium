@@ -21,7 +21,7 @@ globs: "apps/**/*.ts"
 - 枝葉部分（個別実装・privateメソッド・メソッド内処理）は `//` コメントのみ（JSDocは書かない）
 - 未実装・負債は `// TODO:` / `// FIXME:` コメントで明示する
 
-## よく使うコマンド（apps/skeleton-app/ or apps/hono-server/ 内）
+## よく使うコマンド（apps/skeleton-app/ 内）
 
 ```bash
 npm run check  # tsc or svelte-check --tsconfig 

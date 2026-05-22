@@ -22,7 +22,7 @@
 [PokeAPI](https://pokeapi.co/) を入口にした、ポケモンデータ活用型ミニゲーム集
 
 - PokeAPI からポケモンデータを取得し、様々なミニゲームに活用する SPA を提供
-- Hono サーバーをマルチプロバイダー対応の LLM エンドポイントプロキシとして利用し、ユーザーはパスフレーズのみで利用可能
+- [okmethod/multi-ai-gateway](https://github.com/okmethod/multi-ai-gateway) をマルチプロバイダー対応の LLM エンドポイントプロキシとして利用し、ユーザーはパスフレーズのみで利用可能
 
 ---
 
@@ -105,19 +105,6 @@ graph LR
 - **バリデーション**: Zod v4
 - **ビルド**: Vite v6
 - **デプロイ・ホスティング**: gh-pages v6 + GitHub Pages
-
-### バックエンド
-
-- **開発環境**: Node.js 24
-  - パッケージ管理: npm
-  - Linter & Formatter: ESLint + Prettier
-  - Type checker: tsc
-  - Test: Vitest
-  - Task Runner: npm scripts
-- **言語**: TypeScript v6
-- **Web フレームワーク**: Hono v4
-- **バリデーション**: Zod v4
-- **ビルド・ホスティング**: Wrangler v4 + Cloudflare Workers
 
 ---
 

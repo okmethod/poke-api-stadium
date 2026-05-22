@@ -25,4 +25,3 @@ PokeAPI の豊富なポケモンデータを活用したミニゲーム集
 ## ディレクトリ
 
 - `apps/skeleton-app/`: Skeleton フロントエンド
-- `apps/hono-server/`: Hono サーバー
