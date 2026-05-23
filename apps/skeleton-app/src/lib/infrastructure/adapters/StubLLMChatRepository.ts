@@ -24,11 +24,7 @@ const STUB_CHUNKS = [
 ];
 
 class StubLLMChatRepository implements ILLMChatRepository {
-  async streamChat(
-    _fetchFn: typeof fetch,
-    _params: StreamChatParams,
-    onChunk: (text: string) => void,
-  ): Promise<void> {
+  async streamChat(_fetchFn: typeof fetch, _params: StreamChatParams, onChunk: (text: string) => void): Promise<void> {
     for (const text of STUB_CHUNKS) {
       await new Promise((r) => setTimeout(r, 100));
       onChunk(text);
