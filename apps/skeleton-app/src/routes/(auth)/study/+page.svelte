@@ -11,6 +11,13 @@
       target: "/study/kanji-drill",
     },
     {
+      label: "バトル計算ドリル",
+      description: "ポケモンのステータスを使って計算しよう",
+      iconItemKey: "timer-ball",
+      action: "navigate",
+      target: "/study/calc-drill",
+    },
+    {
       label: "タイピングゲーム",
       description: "ポケモンの名前をローマ字でタイピングしよう",
       iconItemKey: "quick-ball",
