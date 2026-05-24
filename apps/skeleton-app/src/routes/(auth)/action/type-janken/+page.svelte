@@ -7,6 +7,7 @@
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
+  import DifficultyButton from "$lib/presentation/components/buttons/DifficultyButton.svelte";
   import type { StarterType } from "$lib/application/usecases/TypeJanken/store";
 
   const facade = new TypeJanken.Facade(getPokeRepository());
@@ -85,14 +86,12 @@
   <!-- スタートボタン + タイマー / スコア表示 -->
   <div class="flex flex-wrap items-center justify-center gap-4">
     <SpawnButton onclick={isGameStarted ? handleReset : handleStart} isLoading={$isLoading} started={isGameStarted} />
-    <button
-      type="button"
-      class="btn btn-sm {difficulty === 'easy' ? 'preset-filled-success-500' : 'preset-filled-error-500'}"
+    <DifficultyButton
+      value={difficulty}
+      levels={["easy", "hard"]}
+      onchange={(v) => (difficulty = v as Difficulty)}
       disabled={isGameActive}
-      onclick={() => (difficulty = difficulty === "easy" ? "hard" : "easy")}
-    >
-      {difficulty === "easy" ? "かんたん" : "むずかしい"}
-    </button>
+    />
     {#if $buttonPokemons !== null}
       <span class="text-surface-600 dark:text-surface-300 text-sm">
         {formatTime($isGameOver ? ($finalElapsedMs ?? 0) : liveElapsedMs)}

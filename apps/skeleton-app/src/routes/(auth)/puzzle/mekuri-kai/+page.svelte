@@ -6,6 +6,7 @@
   import { showErrorToast } from "$lib/presentation/utils/toaster";
   import { watchResultSE } from "$lib/presentation/utils/watchEffect.svelte";
   import SpawnButton from "$lib/presentation/components/buttons/SpawnButton.svelte";
+  import DifficultyButton from "$lib/presentation/components/buttons/DifficultyButton.svelte";
   import PokeChip from "$lib/presentation/components/atoms/PokeChip.svelte";
 
   const facade = new TypeMemoryGame.Facade(getPokeRepository());
@@ -45,13 +46,7 @@
         裏返す
       </button>
     {/if}
-    <button
-      type="button"
-      class="btn btn-sm {difficulty === 'easy' ? 'preset-filled-success-500' : 'preset-filled-error-500'}"
-      onclick={() => (difficulty = difficulty === "easy" ? "hard" : "easy")}
-    >
-      {difficulty === "easy" ? "かんたん" : "むずかしい"}
-    </button>
+    <DifficultyButton value={difficulty} levels={["easy", "hard"]} onchange={(v) => (difficulty = v as Difficulty)} />
   </div>
 
   <!-- カードグリッド -->
